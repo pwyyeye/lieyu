@@ -619,7 +619,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1366"
             endingLineNumber = "1366"
-            landmarkName = "-SetViewDisappearForSure:"
+            landmarkName = "-timeChooseAct:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -683,7 +683,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "656"
             endingLineNumber = "656"
-            landmarkName = "-getDataMysWithSetContentOffSet:needLoading:"
+            landmarkName = "-hideImageTip:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

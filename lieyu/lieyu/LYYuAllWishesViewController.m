@@ -36,6 +36,11 @@
     UIButton *releaseButton;
     
     LYYuAllWishesViewController *detailViewController;
+    
+    //引导页
+    UIView *grayBackground;
+    UIImageView *tipImageview;
+    UIButton *tryButton;
 }
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataList;
@@ -143,7 +148,7 @@
     [self.view addSubview:effectView];
     [self.view bringSubviewToFront:effectView];
     
-    releaseButton = [[UIButton alloc]initWithFrame:CGRectMake(17, 6, 26, 48)];
+    releaseButton = [[UIButton alloc]initWithFrame:CGRectMake(17, 6, 26, 45)];
     [releaseButton setBackgroundImage:[UIImage imageNamed:@"YU_release"] forState:UIControlStateNormal];
     [releaseButton addTarget:self action:@selector(releaseClick) forControlEvents:UIControlEventTouchUpInside];
     [effectView addSubview:releaseButton];
@@ -166,7 +171,7 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    NSLog(@"scrollView.contentOffset.y:%f",scrollView.contentOffset.y);
+//    NSLog(@"scrollView.contentOffset.y:%f",scrollView.contentOffset.y);
     if (scrollView.contentOffset.y > _oldScrollOffectY) {
         if (scrollView.contentOffset.y <= 0.f) {
             if (_type == 0) {
@@ -268,7 +273,9 @@
         }
         [_dataList addObjectsFromArray:dataArray];
         if (_dataList.count == limit) {
-            [self.tableView setContentOffset:CGPointMake(0, -64) animated:NO];
+            [UIView animateWithDuration:0.3 animations:^{
+                [weakSelf.tableView setContentOffset:CGPointMake(0, -64)];
+            }];
         }
         if (dataArray.count <= 0) {
             if (_dataList.count <= 0) {
@@ -290,6 +297,20 @@
             [weakSelf.tableView.mj_header endRefreshing];
         }
         [weakSelf.tableView reloadData];
+        if (![USER_DEFAULT objectForKey:@"UsersFirstEnterYU"]) {
+            grayBackground = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+            [grayBackground setBackgroundColor:RGBA(0, 0, 0, 0.3)];
+            [((AppDelegate *)[UIApplication sharedApplication].delegate).window addSubview:grayBackground];
+            
+            tipImageview = [[UIImageView alloc]initWithFrame:CGRectMake(48, SCREEN_HEIGHT - 198, SCREEN_WIDTH - 98, 143)];
+            [tipImageview setImage:[UIImage imageNamed:@""]];
+            [grayBackground addSubview:tipImageview];
+            
+            tryButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 92, SCREEN_HEIGHT / 2 - 23, 184, 46)];
+            [tryButton setBackgroundColor:[UIColor clearColor]];
+            [tryButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+            [tryButton addTarget:self action:@selector(releaseClick) forControlEvents:UIControlEventTouchUpInside];
+        }
     }];
 }
 
@@ -376,6 +397,29 @@
     }else{
         return 0;
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    YUWishesModel *model = [_dataList objectAtIndex:indexPath.section];
+    LYFindConversationViewController *conversationVC = [[LYFindConversationViewController alloc]init];
+    //    RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
+    conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
+    conversationVC.targetId = model.imUserId; // 接收者的 targetId，这里为举例。
+    conversationVC.title = model.releaseUserName; // 会话的 title。
+    
+    [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
+    
+    [IQKeyboardManager sharedManager].enable = NO;
+    [IQKeyboardManager sharedManager].isAdd = YES;
+    // 把单聊视图控制器添加到导航栈。
+    UIButton *itemBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+    itemBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 0);
+    [itemBtn setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
+    [itemBtn addTarget:self action:@selector(backForward) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:itemBtn];
+    conversationVC.navigationItem.leftBarButtonItem = item;
+    
+    [self.navigationController pushViewController:conversationVC animated:YES];
 }
 
 #pragma mark - 重写返回方法
