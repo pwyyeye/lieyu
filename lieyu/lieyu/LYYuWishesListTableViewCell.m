@@ -15,7 +15,7 @@
     _bgView.layer.borderWidth = 0.5;
     _bgView.layer.borderColor = [RGBA(204, 204, 204, 1) CGColor];
     _avatarImage.layer.cornerRadius = 30;
-    
+    _avatarImage.layer.masksToBounds = YES;
     _reLabel.layer.cornerRadius = 2;
     _reLabel.layer.masksToBounds = YES;
 }
@@ -54,7 +54,7 @@
 //        [_balanceButton setTitle:[NSString stringWithFormat:@"  预估：¥%d-%d",_model.moneyStart,_model.moneyEnd] forState:UIControlStateNormal];
 //    }
     [_timeLabel setText:[_model.createDate substringToIndex:_model.createDate.length - 3]];
-    if(_model.replyContent.length > 0 && userModel.userid == _model.releaseUserid){
+    if(_model.replyContent.length > 0 && userModel.userid == _model.releaseUserid && [_model.isfinished isEqualToString:@"0"]){
         //未选择&&是我自己
         _addressImage.hidden = YES;
         _addressLabel.hidden = YES;
