@@ -753,6 +753,12 @@
 		38EAA5311CCDB7FA0080A6D6 /* LYYuAllWishesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EAA5301CCDB7FA0080A6D6 /* LYYuAllWishesViewController.m */; };
 		38EAA5351CCE03A60080A6D6 /* YU_release@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA5331CCE03A60080A6D6 /* YU_release@2x.png */; };
 		38EAA5361CCE03A60080A6D6 /* YU_release@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA5341CCE03A60080A6D6 /* YU_release@3x.png */; };
+		38EAA57C1CCF5B910080A6D6 /* YU_tipImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA5761CCF5B910080A6D6 /* YU_tipImage.png */; };
+		38EAA57D1CCF5B910080A6D6 /* YU_tipImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA5771CCF5B910080A6D6 /* YU_tipImage@2x.png */; };
+		38EAA57E1CCF5B910080A6D6 /* YU_tipImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA5781CCF5B910080A6D6 /* YU_tipImage@3x.png */; };
+		38EAA57F1CCF5B910080A6D6 /* YU_tryButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA5791CCF5B910080A6D6 /* YU_tryButton.png */; };
+		38EAA5801CCF5B910080A6D6 /* YU_tryButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA57A1CCF5B910080A6D6 /* YU_tryButton@2x.png */; };
+		38EAA5811CCF5B910080A6D6 /* YU_tryButton@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA57B1CCF5B910080A6D6 /* YU_tryButton@3x.png */; };
 		38EDEC611C5B9CDC00694758 /* CHshop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EDEC5F1C5B9CDC00694758 /* CHshop@2x.png */; };
 		38EDEC621C5B9CDC00694758 /* CHshop@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EDEC601C5B9CDC00694758 /* CHshop@3x.png */; };
 		38EDEC651C5B9DE700694758 /* return_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EDEC631C5B9DE700694758 /* return_white@2x.png */; };
@@ -2770,6 +2776,12 @@
 		38EAA5321CCDB82E0080A6D6 /* LYYuAllWishesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYYuAllWishesViewController.h; sourceTree = "<group>"; };
 		38EAA5331CCE03A60080A6D6 /* YU_release@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YU_release@2x.png"; sourceTree = "<group>"; };
 		38EAA5341CCE03A60080A6D6 /* YU_release@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YU_release@3x.png"; sourceTree = "<group>"; };
+		38EAA5761CCF5B910080A6D6 /* YU_tipImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YU_tipImage.png; sourceTree = "<group>"; };
+		38EAA5771CCF5B910080A6D6 /* YU_tipImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YU_tipImage@2x.png"; sourceTree = "<group>"; };
+		38EAA5781CCF5B910080A6D6 /* YU_tipImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YU_tipImage@3x.png"; sourceTree = "<group>"; };
+		38EAA5791CCF5B910080A6D6 /* YU_tryButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YU_tryButton.png; sourceTree = "<group>"; };
+		38EAA57A1CCF5B910080A6D6 /* YU_tryButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YU_tryButton@2x.png"; sourceTree = "<group>"; };
+		38EAA57B1CCF5B910080A6D6 /* YU_tryButton@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YU_tryButton@3x.png"; sourceTree = "<group>"; };
 		38EDEC5F1C5B9CDC00694758 /* CHshop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CHshop@2x.png"; sourceTree = "<group>"; };
 		38EDEC601C5B9CDC00694758 /* CHshop@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CHshop@3x.png"; sourceTree = "<group>"; };
 		38EDEC631C5B9DE700694758 /* return_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "return_white@2x.png"; sourceTree = "<group>"; };
@@ -6097,6 +6109,12 @@
 		38EAA4E41CC9F1A30080A6D6 /* 娱2 */ = {
 			isa = PBXGroup;
 			children = (
+				38EAA5761CCF5B910080A6D6 /* YU_tipImage.png */,
+				38EAA5771CCF5B910080A6D6 /* YU_tipImage@2x.png */,
+				38EAA5781CCF5B910080A6D6 /* YU_tipImage@3x.png */,
+				38EAA5791CCF5B910080A6D6 /* YU_tryButton.png */,
+				38EAA57A1CCF5B910080A6D6 /* YU_tryButton@2x.png */,
+				38EAA57B1CCF5B910080A6D6 /* YU_tryButton@3x.png */,
 				38EAA5281CCDB1D00080A6D6 /* YU_gaoding@3x.png */,
 				38EAA5291CCDB1D00080A6D6 /* YU_gaoding@2x.png */,
 				38EAA52A1CCDB1D00080A6D6 /* YU_pujie@3x.png */,
@@ -9592,6 +9610,7 @@
 				38EE9DE81CB664EB00201734 /* LPOrdersBodyCell.xib in Resources */,
 				38979A751CA40919002946F5 /* wow1.png in Resources */,
 				ADF88E631C102E4F00CF5DED /* huiseStar@2x.png in Resources */,
+				38EAA5801CCF5B910080A6D6 /* YU_tryButton@2x.png in Resources */,
 				15E184841BB51A9500681BB2 /* LYZSApplicationViewController.xib in Resources */,
 				151BB6D11BBB78E000E7A81C /* UzysAssetPickerController.bundle in Resources */,
 				854CCA831C918E2700368C72 /* sina_weibo_s2@2x.png in Resources */,
@@ -9831,6 +9850,7 @@
 				AD203BE11CB0C4F30014618A /* tb_0.gif in Resources */,
 				38B11C111C92EE2E00AD3EB8 /* ScanBackGround@3x.png in Resources */,
 				AD399E941C940D4D00028F23 /* logo21@2x.jpg in Resources */,
+				38EAA57F1CCF5B910080A6D6 /* YU_tryButton.png in Resources */,
 				15E1848E1BB5220C00681BB2 /* LyZSuploadIdCardViewController.xib in Resources */,
 				38E5D7011C103E17004B49D2 /* LPmanager@3x.png in Resources */,
 				851806CA1C2EB33A00006804 /* LYPictiureView.xib in Resources */,
@@ -9851,6 +9871,7 @@
 				85F625911C0BF282002858C8 /* LYHorMenuViewController.xib in Resources */,
 				854CCA841C918E2700368C72 /* sina_weibo_s2@3x.png in Resources */,
 				38EAA52E1CCDB1D00080A6D6 /* YU_pujie@3x.png in Resources */,
+				38EAA57E1CCF5B910080A6D6 /* YU_tipImage@3x.png in Resources */,
 				38C98D001C61B1380084E6BD /* backBtn@2x.png in Resources */,
 				AD399E981C940D4D00028F23 /* logo25@2x.jpg in Resources */,
 				38979AB61CA40919002946F5 /* angry23.png in Resources */,
@@ -10032,6 +10053,7 @@
 				15EE51551BA7076E00464B74 /* ZSUrgedPayViewController.xib in Resources */,
 				3856646A1C62EE6A000DCFA5 /* icon_collect2@2x.png in Resources */,
 				38D876551C17DEA100E2F284 /* typeBorder.png in Resources */,
+				38EAA5811CCF5B910080A6D6 /* YU_tryButton@3x.png in Resources */,
 				15E240781BB24F510090D240 /* MyCollectionViewController.xib in Resources */,
 				851806861C2E89DC00006804 /* LYNewMessageTableViewCell.xib in Resources */,
 				ADD1B4661C528EE100A5237C /* qq_s@3x.png in Resources */,
@@ -10139,6 +10161,7 @@
 				8551B5181C8ECF730057F0E7 /* 评论@3x.png in Resources */,
 				38EE9E0D1CBB739400201734 /* DetailUserInfoCell.xib in Resources */,
 				38979AA11CA40919002946F5 /* sad5.png in Resources */,
+				38EAA57C1CCF5B910080A6D6 /* YU_tipImage.png in Resources */,
 				38EE9DFC1CB8955900201734 /* shaperLine.png in Resources */,
 				8504B9351C702263008E5C6B /* LYHotsCollectionViewCell.xib in Resources */,
 				A20100891BA7AFDD009283D1 /* LYProductsTagViewController.xib in Resources */,
@@ -10188,6 +10211,7 @@
 				38B11C211C97AE7300AD3EB8 /* find_caresb@3x.png in Resources */,
 				8551B5171C8ECF730057F0E7 /* 评论@2x.png in Resources */,
 				38979A371CA40919002946F5 /* dianzan21.png in Resources */,
+				38EAA57D1CCF5B910080A6D6 /* YU_tipImage@2x.png in Resources */,
 				AD399EB21C940D4D00028F23 /* logo51@2x.jpg in Resources */,
 				38EAA4E31CC9D7C20080A6D6 /* LYYuWishesListTableViewCell.xib in Resources */,
 				853BCC9F1C76E90500DE0324 /* 收藏whited@3x.png in Resources */,

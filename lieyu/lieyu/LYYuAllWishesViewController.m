@@ -299,17 +299,21 @@
         [weakSelf.tableView reloadData];
         if (![USER_DEFAULT objectForKey:@"UsersFirstEnterYU"]) {
             grayBackground = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-            [grayBackground setBackgroundColor:RGBA(0, 0, 0, 0.3)];
+            grayBackground.tag = 10010;
+            [grayBackground setBackgroundColor:RGBA(0, 0, 0, 0.5)];
             [((AppDelegate *)[UIApplication sharedApplication].delegate).window addSubview:grayBackground];
             
-            tipImageview = [[UIImageView alloc]initWithFrame:CGRectMake(48, SCREEN_HEIGHT - 198, SCREEN_WIDTH - 98, 143)];
-            [tipImageview setImage:[UIImage imageNamed:@""]];
+            tipImageview = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 149, SCREEN_HEIGHT - 210, 298, 166)];
+            [tipImageview setImage:[UIImage imageNamed:@"YU_tipImage"]];
             [grayBackground addSubview:tipImageview];
             
-            tryButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 92, SCREEN_HEIGHT / 2 - 23, 184, 46)];
+            tryButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 104, SCREEN_HEIGHT / 2 - 35, 208, 70)];
             [tryButton setBackgroundColor:[UIColor clearColor]];
-            [tryButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+            [tryButton setImage:[UIImage imageNamed:@"YU_tryButton"] forState:UIControlStateNormal];
             [tryButton addTarget:self action:@selector(releaseClick) forControlEvents:UIControlEventTouchUpInside];
+            [grayBackground addSubview:tryButton];
+            
+            [USER_DEFAULT setObject:@"NO" forKey:@"UsersFirstEnterYU"];
         }
     }];
 }
@@ -430,6 +434,9 @@
 
 #pragma mark - 发布
 - (void)releaseClick{
+    if ([((AppDelegate *)[UIApplication sharedApplication].delegate).window viewWithTag:10010]) {
+        [grayBackground removeFromSuperview];
+    }
     LYActivitySendViewController *activitySendVC = [[LYActivitySendViewController alloc]init];
     activitySendVC.delegate = self;
     [self.navigationController pushViewController:activitySendVC animated:YES];
