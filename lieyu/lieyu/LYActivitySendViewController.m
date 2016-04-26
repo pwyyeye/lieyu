@@ -59,9 +59,7 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    if(_isScrollToBottom) [_scrollView setContentOffset:CGPointMake(0, _scrollView.contentSize.height - _scrollView.frame.size.height) animated:YES];
-    
-    
+    if(_isScrollToBottom) [_scrollView setContentOffset:CGPointMake(0, _scrollView.contentSize.height - _scrollView.frame.size.height) animated:YES];//滑动到底部
 }
 
 #pragma mark - 获取主题
@@ -137,7 +135,7 @@
     [_locationManager stopUpdatingLocation];
 }
 
-
+#pragma mark - 构建UI
 - (void)createUI{
     _btnArray = [[NSMutableArray alloc]init];
     _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64)];
