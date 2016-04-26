@@ -2135,7 +2135,7 @@ UINavigationControllerDelegate,ISEmojiViewDelegate,sendBackVedioAndImage,ImagePi
     player = [[MPMoviePlayerViewController alloc]initWithContentURL:url];
     
     player.view.frame = friendsVedioCell.imgView_video.frame;
-    player.view.tag = 10089;
+    player.view.tag = 6611;
     player.moviePlayer.controlStyle = MPMovieControlStyleDefault;
     [friendsVedioCell addSubview:player.view];
     

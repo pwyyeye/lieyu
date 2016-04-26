@@ -240,10 +240,10 @@
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="DvJ-78-4uG"/>
-                    <exclude reference="Nej-Kz-QAi"/>
-                    <exclude reference="eRr-y8-S2R"/>
                     <exclude reference="75h-Hw-8fU"/>
                     <exclude reference="DJV-fh-pii"/>
+                    <exclude reference="Nej-Kz-QAi"/>
+                    <exclude reference="eRr-y8-S2R"/>
                 </mask>
             </variation>
             <connections>
