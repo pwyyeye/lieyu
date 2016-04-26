@@ -24,7 +24,7 @@
     UITextView *_textView;//描述框
     UITextField *_yuguTextField;//预估价格
     NSArray *_titleArray;//主题数组
-    BOOL _isBeyond;//字数超过50；
+    BOOL _isBeyond;//字数超过100；
     BOOL _isScrollToBottom;//滑到底部
     
     AMapSearchAPI *_search;
@@ -184,7 +184,7 @@
     
     CGFloat labelWidth = 50;
     _textCountLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - leftEdge - labelWidth, CGRectGetMaxY(lineView.frame) + 5, labelWidth, 17)];
-    _textCountLabel.text = @"0/50";
+    _textCountLabel.text = @"0/100";
     _textCountLabel.textAlignment = NSTextAlignmentRight;
     [_textCountLabel setFont:[UIFont systemFontOfSize:12]];
     [_scrollView addSubview:_textCountLabel];
@@ -281,9 +281,9 @@
 #pragma mark - UITextViewDelegate
 - (void)textViewDidChange:(UITextView *)textView{
     NSUInteger textCount = textView.text.length;
-    _textCountLabel.text = [NSString stringWithFormat:@"%lu/50",(unsigned long)textCount];
+    _textCountLabel.text = [NSString stringWithFormat:@"%lu/100",(unsigned long)textCount];
     NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:_textCountLabel.text];
-    if(textCount > 50) {
+    if(textCount > 100) {
         [attributedStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, 2)];
         _isBeyond = YES;
     }else{
@@ -317,7 +317,11 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
-    if (!textField.text.length) {
+    
+    NSString *str = textField.text;
+    str = [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
+    if (!str.length) {
         textField.text = @"预估";
         self.isMoneyOK = NO;
     }else{
@@ -349,7 +353,7 @@
     }
     
     if(_isBeyond){
-        [MyUtil showCleanMessage:@"号召口语超过50字！"];
+        [MyUtil showCleanMessage:@"号召口语超过100字！"];
         return;
     }
     
