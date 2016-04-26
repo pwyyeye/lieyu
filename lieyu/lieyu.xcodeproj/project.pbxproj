@@ -743,6 +743,18 @@
 		38EAA4EA1CC9F1BB0080A6D6 /* YUWishesLabel.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA4E71CC9F1BB0080A6D6 /* YUWishesLabel.png */; };
 		38EAA4ED1CC9F4340080A6D6 /* YUWishesBalance@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA4EB1CC9F4340080A6D6 /* YUWishesBalance@3x.png */; };
 		38EAA4EE1CC9F4340080A6D6 /* YUWishesBalance@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA4EC1CC9F4340080A6D6 /* YUWishesBalance@2x.png */; };
+		38EAA5151CCA07BB0080A6D6 /* YUWishesUnfinish@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA5111CCA07BB0080A6D6 /* YUWishesUnfinish@2x.png */; };
+		38EAA5161CCA07BB0080A6D6 /* YUWishesUnfinish@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA5121CCA07BB0080A6D6 /* YUWishesUnfinish@3x.png */; };
+		38EAA5171CCA07BB0080A6D6 /* YUWishesFinish@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA5131CCA07BB0080A6D6 /* YUWishesFinish@3x.png */; };
+		38EAA5181CCA07BB0080A6D6 /* YUWishesFinish@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA5141CCA07BB0080A6D6 /* YUWishesFinish@2x.png */; };
+		38EAA5231CCA18790080A6D6 /* YUWishesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EAA5221CCA18790080A6D6 /* YUWishesModel.m */; };
+		38EAA52C1CCDB1D00080A6D6 /* YU_gaoding@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA5281CCDB1D00080A6D6 /* YU_gaoding@3x.png */; };
+		38EAA52D1CCDB1D00080A6D6 /* YU_gaoding@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA5291CCDB1D00080A6D6 /* YU_gaoding@2x.png */; };
+		38EAA52E1CCDB1D00080A6D6 /* YU_pujie@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA52A1CCDB1D00080A6D6 /* YU_pujie@3x.png */; };
+		38EAA52F1CCDB1D00080A6D6 /* YU_pujie@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA52B1CCDB1D00080A6D6 /* YU_pujie@2x.png */; };
+		38EAA5311CCDB7FA0080A6D6 /* LYYuAllWishesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EAA5301CCDB7FA0080A6D6 /* LYYuAllWishesViewController.m */; };
+		38EAA5351CCE03A60080A6D6 /* YU_release@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA5331CCE03A60080A6D6 /* YU_release@2x.png */; };
+		38EAA5361CCE03A60080A6D6 /* YU_release@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA5341CCE03A60080A6D6 /* YU_release@3x.png */; };
 		38EDEC611C5B9CDC00694758 /* CHshop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EDEC5F1C5B9CDC00694758 /* CHshop@2x.png */; };
 		38EDEC621C5B9CDC00694758 /* CHshop@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EDEC601C5B9CDC00694758 /* CHshop@3x.png */; };
 		38EDEC651C5B9DE700694758 /* return_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EDEC631C5B9DE700694758 /* return_white@2x.png */; };
@@ -852,6 +864,7 @@
 		8504B9391C71C36B008E5C6B /* LYHomeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8504B9371C71C36B008E5C6B /* LYHomeCollectionViewCell.m */; };
 		8504B93A1C71C36B008E5C6B /* LYHomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8504B9381C71C36B008E5C6B /* LYHomeCollectionViewCell.xib */; };
 		850918881C982D23007981C0 /* LYFindConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 850918871C982D23007981C0 /* LYFindConversationViewController.m */; };
+		850AC96F1CCDF0AD009F110C /* LYYUChooseLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 850AC96E1CCDF0AD009F110C /* LYYUChooseLocationViewController.m */; };
 		8512BCA81C4A14D20087FFA6 /* icon_zhuyishixiang_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8512BCA21C4A14D20087FFA6 /* icon_zhuyishixiang_normal.png */; };
 		8512BCA91C4A14D20087FFA6 /* icon_zhuyishixiang_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8512BCA31C4A14D20087FFA6 /* icon_zhuyishixiang_normal@2x.png */; };
 		8512BCAA1C4A14D20087FFA6 /* icon_zhuyishixiang_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8512BCA41C4A14D20087FFA6 /* icon_zhuyishixiang_normal@3x.png */; };
@@ -1112,6 +1125,11 @@
 		855941761C520D20000AA20F /* libSocialQQ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 855941721C520D20000AA20F /* libSocialQQ.a */; };
 		855941771C520D20000AA20F /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 855941731C520D20000AA20F /* TencentOpenAPI.framework */; };
 		855941781C520D20000AA20F /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 855941741C520D20000AA20F /* TencentOpenApi_IOS_Bundle.bundle */; };
+		855C88591CCB02A90055E8B0 /* LYActivitySendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855C88571CCB02A90055E8B0 /* LYActivitySendViewController.m */; };
+		855C885A1CCB02A90055E8B0 /* LYActivitySendViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 855C88581CCB02A90055E8B0 /* LYActivitySendViewController.xib */; };
+		855C889C1CCB22DD0055E8B0 /* LYActivitySendButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 855C889B1CCB22DD0055E8B0 /* LYActivitySendButton.m */; };
+		855C889F1CCB40A60055E8B0 /* yu_money_yugu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 855C889D1CCB40A60055E8B0 /* yu_money_yugu@3x.png */; };
+		855C88A01CCB40A60055E8B0 /* yu_money_yugu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 855C889E1CCB40A60055E8B0 /* yu_money_yugu@2x.png */; };
 		85653B671C508DF40012B718 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85653B661C508DF40012B718 /* CoreGraphics.framework */; };
 		85653B691C508E100012B718 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 85653B681C508E100012B718 /* libstdc++.tbd */; };
 		8569A5941CC9F59E003D7954 /* LYFriendsMessageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8569A5921CC9F59E003D7954 /* LYFriendsMessageDetailViewController.m */; };
@@ -2789,6 +2807,20 @@
 		38EAA4E71CC9F1BB0080A6D6 /* YUWishesLabel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YUWishesLabel.png; sourceTree = "<group>"; };
 		38EAA4EB1CC9F4340080A6D6 /* YUWishesBalance@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YUWishesBalance@3x.png"; sourceTree = "<group>"; };
 		38EAA4EC1CC9F4340080A6D6 /* YUWishesBalance@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YUWishesBalance@2x.png"; sourceTree = "<group>"; };
+		38EAA5111CCA07BB0080A6D6 /* YUWishesUnfinish@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YUWishesUnfinish@2x.png"; sourceTree = "<group>"; };
+		38EAA5121CCA07BB0080A6D6 /* YUWishesUnfinish@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YUWishesUnfinish@3x.png"; sourceTree = "<group>"; };
+		38EAA5131CCA07BB0080A6D6 /* YUWishesFinish@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YUWishesFinish@3x.png"; sourceTree = "<group>"; };
+		38EAA5141CCA07BB0080A6D6 /* YUWishesFinish@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YUWishesFinish@2x.png"; sourceTree = "<group>"; };
+		38EAA5211CCA18790080A6D6 /* YUWishesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUWishesModel.h; sourceTree = "<group>"; };
+		38EAA5221CCA18790080A6D6 /* YUWishesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUWishesModel.m; sourceTree = "<group>"; };
+		38EAA5281CCDB1D00080A6D6 /* YU_gaoding@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YU_gaoding@3x.png"; sourceTree = "<group>"; };
+		38EAA5291CCDB1D00080A6D6 /* YU_gaoding@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YU_gaoding@2x.png"; sourceTree = "<group>"; };
+		38EAA52A1CCDB1D00080A6D6 /* YU_pujie@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YU_pujie@3x.png"; sourceTree = "<group>"; };
+		38EAA52B1CCDB1D00080A6D6 /* YU_pujie@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YU_pujie@2x.png"; sourceTree = "<group>"; };
+		38EAA5301CCDB7FA0080A6D6 /* LYYuAllWishesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYYuAllWishesViewController.m; sourceTree = "<group>"; };
+		38EAA5321CCDB82E0080A6D6 /* LYYuAllWishesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYYuAllWishesViewController.h; sourceTree = "<group>"; };
+		38EAA5331CCE03A60080A6D6 /* YU_release@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YU_release@2x.png"; sourceTree = "<group>"; };
+		38EAA5341CCE03A60080A6D6 /* YU_release@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "YU_release@3x.png"; sourceTree = "<group>"; };
 		38EDEC5F1C5B9CDC00694758 /* CHshop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CHshop@2x.png"; sourceTree = "<group>"; };
 		38EDEC601C5B9CDC00694758 /* CHshop@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CHshop@3x.png"; sourceTree = "<group>"; };
 		38EDEC631C5B9DE700694758 /* return_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "return_white@2x.png"; sourceTree = "<group>"; };
@@ -2926,6 +2958,8 @@
 		8504B9381C71C36B008E5C6B /* LYHomeCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHomeCollectionViewCell.xib; sourceTree = "<group>"; };
 		850918861C982D23007981C0 /* LYFindConversationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYFindConversationViewController.h; sourceTree = "<group>"; };
 		850918871C982D23007981C0 /* LYFindConversationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYFindConversationViewController.m; sourceTree = "<group>"; };
+		850AC96D1CCDF0AD009F110C /* LYYUChooseLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYYUChooseLocationViewController.h; sourceTree = "<group>"; };
+		850AC96E1CCDF0AD009F110C /* LYYUChooseLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYYUChooseLocationViewController.m; sourceTree = "<group>"; };
 		8512BCA21C4A14D20087FFA6 /* icon_zhuyishixiang_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_zhuyishixiang_normal.png; sourceTree = "<group>"; };
 		8512BCA31C4A14D20087FFA6 /* icon_zhuyishixiang_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_zhuyishixiang_normal@2x.png"; sourceTree = "<group>"; };
 		8512BCA41C4A14D20087FFA6 /* icon_zhuyishixiang_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_zhuyishixiang_normal@3x.png"; sourceTree = "<group>"; };
@@ -3281,6 +3315,13 @@
 		855941731C520D20000AA20F /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		855941741C520D20000AA20F /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		855941751C520D20000AA20F /* UMSocialQQHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialQQHandler.h; sourceTree = "<group>"; };
+		855C88561CCB02A90055E8B0 /* LYActivitySendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYActivitySendViewController.h; sourceTree = "<group>"; };
+		855C88571CCB02A90055E8B0 /* LYActivitySendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYActivitySendViewController.m; sourceTree = "<group>"; };
+		855C88581CCB02A90055E8B0 /* LYActivitySendViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYActivitySendViewController.xib; sourceTree = "<group>"; };
+		855C889A1CCB22DD0055E8B0 /* LYActivitySendButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYActivitySendButton.h; sourceTree = "<group>"; };
+		855C889B1CCB22DD0055E8B0 /* LYActivitySendButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYActivitySendButton.m; sourceTree = "<group>"; };
+		855C889D1CCB40A60055E8B0 /* yu_money_yugu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yu_money_yugu@3x.png"; sourceTree = "<group>"; };
+		855C889E1CCB40A60055E8B0 /* yu_money_yugu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yu_money_yugu@2x.png"; sourceTree = "<group>"; };
 		85653B661C508DF40012B718 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		85653B681C508E100012B718 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		8569A5911CC9F59E003D7954 /* LYFriendsMessageDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYFriendsMessageDetailViewController.h; sourceTree = "<group>"; };
@@ -6195,11 +6236,21 @@
 		38EAA4E41CC9F1A30080A6D6 /* 娱2 */ = {
 			isa = PBXGroup;
 			children = (
+				38EAA5281CCDB1D00080A6D6 /* YU_gaoding@3x.png */,
+				38EAA5291CCDB1D00080A6D6 /* YU_gaoding@2x.png */,
+				38EAA52A1CCDB1D00080A6D6 /* YU_pujie@3x.png */,
+				38EAA52B1CCDB1D00080A6D6 /* YU_pujie@2x.png */,
+				38EAA5331CCE03A60080A6D6 /* YU_release@2x.png */,
+				38EAA5341CCE03A60080A6D6 /* YU_release@3x.png */,
 				38EAA4E51CC9F1BB0080A6D6 /* YUWishesLabel@3x.png */,
 				38EAA4E61CC9F1BB0080A6D6 /* YUWishesLabel@2x.png */,
 				38EAA4E71CC9F1BB0080A6D6 /* YUWishesLabel.png */,
 				38EAA4EB1CC9F4340080A6D6 /* YUWishesBalance@3x.png */,
 				38EAA4EC1CC9F4340080A6D6 /* YUWishesBalance@2x.png */,
+				38EAA5111CCA07BB0080A6D6 /* YUWishesUnfinish@2x.png */,
+				38EAA5121CCA07BB0080A6D6 /* YUWishesUnfinish@3x.png */,
+				38EAA5131CCA07BB0080A6D6 /* YUWishesFinish@3x.png */,
+				38EAA5141CCA07BB0080A6D6 /* YUWishesFinish@2x.png */,
 			);
 			name = "娱2";
 			sourceTree = "<group>";
@@ -6239,8 +6290,6 @@
 			children = (
 				AD04A4921C61960200FAA8D3 /* LYAmusementViewController.h */,
 				AD04A4931C61960200FAA8D3 /* LYAmusementViewController.m */,
-				85FBBD6F1C604A3A0084E3F2 /* LYAmusementsViewController.h */,
-				85FBBD701C604A3A0084E3F2 /* LYAmusementsViewController.m */,
 			);
 			name = oldControllers;
 			sourceTree = "<group>";
@@ -6264,6 +6313,13 @@
 		38EAA4F21CC9F7A90080A6D6 /* newControllers */ = {
 			isa = PBXGroup;
 			children = (
+				38EAA5321CCDB82E0080A6D6 /* LYYuAllWishesViewController.h */,
+				38EAA5301CCDB7FA0080A6D6 /* LYYuAllWishesViewController.m */,
+				855C88561CCB02A90055E8B0 /* LYActivitySendViewController.h */,
+				855C88571CCB02A90055E8B0 /* LYActivitySendViewController.m */,
+				855C88581CCB02A90055E8B0 /* LYActivitySendViewController.xib */,
+				850AC96D1CCDF0AD009F110C /* LYYUChooseLocationViewController.h */,
+				850AC96E1CCDF0AD009F110C /* LYYUChooseLocationViewController.m */,
 			);
 			name = newControllers;
 			sourceTree = "<group>";
@@ -6439,6 +6495,8 @@
 		850099AF1C61EEE700DDE626 /* 娱 */ = {
 			isa = PBXGroup;
 			children = (
+				855C889D1CCB40A60055E8B0 /* yu_money_yugu@3x.png */,
+				855C889E1CCB40A60055E8B0 /* yu_money_yugu@2x.png */,
 				858B3A1F1C7A0351000C6589 /* priceBlackYUD@2x.png */,
 				858B3A201C7A0351000C6589 /* priceBlackYUD@3x.png */,
 				850099B01C61EEE700DDE626 /* downArrow@2x.png */,
@@ -7296,6 +7354,8 @@
 			children = (
 				38EAA4EF1CC9F7630080A6D6 /* oldCells */,
 				38EAA4D91CC9D7660080A6D6 /* newCells */,
+				855C889A1CCB22DD0055E8B0 /* LYActivitySendButton.h */,
+				855C889B1CCB22DD0055E8B0 /* LYActivitySendButton.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -7311,6 +7371,8 @@
 				8588C4581C5E519C0092259E /* YUPinkerListModel.m */,
 				8588C45A1C5E59200092259E /* YUPinkerinfo.h */,
 				8588C45B1C5E59200092259E /* YUPinkerinfo.m */,
+				38EAA5211CCA18790080A6D6 /* YUWishesModel.h */,
+				38EAA5221CCA18790080A6D6 /* YUWishesModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -9269,6 +9331,7 @@
 				52D4F9A31C57B2B700691BEF /* 返利@3x.png in Resources */,
 				38979A2D1CA40919002946F5 /* dianzan12.png in Resources */,
 				AD106B911C0AF044007F5FBA /* LYUserCenterHeader.xib in Resources */,
+				855C889F1CCB40A60055E8B0 /* yu_money_yugu@3x.png in Resources */,
 				850099C51C61EEE700DDE626 /* yuShadow@3x.png in Resources */,
 				AD44F9581C9D27730030F5C2 /* biaoqing_icon_keybo@3x.png in Resources */,
 				15844BBF1BE1C70600247FBC /* LYSearchFriendViewController.xib in Resources */,
@@ -9408,8 +9471,10 @@
 				15ED32791BE318A800E086A1 /* 5018.wav in Resources */,
 				38979AA91CA40919002946F5 /* angry11.png in Resources */,
 				AD399ED91C940D4D00028F23 /* logo90@2x.jpg in Resources */,
+				38EAA52D1CCDB1D00080A6D6 /* YU_gaoding@2x.png in Resources */,
 				854CCA811C918E2700368C72 /* wechat_s2@3x.png in Resources */,
 				AD203BE51CB0C4F30014618A /* tb_4.gif in Resources */,
+				38EAA5351CCE03A60080A6D6 /* YU_release@2x.png in Resources */,
 				38979AC21CA40919002946F5 /* angry34.png in Resources */,
 				38EE9CE51CB3703900201734 /* bardetail_mask@2x.png in Resources */,
 				380385DE1C327C19007C8DC0 /* play.png in Resources */,
@@ -9828,6 +9893,7 @@
 				AD399EA31C940D4D00028F23 /* logo36@2x.jpg in Resources */,
 				38979A411CA40919002946F5 /* dianzan9.png in Resources */,
 				ADC66CE11C1EC38E00E597D9 /* LYMain.storyboard in Resources */,
+				38EAA5151CCA07BB0080A6D6 /* YUWishesUnfinish@2x.png in Resources */,
 				857AD6A51CA972920032E0C4 /* ZSTiXianTableViewCell.xib in Resources */,
 				3879D06A1C7B26B4000F5795 /* share_black@2x.png in Resources */,
 				AD399EA81C940D4D00028F23 /* logo41@2x.jpg in Resources */,
@@ -9850,6 +9916,7 @@
 				38DBCD861C59B04100A1E207 /* ZujuViewController.xib in Resources */,
 				D71E1D971BAE965600915F37 /* LYShareSnsView.xib in Resources */,
 				8540387A1CAE0F2F0056C27E /* 指纹爱心@2x.png in Resources */,
+				38EAA5161CCA07BB0080A6D6 /* YUWishesUnfinish@3x.png in Resources */,
 				38979A911CA40919002946F5 /* sad12.png in Resources */,
 				AD078C761C33CDE800A056D1 /* iphoneIcon@2x.png in Resources */,
 				ADD264891C93CD1A002894AC /* 3@2x.jpg in Resources */,
@@ -9983,6 +10050,7 @@
 				15FD2AA61BD61EE000D66920 /* DWTopInfoView.xib in Resources */,
 				85F625911C0BF282002858C8 /* LYHorMenuViewController.xib in Resources */,
 				854CCA841C918E2700368C72 /* sina_weibo_s2@3x.png in Resources */,
+				38EAA52E1CCDB1D00080A6D6 /* YU_pujie@3x.png in Resources */,
 				38C98D001C61B1380084E6BD /* backBtn@2x.png in Resources */,
 				AD399E981C940D4D00028F23 /* logo25@2x.jpg in Resources */,
 				38979AB61CA40919002946F5 /* angry23.png in Resources */,
@@ -10019,6 +10087,7 @@
 				38979A9B1CA40919002946F5 /* sad21.png in Resources */,
 				15844BC41BE1CA3200247FBC /* WanYouInfoCell.xib in Resources */,
 				38C98CD21C60782D0084E6BD /* YUGroup@2x.png in Resources */,
+				38EAA5181CCA07BB0080A6D6 /* YUWishesFinish@2x.png in Resources */,
 				850099CE1C61EEE700DDE626 /* 日历yu@2x.png in Resources */,
 				ADAFCD281CA0E261008BF959 /* shark12.png in Resources */,
 				3812C5551C57B76100F4DD6B /* purper_less_circle@3x.png in Resources */,
@@ -10031,6 +10100,7 @@
 				38B11C221C97AE7300AD3EB8 /* find_caresb@2x.png in Resources */,
 				38B11C081C92AFC200AD3EB8 /* QRCode@2x.png in Resources */,
 				853D3AC01C35347A00B4FEAD /* dabofangqi_icon.png in Resources */,
+				38EAA5361CCE03A60080A6D6 /* YU_release@3x.png in Resources */,
 				ADD530401BDE1E9D002CF4D8 /* AlipaySDK.bundle in Resources */,
 				385664B91C756CE4000DCFA5 /* AllAction.xib in Resources */,
 				A2020D721BA67FA40090B92A /* classic20.png in Resources */,
@@ -10179,6 +10249,7 @@
 				AD399E961C940D4D00028F23 /* logo23@2x.jpg in Resources */,
 				850099C01C61EEE700DDE626 /* downArrow@2x.png in Resources */,
 				854CCA761C9187B800368C72 /* saoyisao@3x.png in Resources */,
+				38EAA52F1CCDB1D00080A6D6 /* YU_pujie@2x.png in Resources */,
 				15844BB51BE1B17D00247FBC /* LYMyFriendDetailViewController.xib in Resources */,
 				380659A41C53522A003094C9 /* image_Unselected@3x.png in Resources */,
 				8588C4271C5DF90A0092259E /* LYYUTableViewCell.xib in Resources */,
@@ -10229,6 +10300,7 @@
 				ADD2648F1C93CD23002894AC /* 1@3x.jpg in Resources */,
 				854405AB1CB8DF7A00EA5556 /* userSaoYiSao@2x.png in Resources */,
 				AD399EBF1C940D4D00028F23 /* logo64@2x.jpg in Resources */,
+				38EAA5171CCA07BB0080A6D6 /* YUWishesFinish@3x.png in Resources */,
 				854038721CAE0F2F0056C27E /* 爱情扫扫碰@2x.png in Resources */,
 				AD203BDF1CB0C4F30014618A /* tb_face.jpg in Resources */,
 				A2FD57651BAFE6C000CFFF92 /* CheHeCell.xib in Resources */,
@@ -10257,6 +10329,8 @@
 				38979A9A1CA40919002946F5 /* sad20.png in Resources */,
 				15A4CF521BD7865000C22C01 /* DWIsGoToViewController.xib in Resources */,
 				38979A3C1CA40919002946F5 /* dianzan4.png in Resources */,
+				855C88A01CCB40A60055E8B0 /* yu_money_yugu@2x.png in Resources */,
+				855C885A1CCB02A90055E8B0 /* LYActivitySendViewController.xib in Resources */,
 				3856647A1C72BF02000DCFA5 /* purper_price@2x.png in Resources */,
 				AD399EBC1C940D4D00028F23 /* logo61@2x.jpg in Resources */,
 				85F43BAC1C11459400B04466 /* LYOrderWriteTableViewCell.xib in Resources */,
@@ -10354,6 +10428,7 @@
 				AD399EC71C940D4D00028F23 /* logo72@2x.jpg in Resources */,
 				A2FD57761BAFE94400CFFF92 /* TaoCanMCell.xib in Resources */,
 				38E5D75B1C113445004B49D2 /* triangle_up@3x.png in Resources */,
+				38EAA52C1CCDB1D00080A6D6 /* YU_gaoding@3x.png in Resources */,
 				38979AC31CA40919002946F5 /* angry4.png in Resources */,
 				389C01061C1488F000FE9412 /* seeBoys@2x.png in Resources */,
 				AD44F95E1C9D27730030F5C2 /* emojShadow@2x.png in Resources */,
@@ -10617,6 +10692,7 @@
 				38DBCD851C59B04100A1E207 /* ZujuViewController.m in Sources */,
 				85F625A11C0C3CD5002858C8 /* LYTaoCanContentTableViewCell.m in Sources */,
 				D71E1D8C1BAE8C3300915F37 /* PacketBarCell.m in Sources */,
+				855C88591CCB02A90055E8B0 /* LYActivitySendViewController.m in Sources */,
 				8551B4ED1C8EB8370057F0E7 /* UserNotificationViewController.m in Sources */,
 				85514EE31C761B1600E24C78 /* SignButton.m in Sources */,
 				D73652411BAEBF44002541CE /* KuCunCell.m in Sources */,
@@ -10658,6 +10734,7 @@
 				D748BC4B1BA1C3CF005AA996 /* HttpResponseParse.m in Sources */,
 				A2F9DA8C1BAB96AB009DEAF3 /* KaZuoView.m in Sources */,
 				15FD2AA11BD5EC8900D66920 /* TimeButton.m in Sources */,
+				38EAA5231CCA18790080A6D6 /* YUWishesModel.m in Sources */,
 				853C4CBE1C3150DC00D48BA2 /* LYFriendsImgTableViewCell.m in Sources */,
 				38EDED621C5E258C00694758 /* HeaderTableViewCell.m in Sources */,
 				15E240581BB101340090D240 /* ZSAddStocksViewController.m in Sources */,
@@ -10799,6 +10876,7 @@
 				15EA6DBF1BBE479A00620C9E /* ProductCategoryModel.m in Sources */,
 				AD92AEA81BE22A79009F2A34 /* UserTagModel.m in Sources */,
 				AD106BB71C0DDEFF007F5FBA /* MJProperty.m in Sources */,
+				855C889C1CCB22DD0055E8B0 /* LYActivitySendButton.m in Sources */,
 				15013B031BBA33BF00061FAF /* UIImageView+WebCache.m in Sources */,
 				15EB35271BD379A500BA6161 /* LYtimeChooseTimeController.m in Sources */,
 				857AD69D1CA96A290032E0C4 /* ZSMyReceiveViewController.m in Sources */,
@@ -10807,6 +10885,7 @@
 				15EA6DC51BBFC80700620C9E /* LYUserHttpTool.m in Sources */,
 				ADF88E9F1C1197C400CF5DED /* MJRefreshComponent.m in Sources */,
 				15E240D61BB3E8610090D240 /* MyPKfriendCell.m in Sources */,
+				38EAA5311CCDB7FA0080A6D6 /* LYYuAllWishesViewController.m in Sources */,
 				854538641C2D5B430020AC2C /* FriendsRecentModel.m in Sources */,
 				D748BC3F1BA1C24B005AA996 /* HttpOperatorProvider.m in Sources */,
 				15EB7C6C1BCF8BF700756153 /* LYHomePageHttpTool.m in Sources */,
@@ -10878,6 +10957,7 @@
 				857AD6A41CA972920032E0C4 /* ZSTiXianTableViewCell.m in Sources */,
 				15A4CF461BD7682400C22C01 /* DWOredrNextCell.m in Sources */,
 				ADF88EA41C1197C400CF5DED /* MJRefreshAutoStateFooter.m in Sources */,
+				850AC96F1CCDF0AD009F110C /* LYYUChooseLocationViewController.m in Sources */,
 				D7A1D4241BC26ADF00BCE47C /* LYBaseQuery.m in Sources */,
 				380659E61C56562D003094C9 /* ManagerChooseButton.m in Sources */,
 				15E2407C1BB2521C0090D240 /* CollectionCell.m in Sources */,

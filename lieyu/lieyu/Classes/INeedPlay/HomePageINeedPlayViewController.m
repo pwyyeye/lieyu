@@ -43,6 +43,7 @@
 #import "ZSMaintViewController.h"
 #import "ChiHeViewController.h"
 #import "ZujuViewController.h"
+
 #define PAGESIZE 20
 #define HOMEPAGE_MTA @"HOMEPAGE"
 #define HOMEPAGE_TIMEEVENT_MTA @"HOMEPAGE_TIMEEVENT"
@@ -394,6 +395,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 - (void)cityChangeClick:(UIButton *)sender {
     LYCityChooseViewController *cityChooseVC = [[LYCityChooseViewController alloc]init];
     [self.navigationController pushViewController:cityChooseVC animated:YES];
+    
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:@"选择城市"]];
 }
 
