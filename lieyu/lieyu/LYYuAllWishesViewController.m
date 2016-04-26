@@ -12,6 +12,7 @@
 #import "LYFriendsHttpTool.h"
 #import "IQKeyboardManager.h"
 #import "LYActivitySendViewController.h"
+#import "LYFindConversationViewController.h"
 
 @interface LYYuAllWishesViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIAlertViewDelegate,LYActivitySendViewControllerDelegate>
 {
@@ -68,7 +69,7 @@
         [_myTitle removeFromSuperview];
         [_rightButton removeFromSuperview];
 //    }
-    [releaseButton removeFromSuperview];
+    [effectView removeFromSuperview];
 }
 
 - (void)viewDidLoad {
@@ -127,59 +128,71 @@
 }
 
 - (void)initReleaseWishButton{
+    //26-47
+    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+    effectView = [[UIVisualEffectView alloc]initWithEffect:effect];
+//    [effectView setFrame:CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 60, 60, 60)];
+   
     if (_type == 0) {
-        releaseButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 60, 60, 60)];
+        [effectView setFrame:CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 60, 60, 60)];
     }else if (_type == 1){
-        releaseButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 64, 60, 60)];
+        [effectView setFrame:CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 64, 60, 60)];
     }
-    [releaseButton addTarget:self action:@selector(releaseClick) forControlEvents:UIControlEventTouchUpInside];
+    effectView.layer.cornerRadius = 30;
+    effectView.layer.masksToBounds = YES;
+    [self.view addSubview:effectView];
+    [self.view bringSubviewToFront:effectView];
+    
+    releaseButton = [[UIButton alloc]initWithFrame:CGRectMake(17, 6, 26, 48)];
     [releaseButton setBackgroundImage:[UIImage imageNamed:@"YU_release"] forState:UIControlStateNormal];
-    [self.view addSubview:releaseButton];
+    [releaseButton addTarget:self action:@selector(releaseClick) forControlEvents:UIControlEventTouchUpInside];
+    [effectView addSubview:releaseButton];
     
     [UIView animateWithDuration:.4 animations:^{
         if (_type == 0) {
-            releaseButton.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 123, 60, 60);
+            effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 123, 60, 60);
         }else if (_type == 1){
-            releaseButton.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 147, 60, 60);
+            effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 147, 60, 60);
         }
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:0.2 animations:^{
             if (_type == 0) {
-                releaseButton.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 120, 60, 60);
+                effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 120, 60, 60);
             }else if (_type == 1){
-                releaseButton.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 144, 60, 60);
+                effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 144, 60, 60);
             }
         }];
     }];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    NSLog(@"scrollView.contentOffset.y:%f",scrollView.contentOffset.y);
     if (scrollView.contentOffset.y > _oldScrollOffectY) {
         if (scrollView.contentOffset.y <= 0.f) {
             if (_type == 0) {
-                releaseButton.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 120, 60, 60);
+                effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 120, 60, 60);
             }else if (_type == 1){
-                releaseButton.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 144, 60, 60);
+                effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 144, 60, 60);
             }
         }else{
             [UIView animateWithDuration:0.4 animations:^{
-                releaseButton.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT, 60, 60);
+                effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT, 60, 60);
             }];
         }
     }else{
-        if (CGRectGetMaxY(releaseButton.frame) > SCREEN_HEIGHT - 5) {
+        if (CGRectGetMaxY(effectView.frame) > SCREEN_HEIGHT - 5) {
             [UIView animateWithDuration:.4 animations:^{
                 if (_type == 0) {
-                    releaseButton.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 123, 60, 60);
+                    effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 123, 60, 60);
                 }else if (_type == 1){
-                    releaseButton.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 147, 60, 60);
+                    effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 147, 60, 60);
                 }
             } completion:^(BOOL finished) {
                 [UIView animateWithDuration:0.2 animations:^{
                     if (_type == 0) {
-                        releaseButton.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 120, 60, 60);
+                        effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 120, 60, 60);
                     }else if (_type == 1){
-                        releaseButton.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 144, 60, 60);
+                        effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 144, 60, 60);
                     }
                 }];
             }];
@@ -442,7 +455,8 @@
 
 - (void)avatarClick:(UIButton *)button{
     YUWishesModel *model = [_dataList objectAtIndex:button.tag];
-    RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
+    LYFindConversationViewController *conversationVC = [[LYFindConversationViewController alloc]init];
+//    RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
     conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
     conversationVC.targetId = model.imUserId; // 接收者的 targetId，这里为举例。
     conversationVC.title = model.releaseUserName; // 会话的 title。
