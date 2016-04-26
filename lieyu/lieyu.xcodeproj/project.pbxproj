@@ -1570,6 +1570,7 @@
 		ADCDF7AD1BF1A84F0040E9E3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ADCDF7AF1BF1A84F0040E9E3 /* Localizable.strings */; };
 		ADCF4EFE1CCF5297005AEA2A /* empyImageBar16_9.png in Resources */ = {isa = PBXBuildFile; fileRef = ADCF4EFD1CCF5297005AEA2A /* empyImageBar16_9.png */; };
 		ADCF4F001CCF52C1005AEA2A /* empyImage16_9.png in Resources */ = {isa = PBXBuildFile; fileRef = ADCF4EFF1CCF52C1005AEA2A /* empyImage16_9.png */; };
+		ADCF4F021CCF5408005AEA2A /* lieyu_default_head.png in Resources */ = {isa = PBXBuildFile; fileRef = ADCF4F011CCF5408005AEA2A /* lieyu_default_head.png */; };
 		ADD1B45D1C527EE200A5237C /* LYAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD1B45C1C527EE200A5237C /* LYAccountManager.m */; };
 		ADD1B4651C528EE100A5237C /* qq_s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD1B45F1C528EE100A5237C /* qq_s@2x.png */; };
 		ADD1B4661C528EE100A5237C /* qq_s@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD1B4601C528EE100A5237C /* qq_s@3x.png */; };
@@ -3839,6 +3840,7 @@
 		ADCDF7B01BF1A8530040E9E3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		ADCF4EFD1CCF5297005AEA2A /* empyImageBar16_9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = empyImageBar16_9.png; sourceTree = "<group>"; };
 		ADCF4EFF1CCF52C1005AEA2A /* empyImage16_9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = empyImage16_9.png; sourceTree = "<group>"; };
+		ADCF4F011CCF5408005AEA2A /* lieyu_default_head.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lieyu_default_head.png; sourceTree = "<group>"; };
 		ADD1B45B1C527EE200A5237C /* LYAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYAccountManager.h; sourceTree = "<group>"; };
 		ADD1B45C1C527EE200A5237C /* LYAccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYAccountManager.m; sourceTree = "<group>"; };
 		ADD1B45F1C528EE100A5237C /* qq_s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qq_s@2x.png"; sourceTree = "<group>"; };
@@ -8440,6 +8442,7 @@
 		ADF88E551C102E2D00CF5DED /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
+				ADCF4F011CCF5408005AEA2A /* lieyu_default_head.png */,
 				855783CA1CBBC46F0044497B /* shopMyNotification@3x.png */,
 				855783CB1CBBC46F0044497B /* shopMyNotification@2x.png */,
 				854405991CB8DF7A00EA5556 /* userFav@2x.png */,
@@ -9211,6 +9214,7 @@
 				853C4C841C311A9900D48BA2 /* dizhi_icon.png in Resources */,
 				15EB35511BD4839D00BA6161 /* UMSocialSDKResourcesNew.bundle in Resources */,
 				854405A71CB8DF7A00EA5556 /* userFav@2x.png in Resources */,
+				ADCF4F021CCF5408005AEA2A /* lieyu_default_head.png in Resources */,
 				386C65351C7D4D7800567D2B /* LPUserLoginViewController.xib in Resources */,
 				15F54A911BB030420020EB4C /* ChanPinListViewController.xib in Resources */,
 				854CCA821C918E2700368C72 /* qq_s2@2x.png in Resources */,
