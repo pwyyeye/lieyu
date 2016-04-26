@@ -154,6 +154,7 @@ UINavigationControllerDelegate,ISEmojiViewDelegate,sendBackVedioAndImage,ImagePi
     [self setupNavMenuView];//配置导航栏
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if(app.userModel) _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -166,6 +167,7 @@ UINavigationControllerDelegate,ISEmojiViewDelegate,sendBackVedioAndImage,ImagePi
         [emojisView hideEmojiEffectView];
     }
 }
+
 
 #pragma mark - 获取我的未读消息数
 - (void)getFriendsNewMessage{
@@ -2139,9 +2141,12 @@ UINavigationControllerDelegate,ISEmojiViewDelegate,sendBackVedioAndImage,ImagePi
     
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playerWillPlay) name:MPMoviePlayerPlaybackStateDidChangeNotification object:player.moviePlayer];
+    
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playerWillPlay) name:MPMoviePlayerLoadStateDidChangeNotification object:player.moviePlayer];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playerWillPlay) name:MPMoviePlayerScalingModeDidChangeNotification object:player.moviePlayer];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playerDidFinishPlay) name:MPMoviePlayerPlaybackDidFinishNotification object:player.moviePlayer];
+    
+     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playerDidPlay) name:MPMoviePlayerDidExitFullscreenNotification object:player.moviePlayer];
     
     isDisturb = NO;
     
@@ -2158,6 +2163,10 @@ UINavigationControllerDelegate,ISEmojiViewDelegate,sendBackVedioAndImage,ImagePi
     }
 }
 - (void)playerWillPlay{
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+}
+
+- (void)playerDidPlay{
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }
 

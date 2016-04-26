@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="318" height="235"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="318" height="234.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="318" height="234"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dHd-Oj-hTc">
@@ -21,8 +21,12 @@
                             <constraint firstAttribute="width" secondItem="dHd-Oj-hTc" secondAttribute="height" multiplier="1:1" id="v0e-4H-a7r"/>
                         </constraints>
                     </imageView>
-                    <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q6f-3S-ikG">
-                        <rect key="frame" x="139" y="79" width="90" height="90"/>
+                    <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q6f-3S-ikG">
+                        <rect key="frame" x="162" y="102" width="44" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="44" id="4Bp-If-heP"/>
+                            <constraint firstAttribute="width" constant="44" id="OJV-kW-Imn"/>
+                        </constraints>
                         <state key="normal" backgroundImage="dabofangqi_icon.png"/>
                     </button>
                 </subviews>
