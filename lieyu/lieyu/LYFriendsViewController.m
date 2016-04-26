@@ -2135,13 +2135,12 @@ UINavigationControllerDelegate,ISEmojiViewDelegate,sendBackVedioAndImage,ImagePi
     player = [[MPMoviePlayerViewController alloc]initWithContentURL:url];
     
     player.view.frame = friendsVedioCell.imgView_video.frame;
-    player.view.tag = 10089;
+    player.view.tag = 6611;
     player.moviePlayer.controlStyle = MPMovieControlStyleDefault;
     [friendsVedioCell addSubview:player.view];
     
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playerWillPlay) name:MPMoviePlayerPlaybackStateDidChangeNotification object:player.moviePlayer];
-    
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playerWillPlay) name:MPMoviePlayerLoadStateDidChangeNotification object:player.moviePlayer];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playerWillPlay) name:MPMoviePlayerScalingModeDidChangeNotification object:player.moviePlayer];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playerDidFinishPlay) name:MPMoviePlayerPlaybackDidFinishNotification object:player.moviePlayer];

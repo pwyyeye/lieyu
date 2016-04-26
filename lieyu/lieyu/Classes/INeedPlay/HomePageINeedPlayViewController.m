@@ -16,8 +16,6 @@
 #import "MyCollectionViewController.h"
 #import "LYCityChooseViewController.h"
 #import "LYHomeSearcherViewController.h"
-#import "LYHotJiuBarViewController.h"
-#import "LYCloseMeViewController.h"
 #import "bartypeslistModel.h"
 #import "LYNavigationController.h"
 #import "HuoDongViewController.h"
@@ -27,7 +25,6 @@
 #import "LYFriendsHttpTool.h"
 #import "HomeBarCollectionViewCell.h"
 #import "HomeMenuCollectionViewCell.h"
-#import "LYHotBarViewController.h"
 #import "HomePageModel.h"
 #import "SDCycleScrollView.h"
 #import "HotMenuButton.h"
@@ -1021,22 +1018,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:picNameArray[button.tag]]];
     [self.navigationController pushViewController:hotBarVC animated:YES];
 }
-
-#pragma mark 跳转热门酒吧界面
-- (void)hotJiuClick:(UIButton *)button{
-    LYHotJiuBarViewController *hotJiuBarVC = [[LYHotJiuBarViewController alloc]init];
-    NSMutableArray *titleArray = [[NSMutableArray alloc]initWithCapacity:0];
-    for (int i = 0;  i < self.bartypeslistArray.count; i ++) {
-        bartypeslistModel *bartypeModel = self.bartypeslistArray[i];
-        [titleArray addObject:bartypeModel.name];
-    }
-    hotJiuBarVC.titleArray = titleArray;
-    hotJiuBarVC.middleStr = titleArray[button.tag];
-    hotJiuBarVC.bartypeArray = self.bartypeslistArray;
-    hotJiuBarVC.subidStr = ((bartypeslistModel *)self.bartypeslistArray[button.tag]).subids;
-    [self.navigationController pushViewController:hotJiuBarVC animated:YES];
-    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:titleArray[button.tag]]];
-}
+ 
 
 #pragma mark 搜索代理
 - (void)addCondition:(JiuBaModel *)model{
