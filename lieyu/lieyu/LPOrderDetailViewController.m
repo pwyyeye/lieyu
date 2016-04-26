@@ -20,6 +20,7 @@
 #import "PinkerShareController.h"
 #import "UMSocial.h"
 #import "IQKeyboardManager.h"
+#import "LYFindConversationViewController.h"
 
 
 @interface LPOrderDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -322,7 +323,8 @@
     int section = (int)button.tag / 10000;
     int row = (int)button.tag % 10000;
     DetailUserInfoCell *cell = [self.myTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section]];
-    RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
+//    RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
+    LYFindConversationViewController *conversationVC = [[LYFindConversationViewController alloc]init];
     conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
     conversationVC.targetId = cell.imuserId; // 接收者的 targetId，这里为举例。
 //    conversationVC.userName =cell.username; // 接受者的 username，这里为举例。

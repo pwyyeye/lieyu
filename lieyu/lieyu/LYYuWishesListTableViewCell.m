@@ -54,7 +54,7 @@
 //        [_balanceButton setTitle:[NSString stringWithFormat:@"  预估：¥%d-%d",_model.moneyStart,_model.moneyEnd] forState:UIControlStateNormal];
 //    }
     [_timeLabel setText:[_model.createDate substringToIndex:_model.createDate.length - 3]];
-    if([_model.isfinished isEqualToString:@"0"] && userModel.userid == _model.releaseUserid){
+    if(_model.replyContent.length > 0 && userModel.userid == _model.releaseUserid){
         //未选择&&是我自己
         _addressImage.hidden = YES;
         _addressLabel.hidden = YES;
