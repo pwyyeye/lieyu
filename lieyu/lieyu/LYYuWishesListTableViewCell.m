@@ -15,7 +15,7 @@
     _bgView.layer.borderWidth = 0.5;
     _bgView.layer.borderColor = [RGBA(204, 204, 204, 1) CGColor];
     _avatarImage.layer.cornerRadius = 30;
-    
+    _avatarImage.layer.masksToBounds = YES;
     _reLabel.layer.cornerRadius = 2;
     _reLabel.layer.masksToBounds = YES;
 }

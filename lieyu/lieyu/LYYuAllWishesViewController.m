@@ -324,7 +324,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LYYuWishesListTableViewCell *cell = [[[NSBundle mainBundle]loadNibNamed:@"LYYuWishesListTableViewCell" owner:nil options:nil]firstObject];
     cell.delegate = self;
-    cell.model = (YUWishesModel *)[_dataList objectAtIndex:indexPath.section];
+    if (_dataList.count > indexPath.section) {
+        cell.model = (YUWishesModel *)[_dataList objectAtIndex:indexPath.section];
+    }
     cell.avatarButton.tag = indexPath.section;
     [cell.avatarButton addTarget:self action:@selector(avatarClick:) forControlEvents:UIControlEventTouchUpInside];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -361,15 +363,19 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    YUWishesModel *model = (YUWishesModel *)[_dataList objectAtIndex:indexPath.section];
-    CGRect rectContent = [model.desc boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 62, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil];
-    CGRect rectReply;
-    if (model.replyContent.length > 0) {
-        rectReply = [model.replyContent boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 20, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil];
+    if (_dataList.count > indexPath.section) {
+        YUWishesModel *model = (YUWishesModel *)[_dataList objectAtIndex:indexPath.section];
+        CGRect rectContent = [model.desc boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 62, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil];
+        CGRect rectReply;
+        if (model.replyContent.length > 0) {
+            rectReply = [model.replyContent boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 20, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil];
+        }else{
+            rectReply = CGRectMake(0, 0, 0, -10);
+        }
+        return 211 + rectReply.size.height + rectContent.size.height;
     }else{
-        rectReply = CGRectMake(0, 0, 0, -10);
+        return 0;
     }
-    return 211 + rectReply.size.height + rectContent.size.height;
 }
 
 #pragma mark - 重写返回方法
