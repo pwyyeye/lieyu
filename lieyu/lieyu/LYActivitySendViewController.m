@@ -141,7 +141,7 @@
     _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64)];
     _scrollView.showsVerticalScrollIndicator = NO;
     if (SCREEN_WIDTH < 375) {
-        [_scrollView setContentSize:CGSizeMake(SCREEN_WIDTH, 568)];
+        [_scrollView setContentSize:CGSizeMake(SCREEN_WIDTH, 568 - 64)];
     }else{
         [_scrollView setContentSize:CGSizeMake(SCREEN_WIDTH, _scrollView.frame.size.height)];
     }
