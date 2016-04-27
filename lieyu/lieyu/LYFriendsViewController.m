@@ -896,9 +896,11 @@ UINavigationControllerDelegate,ISEmojiViewDelegate,sendBackVedioAndImage,ImagePi
     }else if([_typeOfImagePicker isEqualToString:@"filming"]){//小视频
         _imagePicker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeMovie];
         _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;//摄影
-        _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;//后置摄像头
+        _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;//后置摄像
+        _imagePicker.cameraViewTransform = CGAffineTransformScale(_imagePicker.cameraViewTransform, 1, 0.6);
         _imagePicker.videoQuality = UIImagePickerControllerQualityTypeIFrame1280x720;
         _imagePicker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModeVideo;//设置摄像头模式
+//        _imagePicker.
         _imagePicker.videoMaximumDuration = 10;
     }
     _imagePicker.editing = YES;
