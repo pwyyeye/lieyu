@@ -52,13 +52,13 @@
                                     <constraint firstAttribute="height" constant="26" id="Z9Q-jh-h74"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iBP-Nb-fEn">
                                 <rect key="frame" x="10" y="123" width="294" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gyW-J2-9LV">
@@ -241,13 +241,13 @@
                             <mask key="constraints">
                                 <exclude reference="9Sv-bi-SiM"/>
                                 <exclude reference="teB-3N-La9"/>
-                                <exclude reference="tba-Z9-UgZ"/>
                                 <exclude reference="77F-lF-E3d"/>
                                 <exclude reference="CzP-8V-HS6"/>
                                 <exclude reference="Mju-Y0-WNx"/>
                                 <exclude reference="dWu-Jh-v1T"/>
                                 <exclude reference="phg-QG-BHx"/>
                                 <exclude reference="veM-j6-4E1"/>
+                                <exclude reference="tba-Z9-UgZ"/>
                                 <exclude reference="2qa-OL-HrT"/>
                                 <exclude reference="3Ge-qf-JWQ"/>
                                 <exclude reference="onG-5Y-LmC"/>
@@ -266,7 +266,7 @@
                     <constraint firstAttribute="trailing" secondItem="ram-iF-h17" secondAttribute="trailing" constant="3" id="zdC-ve-Y65"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="addressImage" destination="LXG-nq-G5M" id="IqJ-8b-Jz5"/>
                 <outlet property="addressLabel" destination="Scv-th-aoT" id="KBn-OV-L2n"/>
