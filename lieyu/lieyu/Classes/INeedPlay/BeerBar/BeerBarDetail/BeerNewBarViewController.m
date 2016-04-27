@@ -8,7 +8,6 @@
 
 #import "BeerNewBarViewController.h"
 #import "MacroDefinition.h"
-#import "LYShareSnsView.h"
 #import "UMSocial.h"
 #import "LYColors.h"
 #import "LYToPlayRestfulBusiness.h"

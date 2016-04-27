@@ -17,6 +17,8 @@
 - (void)setCustomTitle:(NSString *)title;
 -(void)showMessage:(NSString*) message;
 
+-(void)BaseGoBack;
+
 -(void)initMJRefeshHeaderForGif:(MJRefreshGifHeader *) header;
 -(void)initMJRefeshFooterForGif:(MJRefreshBackGifFooter *) footer;
 

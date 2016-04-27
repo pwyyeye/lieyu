@@ -100,7 +100,7 @@
         tableView.tag = i;
         tableView.dataSource = self;
         tableView.delegate = self;
-        [tableView setContentInset:UIEdgeInsetsMake(94, 0, 49,0)];
+        [tableView setContentInset:UIEdgeInsetsMake(94, 0, 0,0)];
         tableView.backgroundColor = RGBA(243, 243, 243, 1);
         //        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         //        [tableView registerNib:[UINib nibWithNibName:@"LYYUTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYYUTableViewCell"];
@@ -167,7 +167,7 @@
     [_menuView addSubview:_titelLabel];
     
     //所有地区的按钮
-    _sectionBtn = [[UIButton alloc]initWithFrame:CGRectMake(5, 35, 88, 19)];
+    _sectionBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 88 - 5, 35, 88, 19)];
     [_sectionBtn addTarget:self action:@selector(sectionClick:) forControlEvents:UIControlEventTouchUpInside];
     [_sectionBtn setTitle:@"所有地区" forState:UIControlStateNormal];
     _sectionTitle_distance = _sectionBtn.currentTitle;
@@ -177,6 +177,12 @@
     [_sectionBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 12, 0, 0)];
     [_sectionBtn setImage:[UIImage imageNamed:@"downArrow"] forState:UIControlStateNormal];
     [_menuView addSubview:_sectionBtn];
+    
+    //返回按钮
+    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 28, 44, 30)];
+    [btn setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(BaseGoBack) forControlEvents:UIControlEventTouchUpInside];
+    [_menuView addSubview:btn];
     
     //按钮底线
     _purpleLineView = [[UIView alloc]init];
