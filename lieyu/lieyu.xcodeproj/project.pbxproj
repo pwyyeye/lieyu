@@ -4906,13 +4906,6 @@
 			name = model;
 			sourceTree = "<group>";
 		};
-		15EA6DCD1BC0DA1400620C9E /* IM */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = IM;
-			sourceTree = "<group>";
-		};
 		15EB35201BD3394000BA6161 /* banner */ = {
 			isa = PBXGroup;
 			children = (
@@ -8911,7 +8904,6 @@
 				15EB35201BD3394000BA6161 /* banner */,
 				151BB6E01BBB913E00E7A81C /* DejalActivityView.h */,
 				151BB6E11BBB913E00E7A81C /* DejalActivityView.m */,
-				15EA6DCD1BC0DA1400620C9E /* IM */,
 				151BB6C01BBB78CB00E7A81C /* 照片 */,
 				15013AD31BBA33BE00061FAF /* SDWebImage */,
 				D74C60821BB69F6300A49598 /* RTLabel */,
@@ -9794,7 +9786,6 @@
 				15E1848E1BB5220C00681BB2 /* LyZSuploadIdCardViewController.xib in Resources */,
 				38E5D7011C103E17004B49D2 /* LPmanager@3x.png in Resources */,
 				851806CA1C2EB33A00006804 /* LYPictiureView.xib in Resources */,
-				ADFFA6901C16DFD100D9BD2A /* bigPlace.png in Resources */,
 				15844BD51BE1FA3600247FBC /* LYNearFriendViewController.xib in Resources */,
 				38979A561CA40919002946F5 /* happy5.png in Resources */,
 				385664861C72DD53000DCFA5 /* ActionDetailViewController.xib in Resources */,
