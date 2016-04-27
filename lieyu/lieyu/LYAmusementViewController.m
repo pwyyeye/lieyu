@@ -99,7 +99,7 @@
         if(i) tableView.scrollsToTop = NO;
         tableView.tag = i;
         tableView.dataSource = self;
-        tableView.delegate = self;  
+        tableView.delegate = self;
         [tableView setContentInset:UIEdgeInsetsMake(94, 0, 0,0)];
         tableView.backgroundColor = RGBA(243, 243, 243, 1);
         //        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
