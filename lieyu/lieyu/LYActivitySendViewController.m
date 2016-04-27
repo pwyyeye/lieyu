@@ -222,15 +222,23 @@
     [_scrollView addSubview:_addressStrLabel];
     
     //发布按钮
-    UIButton *sendBtn = [[UIButton alloc]initWithFrame:CGRectMake(7,_scrollView.contentSize.height - 43, SCREEN_WIDTH - 14, 37)];
-    NSLog(@"--->%@",NSStringFromCGRect(sendBtn.frame));
+//    UIButton *sendBtn = [[UIButton alloc]initWithFrame:CGRectMake(7,_scrollView.contentSize.height - 43, SCREEN_WIDTH - 14, 37)];
+//    NSLog(@"--->%@",NSStringFromCGRect(sendBtn.frame));
+//    [sendBtn addTarget:self action:@selector(sendClick) forControlEvents:UIControlEventTouchUpInside];
+//    sendBtn.backgroundColor = [UIColor blackColor];
+//    [sendBtn setBackgroundImage:[UIImage imageNamed:@"LoginNew"] forState:UIControlStateNormal];
+//    sendBtn.layer.cornerRadius = 4;
+//    sendBtn.layer.masksToBounds = YES;
+//    [sendBtn setTitle:@"立即发布" forState:UIControlStateNormal];
+//    [_scrollView addSubview:sendBtn];
+    
+    UIButton *sendBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 20)];
+    [sendBtn setTitle:@"发布" forState:UIControlStateNormal];
+    sendBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [sendBtn addTarget:self action:@selector(sendClick) forControlEvents:UIControlEventTouchUpInside];
-    sendBtn.backgroundColor = [UIColor blackColor];
-    [sendBtn setBackgroundImage:[UIImage imageNamed:@"LoginNew"] forState:UIControlStateNormal];
-    sendBtn.layer.cornerRadius = 4;
-    sendBtn.layer.masksToBounds = YES;
-    [sendBtn setTitle:@"立即发布" forState:UIControlStateNormal];
-    [_scrollView addSubview:sendBtn];
+    
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:sendBtn];
+    self.navigationItem.rightBarButtonItem = rightItem;
 }
 
 #pragma mark - 主题选择
