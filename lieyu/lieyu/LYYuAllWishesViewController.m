@@ -55,7 +55,7 @@
         [self.navigationController.navigationBar addSubview:_rightButton];
         if (detailViewController.isChanged == YES) {
             [self refreshData];
-//            isChanged = NO;
+            detailViewController.isChanged = NO;
 //            if (unFinishedNumber > 0) {
 //                _pointLabel.hidden = NO;
 //            }else{
@@ -280,11 +280,11 @@
         if (dataArray.count <= 0) {
             if (_dataList.count <= 0) {
                 //显示空界面
-                [self initKongView];
+//                [self initKongView];
                 [weakSelf.tableView.mj_header endRefreshing];
             }else{
                 //
-                [self hideKongView];
+//                [self hideKongView];
                 if(start == 0){
                     [weakSelf.tableView.mj_header endRefreshing];
                 }else{
@@ -292,9 +292,14 @@
                 }
             }
         }else{
-            [self hideKongView];
+//            [self hideKongView];
             [weakSelf.tableView.mj_footer endRefreshing];
             [weakSelf.tableView.mj_header endRefreshing];
+        }
+        if (_dataList.count <= 0) {
+            [self initKongView];
+        }else{
+            [self hideKongView];
         }
         [weakSelf.tableView reloadData];
         if (![USER_DEFAULT objectForKey:@"UsersFirstEnterYU"]) {
@@ -302,6 +307,9 @@
             grayBackground.tag = 10010;
             [grayBackground setBackgroundColor:RGBA(0, 0, 0, 0.5)];
             [((AppDelegate *)[UIApplication sharedApplication].delegate).window addSubview:grayBackground];
+            UIButton *clearButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 30 , SCREEN_HEIGHT - 110, 60, 60)];
+            [grayBackground addSubview:clearButton];
+            [clearButton addTarget:self action:@selector(releaseClick) forControlEvents:UIControlEventTouchUpInside];
             
             tipImageview = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 149, SCREEN_HEIGHT - 210, 298, 166)];
             [tipImageview setImage:[UIImage imageNamed:@"YU_tipImage"]];
@@ -319,12 +327,14 @@
 }
 
 - (void)initKongView{
-    kongLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT / 2 - 50, SCREEN_WIDTH, 20)];
-    [kongLabel setBackgroundColor:[UIColor clearColor]];
-    [kongLabel setTextColor:RGBA(186, 40, 227, 1)];
-    [kongLabel setText:@"还未发布任何愿望哦～"];
-    [kongLabel setTextAlignment:NSTextAlignmentCenter];
-    [kongLabel setFont:[UIFont systemFontOfSize:14]];
+    if(!kongLabel){
+        kongLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT / 2 - 50, SCREEN_WIDTH, 20)];
+        [kongLabel setBackgroundColor:[UIColor clearColor]];
+        [kongLabel setTextColor:RGBA(186, 40, 227, 1)];
+        [kongLabel setText:@"还未发布任何愿望哦～"];
+        [kongLabel setTextAlignment:NSTextAlignmentCenter];
+        [kongLabel setFont:[UIFont systemFontOfSize:14]];
+    }
     [self.view addSubview:kongLabel];
 }
 
