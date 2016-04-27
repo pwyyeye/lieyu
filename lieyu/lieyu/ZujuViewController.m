@@ -25,6 +25,7 @@
 #import "ChoosePeople.h"
 #import "ContentView.h"
 #import "TimeView.h"
+#import "LYAmusementViewController.h"
 
 @interface ZujuViewController ()<UITableViewDataSource,UITableViewDelegate,LPAlertViewDelegate>
 {
@@ -83,6 +84,25 @@
     [self initThisBottomView];
     [self managerList];
     [self initManagerView];
+    [self setRightItem];
+}
+
+- (void)setRightItem{
+    
+    UIButton *findJuBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 39, 20)];
+    [findJuBtn setTitle:@"找局" forState:UIControlStateNormal];
+    findJuBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    [findJuBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [findJuBtn addTarget:self action:@selector(findJuClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:findJuBtn];
+    self.navigationItem.rightBarButtonItem = rightItem;
+}
+
+#pragma mark - 找局
+- (void)findJuClick{
+    LYAmusementViewController *amusementVC = [[LYAmusementViewController alloc]init];
+    [self.navigationController pushViewController:amusementVC animated:YES];
 }
 
 - (void)viewWillLayoutSubviews{
