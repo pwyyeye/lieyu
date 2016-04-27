@@ -405,9 +405,9 @@
         if (model.replyContent.length > 0) {
             rectReply = [model.replyContent boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 20, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil];
         }else{
-            rectReply = CGRectMake(0, 0, 0, -10);
+            rectReply = CGRectMake(0, 0, 0, -20);
         }
-        return 211 + rectReply.size.height + rectContent.size.height;
+        return 221 + rectReply.size.height + rectContent.size.height;
     }else{
         return 0;
     }
