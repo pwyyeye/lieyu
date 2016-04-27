@@ -59,7 +59,7 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    if(_isScrollToBottom) [_scrollView setContentOffset:CGPointMake(0, _scrollView.contentSize.height - _scrollView.frame.size.height) animated:YES];//滑动到底部
+   // if(_isScrollToBottom) [_scrollView setContentOffset:CGPointMake(0, _scrollView.contentSize.height - _scrollView.frame.size.height) animated:YES];//滑动到底部
 }
 
 #pragma mark - 获取主题
@@ -141,7 +141,7 @@
     _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64)];
     _scrollView.showsVerticalScrollIndicator = NO;
     if (SCREEN_WIDTH < 375) {
-        [_scrollView setContentSize:CGSizeMake(SCREEN_WIDTH, 667)];
+        [_scrollView setContentSize:CGSizeMake(SCREEN_WIDTH, 568)];
     }else{
         [_scrollView setContentSize:CGSizeMake(SCREEN_WIDTH, _scrollView.frame.size.height)];
     }
@@ -190,10 +190,10 @@
     [_scrollView addSubview:_textCountLabel];
     
     //预估按钮
-    UIImageView *yuguImgVBG = [[UIImageView alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - 107)/2.f, CGRectGetMaxY(_textCountLabel.frame) + 28, 107, 107)];
-    yuguImgVBG.image = [UIImage imageNamed:@"yu_money_yugu"];
-    yuguImgVBG.userInteractionEnabled = YES;
-    [_scrollView addSubview:yuguImgVBG];
+    UIButton *yuguBtnBG = [[UIButton alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - 107)/2.f, CGRectGetMaxY(_textCountLabel.frame) + 28, 107, 107)];
+    [yuguBtnBG setBackgroundImage:[UIImage imageNamed:@"yu_money_yugu"] forState:UIControlStateNormal];
+    [yuguBtnBG addTarget:self action:@selector(yuguTextFieldBecomeEdit) forControlEvents:UIControlEventTouchUpInside];
+    [_scrollView addSubview:yuguBtnBG];
     
     //预估金额输入框
     _yuguTextField = [[UITextField alloc]initWithFrame:CGRectMake((107 - 90)/2.f, 56, 90, 33)];
@@ -203,11 +203,11 @@
     _yuguTextField.textColor = [UIColor whiteColor];
     _yuguTextField.delegate = self;
     _yuguTextField.keyboardType = UIKeyboardTypeNumberPad;
-    [yuguImgVBG addSubview:_yuguTextField];
+    [yuguBtnBG addSubview:_yuguTextField];
     
     //选择位置按钮
     CGFloat selectAddressBtnWidth = 50;
-    UIButton *selectAddressBtn = [[UIButton alloc]initWithFrame:CGRectMake( (SCREEN_WIDTH - selectAddressBtnWidth)/2.f, CGRectGetMaxY(yuguImgVBG.frame) + 64, selectAddressBtnWidth, 35)];
+    UIButton *selectAddressBtn = [[UIButton alloc]initWithFrame:CGRectMake( (SCREEN_WIDTH - selectAddressBtnWidth)/2.f, CGRectGetMaxY(yuguBtnBG.frame) + 64, selectAddressBtnWidth, 35)];
     [selectAddressBtn setTitle:@"选择位置" forState:UIControlStateNormal];
     [selectAddressBtn setTitleColor:RGBA(178, 38, 217, 1) forState:UIControlStateNormal];
     selectAddressBtn.titleLabel.font = [UIFont systemFontOfSize:12];
@@ -234,11 +234,17 @@
     
     UIButton *sendBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 20)];
     [sendBtn setTitle:@"发布" forState:UIControlStateNormal];
-    sendBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    sendBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+    [sendBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [sendBtn addTarget:self action:@selector(sendClick) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:sendBtn];
     self.navigationItem.rightBarButtonItem = rightItem;
+}
+
+#pragma mark - 预估背景按钮触发金额输入
+- (void)yuguTextFieldBecomeEdit{
+    [_yuguTextField becomeFirstResponder];
 }
 
 #pragma mark - 主题选择
@@ -288,15 +294,16 @@
 
 #pragma mark - UITextViewDelegate
 - (void)textViewDidChange:(UITextView *)textView{
-    NSUInteger textCount = textView.text.length;
-    _textCountLabel.text = [NSString stringWithFormat:@"%lu/100",(unsigned long)textCount];
-    NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:_textCountLabel.text];
-    if(textCount > 100) {
-        [attributedStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, 2)];
+    if(textView.text.length > 100) {
+        //        [attributedStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, 3)];
+        textView.text = [textView.text substringToIndex:100];
         _isBeyond = YES;
     }else{
         _isBeyond = NO;
     }
+    NSUInteger textCount = textView.text.length;
+    _textCountLabel.text = [NSString stringWithFormat:@"%lu/100",(unsigned long)textCount];
+    NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:_textCountLabel.text];
     _textCountLabel.attributedText = attributedStr;
 }
 
@@ -338,19 +345,19 @@
 }
 
 #pragma mark - set方法
-- (void)setIsDesOK:(BOOL)isDesOK{
-    _isDesOK = isDesOK;
-    if(_addressStrLabel.text.length && _isMoneyOK && _isDesOK && !_isBeyond){
-        [_scrollView setContentOffset:CGPointMake(0, _scrollView.contentSize.height - _scrollView.frame.size.height) animated:YES];
-    }
-}
-
-- (void)setIsMoneyOK:(BOOL)isMoneyOK{
-    _isMoneyOK = isMoneyOK;
-    if(_addressStrLabel.text.length && _isMoneyOK && _isDesOK && !_isBeyond){
-        [_scrollView setContentOffset:CGPointMake(0, _scrollView.contentSize.height - _scrollView.frame.size.height) animated:YES];
-    }
-}
+//- (void)setIsDesOK:(BOOL)isDesOK{
+//    _isDesOK = isDesOK;
+//    if(_addressStrLabel.text.length && _isMoneyOK && _isDesOK && !_isBeyond){
+//        [_scrollView setContentOffset:CGPointMake(0, _scrollView.contentSize.height - _scrollView.frame.size.height) animated:YES];
+//    }
+//}
+//
+//- (void)setIsMoneyOK:(BOOL)isMoneyOK{
+//    _isMoneyOK = isMoneyOK;
+//    if(_addressStrLabel.text.length && _isMoneyOK && _isDesOK && !_isBeyond){
+//        [_scrollView setContentOffset:CGPointMake(0, _scrollView.contentSize.height - _scrollView.frame.size.height) animated:YES];
+//    }
+//}
 
 
 #pragma mark - 发布action
@@ -360,10 +367,10 @@
         return;
     }
     
-    if(_isBeyond){
-        [MyUtil showCleanMessage:@"号召口语超过100字！"];
-        return;
-    }
+//    if(_isBeyond){
+//        [MyUtil showCleanMessage:@"号召口语超过100字！"];
+//        return;
+//    }
     
     if(!_yuguTextField.text.length || [_yuguTextField.text isEqualToString:@"预估"]){
         [MyUtil showCleanMessage:@"请输入预估金额！"];
