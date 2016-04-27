@@ -39,9 +39,6 @@
 }
 - (void)setupViewStyles
 {
-    [_tableView registerNib:[UINib nibWithNibName:@"PacketBarCell" bundle:nil] forCellReuseIdentifier:@"PacketBarCell"];
-    
-    [_tableView registerNib:[UINib nibWithNibName:@"BusinessPublicNoteCell" bundle:nil] forCellReuseIdentifier:@"BusinessPublicNoteCell"];
     
     [_tableView registerNib:[UINib nibWithNibName:@"LYAdshowCell" bundle:nil] forCellReuseIdentifier:@"LYAdshowCell"];
     
