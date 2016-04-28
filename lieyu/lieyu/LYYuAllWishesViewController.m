@@ -321,7 +321,6 @@
             [tryButton addTarget:self action:@selector(releaseClick) forControlEvents:UIControlEventTouchUpInside];
             [grayBackground addSubview:tryButton];
             
-            [USER_DEFAULT setObject:@"NO" forKey:@"UsersFirstEnterYU"];
         }
     }];
 }
@@ -446,6 +445,8 @@
 - (void)releaseClick{
     if ([((AppDelegate *)[UIApplication sharedApplication].delegate).window viewWithTag:10010]) {
         [grayBackground removeFromSuperview];
+        
+        [USER_DEFAULT setObject:@"NO" forKey:@"UsersFirstEnterYU"];
     }
     LYActivitySendViewController *activitySendVC = [[LYActivitySendViewController alloc]init];
     activitySendVC.delegate = self;
