@@ -174,7 +174,7 @@
     _textView = [[UITextView alloc]initWithFrame:CGRectMake(leftEdge, CGRectGetMaxY(btn_bottom_View.frame) + 10, SCREEN_WIDTH - leftEdge * 2, 66)];
     [_textView setFont:[UIFont systemFontOfSize:14]];
     _textView.delegate = self;
-    _textView.text = @"你想";
+    _textView.text = @"我想?";
     _textView.textColor = RGBA(144, 153, 167, 1);
     [_scrollView addSubview:_textView];
     
@@ -308,7 +308,7 @@
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView{
-    if ([textView.text isEqualToString:@"你想"]) {
+    if ([textView.text isEqualToString:@"我想?"]) {
         textView.text = @"";
         textView.textColor = RGBA(73, 82, 91, 1);
     }
@@ -316,7 +316,7 @@
 
 - (void)textViewDidEndEditing:(UITextView *)textView{
     if (!textView.text.length) {
-        textView.text = @"你想";
+        textView.text = @"我想?";
         textView.textColor = RGBA(144, 153, 167, 1);
         self.isDesOK = NO;
     }else{
@@ -362,7 +362,7 @@
 
 #pragma mark - 发布action
 - (void)sendClick{
-    if(!_textView.text.length || [_textView.text isEqualToString:@"你想"]){
+    if(!_textView.text.length || [_textView.text isEqualToString:@"我想?"]){
         [MyUtil showCleanMessage:@"请点号召口语吧！"];
         return;
     }
