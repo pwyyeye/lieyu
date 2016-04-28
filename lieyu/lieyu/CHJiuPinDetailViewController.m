@@ -349,7 +349,7 @@
     [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
     
     _conversationVC = [[RCPublicServiceChatViewController alloc] init];
-    _conversationVC.conversationType = ConversationType_APPSERVICE;;
+    _conversationVC.conversationType = ConversationType_APPSERVICE;
     _conversationVC.targetId = @"KEFU144946169476221";
     [_conversationVC.navigationController.navigationBar setHidden:NO];
 //    _conversationVC.userName = @"猎娱客服";
