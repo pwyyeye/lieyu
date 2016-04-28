@@ -257,6 +257,7 @@
     _currentThemeId = themeModel.id;
 }
 
+
 #pragma mark - 选择地址action
 - (void)selectAddressClick{
 
@@ -293,6 +294,16 @@
 }
 
 #pragma mark - UITextViewDelegate
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if ([text isEqualToString:@"\n"]){ //判断输入的字是否是回车，即按下return
+         [textView resignFirstResponder];
+        //在这里做你响应return键的代码
+        return NO; //这里返回NO，就代表return键值失效，即页面上按下return，不会出现换行，如果为yes，则输入页面会换行
+    }
+    return YES;
+}
+
 - (void)textViewDidChange:(UITextView *)textView{
     if(textView.text.length > 100) {
         //        [attributedStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, 3)];
@@ -315,7 +326,8 @@
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView{
-    if (!textView.text.length) {
+    NSString *str = [_textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if (!str.length) {
         textView.text = @"我想?";
         textView.textColor = RGBA(144, 153, 167, 1);
         self.isDesOK = NO;
@@ -362,7 +374,8 @@
 
 #pragma mark - 发布action
 - (void)sendClick{
-    if(!_textView.text.length || [_textView.text isEqualToString:@"我想?"]){
+    NSString *str = [_textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if(!str.length || [_textView.text isEqualToString:@"我想?"]){
         [MyUtil showCleanMessage:@"请点号召口语吧！"];
         return;
     }
@@ -382,7 +395,7 @@
         return;
     }
       
-    NSDictionary *dic = @{@"desc":_textView.text,
+    NSDictionary *dic = @{@"desc":str,
                           @"tagid":_currentThemeId,
                           @"moneyStart":_yuguTextField.text,
                           @"address":_addressStrLabel.text};
