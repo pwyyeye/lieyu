@@ -1488,6 +1488,9 @@
 		AD44F95D1C9D27730030F5C2 /* emojNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = AD44F9541C9D27730030F5C2 /* emojNormal.png */; };
 		AD44F95E1C9D27730030F5C2 /* emojShadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD44F9551C9D27730030F5C2 /* emojShadow@2x.png */; };
 		AD44F95F1C9D27730030F5C2 /* emojShadow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD44F9561C9D27730030F5C2 /* emojShadow@3x.png */; };
+		AD57C1941CD2110500CD6190 /* 2_retina.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD57C1911CD2110500CD6190 /* 2_retina.jpg */; };
+		AD57C1951CD2110500CD6190 /* 2@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD57C1921CD2110500CD6190 /* 2@2x.jpg */; };
+		AD57C1961CD2110500CD6190 /* 2@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD57C1931CD2110500CD6190 /* 2@3x.jpg */; };
 		AD5BEBA71BECC46A00E84C06 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AD5BEBA61BECC46A00E84C06 /* libiconv.tbd */; };
 		AD67DB921CC0C6790005BCEE /* libUMessage_Sdk_1.2.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD67DB901CC0C6790005BCEE /* libUMessage_Sdk_1.2.6.a */; };
 		AD798A371BB99A1F006D08F5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD798A361BB99A1F006D08F5 /* libPods.a */; };
@@ -1573,12 +1576,10 @@
 		ADD264791C92C0FD002894AC /* long_loginNew@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD264731C92C0FD002894AC /* long_loginNew@2x.png */; };
 		ADD2647A1C92C0FD002894AC /* long_loginNew@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD264741C92C0FD002894AC /* long_loginNew@3x.png */; };
 		ADD2647F1C93CD01002894AC /* 1_retina.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ADD2647B1C93CD01002894AC /* 1_retina.jpg */; };
-		ADD264801C93CD01002894AC /* 2_retina.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ADD2647C1C93CD01002894AC /* 2_retina.jpg */; };
 		ADD264811C93CD01002894AC /* 3_retina.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ADD2647D1C93CD01002894AC /* 3_retina.jpg */; };
 		ADD264871C93CD1A002894AC /* 1@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ADD264831C93CD1A002894AC /* 1@2x.jpg */; };
 		ADD264891C93CD1A002894AC /* 3@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ADD264851C93CD1A002894AC /* 3@2x.jpg */; };
 		ADD2648F1C93CD23002894AC /* 1@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ADD2648B1C93CD23002894AC /* 1@3x.jpg */; };
-		ADD264901C93CD23002894AC /* 2@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ADD2648C1C93CD23002894AC /* 2@3x.jpg */; };
 		ADD264911C93CD23002894AC /* 3@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ADD2648D1C93CD23002894AC /* 3@3x.jpg */; };
 		ADD264951C93CD4B002894AC /* skip-btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ADD264931C93CD4B002894AC /* skip-btn@2x.png */; };
 		ADD264981C93EA50002894AC /* 4_retina.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ADD264971C93EA50002894AC /* 4_retina.jpg */; };
@@ -3715,6 +3716,9 @@
 		AD44F9541C9D27730030F5C2 /* emojNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emojNormal.png; sourceTree = "<group>"; };
 		AD44F9551C9D27730030F5C2 /* emojShadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emojShadow@2x.png"; sourceTree = "<group>"; };
 		AD44F9561C9D27730030F5C2 /* emojShadow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emojShadow@3x.png"; sourceTree = "<group>"; };
+		AD57C1911CD2110500CD6190 /* 2_retina.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2_retina.jpg; sourceTree = "<group>"; };
+		AD57C1921CD2110500CD6190 /* 2@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "2@2x.jpg"; sourceTree = "<group>"; };
+		AD57C1931CD2110500CD6190 /* 2@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "2@3x.jpg"; sourceTree = "<group>"; };
 		AD5BEBA61BECC46A00E84C06 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		AD67DB901CC0C6790005BCEE /* libUMessage_Sdk_1.2.6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.2.6.a; sourceTree = "<group>"; };
 		AD67DB911CC0C6790005BCEE /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
@@ -3817,13 +3821,10 @@
 		ADD264731C92C0FD002894AC /* long_loginNew@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "long_loginNew@2x.png"; sourceTree = "<group>"; };
 		ADD264741C92C0FD002894AC /* long_loginNew@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "long_loginNew@3x.png"; sourceTree = "<group>"; };
 		ADD2647B1C93CD01002894AC /* 1_retina.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1_retina.jpg; sourceTree = "<group>"; };
-		ADD2647C1C93CD01002894AC /* 2_retina.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2_retina.jpg; sourceTree = "<group>"; };
 		ADD2647D1C93CD01002894AC /* 3_retina.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3_retina.jpg; sourceTree = "<group>"; };
 		ADD264831C93CD1A002894AC /* 1@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "1@2x.jpg"; sourceTree = "<group>"; };
-		ADD264841C93CD1A002894AC /* 2@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "2@2x.jpg"; sourceTree = "<group>"; };
 		ADD264851C93CD1A002894AC /* 3@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "3@2x.jpg"; sourceTree = "<group>"; };
 		ADD2648B1C93CD23002894AC /* 1@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "1@3x.jpg"; sourceTree = "<group>"; };
-		ADD2648C1C93CD23002894AC /* 2@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "2@3x.jpg"; sourceTree = "<group>"; };
 		ADD2648D1C93CD23002894AC /* 3@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "3@3x.jpg"; sourceTree = "<group>"; };
 		ADD264931C93CD4B002894AC /* skip-btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skip-btn@2x.png"; sourceTree = "<group>"; };
 		ADD264941C93CD4B002894AC /* skip-btn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skip-btn@3x.png"; sourceTree = "<group>"; };
@@ -8314,15 +8315,15 @@
 				ADD264931C93CD4B002894AC /* skip-btn@2x.png */,
 				ADD264941C93CD4B002894AC /* skip-btn@3x.png */,
 				ADD2647B1C93CD01002894AC /* 1_retina.jpg */,
-				ADD2647C1C93CD01002894AC /* 2_retina.jpg */,
 				ADD2647D1C93CD01002894AC /* 3_retina.jpg */,
 				ADD264971C93EA50002894AC /* 4_retina.jpg */,
+				AD57C1911CD2110500CD6190 /* 2_retina.jpg */,
+				AD57C1921CD2110500CD6190 /* 2@2x.jpg */,
+				AD57C1931CD2110500CD6190 /* 2@3x.jpg */,
 				ADD264831C93CD1A002894AC /* 1@2x.jpg */,
-				ADD264841C93CD1A002894AC /* 2@2x.jpg */,
 				ADD264851C93CD1A002894AC /* 3@2x.jpg */,
 				ADD264991C93EA7A002894AC /* 4@2x.jpg */,
 				ADD2648B1C93CD23002894AC /* 1@3x.jpg */,
-				ADD2648C1C93CD23002894AC /* 2@3x.jpg */,
 				ADD2648D1C93CD23002894AC /* 3@3x.jpg */,
 				ADD2649B1C93EA95002894AC /* 4@3x.jpg */,
 			);
@@ -9693,6 +9694,7 @@
 				A2020D7C1BA67FA40090B92A /* Fill20179@2x.png in Resources */,
 				38979A841CA40919002946F5 /* wow23.png in Resources */,
 				387782241C8FF2CA0047088B /* Line@2x.png in Resources */,
+				AD57C1951CD2110500CD6190 /* 2@2x.jpg in Resources */,
 				15E240AC1BB38CE90090D240 /* OrderDetailSectionHeadView.xib in Resources */,
 				85416E1D1C92EB100016BF0B /* findtongyong@2x.png in Resources */,
 				1559DD1C1BDB2B4E00F3FE9B /* CarBottomView.xib in Resources */,
@@ -9816,7 +9818,6 @@
 				38979A7C1CA40919002946F5 /* wow16.png in Resources */,
 				8551B51E1C8ED45A0057F0E7 /* FindNotificatinDetailTableViewCell.xib in Resources */,
 				855397171C8D7F2F00289D18 /* GamePlayViewController.xib in Resources */,
-				ADD264801C93CD01002894AC /* 2_retina.jpg in Resources */,
 				ADFFA68C1C16DFB800D9BD2A /* purpleBtnBG.png in Resources */,
 				AD399ED41C940D4D00028F23 /* logo85@2x.jpg in Resources */,
 				850099C31C61EEE700DDE626 /* hotImg@3x.png in Resources */,
@@ -9850,6 +9851,7 @@
 				858B3A221C7A0351000C6589 /* priceBlackYUD@2x.png in Resources */,
 				AD399E9F1C940D4D00028F23 /* logo32@2x.jpg in Resources */,
 				AD399EC21C940D4D00028F23 /* logo67@2x.jpg in Resources */,
+				AD57C1941CD2110500CD6190 /* 2_retina.jpg in Resources */,
 				3806566A1C4E5D5B003094C9 /* ImageCollectionViewController.xib in Resources */,
 				ADF88EAB1C1197C400CF5DED /* MJRefresh.bundle in Resources */,
 				38C98CD31C60782D0084E6BD /* YUGroup@3x.png in Resources */,
@@ -9870,7 +9872,6 @@
 				38E5D6FF1C103E17004B49D2 /* LPmanager.png in Resources */,
 				15E2407D1BB2521C0090D240 /* CollectionCell.xib in Resources */,
 				52D4F9AA1C57B2B700691BEF /* 收藏2@2x.png in Resources */,
-				ADD264901C93CD23002894AC /* 2@3x.jpg in Resources */,
 				38EAA4EE1CC9F4340080A6D6 /* YUWishesBalance@2x.png in Resources */,
 				38979A551CA40919002946F5 /* happy4.png in Resources */,
 				380659C21C54AB5B003094C9 /* icon_like2@2x.png in Resources */,
@@ -10028,6 +10029,7 @@
 				8551B52C1C8EED020057F0E7 /* FindNotificationDetailViewController.xib in Resources */,
 				15E2408B1BB281080090D240 /* LYOrderHeadForWaitView.xib in Resources */,
 				85F5453D1C1408040013B92B /* circleWhite@3x.png in Resources */,
+				AD57C1961CD2110500CD6190 /* 2@3x.jpg in Resources */,
 				AD399E8D1C940D4D00028F23 /* logo14@2x.jpg in Resources */,
 				38979A441CA40919002946F5 /* happy10.png in Resources */,
 				38979AA21CA40919002946F5 /* sad6.png in Resources */,
