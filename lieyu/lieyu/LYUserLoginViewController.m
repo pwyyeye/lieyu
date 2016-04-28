@@ -174,22 +174,9 @@
             
             
         }
-        
 
         //先删除别名，然后再注册新的－－－友盟 消息推送
-//        if ([USER_DEFAULT objectForKey:@"userid"]) {
-//            [UMessage removeAlias:[USER_DEFAULT objectForKey:@"userid"] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
-//                NSLog(@"----pass-addAlias%@---%@",responseObject,error);
-//            }];
-//        }
-//        
-//        [UMessage addAlias:[NSString stringWithFormat:@"%d",result.userid] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
-//            NSLog(@"----pass-addAlias%@---%@",responseObject,error);
-//        }];
-        
-        [UMessage setAlias:[NSString stringWithFormat:@"%d",result.userid] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
-            NSLog(@"----pass-setAlias%@---%@",responseObject,error);
-        }];
+        [self addUmengAlias:[NSString stringWithFormat:@"%d",result.userid]];
         
         [weakSelf getUserCollectJiuBaList];
         [weakSelf getUserZangJiuBaList];
@@ -266,7 +253,13 @@
 //                if ([MyUtil isEmptyString:app.desKey] ) {
                     [app getDESKey];
 //                }
-                
+                NSString * hasAddAlias=[USER_DEFAULT objectForKey:@"hasAddAlias"];
+                if ([MyUtil isEmptyString:hasAddAlias]) {
+                    [UMessage addAlias:[NSString stringWithFormat:@"%d",userM.userid] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
+                        NSLog(@"----pass-addAlias%@---%@",responseObject,error);
+                    }];
+                    [USER_DEFAULT setObject:@"1" forKey:@"hasAddAlias"];
+                }
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
                 [weakSelf.navigationController popToRootViewControllerAnimated:YES];
             }
@@ -293,6 +286,15 @@
 //        if ([MyUtil isEmptyString:app.desKey] ) {
             [app getDESKey];
 //        }
+        NSString * hasAddAlias=[USER_DEFAULT objectForKey:@"hasAddAlias"];
+        if ([MyUtil isEmptyString:hasAddAlias]) {
+            [UMessage addAlias:[NSString stringWithFormat:@"%d",result.userid] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
+                NSLog(@"----pass-addAlias%@---%@",responseObject,error);
+            }];
+            [USER_DEFAULT setObject:@"1" forKey:@"hasAddAlias"];
+        }
+        
+//        [self addUmengAlias:[NSString stringWithFormat:@"%d",result.userid]];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"OPENIDSTR"];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
 
@@ -462,23 +464,11 @@
 //            if ([MyUtil isEmptyString:app.desKey] ) {
                 [app getDESKey];
 //            }
-            
-            //先删除别名，然后再注册新的－－－友盟 消息推送
-//            if ([USER_DEFAULT objectForKey:@"userid"]) {
-//                [UMessage removeAlias:[USER_DEFAULT objectForKey:@"userid"] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
-//                    NSLog(@"----pass-addAlias%@---%@",responseObject,error);
-//                }];
-//            }
             [USER_DEFAULT setObject:[NSString stringWithFormat:@"%d",userM.userid] forKey:@"userid"];
+
             
-//            [UMessage addAlias:[NSString stringWithFormat:@"%d",userM.userid] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
-//                NSLog(@"----pass-addAlias%@---%@",responseObject,error);
-//            }];
-            
-            
-            [UMessage setAlias:[NSString stringWithFormat:@"%d",userM.userid] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
-                NSLog(@"----pass-setAlias%@---%@",responseObject,error);
-            }];
+           
+            [self addUmengAlias:[NSString stringWithFormat:@"%d",userM.userid]];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"loginAndLoadData" object:nil];
@@ -497,6 +487,26 @@
 
 }
 
+//先删除别名，然后再注册新的－－－友盟 消息推送
+-(void)addUmengAlias:(NSString *) userid{
+    
+    [USER_DEFAULT removeObjectForKey:@"hasAddAlias"];
+    
+    if ([MyUtil isEmptyString:userid]) return;
+//
+//    [UMessage removeAlias:userid type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
+//        NSLog(@"----pass-addAlias%@---%@",responseObject,error);
+//    }];
+//    
+//    [UMessage addAlias:userid type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
+//        NSLog(@"----pass-addAlias%@---%@",responseObject,error);
+//    }];
+//    
+    
+    [UMessage setAlias:userid type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
+        NSLog(@"----pass-setAlias%@---%@",responseObject,error);
+    }];
+}
 -(void)dealloc{
     NSLog(@"----pass-pass%@---",@"test dealloc");
 }

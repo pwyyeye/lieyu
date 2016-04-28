@@ -4876,13 +4876,6 @@
 			name = model;
 			sourceTree = "<group>";
 		};
-		15EA6DCD1BC0DA1400620C9E /* IM */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = IM;
-			sourceTree = "<group>";
-		};
 		15EB35201BD3394000BA6161 /* banner */ = {
 			isa = PBXGroup;
 			children = (
@@ -8863,7 +8856,6 @@
 				15EB35201BD3394000BA6161 /* banner */,
 				151BB6E01BBB913E00E7A81C /* DejalActivityView.h */,
 				151BB6E11BBB913E00E7A81C /* DejalActivityView.m */,
-				15EA6DCD1BC0DA1400620C9E /* IM */,
 				151BB6C01BBB78CB00E7A81C /* 照片 */,
 				15013AD31BBA33BE00061FAF /* SDWebImage */,
 				D74C60821BB69F6300A49598 /* RTLabel */,
