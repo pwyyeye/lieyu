@@ -321,7 +321,6 @@
             [tryButton addTarget:self action:@selector(releaseClick) forControlEvents:UIControlEventTouchUpInside];
             [grayBackground addSubview:tryButton];
             
-            [USER_DEFAULT setObject:@"NO" forKey:@"UsersFirstEnterYU"];
         }
     }];
 }
@@ -446,6 +445,8 @@
 - (void)releaseClick{
     if ([((AppDelegate *)[UIApplication sharedApplication].delegate).window viewWithTag:10010]) {
         [grayBackground removeFromSuperview];
+        
+        [USER_DEFAULT setObject:@"NO" forKey:@"UsersFirstEnterYU"];
     }
     LYActivitySendViewController *activitySendVC = [[LYActivitySendViewController alloc]init];
     activitySendVC.delegate = self;
@@ -469,14 +470,21 @@
         message = @"其他原因";
     }
     if (buttonIndex != 3) {
-        YUWishesModel *model = (YUWishesModel *)[_dataList objectAtIndex:tag];
-        NSDictionary *dict = @{@"reportedUserid":[NSNumber numberWithInt:model.releaseUserid],
-                               @"momentId":[NSNumber numberWithInt:model.id],
-                               @"message":message,
-                               @"userid":[NSNumber numberWithInt:self.userModel.userid]};
-        [LYFriendsHttpTool friendsJuBaoWithParams:dict complete:^(NSString *message) {
-            [MyUtil showPlaceMessage:message];
+        [LYYUHttpTool YUReportWishComplete:^(BOOL result) {
+            if (result == YES) {
+                [MyUtil showPlaceMessage:@"举报成功"];
+            }else{
+                [MyUtil showPlaceMessage:@"举报失败"];
+            }
         }];
+//        YUWishesModel *model = (YUWishesModel *)[_dataList objectAtIndex:tag];
+//        NSDictionary *dict = @{@"reportedUserid":[NSNumber numberWithInt:model.releaseUserid],
+//                               @"momentId":[NSNumber numberWithInt:model.id],
+//                               @"message":message,
+//                               @"userid":[NSNumber numberWithInt:self.userModel.userid]};
+//        [LYFriendsHttpTool friendsJuBaoWithParams:dict complete:^(NSString *message) {
+//            [MyUtil showPlaceMessage:message];
+//        }];
     }
 }
 
@@ -522,25 +530,46 @@
 
 - (void)avatarClick:(UIButton *)button{
     YUWishesModel *model = [_dataList objectAtIndex:button.tag];
-    LYFindConversationViewController *conversationVC = [[LYFindConversationViewController alloc]init];
-//    RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
-    conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
-    conversationVC.targetId = model.imUserId; // 接收者的 targetId，这里为举例。
-    conversationVC.title = model.releaseUserName; // 会话的 title。
+    if (model.releaseUserid == self.userModel.userid) {
+        RCPublicServiceChatViewController *conversationVC = [[RCPublicServiceChatViewController alloc]init];
+        conversationVC.conversationType = ConversationType_APPSERVICE;
+        conversationVC.targetId = @"KEFU144946169476221";
+        conversationVC.title = @"猎娱客服";
+        [IQKeyboardManager sharedManager].enable = NO;
+        [IQKeyboardManager sharedManager].isAdd = YES;
+        [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
+        
+        // 把单聊视图控制器添加到导航栈。
+        UIButton *itemBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+        itemBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 0);
+        [itemBtn setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
+        [itemBtn addTarget:self action:@selector(backForward) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:itemBtn];
+        conversationVC.navigationItem.leftBarButtonItem = item;
+        
+        [self.navigationController pushViewController:conversationVC animated:YES];
+    }else{
+        LYFindConversationViewController *conversationVC = [[LYFindConversationViewController alloc]init];
+        //    RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
+        conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
+        conversationVC.targetId = model.imUserId; // 接收者的 targetId，这里为举例。
+        conversationVC.title = model.releaseUserName; // 会话的 title。
+        
+        [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
+        
+        [IQKeyboardManager sharedManager].enable = NO;
+        [IQKeyboardManager sharedManager].isAdd = YES;
+        // 把单聊视图控制器添加到导航栈。
+        UIButton *itemBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+        itemBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 0);
+        [itemBtn setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
+        [itemBtn addTarget:self action:@selector(backForward) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:itemBtn];
+        conversationVC.navigationItem.leftBarButtonItem = item;
+        
+        [self.navigationController pushViewController:conversationVC animated:YES];
+    }
     
-    [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
-    
-    [IQKeyboardManager sharedManager].enable = NO;
-    [IQKeyboardManager sharedManager].isAdd = YES;
-    // 把单聊视图控制器添加到导航栈。
-    UIButton *itemBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
-    itemBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 0);
-    [itemBtn setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
-    [itemBtn addTarget:self action:@selector(backForward) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:itemBtn];
-    conversationVC.navigationItem.leftBarButtonItem = item;
-    
-    [self.navigationController pushViewController:conversationVC animated:YES];
 }
 
 - (void)backForward{
