@@ -133,6 +133,21 @@
     }];
 }
 
-
+#pragma mark - 举报愿望
++ (void)YUReportWishComplete:(void (^)(BOOL))complete{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YU_JUBAO baseURL:LY_SERVER params:nil success:^(id response) {
+        NSString *errorCode = response[@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            complete(YES);
+        }else{
+            complete(NO);
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+}
 
 @end

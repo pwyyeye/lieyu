@@ -469,14 +469,21 @@
         message = @"其他原因";
     }
     if (buttonIndex != 3) {
-        YUWishesModel *model = (YUWishesModel *)[_dataList objectAtIndex:tag];
-        NSDictionary *dict = @{@"reportedUserid":[NSNumber numberWithInt:model.releaseUserid],
-                               @"momentId":[NSNumber numberWithInt:model.id],
-                               @"message":message,
-                               @"userid":[NSNumber numberWithInt:self.userModel.userid]};
-        [LYFriendsHttpTool friendsJuBaoWithParams:dict complete:^(NSString *message) {
-            [MyUtil showPlaceMessage:message];
+        [LYYUHttpTool YUReportWishComplete:^(BOOL result) {
+            if (result == YES) {
+                [MyUtil showPlaceMessage:@"举报成功"];
+            }else{
+                [MyUtil showPlaceMessage:@"举报失败"];
+            }
         }];
+//        YUWishesModel *model = (YUWishesModel *)[_dataList objectAtIndex:tag];
+//        NSDictionary *dict = @{@"reportedUserid":[NSNumber numberWithInt:model.releaseUserid],
+//                               @"momentId":[NSNumber numberWithInt:model.id],
+//                               @"message":message,
+//                               @"userid":[NSNumber numberWithInt:self.userModel.userid]};
+//        [LYFriendsHttpTool friendsJuBaoWithParams:dict complete:^(NSString *message) {
+//            [MyUtil showPlaceMessage:message];
+//        }];
     }
 }
 
