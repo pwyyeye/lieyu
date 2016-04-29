@@ -62,6 +62,13 @@
 //    [self.navigationController setNavigationBarHidden:NO];
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    if (self.navigationController.navigationBarHidden==NO) {
+        [self.navigationController setNavigationBarHidden:YES animated:YES];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
