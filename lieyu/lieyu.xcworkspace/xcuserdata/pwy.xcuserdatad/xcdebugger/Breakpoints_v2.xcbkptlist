@@ -312,12 +312,12 @@
                   moduleName = "lieyu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu2016/lieyu/lieyu/LYFriendsMessageDetailViewController.m"
-                  timestampString = "483504971.853766"
+                  timestampString = "483550435.236079"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "246"
                   endingLineNumber = "246"
-                  offsetFromSymbolStart = "650">
+                  offsetFromSymbolStart = "559">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -327,12 +327,12 @@
                   moduleName = "lieyu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu2016/lieyu/lieyu/LYFriendsMessageDetailViewController.m"
-                  timestampString = "483504971.853877"
+                  timestampString = "483550435.236186"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "246"
                   endingLineNumber = "246"
-                  offsetFromSymbolStart = "678">
+                  offsetFromSymbolStart = "627">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -424,12 +424,12 @@
                   moduleName = "lieyu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu2016/lieyu/lieyu/LYFriendsMessageDetailViewController.m"
-                  timestampString = "483504971.856863"
+                  timestampString = "483550435.238638"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "351"
                   endingLineNumber = "351"
-                  offsetFromSymbolStart = "3006">
+                  offsetFromSymbolStart = "2792">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -439,12 +439,12 @@
                   moduleName = "lieyu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu2016/lieyu/lieyu/LYFriendsMessageDetailViewController.m"
-                  timestampString = "483504971.857014"
+                  timestampString = "483550435.238739"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "353"
                   endingLineNumber = "353"
-                  offsetFromSymbolStart = "6">
+                  offsetFromSymbolStart = "12">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -468,46 +468,46 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__57-[LYFriendsMessageDetailViewController keyBorderApearce:]_block_invoke.404"
+                  symbolName = "__57-[LYFriendsMessageDetailViewController keyBorderApearce:]_block_invoke.403"
                   moduleName = "lieyu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu2016/lieyu/lieyu/LYFriendsMessageDetailViewController.m"
-                  timestampString = "483504971.85776"
+                  timestampString = "483550435.239373"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "427"
                   endingLineNumber = "427"
-                  offsetFromSymbolStart = "314">
+                  offsetFromSymbolStart = "322">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__copy_helper_block_.407"
+                  symbolName = "__copy_helper_block_.406"
                   moduleName = "lieyu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu2016/lieyu/lieyu/LYFriendsMessageDetailViewController.m"
-                  timestampString = "483504971.857874"
+                  timestampString = "483550435.239478"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "427"
                   endingLineNumber = "427"
-                  offsetFromSymbolStart = "34">
+                  offsetFromSymbolStart = "51">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_.408"
+                  symbolName = "__destroy_helper_block_.407"
                   moduleName = "lieyu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu2016/lieyu/lieyu/LYFriendsMessageDetailViewController.m"
-                  timestampString = "483504971.857972"
+                  timestampString = "483550435.239574"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "427"
                   endingLineNumber = "427"
-                  offsetFromSymbolStart = "18">
+                  offsetFromSymbolStart = "29">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -762,7 +762,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "656"
             endingLineNumber = "656"
-            landmarkName = "-hideImageTip:"
+            landmarkName = "-friendsClick:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -866,13 +866,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "lieyu/LYUserLoginViewController.m"
-            timestampString = "483504593.771617"
+            filePath = "lieyu/LYUserCenterHeader.m"
+            timestampString = "483548280.663975"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "292"
-            endingLineNumber = "292"
-            landmarkName = "-autoLogin"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
+            landmarkName = "-updateConstraints"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -882,13 +882,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "lieyu/LYUserLoginViewController.m"
-            timestampString = "483504719.687435"
+            filePath = "lieyu/LYUserCenterController.m"
+            timestampString = "483549206.493084"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "289"
-            endingLineNumber = "289"
-            landmarkName = "-autoLogin"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "-loadHeaderView"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
