@@ -897,7 +897,6 @@ UINavigationControllerDelegate,ISEmojiViewDelegate,sendBackVedioAndImage,ImagePi
         _imagePicker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeMovie];
         _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;//摄影
         _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;//后置摄像
-        _imagePicker.cameraViewTransform = CGAffineTransformScale(_imagePicker.cameraViewTransform, 1, 0.6);
         _imagePicker.videoQuality = UIImagePickerControllerQualityTypeIFrame1280x720;
         _imagePicker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModeVideo;//设置摄像头模式
 //        _imagePicker.
@@ -2135,12 +2134,12 @@ UINavigationControllerDelegate,ISEmojiViewDelegate,sendBackVedioAndImage,ImagePi
     
     friendsVedioCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:button.tag]];
     player = [[MPMoviePlayerViewController alloc]initWithContentURL:url];
-    
+    player.moviePlayer.scalingMode = MPMovieScalingModeAspectFill;
     player.view.frame = friendsVedioCell.imgView_video.frame;
     player.view.tag = 6611;
     player.moviePlayer.controlStyle = MPMovieControlStyleDefault;
     [friendsVedioCell addSubview:player.view];
-    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playerWillPlay) name:MPMoviePlayerPlaybackStateDidChangeNotification object:player.moviePlayer];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playerWillPlay) name:MPMoviePlayerLoadStateDidChangeNotification object:player.moviePlayer];
@@ -2154,6 +2153,7 @@ UINavigationControllerDelegate,ISEmojiViewDelegate,sendBackVedioAndImage,ImagePi
 }
 
 - (void)playerDidFinishPlay{
+    player.moviePlayer.scalingMode = MPMovieScalingModeFill;
     if (isDisturb == NO) {
         [UIView animateWithDuration:0.5 animations:^{
             player.view.alpha = 0 ;
@@ -2164,10 +2164,12 @@ UINavigationControllerDelegate,ISEmojiViewDelegate,sendBackVedioAndImage,ImagePi
     }
 }
 - (void)playerWillPlay{
+    player.moviePlayer.scalingMode = MPMovieScalingModeAspectFill;
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }
 
 - (void)playerDidPlay{
+    player.moviePlayer.scalingMode = MPMovieScalingModeFill;
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }
 
