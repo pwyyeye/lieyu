@@ -312,7 +312,7 @@
                   moduleName = "lieyu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu2016/lieyu/lieyu/LYFriendsMessageDetailViewController.m"
-                  timestampString = "483550435.236079"
+                  timestampString = "483611245.145842"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "246"
@@ -327,7 +327,7 @@
                   moduleName = "lieyu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu2016/lieyu/lieyu/LYFriendsMessageDetailViewController.m"
-                  timestampString = "483550435.236186"
+                  timestampString = "483611245.145955"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "246"
@@ -424,7 +424,7 @@
                   moduleName = "lieyu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu2016/lieyu/lieyu/LYFriendsMessageDetailViewController.m"
-                  timestampString = "483550435.238638"
+                  timestampString = "483611245.148908"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "351"
@@ -439,7 +439,7 @@
                   moduleName = "lieyu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu2016/lieyu/lieyu/LYFriendsMessageDetailViewController.m"
-                  timestampString = "483550435.238739"
+                  timestampString = "483611245.149016"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "353"
@@ -472,7 +472,7 @@
                   moduleName = "lieyu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu2016/lieyu/lieyu/LYFriendsMessageDetailViewController.m"
-                  timestampString = "483550435.239373"
+                  timestampString = "483611245.14967"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "427"
@@ -487,7 +487,7 @@
                   moduleName = "lieyu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu2016/lieyu/lieyu/LYFriendsMessageDetailViewController.m"
-                  timestampString = "483550435.239478"
+                  timestampString = "483611245.149775"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "427"
@@ -502,7 +502,7 @@
                   moduleName = "lieyu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu2016/lieyu/lieyu/LYFriendsMessageDetailViewController.m"
-                  timestampString = "483550435.239574"
+                  timestampString = "483611245.149865"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "427"
@@ -835,11 +835,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "lieyu/LYMyFriendDetailViewController.m"
-            timestampString = "482743854.846027"
+            timestampString = "483611202.833036"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "354"
-            endingLineNumber = "354"
+            startingLineNumber = "357"
+            endingLineNumber = "357"
             landmarkName = "-addCareof:"
             landmarkType = "5">
          </BreakpointContent>
@@ -889,6 +889,22 @@
             startingLineNumber = "139"
             endingLineNumber = "139"
             landmarkName = "-loadHeaderView"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "lieyu/LYMyFriendDetailViewController.m"
+            timestampString = "483611233.886795"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "-viewDidAppear:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
