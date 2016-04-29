@@ -67,9 +67,12 @@
     LYMyFriendDetailViewController *_friendDetailVC ;
     ISEmojiView *_emojiView;
     
-    
-    
     int gestureViewTag;
+    
+    LYFriendsVideoTableViewCell *friendsVedioCell;
+    MPMoviePlayerViewController *player;
+    NSInteger playerSection;
+    BOOL isDisturb;
 }
 
 
@@ -596,6 +599,11 @@
             videoCell.btn_play.tag = indexPath.section;
             [videoCell.imgView_video sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlStr mediaType:QiNiuUploadTpyeDefault width:0 andHeight:0]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
             [videoCell.btn_play addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
+            UIView *view = [videoCell viewWithTag:66611];
+            if (indexPath.section != playerSection && view) {
+                [player.view removeFromSuperview];
+                [player removeFromParentViewController];
+            }
             return videoCell;
         }
 
@@ -1091,6 +1099,7 @@
 
 #pragma mark - 视频播放
 - (void)playVideo:(UIButton *)button{
+    playerSection = button.tag;
     FriendsRecentModel *recentM = _dataArray[button.tag];
     FriendsPicAndVideoModel *pvM = (FriendsPicAndVideoModel *)recentM.lyMomentsAttachList[0];
     //    NSString *urlString = [MyUtil configureNetworkConnect] == 1 ?[MyUtil getQiniuUrl:pvM.imageLink mediaType:QiNiuUploadTpyeSmallMedia width:0 andHeight:0] : [MyUtil getQiniuUrl:pvM.imageLink mediaType:QiNiuUploadTpyeMedia width:0 andHeight:0];
@@ -1101,11 +1110,52 @@
         url = [[NSURL alloc] initFileURLWithPath:pvM.imageLink];
         
     }
-    MPMoviePlayerViewController *player = [[MPMoviePlayerViewController alloc]initWithContentURL:url];
-    player.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    player.moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
-    player.moviePlayer.scalingMode = MPMovieScalingModeNone;
-    [self presentMoviePlayerViewControllerAnimated:player];
+    if (player.moviePlayer.playbackState != MPMoviePlaybackStateStopped) {
+        isDisturb = YES;
+    }
+    [player.view removeFromSuperview];
+    friendsVedioCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:button.tag]];
+    
+    player = [[MPMoviePlayerViewController alloc]initWithContentURL:url];
+//    player.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    player.view.frame = friendsVedioCell.imgView_video.frame;
+    player.view.tag = 66611;
+//    player.moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
+    player.moviePlayer.controlStyle = MPMovieControlStyleDefault;
+    player.moviePlayer.scalingMode = MPMovieScalingModeAspectFill;
+//    [self presentMoviePlayerViewControllerAnimated:player];
+    [friendsVedioCell addSubview:player.view];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playerWillPlay) name:MPMoviePlayerPlaybackStateDidChangeNotification object:player.moviePlayer];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playerWillPlay) name:MPMoviePlayerLoadStateDidChangeNotification object:player.moviePlayer];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playerWillPlay) name:MPMoviePlayerScalingModeDidChangeNotification object:player.moviePlayer];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playerDidFinishPlay) name:MPMoviePlayerPlaybackDidFinishNotification object:player.moviePlayer];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playerDidPlay) name:MPMoviePlayerDidExitFullscreenNotification object:player.moviePlayer];
+    
+    isDisturb = NO;
+}
+
+- (void)playerWillPlay{
+    player.moviePlayer.scalingMode = MPMovieScalingModeAspectFill;
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+}
+
+- (void)playerDidFinishPlay{
+    player.moviePlayer.scalingMode = MPMovieScalingModeFill;
+    if (isDisturb == NO) {
+        [UIView animateWithDuration:0.5 animations:^{
+            player.view.alpha = 0;
+        } completion:^(BOOL finished) {
+            [player.view removeFromSuperview];
+            [[UIApplication sharedApplication] setStatusBarHidden:NO];
+        }];
+    }
+}
+
+- (void)playerDidPlay{
+    player.moviePlayer.scalingMode = MPMovieScalingModeFill;
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }
 
 - (BOOL)prefersStatusBarHidden {

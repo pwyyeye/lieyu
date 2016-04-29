@@ -58,6 +58,8 @@
     UIButton *emoji_kawayi;
     UIButton *emoji_happy;
     UIButton *emoji_zan;
+    
+    MPMoviePlayerViewController *player;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -970,12 +972,44 @@
         url = [[NSURL alloc] initFileURLWithPath:pvM.imageLink];
         
     }
-    MPMoviePlayerViewController *player = [[MPMoviePlayerViewController alloc]initWithContentURL:url];
-    player.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    player.moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
-    player.moviePlayer.scalingMode = MPMovieScalingModeNone;
-    [self presentMoviePlayerViewControllerAnimated:player];
+    LYFriendsVideoTableViewCell *videoCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+    player = [[MPMoviePlayerViewController alloc]initWithContentURL:url];
+//    player.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    player.view.frame = videoCell.imgView_video.frame;
+    player.moviePlayer.controlStyle = MPMovieControlStyleDefault;
+//    player.moviePlayer.scalingMode = MPMovieScalingModeNone;
+    player.moviePlayer.scalingMode = MPMovieScalingModeAspectFill;
+//    [self presentMoviePlayerViewControllerAnimated:player];
+    [videoCell addSubview:player.view];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playerWillPlay) name:MPMoviePlayerPlaybackStateDidChangeNotification object:player.moviePlayer];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playerWillPlay) name:MPMoviePlayerLoadStateDidChangeNotification object:player.moviePlayer];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playerWillPlay) name:MPMoviePlayerScalingModeDidChangeNotification object:player.moviePlayer];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playerDidFinishPlay) name:MPMoviePlayerPlaybackDidFinishNotification object:player.moviePlayer];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playerDidPlay) name:MPMoviePlayerDidExitFullscreenNotification object:player.moviePlayer];
 }
+
+- (void)playerWillPlay{
+    player.moviePlayer.scalingMode = MPMovieScalingModeAspectFill;
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+}
+
+- (void)playerDidFinishPlay{
+    player.moviePlayer.scalingMode = MPMovieScalingModeFill;
+    [UIView animateWithDuration:0.5 animations:^{
+        player.view.alpha = 0;
+    }completion:^(BOOL finished) {
+        [player.view removeFromSuperview];
+        [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    }];
+}
+
+- (void)playerDidPlay{
+    player.moviePlayer.scalingMode = MPMovieScalingModeFill;
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+}
+
 #pragma mark - 点击头像跳转到指定用户界面
 - (void)pushUserMessagePage{
     if (isExidtEffectView) [emojisView hideEmojiEffectView];
