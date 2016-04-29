@@ -1126,6 +1126,8 @@
 //    [self presentMoviePlayerViewControllerAnimated:player];
     [friendsVedioCell addSubview:player.view];
     
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playerWillPlay) name:MPMoviePlayerPlaybackStateDidChangeNotification object:player.moviePlayer];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playerWillPlay) name:MPMoviePlayerLoadStateDidChangeNotification object:player.moviePlayer];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playerWillPlay) name:MPMoviePlayerScalingModeDidChangeNotification object:player.moviePlayer];

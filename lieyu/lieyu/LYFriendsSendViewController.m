@@ -321,8 +321,8 @@
             return;
         }
         //点击发布按钮之后回到朋友圈页面并且传视频与截图给朋友圈页面
-        
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self.navigationController popViewControllerAnimated:YES];
+//        [self.navigationController popToRootViewControllerAnimated:YES];
         if(self.delegate){
             //地址返回
             NSString *location = ([self.locationBtn.titleLabel.text isEqualToString:@"选择位置"] || [self.locationBtn.titleLabel.text isEqualToString:@"不显示位置"]) ? @"" : self.locationBtn.titleLabel.text;
