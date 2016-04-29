@@ -50,13 +50,6 @@
     
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
-    if (self.navigationController.navigationBarHidden==NO) {
-        [self.navigationController setNavigationBarHidden:YES animated:YES];
-    }
-}
 
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
