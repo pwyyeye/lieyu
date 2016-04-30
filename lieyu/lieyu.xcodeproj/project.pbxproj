@@ -362,6 +362,7 @@
 		381FF0031C168755002A47BA /* icon_zixun_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 381FF0001C168755002A47BA /* icon_zixun_normal@3x.png */; };
 		3824CA681C5B47E000C00732 /* ChoosePeople.m in Sources */ = {isa = PBXBuildFile; fileRef = 3824CA671C5B47E000C00732 /* ChoosePeople.m */; };
 		3824CA6A1C5B47F300C00732 /* ChoosePeople.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3824CA691C5B47F300C00732 /* ChoosePeople.xib */; };
+		382FB47A1CD496BB001ABC49 /* LYDateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 382FB4791CD496BB001ABC49 /* LYDateUtil.m */; };
 		3856646A1C62EE6A000DCFA5 /* icon_collect2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 385664681C62EE6A000DCFA5 /* icon_collect2@2x.png */; };
 		3856646B1C62EE6A000DCFA5 /* icon_collect2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 385664691C62EE6A000DCFA5 /* icon_collect2@3x.png */; };
 		3856646F1C72B919000DCFA5 /* HDZTHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3856646D1C72B919000DCFA5 /* HDZTHeaderCell.m */; };
@@ -2298,6 +2299,8 @@
 		3824CA661C5B47E000C00732 /* ChoosePeople.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoosePeople.h; sourceTree = "<group>"; };
 		3824CA671C5B47E000C00732 /* ChoosePeople.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoosePeople.m; sourceTree = "<group>"; };
 		3824CA691C5B47F300C00732 /* ChoosePeople.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChoosePeople.xib; sourceTree = "<group>"; };
+		382FB4781CD496BB001ABC49 /* LYDateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LYDateUtil.h; path = Apple/LYDateUtil.h; sourceTree = "<group>"; };
+		382FB4791CD496BB001ABC49 /* LYDateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LYDateUtil.m; path = Apple/LYDateUtil.m; sourceTree = "<group>"; };
 		385664681C62EE6A000DCFA5 /* icon_collect2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_collect2@2x.png"; sourceTree = "<group>"; };
 		385664691C62EE6A000DCFA5 /* icon_collect2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_collect2@3x.png"; sourceTree = "<group>"; };
 		3856646C1C72B919000DCFA5 /* HDZTHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDZTHeaderCell.h; sourceTree = "<group>"; };
@@ -8904,6 +8907,8 @@
 				D71E1D991BAE9C1100915F37 /* LYColors.m */,
 				15E1849E1BB8D20700681BB2 /* MyUtil.h */,
 				15E1849F1BB8D20700681BB2 /* MyUtil.m */,
+				382FB4781CD496BB001ABC49 /* LYDateUtil.h */,
+				382FB4791CD496BB001ABC49 /* LYDateUtil.m */,
 				D73652371BAEAC4F002541CE /* NeedHideNavigationBar.h */,
 				D73652381BAEB2BF002541CE /* LYTableViewCellLayout.h */,
 				D7A1D41B1BC266CD00BCE47C /* LYUserLocation.h */,
@@ -10626,6 +10631,7 @@
 				386AE3A11C5B61B70062105F /* UIView+SDExtension.m in Sources */,
 				151BB6BC1BBA871600E7A81C /* TagModel.m in Sources */,
 				15EB35161BD26D0F00BA6161 /* PTPayAmoutCell.m in Sources */,
+				382FB47A1CD496BB001ABC49 /* LYDateUtil.m in Sources */,
 				3806566C1C4E5D5B003094C9 /* MyCell.m in Sources */,
 				15B866291BDB6A57002E2BB6 /* AllInfoModel.m in Sources */,
 				85514E981C75904500E24C78 /* BarTopicInfo.m in Sources */,
