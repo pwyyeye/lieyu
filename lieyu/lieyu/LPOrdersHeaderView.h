@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *orderTimeLbl;
 @property (weak, nonatomic) IBOutlet UILabel *shaperLbl;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (strong, nonatomic) IBOutlet UIButton *telphone;
+@property(strong,nonatomic) UIWebView *phoneCallWebView;
 
 @property (nonatomic, strong) OrderInfoModel *model;
 @end

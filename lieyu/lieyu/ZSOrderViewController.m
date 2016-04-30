@@ -698,6 +698,8 @@
             LPOrdersHeaderView *orderHeadView= (LPOrdersHeaderView *)[nibView objectAtIndex:0];
             orderHeadView.nameLabel.text = @"消费客户:";
              orderHeadView.orderTimeLbl.text=[NSString stringWithFormat:@"时间：%@",[MyUtil transformDateWithDateString:orderInfoModel.createDate]];
+            [orderHeadView.telphone setTitle:orderInfoModel.phone forState:UIControlStateNormal];
+            
             orderHeadView.orderStatusLbl.text = [MyUtil getOrderStatus:orderInfoModel.orderStatus];
             if (orderInfoModel.orderStatus==1) {
                 orderHeadView.orderNumberLbl.text=[NSString stringWithFormat:@"%d",orderInfoModel.id];
@@ -819,6 +821,9 @@
             LPOrdersHeaderView *orderHeadView = (LPOrdersHeaderView *)[nibView objectAtIndex:0];
             orderHeadView.nameLabel.text = @"消费客户:";
 //            orderHeadView.orderStatusLbl.text = @"已消费";
+            
+            [orderHeadView.telphone setTitle:orderInfoModel.phone forState:UIControlStateNormal];
+            
             orderHeadView.orderStatusLbl.text = [MyUtil getOrderStatus:orderInfoModel.orderStatus];
             orderHeadView.orderNumberLbl.text=[NSString stringWithFormat:@"%d",orderInfoModel.id];
             orderHeadView.orderTimeLbl.text=[NSString stringWithFormat:@"时间：%@",[MyUtil transformDateWithDateString:orderInfoModel.createDate]];
@@ -856,6 +861,9 @@
             NSArray* nibView =  [[NSBundle mainBundle] loadNibNamed:@"LPOrdersHeaderView" owner:nil options:nil];
             LPOrdersHeaderView *orderHeadView = (LPOrdersHeaderView *)[nibView objectAtIndex:0];
             orderHeadView.nameLabel.text = @"消费客户:";
+            
+            [orderHeadView.telphone setTitle:orderInfoModel.phone forState:UIControlStateNormal];
+            
             orderHeadView.orderNumberLbl.text=[NSString stringWithFormat:@"%d",orderInfoModel.id];
             orderHeadView.orderStatusLbl.text = [MyUtil getOrderStatus:orderInfoModel.orderStatus];
             orderHeadView.orderTimeLbl.text=[NSString stringWithFormat:@"时间：%@",[MyUtil transformDateWithDateString:orderInfoModel.createDate]];
@@ -980,7 +988,7 @@
 //        cell.countLal.text=shopDetailmodel.count;
 //    }
     
-    
+
     cell.orderPriceLbl.text=[NSString stringWithFormat:@"￥%@",shopDetailmodel.youfeiPrice];
     NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
     NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%@",shopDetailmodel.money] attributes:attribtDic];

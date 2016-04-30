@@ -427,6 +427,7 @@
 //七牛上传文件
 +(BOOL)uploadFileToQiuNiu:(NSString *)filePath  complete:(QNUpCompletionHandler)completionHandler{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSLog(@"----pass-pass%@---",app.qiniu_media_token);
     if(app.qiniu_media_token){
         @try {
             QNUploadManager *upManager = [[QNUploadManager alloc] init];
