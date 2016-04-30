@@ -41,6 +41,7 @@
 @property (nonatomic,unsafe_unretained) BOOL isMeSendMessage;
 @property (nonatomic,copy) NSString *isBarTopicType;
 @property (nonatomic,copy) NSString *topicTypeBgUrl;
+@property (nonatomic, copy) UIImage *thunbImage;
 
 +(NSArray *)initFormNSArray:(NSArray *)arr;
 + (FriendsRecentModel *)initFromNSDictionary:(NSDictionary *)dic;

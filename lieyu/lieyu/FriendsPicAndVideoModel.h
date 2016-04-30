@@ -13,5 +13,6 @@
 @property (nonatomic,copy) NSString *id;
 @property (nonatomic,copy) NSString *imageLink;
 @property (nonatomic,copy) NSString *messageId;
+@property (nonatomic,copy) NSString *thumbnailUrl;
 
 @end

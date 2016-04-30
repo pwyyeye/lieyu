@@ -412,7 +412,6 @@
         return [NSString stringWithFormat:@"http://source.lie98.com/%@?imageView2/0/w/%d/h/%d",encodeKey,width,height];
     }else{
         return [NSString stringWithFormat:@"http://source.lie98.com/%@",encodeKey];
-
     }
 }
 

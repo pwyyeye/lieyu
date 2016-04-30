@@ -455,25 +455,71 @@
 #pragma mark 上传文件到七牛
 - (void)sendFilesToQiniu{
     __weak __typeof(self) weakSelf = self;
-    [HTTPController uploadFileToQiuNiu:self.mediaUrl complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
-        if(![MyUtil isEmptyString:key]){
-            [weakSelf sendTrends:key];
-        }else{
-            [MyUtil showCleanMessage:@"上传失败！"];
-        }
-    }];
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        __block NSString *videoUrl ;
+        __block NSString *imageUrl ;
+        dispatch_group_t group = dispatch_group_create();
+        dispatch_group_async(group, queue, ^{
+            [HTTPController uploadFileToQiuNiu:self.mediaUrl complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
+                if(![MyUtil isEmptyString:key]){
+                    videoUrl = key;
+                    
+                    if (videoUrl.length && imageUrl.length){
+                        dispatch_group_notify(group, queue, ^{
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                
+                                NSString *string = [NSString stringWithFormat:@"%@,%@",videoUrl,imageUrl];
+                                [weakSelf sendTrends:string];
+                            });
+                        });
+                    }
+                    
+                    
+                }else{
+                    [MyUtil showCleanMessage:@"上传失败!"];
+//                    return ;
+                }
+            }];
+        });
+        dispatch_group_async(group, queue, ^{
+            [HTTPController uploadImageToQiuNiu:mediaImage complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
+                if (![MyUtil isEmptyString:key]) {
+                    imageUrl = key;
+                    if (videoUrl.length && imageUrl.length){
+                        dispatch_group_notify(group, queue, ^{
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                
+                                NSString *string = [NSString stringWithFormat:@"%@,%@",videoUrl,imageUrl];
+                                [weakSelf sendTrends:string];
+                            });
+                        });
+                    }
+                }else{
+                    NSLog(@"上传失败!");
+//                    return ;
+                }
+            }];
+        });
+        
+    });
 }
 
 - (void)sendTrends:(NSString *)string{
     NSString *userIdStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
     NSDictionary *paraDic;
     if(_isVedio){
-        if(!self.TopicID.length){//没有话题
-            paraDic = @{@"userId":userIdStr,@"city":self.city,@"location":self.location,@"type":@"0",@"message":self.content,@"attachType":@"1",@"attach":string};
+        NSArray *array = [string componentsSeparatedByString:@","];
+        if (array.count<2) {
+            [MyUtil showCleanMessage:@"发布异常,请重新发送！"];
+            return;
+        }
+        if([MyUtil isEmptyString:_TopicID]){//没有话题
+            paraDic = @{@"userId":userIdStr,@"city":self.city,@"location":self.location,@"type":@"0",@"message":self.content,@"attachType":@"1",@"attach":[array objectAtIndex:0],@"thumbnailUrl":[array objectAtIndex:1]};
         }else{
             paraDic = @{@"userId":userIdStr,@"city":self.city,@"location":self.location,
                             @"type":@"0",@"message":self.content,
-                        @"attachType":@"1",@"attach":string,@"topicTypeId":self.TopicID};
+                        @"attachType":@"1",@"attach":[array objectAtIndex:0],@"thumbnailUrl":[array objectAtIndex:1],@"topicTypeId":_TopicID};
         }
     }else{
         if (!self.TopicID.length) {
@@ -854,5 +900,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 @end
