@@ -219,6 +219,10 @@
 -(void)updateConstraints{
      [super updateConstraints];
     _line1Heght.constant=0.5;
+    if (SCREEN_WIDTH==320) {
+        _headHeight.constant=260;
+        _buttomHeight.constant=70;
+    }
     
 }
 //加载角标

@@ -47,19 +47,22 @@
         self.setBG.hidden = NO;
     }
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
-//- (void)viewWillDisappear:(BOOL)animated{
-//    [super viewWillDisappear:animated];
-//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
-//    [self.navigationController setNavigationBarHidden:NO];
-//}
-//
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+   
 //    [self.navigationController setNavigationBarHidden:NO];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    if (self.navigationController.navigationBarHidden==NO) {
+        [self.navigationController setNavigationBarHidden:YES animated:YES];
+    }
 }
 
 - (void)viewDidLoad {

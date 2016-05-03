@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -84,6 +84,16 @@
                                 <constraint firstAttribute="height" constant="1" id="IZh-7J-I9M"/>
                             </constraints>
                         </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zLX-YJ-FOI">
+                            <rect key="frame" x="136" y="7" width="46" height="18"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="18" id="Q9Q-Zd-6qN"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal">
+                                <color key="titleColor" red="0.80765166269999999" green="0.15538065919999999" blue="0.90197737649999998" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -92,6 +102,7 @@
                         <constraint firstAttribute="bottom" secondItem="oZ3-eR-cn0" secondAttribute="bottom" constant="9" id="8Ow-4y-jda"/>
                         <constraint firstItem="yOa-qk-hX0" firstAttribute="leading" secondItem="WhR-uZ-P4O" secondAttribute="leading" constant="8" id="8ZH-Os-ax5"/>
                         <constraint firstAttribute="bottom" secondItem="lYD-Xc-SqB" secondAttribute="bottom" constant="9" id="AOw-jf-eGA"/>
+                        <constraint firstItem="zLX-YJ-FOI" firstAttribute="top" secondItem="WhR-uZ-P4O" secondAttribute="top" constant="7" id="Hax-NT-4fA"/>
                         <constraint firstItem="fuC-xt-XkQ" firstAttribute="top" secondItem="yOa-qk-hX0" secondAttribute="top" id="ITx-UI-92i"/>
                         <constraint firstItem="xbC-tN-dkl" firstAttribute="bottom" secondItem="lYD-Xc-SqB" secondAttribute="bottom" id="K9R-lJ-Zbi"/>
                         <constraint firstItem="yOa-qk-hX0" firstAttribute="top" secondItem="WhR-uZ-P4O" secondAttribute="top" constant="8" id="OwL-xp-DuW"/>
@@ -103,6 +114,7 @@
                         <constraint firstItem="fuC-xt-XkQ" firstAttribute="bottom" secondItem="yOa-qk-hX0" secondAttribute="bottom" id="nWn-TC-pMx"/>
                         <constraint firstItem="02v-Qw-FeO" firstAttribute="leading" secondItem="WhR-uZ-P4O" secondAttribute="leading" constant="9" id="s66-ZW-Ndp"/>
                         <constraint firstAttribute="trailing" secondItem="6UG-i2-6cH" secondAttribute="trailing" constant="8" id="skJ-6e-WC7"/>
+                        <constraint firstItem="zLX-YJ-FOI" firstAttribute="leading" secondItem="fuC-xt-XkQ" secondAttribute="trailing" constant="8" id="vKa-bI-nJu"/>
                         <constraint firstItem="xbC-tN-dkl" firstAttribute="leading" secondItem="lYD-Xc-SqB" secondAttribute="leading" constant="50" id="wG1-a3-4h8"/>
                         <constraint firstAttribute="trailing" secondItem="oZ3-eR-cn0" secondAttribute="trailing" constant="8" id="whC-dH-9ae"/>
                     </constraints>
@@ -128,6 +140,7 @@
                 <outlet property="orderStatusLbl" destination="6UG-i2-6cH" id="cdt-MA-7d8"/>
                 <outlet property="orderTimeLbl" destination="oZ3-eR-cn0" id="agv-d3-Apc"/>
                 <outlet property="placeLbl" destination="fuC-xt-XkQ" id="jWr-fa-TTk"/>
+                <outlet property="telphone" destination="zLX-YJ-FOI" id="XLr-gA-PvZ"/>
             </connections>
             <point key="canvasLocation" x="34" y="259"/>
         </view>

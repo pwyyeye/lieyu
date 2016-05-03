@@ -412,7 +412,6 @@
         return [NSString stringWithFormat:@"http://source.lie98.com/%@?imageView2/0/w/%d/h/%d",encodeKey,width,height];
     }else{
         return [NSString stringWithFormat:@"http://source.lie98.com/%@",encodeKey];
-
     }
 }
 
@@ -434,6 +433,9 @@
             break;
         case QiNiuUploadTpyeSmallMedia:
             return [NSString stringWithFormat:@"http://media.lie98.com/%@_s.mp4",encodeKey];
+            break;
+        case QiNiuUploadTpyeBigMedia:
+            return [NSString stringWithFormat:@"http://media.lie98.com/%@",encodeKey];
             break;
         default:
             return @"";

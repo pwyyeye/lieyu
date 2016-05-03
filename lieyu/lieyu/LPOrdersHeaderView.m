@@ -31,6 +31,7 @@
     layer.frame = CGRectMake(0, 0, SCREEN_WIDTH, 59);
     layer.path = bezierPath.CGPath;
     _backGround.layer.mask = layer;
+    [self.telphone addTarget:self action:@selector(callTelephone) forControlEvents:UIControlEventTouchUpInside];
 }
 
 
@@ -40,6 +41,22 @@
     self.orderStatusLbl.text = [MyUtil getOrderStatus:model.orderStatus];
     self.orderNumberLbl.text = [NSString stringWithFormat:@"%d",model.id];
     self.orderTimeLbl.text = [NSString stringWithFormat:@"时间：%@",[model.createDate substringToIndex:model.createDate.length - 3]];
+}
+
+-(void)callTelephone{
+    if (![MyUtil isEmptyString:self.telphone.titleLabel.text]) {
+        NSLog(@"----pass-pass%@---",@"test");
+        NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",self.telphone.titleLabel.text]];
+        
+        if ( !_phoneCallWebView ) {
+            
+            _phoneCallWebView = [[UIWebView alloc] initWithFrame:CGRectZero];// 这个webView只是一个后台的容易 不需要add到页面上来  效果跟方法二一样 但是这个方法是合法的
+            
+        }
+        
+        [_phoneCallWebView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
+
+    }
 }
 
 @end

@@ -55,7 +55,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *img_sex;
 @property (weak, nonatomic) IBOutlet UILabel *label_constellation;
 @property (weak, nonatomic) IBOutlet UILabel *label_work;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *headHeight;
 
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *buttomHeight;
 //设置
 - (IBAction)gotoSetting:(id)sender;
 //消息中心

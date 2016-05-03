@@ -58,6 +58,8 @@
     UIButton *emoji_kawayi;
     UIButton *emoji_happy;
     UIButton *emoji_zan;
+    
+    MPMoviePlayerViewController *player;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -574,7 +576,12 @@
             }else{
                 LYFriendsVideoTableViewCell *videoCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsVideoCellID forIndexPath:indexPath];
                 NSString *urlStr = ((FriendsPicAndVideoModel *)_recentM.lyMomentsAttachList[0]).imageLink;
-                [videoCell.imgView_video sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlStr mediaType:QiNiuUploadTpyeDefault width:0 andHeight:0]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+                NSString *imageStr = ((FriendsPicAndVideoModel *)_recentM.lyMomentsAttachList[0]).thumbnailUrl;
+                if (![MyUtil isEmptyString:imageStr]) {
+                    [videoCell.imgView_video sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:imageStr width:0 andHeight:0]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+                }else{
+                    [videoCell.imgView_video sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlStr mediaType:QiNiuUploadTpyeDefault width:0 andHeight:0]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+                }
                 [videoCell.btn_play addTarget:self action:@selector(playVideo) forControlEvents:UIControlEventTouchUpInside];
                 return videoCell;
             }
@@ -964,18 +971,57 @@
     FriendsPicAndVideoModel *pvM = _recentM.lyMomentsAttachList[0];
     //    NSString *urlString = [MyUtil configureNetworkConnect] == 1 ?[MyUtil getQiniuUrl:pvM.imageLink mediaType:QiNiuUploadTpyeSmallMedia width:0 andHeight:0] : [MyUtil getQiniuUrl:pvM.imageLink mediaType:QiNiuUploadTpyeMedia width:0 andHeight:0];
     QiNiuUploadTpye quType = [MyUtil configureNetworkConnect] == 1 ? QiNiuUploadTpyeSmallMedia : QiNiuUploadTpyeMedia;
-    NSLog(@"--->%@",[MyUtil getQiniuUrl:pvM.imageLink mediaType:quType width:0 andHeight:0]);
-    NSURL *url = [NSURL URLWithString:[[MyUtil getQiniuUrl:pvM.imageLink mediaType:quType width:0 andHeight:0] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] ;
+//    NSLog(@"--->%@",[MyUtil getQiniuUrl:pvM.imageLink mediaType:quType width:0 andHeight:0]);
+    NSURL *url;
+    if ([LYDateUtil isMoreThanFiveMinutes:_recentM.date]) {
+        url = [NSURL URLWithString:[MyUtil getQiniuUrl:pvM.imageLink mediaType:quType width:0 andHeight:0]] ;
+    }else{
+        url = [NSURL URLWithString:[MyUtil getQiniuUrl:pvM.imageLink mediaType:QiNiuUploadTpyeBigMedia width:0 andHeight:0]];
+    }
     if (_recentM.isMeSendMessage){
         url = [[NSURL alloc] initFileURLWithPath:pvM.imageLink];
         
     }
-    MPMoviePlayerViewController *player = [[MPMoviePlayerViewController alloc]initWithContentURL:url];
-    player.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    player.moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
-    player.moviePlayer.scalingMode = MPMovieScalingModeNone;
-    [self presentMoviePlayerViewControllerAnimated:player];
+    LYFriendsVideoTableViewCell *videoCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+    player = [[MPMoviePlayerViewController alloc]initWithContentURL:url];
+//    player.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    player.view.frame = videoCell.imgView_video.frame;
+    player.moviePlayer.controlStyle = MPMovieControlStyleDefault;
+//    player.moviePlayer.scalingMode = MPMovieScalingModeNone;
+    player.moviePlayer.scalingMode = MPMovieScalingModeAspectFill;
+//    [self presentMoviePlayerViewControllerAnimated:player];
+    [videoCell addSubview:player.view];
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playerWillPlay) name:MPMoviePlayerPlaybackStateDidChangeNotification object:player.moviePlayer];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playerWillPlay) name:MPMoviePlayerLoadStateDidChangeNotification object:player.moviePlayer];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playerWillPlay) name:MPMoviePlayerScalingModeDidChangeNotification object:player.moviePlayer];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playerDidFinishPlay) name:MPMoviePlayerPlaybackDidFinishNotification object:player.moviePlayer];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(playerDidPlay) name:MPMoviePlayerDidExitFullscreenNotification object:player.moviePlayer];
 }
+
+- (void)playerWillPlay{
+    player.moviePlayer.scalingMode = MPMovieScalingModeAspectFill;
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+}
+
+- (void)playerDidFinishPlay{
+    player.moviePlayer.scalingMode = MPMovieScalingModeFill;
+    [UIView animateWithDuration:0.5 animations:^{
+        player.view.alpha = 0;
+    }completion:^(BOOL finished) {
+        [player.view removeFromSuperview];
+        [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    }];
+}
+
+- (void)playerDidPlay{
+    player.moviePlayer.scalingMode = MPMovieScalingModeFill;
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+}
+
 #pragma mark - 点击头像跳转到指定用户界面
 - (void)pushUserMessagePage{
     if (isExidtEffectView) [emojisView hideEmojiEffectView];

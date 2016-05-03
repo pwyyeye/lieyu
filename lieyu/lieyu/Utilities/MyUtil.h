@@ -14,8 +14,10 @@ typedef NS_ENUM(NSInteger, QiNiuUploadTpye)
 {
     //以下是枚举成员
     QiNiuUploadTpyeDefault = 0,//默认图片
+    QiNiuUploadTpyeImage = 4,
     QiNiuUploadTpyeMedia = 1,//媒体资源
     QiNiuUploadTpyeSmallMedia = 2,//小媒体资源
+    QiNiuUploadTpyeBigMedia = 3,//小媒体资源
 };
 @interface MyUtil : NSObject
 
