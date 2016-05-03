@@ -484,10 +484,9 @@ CGFloat picWidth = 0;
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
     
-    if(_isFriendsTopic){
+    if(_isFriendsTopic){//朋友圈话题
         if (scrollView.contentOffset.y > _contentOffSetY) {
             if (scrollView.contentOffset.y <= 0.f) {
-//                _effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 130, 60, 60);
             }else{
                 
                             [UIView animateWithDuration:0.4 animations:^{
@@ -506,35 +505,26 @@ CGFloat picWidth = 0;
             }
         }
 
-    }else{
-    if (scrollView.contentOffset.y > _contentOffSetY) {
-        if (scrollView.contentOffset.y <= 0.f) {
-//            _effectView.frame = CGRectMake(0,  SCREEN_HEIGHT - 47 - 64, 60, 60);
+    }else{//酒吧话题
+        if (scrollView.contentOffset.y > _contentOffSetY) {
+            if (scrollView.contentOffset.y <= 0.f) {
+                
+            }else{
+                
+                [UIView animateWithDuration:.4 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:5 options:UIViewAnimationOptionAllowUserInteraction animations:^{
+                    _effectView.frame = CGRectMake(0, SCREEN_HEIGHT - 64, SCREEN_WIDTH, 47);
+                } completion:nil];
+            }
         }else{
-            
-            [UIView animateWithDuration:.4 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:5 options:UIViewAnimationOptionAllowUserInteraction animations:^{
-                _effectView.frame = CGRectMake(0, SCREEN_HEIGHT - 64, SCREEN_WIDTH, 47);
-            } completion:^(BOOL finished) {
-                
-            }];
-            
-//            [UIView animateWithDuration:0.4 animations:^{
-//                _effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT, 60, 60);
-//            }];
+            if(CGRectGetMaxY(_effectView.frame) + 64 > SCREEN_HEIGHT - 5){
+                [UIView animateWithDuration:.4 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:5 options:UIViewAnimationOptionAllowUserInteraction animations:^{
+                    _effectView.frame = CGRectMake(0, SCREEN_HEIGHT - 47 - 64, SCREEN_WIDTH, 47);
+                } completion:nil];
+            }
         }
-    }else{
-        if(CGRectGetMaxY(_effectView.frame) + 64 > SCREEN_HEIGHT - 5){
-            
-            
-            [UIView animateWithDuration:.4 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:5 options:UIViewAnimationOptionAllowUserInteraction animations:^{
-                _effectView.frame = CGRectMake(0, SCREEN_HEIGHT - 47 - 64, SCREEN_WIDTH, 47);
-            } completion:^(BOOL finished) {
-                
-            }];
-        }
-    }
     }
 }
+
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
     _contentOffSetY = scrollView.contentOffset.y;

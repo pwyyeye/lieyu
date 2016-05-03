@@ -161,9 +161,6 @@
         [emojisView hideEmojiEffectView];
     }
         if([_recentM.userId isEqualToString:_useridStr]) return;
-//    LYFriendsToUserMessageViewController *friendsUserMegVC = [[LYFriendsToUserMessageViewController alloc]init];
-//    friendsUserMegVC.friendsId = _recentM.userId;
-//    [self.navigationController pushViewController:friendsUserMegVC animated:YES];
     
     LYMyFriendDetailViewController *myFriendVC = [[LYMyFriendDetailViewController  alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
     myFriendVC.userID = _recentM.userId;
@@ -929,12 +926,8 @@
             break;
         case 2:
         {
-            NSLog(@"-->%ld",(button.tag + 2) /4);
             section = (button.tag + 2) /4  - 1;
-            NSLog(@"---->%ld",section);
             index = 1;
-            
-            
         }
             break;
         case 3:
