@@ -485,7 +485,6 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 0) {
-//        NSLog(@"取消");
         [self.tableView reloadData];
     }else if(buttonIndex == 1){
 //        NSLog(@"删除");
