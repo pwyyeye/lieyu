@@ -15,6 +15,12 @@
 - (void)awakeFromNib{
     _addToShoppingCarBtn.layer.cornerRadius = 2;
     _addToShoppingCarBtn.layer.masksToBounds = YES;
+    self.goodImage.image=nil;
+    self.layer.borderColor = [RGBA(237, 237, 237, 1)CGColor];
+    self.layer.borderWidth = 0.5;
+    self.layer.cornerRadius = 2.f;
+    self.layer.masksToBounds = YES;
+    self.userInteractionEnabled = YES;
 }
 
 - (IBAction)ChangeGoodsNumberClick:(UIButton *)sender{

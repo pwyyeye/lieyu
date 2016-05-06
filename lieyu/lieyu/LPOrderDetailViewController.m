@@ -45,6 +45,7 @@
     [self initBottomView];
 }
 
+#pragma mark - 准备工作
 - (void)registerCells{
     [self.myTableView registerNib:[UINib nibWithNibName:@"LPOrdersBodyCell" bundle:nil] forCellReuseIdentifier:@"LPOrdersBodyCell"];
     [self.myTableView registerNib:[UINib nibWithNibName:@"LPOrdersFooterCell" bundle:nil] forCellReuseIdentifier:@"LPOrdersFooterCell"];
@@ -52,6 +53,7 @@
     [self.myTableView registerNib:[UINib nibWithNibName:@"DetailPlaceTimeCell" bundle:nil] forCellReuseIdentifier:@"DetailPlaceTimeCell"];
 }
 
+#pragma mark - 底部按钮以及文字等
 - (void)initBottomView{
     if (self.orderInfoModel.orderStatus == 2 || self.orderInfoModel.orderStatus == 1) {
         //待消费
@@ -335,15 +337,6 @@
     [IQKeyboardManager sharedManager].enable = NO;
     [IQKeyboardManager sharedManager].isAdd = YES;
     // 把单聊视图控制器添加到导航栈。
-    //            [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil  action:nil]];
-    //            [self.navigationController pushViewController:conversationVC animated:YES];
-    
-//    UIButton *backButton = [[UIButton alloc]initWithFrame:CGRectMake(-10, 0, 44, 44)];
-//    [backButton setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
-//    //    [view addSubview:backButton];
-//    [backButton addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
-//    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:backButton];
-//    conversationVC.navigationItem.leftBarButtonItem = item;
     
     UIButton *itemBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
     itemBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 0);
@@ -352,8 +345,6 @@
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:itemBtn];
     conversationVC.navigationItem.leftBarButtonItem = item;
     
-//    UIBarButtonItem *backItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"backBtn"] style:UIBarButtonItemStylePlain target:self action:@selector(backBtnClick)];
-//    conversationVC.navigationItem.leftBarButtonItem = backItem;
     [self.navigationController pushViewController:conversationVC animated:YES];
 }
 

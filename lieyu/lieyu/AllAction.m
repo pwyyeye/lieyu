@@ -47,6 +47,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - 获取数据
 - (void)getData{
     NSDictionary *dict = @{@"start":[NSString stringWithFormat:@"%d",start],
                            @"limit":@"10"};

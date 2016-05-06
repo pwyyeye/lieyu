@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YUOrderInfo.h"
+#import "YUOrderShareModel.h"
 
 @interface HeaderTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *hotTriangle;
@@ -19,4 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *view_image;
 
 @property (weak, nonatomic) IBOutlet UIView *backView;
+
+@property (nonatomic, strong) YUOrderInfo *orderInfo;
+@property (nonatomic, strong) YUOrderShareModel *YUShare;
 @end

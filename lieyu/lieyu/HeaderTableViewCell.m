@@ -28,4 +28,28 @@
     // Configure the view for the selected state
 }
 
+- (void)setOrderInfo:(YUOrderInfo *)orderInfo{
+    _orderInfo = orderInfo;
+    [self.avatar_image sd_setImageWithURL:[NSURL URLWithString:orderInfo.avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+    self.name_label.text = orderInfo.username;
+    self.viewNumber_label.text = @"";
+}
+
+- (void)setYUShare:(YUOrderShareModel *)YUShare{
+    _YUShare = YUShare;
+    self.title_label.text = YUShare.shareContent;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 @end

@@ -181,6 +181,10 @@
                                     </mask>
                                 </variation>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZvN-dc-ctb">
+                                <rect key="frame" x="268" y="2" width="46" height="30"/>
+                                <state key="normal" image="shareWish.png"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -189,10 +193,12 @@
                             <constraint firstItem="P8w-lC-e7y" firstAttribute="centerX" secondItem="ram-iF-h17" secondAttribute="centerX" id="24s-eK-sBr"/>
                             <constraint firstAttribute="bottom" secondItem="2nL-at-8NM" secondAttribute="bottom" constant="0.29999999999999999" id="2qa-OL-HrT"/>
                             <constraint firstAttribute="trailing" secondItem="2nL-at-8NM" secondAttribute="trailing" id="3Ge-qf-JWQ"/>
+                            <constraint firstItem="QUs-Sj-Dwg" firstAttribute="leading" secondItem="ZvN-dc-ctb" secondAttribute="leading" id="3uO-Rq-pYv"/>
                             <constraint firstItem="QUs-Sj-Dwg" firstAttribute="top" secondItem="ram-iF-h17" secondAttribute="top" constant="2" id="4jU-83-MrG"/>
                             <constraint firstItem="f7H-PB-apj" firstAttribute="top" secondItem="QUs-Sj-Dwg" secondAttribute="bottom" constant="23" id="77F-lF-E3d"/>
                             <constraint firstItem="wH6-Z7-Ker" firstAttribute="centerX" secondItem="ram-iF-h17" secondAttribute="centerX" id="8w6-ma-4Cp"/>
                             <constraint firstItem="iBP-Nb-fEn" firstAttribute="top" secondItem="KbC-OP-fPN" secondAttribute="bottom" constant="10" id="9Sv-bi-SiM"/>
+                            <constraint firstItem="QUs-Sj-Dwg" firstAttribute="bottom" secondItem="ZvN-dc-ctb" secondAttribute="bottom" id="AI7-TT-98Y"/>
                             <constraint firstItem="Scv-th-aoT" firstAttribute="leading" secondItem="LXG-nq-G5M" secondAttribute="trailing" constant="8" id="B2y-KN-sKT"/>
                             <constraint firstAttribute="trailing" secondItem="2nL-at-8NM" secondAttribute="trailing" id="COV-iq-9N0"/>
                             <constraint firstAttribute="trailing" secondItem="f7H-PB-apj" secondAttribute="trailing" constant="31" id="CzP-8V-HS6"/>
@@ -207,6 +213,7 @@
                             <constraint firstItem="KbC-OP-fPN" firstAttribute="leading" secondItem="wH6-Z7-Ker" secondAttribute="leading" id="MCa-N5-mJC"/>
                             <constraint firstItem="XFc-wr-d1l" firstAttribute="top" secondItem="cvC-ry-Rox" secondAttribute="top" id="MWY-Kz-RAt"/>
                             <constraint firstAttribute="trailing" secondItem="f7H-PB-apj" secondAttribute="trailing" constant="26" id="Mju-Y0-WNx"/>
+                            <constraint firstItem="QUs-Sj-Dwg" firstAttribute="top" secondItem="ZvN-dc-ctb" secondAttribute="top" id="NOe-gy-ksw"/>
                             <constraint firstItem="cvC-ry-Rox" firstAttribute="leading" secondItem="ram-iF-h17" secondAttribute="leading" constant="10" id="OPp-QR-WRt"/>
                             <constraint firstItem="f7H-PB-apj" firstAttribute="top" secondItem="KbC-OP-fPN" secondAttribute="top" id="PfC-89-Dgz"/>
                             <constraint firstItem="2nL-at-8NM" firstAttribute="leading" secondItem="ram-iF-h17" secondAttribute="leading" id="Qrh-X7-uha"/>
@@ -226,6 +233,7 @@
                             <constraint firstItem="uW3-Gh-Cwz" firstAttribute="top" secondItem="XFc-wr-d1l" secondAttribute="bottom" constant="10" id="oGg-7L-Eq5"/>
                             <constraint firstAttribute="trailing" secondItem="2nL-at-8NM" secondAttribute="trailing" id="onG-5Y-LmC"/>
                             <constraint firstItem="f7H-PB-apj" firstAttribute="leading" secondItem="KbC-OP-fPN" secondAttribute="trailing" constant="16" id="phg-QG-BHx"/>
+                            <constraint firstItem="QUs-Sj-Dwg" firstAttribute="trailing" secondItem="ZvN-dc-ctb" secondAttribute="trailing" id="rMc-yc-qIh"/>
                             <constraint firstItem="gyW-J2-9LV" firstAttribute="top" secondItem="XFc-wr-d1l" secondAttribute="bottom" constant="10" id="tba-Z9-UgZ"/>
                             <constraint firstItem="XFc-wr-d1l" firstAttribute="top" secondItem="f7H-PB-apj" secondAttribute="bottom" id="teB-3N-La9"/>
                             <constraint firstItem="wuh-Dg-dCz" firstAttribute="leading" secondItem="1up-GS-HBh" secondAttribute="trailing" constant="-8" id="v80-K4-TUh"/>
@@ -281,6 +289,7 @@
                 <outlet property="reLabel" destination="cvC-ry-Rox" id="9DD-4W-rvj"/>
                 <outlet property="replyLabel" destination="XFc-wr-d1l" id="He2-go-e2Q"/>
                 <outlet property="reportButton" destination="QUs-Sj-Dwg" id="ctm-uA-0wv"/>
+                <outlet property="shareButton" destination="ZvN-dc-ctb" id="WhW-Lh-kL4"/>
                 <outlet property="themeLabel" destination="wuh-Dg-dCz" id="sLC-3T-5yc"/>
                 <outlet property="themeWidth" destination="mDh-3X-FgI" id="5pY-yd-LoH"/>
                 <outlet property="timeLabel" destination="uW3-Gh-Cwz" id="Jyj-kG-Tvv"/>
@@ -297,5 +306,6 @@
         <image name="YUWishesUnfinish.png" width="10" height="10"/>
         <image name="address" width="25" height="24"/>
         <image name="downArrow.png" width="11" height="7"/>
+        <image name="shareWish.png" width="10" height="11"/>
     </resources>
 </document>

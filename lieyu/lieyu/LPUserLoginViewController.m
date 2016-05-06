@@ -53,7 +53,7 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+#pragma mark - 登陆
 - (IBAction)loginClick:(UIButton *)sender {
     LYUserLoginViewController *loginVC = [[LYUserLoginViewController alloc]initWithNibName:@"LYUserLoginViewController" bundle:nil];
 //    [self presentViewController:loginVC animated:YES completion:^{
@@ -61,6 +61,8 @@
 //    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [self.navigationController pushViewController:loginVC animated:YES];
 }
+
+#pragma mark - 注册用户
 - (IBAction)registerClick:(UIButton *)sender {
     LYRegistrationViewController *registerVC = [[LYRegistrationViewController alloc]initWithNibName:@"LYRegistrationViewController" bundle:nil];
 //    [self presentViewController:registerVC animated:YES completion:^{

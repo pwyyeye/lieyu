@@ -13,6 +13,9 @@
 #import "IQKeyboardManager.h"
 #import "LYActivitySendViewController.h"
 #import "LYFindConversationViewController.h"
+#import "UMSocialData.h"
+#import "UMSocialSnsService.h"
+#import "UMSocial.h"
 
 @interface LYYuAllWishesViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIAlertViewDelegate,LYActivitySendViewControllerDelegate>
 {
@@ -104,6 +107,7 @@
     [self refreshData];
 }
 
+#pragma mark - 页面布局
 - (void)initTitle{
     _myTitle= [[UILabel alloc] initWithFrame: CGRectMake(0, 0, SCREEN_WIDTH, 44)];
     _myTitle.backgroundColor = [UIColor clearColor];
@@ -117,6 +121,7 @@
     }
 }
 
+#pragma mark - 右侧按钮－进入我的愿望页面
 - (void)initRightButton{
     _rightButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 50, 0, 40, 44)];
     [_rightButton setTitle:@"我的" forState:UIControlStateNormal];
@@ -132,6 +137,7 @@
     _pointLabel.hidden = YES;
 }
 
+#pragma mark - 发送愿望按钮
 - (void)initReleaseWishButton{
     //26-47
     UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
@@ -170,6 +176,7 @@
     }];
 }
 
+#pragma mark - scrollView代理方法，上拖消失，下拉出现
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 //    NSLog(@"scrollView.contentOffset.y:%f",scrollView.contentOffset.y);
     if (scrollView.contentOffset.y > _oldScrollOffectY) {
@@ -217,6 +224,7 @@
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
+#pragma mark - registerCells
 - (void)registerCells{
     [self.tableView registerNib:[UINib nibWithNibName:@"LYYuWishesListTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYYuWishesListTableViewCell"];
 }
@@ -325,6 +333,7 @@
     }];
 }
 
+#pragma mark - 空界面
 - (void)initKongView{
     if(!kongLabel){
         kongLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT / 2 - 50, SCREEN_WIDTH, 20)];
@@ -500,6 +509,7 @@
     }
 }
 
+#pragma mark - 代理方法
 - (void)deleteUnFinishedNumber{
     if (_type == 0) {
         unFinishedNumber -- ;
@@ -512,6 +522,15 @@
         _isChanged = YES;
         [self.delegate deleteUnFinishedNumber];
     }
+}
+
+- (void)delegateShareWish:(YUWishesModel *)model{
+//    NSLog(@"model:---%@",model);
+    NSString *content = [NSString stringWithFormat:@"Q:%@\nA:%@\nhttp://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653",model.desc,model.replyContent];
+    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = @"http://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653";
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = @"http://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653";
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:content shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.userModel.avatar_img]]] shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
 }
 
 - (void)communicateWithKEFU{
@@ -572,6 +591,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark - 发送过后代理
 - (void)activitySendViewControllerSendFinish{
     if (_type == 0) {
         [self refreshData];

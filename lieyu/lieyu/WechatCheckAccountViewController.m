@@ -44,6 +44,7 @@
     [[_shapeLabel layer]addSublayer:shapeLayer];
 }
 
+#pragma mark － 支付所需的微信ns码
 - (void)getnsData{
     [LYUserHttpTool checkZSwechatComplete:^(NSString *result) {
         self.nsCode = result;

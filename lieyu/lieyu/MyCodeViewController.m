@@ -66,6 +66,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - 点击客服
 - (void)ClickSale{
     UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"速核码客服帮助" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"客服（021-36512128）", nil];
     [actionSheet showInView:self.view];
