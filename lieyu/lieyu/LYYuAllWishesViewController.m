@@ -487,7 +487,6 @@
     if (buttonIndex == 0) {
         [self.tableView reloadData];
     }else if(buttonIndex == 1){
-//        NSLog(@"删除");
         YUWishesModel *model = (YUWishesModel *)[_dataList objectAtIndex:deleteSection];
         NSDictionary *dict = @{@"id":[NSNumber numberWithInt:model.id]};
         [LYYUHttpTool YUDeleteWishWithParams:dict complete:^(BOOL result) {
