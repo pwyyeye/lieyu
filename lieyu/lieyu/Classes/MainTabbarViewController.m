@@ -253,11 +253,8 @@
 //            }];
 //            login.delegate=self;
             [self.navigationController pushViewController:login animated:YES];
-            
         }
-
     }
-    
 }
 
 -(void)loginSuccess:(BOOL)isLoginSucces{
