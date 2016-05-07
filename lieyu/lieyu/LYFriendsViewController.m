@@ -1839,7 +1839,7 @@ UINavigationControllerDelegate,ISEmojiViewDelegate,sendBackVedioAndImage,ImagePi
             
             return addressCell;
         }
-            break;
+        break;
             
         case 3://好友的赞
         {
