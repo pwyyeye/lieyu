@@ -1787,9 +1787,9 @@ UINavigationControllerDelegate,ISEmojiViewDelegate,sendBackVedioAndImage,ImagePi
                 nameCell.btn_delete.enabled = NO;
             }
             return nameCell;
-            
         }
         break;
+            
         case 1://附近的cell 图片或者视频
         {
             if([recentM.attachType isEqualToString:@"0"]){//图片cell
