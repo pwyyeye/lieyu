@@ -1789,7 +1789,7 @@ UINavigationControllerDelegate,ISEmojiViewDelegate,sendBackVedioAndImage,ImagePi
             return nameCell;
             
         }
-            break;
+        break;
         case 1://附近的cell 图片或者视频
         {
             if([recentM.attachType isEqualToString:@"0"]){//图片cell
@@ -1822,7 +1822,7 @@ UINavigationControllerDelegate,ISEmojiViewDelegate,sendBackVedioAndImage,ImagePi
                 return videoCell;
             }
         }
-            break;
+        break;
             
         case 2://地址
         {
