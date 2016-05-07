@@ -111,6 +111,7 @@
             _unFinishButton.hidden = YES;
             _orLabel.hidden = YES;
             _shareButton.hidden = NO;
+            [_shareButton addTarget:self action:@selector(delegateShare) forControlEvents:UIControlEventTouchUpInside];
             [_addressLabel setText:_model.address];
             if ([self.delegate respondsToSelector:@selector(deleteUnFinishedNumber)]) {
                 [self.delegate deleteUnFinishedNumber];
@@ -140,6 +141,7 @@
             _orLabel.hidden = YES;
             [_addressLabel setText:_model.address];
             _shareButton.hidden = NO;
+            [_shareButton addTarget:self action:@selector(delegateShare) forControlEvents:UIControlEventTouchUpInside];
             if ([self.delegate respondsToSelector:@selector(deleteUnFinishedNumber)]) {
                 [self.delegate deleteUnFinishedNumber];
             }
