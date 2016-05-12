@@ -309,27 +309,20 @@
     int row = (int)button.tag % 10000;
     DetailUserInfoCell *cell = [self.myTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section]];
     
-//    AppDelegate * app=(AppDelegate *)[UIApplication sharedApplication].delegate;
-    
     if( [MyUtil isPureInt:_orderInfoModel.checkUserMobile]){
-        //        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",_orderInfoModel.phone];
         NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",cell.mobile];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
-        
     }
     
-//    NSLog(@"%@",cell.mobile);
 }
 
 - (void)messageUser:(UIButton *)button{
     int section = (int)button.tag / 10000;
     int row = (int)button.tag % 10000;
     DetailUserInfoCell *cell = [self.myTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section]];
-//    RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
     LYFindConversationViewController *conversationVC = [[LYFindConversationViewController alloc]init];
     conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
     conversationVC.targetId = cell.imuserId; // 接收者的 targetId，这里为举例。
-//    conversationVC.userName =cell.username; // 接受者的 username，这里为举例。
     conversationVC.title =cell.username; // 会话的 title。
     
     [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
@@ -337,15 +330,18 @@
     [IQKeyboardManager sharedManager].enable = NO;
     [IQKeyboardManager sharedManager].isAdd = YES;
     // 把单聊视图控制器添加到导航栈。
+    conversationVC.navigationItem.leftBarButtonItem = [self getItem];
     
+    [self.navigationController pushViewController:conversationVC animated:YES];
+}
+
+- (UIBarButtonItem *)getItem{
     UIButton *itemBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
     itemBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 0);
     [itemBtn setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
     [itemBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:itemBtn];
-    conversationVC.navigationItem.leftBarButtonItem = item;
-    
-    [self.navigationController pushViewController:conversationVC animated:YES];
+    return item;
 }
 
 #pragma mark - 底部按钮
@@ -516,21 +512,7 @@
     [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
     [IQKeyboardManager sharedManager].enable = NO;
     [IQKeyboardManager sharedManager].isAdd = YES;
-    
-//    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
-//    UIButton *backButton = [[UIButton alloc]initWithFrame:CGRectMake(-10, 0, 44, 44)];
-//    [backButton setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
-////    [view addSubview:backButton];
-//    [backButton addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
-//    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:backButton];
-//    _conversationVC.navigationItem.leftBarButtonItem = item;
-    
-    UIButton *itemBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
-    itemBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 0);
-    [itemBtn setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
-    [itemBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:itemBtn];
-    _conversationVC.navigationItem.leftBarButtonItem = item;
+    _conversationVC.navigationItem.leftBarButtonItem = [self getItem];
     
     [self.navigationController pushViewController:_conversationVC animated:YES];
 }

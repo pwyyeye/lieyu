@@ -541,13 +541,7 @@
     [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
     
     // 把单聊视图控制器添加到导航栈。
-    UIButton *itemBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
-    itemBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 0);
-    [itemBtn setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
-    [itemBtn addTarget:self action:@selector(backForward) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:itemBtn];
-    conversationVC.navigationItem.leftBarButtonItem = item;
-    
+    conversationVC.navigationItem.leftBarButtonItem = [self getItem];
     [self.navigationController pushViewController:conversationVC animated:YES];
 }
 
@@ -563,14 +557,17 @@
     [IQKeyboardManager sharedManager].enable = NO;
     [IQKeyboardManager sharedManager].isAdd = YES;
     // 把单聊视图控制器添加到导航栈。
+    conversationVC.navigationItem.leftBarButtonItem = [self getItem];
+    [self.navigationController pushViewController:conversationVC animated:YES];
+}
+
+- (UIBarButtonItem *)getItem{
     UIButton *itemBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
     itemBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 0);
     [itemBtn setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
     [itemBtn addTarget:self action:@selector(backForward) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:itemBtn];
-    conversationVC.navigationItem.leftBarButtonItem = item;
-    
-    [self.navigationController pushViewController:conversationVC animated:YES];
+    return item;
 }
 
 - (void)avatarClick:(UIButton *)button{
