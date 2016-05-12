@@ -120,4 +120,7 @@ typedef NS_ENUM(NSInteger, QiNiuUploadTpye)
 //时间格式转化为16-04-01 22:22
 + (NSString *)transformDateWithDateString:(NSString *)dateString;
 
+//判断用户是否有设置头像，没有头像挑战设置
++ (void)pushToAddPicForUser;
+
 @end

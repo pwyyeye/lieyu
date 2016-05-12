@@ -535,14 +535,13 @@ UINavigationControllerDelegate,ISEmojiViewDelegate,sendBackVedioAndImage,ImagePi
         if(dataArray.count){
             
             NSString *str = dataArray.firstObject;
-            if (dataArray.count == 1 && [str isKindOfClass:[NSString class]]) {
+            if (dataArray.count == 1 && [str isKindOfClass:[NSString class]]) {//网络加载错误处理
                 _isFriendsPageUpLoad = NO;
                 [_tableView.mj_footer endRefreshing];
             }else{
                 
                 if(_pageStartCountFriends == 0){//下啦刷新时
                     [_dataArray replaceObjectAtIndex:0 withObject:dataArray];
-                    //                    [weakSelf.tableView setContentOffset:CGPointZero animated:NO];
                     _isFriendsPageUpLoad = YES;
                 }else {//上拉加载时
                     NSMutableArray *muArr = _dataArray[_index];
@@ -557,7 +556,6 @@ UINavigationControllerDelegate,ISEmojiViewDelegate,sendBackVedioAndImage,ImagePi
             if(_isFriendsPageUpLoad)  [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
             _isFriendsPageUpLoad = NO;
         }
-        
         
         
         [weakSelf reloadTableViewAndSetUpPropertyneedSetContentOffset:NO];
@@ -2072,12 +2070,8 @@ UINavigationControllerDelegate,ISEmojiViewDelegate,sendBackVedioAndImage,ImagePi
     FriendsRecentModel *recentM = _dataArray[_index][button.tag];
     //    if([recentM.userId isEqualToString:_useridStr]) return;
     if([recentM.userId isEqualToString:_useridStr]) {
-        //        [self myClick:nil];
         return;
     }
-    //    LYFriendsToUserMessageViewController *friendsUserMegVC = [[LYFriendsToUserMessageViewController alloc]init];
-    //    friendsUserMegVC.friendsId = recentM.userId;
-    //    [self.navigationController pushViewController:friendsUserMegVC animated:YES];
     
     LYMyFriendDetailViewController *myFriendVC = [[LYMyFriendDetailViewController  alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
     myFriendVC.userID = recentM.userId;
@@ -2099,9 +2093,6 @@ UINavigationControllerDelegate,ISEmojiViewDelegate,sendBackVedioAndImage,ImagePi
     
     
     if([idStr isEqualToString:_useridStr]) return;
-    //    LYFriendsToUserMessageViewController *friendsUserMegVC = [[LYFriendsToUserMessageViewController alloc]init];
-    //    friendsUserMegVC.friendsId = commentModel.userId;
-    //    [self.navigationController pushViewController:friendsUserMegVC animated:YES];
     
     LYMyFriendDetailViewController *myFriendVC = [[LYMyFriendDetailViewController  alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
     myFriendVC.userID = idStr;
@@ -2196,15 +2187,5 @@ UINavigationControllerDelegate,ISEmojiViewDelegate,sendBackVedioAndImage,ImagePi
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end

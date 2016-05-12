@@ -37,7 +37,7 @@
 #import "BarActivityList.h"
 #import "LYMyFriendDetailViewController.h"
 #import "LYCache.h"
-#import "LYFriendsTopicViewController.h"
+#import "LYFriendsTopicsViewController.h"
 
 #define COLLECTKEY  [NSString stringWithFormat:@"%@%@sc",_userid,self.beerBarDetail.barid]
 #define LIKEKEY  [NSString stringWithFormat:@"%@%@",_userid,self.beerBarDetail.barid]
@@ -743,19 +743,24 @@
 #pragma mark - 酒吧评论
 - (void)barCommentClick{
     if(self.beerBarDetail.topicTypeId.length){
-    LYFriendsTopicViewController *friendTopicVC = [[LYFriendsTopicViewController alloc]init];
-    friendTopicVC.topicTypeId = self.beerBarDetail.topicTypeId;
-    friendTopicVC.topicName = self.beerBarDetail.topicTypeName;
-    [self.navigationController pushViewController:friendTopicVC animated:YES];
+        LYFriendsTopicsViewController *friendTopicVC = [[LYFriendsTopicsViewController alloc]init];
+        friendTopicVC.topicTypeId = self.beerBarDetail.topicTypeId;
+        friendTopicVC.topicName = self.beerBarDetail.topicTypeName;
+        
+        friendTopicVC.isFriendsTopic = NO;
+        friendTopicVC.isFriendToUserMessage = YES;
+        friendTopicVC.isTopic = YES;
+        [self.navigationController pushViewController:friendTopicVC animated:YES];
     }
 }
 
 #pragma mark － 签到
-- (void)signClick:(id)sender {
+- (void)signClick:(id)sender { 
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied){
         UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"定位功能不可用" message:@"请前往设置隐私中开启定位服务" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alertView show];
     }else{
+        [MyUtil pushToAddPicForUser];//判断是否有头像，没有跳转修改
         CGFloat distance = [[LYUserLocation alloc] configureDistance:_beerBarDetail.latitude And:_beerBarDetail.longitude];
         if ((distance >=0 && distance <= _beerBarDetail.allowDistance.floatValue)||_beerBarDetail.allowDistance==nil?YES:_beerBarDetail.allowDistance.intValue==0) {
         NSDictionary *dic = @{@"barid":_beerBarId};

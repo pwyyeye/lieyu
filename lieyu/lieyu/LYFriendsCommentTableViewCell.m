@@ -33,11 +33,13 @@
         strrr = [NSString stringWithFormat:@"%@：%@",commentM.nickName,commentM.comment];
         _label_huifu.text = @"";
         [_btn_secondName setTitle:@"" forState:UIControlStateNormal];
+        _btn_secondName.enabled = NO;
     }else {
         _label_huifu.text = @" 回复 ";
         string = [NSString stringWithFormat:@"%@ 回复 %@",commentM.nickName,commentM.toUserNickName];
         strrr = [NSString stringWithFormat:@"%@ 回复 %@：%@",commentM.nickName,commentM.toUserNickName,commentM.comment];
         [_btn_secondName setTitle:commentM.toUserNickName forState:UIControlStateNormal];
+        _btn_secondName.enabled = YES;
     }
     [_btn_firstName setTitle:commentM.nickName forState:UIControlStateNormal];
     [_btn_firstName setTitleColor:[UIColor clearColor] forState:UIControlStateNormal] ;

@@ -12,6 +12,7 @@
 #import "GTM_Base64.h"
 #import <CommonCrypto/CommonCryptor.h>
 #import "LYUserLoginViewController.h"
+#import "LYUserDetailController.h"
 #define desKey @"lieyu"
 
 @implementation MyUtil
@@ -838,6 +839,15 @@
         return dateStr;
     }
     return dateString;
+}
+
+#pragma mark - 判断用户是否有设置头像，没有头像挑战设置
++ (void)pushToAddPicForUser{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if([MyUtil isEmptyString:app.userModel.avatar_img]){//没有头像
+        LYUserDetailController *userDetailVC = [[LYUserDetailController alloc]init];
+        [app.navigationController pushViewController:userDetailVC animated:YES];
+    }
 }
 
 @end
