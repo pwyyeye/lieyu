@@ -755,7 +755,7 @@
 }
 
 #pragma mark － 签到
-- (void)signClick:(id)sender {
+- (void)signClick:(id)sender { 
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied){
         UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"定位功能不可用" message:@"请前往设置隐私中开启定位服务" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alertView show];
