@@ -9,6 +9,7 @@
 #import "LYDateUtil.h"
 
 @implementation LYDateUtil
+#pragma mark - 参数事件距离当前是否大于（可更改）10分钟
 + (BOOL)isMoreThanFiveMinutes:(NSString *)dateString{
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];

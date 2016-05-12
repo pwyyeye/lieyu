@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface LYDateUtil : NSObject
+#pragma mark - 参数事件距离当前是否大于（可更改）10分钟
 + (BOOL)isMoreThanFiveMinutes:(NSString *)dateString;
 @end

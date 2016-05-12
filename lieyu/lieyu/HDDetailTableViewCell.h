@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YUOrderShareModel.h"
+#import "YUOrderInfo.h"
 
 @interface HDDetailTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *startTime_label;
@@ -22,4 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *label_prieceWayRight;
 
 @property (weak, nonatomic) IBOutlet UIView *backView;
+
+@property (nonatomic, strong) YUOrderShareModel *YUModel;
+@property (nonatomic, strong) YUOrderInfo *orderInfo;
 @end

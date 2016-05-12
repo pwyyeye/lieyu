@@ -65,6 +65,7 @@
     _submitBtn.layer.cornerRadius = 21;
 }
 
+#pragma mark - 获取数据
 - (void)getCheckData{
     __weak __typeof(self) weakSelf = self;
     [LYUserHttpTool getUnpassedReasonComplete:^(unPassesModel *model) {
@@ -74,6 +75,7 @@
     }];
 }
 
+#pragma mark - 申请方式的展示
 - (void)setApplyType:(int)applyType{
     _applyType = applyType;
     int height2;
@@ -161,6 +163,7 @@
     self.scrollerView.contentSize = CGSizeMake(SCREEN_WIDTH, 450 + height + height2);
 }
 
+#pragma mark - 初始化原因等数据页面
 - (void)initOtherView{
     UILabel *reasonLabel = [[UILabel alloc]init];
     [reasonLabel setText:_checkModel.note];      

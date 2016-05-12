@@ -25,6 +25,13 @@
 
 @implementation ActionDetailViewController
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    if (_tableView.contentSize.height < SCREEN_HEIGHT - 113) {
+        _tableView.scrollEnabled = NO;
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.dataSource = self;
@@ -56,6 +63,8 @@
     [super viewWillLayoutSubviews];
     [self.navigationController setNavigationBarHidden:NO];
 }
+
+#pragma mark - 右侧按钮
 - (void)configureRightItem{
     UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
     [button setImage:[UIImage imageNamed:@"share_black"] forState:UIControlStateNormal];
@@ -64,12 +73,14 @@
     self.navigationItem.rightBarButtonItem = item;
 }
 
+#pragma 注册cell
 - (void)registerCell{
     [self.tableView registerNib:[UINib nibWithNibName:@"HDDetailImageCell" bundle:nil] forCellReuseIdentifier:@"HDDetailImageCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"HDDetailHeaderCell" bundle:nil] forCellReuseIdentifier:@"HDDetailHeaderCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"HDDetailFootCell" bundle:nil] forCellReuseIdentifier:@"HDDetailFootCell"];
 }
 
+#pragma mark - 获取数据
 - (void)getData{
     NSDictionary *dict = @{@"id":_actionID};
     __weak __typeof(self)weakSelf = self;
@@ -99,6 +110,7 @@
 //     [self.navigationController setNavigationBarHidden:NO];
 //}
 
+#pragma mark - tableView代理方法
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 1;
 }
@@ -109,20 +121,6 @@
     }else{
         return 0;
     }
-}
-
-- (NSDictionary *)feedBackDictionary{
-    NSDictionary *dict;
-    if (_barActivity) {
-        dict = @{@"startTime":_barActivity.beginDate,
-                 @"endTime":_barActivity.endDate,
-                 @"address":_barActivity.barInfo.address,
-                 @"latitude":_barActivity.barInfo.latitude,
-                 @"longitude":_barActivity.barInfo.longitude,
-                 @"environment":_barActivity.environment,
-                 @"music":_barActivity.music};
-    }
-    return dict;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -157,30 +155,9 @@
             [webV removeFromSuperview];
         }
         [cell addSubview:WebView];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
-}
-
-- (void)loadWebView{
-    WebView = [[UIWebView alloc]initWithFrame:CGRectMake(12, 40, SCREEN_WIDTH - 36, 2500)];
-    WebView.tag = 45;
-    WebView.delegate = self;
-    [WebView sizeToFit];
-//    WebView.contentMode = UIViewContentModeScaleToFill;
-    [WebView.scrollView setScrollEnabled:NO];
-    NSString *webStr = [NSString stringWithFormat:@"<head><meta name=\"viewport\" content=\"width=device-width-0, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\" charset=\"utf-8\"/></head><body><div id=\"webview_content_wrapper\">%@</div><script type=\"text/javascript\">var imgs = document.getElementsByTagName('img');for(var i = 0; i<imgs.length; i++){imgs[i].style.width = '%f';imgs[i].style.height = 'auto';imgs[i].style.margin=0;}</script></body>",_barActivity.contents,SCREEN_WIDTH-36];
-    [WebView loadHTMLString:webStr baseURL:nil];
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView{
-    //获取页面高度（像素）
-    NSString *clientHeight_str =  [webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight"];//scroll
-    float clientHeight = [clientHeight_str floatValue];
-    webView.frame = CGRectMake(12, 40, SCREEN_WIDTH - 36, clientHeight + 24);
-//    //获取WebView最佳尺寸（点）
-//    CGSize frame = [webView sizeThatFits:webView.frame.size];
-//    NSLog(@"%@",NSStringFromCGRect(webView.frame));
-    [_tableView reloadData];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -192,13 +169,6 @@
         return 6;
     }else{
         return 0.000001;
-    }
-}
-
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    if (_tableView.contentSize.height < SCREEN_HEIGHT - 113) {
-        _tableView.scrollEnabled = NO;
     }
 }
 
@@ -219,6 +189,45 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
+#pragma mark - webView
+- (void)loadWebView{
+    WebView = [[UIWebView alloc]initWithFrame:CGRectMake(12, 40, SCREEN_WIDTH - 36, 2500)];
+    WebView.tag = 45;
+    WebView.delegate = self;
+    [WebView sizeToFit];
+    //    WebView.contentMode = UIViewContentModeScaleToFill;
+    [WebView.scrollView setScrollEnabled:NO];
+    NSString *webStr = [NSString stringWithFormat:@"<head><meta name=\"viewport\" content=\"width=device-width-0, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\" charset=\"utf-8\"/></head><body><div id=\"webview_content_wrapper\">%@</div><script type=\"text/javascript\">var imgs = document.getElementsByTagName('img');for(var i = 0; i<imgs.length; i++){imgs[i].style.width = '%f';imgs[i].style.height = 'auto';imgs[i].style.margin=0;}</script></body>",_barActivity.contents,SCREEN_WIDTH-36];
+    [WebView loadHTMLString:webStr baseURL:nil];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    //获取页面高度（像素）
+    NSString *clientHeight_str =  [webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight"];//scroll
+    float clientHeight = [clientHeight_str floatValue];
+    webView.frame = CGRectMake(12, 40, SCREEN_WIDTH - 36, clientHeight + 24);
+    //    //获取WebView最佳尺寸（点）
+    //    CGSize frame = [webView sizeThatFits:webView.frame.size];
+    //    NSLog(@"%@",NSStringFromCGRect(webView.frame));
+    [_tableView reloadData];
+}
+
+
+- (NSDictionary *)feedBackDictionary{
+    NSDictionary *dict;
+    if (_barActivity) {
+        dict = @{@"startTime":_barActivity.beginDate,
+                 @"endTime":_barActivity.endDate,
+                 @"address":_barActivity.barInfo.address,
+                 @"latitude":_barActivity.barInfo.latitude,
+                 @"longitude":_barActivity.barInfo.longitude,
+                 @"environment":_barActivity.environment,
+                 @"music":_barActivity.music};
+    }
+    return dict;
+}
+
 #pragma mark - 查看套餐
 - (IBAction)YuDingClick:(UIButton *)sender {
     LYwoYaoDinWeiMainViewController *woYaoDinWeiMainViewController=[[LYwoYaoDinWeiMainViewController alloc]initWithNibName:@"LYwoYaoDinWeiMainViewController" bundle:nil];

@@ -60,6 +60,8 @@
     [self getData];
 
 }
+
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 //    NSLog(@"滑动了多少：%f",scrollView.contentOffset.y);
 //    NSLog(@"最多为多少：%f",contentOffsetY);
@@ -141,6 +143,7 @@
 //    NSLog(@"----pass-%@---",NSStringFromUIEdgeInsets(self.tableView.contentInset));
 }
 
+#pragma mark - 获取数据
 - (void)getData{
     //获取数据
     NSDictionary *dic = @{@"start":[NSString stringWithFormat:@"%d",start],
@@ -205,6 +208,7 @@
     [super didReceiveMemoryWarning];
 }
 
+#pragma mark - tableView的代理方法
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if (actionList.count > 0) {
         return actionList.count + 1;
