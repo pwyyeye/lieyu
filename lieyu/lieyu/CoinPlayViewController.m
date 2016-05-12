@@ -77,6 +77,7 @@
 //    }
 }
 
+#pragma mark - touch事件
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
 //    CGPoint *point = [touches locatio]
 //    NSLog(@"%@---%@",touches.)

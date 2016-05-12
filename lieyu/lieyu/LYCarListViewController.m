@@ -52,16 +52,21 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(carnumChange) name:@"carnumChange" object:nil];
     // Do any additional setup after loading the view from its nib.
 }
+
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     
 }
+
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"carnumChange" object:nil];
 }
+
+#pragma mark － 代理
 -(void)carnumChange{
     [self getData];
 }
+
 #pragma mark - 获取数据
 -(void)getData{
     __weak __typeof(self)weakSelf = self;
@@ -124,24 +129,6 @@
     }
     bottomView.priceLal.text =[NSString stringWithFormat:@"￥%.2f",payAmount];
     return bottomView;
-}
-
-- (void)carlistFooterPrice:(int)section{
-//    if (isChanged == NO) {
-        isChanged = YES;
-//    }
-    CarBottomView *bottomView = (CarBottomView *)[self.tableView footerViewForSection:section];
-    CarInfoModel *carInfoModel=dataList[section];
-    double payAmount=0;
-//    self.tableView cellForRowAtIndexPath:<#(nonnull NSIndexPath *)#>
-    for (CarModel * carModel in carInfoModel.cartlist) {
-        if(carModel.isSel){
-            double price=carModel.product.price.doubleValue;
-            double num =carModel.quantity.doubleValue;
-            payAmount=payAmount+price*num;
-        }
-    }
-    bottomView.priceLal.text =[NSString stringWithFormat:@"￥%.2f",payAmount];
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -234,6 +221,23 @@
 //    return UITableViewCellEditingStyleNone;
 //}
 
+- (void)carlistFooterPrice:(int)section{
+    //    if (isChanged == NO) {
+    isChanged = YES;
+    //    }
+    CarBottomView *bottomView = (CarBottomView *)[self.tableView footerViewForSection:section];
+    CarInfoModel *carInfoModel=dataList[section];
+    double payAmount=0;
+    //    self.tableView cellForRowAtIndexPath:<#(nonnull NSIndexPath *)#>
+    for (CarModel * carModel in carInfoModel.cartlist) {
+        if(carModel.isSel){
+            double price=carModel.product.price.doubleValue;
+            double num =carModel.quantity.doubleValue;
+            payAmount=payAmount+price*num;
+        }
+    }
+    bottomView.priceLal.text =[NSString stringWithFormat:@"￥%.2f",payAmount];
+}
 
 #pragma mark - 列表选中
 - (void)rowSel:(id)sender event:(id)event

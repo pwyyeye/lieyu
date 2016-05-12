@@ -20,6 +20,8 @@
 #import "ZSManageHttpTool.h"
 //#import "LYBaseViewController.h"
 
+//#define CellIdedntifier @"chiheCell"
+static NSString * CellIdentifier = @"chiheCell";
 @interface ChiHeViewController ()<UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
     NSMutableArray *dataList;
@@ -70,6 +72,9 @@
     self.automaticallyAdjustsScrollViewInsets = YES;
     self.edgesForExtendedLayout = UIRectEdgeAll;
     
+    [self registerCell];
+    
+    //购物车按钮
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
     UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(10, 0, 44, 44)];
     [button setImage:[UIImage imageNamed:@"CHshop"] forState:UIControlStateNormal];
@@ -78,6 +83,7 @@
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:view];
     self.navigationItem.rightBarButtonItem = item;
     
+    //collectionView
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
     layout.itemSize = CGSizeMake((SCREEN_WIDTH - 18) / 2, 127 + SCREEN_WIDTH / 2);
     [self.collectionView setCollectionViewLayout:layout];
@@ -96,6 +102,7 @@
     [self getData:_nowDic];
 //    [self geBiaoQianData];
     
+    //上下刷新控件
     __weak __typeof(self)weakSelf = self;
     self.collectionView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         weakSelf.pageCount=1;
@@ -152,6 +159,11 @@
 //    [self.navigationController.navigationBar setHidden:NO];
 }
 
+#pragma mark - registerCell
+- (void)registerCell{
+    [self.collectionView registerNib:[UINib nibWithNibName:@"chiheDetailCollectionCell" bundle:nil] forCellWithReuseIdentifier:CellIdentifier];
+}
+
 #pragma mark 获取酒品种类信息
 -(void)geBiaoQianData{
     //获取酒水类型
@@ -182,16 +194,8 @@
     __weak __typeof(self) weakSelf = self;
     [[LYHomePageHttpTool shareInstance]getCarListWithParams:nil block:^(NSMutableArray *result) {
         goodsList=[result mutableCopy];
-//        for (CarInfoModel *carInfoModel in goodsList) {
-//            carInfoModel.isSel=true;
-//            for (CarModel *carModel in carInfoModel.cartlist) {
-//                carModel.isSel=true;
-//            }
-//        }
-//        [self setSuperScript:goodsList.count];
         num = 0 ;
         for(int i = 0 ; i < goodsList.count ; i ++){
-//            num = num + ((CarInfoModel *)goodsList[i]).cartlist.count;
             for (int j = 0 ; j < ((CarInfoModel *)goodsList[i]).cartlist.count; j ++) {
                 CarModel *shoppingCar = ((CarModel *)((CarInfoModel *)goodsList[i]).cartlist[j]);
                 num = num + [shoppingCar.quantity intValue];
@@ -356,20 +360,8 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"index");
-    static NSString * CellIdentifier = @"chiheCell";
     chiheDetailCollectionCell * cell;
-    [collectionView registerNib:[UINib nibWithNibName:@"chiheDetailCollectionCell" bundle:nil] forCellWithReuseIdentifier:CellIdentifier];
     cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath ];
-    if(!cell){
-        cell = [[[NSBundle mainBundle]loadNibNamed:@"chiheDetailCollectionCell" owner:nil options:nil]firstObject];
-    }
-    cell.goodImage.image=nil;
-    cell.layer.borderColor = [RGBA(237, 237, 237, 1)CGColor];
-    cell.layer.borderWidth = 0.5;
-    cell.layer.cornerRadius = 2.f;
-    cell.layer.masksToBounds = YES;
-    cell.userInteractionEnabled = YES;
-    
     
     cell.delegate = self;
     
@@ -436,25 +428,15 @@
         if(button.tag == btn.tag){
             //等待选择
             [button setSelected:YES];
-//            [button setBackgroundColor:RGBA(255, 255, 255, 0.8)];
-//            [button setBackgroundColor:[UIColor clearColor]];
-//            [button setTitleColor:RGBA(114, 5, 147, 1) forState:UIControlStateNormal];
         }else{
             [button setSelected:NO];
-//            [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//            [button setBackgroundColor:RGBA(114, 5, 147, 0.8)];
-//            [button setBackgroundColor:[UIColor clearColor]];
         }
     }
-//    [_sxBtn5 setBackgroundColor:RGBA(114, 5, 147, 0.8)];
     [_sxBtn5 setBackgroundColor:[UIColor clearColor]];
     [_sxBtn5 setTitle:@"" forState:UIControlStateNormal];
-//    [_sxBtn5 setImage:[UIImage imageNamed:@"more_white"] forState:UIControlStateNormal];
     if(btn.tag == 105){
-//        [btn setBackgroundColor:[UIColor whiteColor]];
         [btn setBackgroundColor:[UIColor clearColor]];
         [btn setSelected:YES];
-//        [btn setImage:[UIImage imageNamed:@"more_purper"] forState:UIControlStateNormal];
         [self showMoreButtons];
         return;
     }else{

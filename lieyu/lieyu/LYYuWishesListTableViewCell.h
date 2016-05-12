@@ -12,6 +12,7 @@
 @protocol LYYuWishesCellDelegate <NSObject>
 
 - (void)deleteUnFinishedNumber;
+- (void)delegateShareWish:(YUWishesModel *)model;
 
 @end
 
@@ -36,6 +37,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *unFinishButton;
 @property (weak, nonatomic) IBOutlet UIButton *finishButton;
 @property (weak, nonatomic) IBOutlet UIButton *reportButton;
+@property (weak, nonatomic) IBOutlet UIButton *shareButton;
 
 @property (nonatomic, strong) YUWishesModel *model;
 

@@ -18,6 +18,7 @@
     _avatarImage.layer.masksToBounds = YES;
     _reLabel.layer.cornerRadius = 2;
     _reLabel.layer.masksToBounds = YES;
+    _shareButton.hidden = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -31,6 +32,15 @@
     UserModel *userModel = ((AppDelegate *)[UIApplication sharedApplication].delegate).userModel;
     if (userModel.userid == _model.releaseUserid) {
         _reportButton.hidden = YES;
+        if ([model.isfinishedStr isEqualToString:@"搞定"] || [model.isfinishedStr isEqualToString:@"扑街"]) {
+            //非空，里面有字符串：搞定／扑街
+            _shareButton.hidden = NO;
+            [_shareButton addTarget:self action:@selector(delegateShare) forControlEvents:UIControlEventTouchUpInside];
+        }else{
+            _shareButton.hidden = YES;
+        }
+    }else{
+        _reportButton.hidden = NO;
     }
     CGRect themeRect = [_model.tagName boundingRectWithSize:CGSizeMake(MAXFLOAT, 16) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil];
     _themeWidth.constant = themeRect.size.width + 10;
@@ -84,6 +94,7 @@
     }
 }
 
+#pragma mark - 搞定／扑街
 - (void)finishClick{
     NSDictionary *dict = @{@"id":[NSNumber numberWithInt:_model.id],
                            @"isfinished":@"1"};
@@ -99,9 +110,14 @@
             _finishButton.hidden = YES;
             _unFinishButton.hidden = YES;
             _orLabel.hidden = YES;
+            _shareButton.hidden = NO;
+            [_shareButton addTarget:self action:@selector(delegateShare) forControlEvents:UIControlEventTouchUpInside];
             [_addressLabel setText:_model.address];
             if ([self.delegate respondsToSelector:@selector(deleteUnFinishedNumber)]) {
                 [self.delegate deleteUnFinishedNumber];
+            }
+            if([self.delegate respondsToSelector:@selector(delegateShareWish:)]){
+                [self.delegate delegateShareWish:_model];
             }
         }
     }];
@@ -124,11 +140,22 @@
             _unFinishButton.hidden = YES;
             _orLabel.hidden = YES;
             [_addressLabel setText:_model.address];
+            _shareButton.hidden = NO;
+            [_shareButton addTarget:self action:@selector(delegateShare) forControlEvents:UIControlEventTouchUpInside];
             if ([self.delegate respondsToSelector:@selector(deleteUnFinishedNumber)]) {
                 [self.delegate deleteUnFinishedNumber];
             }
+            if ([self.delegate respondsToSelector:@selector(delegateShareWish:)]) {
+                [self.delegate delegateShareWish:_model];
+            }
         }
     }];
+}
+
+- (void)delegateShare{
+    if ([self.delegate respondsToSelector:@selector(delegateShareWish:)]) {
+        [self.delegate delegateShareWish:_model];
+    }
 }
 
 @end

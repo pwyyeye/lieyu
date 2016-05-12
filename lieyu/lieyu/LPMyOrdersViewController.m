@@ -86,6 +86,7 @@
     [self registerCells];
 }
 
+#pragma mark - registerCells
 - (void)registerCells{
 //    [myTableView registerNib:[UINib nibWithNibName:@"LPOrdersHeaderCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"LPOrdersHeaderCell"];
     [myTableView registerNib:[UINib nibWithNibName:@"LPOrdersBodyCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"LPOrdersBodyCell"];
@@ -93,6 +94,7 @@
 //    [myTableView registerNib:[UINib nibWithNibName:@"LPOrderHeaderCell" bundle:nil] forCellReuseIdentifier:@"LPOrderHeaderCell"];
 }
 
+#pragma mark - 获取数据
 - (void)getData{
     __weak LPMyOrdersViewController *weakSelf = self;
     myTableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
@@ -109,8 +111,9 @@
     [self initMJRefeshFooterForGif:footer];
 }
 
+#pragma mark - 顶部导航栏
 - (void)initHeader{
-    
+    //毛玻璃
     UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
     effectView = [[UIVisualEffectView alloc]initWithEffect:effect];
     [effectView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, 90)];
@@ -121,6 +124,7 @@
     effectView.layer.shadowRadius = 1;
     [self.view addSubview:effectView];
     
+    //title
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(100, 31, SCREEN_WIDTH - 200, 22)];
     [label setFont:[UIFont systemFontOfSize:16]];
     [label setText:@"订单中心"];
@@ -128,6 +132,7 @@
     [label setTextColor:[UIColor blackColor]];
     [effectView addSubview:label];
     
+    //几个分类按钮
     UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(-5, 25, 60, 34)];
     [button setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(backForward) forControlEvents:UIControlEventTouchUpInside];
@@ -158,11 +163,13 @@
     }
 }
 
+#pragma mark - 点击按钮后
 - (void)changeTableViewAtButton:(LPOrderButton *)button{
     _orderIndex = (int)button.tag;
     [self changeTableViewAtIndex:_orderIndex];
 }
 
+#pragma mark - 根据按钮tag获取对应数据
 - (void)changeTableViewAtIndex:(int)newTag{
     for (LPOrderButton *btn in arrayButton) {
 //        NSLog(@"%ld--%d",btn.tag,newTag);
@@ -294,6 +301,7 @@
     
 }
 
+#pragma mark - 角标
 - (void)loadBadge:(OrderTTL *)orderTTL{
     _bagesArr = [[NSMutableArray alloc]init];
     [_bagesArr addObject:@"0"];
@@ -313,6 +321,7 @@
     }
 }
 
+#pragma mark - 刷新数据
 - (void)refreshData{
     pageCount = 1;
     [nowDic removeObjectForKey:@"p"];
@@ -320,6 +329,7 @@
     [self getOrderWithDic:nowDic];
 }
 
+#pragma mark - 刷新表
 - (void)refreshTableView{
     [self refreshData];
 }
@@ -392,6 +402,7 @@
     
 }
 
+#pragma mark - 返回事件
 - (void)backForward{
     for (UIViewController *controller in self.navigationController.viewControllers) {
         if ([controller isKindOfClass:[ChoosePayController class]]) {
@@ -406,6 +417,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark - 代理事件
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return dataList.count;
 }

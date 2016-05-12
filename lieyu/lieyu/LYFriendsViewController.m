@@ -1785,9 +1785,9 @@ UINavigationControllerDelegate,ISEmojiViewDelegate,sendBackVedioAndImage,ImagePi
                 nameCell.btn_delete.enabled = NO;
             }
             return nameCell;
-            
         }
-            break;
+        break;
+            
         case 1://附近的cell 图片或者视频
         {
             if([recentM.attachType isEqualToString:@"0"]){//图片cell
@@ -1820,7 +1820,7 @@ UINavigationControllerDelegate,ISEmojiViewDelegate,sendBackVedioAndImage,ImagePi
                 return videoCell;
             }
         }
-            break;
+        break;
             
         case 2://地址
         {
@@ -1837,7 +1837,7 @@ UINavigationControllerDelegate,ISEmojiViewDelegate,sendBackVedioAndImage,ImagePi
             
             return addressCell;
         }
-            break;
+        break;
             
         case 3://好友的赞
         {
@@ -1859,7 +1859,7 @@ UINavigationControllerDelegate,ISEmojiViewDelegate,sendBackVedioAndImage,ImagePi
                 return cell;
             }
         }
-            break;
+        break;
             
         default:{ //评论 4-8
             if(!recentM.commentList.count){//没有评论

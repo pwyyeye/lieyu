@@ -87,6 +87,7 @@
     [self setRightItem];
 }
 
+#pragma mark - 右侧按钮
 - (void)setRightItem{
     
     UIButton *findJuBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 39, 20)];

@@ -62,14 +62,6 @@
     }];
 }
 
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    return 1;
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-    return 1;
-}
-
 //- (void)setupView{
 //    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
 //    self.navigationItem.leftBarButtonItem = leftItem;
@@ -96,19 +88,20 @@
         }
         
     }
-    //    self.collectionView.contentOffset = CGPointMake(0, self.collectionView.contentSize.height - self.view.frame.size.height);
-    //    NSLog(@"%@",NSStringFromCGSize(self.collectionView.contentSize));
-    //    if (self.collectionView.contentOffset.y <= -self.view.frame.size.height && isRemoved == NO) {
-    //        self.collectionView.contentOffset = CGPointMake(0, self.collectionView.contentSize.height - self.view.frame.size.height);
-    //    }
-    //    if(self.collectionView.contentOffset.y > self.view.frame.size.height){
-    //        isRemoved = YES;
-    //    }
     NSLog(@"%@",NSStringFromCGPoint(self.collectionView.contentOffset));
 }
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+}
+
+#pragma mark - collectionView layout代理
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
+    return 1;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
+    return 1;
 }
 
 #pragma mark -collectionView的代理方法

@@ -32,7 +32,7 @@
     self.tableView.tableFooterView=[[UIView alloc]init];//去掉多余的分割线
 
     datalist=@[
-//               @{@"image":@"icon_yaoyiyao_normal",@"title":@"摇一摇"},
+//  @{@"image":@"icon_yaoyiyao_normal",@"title":@"摇一摇"},
                @{@"image":@"saoyisao",@"title":@"扫一扫"}
             ];
     
