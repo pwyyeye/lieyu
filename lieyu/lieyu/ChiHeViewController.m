@@ -75,8 +75,9 @@ static NSString * CellIdentifier = @"chiheCell";
     [self registerCell];
     
     //购物车按钮
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
-    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(10, 0, 44, 44)];
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 60, 44)];
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(10, 0, 60, 44)];
+//    [button setImageEdgeInsets:UIEdgeInsetsMake(0, 16, 0, 0)];
     [button setImage:[UIImage imageNamed:@"CHshop"] forState:UIControlStateNormal];
     [view addSubview:button];
     [button addTarget:self action:@selector(showcarAct) forControlEvents:UIControlEventTouchUpInside];
@@ -222,7 +223,7 @@ static NSString * CellIdentifier = @"chiheCell";
                 _badge.layer.cornerRadius=6;
                 _badge.textColor=[UIColor whiteColor];
                 _badge.textAlignment=NSTextAlignmentCenter;
-                _badge.frame=CGRectMake(SCREEN_WIDTH - 17, 5, 12, 12);
+                _badge.frame=CGRectMake(SCREEN_WIDTH - 25, 5, 12, 12);
             }
             if(number < 99){
                 _badge.text=[NSString stringWithFormat:@"%d",number];
