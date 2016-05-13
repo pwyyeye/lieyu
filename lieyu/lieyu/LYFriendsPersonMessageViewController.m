@@ -38,24 +38,20 @@
     NSDictionary *paraDic = @{@"userId":_useridStr,@"start":startStr,@"limit":pageCountStr,@"frientId":_friendsId};
     __weak __typeof(self) weakSelf = self;
     if (type == dataForFriendsMessage) {
-        [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic compelte:^(FriendsUserInfoModel*userInfo, NSMutableArray *dataArray) {
+        __weak __typeof(self) weakSelf = self;
+        [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic needLoading:YES compelte:^(FriendsUserInfoModel*userInfo, NSMutableArray *dataArray) {
             _userBgImageUrl = userInfo.friends_img;
-            _userM = userInfo;
+            weakSelf.userM = userInfo;
             [weakSelf loadDataWith:tableView dataArray:dataArray pageStartCount:pageStartCount type:type];
             [weakSelf addTableViewHeader];
         }];
-    }else{
-       
     }
 }
-
-
 
 #pragma mark - 获取我的未读消息数
 - (void)getFriendsNewMessage{
     
 }
-
 
 #pragma mark - 话题
 - (void)addTableViewHeaderViewForTopic{
@@ -75,8 +71,6 @@
     _headerView.btn_newMessage.hidden = YES;
     _headerView.imageView_NewMessageIcon.hidden = YES;
     [self setupTableForHeaderForMinPage];//为我的界面添加表头
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {

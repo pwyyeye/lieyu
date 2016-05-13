@@ -308,7 +308,8 @@
         {
             //有点赞的用户返回(SCREEN_WIDTH - 114)/8.f + 20;
             NSInteger count = recentM.likeList.count;
-            return count == 0 ? 0 : (SCREEN_WIDTH - 114)/8.f + 20;
+//            return count == 0 ? 0 : (SCREEN_WIDTH - 114)/8.f + 20;
+            return ((count - 1) / 7 + 1) * ((SCREEN_WIDTH - 114)/8.f + 20);
         }
             break;
         case 9:
@@ -346,6 +347,23 @@
             break;
     }
     
+}
+
+#pragma mark - 点赞的人的头像跳转到个人动态
+- (void)zangBtnClick:(UIButton *)button{
+    if (isExidtEffectView) {
+        [emojisView hideEmojiEffectView];
+    }
+    
+    if(button.tag >= _recentM.likeList.count) return;
+    if( index>=0){
+        FriendsLikeModel *likeM = _recentM.likeList[button.tag];
+        if([likeM.userId isEqualToString:_useridStr]) return;
+        
+        LYMyFriendDetailViewController *myFriendVC = [[LYMyFriendDetailViewController  alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
+        myFriendVC.userID = likeM.userId;
+        [self.navigationController pushViewController:myFriendVC animated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

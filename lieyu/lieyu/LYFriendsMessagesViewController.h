@@ -15,6 +15,8 @@
 #import "EmojisView.h"
 #import "LYFriendsHttpTool.h"
 #import "LYFriendsSendViewController.h"
+#import "FriendsLikeModel.h"
+#import "LYMyFriendDetailViewController.h"
 
 #import "LYFriendsNameTableViewCell.h"
 #import "LYFriendsAddressTableViewCell.h"
@@ -46,7 +48,7 @@ typedef enum : NSUInteger {
     NSString *_useridStr;//用户id
     NSString *_userBgImageUrl;//用户上传的个人背景图
     LYFriendsUserHeaderView *_headerView;//我的表头
-    FriendsUserInfoModel *_userM;
+   
     NSInteger _index;//判断是哪个节目 0－玩友圈 1-我的界面
     MPMoviePlayerViewController *player;
     NSInteger playerSection;
@@ -65,6 +67,7 @@ typedef enum : NSUInteger {
 @property (nonatomic,unsafe_unretained) BOOL isFriendToUserMessage;//是否是好友动态
 @property (nonatomic,unsafe_unretained) BOOL isTopic;//是否是话题
 @property (nonatomic,unsafe_unretained) BOOL isMessageDetail;//是否是动态详情
+@property (nonatomic,strong)  FriendsUserInfoModel *userM;//好友信息；
 //@property (nonatomic,unsafe_unretained) BOOL isAMessageDetail;//是否是动态详情
 #pragma mark - 获取最新玩友圈数据
 - (void)getDataWithType:(dataType)type;
@@ -118,4 +121,7 @@ typedef enum : NSUInteger {
 
 - (void)sendVedio:(NSString *)mediaUrl andImage:(UIImage *)image andContent:(NSString *)content andLocation:(NSString *)location andTopicID:(NSString *)topicID andTopicName:(NSString *)topicName;
 - (void)sendImagesArray:(NSArray *)imagesArray andContent:(NSString *)content andLocation:(NSString *)location andTopicID:(NSString *)topicID andTopicName:(NSString *)topicName;
+
+#pragma mark - 赞的人头像
+- (void)zangBtnClick:(UIButton *)button;
 @end

@@ -13,7 +13,7 @@
 #import "LPMyOrdersViewController.h"
 #import "LYFriendsMessageViewController.h"
 #import "ZSOrderViewController.h"
-#import "LYFriendsMessageDetailViewController.h"
+#import "LYFriendsAMessageDetailViewController.h"
 #import "LYFriendsHttpTool.h"
 
 @interface FindNotificationDetailViewController ()<UITableViewDelegate,UITableViewDataSource>{
@@ -107,7 +107,7 @@
         __weak __typeof(self) weakSelf = self;
         [LYFriendsHttpTool friendsGetAMessageWithParams:dic compelte:^(FriendsRecentModel *friendRecentM) {
             if (friendRecentM) {
-                LYFriendsMessageDetailViewController *friendMessageDetailVC = [[LYFriendsMessageDetailViewController alloc]init];
+                LYFriendsAMessageDetailViewController *friendMessageDetailVC = [[LYFriendsAMessageDetailViewController alloc]init];
                 friendMessageDetailVC.recentM = friendRecentM;
                 [weakSelf.navigationController pushViewController:friendMessageDetailVC animated:YES];
             }else{

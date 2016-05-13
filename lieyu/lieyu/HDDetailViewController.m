@@ -20,7 +20,6 @@
 #import "YUPinkerListModel.h"
 #import "LYMyOrderManageViewController.h"
 #import "ChoosePayController.h"
-#import "LYFriendsToUserMessageViewController.h"
 #import "DetailView.h"
 #import "preview.h"
 #import "UMSocial.h"
