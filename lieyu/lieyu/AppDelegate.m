@@ -700,14 +700,14 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
             // Connect 成功
             NSLog(@"****登录成功%@",userId);
         }
-                                      error:^(RCConnectErrorCode status) {
-                                          NSLog(@"****登录失败");
-                                          // Connect 失败
-                                      }
-                             tokenIncorrect:^() {
-                                 NSLog(@"Token 失效的状态处理");
-                                 // Token 失效的状态处理
-                             }];
+        error:^(RCConnectErrorCode status) {
+            NSLog(@"****登录失败");
+            // Connect 失败
+            }
+        tokenIncorrect:^() {
+            NSLog(@"Token 失效的状态处理");
+            // Token 失效的状态处理
+        }];
     }
     @catch (NSException *exception) {
         NSLog(@"----pass-pass%@---",exception);

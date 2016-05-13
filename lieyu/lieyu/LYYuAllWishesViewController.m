@@ -16,6 +16,8 @@
 #import "UMSocialData.h"
 #import "UMSocialSnsService.h"
 #import "UMSocial.h"
+#import "LYUserHttpTool.h"
+#import "MineUserNotification.h"
 
 @interface LYYuAllWishesViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIAlertViewDelegate,LYActivitySendViewControllerDelegate>
 {
@@ -32,6 +34,7 @@
     UILabel *_myTitle;
     UIButton *_rightButton;
     UILabel *_pointLabel;
+    UIButton *_ringButton;
     
     BOOL start0;//测试
     
@@ -56,6 +59,7 @@
     [self.navigationController.navigationBar addSubview:_myTitle];
     if (_type == 0) {
         [self.navigationController.navigationBar addSubview:_rightButton];
+        [self.navigationController.navigationBar addSubview:_ringButton];
         if (detailViewController.isChanged == YES) {
             [self refreshData];
             detailViewController.isChanged = NO;
@@ -76,6 +80,7 @@
 //    if(_type == 0){
         [_myTitle removeFromSuperview];
         [_rightButton removeFromSuperview];
+    [_ringButton removeFromSuperview];
 //    }
     [effectView removeFromSuperview];
 }
@@ -135,6 +140,10 @@
     [_pointLabel setBackgroundColor:[UIColor redColor]];
     [_rightButton addSubview:_pointLabel];
     _pointLabel.hidden = YES;
+    
+    _ringButton = [[UIButton alloc]initWithFrame:CGRectMake(10, 0, 60, 44)];
+    [_ringButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
+    [_ringButton addTarget:self action:@selector(ChooseNotification:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 #pragma mark - 发送愿望按钮
@@ -331,6 +340,16 @@
             
         }
     }];
+    if (_type == 0) {//想玩主界面
+        [LYUserHttpTool getUserNotificationWithPara:nil compelte:^(NSArray *dataArray) {
+            for (MineUserNotification *model in dataArray) {
+                if ([model.typeName isEqualToString:@"发布需求"] &&
+                    [model.type isEqualToString:@"15"]) {
+                    [self initLeftItemWithTag:model.on];
+                }
+            }
+        }];
+    }
 }
 
 #pragma mark - 空界面
@@ -348,6 +367,65 @@
 
 - (void)hideKongView{
     [kongLabel removeFromSuperview];
+}
+
+#pragma mark - 左侧按钮
+- (void)initLeftItemWithTag:(NSString *)tagIndex{
+    if(_type == 0){
+//        _ringButton = [[UIButton alloc]initWithFrame:CGRectMake(10, 0, 60, 44)];
+//        [_ringButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
+//        [_ringButton addTarget:self action:@selector(ChooseNotification:) forControlEvents:UIControlEventTouchUpInside];
+        if ([tagIndex isEqualToString:@"1"]) {//开着通知，显示静音模式
+            [_ringButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+            [_ringButton setTitle:@"静音模式" forState:UIControlStateNormal];
+            _ringButton.tag = 7154 ;
+        }else if([tagIndex isEqualToString:@"0"]){
+            [_ringButton setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal];
+            [_ringButton setTitle:@"收听模式" forState:UIControlStateNormal];
+            _ringButton.tag = 3754 ;
+        }
+    }
+}
+
+- (void)ChooseNotification:(UIButton *)button{
+//    __weak __typeof(self)weakSelf = self;
+    if(button.tag == 3754){
+        AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"收听模式" message:@"您将收取到更多好友的想玩即时通知" cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex) {
+            if (buttonIndex == 0) {
+                
+            }else if (buttonIndex == 1){//要去开启
+                NSDictionary *dict = @{@"type":@"15",
+                                       @"on":@"1"};
+                [LYUserHttpTool changeUserNotificationWithPara:dict compelte:^(bool result) {
+                    if (result) {//成功修改
+//                        UIButton *button = [weakSelf.view viewWithTag:3754];
+                        [_ringButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+                        [_ringButton setTitle:@"静音模式" forState:UIControlStateNormal];
+                        _ringButton.tag = 7154 ;
+                    }
+                }];
+            }
+        }];
+        [alert show];
+    }else if (button.tag == 7154){
+        AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"静音模式" message:@"您将收取不到所有好友的想玩通知" cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex) {
+            if (buttonIndex == 0) {
+                
+            }else if(buttonIndex == 1){
+                NSDictionary *dict = @{@"type":@"15",
+                                       @"on":@"0"};
+                [LYUserHttpTool changeUserNotificationWithPara:dict compelte:^(bool result) {
+                    if (result) {
+//                        UIButton *button = [weakSelf.view viewWithTag:7154];
+                        [_ringButton setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal];
+                        [_ringButton setTitle:@"收听模式" forState:UIControlStateNormal];
+                        _ringButton.tag = 3754 ;
+                    }
+                }];
+            }
+        }];
+        [alert show];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

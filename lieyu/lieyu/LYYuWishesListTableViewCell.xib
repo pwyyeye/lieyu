@@ -136,11 +136,11 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Re：" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cvC-ry-Rox">
-                                <rect key="frame" x="10" y="133" width="28" height="15"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="猎娱客服:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cvC-ry-Rox">
+                                <rect key="frame" x="10" y="133" width="60" height="15"/>
                                 <color key="backgroundColor" red="0.63529411759999999" green="0.0" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="28" id="efL-Qc-xtz"/>
+                                    <constraint firstAttribute="width" constant="60" id="efL-Qc-xtz"/>
                                     <constraint firstAttribute="height" constant="15" id="sS8-to-Clm"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -148,7 +148,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFc-wr-d1l">
-                                <rect key="frame" x="46" y="133" width="258" height="0.0"/>
+                                <rect key="frame" x="78" y="133" width="226" height="0.0"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="WvQ-Cg-pT8"/>
                                 </constraints>

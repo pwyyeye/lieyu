@@ -1260,17 +1260,14 @@
             //成功获取数据后则存储或更新最新数据
             LYCoreDataUtil *core = [LYCoreDataUtil shareInstance];
             [core saveOrUpdateCoreData:@"LYCache" withParam:@{
-                                                              @"lyCacheKey":CACHE_SYSTEM_NOTIFICATION,
-                                                              @"lyCacheValue":dataArray,
-                                                              @"createDate":[NSDate date]}
-                         andSearchPara:@{@"lyCacheKey":CACHE_SYSTEM_NOTIFICATION}];
+    @"lyCacheKey":CACHE_SYSTEM_NOTIFICATION,@"lyCacheValue":dataArray,@"createDate":[NSDate date]}andSearchPara:@{@"lyCacheKey":CACHE_SYSTEM_NOTIFICATION}];
         }else{
 //            compelte(nil);
         }
-        [app stopLoading];
+//        [app stopLoading];
     } failure:^(NSError *err) {
 //        compelte(nil);
-                [app stopLoading];
+//                [app stopLoading];
     }];
 }
 
