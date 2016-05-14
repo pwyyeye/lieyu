@@ -16,8 +16,8 @@
 #import "SaoYiSaoViewController.h"
 #import "LYFindConversationViewController.h"
 #import "find_userInfoModel.h"
-#import "LYFriendsToUserMessageViewController.h"
 #import "CareofViewController.h"
+#import "LYFriendsPersonMessageViewController.h"
 
 @interface LYMyFriendDetailViewController ()
 {
@@ -385,7 +385,8 @@
 }
 
 - (IBAction)checkTrends:(UIButton *)sender {
-    LYFriendsToUserMessageViewController *friendsVC = [[LYFriendsToUserMessageViewController alloc]initWithNibName:@"LYFriendsToUserMessageViewController" bundle:nil];
+    LYFriendsPersonMessageViewController *friendsVC = [[LYFriendsPersonMessageViewController alloc]init];
+    friendsVC.isFriendToUserMessage = YES;
     friendsVC.friendsId = self.userID;
     [self.navigationController pushViewController:friendsVC animated:YES];
 }

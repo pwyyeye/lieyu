@@ -14,7 +14,6 @@
 #import "CustomerModel.h"
 #import "YUOrderInfo.h"
 #import "YUPinkerListModel.h"
-#import "LYFriendsToUserMessageViewController.h"
 #import "YUOrderShareModel.h"
 #import "LYHotBarMenuDropView.h"
 #import "MJRefresh.h"

@@ -41,9 +41,9 @@
 }
 
 //获取指定用户的玩友圈动态
-+ (void)friendsGetUserInfoWithParams:(NSDictionary *)params compelte:(void (^)(FriendsUserInfoModel*, NSMutableArray *))compelte{
++ (void)friendsGetUserInfoWithParams:(NSDictionary *)params needLoading:(BOOL)need compelte:(void (^)(FriendsUserInfoModel*, NSMutableArray *))compelte{
         AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        [app startLoading];
+      if(need)  [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_User baseURL:LY_SERVER params:params success:^(id response) {
         NSDictionary *dictionary = response[@"data"];
         NSMutableArray *array = [[NSMutableArray alloc] initWithArray:[FriendsRecentModel mj_objectArrayWithKeyValuesArray:dictionary[@"moments"]]];

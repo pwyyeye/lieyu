@@ -7,7 +7,7 @@
 //
 
 #import "LYChangeImageViewController.h"
-#import "LYFriendsViewController.h"
+#import "LYFriendsMessageViewController.h"
 #import "HttpController.h"
 #import "LYFriendsHttpTool.h"
 

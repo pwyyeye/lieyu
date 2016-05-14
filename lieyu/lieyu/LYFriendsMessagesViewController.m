@@ -11,7 +11,6 @@
 #import "IQKeyboardManager.h"
 #import "TopicModel.h"
 #import "LYUserHttpTool.h"
-#import "FriendsLikeModel.h"
 #import "LYChangeImageViewController.h"
 #import "LYFriendsAllCommentTableViewCell.h"
 #import "UIButton+WebCache.h"
@@ -19,7 +18,6 @@
 #import "LYFriendsTopicsViewController.h"
 #import "BeerNewBarViewController.h"
 #import "ISEmojiView.h"
-#import "LYMyFriendDetailViewController.h"
 #import "LYFriendsAMessageDetailViewController.h"
 #import "LYFriendsMessageViewController.h"
 #import "ImagePickerViewController.h"
@@ -177,7 +175,7 @@
 
     }else if(type == dataForMine){//我的玩友圈数据
         paraDic = @{@"userId":_useridStr,@"start":startStr,@"limit":pageCountStr,@"frientId":_useridStr};
-        [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic compelte:^(FriendsUserInfoModel*userInfo, NSMutableArray *dataArray) {
+        [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic needLoading:YES compelte:^(FriendsUserInfoModel*userInfo, NSMutableArray *dataArray) {
             _userBgImageUrl = userInfo.friends_img;
             [weakSelf loadDataWith:tableView dataArray:dataArray pageStartCount:pageStartCount type:type];
             [weakSelf addTableViewHeader];
@@ -445,6 +443,10 @@
     [_headerView.ImageView_bg addGestureRecognizer:tapGes];
 }
 
+- (void)setUserM:(FriendsUserInfoModel *)userM{
+    _userM = userM;
+}
+
 - (void)setupTableForHeaderForMinPage{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     UITableView *tableView = nil;
@@ -460,7 +462,7 @@
     [_headerView.imageView_NewMessageIcon sd_setImageWithURL:[NSURL URLWithString:_icon]  placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     _headerView.imageView_NewMessageIcon.clipsToBounds = YES;
     [_headerView.btn_newMessage setTitle:[NSString stringWithFormat:@"%@条新消息",_results] forState:UIControlStateNormal];
-    [_headerView.btn_header sd_setBackgroundImageWithURL:[NSURL URLWithString:app.userModel.avatar_img?app.userModel.avatar_img:@""] forState:UIControlStateNormal ];
+    [_headerView.btn_header sd_setBackgroundImageWithURL:[NSURL URLWithString:userM.avatar_img?userM.avatar_img:@""] forState:UIControlStateNormal ];
     
     if(_isFriendToUserMessage)  [_headerView.btn_header addTarget:self action:@selector(headerImgClick:) forControlEvents:UIControlEventTouchUpInside];
     _headerView.label_name.text = userM.usernick;
@@ -469,21 +471,26 @@
     
     [self updateViewConstraints];
     
-    NSData *imageData = [[NSUserDefaults standardUserDefaults] objectForKey:@"FriendUserBgImage"];
-    if(!_userBgImageUrl){
-        _headerView.ImageView_bg.image = [[UIImage alloc]initWithData:imageData];
+    if(_isFriendToUserMessage){
+        [_headerView.ImageView_bg sd_setImageWithURL:[NSURL URLWithString:_userM.friends_img] placeholderImage:[UIImage imageNamed:@"friendPresentBG.jpg"]];
+        
     }else{
-        if(imageData){
-            [_headerView.ImageView_bg sd_setImageWithURL:[NSURL URLWithString:_userBgImageUrl] placeholderImage:[[UIImage alloc]initWithData:imageData]];
+        NSData *imageData = [[NSUserDefaults standardUserDefaults] objectForKey:@"FriendUserBgImage"];
+        if(!_userBgImageUrl){
+            _headerView.ImageView_bg.image = [[UIImage alloc]initWithData:imageData];
         }else{
-            [_headerView.ImageView_bg sd_setImageWithURL:[NSURL URLWithString:_userBgImageUrl] placeholderImage:[UIImage imageNamed:@"friendPresentBG.jpg"]];
+            if(imageData){
+                [_headerView.ImageView_bg sd_setImageWithURL:[NSURL URLWithString:_userBgImageUrl] placeholderImage:[[UIImage alloc]initWithData:imageData]];
+            }else{
+                [_headerView.ImageView_bg sd_setImageWithURL:[NSURL URLWithString:_userBgImageUrl] placeholderImage:[UIImage imageNamed:@"friendPresentBG.jpg"]];
+            }
         }
-    }
-    if(imageData == nil && [MyUtil isEmptyString:_userBgImageUrl]){
-        _headerView.ImageView_bg.image = [UIImage imageNamed:@"friendPresentBG.jpg"];
+        if(imageData == nil && [MyUtil isEmptyString:_userBgImageUrl]){
+            _headerView.ImageView_bg.image = [UIImage imageNamed:@"friendPresentBG.jpg"];
+        }
+        _headerView.ImageView_bg.userInteractionEnabled = YES;
     }
     _headerView.ImageView_bg.clipsToBounds = YES;
-    _headerView.ImageView_bg.userInteractionEnabled = YES;
 }
 
 - (void)headerImgClick:(UIButton *)button{
@@ -686,6 +693,16 @@
                 nameCell.btn_delete.hidden = NO;
                 nameCell.btn_delete.enabled = YES;
             }
+            
+            if(_isFriendToUserMessage) {
+                nameCell.btn_delete.hidden = YES;
+                if(_isTopic){
+                    nameCell.btn_delete.hidden = NO;
+                    if([recentM.userId isEqualToString:_useridStr]) nameCell.btn_delete.hidden = YES;
+                }
+            }
+            else nameCell.btn_delete.hidden = NO;
+            
             if([MyUtil isEmptyString:[NSString stringWithFormat:@"%@",recentM.id]]){
                 nameCell.btn_delete.enabled = NO;
             }
