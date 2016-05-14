@@ -53,6 +53,7 @@
 @property(strong,nonatomic) NSString *weibo;
 @property(strong,nonatomic) NSString *wechat;
 @property(strong,nonatomic) NSString *qq;
+@property (nonatomic,copy) NSString *manageUserids;
 
 @property (nonatomic,copy) NSString *introduction;
 @property (nonatomic,copy) NSString *sex;
