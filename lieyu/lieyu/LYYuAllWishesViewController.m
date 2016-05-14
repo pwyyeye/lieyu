@@ -19,8 +19,9 @@
 #import "LYUserHttpTool.h"
 #import "MineUserNotification.h"
 #import "LYFindConversationViewController.h"
+#import "LYWishReplayViewController.h"
 
-@interface LYYuAllWishesViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIAlertViewDelegate,LYActivitySendViewControllerDelegate>
+@interface LYYuAllWishesViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIAlertViewDelegate,LYActivitySendViewControllerDelegate,WishReplayDelegate>
 {
     int start;
     int limit;
@@ -48,6 +49,8 @@
     UIView *grayBackground;
     UIImageView *tipImageview;
     UIButton *tryButton;
+    
+    int replySelection;//选择要回复的愿望
 }
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataList;
@@ -452,6 +455,8 @@
     cell.avatarButton.tag = indexPath.section;
     [cell.avatarButton addTarget:self action:@selector(avatarClick:) forControlEvents:UIControlEventTouchUpInside];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.replyButton.tag = indexPath.section;
+    [cell.replyButton addTarget:self action:@selector(delegateReplayWish:) forControlEvents:UIControlEventTouchUpInside];
     cell.reportButton.tag = indexPath.section;
     [cell.reportButton addTarget:self action:@selector(reportWishes:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
@@ -610,6 +615,28 @@
     [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:content shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.userModel.avatar_img]]] shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
 }
 
+- (void)delegateReplayWish:(UIButton *)button{
+    replySelection = (int)button.tag;
+    if (self.dataList.count > replySelection) {
+        YUWishesModel *model = [self.dataList objectAtIndex:button.tag];
+        LYWishReplayViewController *replayViweController = [[LYWishReplayViewController alloc]initWithNibName:@"LYWishReplayViewController" bundle:nil];
+        replayViweController.delegate = self;
+        replayViweController.model = model;
+        [self.navigationController pushViewController:replayViweController animated:YES];
+    }
+}
+
+- (void)delegateReply:(YUWishesModel *)model{
+    if (self.dataList.count > replySelection) {
+        YUWishesModel *YUmodel = [self.dataList objectAtIndex:replySelection];
+        YUmodel.replyContent = model.replyContent;
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:replySelection];
+        NSArray *array = [[NSArray alloc]initWithObjects:indexPath, nil];
+        [self.tableView reloadRowsAtIndexPaths:array withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+}
+
+#pragma mark - 聊天
 - (void)communicateWithKEFU{
     RCPublicServiceChatViewController *conversationVC = [[RCPublicServiceChatViewController alloc]init];
     conversationVC.conversationType = ConversationType_APPSERVICE;

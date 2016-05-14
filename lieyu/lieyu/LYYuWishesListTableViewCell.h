@@ -13,6 +13,7 @@
 
 - (void)deleteUnFinishedNumber;
 - (void)delegateShareWish:(YUWishesModel *)model;
+//- (void)delegateReplayWish:(YUWishesModel *)model;
 
 @end
 

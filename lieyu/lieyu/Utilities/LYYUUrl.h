@@ -20,4 +20,5 @@
 #define LY_YU_FINISH @"lyRequireAction.do?action=update"
 #define LY_YU_DELETE @"lyRequireAction.do?action=delete"
 #define LY_YU_JUBAO @"versionAction.do?action=list"
+#define LY_YU_REPLY @"lyRequireAction.do?action=save"
 #endif /* LYYUUrl_h */

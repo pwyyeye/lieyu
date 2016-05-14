@@ -737,6 +737,8 @@
 		38E72B521C155FC7002EFBDD /* chiheDetailCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E72B511C155FC7002EFBDD /* chiheDetailCollectionCell.xib */; };
 		38E72B561C15A18E002EFBDD /* ChiHeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E72B541C15A18E002EFBDD /* ChiHeViewController.m */; };
 		38E72B571C15A18E002EFBDD /* ChiHeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E72B551C15A18E002EFBDD /* ChiHeViewController.xib */; };
+		38E896E91CE70D710050A066 /* LYWishReplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E896E71CE70D710050A066 /* LYWishReplayViewController.m */; };
+		38E896EA1CE70D710050A066 /* LYWishReplayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E896E81CE70D710050A066 /* LYWishReplayViewController.xib */; };
 		38EAA4E21CC9D7C20080A6D6 /* LYYuWishesListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38EAA4E01CC9D7C20080A6D6 /* LYYuWishesListTableViewCell.m */; };
 		38EAA4E31CC9D7C20080A6D6 /* LYYuWishesListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA4E11CC9D7C20080A6D6 /* LYYuWishesListTableViewCell.xib */; };
 		38EAA4E81CC9F1BB0080A6D6 /* YUWishesLabel@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EAA4E51CC9F1BB0080A6D6 /* YUWishesLabel@3x.png */; };
@@ -2738,6 +2740,9 @@
 		38E72B531C15A18E002EFBDD /* ChiHeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChiHeViewController.h; sourceTree = "<group>"; };
 		38E72B541C15A18E002EFBDD /* ChiHeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ChiHeViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		38E72B551C15A18E002EFBDD /* ChiHeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChiHeViewController.xib; sourceTree = "<group>"; };
+		38E896E61CE70D710050A066 /* LYWishReplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYWishReplayViewController.h; sourceTree = "<group>"; };
+		38E896E71CE70D710050A066 /* LYWishReplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYWishReplayViewController.m; sourceTree = "<group>"; };
+		38E896E81CE70D710050A066 /* LYWishReplayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYWishReplayViewController.xib; sourceTree = "<group>"; };
 		38EAA4DF1CC9D7C20080A6D6 /* LYYuWishesListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYYuWishesListTableViewCell.h; sourceTree = "<group>"; };
 		38EAA4E01CC9D7C20080A6D6 /* LYYuWishesListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYYuWishesListTableViewCell.m; sourceTree = "<group>"; };
 		38EAA4E11CC9D7C20080A6D6 /* LYYuWishesListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYYuWishesListTableViewCell.xib; sourceTree = "<group>"; };
@@ -6137,6 +6142,9 @@
 			children = (
 				38EAA5321CCDB82E0080A6D6 /* LYYuAllWishesViewController.h */,
 				38EAA5301CCDB7FA0080A6D6 /* LYYuAllWishesViewController.m */,
+				38E896E61CE70D710050A066 /* LYWishReplayViewController.h */,
+				38E896E71CE70D710050A066 /* LYWishReplayViewController.m */,
+				38E896E81CE70D710050A066 /* LYWishReplayViewController.xib */,
 				855C88561CCB02A90055E8B0 /* LYActivitySendViewController.h */,
 				855C88571CCB02A90055E8B0 /* LYActivitySendViewController.m */,
 				855C88581CCB02A90055E8B0 /* LYActivitySendViewController.xib */,
@@ -9945,6 +9953,7 @@
 				3856646A1C62EE6A000DCFA5 /* icon_collect2@2x.png in Resources */,
 				38D876551C17DEA100E2F284 /* typeBorder.png in Resources */,
 				38EAA5811CCF5B910080A6D6 /* YU_tryButton@3x.png in Resources */,
+				38E896EA1CE70D710050A066 /* LYWishReplayViewController.xib in Resources */,
 				15E240781BB24F510090D240 /* MyCollectionViewController.xib in Resources */,
 				851806861C2E89DC00006804 /* LYNewMessageTableViewCell.xib in Resources */,
 				ADD1B4661C528EE100A5237C /* qq_s@3x.png in Resources */,
@@ -10732,6 +10741,7 @@
 				ADD1B45D1C527EE200A5237C /* LYAccountManager.m in Sources */,
 				A2020D591BA6781B0090B92A /* FunctionListCell.m in Sources */,
 				1559DCF01BD9C7C800F3FE9B /* CHChooseNumView.m in Sources */,
+				38E896E91CE70D710050A066 /* LYWishReplayViewController.m in Sources */,
 				15B8668F1BE0B04C002E2BB6 /* MyMessageListViewController.m in Sources */,
 				15FD2AB11BD7231C00D66920 /* LYTaoCanXQCell.m in Sources */,
 				15A4CF7B1BD871C000C22C01 /* chiheDetailCollectionCell.m in Sources */,

@@ -150,4 +150,19 @@
     }];
 }
 
+#pragma mark - 回复愿望
++ (void)yuReplyWishCompleteWithParams:(NSDictionary *)params complete:(void (^)(BOOL))complete{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YU_REPLY baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            complete(true);
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+}
+
 @end
