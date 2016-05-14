@@ -19,6 +19,7 @@
     _reLabel.layer.cornerRadius = 2;
     _reLabel.layer.masksToBounds = YES;
     _shareButton.hidden = YES;
+    _replyButton.hidden = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

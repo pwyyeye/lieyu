@@ -185,6 +185,13 @@
                                 <rect key="frame" x="268" y="2" width="46" height="30"/>
                                 <state key="normal" image="shareWish.png"/>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7qA-Nt-9T9">
+                                <rect key="frame" x="268" y="2" width="46" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="回复">
+                                    <color key="titleColor" red="0.63529411759999999" green="0.0" blue="0.83137254900000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -195,6 +202,7 @@
                             <constraint firstAttribute="trailing" secondItem="2nL-at-8NM" secondAttribute="trailing" id="3Ge-qf-JWQ"/>
                             <constraint firstItem="QUs-Sj-Dwg" firstAttribute="leading" secondItem="ZvN-dc-ctb" secondAttribute="leading" id="3uO-Rq-pYv"/>
                             <constraint firstItem="QUs-Sj-Dwg" firstAttribute="top" secondItem="ram-iF-h17" secondAttribute="top" constant="2" id="4jU-83-MrG"/>
+                            <constraint firstItem="7qA-Nt-9T9" firstAttribute="bottom" secondItem="ZvN-dc-ctb" secondAttribute="bottom" id="5UC-B7-Bqp"/>
                             <constraint firstItem="f7H-PB-apj" firstAttribute="top" secondItem="QUs-Sj-Dwg" secondAttribute="bottom" constant="23" id="77F-lF-E3d"/>
                             <constraint firstItem="wH6-Z7-Ker" firstAttribute="centerX" secondItem="ram-iF-h17" secondAttribute="centerX" id="8w6-ma-4Cp"/>
                             <constraint firstItem="iBP-Nb-fEn" firstAttribute="top" secondItem="KbC-OP-fPN" secondAttribute="bottom" constant="10" id="9Sv-bi-SiM"/>
@@ -222,17 +230,20 @@
                             <constraint firstItem="Scv-th-aoT" firstAttribute="centerY" secondItem="2nL-at-8NM" secondAttribute="centerY" id="Tdx-Nh-pdc"/>
                             <constraint firstAttribute="trailing" secondItem="iBP-Nb-fEn" secondAttribute="trailing" constant="10" id="Vxd-72-hON"/>
                             <constraint firstItem="2nL-at-8NM" firstAttribute="top" secondItem="uW3-Gh-Cwz" secondAttribute="bottom" constant="10" id="X5k-Ql-o9S"/>
+                            <constraint firstItem="7qA-Nt-9T9" firstAttribute="trailing" secondItem="ZvN-dc-ctb" secondAttribute="trailing" id="XWV-ii-WOe"/>
                             <constraint firstItem="f7H-PB-apj" firstAttribute="top" secondItem="KbC-OP-fPN" secondAttribute="top" id="dWu-Jh-v1T"/>
                             <constraint firstItem="KbC-OP-fPN" firstAttribute="bottom" secondItem="wH6-Z7-Ker" secondAttribute="bottom" id="dri-Bj-YCo"/>
                             <constraint firstAttribute="trailing" secondItem="XFc-wr-d1l" secondAttribute="trailing" constant="10" id="eab-F1-fXf"/>
                             <constraint firstAttribute="bottom" secondItem="uW3-Gh-Cwz" secondAttribute="bottom" constant="10" id="gzz-Pf-XCw"/>
                             <constraint firstAttribute="trailing" secondItem="uW3-Gh-Cwz" secondAttribute="trailing" constant="10" id="hpo-v4-3Tq"/>
                             <constraint firstItem="iBP-Nb-fEn" firstAttribute="leading" secondItem="ram-iF-h17" secondAttribute="leading" constant="10" id="iyO-Fd-h5s"/>
+                            <constraint firstItem="7qA-Nt-9T9" firstAttribute="leading" secondItem="ZvN-dc-ctb" secondAttribute="leading" id="m5d-be-xvn"/>
                             <constraint firstItem="1up-GS-HBh" firstAttribute="leading" secondItem="ram-iF-h17" secondAttribute="leading" constant="10" id="n57-0J-YN2"/>
                             <constraint firstItem="f7H-PB-apj" firstAttribute="leading" secondItem="KbC-OP-fPN" secondAttribute="trailing" constant="12" id="o7l-Ob-eCW"/>
                             <constraint firstItem="uW3-Gh-Cwz" firstAttribute="top" secondItem="XFc-wr-d1l" secondAttribute="bottom" constant="10" id="oGg-7L-Eq5"/>
                             <constraint firstAttribute="trailing" secondItem="2nL-at-8NM" secondAttribute="trailing" id="onG-5Y-LmC"/>
                             <constraint firstItem="f7H-PB-apj" firstAttribute="leading" secondItem="KbC-OP-fPN" secondAttribute="trailing" constant="16" id="phg-QG-BHx"/>
+                            <constraint firstItem="7qA-Nt-9T9" firstAttribute="top" secondItem="ZvN-dc-ctb" secondAttribute="top" id="qJk-Lt-fhd"/>
                             <constraint firstItem="QUs-Sj-Dwg" firstAttribute="trailing" secondItem="ZvN-dc-ctb" secondAttribute="trailing" id="rMc-yc-qIh"/>
                             <constraint firstItem="gyW-J2-9LV" firstAttribute="top" secondItem="XFc-wr-d1l" secondAttribute="bottom" constant="10" id="tba-Z9-UgZ"/>
                             <constraint firstItem="XFc-wr-d1l" firstAttribute="top" secondItem="f7H-PB-apj" secondAttribute="bottom" id="teB-3N-La9"/>
@@ -287,6 +298,7 @@
                 <outlet property="isFinishImage" destination="f7H-PB-apj" id="VQS-hy-MFC"/>
                 <outlet property="orLabel" destination="LEM-1i-3WG" id="Mrr-dW-Kf6"/>
                 <outlet property="reLabel" destination="cvC-ry-Rox" id="9DD-4W-rvj"/>
+                <outlet property="replyButton" destination="7qA-Nt-9T9" id="MPw-fM-LeI"/>
                 <outlet property="replyLabel" destination="XFc-wr-d1l" id="He2-go-e2Q"/>
                 <outlet property="reportButton" destination="QUs-Sj-Dwg" id="ctm-uA-0wv"/>
                 <outlet property="shareButton" destination="ZvN-dc-ctb" id="WhW-Lh-kL4"/>

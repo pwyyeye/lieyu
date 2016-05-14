@@ -38,6 +38,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *finishButton;
 @property (weak, nonatomic) IBOutlet UIButton *reportButton;
 @property (weak, nonatomic) IBOutlet UIButton *shareButton;
+@property (weak, nonatomic) IBOutlet UIButton *replyButton;
 
 @property (nonatomic, strong) YUWishesModel *model;
 
