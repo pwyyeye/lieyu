@@ -671,7 +671,15 @@
                 chat.navigationItem.leftBarButtonItem = [self getItem];
             });
         } error:^(RCErrorCode status) {
-            NSLog(@"error");
+            if (status == KICKED_FROM_CHATROOM) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [MyUtil showCleanMessage:@"已被踢出聊天室"];
+                });
+            }else{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [MyUtil showCleanMessage:@"未知错误"];
+                });
+            }
         }];
 
     }else{//没有聊天室和个人聊天

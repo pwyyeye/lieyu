@@ -39,6 +39,8 @@
         if(app.userModel.userid == str.intValue){//登录的是管理员
 //            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:nil message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"查看",@"移除聊天室", nil];
 //            [alertView show];
+            if([app.userModel.imuserId isEqualToString:userId]) break;
+            
             UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"从聊天室移除" otherButtonTitles:@"查看", nil];
             [actionSheet showInView:self.view];
             return ;
@@ -79,7 +81,7 @@
 - (void)removePersonFromChatRoom{
 //   121.40.229.133:80/portal/friendAction.do?action=expand&chatroomId=150&imuserId=130615&minute=1&SEM_LOGIN_TOKEN=g6hccy5yqo78xk3yarls7888
     
-    NSDictionary *paraDic = @{@"chatroomId":self.targetId,@"imuserId":_userId_RM,@"minute":@"1"};
+    NSDictionary *paraDic = @{@"chatroomId":self.targetId,@"imuserId":_userId_RM,@"minute":@"43200"};
     [LYYUHttpTool yuRemoveUserFromeChatRoomWith:paraDic complete:^(BOOL result) {
         
     }];
