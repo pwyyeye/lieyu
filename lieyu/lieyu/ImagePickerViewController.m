@@ -78,6 +78,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - tableView的代理事件
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }

@@ -35,7 +35,7 @@
 #import "LPUserLoginViewController.h"
 #import "ZSMaintViewController.h"
 #import "LYFriendsHttpTool.h"
-#import "LYFriendsMessageDetailViewController.h"
+#import "LYFriendsAMessageDetailViewController.h"
 #import "LPMyOrdersViewController.h"
 #import "ZSOrderViewController.h"
 
@@ -620,7 +620,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         __weak __typeof(self) weakSelf = self;
         [LYFriendsHttpTool friendsGetAMessageWithParams:param compelte:^(FriendsRecentModel *friendRecentM) {
             if (friendRecentM) {
-                LYFriendsMessageDetailViewController *friendMessageDetailVC = [[LYFriendsMessageDetailViewController alloc]init];
+                LYFriendsAMessageDetailViewController *friendMessageDetailVC = [[LYFriendsAMessageDetailViewController alloc]init];
                 friendMessageDetailVC.recentM = friendRecentM;
                 [weakSelf.navigationController pushViewController:friendMessageDetailVC animated:YES];
             }
@@ -700,14 +700,14 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
             // Connect 成功
             NSLog(@"****登录成功%@",userId);
         }
-                                      error:^(RCConnectErrorCode status) {
-                                          NSLog(@"****登录失败");
-                                          // Connect 失败
-                                      }
-                             tokenIncorrect:^() {
-                                 NSLog(@"Token 失效的状态处理");
-                                 // Token 失效的状态处理
-                             }];
+        error:^(RCConnectErrorCode status) {
+            NSLog(@"****登录失败");
+            // Connect 失败
+            }
+        tokenIncorrect:^() {
+            NSLog(@"Token 失效的状态处理");
+            // Token 失效的状态处理
+        }];
     }
     @catch (NSException *exception) {
         NSLog(@"----pass-pass%@---",exception);

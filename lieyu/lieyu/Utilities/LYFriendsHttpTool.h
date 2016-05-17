@@ -15,7 +15,7 @@
 //获取最新的玩友圈动态
 + (void)friendsGetRecentInfoWithParams:(NSDictionary *)params compelte:(void(^)(NSMutableArray *dataArray))compelte;
 //获取我的的玩友圈动态
-+ (void)friendsGetUserInfoWithParams:(NSDictionary *)params compelte:(void (^)(FriendsUserInfoModel*, NSMutableArray *))compelte;
++ (void)friendsGetUserInfoWithParams:(NSDictionary *)params needLoading:(BOOL)need compelte:(void (^)(FriendsUserInfoModel*, NSMutableArray *))compelte;
 //获取我的的玩友圈消息
 + (void)friendsGetMyNewsMessageWithParams:(NSDictionary *)params compelte:(void (^)(FriendsUserMessageModel *))compelte;
 //给别人玩友圈动态点赞

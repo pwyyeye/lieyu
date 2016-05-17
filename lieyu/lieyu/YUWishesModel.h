@@ -28,6 +28,7 @@
 //"tagName": "去旅游",
 //"tagid": 3
 @interface YUWishesModel : NSObject
+@property (nonatomic,copy) NSString *isChatroom;
 @property (nonatomic, strong) NSString *address;
 @property (nonatomic, strong) NSString *createDate;
 @property (nonatomic, strong) NSString *desc;

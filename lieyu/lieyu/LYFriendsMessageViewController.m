@@ -9,8 +9,8 @@
 #import "LYFriendsMessageViewController.h"
 #import "LYNewMessageTableViewCell.h"
 #import "LYFriendsHttpTool.h"
-#import "LYFriendsMessageDetailViewController.h"
 #import "FriendsNewsModel.h"
+#import "LYFriendsAMessageDetailViewController.h"
 
 #define LYFriendsNewMessage @"LYNewMessageTableViewCell"
 
@@ -69,7 +69,7 @@
     NSDictionary *dic = @{@"userId":[NSString stringWithFormat:@"%d",app.userModel.userid],@"messageId":friendNewM.messageId};
     __weak __typeof(self) weakSelf = self;
     [LYFriendsHttpTool friendsGetAMessageWithParams:dic compelte:^(FriendsRecentModel *recentM) {
-        LYFriendsMessageDetailViewController *friendDetailVC = [[LYFriendsMessageDetailViewController alloc]init];
+        LYFriendsAMessageDetailViewController *friendDetailVC = [[LYFriendsAMessageDetailViewController alloc]init];
         friendDetailVC.recentM = recentM;
         [weakSelf.navigationController pushViewController:friendDetailVC animated:YES];
     }];

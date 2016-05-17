@@ -7,6 +7,7 @@
 //
 
 #import "HDDetailTableViewCell.h"
+#import "JiuBaModel.h"
 
 @implementation HDDetailTableViewCell
 
@@ -25,8 +26,41 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
+}
 
-    // Configure the view for the selected state
+- (void)setOrderInfo:(YUOrderInfo *)orderInfo{
+    _orderInfo = orderInfo;
+    NSArray *reachTimeArray1 = [_orderInfo.reachtime componentsSeparatedByString:@" "];
+    if (reachTimeArray1.count == 2) {
+        NSArray *reachTimeArray2 = [reachTimeArray1[0] componentsSeparatedByString:@"-"];
+        NSArray *reachTimeArray3 = [reachTimeArray1[1] componentsSeparatedByString:@":"];
+        if (reachTimeArray2.count == 3 && reachTimeArray3.count == 3) {
+            NSString *timeStr = [NSString stringWithFormat:@"%@-%@ (%@) %@:%@",reachTimeArray2[1],reachTimeArray2[2],[MyUtil weekdayStringFromDate:orderInfo.reachtime],reachTimeArray3[0],reachTimeArray3[1]];
+            _startTime_label.text = timeStr;
+        }
+    }
+    _residue_label.text = [MyUtil residueTimeFromDate:orderInfo.reachtime];
+    _joinedNumber_label.text = [NSString stringWithFormat:@"参加人数(%d/%d)",orderInfo.pinkerCount,[orderInfo.allnum intValue]];
+    if([orderInfo.pinkerType isEqualToString:@"0"]){
+        _label_priceWay.text = @"发起人请客";
+    }else if ([orderInfo.pinkerType isEqualToString:@"1"]){
+        _label_priceWay.text = @"AA付款";
+    }else if ([orderInfo.pinkerType isEqualToString:@"2"]){
+        _label_priceWay.text = @"AA付款";
+    }
+    _address_label.text = orderInfo.barinfo.address;
+    _barName_label.text = orderInfo.barinfo.barname;
+}
+
+- (void)setYUModel:(YUOrderShareModel *)YUModel{
+    _YUModel = YUModel;
+    if ([YUModel.allowSex isEqualToString:@"0"]) {
+        _joinedpro_label.text = @"只邀请女生";
+    }else if ([_YUModel.allowSex isEqualToString:@"1"]){
+        _joinedpro_label.text = @"只邀请男生";
+    }else{
+        _joinedpro_label.text = @"邀请所有人";
+    }
 }
 
 @end

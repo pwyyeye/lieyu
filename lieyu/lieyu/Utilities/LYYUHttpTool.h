@@ -27,4 +27,7 @@
 + (void)YUDeleteWishWithParams:(NSDictionary *)params complete:(void(^)(BOOL result))complete;
 //举报愿望
 + (void)YUReportWishComplete:(void(^)(BOOL result))complete;
+//回复愿望
++ (void)yuReplyWishCompleteWithParams:(NSDictionary *)params complete:(void (^)(BOOL))complete;
+
 @end

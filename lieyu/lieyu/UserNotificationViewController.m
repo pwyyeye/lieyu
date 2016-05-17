@@ -134,9 +134,9 @@
     MineUserNotification *userNotificationM = _dataArray[sch.tag];
     NSString *typeStr = userNotificationM.type;
     NSDictionary *dic = nil;
-    if (sch.on) {//关闭通知
+    if (sch.on) {//要去开启通知
         dic = @{@"type":typeStr,@"on":@"1"};
-    }else{//开启通知
+    }else{//要去关闭通知
         dic = @{@"type":typeStr,@"on":@"0"};
     }
     [LYUserHttpTool changeUserNotificationWithPara:dic compelte:^(bool result) {

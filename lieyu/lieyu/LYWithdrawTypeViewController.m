@@ -21,10 +21,6 @@
 @end
 
 @implementation LYWithdrawTypeViewController
-- (void)loadView{
-    [super loadView];
-}
-
 
 - (void)viewDidLoad{
     [super viewDidLoad];
@@ -34,6 +30,7 @@
     _poundageLabel.hidden = YES;
 }
 
+#pragma mark - 初始化界面
 - (void)initAllPropertites{
     self.title = @"提现操作";
     [self.navigationController setNavigationBarHidden:NO animated:YES];
@@ -73,6 +70,7 @@
     }
 }
 
+#pragma mark - 手续费
 - (void)showPoundage{
     self.poundageLabel.hidden = NO;
     self.shouxuLabel.hidden = NO;
@@ -97,6 +95,7 @@
     self.poundageLabel.hidden = YES;
 }
 
+#pragma mark - 监听textView
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     NSArray *array = [_textview.text componentsSeparatedByString:@"."];
     NSString *string1 = [array objectAtIndex:0];
@@ -125,36 +124,6 @@
     return YES;
 }
 
-//钱包管理[编辑]
-//【0001】managerAccountAction.do?action=add (已可用)申请提现[编辑]
-//{
-//    "isToday":"是否当日提现 0－今天 ，1-明天",
-//    "amountStr":"提现金额"
-//}
-
-- (void)withdrawClick{
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    NSDictionary *dict = @{@"isToday":[NSString stringWithFormat:@"%d",isTody],
-                           @"amountStr":[MyUtil encryptUseDES:_textview.text withKey:app.desKey]};
-    [[ZSManageHttpTool shareInstance]applicationWithdrawWithParams:dict complete:^(NSString *message) {
-        [MyUtil showLikePlaceMessage:message];
-        [self.navigationController popViewControllerAnimated:YES];
-    }];
-}
-
-- (void)chooseWithdrawTime:(UIButton *)button{
-    for (UIButton *btn in self.chooseButtons) {
-        if (btn.tag == button.tag) {
-            isTody = (int)btn.tag - 1;
-            btn.selected = YES;
-            [_introduceLbl setText:[introArray objectAtIndex:btn.tag - 1]];
-        }else{
-            btn.selected = NO;
-        }
-    }
-    [self textFieldDidEndEditing:_textview];
-}
-
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     [textField resignFirstResponder];
     NSString *fieldText = textField.text;
@@ -163,21 +132,21 @@
         if(array.count > 2){
             [self.withdrawBtn setBackgroundColor:RGBA(153, 153, 153, 1)];
             [self.withdrawBtn setEnabled:NO];
-//            [MyUtil showLikePlaceMessage:@"请输入正确金额！"];
-//            dispatch_async(dispatch_get_main_queue(), ^{
-                [MyUtil showCleanMessage:@"请输入正确金额！"];
+            //            [MyUtil showLikePlaceMessage:@"请输入正确金额！"];
+            //            dispatch_async(dispatch_get_main_queue(), ^{
+            [MyUtil showCleanMessage:@"请输入正确金额！"];
             [self hidePoundage];
-//            });
+            //            });
         }else if(array.count == 2){
             NSString *string = [array objectAtIndex:1];
             if (string.length > 2) {
                 [self.withdrawBtn setBackgroundColor:RGBA(153, 153, 153, 1)];
                 [self.withdrawBtn setEnabled:NO];
-//                [MyUtil showLikePlaceMessage:@"请输入正确金额！"];
-//                dispatch_async(dispatch_get_main_queue(), ^{
-                    [MyUtil showCleanMessage:@"请输入正确金额！"];
+                //                [MyUtil showLikePlaceMessage:@"请输入正确金额！"];
+                //                dispatch_async(dispatch_get_main_queue(), ^{
+                [MyUtil showCleanMessage:@"请输入正确金额！"];
                 [self hidePoundage];
-//                });
+                //                });
             }else{
                 if([fieldText doubleValue] < 2 && !isTody){
                     [self.withdrawBtn setBackgroundColor:RGBA(153, 153, 153, 1)];
@@ -206,12 +175,43 @@
     }else{
         [self.withdrawBtn setBackgroundColor:RGBA(153, 153, 153, 1)];
         [self.withdrawBtn setEnabled:NO];
-//        [MyUtil showLikePlaceMessage:@"请输入正确金额！"];
-//        dispatch_async(dispatch_get_main_queue(), ^{
+        //        [MyUtil showLikePlaceMessage:@"请输入正确金额！"];
+        //        dispatch_async(dispatch_get_main_queue(), ^{
         [self hidePoundage];
-            [MyUtil showCleanMessage:@"提现金额不可多于账户余额！"];
-//        });
+        [MyUtil showCleanMessage:@"提现金额不可多于账户余额！"];
+        //        });
     }
+}
+//钱包管理[编辑]
+//【0001】managerAccountAction.do?action=add (已可用)申请提现[编辑]
+//{
+//    "isToday":"是否当日提现 0－今天 ，1-明天",
+//    "amountStr":"提现金额"
+//}
+
+#pragma mark - 点击提现
+- (void)withdrawClick{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    NSDictionary *dict = @{@"isToday":[NSString stringWithFormat:@"%d",isTody],
+                           @"amountStr":[MyUtil encryptUseDES:_textview.text withKey:app.desKey]};
+    [[ZSManageHttpTool shareInstance]applicationWithdrawWithParams:dict complete:^(NSString *message) {
+        [MyUtil showLikePlaceMessage:message];
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+}
+
+#pragma mark - 选择提现时间
+- (void)chooseWithdrawTime:(UIButton *)button{
+    for (UIButton *btn in self.chooseButtons) {
+        if (btn.tag == button.tag) {
+            isTody = (int)btn.tag - 1;
+            btn.selected = YES;
+            [_introduceLbl setText:[introArray objectAtIndex:btn.tag - 1]];
+        }else{
+            btn.selected = NO;
+        }
+    }
+    [self textFieldDidEndEditing:_textview];
 }
 
 - (void)didReceiveMemoryWarning {

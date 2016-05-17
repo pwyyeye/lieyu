@@ -20,7 +20,6 @@
 #import "YUPinkerListModel.h"
 #import "LYMyOrderManageViewController.h"
 #import "ChoosePayController.h"
-#import "LYFriendsToUserMessageViewController.h"
 #import "DetailView.h"
 #import "preview.h"
 #import "UMSocial.h"
@@ -85,6 +84,7 @@
     self.navigationController.navigationBarHidden=NO;
 }
 
+#pragma mark - 获取数据
 - (void)getData{
     if (_YUModel!=nil&&_YUid==nil) {
         _YUid=_YUModel.id;
@@ -102,6 +102,7 @@
     }];
 }
 
+#pragma mark - 右侧按钮
 - (void)configureRightItem{
     UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
     [button setImage:[UIImage imageNamed:@"share_black"] forState:UIControlStateNormal];
@@ -111,6 +112,7 @@
     self.navigationItem.rightBarButtonItem = item;
 }
 
+#pragma mark - 分享组局
 - (void)shareZuju{
     NSDictionary *dict = @{@"actionName":@"确定",@"pageName":@"活动详情",@"titleName":@"分享"};
     [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
@@ -137,7 +139,7 @@
     }
 }
 
-//计算剩余参与人数
+#pragma mark - 计算剩余参与人数
 - (void)configureStore{
     int num = 0;
     for (int i = 0 ; i < orderInfo.pinkerList.count; i ++) {
@@ -151,7 +153,7 @@
     }
 }
 
-//判断拼客形成
+#pragma mark - 判断拼客形成
 - (void)configurePinkeStatus{
     if(![orderInfo.orderStatus isEqualToString:@"0"]){
         self.joinBtn.enabled = NO;
@@ -180,6 +182,7 @@
     }
 }
 
+#pragma mark - 注册cell
 - (void)registerCell{
     [self.tableView registerNib:[UINib nibWithNibName:@"HeaderTableViewCell" bundle:nil] forCellReuseIdentifier:@"HeaderTableViewCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"LYDinWeiTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYDinWeiTableViewCell"];
@@ -187,6 +190,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"JoinedTableViewCell" bundle:nil] forCellReuseIdentifier:@"JoinedTableViewCell"];
 }
 
+#pragma mark - tableView的代理事件
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if(_YUModel){
         return 5;
@@ -202,11 +206,17 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         _headerCell = [tableView dequeueReusableCellWithIdentifier:@"HeaderTableViewCell" forIndexPath:indexPath];
-        [_headerCell.avatar_image sd_setImageWithURL:[NSURL URLWithString:orderInfo.avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
-        _headerCell.name_label.text = orderInfo.username;
         [_headerCell.avatar_button addTarget:self action:@selector(CheckMyMessage) forControlEvents:UIControlEventTouchUpInside];
-        _headerCell.viewNumber_label.text = @"";
-        _headerCell.title_label.text = _YUModel.shareContent;
+        if (_YUModel) {
+            [_headerCell setYUShare:_YUModel];
+        }
+        if (orderInfo) {
+            [_headerCell setOrderInfo:orderInfo];
+        }
+//        [_headerCell.avatar_image sd_setImageWithURL:[NSURL URLWithString:orderInfo.avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+//        _headerCell.name_label.text = orderInfo.username;
+//        _headerCell.viewNumber_label.text = @"";
+//        _headerCell.title_label.text = _YUModel.shareContent;
         _headerCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return _headerCell;
     }else if (indexPath.section == 1){
@@ -217,48 +227,25 @@
         return _LYdwCell;
     }else if(indexPath.section == 2){
         _HDDetailCell = [tableView dequeueReusableCellWithIdentifier:@"HDDetailTableViewCell" forIndexPath:indexPath];
-        
-        NSArray *reachTimeArray1 = [orderInfo.reachtime componentsSeparatedByString:@" "];
-        if (reachTimeArray1.count == 2) {
-            NSArray *reachTimeArray2 = [reachTimeArray1[0] componentsSeparatedByString:@"-"];
-            NSArray *reachTimeArray3 = [reachTimeArray1[1] componentsSeparatedByString:@":"];
-            if (reachTimeArray2.count == 3 && reachTimeArray3.count == 3) {
-                NSString *timeStr = [NSString stringWithFormat:@"%@-%@ (%@) %@:%@",reachTimeArray2[1],reachTimeArray2[2],[MyUtil weekdayStringFromDate:orderInfo.reachtime],reachTimeArray3[0],reachTimeArray3[1]];
-                _HDDetailCell.startTime_label.text = timeStr;
-            }
-        }
-        _HDDetailCell.residue_label.text = [MyUtil residueTimeFromDate:orderInfo.reachtime];
-        _HDDetailCell.joinedNumber_label.text = [NSString stringWithFormat:@"参加人数(%d/%d)",orderInfo.pinkerCount,[orderInfo.allnum intValue]];
-        if ([_YUModel.allowSex isEqualToString:@"0"]) {
-            _HDDetailCell.joinedpro_label.text = @"只邀请女生";
-        }else if ([_YUModel.allowSex isEqualToString:@"1"]){
-            _HDDetailCell.joinedpro_label.text = @"只邀请男生";
-        }else{
-            _HDDetailCell.joinedpro_label.text = @"邀请所有人";
-        }
-        
+        _HDDetailCell.YUModel = _YUModel;
+        _HDDetailCell.orderInfo = orderInfo;
         
         double payamout;
         if ([orderInfo.pinkerType isEqualToString:@"0"]) {
             //发起人请客
             payamout = 0 ;
-            _HDDetailCell.label_priceWay.text = @"发起人请客";
         }else if([orderInfo.pinkerType isEqualToString:@"1"]){
             //AA付款
             payamout = orderInfo.amountPay.doubleValue / [orderInfo.allnum intValue];
-                        _HDDetailCell.label_priceWay.text = @"AA付款";
         }else if ([orderInfo.pinkerType isEqualToString:@"2"]){
             //发起人自由付款，其他人AA
             NSLog(@"amountPay:%f",orderInfo.amountPay.doubleValue - 0.01);
              payamout = (orderInfo.amountPay.doubleValue - 0.01) / ([orderInfo.allnum intValue] - 1);
-                        _HDDetailCell.label_priceWay.text = @"AA付款";
         }
 
         NSString *payStr = [NSString stringWithFormat:@"¥%.2f",payamout];
         _HDDetailCell.label_prieceWayRight.text = payStr;
         
-        _HDDetailCell.address_label.text = orderInfo.barinfo.address;
-        _HDDetailCell.barName_label.text = orderInfo.barinfo.barname;
         [_HDDetailCell.checkAddress_button addTarget:self action:@selector(checkAddress) forControlEvents:UIControlEventTouchUpInside];
         [_HDDetailCell.checkBar_button addTarget:self action:@selector(checkBar) forControlEvents:UIControlEventTouchUpInside];
         _HDDetailCell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -413,23 +400,8 @@
                         break;
                     }
                 }
-                
-//                payamout = (allMoney - 0.01) / ([orderInfo.allnum intValue] - 1);
-//                payamout = payamout * [_chooseNumber.numberField.text intValue];
             }
         }
-//        NSString *string = [NSString stringWithFormat:@"%f",payamout];
-//        NSRange range = [string rangeOfString:@"."];
-//        int location = (int)range.location;
-//        location = location + 3;
-//        NSString *string2 = [string substringToIndex:location];
-        
-        
-//        NSArray *array = [string componentsSeparatedByString:@"."];
-//        NSMutableString *string1 = array[0] ;
-//        [string1 stringByAppendingString:@"."];
-//        [string1 stringByAppendingString:[array[1] substringToIndex:2]];
-        
         NSDictionary *dic = @{@"id":[NSString stringWithFormat:@"%@",_YUModel.orderInfo.id],
                               @"payamount":[NSString stringWithFormat:@"%.2f",payamout],
                               @"allnum":_chooseNumber.numberField.text};
@@ -456,44 +428,10 @@
             }
         }];
     }
-    
-//    [[LYHomePageHttpTool shareInstance]inTogetherOrderInWithParams:@{@"id":[NSString stringWithFormat:@"%@",_YUModel.orderInfo.pinkerinfo.id],@"payamount":pinKeModel.pinkerNeedPayAmount} complete:^(NSString *result) {
-//        if(result){
-//            //支付宝页面"data": "P130637201510181610220",
-//            //result的值就是P130637201510181610220
-//            if (pinKeModel.pinkerNeedPayAmount.doubleValue==0.0) {
-//                UIViewController *detailViewController;
-//                
-//                detailViewController  = [[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
-//                
-//                [self.navigationController pushViewController:detailViewController animated:YES];
-//                
-//            }else{
-//                ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
-//                detailViewController.orderNo=result;
-//                detailViewController.payAmount=pinKeModel.pinkerNeedPayAmount.doubleValue;
-//                detailViewController.productName=pinKeModel.fullname;
-//                detailViewController.productDescription=@"暂无";
-//                UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
-//                self.navigationItem.backBarButtonItem = left;
-//                [self.navigationController pushViewController:detailViewController animated:YES];
-//            }
-//            
-//        }
-//    }];
 }
 
 #pragma mark - 计算还需要多少钱
 - (void)configureRestMoney{
-//    double money = 0.00;
-//    for (int i = 0 ; i < orderInfo.pinkerList.count; i ++) {
-//        listModel = [orderInfo.pinkerList objectAtIndex:i];
-////        num = num + [listModel.price floatValue];;
-//        NSDecimalNumber *num = [NSDecimalNumber decimalNumberWithString:listModel.price];
-//        NSLog(@"%f",[num doubleValue]);
-//        money = money + [num doubleValue];
-//    }
-//    allMoney = allMoney - money;
     NSDecimalNumber *money = [NSDecimalNumber decimalNumberWithString:@"0"];
     for (int i = 0 ; i < orderInfo.pinkerList.count ; i ++) {
         listModel = [orderInfo.pinkerList objectAtIndex:i];
@@ -535,9 +473,6 @@
 
 
 - (void)HDDetailJumpToFriendDetail:(NSString *)friendId{
-//    LYFriendsToUserMessageViewController *messageVC = [[LYFriendsToUserMessageViewController alloc]init];
-//    messageVC.friendsId = friendId;
-//    [self.navigationController pushViewController:messageVC animated:YES];
     
     LYMyFriendDetailViewController *myFriendDetailVC = [[LYMyFriendDetailViewController alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
     myFriendDetailVC.userID = friendId;
@@ -552,9 +487,6 @@
     
     DetailView *detailView = [[[NSBundle mainBundle]loadNibNamed:@"DetailView" owner:nil options:nil]firstObject];
     detailView.frame = CGRectMake(8, 64, SCREEN_WIDTH - 16, 268 + SCREEN_WIDTH / 3);
-//    detailView.center = CGPointMake(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
-//    RecommendPackageModel *model = [jiubaModel.recommend_package objectAtIndex:sender.tag];
-//    detailView.packModel = model;
     detailView.delegate = self;
     NSDictionary *dic=@{@"smid":pinkeModel.id};
     [[LYHomePageHttpTool shareInstance]getWoYaoDinWeiTaoCanDetailWithParams:dic block:^(TaoCanModel *result) {
@@ -582,8 +514,6 @@
     [_subView addGestureRecognizer:tap];
     _subView.image = image;
     [_subView viewConfigure];
-    //    _subView.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    //    _subView.imageView.center = _subView.center;
     UIWindow *window = [UIApplication sharedApplication].delegate.window;
     [window addSubview:_subView];
     

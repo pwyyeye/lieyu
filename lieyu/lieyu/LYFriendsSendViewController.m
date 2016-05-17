@@ -607,10 +607,6 @@
     imagePicker.imagesCount = self.pageCount;
     imagePicker.delegate = self;
     [self.navigationController pushViewController:imagePicker animated:YES];
-    
-//    YBImgPickerViewController *ybImagePicker = [[YBImgPickerViewController alloc]init];
-//    ybImagePicker.photoCount = self.pageCount;
-//    [ybImagePicker showInViewContrller:self choosenNum:0 delegate:self];
 }
 
 - (void)takePhotoActionClick{
@@ -776,7 +772,7 @@
 - (void)video:(NSString *)videoPath didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
     if (error) {
         //进行提示
-        NSLog(@"保存视频过程中发生错误，错误信息:%@",error.localizedDescription);
+//        NSLog(@"保存视频过程中发生错误，错误信息:%@",error.localizedDescription);
     }else{
         //        NSLog(@"视频保存成功.");
         self.mediaUrl = [[NSMutableString alloc]initWithString:videoPath];
@@ -818,7 +814,7 @@
         if(_notFirstOpen){
 //            _subView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
         }
-        NSLog(@"%@",NSStringFromCGRect(_subView.frame));
+//        NSLog(@"%@",NSStringFromCGRect(_subView.frame));
         _player.view.frame = CGRectMake(0, (SCREEN_HEIGHT - SCREEN_WIDTH) / 2, SCREEN_WIDTH, SCREEN_WIDTH);
         _player.controlStyle =MPMovieControlStyleEmbedded;// MPMovieControlStyleFullscreen;
         _player.shouldAutoplay = YES;
@@ -841,13 +837,13 @@
 //    self.subView.frame = CGRectMake(0, -64, SCREEN_WIDTH, SCREEN_HEIGHT);
     
     _notFirstOpen = YES;
-    NSLog(@"%@",NSStringFromCGRect(_subView.frame));
+//    NSLog(@"%@",NSStringFromCGRect(_subView.frame));
 }
 
 - (void)willexitfull{
     self.subView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 //    self.subView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    NSLog(@"%@",NSStringFromCGRect(self.subView.frame));
+//    NSLog(@"%@",NSStringFromCGRect(self.subView.frame));
 }
 
 #pragma mark imageSelectClick:图片取消选择或重新选择
@@ -865,10 +861,10 @@
 - (void)hideSubView:(UITapGestureRecognizer *)sender{
     [self.navigationController.navigationBar setHidden:NO];
     
-    NSLog(@"----pass-1>%@ ---",NSStringFromCGRect(self.view.frame));
+//    NSLog(@"----pass-1>%@ ---",NSStringFromCGRect(self.view.frame));
     self.view.frame=CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 64);
     if(_subView.button.selected == NO){
-        NSLog(@"delete %d picture",(int)_subView.tag);
+//        NSLog(@"delete %d picture",(int)_subView.tag);
         [self.fodderArray removeObjectAtIndex:_subView.tag - 1];
         if(_isVedio){
             self.pageCount = 3;

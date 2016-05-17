@@ -13,8 +13,15 @@
 #import "IQKeyboardManager.h"
 #import "LYActivitySendViewController.h"
 #import "LYFindConversationViewController.h"
+#import "UMSocialData.h"
+#import "UMSocialSnsService.h"
+#import "UMSocial.h"
+#import "LYUserHttpTool.h"
+#import "MineUserNotification.h"
+#import "LYFindConversationViewController.h"
+#import "LYWishReplayViewController.h"
 
-@interface LYYuAllWishesViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIAlertViewDelegate,LYActivitySendViewControllerDelegate>
+@interface LYYuAllWishesViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIAlertViewDelegate,LYActivitySendViewControllerDelegate,WishReplayDelegate>
 {
     int start;
     int limit;
@@ -29,6 +36,7 @@
     UILabel *_myTitle;
     UIButton *_rightButton;
     UILabel *_pointLabel;
+    UIButton *_ringButton;
     
     BOOL start0;//测试
     
@@ -41,6 +49,8 @@
     UIView *grayBackground;
     UIImageView *tipImageview;
     UIButton *tryButton;
+    
+    int replySelection;//选择要回复的愿望
 }
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataList;
@@ -53,6 +63,7 @@
     [self.navigationController.navigationBar addSubview:_myTitle];
     if (_type == 0) {
         [self.navigationController.navigationBar addSubview:_rightButton];
+        [self.navigationController.navigationBar addSubview:_ringButton];
         if (detailViewController.isChanged == YES) {
             [self refreshData];
             detailViewController.isChanged = NO;
@@ -73,6 +84,7 @@
 //    if(_type == 0){
         [_myTitle removeFromSuperview];
         [_rightButton removeFromSuperview];
+    [_ringButton removeFromSuperview];
 //    }
     [effectView removeFromSuperview];
 }
@@ -104,6 +116,7 @@
     [self refreshData];
 }
 
+#pragma mark - 页面布局
 - (void)initTitle{
     _myTitle= [[UILabel alloc] initWithFrame: CGRectMake(0, 0, SCREEN_WIDTH, 44)];
     _myTitle.backgroundColor = [UIColor clearColor];
@@ -117,6 +130,7 @@
     }
 }
 
+#pragma mark - 右侧按钮－进入我的愿望页面
 - (void)initRightButton{
     _rightButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 50, 0, 40, 44)];
     [_rightButton setTitle:@"我的" forState:UIControlStateNormal];
@@ -130,8 +144,13 @@
     [_pointLabel setBackgroundColor:[UIColor redColor]];
     [_rightButton addSubview:_pointLabel];
     _pointLabel.hidden = YES;
+    
+    _ringButton = [[UIButton alloc]initWithFrame:CGRectMake(10, 0, 60, 44)];
+    [_ringButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
+    [_ringButton addTarget:self action:@selector(ChooseNotification:) forControlEvents:UIControlEventTouchUpInside];
 }
 
+#pragma mark - 发送愿望按钮
 - (void)initReleaseWishButton{
     //26-47
     UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
@@ -170,6 +189,7 @@
     }];
 }
 
+#pragma mark - scrollView代理方法，上拖消失，下拉出现
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 //    NSLog(@"scrollView.contentOffset.y:%f",scrollView.contentOffset.y);
     if (scrollView.contentOffset.y > _oldScrollOffectY) {
@@ -217,6 +237,7 @@
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
+#pragma mark - registerCells
 - (void)registerCells{
     [self.tableView registerNib:[UINib nibWithNibName:@"LYYuWishesListTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYYuWishesListTableViewCell"];
 }
@@ -323,8 +344,19 @@
             
         }
     }];
+    if (_type == 0) {//想玩主界面
+        [LYUserHttpTool getUserNotificationWithPara:nil compelte:^(NSArray *dataArray) {
+            for (MineUserNotification *model in dataArray) {
+                if ([model.typeName isEqualToString:@"发布需求"] &&
+                    [model.type isEqualToString:@"15"]) {
+                    [self initLeftItemWithTag:model.on];
+                }
+            }
+        }];
+    }
 }
 
+#pragma mark - 空界面
 - (void)initKongView{
     if(!kongLabel){
         kongLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT / 2 - 50, SCREEN_WIDTH, 20)];
@@ -339,6 +371,65 @@
 
 - (void)hideKongView{
     [kongLabel removeFromSuperview];
+}
+
+#pragma mark - 左侧按钮
+- (void)initLeftItemWithTag:(NSString *)tagIndex{
+    if(_type == 0){
+//        _ringButton = [[UIButton alloc]initWithFrame:CGRectMake(10, 0, 60, 44)];
+//        [_ringButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
+//        [_ringButton addTarget:self action:@selector(ChooseNotification:) forControlEvents:UIControlEventTouchUpInside];
+        if ([tagIndex isEqualToString:@"1"]) {//开着通知，显示静音模式
+            [_ringButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+            [_ringButton setTitle:@"静音模式" forState:UIControlStateNormal];
+            _ringButton.tag = 7154 ;
+        }else if([tagIndex isEqualToString:@"0"]){
+            [_ringButton setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal];
+            [_ringButton setTitle:@"收听模式" forState:UIControlStateNormal];
+            _ringButton.tag = 3754 ;
+        }
+    }
+}
+
+- (void)ChooseNotification:(UIButton *)button{
+//    __weak __typeof(self)weakSelf = self;
+    if(button.tag == 3754){
+        AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"收听模式" message:@"您将收取到更多好友的想玩即时通知" cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex) {
+            if (buttonIndex == 0) {
+                
+            }else if (buttonIndex == 1){//要去开启
+                NSDictionary *dict = @{@"type":@"15",
+                                       @"on":@"1"};
+                [LYUserHttpTool changeUserNotificationWithPara:dict compelte:^(bool result) {
+                    if (result) {//成功修改
+//                        UIButton *button = [weakSelf.view viewWithTag:3754];
+                        [_ringButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+                        [_ringButton setTitle:@"静音模式" forState:UIControlStateNormal];
+                        _ringButton.tag = 7154 ;
+                    }
+                }];
+            }
+        }];
+        [alert show];
+    }else if (button.tag == 7154){
+        AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"静音模式" message:@"您将收取不到所有好友的想玩通知" cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex) {
+            if (buttonIndex == 0) {
+                
+            }else if(buttonIndex == 1){
+                NSDictionary *dict = @{@"type":@"15",
+                                       @"on":@"0"};
+                [LYUserHttpTool changeUserNotificationWithPara:dict compelte:^(bool result) {
+                    if (result) {
+//                        UIButton *button = [weakSelf.view viewWithTag:7154];
+                        [_ringButton setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal];
+                        [_ringButton setTitle:@"收听模式" forState:UIControlStateNormal];
+                        _ringButton.tag = 3754 ;
+                    }
+                }];
+            }
+        }];
+        [alert show];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -364,6 +455,8 @@
     cell.avatarButton.tag = indexPath.section;
     [cell.avatarButton addTarget:self action:@selector(avatarClick:) forControlEvents:UIControlEventTouchUpInside];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.replyButton.tag = indexPath.section;
+    [cell.replyButton addTarget:self action:@selector(delegateReplayWish:) forControlEvents:UIControlEventTouchUpInside];
     cell.reportButton.tag = indexPath.section;
     [cell.reportButton addTarget:self action:@selector(reportWishes:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
@@ -476,10 +569,8 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 0) {
-//        NSLog(@"取消");
         [self.tableView reloadData];
     }else if(buttonIndex == 1){
-//        NSLog(@"删除");
         YUWishesModel *model = (YUWishesModel *)[_dataList objectAtIndex:deleteSection];
         NSDictionary *dict = @{@"id":[NSNumber numberWithInt:model.id]};
         [LYYUHttpTool YUDeleteWishWithParams:dict complete:^(BOOL result) {
@@ -500,6 +591,7 @@
     }
 }
 
+#pragma mark - 代理方法
 - (void)deleteUnFinishedNumber{
     if (_type == 0) {
         unFinishedNumber -- ;
@@ -514,6 +606,37 @@
     }
 }
 
+- (void)delegateShareWish:(YUWishesModel *)model{
+//    NSLog(@"model:---%@",model);
+    NSString *content = [NSString stringWithFormat:@"Q:%@\nA:%@\nhttp://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653",model.desc,model.replyContent];
+    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = @"http://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653";
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = @"http://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653";
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:content shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.userModel.avatar_img]]] shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
+}
+
+- (void)delegateReplayWish:(UIButton *)button{
+    replySelection = (int)button.tag;
+    if (self.dataList.count > replySelection) {
+        YUWishesModel *model = [self.dataList objectAtIndex:button.tag];
+        LYWishReplayViewController *replayViweController = [[LYWishReplayViewController alloc]initWithNibName:@"LYWishReplayViewController" bundle:nil];
+        replayViweController.delegate = self;
+        replayViweController.model = model;
+        [self.navigationController pushViewController:replayViweController animated:YES];
+    }
+}
+
+- (void)delegateReply:(YUWishesModel *)model{
+    if (self.dataList.count > replySelection) {
+        YUWishesModel *YUmodel = [self.dataList objectAtIndex:replySelection];
+        YUmodel.replyContent = model.replyContent;
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:replySelection];
+        NSArray *array = [[NSArray alloc]initWithObjects:indexPath, nil];
+        [self.tableView reloadRowsAtIndexPaths:array withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+}
+
+#pragma mark - 聊天
 - (void)communicateWithKEFU{
     RCPublicServiceChatViewController *conversationVC = [[RCPublicServiceChatViewController alloc]init];
     conversationVC.conversationType = ConversationType_APPSERVICE;
@@ -524,36 +647,57 @@
     [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
     
     // 把单聊视图控制器添加到导航栈。
-    UIButton *itemBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
-    itemBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 0);
-    [itemBtn setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
-    [itemBtn addTarget:self action:@selector(backForward) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:itemBtn];
-    conversationVC.navigationItem.leftBarButtonItem = item;
-    
+    conversationVC.navigationItem.leftBarButtonItem = [self getItem];
     [self.navigationController pushViewController:conversationVC animated:YES];
 }
 
 - (void)communicateWithFriend:(YUWishesModel *)model{
-    LYFindConversationViewController *conversationVC = [[LYFindConversationViewController alloc]init];
-    //    RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
-    conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
-    conversationVC.targetId = model.imUserId; // 接收者的 targetId，这里为举例。
-    conversationVC.title = model.releaseUserName; // 会话的 title。
     
-    [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
-    
-    [IQKeyboardManager sharedManager].enable = NO;
-    [IQKeyboardManager sharedManager].isAdd = YES;
-    // 把单聊视图控制器添加到导航栈。
+    if([model.isChatroom isEqualToString:@"1"]){//有聊天室
+        __weak __typeof(self) weakSelf = self;
+        [[RCIMClient sharedRCIMClient] joinExistChatRoom:[NSString stringWithFormat:@"%d",model.id] messageCount:-1 success:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                LYFindConversationViewController *chat =[[LYFindConversationViewController alloc]init];
+                chat.targetId                      = [NSString stringWithFormat:@"%d",model.id];
+                chat.conversationType              = ConversationType_CHATROOM;
+                chat.title                         = model.releaseUserName;
+                [weakSelf.navigationController pushViewController:chat animated:YES];
+                
+                [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
+                [IQKeyboardManager sharedManager].enable = NO;
+                [IQKeyboardManager sharedManager].isAdd = YES;
+                // 把单聊视图控制器添加到导航栈。
+                
+                chat.navigationItem.leftBarButtonItem = [self getItem];
+            });
+        } error:^(RCErrorCode status) {
+            NSLog(@"error");
+        }];
+
+    }else{//没有聊天室和个人聊天
+          LYFindConversationViewController *conversationVC = [[LYFindConversationViewController alloc]init];
+         //    RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
+         conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
+         conversationVC.targetId = model.imUserId; // 接收者的 targetId，这里为举例。
+         conversationVC.title = model.releaseUserName; // 会话的 title。
+         
+         [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
+         
+         [IQKeyboardManager sharedManager].enable = NO;
+         [IQKeyboardManager sharedManager].isAdd = YES;
+         // 把单聊视图控制器添加到导航栈。
+         conversationVC.navigationItem.leftBarButtonItem = [self getItem];
+         [self.navigationController pushViewController:conversationVC animated:YES];
+    }
+}
+
+- (UIBarButtonItem *)getItem{
     UIButton *itemBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
     itemBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 0);
     [itemBtn setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
     [itemBtn addTarget:self action:@selector(backForward) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:itemBtn];
-    conversationVC.navigationItem.leftBarButtonItem = item;
-    
-    [self.navigationController pushViewController:conversationVC animated:YES];
+    return item;
 }
 
 - (void)avatarClick:(UIButton *)button{
@@ -572,6 +716,7 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark - 发送过后代理
 - (void)activitySendViewControllerSendFinish{
     if (_type == 0) {
         [self refreshData];

@@ -347,7 +347,7 @@
     
     NSString *str = textField.text;
     str = [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    
+    //
     if (!str.length) {
         textField.text = @"预估";
         self.isMoneyOK = NO;

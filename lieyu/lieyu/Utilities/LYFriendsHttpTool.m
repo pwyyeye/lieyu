@@ -41,9 +41,9 @@
 }
 
 //获取指定用户的玩友圈动态
-+ (void)friendsGetUserInfoWithParams:(NSDictionary *)params compelte:(void (^)(FriendsUserInfoModel*, NSMutableArray *))compelte{
++ (void)friendsGetUserInfoWithParams:(NSDictionary *)params needLoading:(BOOL)need compelte:(void (^)(FriendsUserInfoModel*, NSMutableArray *))compelte{
         AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        [app startLoading];
+      if(need)  [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_User baseURL:LY_SERVER params:params success:^(id response) {
         NSDictionary *dictionary = response[@"data"];
         NSMutableArray *array = [[NSMutableArray alloc] initWithArray:[FriendsRecentModel mj_objectArrayWithKeyValuesArray:dictionary[@"moments"]]];
@@ -116,12 +116,15 @@
 
 //删除我的动态
 + (void)friendsDeleteMyMessageWithParams:(NSDictionary *)params compelte:(void (^)(bool))compelte{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_DeleteMyMessage baseURL:LY_SERVER params:params success:^(id response) {
 //        NSLog(@"------->%@",response[@"message"]);
         compelte(YES);
-        [MyUtil showCleanMessage:@"删除成功"];
+        [app stopLoading];
+//        [MyUtil showCleanMessage:@"删除成功"];
     }failure:^(NSError *err) {
-        
+         [app stopLoading];
     }];
 }
 
@@ -244,8 +247,6 @@
 
 #pragma mark - 根据话题ID获取玩友圈动态
 + (void)friendsGetFriendsTopicWithParams:(NSDictionary *)params complete:(void(^)(NSArray *))complete{
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_TopicMessage baseURL:LY_SERVER params:params success:^(id response) {
         NSString *errorCodeStr = response[@"errorcode"];
         if ([errorCodeStr isEqualToString:@"1"]) {
@@ -254,10 +255,8 @@
             NSArray *friendRecentArray = [FriendsRecentModel mj_objectArrayWithKeyValuesArray:dataArray];
             complete(friendRecentArray);
         }
-        [app stopLoading];
     } failure:^(NSError *err) {
         [MyUtil showLikePlaceMessage:@"获取失败，请检查网络"];
-        [app stopLoading];
     }];
 }
 

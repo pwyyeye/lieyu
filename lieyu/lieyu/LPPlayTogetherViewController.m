@@ -53,33 +53,6 @@
 @end
 
 @implementation LPPlayTogetherViewController
-//- (UIViewController *)childViewControllerForStatusBarStyle{
-//    UIViewController *statusview = [[UIViewController alloc]init];
-//    statusview.view.frame = CGRectMake(0, 0, 320, 20);
-//    statusview.view.backgroundColor = [UIColor purpleColor];
-//    return statusview;
-//}
-
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    if (scrollView.contentOffset.y > self.headerLbl.frame.size.height){
-//        [self.view bringSubviewToFront:self.headerBackground];
-//        [self.view addSubview:self.headerBackground];
-        self.headerLbl.hidden = NO;
-        self.headerShareBtn.hidden = NO;
-        self.headerBackBtn.hidden = NO;
-        self.headerLbl.layer.shadowColor = [[UIColor blackColor]CGColor];
-        self.headerLbl.layer.shadowOffset = CGSizeMake(0, 1);
-        self.headerLbl.layer.shadowOpacity = 0.8;
-        self.headerLbl.layer.shadowRadius = 2;
-//        self.headerLbl.hidden = NO;
-    }else{
-        self.headerLbl.hidden = YES;
-        self.headerBackBtn.hidden = YES;
-        self.headerShareBtn.hidden = YES;
-//        self.headerLbl.hidden = YES;
-    }
-}
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -143,6 +116,37 @@
     
 }
 
+#pragma mark - scrollView代理事件
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if (scrollView.contentOffset.y > self.headerLbl.frame.size.height){
+        //        [self.view bringSubviewToFront:self.headerBackground];
+        //        [self.view addSubview:self.headerBackground];
+        self.headerLbl.hidden = NO;
+        self.headerShareBtn.hidden = NO;
+        self.headerBackBtn.hidden = NO;
+        self.headerLbl.layer.shadowColor = [[UIColor blackColor]CGColor];
+        self.headerLbl.layer.shadowOffset = CGSizeMake(0, 1);
+        self.headerLbl.layer.shadowOpacity = 0.8;
+        self.headerLbl.layer.shadowRadius = 2;
+        //        self.headerLbl.hidden = NO;
+    }else{
+        self.headerLbl.hidden = YES;
+        self.headerBackBtn.hidden = YES;
+        self.headerShareBtn.hidden = YES;
+        //        self.headerLbl.hidden = YES;
+    }
+}
+
+#pragma mark - registerCells
+- (void)registerCells{
+    [self.tableView registerNib:[UINib nibWithNibName:@"BarInfoTableViewCell" bundle:nil] forCellReuseIdentifier:@"barInfo"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"TaocanTableViewCell" bundle:nil] forCellReuseIdentifier:@"taocan"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"AddressTableViewCell" bundle:nil] forCellReuseIdentifier:@"address"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"BitianTableViewCell" bundle:nil] forCellReuseIdentifier:@"biTian"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"ContentTableViewCell" bundle:nil] forCellReuseIdentifier:@"content"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"LiuchengTableViewCell" bundle:nil] forCellReuseIdentifier:@"liucheng"];
+}
+
 #pragma mark  回退按钮
 - (void)backForword{
     [USER_DEFAULT setObject:@"1" forKey:@"needCountIM"];
@@ -153,20 +157,6 @@
 //        if(controller isKindOfClass:[])
 //    }
 }
-
-//- (void)shareTaocan{
-//    NSLog(@"Share Success!");
-//}
-//
-//- (void)likeTaocan{
-//    NSLog(@"Like Success!");
-//}
-
-//- (void)addStatusView{
-//    UIView *status = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 20)];
-//    status.backgroundColor = [UIColor purpleColor];
-//    [self.view addSubview:status];
-//}
 
 #pragma mark  页面进来获取数据
 - (void)getdata{
@@ -222,10 +212,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.section == 0){
         _barinfoCell = [tableView dequeueReusableCellWithIdentifier:@"barInfo"];
-        if(!_barinfoCell){
-            [tableView registerNib:[UINib nibWithNibName:@"BarInfoTableViewCell" bundle:nil] forCellReuseIdentifier:@"barInfo"];
-            _barinfoCell = [tableView dequeueReusableCellWithIdentifier:@"barInfo"];
-        }
         if(self.pinKeModel){
             NSString * star_num ;
             if([self.pinKeModel.barinfo.star_num isEqualToString:@""]){
@@ -244,10 +230,6 @@
         return _barinfoCell;
     }else if(indexPath.section == 1){
         _taocanCell = [tableView dequeueReusableCellWithIdentifier:@"taocan"];
-        if(!_taocanCell){
-            [tableView registerNib:[UINib nibWithNibName:@"TaocanTableViewCell" bundle:nil] forCellReuseIdentifier:@"taocan"];
-            _taocanCell = [tableView dequeueReusableCellWithIdentifier:@"taocan"];
-        }
         if(self.pinKeModel){
             NSDictionary *dict = @{
                                    @"taocanInfo":self.pinKeModel.title,
@@ -261,10 +243,6 @@
         return _taocanCell;
     }else if(indexPath.section == 2){
         _addressCell = [tableView dequeueReusableCellWithIdentifier:@"address"];
-        if(!_addressCell){
-            [tableView registerNib:[UINib nibWithNibName:@"AddressTableViewCell" bundle:nil] forCellReuseIdentifier:@"address"];
-            _addressCell = [tableView dequeueReusableCellWithIdentifier:@"address"];
-        }
         if(self.pinKeModel){
             NSLog(@"%@",self.pinKeModel.barinfo.address);
             [_addressCell cellConfigure:self.pinKeModel.barinfo.address];
@@ -273,22 +251,14 @@
         return _addressCell;
     }else if(indexPath.section == 3){
         _biTianCell = [tableView dequeueReusableCellWithIdentifier:@"biTian"];
-        if(!_biTianCell){
-            [tableView registerNib:[UINib nibWithNibName:@"BitianTableViewCell" bundle:nil] forCellReuseIdentifier:@"biTian"];
-            _biTianCell = [tableView dequeueReusableCellWithIdentifier:@"biTian"];
-            _biTianCell.numTextField.delegate = self;
-            [_biTianCell.chooseTime addTarget:self action:@selector(chooseTimeForTaocan) forControlEvents:UIControlEventTouchUpInside];
-            [_biTianCell.chooseWay addTarget:self action:@selector(chooseWayForTaocan) forControlEvents:UIControlEventTouchUpInside];
-            [_biTianCell.addBtn addTarget:self action:@selector(addPeople) forControlEvents:UIControlEventTouchUpInside];
-            [_biTianCell.lessBtn addTarget:self action:@selector(lessPeople) forControlEvents:UIControlEventTouchUpInside];
-        }
+        _biTianCell.numTextField.delegate = self;
+        [_biTianCell.chooseTime addTarget:self action:@selector(chooseTimeForTaocan) forControlEvents:UIControlEventTouchUpInside];
+        [_biTianCell.chooseWay addTarget:self action:@selector(chooseWayForTaocan) forControlEvents:UIControlEventTouchUpInside];
+        [_biTianCell.addBtn addTarget:self action:@selector(addPeople) forControlEvents:UIControlEventTouchUpInside];
+        [_biTianCell.lessBtn addTarget:self action:@selector(lessPeople) forControlEvents:UIControlEventTouchUpInside];
         return _biTianCell;
     }else if(indexPath.section == 4){
         _contentCell = [tableView dequeueReusableCellWithIdentifier:@"content"];
-        if(!_contentCell){
-            [tableView registerNib:[UINib nibWithNibName:@"ContentTableViewCell" bundle:nil] forCellReuseIdentifier:@"content"];
-            _contentCell = [tableView dequeueReusableCellWithIdentifier:@"content"];
-        }
         if(self.pinKeModel){
             _contentCell.goodList = self.pinKeModel.goodsList;
             [_contentCell cellConfigure];
@@ -296,10 +266,6 @@
         return _contentCell;
     }else{
         _liuchengCell = [tableView dequeueReusableCellWithIdentifier:@"liucheng"];
-        if(!_liuchengCell){
-            [tableView registerNib:[UINib nibWithNibName:@"LiuchengTableViewCell" bundle:nil] forCellReuseIdentifier:@"liucheng"];
-            _liuchengCell = [tableView dequeueReusableCellWithIdentifier:@"liucheng"];
-        }
         return _liuchengCell;
     }
 }
@@ -346,18 +312,6 @@
         
     }
 }
-
-//#pragma mark  填写支付金额
-//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-//    if (buttonIndex == alertView.firstOtherButtonIndex) {
-//        if ([[alertView textFieldAtIndex:0].text intValue] < 100) {
-//            [CommonShow showMessage:@"对不起，发起人预付金额不可少于100元!"];
-//        }else{
-//            self.defaultIndex = 2;
-//            self.defaultPay = [[alertView textFieldAtIndex:0].text intValue];
-//        }
-//    }
-//}
 
 #pragma mark   选择消费时间
 - (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexWhenTime:(NSInteger)buttonIndex{
