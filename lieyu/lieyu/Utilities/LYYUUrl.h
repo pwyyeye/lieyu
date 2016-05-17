@@ -22,4 +22,5 @@
 #define LY_YU_JUBAO @"versionAction.do?action=list"
 
 #define LY_YU_CHATROOM_REMOVE @"friendAction.do?action=expand"
+#define LY_YU_REPLY @"lyRequireAction.do?action=save"
 #endif /* LYYUUrl_h */
