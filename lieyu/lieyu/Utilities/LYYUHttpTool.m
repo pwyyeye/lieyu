@@ -165,4 +165,26 @@
     }];
 }
 
+#pragma mark - 将用户踢出聊天室
++ (void)yuRemoveUserFromeChatRoomWith:(NSDictionary *)paraDic complete:(void (^)(BOOL))complete{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YU_CHATROOM_REMOVE baseURL:QINIU_SERVER params:paraDic success:^(id response) {
+        NSString *errorCode = response[@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            complete(YES);
+            [MyUtil showCleanMessage:@"移除成功"];
+        }else{
+            complete(NO);
+            [MyUtil showCleanMessage:@"移除失败"];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [MyUtil showCleanMessage:@"操作错误，请检查网络设置"];
+        [app stopLoading];
+    }];
+}
+
+
+
 @end

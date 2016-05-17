@@ -80,6 +80,7 @@
             [USER_DEFAULT removeObjectForKey:@"username"];
             [USER_DEFAULT removeObjectForKey:@"password"];
             [USER_DEFAULT removeObjectForKey:@"OPENIDSTR"];
+            [USER_DEFAULT removeObjectForKey:@"FriendUserBgImage"];
             
 //            AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
             
@@ -87,7 +88,7 @@
                 LPUserLoginViewController *login=[[LPUserLoginViewController alloc] initWithNibName:@"LPUserLoginViewController" bundle:nil];
                 [weakSelf.navigationController pushViewController:login animated:YES];
                 
-//            }
+//            
 
 //            [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToFirstViewController" object:nil];
 //             [weakSelf.navigationController popViewControllerAnimated:YES ];

@@ -9,5 +9,5 @@
 #import <RongIMKit/RongIMKit.h>
 
 @interface LYFindConversationViewController : RCConversationViewController
-@property (nonatomic,copy) NSString *userId;//用户id
+
 @end

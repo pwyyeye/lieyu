@@ -71,7 +71,8 @@
     [LYFriendsHttpTool friendsGetAMessageWithParams:dic compelte:^(FriendsRecentModel *recentM) {
         LYFriendsAMessageDetailViewController *friendDetailVC = [[LYFriendsAMessageDetailViewController alloc]init];
         friendDetailVC.recentM = recentM;
-        [weakSelf.navigationController pushViewController:friendDetailVC animated:YES];
+        friendDetailVC.isFriendToUserMessage = YES;
+        friendDetailVC.isMessageDetail = YES;[weakSelf.navigationController pushViewController:friendDetailVC animated:YES];
     }];
 }
 
