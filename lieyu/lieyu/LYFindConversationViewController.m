@@ -31,8 +31,8 @@
 - (void)didTapCellPortrait:(NSString *)userId{
 //    NSLog(@"------>%@",userId);
     
-    if(self.conversationType == ConversationType_CHATROOM){
     _userId_RM = userId;
+    if(self.conversationType == ConversationType_CHATROOM){
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSArray *managerUserIdArray = [app.userModel.manageUserids componentsSeparatedByString:@","];//管理员账号
     for (NSString *str in managerUserIdArray) {
@@ -46,7 +46,9 @@
             return ;
         }
     }
-    [self goToPerson];
+        [self goToPerson];
+    }else{
+        [self goToPerson];
     }
 }
 

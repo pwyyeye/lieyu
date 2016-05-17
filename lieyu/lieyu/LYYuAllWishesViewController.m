@@ -654,7 +654,7 @@
     
     if([model.isChatroom isEqualToString:@"1"]){//有聊天室
         __weak __typeof(self) weakSelf = self;
-        [[RCIMClient sharedRCIMClient] joinExistChatRoom:[NSString stringWithFormat:@"%d",model.id] messageCount:-1 success:^{
+        [[RCIMClient sharedRCIMClient] joinChatRoom:[NSString stringWithFormat:@"%d",model.id] messageCount:-1 success:^{
             dispatch_async(dispatch_get_main_queue(), ^{
                 LYFindConversationViewController *chat =[[LYFindConversationViewController alloc]init];
                 chat.targetId                      = [NSString stringWithFormat:@"%d",model.id];
@@ -675,10 +675,10 @@
                     [MyUtil showCleanMessage:@"已被踢出聊天室"];
                 });
             }else if(status == RC_CHATROOM_NOT_EXIST){
-//                dispatch_async(dispatch_get_main_queue(), ^{
+                dispatch_async(dispatch_get_main_queue(), ^{
 //                    [MyUtil showCleanMessage:@"聊天室不存在！"];
-//                });
-                 [self conversationWithPersonWith:model];
+                    [self conversationWithPersonWith:model];
+                });
             }
         }];
 
