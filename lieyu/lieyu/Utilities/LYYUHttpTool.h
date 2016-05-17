@@ -27,4 +27,7 @@
 + (void)YUDeleteWishWithParams:(NSDictionary *)params complete:(void(^)(BOOL result))complete;
 //举报愿望
 + (void)YUReportWishComplete:(void(^)(BOOL result))complete;
+
+//将用户踢出聊天室
++ (void)yuRemoveUserFromeChatRoomWith:(NSDictionary *)paraDic complete:(void (^)(BOOL))complete;
 @end

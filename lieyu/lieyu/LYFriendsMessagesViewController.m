@@ -578,26 +578,51 @@
     }
     
     if(_scrollViewForTableView != scrollView){
-    if (scrollView.contentOffset.y > _contentOffSetY) {
-        if (scrollView.contentOffset.y <= 0.f) {//发布按钮弹出
-            effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 120, 60, 60);
+        
+        if(_isTopic){//话题
+            if (scrollView.contentOffset.y > _contentOffSetY) {
+                if (scrollView.contentOffset.y <= 0.f) {//发布按钮弹出
+                    effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 130, 60, 60);
+                }else{
+                    [UIView animateWithDuration:0.4 animations:^{
+                        effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT, 60, 60);
+                    }];
+                }
+            }else{
+                if(CGRectGetMaxY(effectView.frame) > SCREEN_HEIGHT - 5){//发布按钮下移
+                    [UIView animateWithDuration:.4 animations:^{
+                        effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 133, 60, 60);
+                    }completion:^(BOOL finished) {
+                        [UIView animateWithDuration:0.2 animations:^{
+                            effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 130, 60, 60);
+                        }];
+                    }];
+                }
+            }
+
         }else{
-            [UIView animateWithDuration:0.4 animations:^{
-                effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT, 60, 60);
-            }];
-        }
-    }else{
-        if(CGRectGetMaxY(effectView.frame) > SCREEN_HEIGHT - 5){//发布按钮下移
-            [UIView animateWithDuration:.4 animations:^{
-                effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 123, 60, 60);
-            }completion:^(BOOL finished) {
-                [UIView animateWithDuration:0.2 animations:^{
+            if (scrollView.contentOffset.y > _contentOffSetY) {
+                if (scrollView.contentOffset.y <= 0.f) {//发布按钮弹出
                     effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 120, 60, 60);
-                }];
-            }];
+                }else{
+                    [UIView animateWithDuration:0.4 animations:^{
+                        effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT, 60, 60);
+                    }];
+                }
+            }else{
+                if(CGRectGetMaxY(effectView.frame) > SCREEN_HEIGHT - 5){//发布按钮下移
+                    [UIView animateWithDuration:.4 animations:^{
+                        effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 123, 60, 60);
+                    }completion:^(BOOL finished) {
+                        [UIView animateWithDuration:0.2 animations:^{
+                            effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 120, 60, 60);
+                        }];
+                    }];
+                }
+            }
+
         }
-    }
-    }else{
+        }else{
         if (!_index) {//玩友圈
             _friendsBtn.isFriendsMenuViewSelected = YES;
 //            _lineView.center = CGPointMake(_friendsBtn.center.x, _lineView.center.y);
@@ -700,8 +725,10 @@
                     nameCell.btn_delete.hidden = NO;
                     if([recentM.userId isEqualToString:_useridStr]) nameCell.btn_delete.hidden = YES;
                 }
+                
+            
             }
-            else nameCell.btn_delete.hidden = NO;
+//            else nameCell.btn_delete.hidden = NO;
             
             if([MyUtil isEmptyString:[NSString stringWithFormat:@"%@",recentM.id]]){
                 nameCell.btn_delete.enabled = NO;

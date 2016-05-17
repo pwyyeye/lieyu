@@ -20,4 +20,6 @@
 #define LY_YU_FINISH @"lyRequireAction.do?action=update"
 #define LY_YU_DELETE @"lyRequireAction.do?action=delete"
 #define LY_YU_JUBAO @"versionAction.do?action=list"
+
+#define LY_YU_CHATROOM_REMOVE @"friendAction.do?action=expand"
 #endif /* LYYUUrl_h */
