@@ -19,6 +19,8 @@
     _reLabel.layer.cornerRadius = 2;
     _reLabel.layer.masksToBounds = YES;
     _shareButton.hidden = YES;
+    _replyButton.hidden = YES;
+//    [_replyButton addTarget:self action:@selector(replayWish) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -32,6 +34,7 @@
     UserModel *userModel = ((AppDelegate *)[UIApplication sharedApplication].delegate).userModel;
     if (userModel.userid == _model.releaseUserid) {
         _reportButton.hidden = YES;
+        _replyButton.hidden = YES;
         if ([model.isfinishedStr isEqualToString:@"搞定"] || [model.isfinishedStr isEqualToString:@"扑街"]) {
             //非空，里面有字符串：搞定／扑街
             _shareButton.hidden = NO;
@@ -41,6 +44,19 @@
         }
     }else{
         _reportButton.hidden = NO;
+    }
+    NSArray *userIds = [userModel.manageUserids componentsSeparatedByString:@","];
+    for (NSString *userId in userIds) {
+        if ([userId isEqualToString:[NSString stringWithFormat:@"%d",userModel.userid]]) {
+            //如果是管理员
+            if ([model.isfinishedStr isEqualToString:@"搞定"] || [model.isfinishedStr isEqualToString:@"扑街"]) {
+                //非空，里面有字符串：搞定／扑街
+            }else{
+                _reportButton.hidden = YES;
+                _shareButton.hidden = YES;
+                _replyButton.hidden = NO;
+            }
+        }
     }
     CGRect themeRect = [_model.tagName boundingRectWithSize:CGSizeMake(MAXFLOAT, 16) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil];
     _themeWidth.constant = themeRect.size.width + 10;
@@ -111,6 +127,7 @@
             _unFinishButton.hidden = YES;
             _orLabel.hidden = YES;
             _shareButton.hidden = NO;
+            _replyButton.hidden = YES;
             [_shareButton addTarget:self action:@selector(delegateShare) forControlEvents:UIControlEventTouchUpInside];
             [_addressLabel setText:_model.address];
             if ([self.delegate respondsToSelector:@selector(deleteUnFinishedNumber)]) {
@@ -141,6 +158,7 @@
             _orLabel.hidden = YES;
             [_addressLabel setText:_model.address];
             _shareButton.hidden = NO;
+            _replyButton.hidden = YES;
             [_shareButton addTarget:self action:@selector(delegateShare) forControlEvents:UIControlEventTouchUpInside];
             if ([self.delegate respondsToSelector:@selector(deleteUnFinishedNumber)]) {
                 [self.delegate deleteUnFinishedNumber];
@@ -157,5 +175,11 @@
         [self.delegate delegateShareWish:_model];
     }
 }
+
+//- (void)replayWish{
+//    if([self.delegate respondsToSelector:@selector(delegateReplayWish:)]){
+//        [self.delegate delegateReplayWish:_model];
+//    }
+//}
 
 @end
