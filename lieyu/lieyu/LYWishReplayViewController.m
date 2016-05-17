@@ -26,7 +26,7 @@
     _questionLabel.text = _model.desc;
     _replayLabel.text = _model.replyContent;
     UIButton *sendBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 20)];
-    [sendBtn setTitle:@"发布" forState:UIControlStateNormal];
+    [sendBtn setTitle:@"确定" forState:UIControlStateNormal];
     sendBtn.titleLabel.font = [UIFont systemFontOfSize:15];
     [sendBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [sendBtn addTarget:self action:@selector(sendReply) forControlEvents:UIControlEventTouchUpInside];
