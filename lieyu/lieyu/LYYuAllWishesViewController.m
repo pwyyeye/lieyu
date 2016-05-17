@@ -660,7 +660,7 @@
                 LYFindConversationViewController *chat =[[LYFindConversationViewController alloc]init];
                 chat.targetId                      = [NSString stringWithFormat:@"%d",model.id];
                 chat.conversationType              = ConversationType_CHATROOM;
-                chat.title                         = model.releaseUserName;
+                chat.title                         = [NSString stringWithFormat:@"%@(群)",model.releaseUserName];
                 [weakSelf.navigationController pushViewController:chat animated:YES];
                 
                 [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
@@ -710,11 +710,11 @@
 
 - (void)avatarClick:(UIButton *)button{
     YUWishesModel *model = [_dataList objectAtIndex:button.tag];
-    if (model.releaseUserid == self.userModel.userid) {
-        [self communicateWithKEFU];
-    }else{
+//    if (model.releaseUserid == self.userModel.userid) {
+//        [self communicateWithKEFU];
+//    }else{
         [self communicateWithFriend:model];
-    }
+//    }
     
 }
 

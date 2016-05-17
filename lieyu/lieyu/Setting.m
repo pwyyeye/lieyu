@@ -88,7 +88,7 @@
                 LPUserLoginViewController *login=[[LPUserLoginViewController alloc] initWithNibName:@"LPUserLoginViewController" bundle:nil];
                 [weakSelf.navigationController pushViewController:login animated:YES];
                 
-//            }
+//            
 
 //            [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToFirstViewController" object:nil];
 //             [weakSelf.navigationController popViewControllerAnimated:YES ];
