@@ -480,7 +480,8 @@
             _headerView.ImageView_bg.image = [[UIImage alloc]initWithData:imageData];
         }else{
             if(imageData){
-                [_headerView.ImageView_bg sd_setImageWithURL:[NSURL URLWithString:_userBgImageUrl] placeholderImage:[[UIImage alloc]initWithData:imageData]];
+//                [_headerView.ImageView_bg sd_setImageWithURL:[NSURL URLWithString:_userBgImageUrl] placeholderImage:[[UIImage alloc]initWithData:imageData]];
+                [_headerView.ImageView_bg setImage:[UIImage imageWithData:imageData]];
             }else{
                 [_headerView.ImageView_bg sd_setImageWithURL:[NSURL URLWithString:_userBgImageUrl] placeholderImage:[UIImage imageNamed:@"friendPresentBG.jpg"]];
             }
