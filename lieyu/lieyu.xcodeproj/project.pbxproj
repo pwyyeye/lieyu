@@ -10971,7 +10971,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor/社会化分享/TencentOpenAPI",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7ffa5ecb-1b3f-4400-a675-1bfca8e7d17e";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -11021,7 +11021,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor/社会化分享/TencentOpenAPI",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7ffa5ecb-1b3f-4400-a675-1bfca8e7d17e";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
