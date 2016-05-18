@@ -15,6 +15,7 @@
 #import "ZSOrderViewController.h"
 #import "LYFriendsAMessageDetailViewController.h"
 #import "LYFriendsHttpTool.h"
+#import "MainTabbarViewController.h"
 
 @interface FindNotificationDetailViewController ()<UITableViewDelegate,UITableViewDataSource>{
     NSArray *_dataArray;
@@ -116,6 +117,16 @@
                 [MyUtil showCleanMessage:@"这条动态已被删除"];
             }
         }];
+        
+    }else if([_findNewList.type isEqualToString:@"15"]){
+        
+        AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"LYMain" bundle:[NSBundle mainBundle]];
+        UINavigationController *nav = (UINavigationController *)[storyBoard instantiateViewControllerWithIdentifier:@"LYNavigationController"];
+        app.navigationController = nav;
+        app.window.rootViewController = nav;
+        MainTabbarViewController *tabVC = (MainTabbarViewController *)nav.viewControllers.firstObject;
+        tabVC.selectedIndex = 1;
         
     }
 }
