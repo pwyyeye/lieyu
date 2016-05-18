@@ -726,8 +726,6 @@
                     nameCell.btn_delete.hidden = NO;
                     if([recentM.userId isEqualToString:_useridStr]) nameCell.btn_delete.hidden = YES;
                 }
-                
-            
             }
 //            else nameCell.btn_delete.hidden = NO;
             
@@ -1529,6 +1527,7 @@
     FriendsRecentModel *recentM = [[FriendsRecentModel alloc]init];
     recentM.attachType = [messageDic objectForKey:@"attachType"];
     recentM.username = app.userModel.username;
+    recentM.userId = [NSString stringWithFormat:@"%d",app.userModel.userid];
     recentM.usernick = app.userModel.usernick;
     recentM.avatar_img = app.userModel.avatar_img;
     NSDateFormatter *dateFmt = [[NSDateFormatter alloc]init];

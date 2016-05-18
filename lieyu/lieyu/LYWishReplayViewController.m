@@ -33,7 +33,7 @@
     
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:sendBtn];
     self.navigationItem.rightBarButtonItem = rightItem;
-}
+} 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
