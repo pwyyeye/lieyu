@@ -507,11 +507,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     YUWishesModel *model = [_dataList objectAtIndex:indexPath.section];
-    if (model.releaseUserid == self.userModel.userid) {
-        [self communicateWithKEFU];
-    }else{
+
+    
         [self communicateWithFriend:model];
-    }
+    
 }
 
 #pragma mark - 重写返回方法
@@ -655,7 +654,7 @@
     
     if([model.isChatroom isEqualToString:@"1"]){//有聊天室
         __weak __typeof(self) weakSelf = self;
-        [[RCIMClient sharedRCIMClient] joinExistChatRoom:[NSString stringWithFormat:@"%d",model.id] messageCount:-1 success:^{
+        [[RCIMClient sharedRCIMClient] joinChatRoom:[NSString stringWithFormat:@"%d",model.id] messageCount:-1 success:^{
             dispatch_async(dispatch_get_main_queue(), ^{
                 LYFindConversationViewController *chat =[[LYFindConversationViewController alloc]init];
                 chat.targetId                      = [NSString stringWithFormat:@"%d",model.id];
@@ -675,28 +674,33 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [MyUtil showCleanMessage:@"已被踢出聊天室"];
                 });
-            }else{
+            }else if(status == RC_CHATROOM_NOT_EXIST){
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [MyUtil showCleanMessage:@"未知错误"];
+//                    [MyUtil showCleanMessage:@"聊天室不存在！"];
+                    [self conversationWithPersonWith:model];
                 });
             }
         }];
 
     }else{//没有聊天室和个人聊天
-          LYFindConversationViewController *conversationVC = [[LYFindConversationViewController alloc]init];
-         //    RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
-         conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
-         conversationVC.targetId = model.imUserId; // 接收者的 targetId，这里为举例。
-         conversationVC.title = model.releaseUserName; // 会话的 title。
-         
-         [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
-         
-         [IQKeyboardManager sharedManager].enable = NO;
-         [IQKeyboardManager sharedManager].isAdd = YES;
-         // 把单聊视图控制器添加到导航栈。
-         conversationVC.navigationItem.leftBarButtonItem = [self getItem];
-         [self.navigationController pushViewController:conversationVC animated:YES];
+        [self conversationWithPersonWith:model];
     }
+}
+
+- (void)conversationWithPersonWith:(YUWishesModel *)model{
+    LYFindConversationViewController *conversationVC = [[LYFindConversationViewController alloc]init];
+    //    RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
+    conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
+    conversationVC.targetId = model.imUserId; // 接收者的 targetId，这里为举例。
+    conversationVC.title = model.releaseUserName; // 会话的 title。
+    
+    [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
+    
+    [IQKeyboardManager sharedManager].enable = NO;
+    [IQKeyboardManager sharedManager].isAdd = YES;
+    // 把单聊视图控制器添加到导航栈。
+    conversationVC.navigationItem.leftBarButtonItem = [self getItem];
+    [self.navigationController pushViewController:conversationVC animated:YES];
 }
 
 - (UIBarButtonItem *)getItem{

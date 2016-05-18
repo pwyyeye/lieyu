@@ -304,7 +304,7 @@
     if (isExidtEffectView) [emojisView hideEmojiEffectView];
     _friendsBtnSelect = YES;
     [_scrollViewForTableView setContentOffset:CGPointZero];
-    _pageStartCountArray[0] = 0;
+//    _pageStartCountArray[0] = 0;
     if(((NSArray *)_dataArray[0]).count == 0) [self getDataWithType:0];
     _index = 0;
     _friendsBtn.isFriendsMenuViewSelected = YES;
@@ -325,7 +325,7 @@
     if (isExidtEffectView) [emojisView hideEmojiEffectView];
     _index = 1;
     _friendsBtnSelect = NO;
-    _pageStartCountArray[1] = 0;
+//    _pageStartCountArray[1] = 0;
     _friendsBtn.isFriendsMenuViewSelected = NO;
     _myBtn.isFriendsMenuViewSelected = YES;
     if(((NSArray *)_dataArray[1]).count == 0) [self getDataWithType:1];//没有数据去加载数据
@@ -726,8 +726,6 @@
                     nameCell.btn_delete.hidden = NO;
                     if([recentM.userId isEqualToString:_useridStr]) nameCell.btn_delete.hidden = YES;
                 }
-                
-            
             }
 //            else nameCell.btn_delete.hidden = NO;
             
@@ -1529,6 +1527,7 @@
     FriendsRecentModel *recentM = [[FriendsRecentModel alloc]init];
     recentM.attachType = [messageDic objectForKey:@"attachType"];
     recentM.username = app.userModel.username;
+    recentM.userId = [NSString stringWithFormat:@"%d",app.userModel.userid];
     recentM.usernick = app.userModel.usernick;
     recentM.avatar_img = app.userModel.avatar_img;
     NSDateFormatter *dateFmt = [[NSDateFormatter alloc]init];
