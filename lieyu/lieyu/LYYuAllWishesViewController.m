@@ -684,6 +684,9 @@
 - (void)communicateWithFriend:(YUWishesModel *)model{
     
     if([model.isChatroom isEqualToString:@"1"]){//有聊天室
+        
+        
+        
         __weak __typeof(self) weakSelf = self;
         [[RCIMClient sharedRCIMClient] joinChatRoom:[NSString stringWithFormat:@"%d",model.id] messageCount:-1 success:^{
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -748,6 +751,15 @@
 //    if (model.releaseUserid == self.userModel.userid) {
 //        [self communicateWithKEFU];
 //    }else{
+    
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    NSArray *managerStrArr = [app.userModel.manageUserids componentsSeparatedByString:@","];
+    for (NSString *mgerStr in managerStrArr) {
+        if (mgerStr.intValue == app.userModel.userid) {
+            [self conversationWithPersonWith:model];
+            return;
+        }
+    }
         [self communicateWithFriend:model];
 //    }
     
