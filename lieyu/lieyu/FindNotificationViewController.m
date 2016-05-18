@@ -16,6 +16,7 @@
 #import "MineUserNotification.h"
 #import "LYCache.h"
 
+
 @interface FindNotificationViewController ()<UITableViewDataSource,UITableViewDelegate>{
     NSMutableArray *_titleArray;
     NSArray *_dataArray,*_typeArray;
