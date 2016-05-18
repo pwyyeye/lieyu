@@ -379,13 +379,13 @@
 //        _ringButton = [[UIButton alloc]initWithFrame:CGRectMake(10, 0, 60, 44)];
 //        [_ringButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
 //        [_ringButton addTarget:self action:@selector(ChooseNotification:) forControlEvents:UIControlEventTouchUpInside];
-        if ([tagIndex isEqualToString:@"1"]) {//开着通知，显示静音模式
+        if ([tagIndex isEqualToString:@"1"]) {
             [_ringButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-            [_ringButton setTitle:@"静音模式" forState:UIControlStateNormal];
+            [_ringButton setTitle:@"关闭通知" forState:UIControlStateNormal];
             _ringButton.tag = 7154 ;
-        }else if([tagIndex isEqualToString:@"0"]){
+        }else if([tagIndex isEqualToString:@"0"]){//通知是关着的
             [_ringButton setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal];
-            [_ringButton setTitle:@"收听模式" forState:UIControlStateNormal];
+            [_ringButton setTitle:@"打开通知" forState:UIControlStateNormal];
             _ringButton.tag = 3754 ;
         }
     }
@@ -394,7 +394,7 @@
 - (void)ChooseNotification:(UIButton *)button{
 //    __weak __typeof(self)weakSelf = self;
     if(button.tag == 3754){
-        AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"收听模式" message:@"您将收取到更多好友的想玩即时通知" cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex) {
+        AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"打开通知" message:@"您将收取到更多好友的想玩即时通知" cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex) {
             if (buttonIndex == 0) {
                 
             }else if (buttonIndex == 1){//要去开启
@@ -404,7 +404,7 @@
                     if (result) {//成功修改
 //                        UIButton *button = [weakSelf.view viewWithTag:3754];
                         [_ringButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-                        [_ringButton setTitle:@"静音模式" forState:UIControlStateNormal];
+                        [_ringButton setTitle:@"关闭通知" forState:UIControlStateNormal];
                         _ringButton.tag = 7154 ;
                     }
                 }];
@@ -412,7 +412,7 @@
         }];
         [alert show];
     }else if (button.tag == 7154){
-        AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"静音模式" message:@"您将收取不到所有好友的想玩通知" cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex) {
+        AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"关闭通知" message:@"您将收取不到所有好友的想玩通知" cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex) {
             if (buttonIndex == 0) {
                 
             }else if(buttonIndex == 1){
@@ -422,7 +422,7 @@
                     if (result) {
 //                        UIButton *button = [weakSelf.view viewWithTag:7154];
                         [_ringButton setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal];
-                        [_ringButton setTitle:@"收听模式" forState:UIControlStateNormal];
+                        [_ringButton setTitle:@"打开通知" forState:UIControlStateNormal];
                         _ringButton.tag = 3754 ;
                     }
                 }];
@@ -605,13 +605,44 @@
     }
 }
 
-- (void)delegateShareWish:(YUWishesModel *)model{
-//    NSLog(@"model:---%@",model);
+//分享
+- (void)shareWithModel:(YUWishesModel *)model{
     NSString *content = [NSString stringWithFormat:@"Q:%@\nA:%@\nhttp://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653",model.desc,model.replyContent];
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = @"http://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653";
     [UMSocialData defaultData].extConfig.wechatSessionData.url = @"http://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653";
     [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:content shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.userModel.avatar_img]]] shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
+}
+
+//这都搞不定！算了吧／去吐槽
+//好开心！ 残忍拒绝／分享喜悦
+- (void)delegateShareWish:(YUWishesModel *)model{
+    AlertBlock *alert;
+    __weak __typeof(self)weakSelf = self;
+    if ([model.isfinishedStr isEqualToString:@"搞定"]) {
+        alert = [[AlertBlock alloc]initWithTitle:nil message:@"好开心！" cancelButtonTitle:@"残忍拒绝" otherButtonTitles:@"分享喜悦" block:^(NSInteger buttonIndex) {
+            if (buttonIndex == 0) {
+                
+            }else if (buttonIndex == 1){
+                [weakSelf shareWithModel:model];
+            }
+        }];
+    }else if ([model.isfinishedStr isEqualToString:@"扑街"]){
+        alert = [[AlertBlock alloc]initWithTitle:nil message:@"这都搞不定！" cancelButtonTitle:@"算了吧～" otherButtonTitles:@"去吐槽！" block:^(NSInteger buttonIndex) {
+            if (buttonIndex == 0) {
+                
+            }else if (buttonIndex == 1){
+                [weakSelf shareWithModel:model];
+            }
+        }];
+    }
+    [alert show];
+//    NSLog(@"model:---%@",model);
+//    NSString *content = [NSString stringWithFormat:@"Q:%@\nA:%@\nhttp://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653",model.desc,model.replyContent];
+//    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
+//    [UMSocialData defaultData].extConfig.wechatTimelineData.url = @"http://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653";
+//    [UMSocialData defaultData].extConfig.wechatSessionData.url = @"http://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653";
+//    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:content shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.userModel.avatar_img]]] shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
 }
 
 - (void)delegateReplayWish:(UIButton *)button{
