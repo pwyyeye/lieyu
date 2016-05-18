@@ -304,7 +304,7 @@
     if (isExidtEffectView) [emojisView hideEmojiEffectView];
     _friendsBtnSelect = YES;
     [_scrollViewForTableView setContentOffset:CGPointZero];
-    _pageStartCountArray[0] = 0;
+//    _pageStartCountArray[0] = 0;
     if(((NSArray *)_dataArray[0]).count == 0) [self getDataWithType:0];
     _index = 0;
     _friendsBtn.isFriendsMenuViewSelected = YES;
@@ -325,7 +325,7 @@
     if (isExidtEffectView) [emojisView hideEmojiEffectView];
     _index = 1;
     _friendsBtnSelect = NO;
-    _pageStartCountArray[1] = 0;
+//    _pageStartCountArray[1] = 0;
     _friendsBtn.isFriendsMenuViewSelected = NO;
     _myBtn.isFriendsMenuViewSelected = YES;
     if(((NSArray *)_dataArray[1]).count == 0) [self getDataWithType:1];//没有数据去加载数据
