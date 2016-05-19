@@ -46,4 +46,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *age;
 @property (weak, nonatomic) IBOutlet UILabel *delLal;
+
+@property (nonatomic, assign) int isChatroom;
 @end

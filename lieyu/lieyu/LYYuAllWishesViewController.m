@@ -685,9 +685,6 @@
 - (void)communicateWithFriend:(YUWishesModel *)model{
     
     if([model.isChatroom isEqualToString:@"1"]){//有聊天室
-        
-        
-        
         __weak __typeof(self) weakSelf = self;
         [[RCIMClient sharedRCIMClient] joinChatRoom:[NSString stringWithFormat:@"%d",model.id] messageCount:-1 success:^{
             dispatch_async(dispatch_get_main_queue(), ^{

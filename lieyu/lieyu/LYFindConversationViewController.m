@@ -46,15 +46,16 @@
             return ;
         }
     }
-        [self goToPerson];
+        [self goToPersonWithType:1];
     }else{
-        [self goToPerson];
+        [self goToPersonWithType:0];
     }
 }
 
 #pragma mark - 跳转到用户个人界面
-- (void)goToPerson{
+- (void)goToPersonWithType:(int)type{
     LYMyFriendDetailViewController *myFriendVC = [[LYMyFriendDetailViewController alloc]init];
+    myFriendVC.isChatroom = type;
     myFriendVC.imUserId = _userId_RM;
     [self resignFirstResponder];
     [self.navigationController pushViewController:myFriendVC animated:YES];
@@ -70,7 +71,7 @@
             break;
             
         case 1://查看
-                        [self goToPerson];
+            [self goToPersonWithType:1];
             break;
             
         default:
