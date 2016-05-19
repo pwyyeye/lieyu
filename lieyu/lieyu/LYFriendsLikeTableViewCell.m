@@ -96,7 +96,7 @@
     if(recentM.likeList.count < 7) self.btn_more.hidden = YES;
     else {
         self.btn_more.hidden = NO;
-        [self.btn_more setTitle:recentM.likeNum forState:UIControlStateNormal];
+        [self.btn_more setTitle:[NSString stringWithFormat:@"%d",recentM.likeList.count] forState:UIControlStateNormal];
     }
 }
 
