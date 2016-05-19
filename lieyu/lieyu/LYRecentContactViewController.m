@@ -32,7 +32,6 @@
     
     [self setDisplayConversationTypes:@[@(ConversationType_PRIVATE),
                                         @(ConversationType_DISCUSSION),
-                                        @(ConversationType_CHATROOM),
                                         @(ConversationType_GROUP),
                                         @(ConversationType_APPSERVICE),
                                         @(ConversationType_SYSTEM),

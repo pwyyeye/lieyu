@@ -607,10 +607,11 @@
 
 //分享
 - (void)shareWithModel:(YUWishesModel *)model{
-    NSString *content = [NSString stringWithFormat:@"Q:%@\nA:%@\nhttp://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653",model.desc,model.replyContent];
+    NSString *shareString = [NSString stringWithFormat:@"%@lyRequireOutAction.do?id=%d",LY_SERVER,model.id];
+    NSString *content = [NSString stringWithFormat:@"Q:%@\nA:%@\n%@",model.desc,model.replyContent,shareString];
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
-    [UMSocialData defaultData].extConfig.wechatTimelineData.url = @"http://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653";
-    [UMSocialData defaultData].extConfig.wechatSessionData.url = @"http://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653";
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = shareString;
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = shareString;
     [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:content shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.userModel.avatar_img]]] shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
 }
 
