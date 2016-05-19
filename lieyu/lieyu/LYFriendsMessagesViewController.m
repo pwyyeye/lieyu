@@ -290,13 +290,17 @@
     [effectView addSubview:_carmerBtn];
     
     //发布按钮出来动画
+    CGFloat offset = 120;
+    if(_isTopic)offset = 130;
     [UIView animateWithDuration:.4 animations:^{
-        effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 123, 60, 60);
+        effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - offset - 3, 60, 60);
     }completion:^(BOOL finished) {
         [UIView animateWithDuration:0.2 animations:^{
-            effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 120, 60, 60);
+            effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - offset, 60, 60);
         }];
     }];
+    
+    
 }
 
 #pragma mark - 玩友圈action
@@ -1249,7 +1253,7 @@
     }
     emojisView.delegate = self;
     
-     [[UIApplication sharedApplication].delegate.window bringSubviewToFront:emojiEffectView];
+    [[UIApplication sharedApplication].delegate.window bringSubviewToFront:emojiEffectView];
     [[UIApplication sharedApplication].delegate.window bringSubviewToFront:emoji_angry];
     [[UIApplication sharedApplication].delegate.window bringSubviewToFront:emoji_sad];
     [[UIApplication sharedApplication].delegate.window bringSubviewToFront:emoji_wow];
