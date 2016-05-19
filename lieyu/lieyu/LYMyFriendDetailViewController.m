@@ -39,7 +39,7 @@
     [super viewWillAppear:animated];
 //    NSLog(@"%@",self.navigationController.viewControllers);
     UIViewController *VC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count - 2];
-    if([VC isKindOfClass:[LYFindConversationViewController class]]){
+    if([VC isKindOfClass:[LYFindConversationViewController class]] && _isChatroom == 0){
         self.setBtn.hidden = YES;
         self.setBG.hidden = YES;
     }else{
