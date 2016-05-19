@@ -95,6 +95,8 @@ static EmojisView *shareView = nil;
         [_mainWindow addSubview:_emoji_wow];
         [_mainWindow addSubview:_emoji_angry];
         [_mainWindow addSubview:_emoji_sad];
+        
+       
     }
 //    _isExists = YES;
     return @{@"emojiEffectView":_emojiEffectView,
