@@ -1248,6 +1248,15 @@
         emoji_zan = [[dict objectForKey:@"emojiButtons"]objectAtIndex:5];
     }
     emojisView.delegate = self;
+    
+     [[UIApplication sharedApplication].delegate.window bringSubviewToFront:emojiEffectView];
+    [[UIApplication sharedApplication].delegate.window bringSubviewToFront:emoji_angry];
+    [[UIApplication sharedApplication].delegate.window bringSubviewToFront:emoji_sad];
+    [[UIApplication sharedApplication].delegate.window bringSubviewToFront:emoji_wow];
+    [[UIApplication sharedApplication].delegate.window bringSubviewToFront:emoji_kawayi];
+    [[UIApplication sharedApplication].delegate.window bringSubviewToFront:emoji_happy];
+    [[UIApplication sharedApplication].delegate.window bringSubviewToFront:emoji_zan];
+    
     [[UIApplication sharedApplication].delegate.window addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:emojisView action:@selector(hideEmojiEffectView)]];
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
         [emojiEffectView setFrame:CGRectMake(0, 0, 80, SCREEN_HEIGHT)];
