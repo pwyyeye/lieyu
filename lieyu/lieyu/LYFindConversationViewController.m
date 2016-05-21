@@ -9,6 +9,7 @@
 #import "LYFindConversationViewController.h"
 #import "LYMyFriendDetailViewController.h"
 #import "LYYUHttpTool.h"
+#import "LYChatrommAllPeopleViewController.h"
 
 @interface LYFindConversationViewController ()<UIActionSheetDelegate>{
     NSString *_userId_RM;//点击的融云id
@@ -21,6 +22,19 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    if(self.conversationType == ConversationType_CHATROOM){//添加群成员按钮
+        UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithTitle:@"群成员" style:UIBarButtonItemStylePlain target:self action:@selector(allPeople)];
+        rightItem.tintColor = [UIColor blackColor];
+        self.navigationItem.rightBarButtonItem = rightItem;
+    }
+    
+}
+
+#pragma mark - 查看所有群成员
+- (void)allPeople{
+    LYChatrommAllPeopleViewController *chatRoomAllPeopelVC = [[LYChatrommAllPeopleViewController alloc]init];
+    chatRoomAllPeopelVC.chatRoomId = self.targetId;
+    [self.navigationController pushViewController:chatRoomAllPeopelVC animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -80,7 +94,7 @@
 }
 
 
-
+#pragma mark - 聊天室踢人
 - (void)removePersonFromChatRoom{
 //   121.40.229.133:80/portal/friendAction.do?action=expand&chatroomId=150&imuserId=130615&minute=1&SEM_LOGIN_TOKEN=g6hccy5yqo78xk3yarls7888
     

@@ -25,31 +25,23 @@
 {
     int start;
     int limit;
-    
     int tag;
     int deleteSection;
     int _oldScrollOffectY;
     int unFinishedNumber;
-    
     UILabel *kongLabel;
-    
     UILabel *_myTitle;
     UIButton *_rightButton;
     UILabel *_pointLabel;
     UIButton *_ringButton;
-    
     BOOL start0;//测试
-    
     UIVisualEffectView *effectView;
     UIButton *releaseButton;
-    
     LYYuAllWishesViewController *detailViewController;
-    
     //引导页
     UIView *grayBackground;
     UIImageView *tipImageview;
     UIButton *tryButton;
-    
     int replySelection;//选择要回复的愿望
 }
 @property (nonatomic, strong) UITableView *tableView;
@@ -710,6 +702,18 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
 //                    [MyUtil showCleanMessage:@"聊天室不存在！"];
                     [self conversationWithPersonWith:model];
+                });
+            }else if(status == 30003){
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [MyUtil showCleanMessage:@"连接超时"];
+                });
+            }else if(status == RC_NETWORK_UNAVAILABLE){
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [MyUtil showCleanMessage:@"当前连接不可用"];
+                });
+            }else{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [MyUtil showCleanMessage:@"未知错误"];
                 });
             }
         }];

@@ -31,4 +31,6 @@
 + (void)yuReplyWishCompleteWithParams:(NSDictionary *)params complete:(void (^)(BOOL))complete;
 //将用户踢出聊天室
 + (void)yuRemoveUserFromeChatRoomWith:(NSDictionary *)paraDic complete:(void (^)(BOOL))complete;
+//获取聊天室成员
++ (void)yuGetChatRoomAllStaffWith:(NSDictionary *)paraDic complete:(void (^)(NSArray *))complete;
 @end
