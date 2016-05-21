@@ -27,7 +27,6 @@
 @end
 
 @implementation MainTabbarViewController
-//看你们这么无聊，我来给你
 - (void)viewDidLoad
 {
     [super viewDidLoad];

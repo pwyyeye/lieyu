@@ -69,6 +69,11 @@
     [self receivesMessage];
 }
 
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:RECEIVES_MESSAGE object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:COMPLETE_MESSAGE object:nil];
+}
+
 -(void)receivesMessage{
     if([USER_DEFAULT objectForKey:@"badgeValue"]){
         dispatch_async(dispatch_get_main_queue(), ^{
