@@ -12,6 +12,7 @@
 #import "YUOrderInfo.h"
 #import "YUWishesModel.h"
 #import "BarActivityList.h"
+#import "UserModel.h"
 
 @implementation LYYUHttpTool
 
@@ -185,6 +186,22 @@
     }];
 }
 
-
+#pragma mark - 获取聊天室成员
++ (void)yuGetChatRoomAllStaffWith:(NSDictionary *)paraDic complete:(void (^)(NSArray *))complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YU_CHATOOM_ALLSTAFF baseURL:LY_SERVER params:paraDic success:^(id response) {
+        NSString *errorCode = response[@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+//            NSLog(@"response  %@",response);
+            NSArray *dataArr = response[@"data"];
+            NSArray *dataArray = [UserModel mj_objectArrayWithKeyValuesArray:dataArr];
+            complete(dataArray);
+        }else{
+            
+        }
+    } failure:^(NSError *err) {
+        
+    }];
+    
+}
 
 @end

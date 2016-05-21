@@ -108,8 +108,7 @@
                     nameCell.btn_delete.hidden = NO;
                     nameCell.btn_delete.enabled = YES;
                 }
-                nameCell.btn_headerImg.tag = indexPath.section;
-                [nameCell.btn_headerImg addTarget:self action:@selector(pushUserMessagePage:) forControlEvents:UIControlEventTouchUpInside]; */
+                 */
 //            }else{
 //                [nameCell.btn_delete setTitle:@"删除" forState:UIControlStateNormal];
 //                [nameCell.btn_delete setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
@@ -117,6 +116,8 @@
 //                nameCell.btn_delete.hidden = NO;
 //                nameCell.btn_delete.enabled = YES;
 //            }
+            nameCell.btn_headerImg.tag = indexPath.section;
+            [nameCell.btn_headerImg addTarget:self action:@selector(pushUserMessagePage:) forControlEvents:UIControlEventTouchUpInside];
             if([MyUtil isEmptyString:[NSString stringWithFormat:@"%@",recentM.id]]){
                 nameCell.btn_delete.enabled = NO;
             }
