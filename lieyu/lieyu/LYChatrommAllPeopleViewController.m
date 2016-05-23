@@ -66,7 +66,13 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self receivesMessage];
+    if(![MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"badgeValue"]]){
+        _noticeView.hidden = NO;
+    }else{
+        _noticeView.hidden = YES;
+    }
+    [USER_DEFAULT setObject:@"1" forKey:@"needCountIM"];
+    
 }
 
 -(void)dealloc{
@@ -74,8 +80,8 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:COMPLETE_MESSAGE object:nil];
 }
 
--(void)receivesMessage{
-    if([USER_DEFAULT objectForKey:@"badgeValue"]){
+-(void)receivesMessage{    
+    if(![MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"badgeValue"]]){
         dispatch_async(dispatch_get_main_queue(), ^{
             _noticeView.hidden = NO;
         });
@@ -84,6 +90,7 @@
             _noticeView.hidden = YES;
         });
     }
+    
 }
 
 #pragma mark - 最近联系
