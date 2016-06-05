@@ -22,6 +22,7 @@
 @property (nonatomic,copy) NSString *sort;
 @property(assign,nonatomic) int bannertypeid;
 @property(strong,nonatomic) NSString *bannerTypeName;
+@property (strong,nonatomic) NSString *gender;
 
 @property (nonatomic,copy) NSString *titleStr;
 

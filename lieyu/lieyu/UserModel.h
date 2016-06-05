@@ -9,24 +9,13 @@
 #import <Foundation/Foundation.h>
 
 @interface UserModel : NSObject
-//"applyStatus": 0,
-//"avatar_img": "",
-//"captchas": "",
-//"confirm": "",
-//"email": "",
-//"id": 130635,
-//"imuserId": "rMRw8QarX9o=",
-//"mobile": "13799996422",
-//"mobilecontent": "",
-//"newpassword": "",
-//"roleid": 0,
-//"rolename": "",
-//"token": "",
-//"userid": 130635,
-//"username": "13799996422",
-//"usernick": "",
-//"usertype": "1"
-@property(nonatomic,assign)int applyStatus; 
+//"beCollectNum": 5,
+//"friends_img": "20160122035539955.jpg",
+//"isFriend": 0,
+//"recentImages": [],
+//"type": 0,
+
+@property(nonatomic,assign)int applyStatus;
 @property(nonatomic,copy)NSString * avatar_img;
 @property(nonatomic,copy)NSString * captchas;
 @property(nonatomic,copy)NSString * confirm;
@@ -55,7 +44,15 @@
 @property(strong,nonatomic) NSString *qq;
 @property (nonatomic,copy) NSString *manageUserids;
 
-@property (nonatomic,copy) NSString *introduction;
-@property (nonatomic,copy) NSString *sex;
+@property (nonatomic,copy) NSString *introduction;//
+@property (nonatomic,copy) NSString *sex;//
+
+@property (nonatomic,copy) NSString *addressabb;//
+@property (nonatomic,copy) NSString *barname;
+@property (nonatomic,copy) NSString *distance;//
+@property (nonatomic,copy) NSString *facescoreNum;
+@property (nonatomic,copy) NSString *popularityNum;
+@property (nonatomic,copy) NSString *receptionNum;
+@property (nonatomic,copy) NSString *beCollectNum;
 
 @end

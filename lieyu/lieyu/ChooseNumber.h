@@ -21,5 +21,8 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *numberField;
 
+@property (nonatomic, assign) NSUInteger startNum;
+
 - (void)configureTitle;
+- (void)configureTitleForAdviser;
 @end

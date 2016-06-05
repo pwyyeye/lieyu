@@ -276,6 +276,7 @@
 
 #pragma mark 上传玩友圈,待修改
 - (void)sendClick{
+    [MyUtil pushToAddPicForUser];//没有头像跳转设置头像
     if([self.textView isFirstResponder]){
         [self.textView resignFirstResponder];
     }

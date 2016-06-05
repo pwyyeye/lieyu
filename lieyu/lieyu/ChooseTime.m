@@ -21,8 +21,9 @@
     [self.timePicker setDate:date animated:YES];
 }
 
+
+
 - (void)configure{
-    
     self.timePicker.minimumDate = [NSDate date];
 }
 @end

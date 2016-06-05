@@ -27,48 +27,52 @@
 #define PAGESIZE  10
 
 @interface LYHotBarsViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UIScrollViewDelegate,LYHotsCollectionViewCellDelegate>{
-    UIView *_purpleLineView;
-    NSMutableArray *_dataArray;
+//    UIView *_purpleLineView;
+   
     NSInteger _currentPageHot;
     NSInteger _currentPageDistance;
     NSInteger _currentPagePrice;
     NSInteger _currentPageFanli;
-    NSInteger _index;
-    UILabel *_titelLabel;
 
-    UICollectionView *_collectView;
 }
 
 @property(nonatomic,strong)NSMutableArray *bannerList;
 @property(nonatomic,strong)NSMutableArray *newbannerList;
-@property (strong, nonatomic) UIVisualEffectView *menuView;
+
 @property(nonatomic,strong)NSMutableArray *aryList;
-@property (strong, nonatomic) NSMutableArray *menuBtnArray;
 @end
 
 @implementation LYHotBarsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _btnTitleArray = @[@"热门",@"附近",@"价格",@"返利"];
+    if(_isGuWenListVC) _btnTitleArray = @[@"人气",@"附近",@"推荐"];
+    if (_isVideoListVC) {
+        _btnTitleArray = @[@"直播"];
+    }
     [self createMenuView];
     self.navigationItem.title = @"热门酒吧";
     
-    _dataArray = [[NSMutableArray alloc]initWithCapacity:4];
+    _dataArray = [[NSMutableArray alloc]initWithCapacity:_btnTitleArray.count];
     _currentPageHot = 1;
     _currentPageDistance= 1;
     _currentPagePrice = 1;
     _currentPageFanli = 1;
     
-    for (int i = 0; i < 4; i ++) {
+    for (int i = 0; i < _btnTitleArray.count; i ++) {
         NSMutableArray *array = [[NSMutableArray alloc]init];
         [_dataArray addObject:array];
     }
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
     _collectView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) collectionViewLayout:layout];
+    _collectView.showsHorizontalScrollIndicator = NO;
     _collectView.backgroundColor = [UIColor whiteColor];
     [_collectView registerNib:[UINib nibWithNibName:@"HomeBarCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeBarCollectionViewCell"];
     [_collectView registerNib:[UINib nibWithNibName:@"LYHotsCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"LYHotsCollectionViewCell"];
+     [_collectView registerNib:[UINib nibWithNibName:@"LYGuWenOutsideCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"LYGuWenOutsideCollectionViewCell"];
     [_collectView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
     _collectView.dataSource = self;
     _collectView.delegate = self;
@@ -98,7 +102,6 @@
     _menuView.layer.shadowRadius = 1;
     //    [self.view addSubview:_menuView];
     UIBlurEffect *effectExtraLight = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
-    UIBlurEffect *effectLight = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
     _menuView = [[UIVisualEffectView alloc]initWithEffect:effectExtraLight];
     _menuView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 90);
     _menuView.alpha = 5;
@@ -108,23 +111,22 @@
     _menuView.layer.shadowRadius = 1;
     [self.view addSubview:_menuView];
     
-    CGFloat btnWidth =  (SCREEN_WIDTH - 26 * 2)/4.f;
+    CGFloat btnWidth = (CGFloat)(SCREEN_WIDTH - 26 * 2)/_btnTitleArray.count;
     CGFloat offSet = 26;
     _menuBtnArray = [[NSMutableArray alloc]initWithCapacity:4];
-    NSArray *btnTitleArray = @[@"热门",@"附近",@"价格",@"返利"];
-    for (int i = 0; i < 4; i ++) {
+    for (int i = 0; i < _btnTitleArray.count; i ++) {
         HotMenuButton *btn = [[HotMenuButton alloc]init];
         if (i == 0) {
             btn.frame = CGRectMake(offSet, 63,btnWidth, 26);
         }else{
-            btn.frame = CGRectMake(offSet + i%4 * btnWidth, 63, btnWidth, 26);
+            btn.frame = CGRectMake(offSet + i%_btnTitleArray.count * btnWidth, 63, btnWidth, 26);
         }
         if (i == _contentTag) {
             btn.isMenuSelected = YES;
         }else{
             btn.isMenuSelected = NO;
         }
-        [btn setTitle:btnTitleArray[i] forState:UIControlStateNormal];
+        [btn setTitle:_btnTitleArray[i] forState:UIControlStateNormal];
         btn.tag = i;
         [btn addTarget:self action:@selector(btnMenusViewClick:) forControlEvents:UIControlEventTouchUpInside];
         [_menuView addSubview:btn];
@@ -143,7 +145,11 @@
     backBtn.frame = CGRectMake(5, 30, 30, 30);
     [backBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
     [_menuView addSubview:backBtn];
-    
+}
+
+- (void)setTitleText:(NSString *)titleText{
+    _titleText = titleText;
+    [_titelLabel setText:titleText];
 }
 
 - (void)backClick{
@@ -386,75 +392,6 @@
      }];
 }
 
-
-/*
-- (void)installFreshEvent
-{
-        __weak LYHotBarsViewController * weakSelf = self;
-        //    __weak UITableView *tableView = self.tableView;
-        collectView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
-            switch (i) {
-                case 0:
-                {
-                    _currentPageHot = 1;
-                    [weakSelf getDataForHotWith:0];
-                }
-                    break;
-                case 1:
-                {
-                    _currentPageDistance = 1;
-                    [weakSelf getDataForHotWith:1];
-                }
-                    break;
-                case 2:
-                {
-                    _currentPagePrice = 1;
-                    [weakSelf getDataForHotWith:2];
-                }
-                    break;
-                case 3:
-                {
-                    _currentPageFanli = 1;
-                    [weakSelf getDataForHotWith:3];
-                }
-                    break;
-            }
-            
-        }];
-        
-        MJRefreshGifHeader *header=(MJRefreshGifHeader *)collectView.mj_header;
-        [self initMJRefeshHeaderForGif:header];
-        collectView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
-            switch (i) {
-                case 0:
-                {
-                    [weakSelf getDataForHotWith:0];
-                }
-                    break;
-                case 1:
-                {
-                    [weakSelf getDataForHotWith:1];
-                }
-                    break;
-                case 2:
-                {
-                    [weakSelf getDataForHotWith:2];
-                }
-                    break;
-                case 3:
-                {
-                    [weakSelf getDataForHotWith:3];
-                }
-                    break;
-            }
-        }];
-        MJRefreshBackGifFooter *footer=(MJRefreshBackGifFooter *)collectView.mj_footer;
-        [self initMJRefeshFooterForGif:footer];
-        NSLog(@"----->%@",collectView.mj_footer);
-    }
- 
-}
- */
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
 //    NSArray *array = _dataArray[collectionView.tag]; 

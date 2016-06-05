@@ -17,6 +17,18 @@
     }
 }
 
+- (void)setStartNum:(NSUInteger)startNum{
+    _startNum = startNum;
+    if (_startNum <= 0) {
+        _startNum = 1;
+    }
+    if (_startNum > 1) {
+        self.lessBtn.enabled = YES;
+        [self.lessBtn setBackgroundImage:[UIImage imageNamed:@"purper_less"] forState:UIControlStateNormal];
+    }
+    _numberField.text = [NSString stringWithFormat:@"%ld",_startNum];
+}
+
 - (IBAction)lessBtnClick:(UIButton *)sender {
     int num = [self.numberField.text intValue];
     if(num > 2){
@@ -48,6 +60,10 @@
 
 - (void)configureTitle{
     self.title.text = @"选择参与人次";
+}
+
+- (void)configureTitleForAdviser{
+    self.title.text = @"选择到达现场人数";
 }
 
 @end

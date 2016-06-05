@@ -23,7 +23,7 @@
 }
 
 #pragma mark - 获取最新玩友圈数据
-- (void)getDataWithType:(dataType)type{
+- (void)getDataWithType:(dataType)type needLoad:(BOOL)need{
     UITableView *tableView = nil;
     __block int pageStartCount;
     if (type == dataForFriendsMessage) {
@@ -39,7 +39,7 @@
     __weak __typeof(self) weakSelf = self;
     if (type == dataForFriendsMessage) {
         __weak __typeof(self) weakSelf = self;
-        [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic needLoading:YES compelte:^(FriendsUserInfoModel*userInfo, NSMutableArray *dataArray) {
+        [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic needLoading:need compelte:^(FriendsUserInfoModel*userInfo, NSMutableArray *dataArray) {
             _userBgImageUrl = userInfo.friends_img;
             weakSelf.userM = userInfo;
             [weakSelf loadDataWith:tableView dataArray:dataArray pageStartCount:pageStartCount type:type];

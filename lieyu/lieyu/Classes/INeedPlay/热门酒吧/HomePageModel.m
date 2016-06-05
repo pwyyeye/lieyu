@@ -10,12 +10,13 @@
 #import "JiuBaModel.h"
 #import "bartypeslistModel.h"
 #import "RecommendedTopic.h"
+#import "UserModel.h"
 
 @implementation HomePageModel
 + (NSDictionary *)objectClassInArray
 {
     return @{
-             @"barlist" : @"JiuBaModel",@"bartypeslist":@"bartypeslistModel"
+             @"barlist" : @"JiuBaModel",@"bartypeslist":@"bartypeslistModel",@"viplist":@"UserModel"
              };
 }
 @end

@@ -14,4 +14,5 @@
 
 - (void)showTimeWithDate:(NSDate *)date;
 
+- (void)configreTitleForAdviser;
 @end

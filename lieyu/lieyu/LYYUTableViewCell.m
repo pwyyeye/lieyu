@@ -16,6 +16,10 @@
 @implementation LYYUTableViewCell
 
 - (void)awakeFromNib {
+    
+    self.layer.shouldRasterize = YES;
+    self.layer.rasterizationScale = [[UIScreen mainScreen] scale];
+    
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     _btn_headerImg.layer.cornerRadius = CGRectGetHeight(_btn_headerImg.frame)/2.f;
     _btn_headerImg.layer.masksToBounds = YES;

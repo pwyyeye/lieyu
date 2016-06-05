@@ -46,7 +46,7 @@
 }
 
 #pragma mark - 根据id获取一条动态
-- (void)getDataWithType:(dataType)type{
+- (void)getDataWithType:(dataType)type needLoad:(BOOL)need{
     UITableView *tableView = nil;
     int pageStartCount = 0;
     if (type == dataForFriendsMessage) {
@@ -70,7 +70,7 @@
 }
 #pragma mark - 获取数据
 - (void)startGetData{
-    [self getDataWithType:dataForFriendsMessage];
+    [self getDataWithType:dataForFriendsMessage needLoad:YES];
 }
 
 #pragma mark - 为表配置上下刷新控件

@@ -17,6 +17,7 @@
 #import "ZSMaintViewController.h"
 #import "MainTabbarViewController.h"
 #import "LPMyOrdersViewController.h"
+#import "LYGuWenFansViewController.h"
 
 @implementation LYUserCenterHeader{
     UIVisualEffectView *_effctView ;
@@ -149,6 +150,15 @@
         [_tags setTitle:mytags forState:UIControlStateNormal];
         _label_work.text = mytags;
          _userNick.text=app.userModel.usernick;
+        if ([app.userModel.usertype isEqualToString:@"2"]) {
+            //专属经理
+            [_TypeName setText:@"粉丝"];
+            [_careTypeImage setImage:[UIImage imageNamed:@"CareNumber"]];
+        }else{
+            [_TypeName setText:@"关注"];
+            [_careTypeImage setImage:[UIImage imageNamed:@"collectNumber"]];
+        }
+        [_beCareNumber setText:app.userModel.beCollectNum];
     }
     
 
@@ -479,5 +489,19 @@
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
 //    [app.navigationController pushViewController:myOrderManageViewController animated:YES];
     [app.navigationController pushViewController:myOrderVC animated:YES];
+}
+- (IBAction)checkFansOrCares:(UIButton *)sender {
+    NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"查看粉丝或者关注"};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+    
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    LYGuWenFansViewController *checkVC = [[LYGuWenFansViewController alloc]init];
+    checkVC.userID = [NSString stringWithFormat:@"%d",app.userModel.userid];
+    if ([app.userModel.usertype isEqualToString:@"2"]) {
+        checkVC.type = 0;
+    }else{
+        checkVC.type = 1;
+    }
+    [app.navigationController pushViewController:checkVC animated:YES];
 }
 @end

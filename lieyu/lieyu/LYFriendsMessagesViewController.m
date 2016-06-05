@@ -153,7 +153,7 @@
 }
 
 #pragma mark - 获取最新玩友圈数据
-- (void)getDataWithType:(dataType)type{
+- (void)getDataWithType:(dataType)type needLoad:(BOOL)need{
     UITableView *tableView = nil;
     __block int pageStartCount;
     if (type == dataForFriendsMessage) {
@@ -175,7 +175,7 @@
 
     }else if(type == dataForMine){//我的玩友圈数据
         paraDic = @{@"userId":_useridStr,@"start":startStr,@"limit":pageCountStr,@"frientId":_useridStr};
-        [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic needLoading:YES compelte:^(FriendsUserInfoModel*userInfo, NSMutableArray *dataArray) {
+        [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic needLoading:need compelte:^(FriendsUserInfoModel*userInfo, NSMutableArray *dataArray) {
             _userBgImageUrl = userInfo.friends_img;
             [weakSelf loadDataWith:tableView dataArray:dataArray pageStartCount:pageStartCount type:type];
             [weakSelf addTableViewHeader];
@@ -309,7 +309,7 @@
     _friendsBtnSelect = YES;
     [_scrollViewForTableView setContentOffset:CGPointZero];
 //    _pageStartCountArray[0] = 0;
-    if(((NSArray *)_dataArray[0]).count == 0) [self getDataWithType:0];
+    if(((NSArray *)_dataArray[0]).count == 0) [self getDataWithType:0 needLoad:NO];
     _index = 0;
     _friendsBtn.isFriendsMenuViewSelected = YES;
     _myBtn.isFriendsMenuViewSelected = NO;
@@ -332,7 +332,7 @@
 //    _pageStartCountArray[1] = 0;
     _friendsBtn.isFriendsMenuViewSelected = NO;
     _myBtn.isFriendsMenuViewSelected = YES;
-    if(((NSArray *)_dataArray[1]).count == 0) [self getDataWithType:1];//没有数据去加载数据
+    if(((NSArray *)_dataArray[1]).count == 0) [self getDataWithType:1 needLoad:YES];//没有数据去加载数据
     [UIView animateWithDuration:0.1 animations:^{
         _lineView.center = CGPointMake(myBtn.center.x, _lineView.center.y);
     }];
@@ -392,13 +392,13 @@
     __weak __typeof(self) weakSelf = self;
     tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         _pageStartCountArray[i] = 0;
-        [weakSelf getDataWithType:i];
+        [weakSelf getDataWithType:i needLoad:NO];
     }];
     MJRefreshGifHeader *header = (MJRefreshGifHeader *)tableView.mj_header;
     [self initMJRefeshHeaderForGif:header];
     
     tableView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
-        [weakSelf getDataWithType:i];
+        [weakSelf getDataWithType:i needLoad:NO];
     }];
 
 }
@@ -508,20 +508,12 @@
 
 #pragma mark - 表头选择背景action
 - (void)tapGesChooseBgImage{
-    //    LYFriendsChangeImageMenuView *changeView = [[[NSBundle mainBundle] loadNibNamed:@"LYFriendsChangeImageMenuView" owner:nil options:nil] firstObject];
-    //    changeView.frame = self.view.bounds;
-    //    [self.view addSubview:changeView];
-    //
-    //    [UIView animateWithDuration:1 animations:^{
-    //
-    //    }];
-    
     UIActionSheet *menuSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"更改相册封面", nil];
     menuSheet.tag = 200;
     [menuSheet showInView:self.view];
 }
 
-#pragma mark - 话题
+#pragma mark - 话题的表头
 - (void)addTableViewHeaderViewForTopic{
     UITableView *tableView = _tableViewArray.firstObject;
     UIScrollView *topicScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 86)];
@@ -583,57 +575,37 @@
     }
     
     if(_scrollViewForTableView != scrollView){
-        
+        CGFloat offset;
         if(_isTopic){//话题
-            if (scrollView.contentOffset.y > _contentOffSetY) {
-                if (scrollView.contentOffset.y <= 0.f) {//发布按钮弹出
-                    effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 130, 60, 60);
-                }else{
-                    [UIView animateWithDuration:0.4 animations:^{
-                        effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT, 60, 60);
-                    }];
-                }
-            }else{
-                if(CGRectGetMaxY(effectView.frame) > SCREEN_HEIGHT - 5){//发布按钮下移
-                    [UIView animateWithDuration:.4 animations:^{
-                        effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 133, 60, 60);
-                    }completion:^(BOOL finished) {
-                        [UIView animateWithDuration:0.2 animations:^{
-                            effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 130, 60, 60);
-                        }];
-                    }];
-                }
-            }
-
+            offset = 10;
         }else{
-            if (scrollView.contentOffset.y > _contentOffSetY) {
-                if (scrollView.contentOffset.y <= 0.f) {//发布按钮弹出
-                    effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 120, 60, 60);
-                }else{
-                    [UIView animateWithDuration:0.4 animations:^{
-                        effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT, 60, 60);
-                    }];
-                }
-            }else{
-                if(CGRectGetMaxY(effectView.frame) > SCREEN_HEIGHT - 5){//发布按钮下移
-                    [UIView animateWithDuration:.4 animations:^{
-                        effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 123, 60, 60);
-                    }completion:^(BOOL finished) {
-                        [UIView animateWithDuration:0.2 animations:^{
-                            effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 120, 60, 60);
-                        }];
-                    }];
-                }
-            }
-
+            offset = 0;
         }
+        
+        if (scrollView.contentOffset.y > _contentOffSetY) {
+            if (scrollView.contentOffset.y <= 0.f) {//发布按钮弹出
+                effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 120 + offset, 60, 60);
+            }else{
+                [UIView animateWithDuration:0.4 animations:^{
+                    effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT, 60, 60);
+                }];
+            }
         }else{
+            if(CGRectGetMaxY(effectView.frame) > SCREEN_HEIGHT - 5){//发布按钮下移
+                [UIView animateWithDuration:.4 animations:^{
+                    effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 123 + offset, 60, 60);
+                }completion:^(BOOL finished) {
+                    [UIView animateWithDuration:0.2 animations:^{
+                        effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 120 +offset, 60, 60);
+                    }];
+                }];
+            }
+        }
+    }else{
         if (!_index) {//玩友圈
             _friendsBtn.isFriendsMenuViewSelected = YES;
-//            _lineView.center = CGPointMake(_friendsBtn.center.x, _lineView.center.y);
         }else{
             _friendsBtn.isFriendsMenuViewSelected = NO;
-//            _lineView.center = CGPointMake(_myBtn.center.x, _lineView.center.y);
         }
         _myBtn.isFriendsMenuViewSelected = !_friendsBtn.isFriendsMenuViewSelected;
     }
@@ -658,16 +630,16 @@
         if (_index == 1) {
             _myBtn.isFriendsMenuViewSelected = YES;
             _friendsBtn.isFriendsMenuViewSelected = NO;
-            [UIView animateWithDuration:0.5 animations:^{
+            [UIView animateWithDuration:0.1 animations:^{
                 _lineView.center = CGPointMake(_myBtn.center.x, _lineView.center.y);
             }];
             NSArray *array = _dataArray[_index];
             if(array.count) return;
-            [self getDataWithType:dataForMine];//获取我的玩友圈数据
+            [self getDataWithType:dataForMine needLoad:YES];//获取我的玩友圈数据
         }else{
             _myBtn.isFriendsMenuViewSelected = NO;
             _friendsBtn.isFriendsMenuViewSelected = YES;
-            [UIView animateWithDuration:0.5 animations:^{
+            [UIView animateWithDuration:0.1 animations:^{
                 _lineView.center = CGPointMake(_friendsBtn.center.x, _lineView.center.y);
             }];
         }
@@ -724,14 +696,13 @@
                 nameCell.btn_delete.enabled = YES;
             }
             
-            if(_isFriendToUserMessage) {
+            if(_isFriendToUserMessage) {//好友动态隐藏删除按钮
                 nameCell.btn_delete.hidden = YES;
                 if(_isTopic){
                     nameCell.btn_delete.hidden = NO;
-                    if([recentM.userId isEqualToString:_useridStr]) nameCell.btn_delete.hidden = YES;
+                    if([recentM.userId isEqualToString:_useridStr]) nameCell.btn_delete.hidden = YES;//话题中我的话题隐藏删除按钮
                 }
             }
-//            else nameCell.btn_delete.hidden = NO;
             
             if([MyUtil isEmptyString:[NSString stringWithFormat:@"%@",recentM.id]]){
                 nameCell.btn_delete.enabled = NO;
@@ -1428,7 +1399,7 @@
     player = [[MPMoviePlayerViewController alloc]initWithContentURL:url];
     player.moviePlayer.scalingMode = MPMovieScalingModeAspectFill;
     player.view.frame = friendsVedioCell.imgView_video.frame;
-    player.view.tag = 10089;
+    player.view.tag = 6611;
     player.moviePlayer.controlStyle = MPMovieControlStyleDefault;
     [friendsVedioCell addSubview:player.view];
     

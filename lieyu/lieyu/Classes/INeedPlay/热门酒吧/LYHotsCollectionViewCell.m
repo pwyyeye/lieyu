@@ -26,39 +26,6 @@
     [_collectViewInside registerNib:[UINib nibWithNibName:@"HomeBarCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeBarCollectionViewCell"];
     _collectViewInside.contentInset = UIEdgeInsetsMake(90, 0, 0, 0);
     
-    
-//    _collectViewInside.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
-////                [weakSelf getDataForHotWith:3];
-//    }];
-//    
-//    MJRefreshGifHeader *header=(MJRefreshGifHeader *)collectViewInside.mj_header;
-//    [self initMJRefeshHeaderForGif:header];
-//    collectView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
-//        switch (i) {
-//            case 0:
-//            {
-//                [weakSelf getDataForHotWith:0];
-//            }
-//                break;
-//            case 1:
-//            {
-//                [weakSelf getDataForHotWith:1];
-//            }
-//                break;
-//            case 2:
-//            {
-//                [weakSelf getDataForHotWith:2];
-//            }
-//                break;
-//            case 3:
-//            {
-//                [weakSelf getDataForHotWith:3];
-//            }
-//                break;
-//        }
-//    }];
-//    MJRefreshBackGifFooter *footer=(MJRefreshBackGifFooter *)collectView.mj_footer;
-//    [self initMJRefeshFooterForGif:footer];
 }
 
 

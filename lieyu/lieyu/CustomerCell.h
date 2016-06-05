@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LYAdviserManagerBriefInfo.h"
 
 @interface CustomerCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *cusImageView;
@@ -14,5 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *smallImageView;
 @property (weak, nonatomic) IBOutlet UILabel *countLal;
 @property(assign,nonatomic) BOOL isSelected;
+
+@property (nonatomic, strong) LYAdviserManagerBriefInfo *infoModel;
 
 @end

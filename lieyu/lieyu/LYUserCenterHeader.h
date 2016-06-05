@@ -56,8 +56,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *label_constellation;
 @property (weak, nonatomic) IBOutlet UILabel *label_work;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *headHeight;
+@property (weak, nonatomic) IBOutlet UILabel *beCareNumber;
+@property (weak, nonatomic) IBOutlet UIImageView *careTypeImage;
+@property (weak, nonatomic) IBOutlet UILabel *TypeName;
+
+
 
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *buttomHeight;
+- (IBAction)checkFansOrCares:(UIButton *)sender;
 //设置
 - (IBAction)gotoSetting:(id)sender;
 //消息中心

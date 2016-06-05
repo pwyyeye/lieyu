@@ -14,6 +14,7 @@
 #import "CarInfoModel.h"
 #import "CarModel.h"
 @class BarActivityList;
+@class HomePageModel;
 @interface LYHomePageHttpTool : NSObject
 + (LYHomePageHttpTool *)shareInstance;
 //一起玩列表
@@ -104,4 +105,7 @@
 
 //获取游戏列表
 + (void)getGameFromWith:(NSDictionary *)paraDic complete:(void(^)(NSArray *))complete;
+
+//获取娱乐顾问数据
++ (void)homePageGetGuWenDataWith:(NSDictionary *)paraDic complete:(void(^)(HomePageModel *))complete;
 @end

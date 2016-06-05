@@ -54,4 +54,15 @@
     }
 }
 
+#pragma mark - 顾问筛选按钮
+- (void)setIsGuWenSelected:(BOOL)isGuWenSelected{
+    _isGuWenSelected = isGuWenSelected;
+    self.titleLabel.font = [UIFont systemFontOfSize:14];
+    if (_isGuWenSelected) {
+         [self setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal];
+    }else{
+         [self setTitleColor:RGBA(0, 0, 0, 1) forState:UIControlStateNormal];
+    }
+}
+
 @end

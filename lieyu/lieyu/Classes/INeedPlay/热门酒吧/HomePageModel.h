@@ -11,11 +11,13 @@
 @class RecommendedTopic;
 
 @interface HomePageModel : NSObject
-@property (nonatomic,strong) NSArray *banner;
-@property (nonatomic,strong) NSArray *barlist;
-@property (nonatomic,strong) NSArray *bartypeslist;
-@property (nonatomic,strong) NSArray *filterImages;
-@property (nonatomic,strong) NSArray *newbanner;
-@property (nonatomic,strong) JiuBaModel *recommendedBar;
-@property (nonatomic,strong) RecommendedTopic *recommendedTopic;
+@property (nonatomic, strong) NSArray *banner;
+@property (nonatomic, strong) NSArray *barlist;
+@property (nonatomic, strong) NSArray *bartypeslist;
+@property (nonatomic, strong) NSArray *filterImages;
+@property (nonatomic, strong) NSArray *newbanner;
+@property (nonatomic, strong) JiuBaModel *recommendedBar;
+@property (nonatomic, strong) RecommendedTopic *recommendedTopic;
+@property (nonatomic, strong) NSArray *viplist;//娱乐顾问数据
+@property (nonatomic, strong) NSString *id;
 @end
