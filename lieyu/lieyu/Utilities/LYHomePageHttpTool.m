@@ -16,6 +16,7 @@
 #import "BarTopicInfo.h"
 #import "CustomerModel.h"
 #import "GameList.h"
+#import "HomePageModel.h"
 
 @implementation LYHomePageHttpTool
 + (LYHomePageHttpTool *)shareInstance
@@ -766,6 +767,36 @@
             complete(nil);
         }
 
+    } failure:^(NSError *err) {
+        
+    }];
+}
+
+#pragma mark - 获取娱乐顾问数据
++ (void)homePageGetGuWenDataWith:(NSDictionary *)paraDic complete:(void(^)(HomePageModel *))complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_HOME_GUWEN baseURL:LY_SERVER params:paraDic success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"] ];
+        if ([code isEqualToString:@"1"]) {
+            HomePageModel *homePageM = [[HomePageModel alloc]init];
+            NSDictionary *dataDic = response[@"data"];
+            
+            LYCoreDataUtil *core=[LYCoreDataUtil shareInstance];
+            [core saveOrUpdateCoreData:@"LYCache" withParam:@{
+                                                              @"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE_GUWEN,
+                                                              @"lyCacheValue":dataDic,
+                                                              @"createDate":[NSDate date]}
+                         andSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE_GUWEN}];
+            
+                                            
+            homePageM.banner = [dataDic valueForKey:@"banner"];
+            homePageM.newbanner=[dataDic valueForKey:@"newbanner"];
+            homePageM.filterImages = [dataDic valueForKey:@"filterImages"];
+            homePageM.viplist = [UserModel mj_objectArrayWithKeyValuesArray:[dataDic valueForKey:@"viplist"]];
+            complete(homePageM);
+        }else{
+            complete(nil);
+        }
+        
     } failure:^(NSError *err) {
         
     }];

@@ -23,7 +23,7 @@
 
 
 #pragma mark - 获取话题
-- (void)getDataWithType:(dataType)type{
+- (void)getDataWithType:(dataType)type needLoad:(BOOL)need{
     UITableView *tableView = nil;
     __block int pageStartCount;
     if (type == dataForFriendsMessage) {

@@ -42,6 +42,10 @@
 @property (nonatomic,copy) NSString *isBarTopicType;
 @property (nonatomic,copy) NSString *topicTypeBgUrl;
 @property (nonatomic, copy) UIImage *thunbImage;
+@property (nonatomic, strong) NSArray *items;
+@property (nonatomic, strong) NSString *results;
+@property (nonatomic, assign) BOOL isManageRelease;
+
 
 +(NSArray *)initFormNSArray:(NSArray *)arr;
 + (FriendsRecentModel *)initFromNSDictionary:(NSDictionary *)dic;

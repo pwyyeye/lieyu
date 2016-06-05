@@ -253,7 +253,7 @@
     // 名字的W
     CGFloat nameW = size.width;
     _zhiwuWidth.constant = nameW + 20;
-    if([_result.isFriend isEqualToString:@"1"]){
+    if([_result.isFriend isEqualToString:@"1"] || [self.userModel.usertype isEqualToString:@"2"]){
         [_setBtn setTitle:@"聊天" forState:UIControlStateNormal];
     }else{
         [_setBtn setTitle:@"打招呼" forState:UIControlStateNormal];
@@ -310,7 +310,8 @@
         [MyUtil showCleanMessage:@"请先登录"];
         return;
     }
-    if([_result.isFriend isEqualToString:@"0"]){
+    NSLog(@"%@",self.userModel.usertype);
+    if([_result.isFriend isEqualToString:@"0"] && ![self.userModel.usertype isEqualToString:@"2"]){
        
         LYAddFriendViewController *addFriendViewController=[[LYAddFriendViewController alloc]initWithNibName:@"LYAddFriendViewController" bundle:nil];
         addFriendViewController.title=@"加好友";

@@ -69,4 +69,7 @@
 
 //获取游戏列表
 #define LY_GAMELIST @"gameAction.do?action=custom"
+
+//获取娱乐顾问
+#define LY_HOME_GUWEN @"lyUsersVipApplyOutAction.do?action=logout"
 #endif

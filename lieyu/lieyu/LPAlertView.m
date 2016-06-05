@@ -106,20 +106,24 @@
 
 #pragma 点击确定／取消按钮
 - (void)buttonWithPressed:(UIButton *)button{
-    if(_delegate && _contentView.tag == 12){
+    if([_delegate respondsToSelector:@selector(LPAlertView:clickedButtonAtIndexWhenWay:)] && _contentView.tag == 12){
         NSInteger index = [_buttonTitlesArray indexOfObject:button.titleLabel.text];
         [_delegate LPAlertView:self clickedButtonAtIndexWhenWay:index];
         [self hide];
-    }else if(_delegate && _contentView.tag == 11){
+    }else if([_delegate respondsToSelector:@selector(LPAlertView:clickedButtonAtIndexWhenTime:)] && _contentView.tag == 11){
         NSInteger index = [_buttonTitlesArray indexOfObject:button.titleLabel.text];
         [_delegate LPAlertView:self clickedButtonAtIndexWhenTime:index];
         [self hide];
-    }else if(_delegate && _contentView.tag == 13){//填写预支付金额
+    }else if([_delegate respondsToSelector:@selector(LPAlertView:clickedButtonAtIndexPayMoney:)] && _contentView.tag == 13){//填写预支付金额
         NSInteger index = [_buttonTitlesArray indexOfObject:button.titleLabel.text];
         [_delegate LPAlertView:self clickedButtonAtIndexPayMoney:index];
-    }else if(_delegate && _contentView.tag == 14){//选择购买数量
+    }else if([_delegate respondsToSelector:@selector(LPAlertView:clickedButtonAtIndexChooseNum:)] && _contentView.tag == 14){//选择购买数量
         NSInteger index = [_buttonTitlesArray indexOfObject:button.titleLabel.text];
         [_delegate LPAlertView:self clickedButtonAtIndexChooseNum:index];
+        [self hide];
+    }else if ([_delegate respondsToSelector:@selector(LPAlertView:clickedButtonAtIndexChooseKaZuo:)] && _contentView.tag == 15){//选择卡座类型
+        NSInteger index = [_buttonTitlesArray indexOfObject:button.titleLabel.text];
+        [_delegate LPAlertView:self clickedButtonAtIndexChooseKaZuo:index];
         [self hide];
     }
 }

@@ -26,4 +26,15 @@
     // Configure the view for the selected state
 }
 
+- (void)setInfoModel:(LYAdviserManagerBriefInfo *)infoModel{
+    _infoModel = infoModel;
+    if ([[_infoModel.usernick stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] > 0) {
+        _nameLal.text = _infoModel.usernick;
+    }else{
+        _nameLal.text = @"暂无昵称";
+    }
+    [_smallImageView setHidden:YES];
+    [_cusImageView sd_setImageWithURL:[NSURL URLWithString:_infoModel.avatar_img] placeholderImage:[UIImage imageNamed:@""]];
+}
+
 @end

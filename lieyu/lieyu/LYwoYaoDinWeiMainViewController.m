@@ -127,8 +127,17 @@
 //    if (self.endTime.length <= 0 ) {
 //        self.endTime = @"24:00";
 //    }
-    timeView.startTime = self.startTime;
-    timeView.endTime = self.endTime;
+    
+    if ([MyUtil isEmptyString:self.startTime] && jiubaModel) {
+        timeView.startTime = jiubaModel.startTime;
+    }else if (![MyUtil isEmptyString:self.startTime]){
+        timeView.startTime = self.startTime;
+    }
+    if ([MyUtil isEmptyString:self.endTime] && jiubaModel) {
+        timeView.endTime = jiubaModel.endTime;
+    }else if (![MyUtil isEmptyString:self.endTime]){
+        timeView.endTime = self.endTime;
+    }
     [timeView congigure];
 }
 

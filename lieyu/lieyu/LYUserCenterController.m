@@ -151,6 +151,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     }
     
     
+    
     self.collectionView.frame = CGRectMake(0, height, SCREEN_WIDTH, SCREEN_HEIGHT - height - 49);
     _headerView = [[LYUserCenterHeader alloc]init];
     _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, height);

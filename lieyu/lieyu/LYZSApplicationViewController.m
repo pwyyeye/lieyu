@@ -10,7 +10,10 @@
 #import "LyZSuploadIdCardViewController.h"
 #import "LYChooseJiuBaViewController.h"
 #import "JiuBaModel.h"
-@interface LYZSApplicationViewController ()<LYChooseJiuBaDelegate>
+#import "LYChooseBarViewController.h"
+#import "IQKeyboardManager.h"
+
+@interface LYZSApplicationViewController ()<LYChooseJiuBaDelegate,UIScrollViewDelegate>
 {
     JiuBaModel *jiuBaNow;
     
@@ -21,6 +24,8 @@
     NSString *bankCard;//3
     NSString *bankCardDeposit;//3
     NSString *bankCardUsername;//3
+    
+    int checkHeight;
     
     
 //    "idcard":"身份证",
@@ -44,6 +49,9 @@
             [button addTarget:self action:@selector(chooseAccount:) forControlEvents:UIControlEventTouchUpInside];
         }
     }
+    
+    _scrollView.delegate = self;
+    
     _viewLine2.hidden = YES;
     _viewLine3.hidden = YES;
     _viewLine4.hidden = YES;
@@ -52,11 +60,30 @@
         [self initCheckView];
     }
     _sfzTex.keyboardType = UIKeyboardTypeNumberPad;
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(chooseMoreBar:) name:@"chooseAMoreBar" object:nil];
+    
 }
 
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+//    NSLog(@"_scrollView.contentSize:%@",NSStringFromCGSize(_scrollView. contentSize));
+//    NSLog(@"_scrollView.frame:%@",NSStringFromCGRect(_scrollView.frame));
+//}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    if(!_checkModel){
+        _scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, 232);
+    }else{
+        _scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, checkHeight);
+    }
+}
+
+//从审核页面过来
 - (void)initCheckView{
     [self.jiubaLal setTextColor:RGBA(186, 40, 227, 1)];
     self.jiubaLal.text=_checkModel.barname;
+    self.wechatLbl.text = _checkModel.wechatId;
     int accountNum = 0 ;
     if ([_checkModel.applyType isEqualToString:@"1"]) {
         accountNum = 2;
@@ -105,6 +132,7 @@
         [_viewLabel4 setText:@"开户姓名"];
         [_yhkyhmTex setText:_checkModel.bankCardUsername];
     }
+    checkHeight = 45 * (accountNum + 1) + 231 ;
     self.nextButton.hidden = YES;
 }
 
@@ -147,6 +175,15 @@
         [_yhkyhmTex setText:@""];
         [_yhkyhmTex setPlaceholder:@"请输入您的开户姓名"];
     }
+    int height = 45 * (accountNum + 1);
+    _scrollView.contentOffset = CGPointMake(0, 0);
+//    if (_scrollView.size.height > height) {
+//        _scrollView.scrollEnabled = NO;
+//    }else{
+//        _scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, height + 8);
+//        _scrollView.scrollEnabled = YES;
+//    }
+    _scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, height + 240);
 }
 
 - (void)chooseAccount:(UIButton *)button{
@@ -184,7 +221,6 @@
 
 #pragma mark - 下一步
 - (IBAction)nextAct:(UIButton *)sender {
-//   [self.view makeToast:@"This is a piece of toast."];
     if(![self checkData]){
         return;
     }
@@ -196,8 +232,23 @@
     }else if (_accountNum == 3){
         applyType = @"2";
     }
+    //固定参数
     NSMutableDictionary *dic=
-    [[NSMutableDictionary alloc]initWithDictionary:@{@"idcard":idcard,@"barid":[NSNumber numberWithInt:jiuBaNow.barid],@"userid":[NSNumber numberWithInt:self.userModel.userid],@"applyType":applyType}];
+    [[NSMutableDictionary alloc]initWithDictionary:@{
+    @"idcard":idcard,
+    @"userid":[NSNumber numberWithInt:self.userModel.userid],
+    @"applyType":applyType,
+    @"barid":[NSNumber numberWithInt:jiuBaNow.barid],
+    //添加了几个参数
+    @"barName":jiuBaNow.barname,
+    @"barAddress":jiuBaNow.address,
+    @"longitude":jiuBaNow.longitude,
+    @"latitude":jiuBaNow.latitude}];
+    //如果填写了微信号，上传
+    if (![MyUtil isEmptyString:_wechatLbl.text]) {
+        [dic setObject:_wechatLbl.text forKey:@"wechatId"];
+    }
+    //根据选填项不同添加参数
     if (_accountNum == 1) {
         if (wechatName.length) {
             [dic setObject:wechatName forKey:@"wechatName"];
@@ -280,4 +331,18 @@
 - (IBAction)exitEdit:(UITextField *)sender {
     [sender resignFirstResponder];
 }
+
+- (void)chooseMoreBar:(NSNotification *) user{
+    JiuBaModel *newBar = [[JiuBaModel alloc]init];
+    NSDictionary *info = user.userInfo;
+    newBar.barid = -1;
+    newBar.barname = [info objectForKey:@"barName"];
+    newBar.address = [info objectForKey:@"barAddress"];
+    newBar.longitude = [info objectForKey:@"barLongitude"];
+    newBar.latitude = [info objectForKey:@"barLatitude"];
+    
+    [self chooseJiuBa:newBar];
+}
+
+
 @end

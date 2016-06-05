@@ -14,8 +14,11 @@
 - (IBAction)chooseJiuBaAct:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UIButton *jiubaButton;
 - (IBAction)exitEdit:(UITextField *)sender;
+@property (weak, nonatomic) IBOutlet UITextField *wechatLbl;
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *chooseButtons;
+
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property (weak, nonatomic) IBOutlet UITextField *sfzTex;
 

@@ -70,7 +70,7 @@ typedef enum : NSUInteger {
 @property (nonatomic,strong)  FriendsUserInfoModel *userM;//好友信息；
 //@property (nonatomic,unsafe_unretained) BOOL isAMessageDetail;//是否是动态详情
 #pragma mark - 获取最新玩友圈数据
-- (void)getDataWithType:(dataType)type;
+- (void)getDataWithType:(dataType)type needLoad:(BOOL)need;
 
 - (void)loadDataWith:(UITableView *)tableView dataArray:(NSMutableArray *)dataArray pageStartCount:(int)pageStartCount type:(dataType)type;
 #pragma mark - 话题

@@ -25,4 +25,8 @@
     [self.timePicker setDate:date animated:YES];
 }
 
+- (void)configreTitleForAdviser{
+    [self.label_title setText:@"选择到达现场时间"];
+}
+
 @end

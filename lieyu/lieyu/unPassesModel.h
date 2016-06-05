@@ -71,5 +71,6 @@
 @property (nonatomic, strong) NSString *usernick;
 @property (nonatomic, strong) NSString *wechatAccount;
 @property (nonatomic, strong) NSString *wechatName;
+@property (nonatomic, strong) NSString *wechatId;
 
 @end
