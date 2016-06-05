@@ -77,10 +77,11 @@
 
 #pragma mark - 申请方式的展示
 - (void)setApplyType:(int)applyType{
+    applicationVC.nextButton.hidden = YES;
     _applyType = applyType;
     int height2;
     if (_applyType == 1) {
-        height2 = 264;
+        height2 = 321;
         applicationVC.viewLine2.hidden = NO;
         [applicationVC.viewLabel2 setText:@"真实姓名"];
         if (notEdit) {
@@ -94,7 +95,7 @@
         applicationVC.viewLine3.hidden = YES;
         applicationVC.viewLine4.hidden = YES;
     }else if (_applyType == 2){
-        height2 = 309;
+        height2 = 366;
         applicationVC.viewLine2.hidden = NO;
         [applicationVC.viewLabel2 setText:@"支付宝账号"];
         
@@ -113,7 +114,7 @@
         
         applicationVC.viewLine4.hidden = YES;
     }else if (_applyType == 3){
-        height2 = 353;
+        height2 = 411;
         applicationVC.viewLine2.hidden = NO;
         [applicationVC.viewLabel2 setText:@"银行卡号"];
 //        applicationVC.yhkkhTex.keyboardType = UIKeyboardTypeNumberPad;
@@ -138,6 +139,8 @@
         }
     }
     [applicationVC.view setFrame:CGRectMake(0, 65 + height, SCREEN_WIDTH, height2)];
+    applicationVC.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, height2);
+    
     if (![applicationVC.jiubaButton respondsToSelector:@selector(chooseJiuBaAct:)]) {
         [applicationVC.jiubaButton addTarget:self action:@selector(chooseJiuBaAct:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -166,9 +169,7 @@
 #pragma mark - 初始化原因等数据页面
 - (void)initOtherView{
     UILabel *reasonLabel = [[UILabel alloc]init];
-    [reasonLabel setText:_checkModel.note];      
-//    [reasonLabel setText:@"el setFont:[UIFont systemFontOfSize:14]];[reasonLabel setTextColor:RGBA(101, 101, 101, 1)];[reasonLabel setBackgroundColor:[UIColor c"];
-//    [reasonLabel setText: @"el setFont:[UIFont systemFontOfSize:14]];[reasonLabel setTextColor:RGBA(101, 101, 101, 1)];[reasonLabel setBackgroun dCosetFont:[UIFont systemFontOfSize:14]];[reasonLabel setTextColor:RGBA(101, 101, 101, 1)];[reasonLabel setBackgroun dColor:[UIColor clor:[UIColor c"];
+    [reasonLabel setText:_checkModel.note];
     [reasonLabel setFont:[UIFont systemFontOfSize:14]];
     [reasonLabel setTextColor:RGBA(101, 101, 101, 1)];
     [reasonLabel setBackgroundColor:[UIColor clearColor]];
@@ -186,11 +187,9 @@
         i = 1;
     }
     applicationVC = [[LYZSApplicationViewController alloc]initWithNibName:@"LYZSApplicationViewController" bundle:nil];
+    //WTT
     applicationVC.checkModel = _checkModel;
-    
-//    [applicationVC.view setFrame:CGRectMake(0, 65 + height, SCREEN_WIDTH, height2)];
     [self.scrollerView addSubview:applicationVC.view];
-//
     suploadVC = [[LyZSuploadIdCardViewController alloc]initWithNibName:@"LyZSuploadIdCardViewController" bundle:nil];
 //    [suploadVC.view setFrame:CGRectMake(0, 80 + height + height2, SCREEN_WIDTH, 312)];
 //    suploadVC.nextStepBtn.hidden = YES;
