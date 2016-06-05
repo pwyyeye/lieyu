@@ -363,6 +363,8 @@
 		3824CA681C5B47E000C00732 /* ChoosePeople.m in Sources */ = {isa = PBXBuildFile; fileRef = 3824CA671C5B47E000C00732 /* ChoosePeople.m */; };
 		3824CA6A1C5B47F300C00732 /* ChoosePeople.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3824CA691C5B47F300C00732 /* ChoosePeople.xib */; };
 		382FB47A1CD496BB001ABC49 /* LYDateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 382FB4791CD496BB001ABC49 /* LYDateUtil.m */; };
+		384A548F1CF5A8B6008825ED /* LYChooseBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 384A548D1CF5A8B6008825ED /* LYChooseBarViewController.m */; };
+		384A54901CF5A8B6008825ED /* LYChooseBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 384A548E1CF5A8B6008825ED /* LYChooseBarViewController.xib */; };
 		3856646A1C62EE6A000DCFA5 /* icon_collect2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 385664681C62EE6A000DCFA5 /* icon_collect2@2x.png */; };
 		3856646B1C62EE6A000DCFA5 /* icon_collect2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 385664691C62EE6A000DCFA5 /* icon_collect2@3x.png */; };
 		3856646F1C72B919000DCFA5 /* HDZTHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3856646D1C72B919000DCFA5 /* HDZTHeaderCell.m */; };
@@ -2372,6 +2374,9 @@
 		3824CA691C5B47F300C00732 /* ChoosePeople.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChoosePeople.xib; sourceTree = "<group>"; };
 		382FB4781CD496BB001ABC49 /* LYDateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LYDateUtil.h; path = Apple/LYDateUtil.h; sourceTree = "<group>"; };
 		382FB4791CD496BB001ABC49 /* LYDateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LYDateUtil.m; path = Apple/LYDateUtil.m; sourceTree = "<group>"; };
+		384A548C1CF5A8B6008825ED /* LYChooseBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYChooseBarViewController.h; sourceTree = "<group>"; };
+		384A548D1CF5A8B6008825ED /* LYChooseBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYChooseBarViewController.m; sourceTree = "<group>"; };
+		384A548E1CF5A8B6008825ED /* LYChooseBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYChooseBarViewController.xib; sourceTree = "<group>"; };
 		385664681C62EE6A000DCFA5 /* icon_collect2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_collect2@2x.png"; sourceTree = "<group>"; };
 		385664691C62EE6A000DCFA5 /* icon_collect2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_collect2@3x.png"; sourceTree = "<group>"; };
 		3856646C1C72B919000DCFA5 /* HDZTHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDZTHeaderCell.h; sourceTree = "<group>"; };
@@ -4824,6 +4829,9 @@
 				AD078C8C1C34D1B700A056D1 /* LYZSApplicationViewController.h */,
 				AD078C8A1C34D17E00A056D1 /* LYZSApplicationViewController.m */,
 				15E184821BB51A9500681BB2 /* LYZSApplicationViewController.xib */,
+				384A548C1CF5A8B6008825ED /* LYChooseBarViewController.h */,
+				384A548D1CF5A8B6008825ED /* LYChooseBarViewController.m */,
+				384A548E1CF5A8B6008825ED /* LYChooseBarViewController.xib */,
 				15E184851BB5214F00681BB2 /* LYChooseJiuBaViewController.h */,
 				15E184861BB5214F00681BB2 /* LYChooseJiuBaViewController.m */,
 				15E184871BB5214F00681BB2 /* LYChooseJiuBaViewController.xib */,
@@ -9542,6 +9550,7 @@
 				AD399ECC1C940D4D00028F23 /* logo77@2x.jpg in Resources */,
 				854CF48F1CA3BF1900F7F95B /* beerBarPoint@2x.png in Resources */,
 				ADD2649A1C93EA7A002894AC /* 4@2x.jpg in Resources */,
+				384A54901CF5A8B6008825ED /* LYChooseBarViewController.xib in Resources */,
 				380659C11C54AB5B003094C9 /* icon_like_2@3x.png in Resources */,
 				38EE9CE61CB3703900201734 /* bardetail_mask@3x.png in Resources */,
 				38F0FE801C4692C30070092D /* biaobai_icon@2x.png in Resources */,

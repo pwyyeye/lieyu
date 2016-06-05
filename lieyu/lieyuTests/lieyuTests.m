@@ -58,8 +58,8 @@
 //    XCTAssert(YES, @"Pass");
 //    LYCoreDataUtil *core=[LYCoreDataUtil shareInstance];
 //    [core saveOrUpdateCoreData:@"LYCache" withParam:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE,@"lyCacheValue":@{@"key":@"value"},@"createDate":[NSDate date]} andSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE}];
-    NSLog(@"----pass-pass   %@     ---",[MyUtil encryptUseDES:@"1" withKey:@"LY888888"]);
-    NSLog(@"----pass-pass  : %@    :---",[MyUtil decryptUseDES:@"RbgBxvWjxlA=" withKey:@"LY888888"]);
+    NSLog(@"----pass-pass   %@     ---",[MyUtil encryptUseDES:@"2" withKey:@"LY888888"]);
+    NSLog(@"----pass-pass  : %@    :---",[MyUtil decryptUseDES:@"IxwbsiHqgnw=" withKey:@"LY888888"]);
     ;
 }
 

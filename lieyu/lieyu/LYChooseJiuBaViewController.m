@@ -10,6 +10,7 @@
 #import "LYJiuBaCell.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "LYUserHttpTool.h"
+#import "LYChooseBarViewController.h"
 @interface LYChooseJiuBaViewController ()
 
 @end
@@ -21,8 +22,28 @@
     _listContent = [NSMutableArray new];
     _filteredListContent = [NSMutableArray new];
     [self getJiuBalist];
+    self.title = @"关联酒吧";
+    [self initRightButton];
     // Do any additional setup after loading the view from its nib.
 }
+
+#pragma mark - 右侧按钮
+- (void)initRightButton{
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(-20, 0, 80, 44)];
+    [button setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, -30)];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [button setTitle:@"其他酒吧" forState:UIControlStateNormal];
+    [button.titleLabel setFont:[UIFont systemFontOfSize:14]];
+    [button addTarget:self action:@selector(chooseMoreBar) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:button];
+    self.navigationItem.rightBarButtonItem = item;
+}
+
+- (void)chooseMoreBar{
+    LYChooseBarViewController *chooseMore = [[LYChooseBarViewController alloc]initWithNibName:@"LYChooseBarViewController" bundle:nil];
+    [self.navigationController pushViewController:chooseMore animated:YES];
+}
+
 #pragma mark - 所有酒吧
 -(void)getJiuBalist{
     [_listContent removeAllObjects];
