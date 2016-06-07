@@ -363,7 +363,6 @@
 		3824CA681C5B47E000C00732 /* ChoosePeople.m in Sources */ = {isa = PBXBuildFile; fileRef = 3824CA671C5B47E000C00732 /* ChoosePeople.m */; };
 		3824CA6A1C5B47F300C00732 /* ChoosePeople.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3824CA691C5B47F300C00732 /* ChoosePeople.xib */; };
 		382FB47A1CD496BB001ABC49 /* LYDateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 382FB4791CD496BB001ABC49 /* LYDateUtil.m */; };
-		384A548F1CF5A8B6008825ED /* LYChooseBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 384A548D1CF5A8B6008825ED /* LYChooseBarViewController.m */; };
 		384A54901CF5A8B6008825ED /* LYChooseBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 384A548E1CF5A8B6008825ED /* LYChooseBarViewController.xib */; };
 		3856646A1C62EE6A000DCFA5 /* icon_collect2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 385664681C62EE6A000DCFA5 /* icon_collect2@2x.png */; };
 		3856646B1C62EE6A000DCFA5 /* icon_collect2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 385664691C62EE6A000DCFA5 /* icon_collect2@3x.png */; };
@@ -1205,6 +1204,7 @@
 		8579682E1CFC176400284555 /* LYAdviserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8579682D1CFC176400284555 /* LYAdviserInfoModel.m */; };
 		857ABFC41D03D0FA00867DE3 /* collectNumber@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 857ABFC21D03D0FA00867DE3 /* collectNumber@2x.png */; };
 		857ABFC51D03D0FA00867DE3 /* collectNumber@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 857ABFC31D03D0FA00867DE3 /* collectNumber@3x.png */; };
+		857ABFC61D041CE400867DE3 /* LYChooseBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 384A548D1CF5A8B6008825ED /* LYChooseBarViewController.m */; };
 		857AD68C1CA8CDBB0032E0C4 /* LYFriendsNameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8540B6611C2CD8E200F16463 /* LYFriendsNameTableViewCell.xib */; };
 		857AD68D1CA8CDC00032E0C4 /* LYFriendsNameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8540B6601C2CD8E200F16463 /* LYFriendsNameTableViewCell.m */; };
 		857AD6971CA956100032E0C4 /* shopMyReceive@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 857AD6951CA956100032E0C4 /* shopMyReceive@3x.png */; };
@@ -10635,6 +10635,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				857ABFC61D041CE400867DE3 /* LYChooseBarViewController.m in Sources */,
 				85589C771C16BB28000E342E /* LYUserDetailTableViewCell.xib in Sources */,
 				85589C311C167E49000E342E /* PayButton.m in Sources */,
 				385665101C75EFFF000DCFA5 /* HDDetailImageCell.m in Sources */,
