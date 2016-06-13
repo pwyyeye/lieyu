@@ -13,7 +13,12 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-
+    
+    self.layer.shouldRasterize = YES;
+    self.layer.rasterizationScale = [[UIScreen mainScreen]scale];
+    
+    _imgView_banner.layer.cornerRadius = 2;
+    _imgView_banner.layer.masksToBounds = YES;
 }
 
 @end
