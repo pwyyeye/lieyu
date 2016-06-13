@@ -52,9 +52,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="239"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="transparentBG.png" translatesAutoresizingMaskIntoConstraints="NO" id="qHR-hG-XNc">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="239"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xH6-FH-2gX">
                                 <rect key="frame" x="273" y="20" width="39" height="47"/>
                                 <constraints>
@@ -205,6 +202,9 @@
                                     <action selector="checkCares:" destination="-1" eventType="touchUpInside" id="PpW-rr-ZP4"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="transparentBG.png" translatesAutoresizingMaskIntoConstraints="NO" id="qHR-hG-XNc">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="239"/>
+                            </imageView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="vUK-D9-Kza" firstAttribute="top" secondItem="9FF-m7-mFq" secondAttribute="top" constant="69" id="21b-OY-HTj"/>
@@ -218,6 +218,7 @@
                             <constraint firstItem="vUK-D9-Kza" firstAttribute="centerX" secondItem="eQa-qh-HcR" secondAttribute="centerX" id="Enk-7v-LhD"/>
                             <constraint firstItem="aI6-qw-xuK" firstAttribute="centerX" secondItem="qHR-hG-XNc" secondAttribute="centerX" id="FEI-jH-dWS"/>
                             <constraint firstAttribute="trailing" secondItem="xH6-FH-2gX" secondAttribute="trailing" constant="8" id="FEg-ix-xaT"/>
+                            <constraint firstAttribute="trailing" secondItem="xH6-FH-2gX" secondAttribute="trailing" constant="8" id="FWc-95-Mqe"/>
                             <constraint firstItem="aI6-qw-xuK" firstAttribute="leading" secondItem="XAA-3t-YDB" secondAttribute="trailing" id="Fvk-Fo-aDm"/>
                             <constraint firstAttribute="trailing" secondItem="wjD-Ol-sQi" secondAttribute="trailing" id="HhZ-pC-dub"/>
                             <constraint firstItem="qHR-hG-XNc" firstAttribute="leading" secondItem="9FF-m7-mFq" secondAttribute="leading" id="Mq7-NQ-dMZ"/>
@@ -226,6 +227,7 @@
                             <constraint firstItem="wjD-Ol-sQi" firstAttribute="leading" secondItem="pgm-NL-MdG" secondAttribute="leading" id="U6f-uY-QpU"/>
                             <constraint firstItem="vUK-D9-Kza" firstAttribute="centerX" secondItem="qHR-hG-XNc" secondAttribute="centerX" id="UOt-Fk-RKn"/>
                             <constraint firstAttribute="bottom" secondItem="aI6-qw-xuK" secondAttribute="bottom" constant="13" id="ZoZ-9v-0Iz"/>
+                            <constraint firstItem="xH6-FH-2gX" firstAttribute="top" secondItem="9FF-m7-mFq" secondAttribute="top" constant="20" id="cse-mN-4Nz"/>
                             <constraint firstItem="xH6-FH-2gX" firstAttribute="top" secondItem="9FF-m7-mFq" secondAttribute="top" constant="20" id="d7v-cA-2PH"/>
                             <constraint firstItem="aI6-qw-xuK" firstAttribute="bottom" secondItem="XAA-3t-YDB" secondAttribute="bottom" id="dYo-EC-OQQ"/>
                             <constraint firstItem="Kys-NE-67S" firstAttribute="top" secondItem="Zpi-JS-wi0" secondAttribute="bottom" id="eTV-vd-Mnz"/>
@@ -242,6 +244,12 @@
                             <constraint firstItem="aI6-qw-xuK" firstAttribute="top" secondItem="XAA-3t-YDB" secondAttribute="top" id="z1o-c5-phP"/>
                             <constraint firstItem="Kys-NE-67S" firstAttribute="bottom" secondItem="wjD-Ol-sQi" secondAttribute="bottom" id="zeW-hA-G37"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="FWc-95-Mqe"/>
+                                <exclude reference="d7v-cA-2PH"/>
+                            </mask>
+                        </variation>
                     </view>
                     <blurEffect style="light"/>
                 </visualEffectView>
@@ -510,8 +518,8 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nsb-J0-0OI">
                             <rect key="frame" x="0.0" y="235" width="320" height="72"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="官方认证" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YFo-GN-Ktn">
-                                    <rect key="frame" x="8" y="28" width="48" height="15"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="动态" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YFo-GN-Ktn">
+                                    <rect key="frame" x="8" y="28" width="24" height="15"/>
                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                                     <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
@@ -660,7 +668,7 @@
                 <constraint firstAttribute="bottom" secondItem="k3k-2U-VRV" secondAttribute="bottom" id="yae-42-eoG"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="185" y="336"/>
+            <point key="canvasLocation" x="36" y="280"/>
         </view>
     </objects>
     <resources>

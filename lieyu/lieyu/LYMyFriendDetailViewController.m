@@ -18,6 +18,7 @@
 #import "find_userInfoModel.h"
 #import "CareofViewController.h"
 #import "LYFriendsPersonMessageViewController.h"
+#import "LYGuWenFansViewController.h"
 
 @interface LYMyFriendDetailViewController ()
 {
@@ -65,21 +66,21 @@
     }
 }
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _scrollView.hidden = YES;
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.title = @"个人信息";
     self.userImageView.layer.masksToBounds =YES;
     self.userImageView.layer.cornerRadius =self.userImageView.frame.size.width/2;
     self.xingzuo.layer.cornerRadius = 10;
     self.xingzuo.layer.masksToBounds = YES;
     self.zhiwuLal.layer.cornerRadius = 10;
     self.zhiwuLal.layer.masksToBounds = YES;
-    self.guanzhuBtn.layer.cornerRadius = 4;
-    self.guanzhuBtn.layer.masksToBounds = YES;
-    self.guanzhuBtn.layer.borderColor = [UIColor blackColor].CGColor;
-    self.guanzhuBtn.layer.borderWidth = 0.5;
+    self.freeBookButton.layer.cornerRadius = 4;
+    self.onlineBookButton.layer.cornerRadius = 4;
     self.DTView.layer.cornerRadius = 4;
     self.DTView.layer.masksToBounds = YES;
     imgArray = @[_image1,_image2,_image3,_image4];
@@ -106,6 +107,7 @@
                 }
                 _zhiwuLal.text=[NSString stringWithFormat:@" %@ ",mytags];
             }
+            
             if(_customerModel.tag.count==0 && _customerModel.userTag.count>0){
                 NSMutableString *mytags=[[NSMutableString alloc] init];
                 for (int i=0; i<_customerModel.userTag.count; i++) {
@@ -134,14 +136,14 @@
             if(_customerModel.tag.count == 0 && _customerModel.tags.count == 0 && _customerModel.userTag.count == 0){
                 _zhiwuLal.text = @"保密";
             }
-            if (![MyUtil isEmptyString:_customerModel.age]) {
-                _age.text=_customerModel.age;
-            }
-            
-            if (![MyUtil isEmptyString:_customerModel.birthday]) {
-                _xingzuo.text=[MyUtil getAstroWithBirthday:_customerModel.birthday];
-                _age.text=[MyUtil getAgefromDate:_customerModel.birthday];
-            }
+//            if (![MyUtil isEmptyString:_customerModel.age]) {
+//                _age.text=_customerModel.age;
+//            }
+//            
+//            if (![MyUtil isEmptyString:_customerModel.birthday]) {
+//                _xingzuo.text=[MyUtil getAstroWithBirthday:_customerModel.birthday];
+//                _age.text=[MyUtil getAgefromDate:_customerModel.birthday];
+//            }
             
             self.namelal.text=_customerModel.friendName?_customerModel.friendName : (_customerModel.usernick ?_customerModel.usernick : (_customerModel.username?_customerModel.username:_customerModel.name));
             [self.userImageView sd_setImageWithURL:[NSURL URLWithString:_customerModel.avatar_img ? _customerModel.avatar_img : (_customerModel.icon ? _customerModel.icon : _customerModel.mark)]];
@@ -216,6 +218,23 @@
 }
 
 - (void)configureThisView{
+    _scrollView.hidden = NO;
+    if (![_result.usertype isEqualToString:@"1"]) {
+        _collectButton.hidden = YES;
+        [_fansOrCaresLabel setText:@"关注"];
+        _popularityView.hidden = YES;
+        _qualificationView.hidden = YES;
+        _DTViewTop.constant = -225;
+    }else{
+        [_fansOrCaresLabel setText:@"粉丝"];
+        for (UIButton *button in _identification_buttons) {
+            if (button.tag == 0) {
+                button.selected = YES;
+            }
+        }
+        _scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, 315);
+    }
+    
     _namelal.text = _result.usernick;
     
     [_userImageView sd_setImageWithURL:[NSURL URLWithString:_result.avatar_img]];
@@ -229,14 +248,14 @@
     }else{
         self.sexImageView.image=[UIImage imageNamed:@"manIcon"];
     }
-    _delLal.text = _result.introduction.length?_result.introduction:@"相约随时";
+//    _delLal.text = _result.introduction.length?_result.introduction:@"相约随时";
     NSArray *tagsArrayy = _result.tags;
     if(tagsArrayy.count > 0){
         _zhiwuLal.text = [tagsArrayy[0] objectForKey:@"tagname"];
     }else{
         _zhiwuLal.text = @"秘密";
     }
-    _age.text = _result.age;
+//    _age.text = _result.age;
     if (![MyUtil isEmptyString:_result.birthday]) {
         NSString *birth = [_result.birthday substringToIndex:10];
         _xingzuo.text=[MyUtil getAstroWithBirthday:birth];
@@ -372,10 +391,14 @@
 }
 
 - (IBAction)checkFans:(UIButton *)sender {
-    CareofViewController *caresViewController = [[CareofViewController alloc]initWithNibName:@"CareofViewController" bundle:nil];
-    caresViewController.userId = self.userID;
-    caresViewController.type = @"1";
-    [self.navigationController pushViewController:caresViewController animated:YES];
+//    CareofViewController *caresViewController = [[CareofViewController alloc]initWithNibName:@"CareofViewController" bundle:nil];
+//    caresViewController.userId = self.userID;
+//    caresViewController.type = @"1";
+//    [self.navigationController pushViewController:caresViewController animated:YES];
+    LYGuWenFansViewController *checkFans = [[LYGuWenFansViewController alloc]initWithNibName:@"LYGuWenFansViewController" bundle:nil];
+    checkFans.type = 0;
+    checkFans.userID = [NSString stringWithFormat:@"%d",_result.userid];
+    [self.navigationController pushViewController:checkFans animated:YES];
 }
 
 - (IBAction)checkCares:(UIButton *)sender {
@@ -390,5 +413,16 @@
     friendsVC.isFriendToUserMessage = YES;
     friendsVC.friendsId = self.userID;
     [self.navigationController pushViewController:friendsVC animated:YES];
+}
+- (IBAction)checkPopularityClick:(UIButton *)sender {
+    
+}
+
+- (IBAction)freeBookClick:(UIButton *)sender {
+    
+}
+
+- (IBAction)onlineBookClick:(UIButton *)sender {
+    
 }
 @end

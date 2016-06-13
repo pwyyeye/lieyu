@@ -8,10 +8,15 @@
 
 #import "LYFriendsPersonMessageViewController.h"
 
+typedef void (^ReturnModelBlock)(NSString *liked);
 
 @interface LYFriendsAMessageDetailViewController : LYFriendsPersonMessageViewController
 
 //@property (nonatomic,copy) NSString *messageId;
 @property (nonatomic,strong) FriendsRecentModel *recentM;
+
+@property (nonatomic, copy) ReturnModelBlock returnModelBlock;
+
+- (void)returnLiked:(ReturnModelBlock)block;
 
 @end

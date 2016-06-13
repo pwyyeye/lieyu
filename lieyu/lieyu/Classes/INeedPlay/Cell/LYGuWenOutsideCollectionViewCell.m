@@ -184,7 +184,8 @@
                 @"messageId":model.id,
                 @"type":likeStr};
     [LYFriendsHttpTool friendsLikeMessageWithParams:dict compelte:^(bool result) {
-        if (result) {[cell.likeButton setImage:[UIImage imageNamed:@"videoLiked"] forState:UIControlStateNormal];
+        if (result) {
+            [cell.likeButton setImage:[UIImage imageNamed:@"videoLiked"] forState:UIControlStateNormal];
             
             FriendsLikeModel *likeModel = [[FriendsLikeModel alloc]init];
             likeModel.userId = [NSString stringWithFormat:@"%d",userModel.userid];
@@ -200,6 +201,7 @@
             for (FriendsLikeModel *likeModel in model.likeList) {
                 if ([likeModel.userId isEqualToString:[NSString stringWithFormat:@"%d",userModel.userid]]) {
                     [model.likeList removeObject:likeModel];
+                    break;
                 }
             }
             
