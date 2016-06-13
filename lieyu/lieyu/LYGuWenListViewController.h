@@ -12,9 +12,9 @@
 
 @interface LYGuWenListViewController : LYHotBarsViewController
 
-@property (nonatomic, assign) NSInteger filterSortFlag;
-@property (nonatomic, assign) NSInteger filterSexFlag;
-@property (nonatomic, assign) NSInteger filterAreaFlag;
+@property (nonatomic, assign) NSInteger filterSortFlag;//
+@property (nonatomic, assign) NSInteger filterSexFlag;//2
+@property (nonatomic, assign) NSInteger filterAreaFlag;//0
 
 @property (nonatomic, strong) NSString *cityName;
 

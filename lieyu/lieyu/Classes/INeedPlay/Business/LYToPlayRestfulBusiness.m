@@ -37,7 +37,7 @@
          if (erMsg.state == Req_Success)
          {
              
-             if(index == 0){
+             if(index == 1){
                  //存储缓存讯息 首页
                  LYCoreDataUtil *core=[LYCoreDataUtil shareInstance];
                  [core saveOrUpdateCoreData:@"LYCache" withParam:@{
@@ -45,7 +45,7 @@
                                                                    @"lyCacheValue":dataDic,
                                                                    @"createDate":[NSDate date]}
                               andSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE_YD}];
-             }else if(index == 1){
+             }else if(index == 2){
                  LYCoreDataUtil *core=[LYCoreDataUtil shareInstance];
                  [core saveOrUpdateCoreData:@"LYCache" withParam:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE_BAR,@"lyCacheValue":dataDic,@"createDate":[NSDate date]} andSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE_BAR}];
              }
