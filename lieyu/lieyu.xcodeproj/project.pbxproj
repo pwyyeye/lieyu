@@ -363,7 +363,6 @@
 		3824CA681C5B47E000C00732 /* ChoosePeople.m in Sources */ = {isa = PBXBuildFile; fileRef = 3824CA671C5B47E000C00732 /* ChoosePeople.m */; };
 		3824CA6A1C5B47F300C00732 /* ChoosePeople.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3824CA691C5B47F300C00732 /* ChoosePeople.xib */; };
 		382FB47A1CD496BB001ABC49 /* LYDateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 382FB4791CD496BB001ABC49 /* LYDateUtil.m */; };
-		384A548F1CF5A8B6008825ED /* LYChooseBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 384A548D1CF5A8B6008825ED /* LYChooseBarViewController.m */; };
 		384A54901CF5A8B6008825ED /* LYChooseBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 384A548E1CF5A8B6008825ED /* LYChooseBarViewController.xib */; };
 		3856646A1C62EE6A000DCFA5 /* icon_collect2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 385664681C62EE6A000DCFA5 /* icon_collect2@2x.png */; };
 		3856646B1C62EE6A000DCFA5 /* icon_collect2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 385664691C62EE6A000DCFA5 /* icon_collect2@3x.png */; };
@@ -1406,6 +1405,7 @@
 		AD078C771C33CDE800A056D1 /* iphoneIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD078C741C33CDE800A056D1 /* iphoneIcon@3x.png */; };
 		AD078C8B1C34D17E00A056D1 /* LYZSApplicationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD078C8A1C34D17E00A056D1 /* LYZSApplicationViewController.m */; };
 		AD078C8D1C34D24C00A056D1 /* LYChooseJiuBaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E184861BB5214F00681BB2 /* LYChooseJiuBaViewController.m */; };
+		AD0FF0C21D041A1D00E24060 /* LYChooseBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 384A548D1CF5A8B6008825ED /* LYChooseBarViewController.m */; };
 		AD106B8B1C0AEF16007F5FBA /* LYUserCenterController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD106B891C0AEF16007F5FBA /* LYUserCenterController.m */; };
 		AD106B901C0AF044007F5FBA /* LYUserCenterHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = AD106B8E1C0AF044007F5FBA /* LYUserCenterHeader.m */; };
 		AD106B911C0AF044007F5FBA /* LYUserCenterHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD106B8F1C0AF044007F5FBA /* LYUserCenterHeader.xib */; };
@@ -10955,6 +10955,7 @@
 				ADF8E1C21C214ECB00943E4D /* LYCache+CoreDataProperties.m in Sources */,
 				15013B071BBA3BD000061FAF /* LYCommonHttpTool.m in Sources */,
 				15B8668A1BE09888002E2BB6 /* MyBarModel.m in Sources */,
+				AD0FF0C21D041A1D00E24060 /* LYChooseBarViewController.m in Sources */,
 				15AE634A1BA8576500FFAD1A /* ZSOrderViewController.m in Sources */,
 				380656691C4E5D5B003094C9 /* ImageCollectionViewController.m in Sources */,
 				853C360F1C72BA8400F1703B /* LYBarScrollTableViewCell.m in Sources */,
