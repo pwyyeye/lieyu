@@ -33,11 +33,18 @@
     NSMutableArray *_dataList;
     
     BOOL _isChangedFilter;
+    
+    UILabel *_kongLabel;
 }
 
 @end
 
 @implementation LYGuWenVideoViewController
+
+
+- (void)dealloc{
+    NSLog(@"LYGuWenVideoViewController   dealloc    success");
+}
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -201,6 +208,7 @@
     [LYAdviserHttpTool lyGetAdviserVideoWithParams:dict complete:^(NSArray *dataList) {
         LYGuWenOutsideCollectionViewCell *cell = (LYGuWenOutsideCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
         if (dataList.count) {
+            [self hideKongView];
             if (_start == 0) {
                 //start
                 [_dataList removeAllObjects];
@@ -211,13 +219,34 @@
             [cell.collectViewInside.mj_footer endRefreshing];
             _start = _start + LIMIT;
             
-            [cell.collectViewInside reloadData];
         }else{
-            [cell.collectViewInside.mj_header endRefreshing];
+            if (_start == 0) {
+                [_dataList removeAllObjects];
+                [cell.collectViewInside.mj_header endRefreshing];
+                [self initKongView];
+            }
             [cell.collectViewInside.mj_footer endRefreshingWithNoMoreData];
         }
-        
+        [cell.collectViewInside reloadData];
     }];
+}
+
+#pragma mark - 空界面
+- (void)initKongView{
+    if (!_kongLabel) {
+        _kongLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT / 2 - 45, SCREEN_WIDTH, 20)];
+        [_kongLabel setText:@"抱歉，暂无直播视频！"];
+        [_kongLabel setTextAlignment:NSTextAlignmentCenter];
+        [_kongLabel setFont:[UIFont systemFontOfSize:14]];
+        [_kongLabel setTextColor:RGBA(186, 40, 227, 1)];
+        _kongLabel.layer.zPosition = 3;
+    }
+        [self.view addSubview:_kongLabel];
+    
+}
+
+- (void)hideKongView{
+    [_kongLabel removeFromSuperview];
 }
 
 #pragma mark - collectionView
@@ -246,16 +275,21 @@
     return cell;
 }
 
-- (void)VideoSelected:(FriendsRecentModel *)recentM{
-    LYFriendsAMessageDetailViewController *detailVC = [[LYFriendsAMessageDetailViewController alloc]init];
-    detailVC.recentM = recentM;
-    detailVC.isFriendToUserMessage = YES;
-    detailVC.isMessageDetail = YES;
-    [self.navigationController pushViewController:detailVC animated:YES];
-}
+//- (void)VideoSelected:(FriendsRecentModel *)recentM{
+//    LYFriendsAMessageDetailViewController *detailVC = [[LYFriendsAMessageDetailViewController alloc]init];
+//    detailVC.recentM = recentM;
+//    detailVC.isFriendToUserMessage = YES;
+//    detailVC.isMessageDetail = YES;
+//    [self.navigationController pushViewController:detailVC animated:YES];
+//}
+//
+//- (void)lyRecentMessageLikeChange:(NSString *)liked{
+//    
+//}
 
 - (void)backClick{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 
 @end

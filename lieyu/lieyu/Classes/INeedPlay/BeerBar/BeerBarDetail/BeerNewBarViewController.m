@@ -810,11 +810,17 @@
         return;
     }
     
+//    if ([addressBook.userInfo.usertype isEqualToString:@"2"]) {
+//        [MyUtil showPlaceMessage:@"专属经理"];
+//    }else{
+//        [MyUtil showPlaceMessage:@"普通人"];
+//    }
+    
     LYMyFriendDetailViewController *friendDetailViewController=[[LYMyFriendDetailViewController alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
-    friendDetailViewController.title=@"详细信息";
+//    friendDetailViewController.title=@"详细信息";
     friendDetailViewController.type=@"4";
-    [friendDetailViewController.navigationController setNavigationBarHidden:NO animated:YES];
-    friendDetailViewController.customerModel=addressBook;
+//    [friendDetailViewController.navigationController setNavigationBarHidden:NO animated:YES];
+//    friendDetailViewController.customerModel=addressBook;
     friendDetailViewController.userID = [NSString stringWithFormat:@"%d",addressBook.userid];
     [self.navigationController pushViewController:friendDetailViewController animated:YES];
 }

@@ -90,12 +90,14 @@
     NSDictionary *dic1=@{@"colorRGB":RGB(136, 223, 121),@"imageContent":@"Fill20179",@"title":@"最近联系",@"delInfo":@"您有客户留言请及时查收"};
     NSDictionary *dic2=@{@"colorRGB":RGB(254, 147, 87),@"imageContent":@"Fill20219",@"title":@"订单管理",@"delInfo":@"您有订单要确认请及时确定"};
     NSDictionary *dic3=@{@"colorRGB":RGB(65, 241, 221),@"imageContent":@"Fill20176",@"title":@"我的客户",@"delInfo":@""};
-    NSDictionary *dic4=@{@"colorRGB":RGB(186, 40, 227),@"imageContent":@"Fill20176",@"title":@"速核码扫描",@"delInfo":@""};
+//    NSDictionary *dic4=@{@"colorRGB":RGB(186, 40, 227),@"imageContent":@"Fill20176",@"title":@"速核码扫描",@"delInfo":@""};
+    NSDictionary *dic5=@{@"colorRGB":RGB(154, 147, 87),@"imageContent":@"Fill20219",@"title":@"所有预定",@"delInfo":@"您有订单要确认请及时确定"};
 //    NSDictionary *dic4=@{@"colorRGB":RGB(84, 225, 255),@"imageContent":@"Fill2097",@"title":@"商铺管理",@"delInfo":@""};
     
     [listArr addObject:myNotification];
     [listArr addObject:myReceiveDic];
     [listArr addObject:dic2];//订单管理
+    [listArr addObject:dic5];
 //    [listArr addObject:dic4];//速核码扫描
     [listArr addObject:dic];//卡座已满
     [listArr addObject:dic1];//通知中心
@@ -363,14 +365,14 @@
         }
             break;
             
-        case 3://卡座
+        case 4://卡座
         {
             ZSSeatControlView *seatControlView=[[ZSSeatControlView alloc]initWithNibName:@"ZSSeatControlView" bundle:nil];
             [self.navigationController pushViewController:seatControlView animated:YES];
             break;
         }
             
-        case 4:// 通知中心
+        case 5:// 通知中心
         {
             LYRecentContactViewController * chat=[[LYRecentContactViewController alloc]init];
             chat.title=@"最近联系";
@@ -384,8 +386,12 @@
             [self.navigationController pushViewController:orderManageViewController animated:YES];
             break;
         }
-            
-        case 5:// 我的客户
+        case 3://yuding
+        {
+            [MyUtil showPlaceMessage:@"所有预定"];
+            break;
+        }
+        case 6:// 我的客户
         {
             ZSMyClientsViewController *myClientViewController=[[ZSMyClientsViewController alloc]initWithNibName:@"ZSMyClientsViewController" bundle:nil];
             

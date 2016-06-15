@@ -14,13 +14,17 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "LYFriendsHttpTool.h"
 #import "FriendsLikeModel.h"
+#import "LYFriendsAMessageDetailViewController.h"
+#import "LYFriendsMessagesViewController.h"
 
-@interface LYGuWenOutsideCollectionViewCell()<UICollectionViewDelegateFlowLayout,UICollectionViewDelegate,UICollectionViewDataSource,UIActionSheetDelegate>
+@interface LYGuWenOutsideCollectionViewCell()<UICollectionViewDelegateFlowLayout,UICollectionViewDelegate,UICollectionViewDataSource,UIActionSheetDelegate,LYRecentMessageLikeDelegate>
 {
     NSInteger playSection;
     MPMoviePlayerViewController *_player;
     BOOL _isDisturb;
     LYGuWenVideoCollectionViewCell *_friendVideoCell;
+    
+    NSInteger _selectedItem;
     
     int tag;
 }
@@ -125,12 +129,28 @@
         }
     }else if (_typeForShow == 2){
         FriendsRecentModel *model = (FriendsRecentModel *)[_videoArray objectAtIndex:indexPath.item];
-        if (_delegate && [_delegate respondsToSelector:@selector(VideoSelected:)]) {
-            [_delegate VideoSelected:model];
-        }
+//        if (_delegate && [_delegate respondsToSelector:@selector(VideoSelected:)]) {
+//            [_delegate VideoSelected:model];
+//        }
+        _selectedItem = indexPath.item;
+        LYFriendsAMessageDetailViewController *detailVC = [[LYFriendsAMessageDetailViewController alloc]init];
+        detailVC.recentM = model;
+        detailVC.isFriendToUserMessage = YES;
+        detailVC.isMessageDetail = YES;
+        detailVC.delegate = self;
+        AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        [app.navigationController pushViewController:detailVC animated:YES];
     }else{
         
     }
+}
+
+- (void)lyRecentMessageLikeChange:(NSString *)liked{
+    FriendsRecentModel *model = (FriendsRecentModel *)[_videoArray objectAtIndex:_selectedItem];
+    model.liked = liked;
+    LYGuWenVideoCollectionViewCell *cell = (LYGuWenVideoCollectionViewCell *)[_collectViewInside cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_selectedItem inSection:0]];
+    cell.recentM = model;
+    
 }
 
 #pragma mark - 按钮事件
@@ -184,7 +204,8 @@
                 @"messageId":model.id,
                 @"type":likeStr};
     [LYFriendsHttpTool friendsLikeMessageWithParams:dict compelte:^(bool result) {
-        if (result) {[cell.likeButton setImage:[UIImage imageNamed:@"videoLiked"] forState:UIControlStateNormal];
+        if (result) {
+            [cell.likeButton setImage:[UIImage imageNamed:@"videoLiked"] forState:UIControlStateNormal];
             
             FriendsLikeModel *likeModel = [[FriendsLikeModel alloc]init];
             likeModel.userId = [NSString stringWithFormat:@"%d",userModel.userid];
@@ -200,6 +221,7 @@
             for (FriendsLikeModel *likeModel in model.likeList) {
                 if ([likeModel.userId isEqualToString:[NSString stringWithFormat:@"%d",userModel.userid]]) {
                     [model.likeList removeObject:likeModel];
+                    break;
                 }
             }
             

@@ -46,6 +46,9 @@
 #import "LYHomeGuWenCollectionViewCell.h"
 #import "LYGuWenDetailViewController.h"
 #import "LYGuWenVideoViewController.h"
+#import "LYGuWenBannerCollectionViewCell.h"
+#import "LYMyFriendDetailViewController.h"
+#import "LYGuWenListViewController.h"
 
 #define PAGESIZE 20
 #define HOMEPAGE_MTA @"HOMEPAGE"
@@ -72,7 +75,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     UIVisualEffectView *_navView,*_menuView;//导航 菜单的背景view
     NSMutableArray *_fiterArray;//过滤数字
     
-    CGFloat _contentOffSet_Height_YD,_contentOffSet_Height_BAR,_contentOffSetWidth;//夜店表的偏移量 酒吧的表的偏移量
+    CGFloat _contentOffSetWidth;//夜店表的偏移量 酒吧的表的偏移量
+    float offsetY[3];//3个界面的y方向偏移量
+    NSString *_guWenBannerImgUrl;//顾问界面中间的banner；
     UICollectionView *_collectView;
     BOOL _isCollectView;//区分大的collectview 和 cell内部的collectview
     
@@ -82,7 +87,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     RecommendedTopic *_recommendedTopic2;
 
     BOOL _isGetDataFromNet_YD,_isGetDataFromNet_BAR;//判断是否从服务器获取夜店  酒吧的数据
-    BOOL _isDragScrollToTop;//是否拖拽至顶部
+    BOOL _isDragScrollToTop;//是否拖拽至顶
+    NSMutableArray *_collectionArray;
+    UIScrollView *_bgScrollView;
 }
 
 @property(nonatomic,strong)NSMutableArray *bannerList;
@@ -100,14 +107,16 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     _currentPage_YD = 1;
     _currentPage_Bar = 1;
     _currentPage_GuWen = 1;
-    _contentOffSet_Height_BAR = 1;
-    _contentOffSet_Height_YD = 1;
+    for (int i = 0; i < 3; i ++) {
+        offsetY[i] = 1;
+    }
     
     _dataArray = [[NSMutableArray alloc]initWithCapacity:3];
     _newbannerListArray = [[NSMutableArray alloc]initWithCapacity:3];
     _recommendedBarArray= [[NSMutableArray alloc]initWithCapacity:3];
     _menuBtnArray = [[NSMutableArray alloc]initWithCapacity:3];
     _fiterArray = [[NSMutableArray alloc]initWithCapacity:3];
+    _collectionArray = [[NSMutableArray alloc]initWithCapacity:3];
     for (int i = 0; i < 3; i ++) {
         NSMutableArray *array = [[NSMutableArray alloc]init];
         [_dataArray addObject:array];
@@ -116,20 +125,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         [_recommendedBarArray addObject:m];
         [_fiterArray addObject:array];
     }
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-    _collectView = [[UICollectionView alloc]initWithFrame:CGRectMake( 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) collectionViewLayout:layout];
-    [_collectView registerNib:[UINib nibWithNibName:@"LYHomeCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"LYHomeCollectionViewCell"];
-    [_collectView registerNib:[UINib nibWithNibName:@"LYHomeGuWenCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"LYHomeGuWenCollectionViewCell"];
-    _collectView.dataSource = self;
-    _collectView.delegate = self;
-    _collectView.scrollsToTop = NO;
-    _collectView.pagingEnabled = YES;
-    _collectView.bounces = NO;
-    _collectView.backgroundColor = [UIColor whiteColor];
-    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    [self.view addSubview:_collectView];
+    
+    [self createUI];//布局UI
+    
     //本地加载数据
-//    [self getDataLocalAndReload];
+    [self getDataLocalAndReload];
     //获取夜店数据
     [self getDataWith:0];
     
@@ -155,25 +155,161 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault] ;
 }
 
+- (void)createUI{
+    _bgScrollView = [[UIScrollView alloc]init];
+    _bgScrollView.scrollsToTop = NO;
+    _bgScrollView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    _bgScrollView.backgroundColor = [UIColor whiteColor];
+    _bgScrollView.pagingEnabled = YES;
+    _bgScrollView.showsHorizontalScrollIndicator = NO;
+    _bgScrollView.delegate = self;
+    [self.view addSubview:_bgScrollView];
+    
+    for (int i = 0; i < 3; i ++) {
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
+        UICollectionView *collectView = [[UICollectionView alloc]initWithFrame:CGRectMake(i * SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT) collectionViewLayout:layout];
+        [collectView registerNib:[UINib nibWithNibName:@"HomeBarCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeBarCollectionViewCell"];
+        [collectView registerNib:[UINib nibWithNibName:@"LYGuWenBannerCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"LYGuWenBannerCollectionViewCell"];
+        [collectView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
+        [collectView registerNib:[UINib nibWithNibName:@"HomeMenusCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeMenusCollectionViewCell"];
+        [collectView registerNib:[UINib nibWithNibName:@"LYGuWenPersonCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"LYGuWenPersonCollectionViewCell"];
+        [collectView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
+        collectView.dataSource = self;
+        collectView.delegate = self;
+        collectView.contentInset = UIEdgeInsetsMake(90, 0, 49, 0);
+        
+        __weak HomePageINeedPlayViewController *weakSelf = self;
+        collectView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+            switch (i) {
+                case 0:{
+                    _currentPage_GuWen = 1;
+                }
+                    break;
+                case 1:
+                {
+                    _currentPage_YD = 1;
+                }
+                    break;
+                case 2:
+                {
+                    _currentPage_Bar = 1;
+                }
+                    break;
+            }
+            
+            if(!i) {
+                [weakSelf getDataWith:i];
+            }else{
+                [weakSelf getDataWith:i];
+              /*  [weakSelf loadHomeListWith:i block:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
+                 {
+                     if (Req_Success == ermsg.state)
+                     {
+                         if (Req_Success == ermsg.state)
+                         {
+                             switch (i) {
+                                 case 1:
+                                 {
+                                     _currentPage_YD = 2;                                                  }
+                                     break;
+                                 case 2:{
+                                     _currentPage_Bar = 2;
+                                 }
+                                     break;
+                             }
+                             //                         cell.collectViewInside.mj_footer.hidden = NO;
+                             [collectView.mj_footer resetNoMoreData];
+                         }else{
+                             // collectView.mj_footer.hidden = YES;
+                             [collectView.mj_footer endRefreshingWithNoMoreData];
+                         }
+                         [collectView.mj_header endRefreshing];
+                     }
+                     [collectView.mj_header endRefreshing];
+                 }]; */
+                
+            }
+        }];
+        
+        MJRefreshGifHeader *header=(MJRefreshGifHeader *)collectView.mj_header;
+        [self initMJRefeshHeaderForGif:header];
+        
+        
+        
+        collectView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
+            
+            if (!i) {
+                _currentPage_GuWen ++;
+                [weakSelf getDataWith:i];
+            }else{
+                [weakSelf loadHomeListWith:i block:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList) {
+                    if (Req_Success == ermsg.state) {
+                        if (barList.count == PAGESIZE)
+                        {
+                            collectView.mj_footer.hidden = NO;
+                        }
+                        else
+                        {
+                            // collectView.mj_footer.hidden = YES;
+                        }
+                        switch (_index) {
+                            case 0:{
+                                _currentPage_GuWen ++;
+                            }
+                                break;
+                            case 1:
+                            {
+                                _currentPage_YD ++;
+                            }
+                                break;
+                            case 2:{
+                                _currentPage_Bar ++;
+                            }
+                                break;
+                        }
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            if(barList.count) [collectView.mj_footer endRefreshing];
+                            else [collectView.mj_footer endRefreshingWithNoMoreData];
+                        });
+                    }
+                }];
+            }
+        }];
+        MJRefreshBackGifFooter *footer=(MJRefreshBackGifFooter *)collectView.mj_footer;
+        [self initMJRefeshFooterForGif:footer];
+        
+        collectView.tag = i;
+        collectView.backgroundColor = RGBA(245, 245, 245, 1);
+        layout.minimumLineSpacing = 3;
+        layout.minimumInteritemSpacing = 3;
+        [_bgScrollView addSubview:collectView];
+        [_collectionArray addObject:collectView];
+    }
+    
+    [_bgScrollView setContentSize:CGSizeMake(3 * SCREEN_WIDTH, SCREEN_HEIGHT)];
+    
+    
+}
+
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"cityChange" object:nil];
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+//    UICollectionView *collectView = _collectionArray[_index];
+    [_collectionArray enumerateObjectsUsingBlock:^(UICollectionView *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (_menuView.center.y == 8) {
+            [obj setContentInset:COLLECTVIEWEDGETOP];
+        }else{
+            [obj setContentInset:COLLECTVIEWEDGEDOWN];
+//            [obj setContentOffset:CGPointMake(0, -90)];
+        }
+    }];
+    
+    
     _isDragScrollToTop = YES;
-    LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
-    switch (_index) {
-        case 0:
-        {
-            _contentOffSet_Height_YD = cell.collectViewInside.contentOffset.y;
-        }
-            break;
-        case 1:
-        {
-            _contentOffSet_Height_BAR = cell.collectViewInside.contentOffset.y;
-        }
-            break;
-    }
+    UICollectionView *collectView = _collectionArray[_index];
+    offsetY[_index] = collectView.contentOffset.y;
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
@@ -182,7 +318,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
-    if(scrollView == _collectView){
+    if(scrollView == _bgScrollView){
         
 //            CGFloat offsetWidth = _collectView.contentOffset.x;
 //            CGFloat hotMenuBtnWidth = _btn_bar.center.x - _btn_yedian.center.x;
@@ -190,24 +326,18 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     }else{
         _menuView.center = _menuView.center;
         if (!_isDragScrollToTop) return;
-        LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
-        if (_index) {//酒吧下拉超过35菜单显示
-            if (-cell.collectViewInside.contentOffset.y + _contentOffSet_Height_BAR > 35) {
-                [self showMenuView];
-            }else if(cell.collectViewInside.contentOffset.y - _contentOffSet_Height_BAR > 35) {//酒吧上拉超过35菜单隐藏
-                if(cell.collectViewInside.contentOffset.y < - 91) return;
-                [self hideMenuView];
-            }
-        }else{
-                if (-cell.collectViewInside.contentOffset.y + _contentOffSet_Height_YD > 35) {//夜店下拉超过35菜单显示
-                    [self showMenuView];
-                }else if(cell.collectViewInside.contentOffset.y - _contentOffSet_Height_YD > 35) {//夜店下拉超过35菜单隐藏
-                    if(cell.collectViewInside.contentOffset.y < - 91) return;
-                    [self hideMenuView];
-                }
-        }
+        UICollectionView *collectView = _collectionArray[_index];
+                    if (-collectView.contentOffset.y + offsetY[_index] > 35) {
+                        [self showMenuView];
+                    }else if(collectView.contentOffset.y - offsetY[_index] > 35) {//酒吧上拉超过35菜单隐藏
+                        if(collectView.contentOffset.y < - 91) return;
+                        [self hideMenuView];
+                    }
+
     }
 }
+
+
 
 //显示菜单
 - (void)showMenuView{
@@ -234,7 +364,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    _index = (NSInteger)_collectView.contentOffset.x/SCREEN_WIDTH;
+    _index = (NSInteger)_bgScrollView.contentOffset.x/SCREEN_WIDTH;
     //LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
     if (_dataArray.count) {
         NSArray *arr = _dataArray[_index];
@@ -263,7 +393,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         }
             }
     
-    if (scrollView == _collectView) {
+    if (scrollView == _bgScrollView) {
         
         [_menuBtnArray enumerateObjectsUsingBlock:^(HotMenuButton *obj, NSUInteger idx, BOOL * _Nonnull stop) {
             obj.isHomePageMenuViewSelected = NO;
@@ -272,15 +402,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         btn.isHomePageMenuViewSelected = YES;
         _lineView.center = CGPointMake(btn.center.x, _lineView.center.y);
         
-//        if (_index) {//酒吧按钮被选择
-//            _btn_bar.isHomePageMenuViewSelected = YES;
-//            _btn_yedian.isHomePageMenuViewSelected = NO;
-//            _lineView.center = CGPointMake(_btn_bar.center.x, _lineView.center.y);
-//        }else{
-//            _btn_bar.isHomePageMenuViewSelected = NO;
-//            _btn_yedian.isHomePageMenuViewSelected = YES;
-//            _lineView.center = CGPointMake(_btn_yedian.center.x, _lineView.center.y);
-//        }
+        for (int i= 0;i < _collectionArray.count;i ++) {
+            UICollectionView *collect = _collectionArray[i];
+            collect.scrollsToTop = NO;
+            if(_index == i) collect.scrollsToTop = YES;
+        }
     }
     
     _isDragScrollToTop = NO;
@@ -329,6 +455,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         HotMenuButton *btn = [[HotMenuButton alloc]init];
         btn.titleLabel.font = [UIFont systemFontOfSize:12];
         btn.tag = i;
+        [btn addTarget:self action:@selector(menuClick:) forControlEvents:UIControlEventTouchUpInside];
         if(i == 0) btn.isHomePageMenuViewSelected = YES;
         else btn.isHomePageMenuViewSelected = NO;
         [btn setTitle:btnTitleArray[i] forState:UIControlStateNormal];
@@ -336,25 +463,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         btn.frame = CGRectMake(SCREEN_WIDTH/3.f * i + btnWidth_2 , _menuView.frame.size.height - 16 - 4.5, 2 * btnWidth_2, 16);
         [_menuBtnArray addObject:btn];
     }
-//    [_btn_yedian addTarget:self action:@selector(yedianClick) forControlEvents:UIControlEventTouchUpInside];
-//    _btnGuWen.isHomePageMenuViewSelected = YES;
-    
-//    //夜店按钮
-//    _btn_yedian = [[HotMenuButton alloc]init];
-//    _btn_yedian.titleLabel.font = [UIFont systemFontOfSize:12];
-//    _btn_yedian.isHomePageMenuViewSelected = YES;
-//    [_btn_yedian setTitle:@"夜店" forState:UIControlStateNormal];
-//    [_menuView addSubview:_btn_yedian];
-//    [_btn_yedian addTarget:self action:@selector(yedianClick) forControlEvents:UIControlEventTouchUpInside];
-//    _btn_yedian.frame = CGRectMake(SCREEN_WIDTH/2.f - 44 - 22, _menuView.frame.size.height - 16 - 4.5, 44, 16);
-//    
-//    
-//    //酒吧按钮
-//    _btn_bar = [[HotMenuButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2.f + 22, _menuView.frame.size.height - 16 - 4.5, 44, 16)];
-//    [_btn_bar setTitle:@"酒吧" forState:UIControlStateNormal];
-//    _btn_bar.isHomePageMenuViewSelected = NO;
-//    [_btn_bar addTarget:self action:@selector(barClick) forControlEvents:UIControlEventTouchUpInside];
-//    [_menuView addSubview:_btn_bar];
+
     
     //按钮下滑线
     HotMenuButton *guWenBtn = _menuBtnArray.firstObject;
@@ -365,6 +474,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     _lineView.center = CGPointMake(guWenBtn.center.x, _lineView.center.y);
     
     if (_index) {
+        HotMenuButton *firstBtn = _menuBtnArray.firstObject;
+        firstBtn.isHomePageMenuViewSelected = NO;
+        
         HotMenuButton *btn = _menuBtnArray[_index];
         btn.isHomePageMenuViewSelected = YES;
         
@@ -376,54 +488,37 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 //kvo监听导航的上下改变cell内部collecview的contentInset
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
     UIVisualEffectView *effectView = (UIVisualEffectView *)object;
-    LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
+    UICollectionView *collectionView = _collectionArray[_index];
     
     if (effectView.center.y == 8) {//上面
-        if(cell.collectViewInside.contentInset.top == 91) [cell.collectViewInside setContentInset:COLLECTVIEWEDGETOP];
+        if(collectionView.contentInset.top == 91) [collectionView setContentInset:COLLECTVIEWEDGETOP];
     }else if (effectView.center.y == 45){
-        if(cell.collectViewInside.contentInset.top == 91-40)  [cell.collectViewInside setContentInset:COLLECTVIEWEDGEDOWN];
+        if(collectionView.contentInset.top == 91-40)  [collectionView setContentInset:COLLECTVIEWEDGEDOWN];
     }
 }
 
-#pragma mark －夜店action
-- (void)yedianClick{
-    _index = 0;
-    [_collectView setContentOffset:CGPointZero animated:YES];
-//    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"筛选" pageName:HOMEPAGE_MTA titleName:_btn_yedian.currentTitle]];
-//    _btn_yedian.isHomePageMenuViewSelected = YES;
-//    _btn_bar.isHomePageMenuViewSelected = NO;
+#pragma mark - 菜单点击事件
+- (void)menuClick:(HotMenuButton *)button{
+    [_bgScrollView setContentOffset:CGPointMake(SCREEN_WIDTH * button.tag, 0)];
+    _index = button.tag;
+    [_menuBtnArray enumerateObjectsUsingBlock:^(HotMenuButton *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        obj.isHomePageMenuViewSelected = NO;
+    }];
+    button.isHomePageMenuViewSelected = YES;
+    _lineView.center = CGPointMake(button.center.x, _lineView.center.y);
+    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"筛选" pageName:HOMEPAGE_MTA titleName:button.currentTitle]];
     if (_dataArray.count) {
-        NSArray *array = _dataArray[0];
+        NSArray *array = _dataArray[button.tag];
         if (array.count == 0) {
-            [self getDataWith:0];
+            [self getDataWith:button.tag];
         }
     }
-
-}
-
-#pragma mark －酒吧action
-- (void)barClick{
-    _index = 1;
-    [_collectView setContentOffset:CGPointMake(SCREEN_WIDTH, 0) animated:YES];
-//    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"筛选" pageName:HOMEPAGE_MTA titleName:_btn_bar.currentTitle]];
-//    _btn_bar.isHomePageMenuViewSelected = YES;
-//    _btn_yedian.isHomePageMenuViewSelected = NO;
-    if (_dataArray.count) {
-        if (_isGetDataFromNet_BAR) {
-            _isGetDataFromNet_BAR = NO;
-            [self getDataWith:1];
-        }
-    }
-}
-
-- (void)menuBtnClick:(HotMenuButton *)btn{
-    
 }
 
 #pragma mark 选择城市action
 - (void)cityChangeClick:(UIButton *)sender {
-//    LYCityChooseViewController *cityChooseVC = [[LYCityChooseViewController alloc]init];
-//    [self.navigationController pushViewController:cityChooseVC animated:YES];
+    LYCityChooseViewController *cityChooseVC = [[LYCityChooseViewController alloc]init];
+    [self.navigationController pushViewController:cityChooseVC animated:YES];
     
 //    LYGuWenListViewController *cityChooseVC = [[LYGuWenListViewController alloc]init];
 //    cityChooseVC.contentTag = 1;
@@ -432,16 +527,16 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 //    cityChooseVC.filterSortFlag = 1;
 //    [self.navigationController pushViewController:cityChooseVC animated:YES];
 //
-    if (!self.userModel) {
-        [MyUtil showPlaceMessage:@"抱歉，请先登录！"];
-    }else{
-        LYGuWenVideoViewController *cityVC = [[LYGuWenVideoViewController alloc]init];
-        cityVC.isVideoListVC = YES;
-        [self.navigationController pushViewController:cityVC animated:YES];
-    }
+//    if (!self.userModel) {
+//        [MyUtil showPlaceMessage:@"抱歉，请先登录！"];
+//    }else{
+//        LYGuWenVideoViewController *cityVC = [[LYGuWenVideoViewController alloc]init];
+//        cityVC.isVideoListVC = YES;
+//        [self.navigationController pushViewController:cityVC animated:YES];
+//    }
     
     
-//    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:@"选择城市"]];
+    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:@"选择城市"]];
 
 //    LYGuWenPersonDetailViewController *cityChooseVC = [[LYGuWenPersonDetailViewController alloc]initWithNibName:@"LYGuWenPersonDetailViewController" bundle:[NSBundle mainBundle]];
 //    [self.navigationController pushViewController:cityChooseVC animated:YES];
@@ -479,6 +574,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [_menuBtnArray enumerateObjectsUsingBlock:^(HotMenuButton *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [obj removeFromSuperview];
     }];
+    [_menuBtnArray removeAllObjects];
     [_lineView removeFromSuperview];
     [_menuView removeFromSuperview];
 }
@@ -492,26 +588,42 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:@"搜索"]];
 }
 
+#pragma mark - 本地加载数据
 - (void)getDataLocalAndReload{
-    NSArray *array = [self getDataFromLocal];
+    NSMutableArray *array = [self getDataFromLocal].mutableCopy;
+
   //  LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
-    if (array.count == 2) {
+    if (array.count == 3) {//顾问的数据
+        NSArray *array_GW = array.firstObject;
+        NSDictionary *dataDic_GW = ((LYCache *)array_GW.firstObject).lyCacheValue;
+        [_newbannerListArray replaceObjectAtIndex:0 withObject:dataDic_GW[@"newbanner"]];
+        NSArray *array_VipList = [[NSMutableArray alloc]initWithArray:[UserModel mj_objectArrayWithKeyValuesArray:dataDic_GW[@"viplist"]]];
+        [_dataArray replaceObjectAtIndex:0 withObject:array_VipList];
+        _guWenBannerImgUrl = dataDic_GW[@"banner"][0];
+        [_fiterArray replaceObjectAtIndex:0 withObject:[dataDic_GW valueForKey:@"filterImages"]];
         
-        for (int i = 0; i < array.count; i ++) {
-            NSDictionary *dataDic = ((LYCache *)((NSArray *)array[i]).firstObject).lyCacheValue;
+        
+        [array removeObjectAtIndex:0];
+        for (int i = 1; i < array.count+ 1; i ++) {//夜店，酒吧的数据
+            NSDictionary *dataDic = ((LYCache *)((NSArray *)array[i-1]).firstObject).lyCacheValue;
             [_newbannerListArray replaceObjectAtIndex:i withObject:dataDic[@"newbanner"]];
+            NSArray *array_Barlist = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic[@"barlist"]]] ;
+            [_fiterArray replaceObjectAtIndex:i withObject:[dataDic valueForKey:@"filterImages"]];
+            
+            NSDictionary *recommendedBarDic = [dataDic valueForKey:@"recommendedBar"];
+            [_recommendedBarArray replaceObjectAtIndex:i withObject:[JiuBaModel mj_objectWithKeyValues:recommendedBarDic]];
+            [_dataArray replaceObjectAtIndex:i withObject:array_Barlist];
+            
+            if(i == 1) _recommendedTopic = [RecommendedTopic mj_objectWithKeyValues:[dataDic valueForKey:@"recommendedTopic"]];
+            else _recommendedTopic2 = [RecommendedTopic mj_objectWithKeyValues:[dataDic valueForKey:@"recommendedTopic"]];
         }
         
-        NSDictionary *dataDic1 = ((LYCache *)((NSArray *)array[0]).firstObject).lyCacheValue;
-         NSDictionary *dataDic2 = ((LYCache *)((NSArray *)array[1]).firstObject).lyCacheValue;
-        NSArray *array_YD = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic1[@"barlist"]]] ;
-        NSArray *array_BAR = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic2[@"barlist"]]] ;
-        [_fiterArray replaceObjectAtIndex:1 withObject:[dataDic1 valueForKey:@"filterImages"]];
-        [_fiterArray replaceObjectAtIndex:2 withObject:[dataDic1 valueForKey:@"filterImages"]];
-         NSDictionary *recommendedBarDic1 = [dataDic1 valueForKey:@"recommendedBar"];
-                 NSDictionary *recommendedBarDic2 = [dataDic2 valueForKey:@"recommendedBar"];
-        
-        [_recommendedBarArray replaceObjectAtIndex:_index withObject:[JiuBaModel mj_objectWithKeyValues:recommendedBarDic1]];
+//         NSDictionary *dataDic2 = ((LYCache *)((NSArray *)array[1]).firstObject).lyCacheValue;
+//        NSArray *array_BAR = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic2[@"barlist"]]] ;
+//        
+//        [_fiterArray replaceObjectAtIndex:2 withObject:[dataDic1 valueForKey:@"filterImages"]];
+//         NSDictionary *recommendedBarDic1 = [dataDic1 valueForKey:@"recommendedBar"];
+//        
 //        if (_index==0) {
 //            _recommendedBar = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic1];
 //
@@ -519,12 +631,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 //            _recommendedBar2 = [JiuBaModel mj_objectWithKeyValues:recommendedBarDic2];
 //
 //        }
-        if (_index == 0) {
-            [_dataArray replaceObjectAtIndex:0 withObject:array_YD];
-        }else{
-            [_dataArray replaceObjectAtIndex:1 withObject:array_BAR];
-        }
-        [_collectView reloadData];
+        
+//        [_collectView reloadData];
+        [_collectionArray enumerateObjectsUsingBlock:^(UICollectionView *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [obj reloadData];
+        }];
     
         _isGetDataFromNet_BAR = YES;
         _isGetDataFromNet_YD = YES;
@@ -533,25 +644,30 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 #pragma mark 获取数据
 -(void)getDataWith:(NSInteger)tag{
+    UICollectionView *collectionView = _collectionArray[tag];
     if (!tag) {//娱乐顾问数据
         CLLocation * userLocation = [LYUserLocation instance].currentLocation;
         NSDictionary *dic = @{@"city":@"上海",@"p":[NSString stringWithFormat:@"%ld",_currentPage_GuWen],@"per":@(PAGESIZE).stringValue,@"latitude":@(userLocation.coordinate.latitude).stringValue,@"longitude":@(userLocation.coordinate.longitude).stringValue};
         [LYHomePageHttpTool homePageGetGuWenDataWith:dic complete:^(HomePageModel *homePageM) {
-            if(_currentPage_GuWen == 1){
+            if(offsetY[0] == 1){
                 [_dataArray replaceObjectAtIndex:0 withObject:homePageM.viplist];
             }else{
                 [((NSMutableArray *)_dataArray.firstObject) addObjectsFromArray:homePageM.viplist];
             }
+            _guWenBannerImgUrl = homePageM.banner.firstObject;
             [_newbannerListArray replaceObjectAtIndex:tag withObject:homePageM.newbanner];
             [_fiterArray replaceObjectAtIndex:tag withObject:homePageM.filterImages];
-            LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
-            [cell.collectViewInside reloadData];
+//            LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
+//            [cell.collectViewInside reloadData];
+            
+            
             if (!homePageM.viplist.count) {
-                [cell.collectViewInside.mj_footer endRefreshingWithNoMoreData];
+                [collectionView.mj_footer endRefreshingWithNoMoreData];
             }else{
-                [cell.collectViewInside.mj_footer endRefreshing];
+                [collectionView.mj_footer endRefreshing];
             }
-            [cell.collectViewInside.mj_header endRefreshing];
+            [collectionView.mj_header endRefreshing];
+            [collectionView reloadData];
         }];
         return;
     }
@@ -560,30 +676,31 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     __weak HomePageINeedPlayViewController * weakSelf = self;
     [weakSelf loadHomeListWith:tag block:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
      {
-//         NSLog(@"@@@@@@@@@@@@@@@@@@@@@@@------getData--------@@@@@@@@@@@@@@@@@@@");
          if (Req_Success == ermsg.state)
          {
-             //             UICollectionView *collectView = _collectViewArray[_index];
-             if (barList.count == PAGESIZE)
+             if (Req_Success == ermsg.state)
              {
-                 //                 weakSelf.curPageIndex = 2;
                  switch (tag) {
                      case 1:
-                         _currentPage_YD = 2;
+                     {
+                         _currentPage_YD = 2;                                                  }
                          break;
-                     case 2:
+                     case 2:{
                          _currentPage_Bar = 2;
+                     }
                          break;
                  }
-                 
+                 //                         cell.collectViewInside.mj_footer.hidden = NO;
+                 [collectionView.mj_footer resetNoMoreData];
              }else{
-                 LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
-                 [cell.collectViewInside.mj_footer endRefreshingWithNoMoreData];
-                 //collectView.mj_footer.hidden = YES;
-                 //                 [collectView.mj_footer endRefreshingWithNoMoreData];
+                 // collectView.mj_footer.hidden = YES;
+                 [collectionView.mj_footer endRefreshingWithNoMoreData];
              }
+             [collectionView.mj_header endRefreshing];
          }
+         [collectionView.mj_header endRefreshing];
      }];
+    
 }
 
 - (void)loadHomeListWith:(NSInteger)tag block:(void(^)(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList))block
@@ -632,17 +749,18 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 //                [_fiterArray replaceObjectAtIndex:2 withObject:homePageM.filterImages];
             }
             
-            [_recommendedBarArray replaceObjectAtIndex:_index withObject:homePageM.recommendedBar];
-            if (_index==1) {
+            [_recommendedBarArray replaceObjectAtIndex:tag withObject:homePageM.recommendedBar];
+            if (tag==1) {
                 _recommendedTopic = homePageM.recommendedTopic;
             }else{
                 _recommendedTopic2 = homePageM.recommendedTopic;
             }
             [array addObjectsFromArray:homePageM.barlist.mutableCopy] ;
             
-            LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
-            [cell.collectViewInside reloadData];
-            
+//            LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
+//            [cell.collectViewInside reloadData];
+            UICollectionView *collectView = _collectionArray[tag];
+            [collectView reloadData];
         }
         block !=nil? block(ermsg,homePageM.banner,homePageM.barlist):nil;
     }];   
@@ -652,9 +770,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 - (NSArray *)getDataFromLocal{
     NSPredicate *pre = [NSPredicate predicateWithFormat:@"lyCacheKey == %@",CACHE_INEED_PLAY_HOMEPAGE_YD];
     NSPredicate *pre_Bar = [NSPredicate predicateWithFormat:@"lyCacheKey == %@",CACHE_INEED_PLAY_HOMEPAGE_BAR];
+    NSPredicate *pre_GW = [NSPredicate predicateWithFormat:@"lyCacheKey == %@",CACHE_INEED_PLAY_HOMEPAGE_GUWEN];
     NSArray *array_YD = [[LYCoreDataUtil shareInstance]getCoreData:@"LYCache" withPredicate:pre];
     NSArray *array_Bar = [[LYCoreDataUtil shareInstance] getCoreData:@"LYCache" withPredicate:pre_Bar];
-    NSArray *array = @[array_YD,array_Bar];
+    NSArray *arry_GW = [[LYCoreDataUtil shareInstance] getCoreData:@"LYCache" withPredicate:pre_GW];
+    NSArray *array = @[arry_GW,array_YD,array_Bar];
     return array;
 }
 
@@ -671,37 +791,13 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    if(collectionView == _collectView){
-        return _dataArray.count;
-    }else{
-        if(!_index){
-            NSArray *arr = _dataArray.firstObject;
-            return arr.count + 3;
-        }else{
-        LYHomeCollectionViewCell *hcell = (LYHomeCollectionViewCell *)[[collectionView superview] superview];
-        if (hcell.jiubaArray.count) {
-            return hcell.jiubaArray.count + 4;
-        }else{
-            //WTT
-            return 10;
-        }
-    }
-    }
+    if(!collectionView.tag)    return ((NSArray *)_dataArray[collectionView.tag]).count + 3;
+    else return ((NSArray *)_dataArray[collectionView.tag]).count + 4;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    /* if(indexPath.row >= 2 && indexPath.row <= 5){
-     return CGSizeMake((SCREEN_WIDTH - 9)/2.f, (SCREEN_WIDTH - 9)/2.f * 9 / 16);
-     }else if(indexPath.row == 0){
-     return CGSizeMake(SCREEN_WIDTH - 6, (SCREEN_WIDTH - 6) * 9 / 16);
-     }else{
-     return CGSizeMake(SCREEN_WIDTH - 6, (SCREEN_WIDTH - 6) * 9 / 16);
-     } */
-    if (collectionView == _collectView) {
-        return CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT);
-    }else{
-        
-        if(!_index){
+ 
+        if(!collectionView.tag){
             if (!indexPath.item) {
                 return CGSizeMake(SCREEN_WIDTH - 6, (SCREEN_WIDTH - 6) * 9 /16);
             }else if(indexPath.item == 1){
@@ -713,13 +809,13 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             }
         }
         
-        if (!_recommendedTopic.id&&_index==1) {
+        if ([MyUtil isEmptyString:_recommendedTopic.id]&&collectionView.tag==1) {
             if (indexPath.item == 3) {
                 return CGSizeZero;
             }
         }
         
-        if (!_recommendedTopic2.id&&_index==2) {
+        if ([MyUtil isEmptyString:_recommendedTopic2.id]&&collectionView.tag==2) {
             if (indexPath.item == 3) {
                 return CGSizeZero;
             }
@@ -729,215 +825,105 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             return CGSizeMake(SCREEN_WIDTH - 6, ((SCREEN_WIDTH-9)/2)*95/183*2+3);
         }
         return CGSizeMake(SCREEN_WIDTH - 6, (SCREEN_WIDTH - 6) * 9 /16);
-    }
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-    if (collectionView == _collectView) {
-        return 0;
-    }else{
-        return 3;
-    }
+    return 3;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    if (collectionView == _collectView) {
-        return 0;
-    }else{
-        return 3;
-    }
+    return 3;
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    if (collectionView == _collectView) {
-        return UIEdgeInsetsZero;
-    }else{
-        return UIEdgeInsetsMake(3, 3, 3, 3);
-    }
+    return UIEdgeInsetsMake(3, 3, 3, 3);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    if (collectionView == _collectView) {//为cell里的collectview注册单元格 以及增加上下拉刷新控件
-      __weak LYHomeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LYHomeCollectionViewCell" forIndexPath:indexPath];
-        if(!indexPath.item){
-            cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LYHomeGuWenCollectionViewCell" forIndexPath:indexPath];
-           
+    if(!indexPath.item){
+        UICollectionViewCell *spaceCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+        NSMutableArray *bannerList=[NSMutableArray new];
+        
+        for (NSDictionary *dic in _newbannerListArray[collectionView.tag]) {
+            if ([dic objectForKey:@"img_url"]) {
+                [bannerList addObject:[dic objectForKey:@"img_url"]];
+            }
         }
-        cell.collectViewInside.dataSource = self;
-        cell.collectViewInside.delegate = self;
-        [cell.collectViewInside registerNib:[UINib nibWithNibName:@"HomeBarCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeBarCollectionViewCell"];
-        [cell.collectViewInside registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
-        [cell.collectViewInside registerNib:[UINib nibWithNibName:@"HomeMenusCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeMenusCollectionViewCell"];
-        [cell.collectViewInside registerNib:[UINib nibWithNibName:@"LYGuWenPersonCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"LYGuWenPersonCollectionViewCell"];
         
-        cell.collectViewInside.alwaysBounceHorizontal = NO;
-        cell.collectViewInside.alwaysBounceVertical = YES;
-        cell.collectViewInside.contentInset = UIEdgeInsetsMake(90, 0, 0, 0);
+        UIImageView *imageV = [spaceCell viewWithTag:10010];
+        if (imageV) {
+            [imageV removeFromSuperview];
+        }
         
+        UIView *view= [spaceCell viewWithTag:1999];
+        [view removeFromSuperview];
+        view=nil;
         
-    __weak HomePageINeedPlayViewController *weakSelf = self;
-        cell.collectViewInside.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        SDCycleScrollView *cycleScrollView  = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 6, ((SCREEN_WIDTH - 6) * 9) / 16) delegate:self placeholderImage:[UIImage imageNamed:@"empyImageBar16_9"]];
+        cycleScrollView.tag=1999;
+        cycleScrollView.imageURLStringsGroup =bannerList;// self.bannerList;
+        cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"banner_s"];
+        cycleScrollView.pageDotImage = [UIImage imageNamed:@"banner_us"];
+        [spaceCell addSubview:cycleScrollView];
+        return spaceCell;
+    }
+    
+    if (!collectionView.tag) {//娱乐顾问
         switch (indexPath.item) {
-            case 0:{
-                _currentPage_GuWen = 1;
+            case 0:
+            {
+                
             }
                 break;
-            case 1:
-            {
-                _currentPage_YD = 1;
+            case 1:{//菜单
+                HomeMenusCollectionViewCell *menucell = [collectionView dequeueReusableCellWithReuseIdentifier:@
+                                                             "HomeMenusCollectionViewCell"forIndexPath:indexPath];
+                return menucell;
             }
                 break;
-            case 2:
+            case 2://banner
             {
-                _currentPage_Bar = 1;
+                LYGuWenBannerCollectionViewCell *guWenBannerCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LYGuWenBannerCollectionViewCell" forIndexPath:indexPath];
+                [guWenBannerCell.imgView_banner sd_setImageWithURL:[NSURL URLWithString:_guWenBannerImgUrl] placeholderImage:[UIImage imageNamed:@"empyImageBar16_9"]];
+                guWenBannerCell.imgView_banner.contentMode = UIViewContentModeScaleAspectFill;
+                return guWenBannerCell;
+            }
+                break;
+            case 3://活动
+            {
+                    LYGuWenPersonCollectionViewCell *guWenCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LYGuWenPersonCollectionViewCell" forIndexPath:indexPath];
+                    return guWenCell;
+            }
+                break;
+            default:{
+                    LYGuWenPersonCollectionViewCell *guWenCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LYGuWenPersonCollectionViewCell" forIndexPath:indexPath];
+                    return guWenCell;
             }
                 break;
         }
-        
-            if(!_index) {
-                [weakSelf getDataWith:_index];
-            }else{
-        [weakSelf loadHomeListWith:_index block:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
-         {
-             if (Req_Success == ermsg.state)
-             {
-                 if (Req_Success == ermsg.state)
-                 {
-                     switch (_index) {
-                         case 1:
-                         {
-                             _currentPage_YD = 2;                                                  }
-                             break;
-                         case 2:{
-                             _currentPage_Bar = 2;
-                         }
-                             break;
-                     }
-//                         cell.collectViewInside.mj_footer.hidden = NO;
-                     [cell.collectViewInside.mj_footer resetNoMoreData];
-                     }else{
-                         // collectView.mj_footer.hidden = YES;
-                         [cell.collectViewInside.mj_footer endRefreshingWithNoMoreData];
-                     }
-                     [cell.collectViewInside.mj_header endRefreshing];
-             }
-                 [cell.collectViewInside.mj_header endRefreshing];
-         }];
 
-            }
-    }];
-
-    MJRefreshGifHeader *header=(MJRefreshGifHeader *)cell.collectViewInside.mj_header;
-    [self initMJRefeshHeaderForGif:header];
-        
-        
-        
-    cell.collectViewInside.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
-        
-        if (!_index) {
-            _currentPage_GuWen ++;
-            [weakSelf getDataWith:_index];
-        }else{
-            [weakSelf loadHomeListWith:_index block:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList) {
-                if (Req_Success == ermsg.state) {
-                    if (barList.count == PAGESIZE)
-                    {
-                        cell.collectViewInside.mj_footer.hidden = NO;
-                    }
-                    else
-                    {
-                        // collectView.mj_footer.hidden = YES;
-                    }
-                    switch (_index) {
-                        case 0:{
-                            _currentPage_GuWen ++;
-                        }
-                            break;
-                        case 1:
-                        {
-                            _currentPage_YD ++;
-                        }
-                            break;
-                        case 2:{
-                            _currentPage_Bar ++;
-                        }
-                            break;
-                    }
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        if(barList.count) [cell.collectViewInside.mj_footer endRefreshing];
-                        else [cell.collectViewInside.mj_footer endRefreshingWithNoMoreData];
-                    });
-                }
-        }];
-        }
-    }];
-        MJRefreshBackGifFooter *footer=(MJRefreshBackGifFooter *)cell.collectViewInside.mj_footer;
-        [self initMJRefeshFooterForGif:footer];
-        
-        return cell;
-    }else{
-//        LYHomeCollectionViewCell *homeCell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
-//          LYHomeCollectionViewCell *homeCell = (LYHomeCollectionViewCell *)[[collectionView superview] superview];
-        
-
+    }else{//夜店，酒吧
         switch (indexPath.item) {
-                case 0:
-                {
-                    UICollectionViewCell *spaceCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-                    NSMutableArray *bannerList=[NSMutableArray new];
-//                    [cycleScrollView removeFromSuperview];
-                   
-                    for (NSDictionary *dic in _newbannerListArray[_index]) {
-                        if ([dic objectForKey:@"img_url"]) {
-                            [bannerList addObject:[dic objectForKey:@"img_url"]];
-                        }
-                    }
-                    
-                    UIImageView *imageV = [spaceCell viewWithTag:10010];
-                    if (imageV) {
-                        [imageV removeFromSuperview];
-                    }
-                    
-                    UIView *view= [spaceCell viewWithTag:1999];
-                    [view removeFromSuperview];
-                    view=nil;
-                    
-                     SDCycleScrollView *cycleScrollView  = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 6, ((SCREEN_WIDTH - 6) * 9) / 16) delegate:self placeholderImage:[UIImage imageNamed:@"empyImageBar16_9"]];
-                    cycleScrollView.tag=1999;
-                    cycleScrollView.imageURLStringsGroup =bannerList;// self.bannerList;
-                    cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"banner_s"];
-                    cycleScrollView.pageDotImage = [UIImage imageNamed:@"banner_us"];
-                    [spaceCell addSubview:cycleScrollView];
-                    return spaceCell;
+            case 0:
+            {
             }
                 break;
             case 1:{
-                if (!_index) {
-                    HomeMenusCollectionViewCell *menucell = [collectionView dequeueReusableCellWithReuseIdentifier:@
-                                                             "HomeMenusCollectionViewCell"forIndexPath:indexPath];
-                    return menucell;
-                }else{
-                
                 HomeBarCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
-                
+                    
                 return cell;
-                }
-                }
-                    break;
+            }
+                break;
             case 2://菜单
             {
                 HomeMenusCollectionViewCell *menucell = [collectionView dequeueReusableCellWithReuseIdentifier:@
                                                          "HomeMenusCollectionViewCell"forIndexPath:indexPath];
                 return menucell;
-               
+                
             }
                 break;
-                case 3://活动
-                {
-                    if(!_index){
-                        LYGuWenPersonCollectionViewCell *guWenCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LYGuWenPersonCollectionViewCell" forIndexPath:indexPath];
-                        return guWenCell;
-                    }else{
+            case 3://活动
+            {
                     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
                     UIView *view= [cell viewWithTag:1999];
                     [view removeFromSuperview];
@@ -946,16 +932,15 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                     if (imageV) {
                         [imageV removeFromSuperview];
                     }
-                    if (_recommendedTopic.id&&_index==1) {
-                    UIImageView *imgV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 6, (SCREEN_WIDTH - 6) * 9 / 16)];
-                    imageV.layer.cornerRadius = 2;
-                    imageV.layer.masksToBounds = YES;
-                    imgV.tag = 10010;
+                    if (_recommendedTopic.id&&collectionView.tag==1) {
+                        UIImageView *imgV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 6, (SCREEN_WIDTH - 6) * 9 / 16)];
+                        imageV.layer.cornerRadius = 2;
+                        imageV.layer.masksToBounds = YES;
+                        imgV.tag = 10010;
                         [imgV sd_setImageWithURL:[NSURL URLWithString: _recommendedTopic.imageUrl] placeholderImage:[UIImage imageNamed:@"empyImageBar16_9"]];
-                    [cell addSubview:imgV];
+                        [cell addSubview:imgV];
                     }
-                    
-                    if (_recommendedTopic2.id&&_index==2) {
+                    if (_recommendedTopic2.id&&collectionView.tag==2) {
                         UIImageView *imgV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 6, (SCREEN_WIDTH - 6) * 9 / 16)];
                         imageV.layer.cornerRadius = 2;
                         imageV.layer.masksToBounds = YES;
@@ -963,201 +948,207 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                         [imgV sd_setImageWithURL:[NSURL URLWithString: _recommendedTopic2.imageUrl] placeholderImage:[UIImage imageNamed:@"empyImageBar16_9"]];
                         [cell addSubview:imgV];
                     }
-                    
                     return cell;
-                    }
-                }
-                    break;
+            }
+                break;
             default:{
-                if(!_index){
-                    LYGuWenPersonCollectionViewCell *guWenCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LYGuWenPersonCollectionViewCell" forIndexPath:indexPath];
-                    return guWenCell;
-                }else{
-                
                 HomeBarCollectionViewCell *barCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
                 return barCell;
-                }
-               /* HomeBarCollectionViewCell *cell = [homeCell.collectViewInside dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
-                return cell; */
             }
                 break;
         }
-        return nil;
+
     }
+    return nil;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
-    if (collectionView != _collectView) {
-        if (indexPath.item==1) {
-            if(!_index){
-                HomeMenusCollectionViewCell *menucell = (HomeMenusCollectionViewCell *)cell;
-                NSArray *filterArray = _fiterArray.firstObject;
-                if(filterArray.count == 4){
-                    for (int i = 0;i < 4;i++) {
-                        UIButton *btn = menucell.btnArray[i];
-                        [btn sd_setImageWithURL:[NSURL URLWithString:filterArray[i]] forState:UIControlStateNormal];
-                        [btn addTarget:self action:@selector(menusClickCell:) forControlEvents:UIControlEventTouchUpInside];
-                    }
-                }
-                //WTT
-                else{
-                    for (int i = 0;i < 4;i++) {
-                        UIButton *btn = menucell.btnArray[i];
-                        [btn setImage:[UIImage imageNamed:@"empyImage16_9"] forState:UIControlStateNormal];
-                    }
-                }
-            }else{
-                if (_recommendedBarArray.firstObject&&_index==1) {
-                    ((HomeBarCollectionViewCell *)cell).jiuBaM =_recommendedBarArray.firstObject;
-                }else if (_recommendedBarArray[1]&&_index==1) {
-                    ((HomeBarCollectionViewCell *)cell).jiuBaM =_recommendedBarArray[1];
-                }else{
-                    [((HomeBarCollectionViewCell *)cell).imgView_bg  setImage:[UIImage imageNamed:@"empyImageBar16_9"]];
+    if (!collectionView.tag) {//顾问
+        if (indexPath.item == 1) {//菜单
+            HomeMenusCollectionViewCell *menucell = (HomeMenusCollectionViewCell *)cell;
+            NSArray *filterArray = _fiterArray.firstObject;
+            if(filterArray.count == 4){
+                for (int i = 0;i < menucell.btnArray.count;i++) {
+                    UIButton *btn = menucell.btnArray[i];
+                    [btn sd_setImageWithURL:[NSURL URLWithString:filterArray[i]] forState:UIControlStateNormal];
+                    [btn addTarget:self action:@selector(filterGuWenClick:) forControlEvents:UIControlEventTouchUpInside];
                 }
             }
-        }else if(indexPath.item == 2){
-            if(!_index){
-                
-            }else{
-                HomeMenusCollectionViewCell *menucell = (HomeMenusCollectionViewCell *)cell;
-                NSArray *filterArray = _fiterArray[_index];
-                if(filterArray.count == 4){
-                    for (int i = 0;i < 4;i++) {
-                        UIButton *btn = menucell.btnArray[i];
-                        [btn sd_setImageWithURL:[NSURL URLWithString:filterArray[i]] forState:UIControlStateNormal];
-                        [btn addTarget:self action:@selector(menusClickCell:) forControlEvents:UIControlEventTouchUpInside];
-                    }
-                }
-                //WTT
-                else{
-                    for (int i = 0;i < 4;i++) {
-                        UIButton *btn = menucell.btnArray[i];
-                        [btn setImage:[UIImage imageNamed:@"empyImage16_9"] forState:UIControlStateNormal];
-                    }
-                }
-            }
-        }else if (indexPath.item > 3) {
-            if(_index == 0){
-                UserModel *userM = _dataArray[_index][indexPath.item - 3];
+        }else if(indexPath.item == 2){//banner
+            
+        }else if(indexPath.item >2) {//顾问列表
+            NSArray *arr = _dataArray[collectionView.tag];
+            if (arr.count) {
+                UserModel *userM = arr[indexPath.item - 3];
                 LYGuWenPersonCollectionViewCell *guWenCell = (LYGuWenPersonCollectionViewCell *)cell;
                 guWenCell.vipModel = userM;
-            }else{
-                
-                LYHomeCollectionViewCell *hcell = (LYHomeCollectionViewCell *)[[collectionView superview] superview];
-                HomeBarCollectionViewCell *homeCell = (HomeBarCollectionViewCell *)cell;
-                if (indexPath.item - 4 >= hcell.jiubaArray.count) {
-                    [homeCell.imgView_bg setImage:[UIImage imageNamed:@"empyImageBar16_9"]];
-                    return;
-                }
-                JiuBaModel *jiubaM = hcell.jiubaArray[indexPath.item - 4];
-                homeCell.jiuBaM = jiubaM;
-            }
-        }else{
-            if(!_index && indexPath.item == 3){
-                if(((NSArray *)_dataArray[_index]).count){
-                    UserModel *userM = _dataArray[_index][0];
-                    LYGuWenPersonCollectionViewCell *guWenCell = (LYGuWenPersonCollectionViewCell *)cell;
-                    guWenCell.vipModel = userM;
-                }
             }
         }
     }else{
-        if(!indexPath.item){
-            LYHomeGuWenCollectionViewCell *gCell = (LYHomeGuWenCollectionViewCell*)cell;
-            
-            if (gCell.collectViewInside) {
-                if (_menuView.center.y == 8) {
-                    [gCell.collectViewInside setContentInset:COLLECTVIEWEDGETOP];
-                }else{
-                    [gCell.collectViewInside setContentInset:COLLECTVIEWEDGEDOWN];
+        if(indexPath.item == 1){//推荐酒吧
+            ((HomeBarCollectionViewCell *)cell).jiuBaM =_recommendedBarArray[collectionView.tag];
+//            if (_recommendedBarArray.firstObject&&_index==1) {
+//                ((HomeBarCollectionViewCell *)cell).jiuBaM =_recommendedBarArray.firstObject;
+//            }else if (_recommendedBarArray[1]&&_index==2) {
+//                ((HomeBarCollectionViewCell *)cell).jiuBaM =_recommendedBarArray[1];
+//            }else{
+//                [((HomeBarCollectionViewCell *)cell).imgView_bg  setImage:[UIImage imageNamed:@"empyImageBar16_9"]];
+//            }
+        }else if(indexPath.item == 2){//菜单
+            HomeMenusCollectionViewCell *menucell = (HomeMenusCollectionViewCell *)cell;
+            NSArray *filterArray = _fiterArray[collectionView.tag];
+            if(filterArray.count == 4){
+                for (int i = 0;i < menucell.btnArray.count;i++) {
+                    UIButton *btn = menucell.btnArray[i];
+                    [btn sd_setImageWithURL:[NSURL URLWithString:filterArray[i]] forState:UIControlStateNormal];
+                    [btn addTarget:self action:@selector(menusClickCell:) forControlEvents:UIControlEventTouchUpInside];
                 }
             }
-        }else{
-            LYHomeCollectionViewCell *hcell = (LYHomeCollectionViewCell *)cell;
-            //WTT
-            if (_dataArray.count < indexPath.item) {
+        }else if(indexPath.item > 3){
+            HomeBarCollectionViewCell *homeCell = (HomeBarCollectionViewCell *)cell;
+            NSArray *arr = _dataArray[collectionView.tag];
+            if (indexPath.item - 4 >= arr.count) {
+                [homeCell.imgView_bg setImage:[UIImage imageNamed:@"empyImageBar16_9"]];
                 return;
-            }
-            //WTT
-            hcell.jiubaArray = _dataArray[indexPath.item];
-            [hcell.collectViewInside reloadData];
-            if (hcell.collectViewInside) {
-                if (_menuView.center.y == 8) {
-                    [hcell.collectViewInside setContentInset:COLLECTVIEWEDGETOP];
-                }else{
-                    [hcell.collectViewInside setContentInset:COLLECTVIEWEDGEDOWN];
-                }
+            }else{
+                JiuBaModel *jiubaM = arr[indexPath.item - 4];
+                homeCell.jiuBaM = jiubaM;
             }
         }
-        
-       
     }
-    
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    JiuBaModel *jiuBaM = nil;
-    NSArray *array = nil;
-    if (_dataArray.count) {
-        array = _dataArray[_index];
-    }
-    if(indexPath.item == 1){
-        jiuBaM =_recommendedBarArray[_index];
-    }else if(indexPath.item == 3){
-        if (_index==1) {
-            if(_recommendedTopic.id){
-                ActionPage *aPage = [[ActionPage alloc]init];
-                aPage.ActionImage = ((UIImageView *)[[collectionView cellForItemAtIndexPath:indexPath] viewWithTag:10010]).image;
-                aPage.topicid = _recommendedTopic.id;
-                [self.navigationController pushViewController:aPage animated:YES];
-            }
-        }else{
-            if(_recommendedTopic2.id){
-                ActionPage *aPage = [[ActionPage alloc]init];
-                aPage.topicid = _recommendedTopic2.id;
-                aPage.ActionImage = ((UIImageView *)[[collectionView cellForItemAtIndexPath:indexPath] viewWithTag:10010]).image;
-                [self.navigationController pushViewController:aPage animated:YES];
+    if (!collectionView.tag) {//顾问界面点击
+        if(indexPath.item > 2){
+            NSArray *arr = _dataArray[collectionView.tag];
+            if (arr.count) {
+                UserModel *userM = arr[indexPath.item - 3];
+//                LYGuWenDetailViewController *guWenDetailVC = [[LYGuWenDetailViewController alloc]init];
+                LYMyFriendDetailViewController *guWenDetailVC = [[LYMyFriendDetailViewController alloc]init];
+                guWenDetailVC.userID = [NSString stringWithFormat:@"%d",userM.userid];
+                [self.navigationController pushViewController:guWenDetailVC animated:YES];
             }
         }
-        
-        return;
-    }else if(indexPath.item >= 4){
-        if(array.count) jiuBaM = array[indexPath.item - 4];
-    }else /*if(indexPath.item >= 2&& indexPath.item <= 5)*/ if (indexPath.item == 2){
-        return;
-        //        LYHotBarViewController *hotJiuBarVC = [[LYHotBarViewController alloc]init];
-        LYHotBarsViewController *hotBarVC = [[LYHotBarsViewController alloc]init];
-        hotBarVC.contentTag = indexPath.item - 2;
-        switch (_index) {
-            case 0:
-            {
-                hotBarVC.subidStr = @"2";
-                hotBarVC.titleText = @"热门夜店";
-            }
-                break;
-            case 1:
-            {
-                hotBarVC.subidStr = @"1,6,7";
-                hotBarVC.titleText = @"热门酒吧";
-            }
-                break;
-        }
-        NSArray *picNameArray = @[@"热门",@"附近",@"价格",@"返利"];
-        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:picNameArray[indexPath.item - 2]]];
-        [self.navigationController pushViewController:hotBarVC animated:YES];
-        return;
-        //        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:titleArray[indexPath.item - 2]]];
     }else{
-        return;  
+        JiuBaModel *jiuBaM = nil;
+        if(indexPath.item == 1){//推荐酒吧（夜店）
+            jiuBaM =_recommendedBarArray[collectionView.tag];
+        }else if(indexPath.item == 3){//活动
+            if (collectionView.tag==1) {
+                if(_recommendedTopic.id){
+                    ActionPage *aPage = [[ActionPage alloc]init];
+                    aPage.ActionImage = ((UIImageView *)[[collectionView cellForItemAtIndexPath:indexPath] viewWithTag:10010]).image;
+                    aPage.topicid = _recommendedTopic.id;
+                    [self.navigationController pushViewController:aPage animated:YES];
+                }
+            }else{
+                if(_recommendedTopic2.id){
+                    ActionPage *aPage = [[ActionPage alloc]init];
+                    aPage.topicid = _recommendedTopic2.id;
+                    aPage.ActionImage = ((UIImageView *)[[collectionView cellForItemAtIndexPath:indexPath] viewWithTag:10010]).image;
+                    [self.navigationController pushViewController:aPage animated:YES];
+                }
+            }
+            return;
+        }else if (indexPath.item > 3){//酒吧列表
+            NSArray *array = _dataArray[collectionView.tag];
+            if(array.count) jiuBaM = array[indexPath.item - 4];
+        }
+        BeerNewBarViewController * controller = [[BeerNewBarViewController alloc] initWithNibName:@"BeerNewBarViewController" bundle:nil];
+        if(!jiuBaM.barid) return;
+        controller.beerBarId = @(jiuBaM.barid);
+        [self.navigationController pushViewController:controller animated:YES];
     }
     
+    
+    
+//    JiuBaModel *jiuBaM = nil;
+//    NSArray *array = nil;
+//    if (_dataArray.count) {
+//        array = _dataArray[_index];
+//    }
+//    if(indexPath.item == 1){
+//        jiuBaM =_recommendedBarArray[_index];
+//    }else if(indexPath.item == 3){
+//        if (_index==1) {
+//            if(_recommendedTopic.id){
+//                ActionPage *aPage = [[ActionPage alloc]init];
+//                aPage.ActionImage = ((UIImageView *)[[collectionView cellForItemAtIndexPath:indexPath] viewWithTag:10010]).image;
+//                aPage.topicid = _recommendedTopic.id;
+//                [self.navigationController pushViewController:aPage animated:YES];
+//            }
+//        }else{
+//            if(_recommendedTopic2.id){
+//                ActionPage *aPage = [[ActionPage alloc]init];
+//                aPage.topicid = _recommendedTopic2.id;
+//                aPage.ActionImage = ((UIImageView *)[[collectionView cellForItemAtIndexPath:indexPath] viewWithTag:10010]).image;
+//                [self.navigationController pushViewController:aPage animated:YES];
+//            }
+//        }
+//        
+//        return;
+//    }else if(indexPath.item >= 4){
+//        if(array.count) jiuBaM = array[indexPath.item - 4];
+//    }else /*if(indexPath.item >= 2&& indexPath.item <= 5)*/ if (indexPath.item == 2){
+//        return;
+//        //        LYHotBarViewController *hotJiuBarVC = [[LYHotBarViewController alloc]init];
+//        LYHotBarsViewController *hotBarVC = [[LYHotBarsViewController alloc]init];
+//        hotBarVC.contentTag = indexPath.item - 2;
+//        switch (_index) {
+//            case 0:
+//            {
+//                hotBarVC.subidStr = @"2";
+//                hotBarVC.titleText = @"热门夜店";
+//            }
+//                break;
+//            case 1:
+//            {
+//                hotBarVC.subidStr = @"1,6,7";
+//                hotBarVC.titleText = @"热门酒吧";
+//            }
+//                break;
+//        }
+//        NSArray *picNameArray = @[@"热门",@"附近",@"价格",@"返利"];
+//        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:picNameArray[indexPath.item - 2]]];
+//        [self.navigationController pushViewController:hotBarVC animated:YES];
+//        return;
+//        //        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:titleArray[indexPath.item - 2]]];
+//    }else{
+//        return;  
+//    }
+//    
+//
+//    //BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
+//    BeerNewBarViewController * controller = [[BeerNewBarViewController alloc] initWithNibName:@"BeerNewBarViewController" bundle:nil];
+//    if(!jiuBaM.barid) return;
+//    controller.beerBarId = @(jiuBaM.barid);
+//    [self.navigationController pushViewController:controller animated:YES];
+//    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:jiuBaM.barname]];
+}
 
-    //BeerBarDetailViewController * controller = [[BeerBarDetailViewController alloc] initWithNibName:@"BeerBarDetailViewController" bundle:nil];
-    BeerNewBarViewController * controller = [[BeerNewBarViewController alloc] initWithNibName:@"BeerNewBarViewController" bundle:nil];
-    if(!jiuBaM.barid) return;
-    controller.beerBarId = @(jiuBaM.barid);
-    [self.navigationController pushViewController:controller animated:YES];
-    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:jiuBaM.barname]];
+#pragma mark - 顾问筛选界面跳转
+- (void)filterGuWenClick:(UIButton *)button{
+    if(button.tag < 3){
+        LYGuWenListViewController *guWenListVC = [[LYGuWenListViewController alloc]init];
+        guWenListVC.filterSortFlag = button.tag;
+        guWenListVC.filterSexFlag = 2;
+        guWenListVC.filterAreaFlag = 0;
+        guWenListVC.cityName = @"上海";
+        guWenListVC.isGuWenListVC = YES;
+        guWenListVC.contentTag = button.tag;
+//        guWenListVC.subidStr = @"2";
+        [self.navigationController pushViewController:guWenListVC animated:YES];
+    }else{
+        if (!self.userModel) {
+            [MyUtil showPlaceMessage:@"抱歉，请先登录！"];
+        }else{
+            LYGuWenVideoViewController *cityVC = [[LYGuWenVideoViewController alloc]init];
+            cityVC.isVideoListVC = YES;
+            [self.navigationController pushViewController:cityVC animated:YES];
+        }
+    }
+    
 }
 
 #pragma mark 热门酒吧跳转

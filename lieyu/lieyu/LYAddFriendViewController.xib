@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LYAddFriendViewController">
@@ -17,13 +17,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XQ9-Ou-Ws7">
-                    <rect key="frame" x="22" y="375" width="276" height="43"/>
-                    <color key="backgroundColor" red="0.4039215686" green="0.043137254899999998" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="5" y="525" width="310" height="38"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="43" id="rca-JA-fes"/>
+                        <constraint firstAttribute="height" constant="38" id="rca-JA-fes"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <state key="normal" title="发送">
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="发送" backgroundImage="LoginNew.png">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
@@ -67,10 +67,10 @@
             <constraints>
                 <constraint firstItem="4Re-05-0gX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="17" id="18D-s1-XaJ"/>
                 <constraint firstAttribute="trailing" secondItem="0hr-06-2og" secondAttribute="trailing" constant="22" id="1O6-ui-dkm"/>
-                <constraint firstAttribute="trailing" secondItem="XQ9-Ou-Ws7" secondAttribute="trailing" constant="22" id="JdB-df-k7m"/>
-                <constraint firstItem="XQ9-Ou-Ws7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="22" id="OWv-du-Bhm"/>
+                <constraint firstAttribute="trailing" secondItem="XQ9-Ou-Ws7" secondAttribute="trailing" constant="5" id="JdB-df-k7m"/>
+                <constraint firstItem="XQ9-Ou-Ws7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="5" id="OWv-du-Bhm"/>
                 <constraint firstItem="OD5-4d-1sw" firstAttribute="leading" secondItem="0hr-06-2og" secondAttribute="leading" id="QFS-5w-IaX"/>
-                <constraint firstAttribute="bottom" secondItem="XQ9-Ou-Ws7" secondAttribute="bottom" constant="150" id="Wyh-u0-2bA"/>
+                <constraint firstAttribute="bottom" secondItem="XQ9-Ou-Ws7" secondAttribute="bottom" constant="5" id="Wyh-u0-2bA"/>
                 <constraint firstItem="OD5-4d-1sw" firstAttribute="top" secondItem="0hr-06-2og" secondAttribute="bottom" id="cIE-e2-von"/>
                 <constraint firstItem="4Re-05-0gX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="22" id="hUQ-hU-4xs"/>
                 <constraint firstItem="0hr-06-2og" firstAttribute="top" secondItem="4Re-05-0gX" secondAttribute="bottom" constant="24" id="lwI-J9-TFM"/>
@@ -80,4 +80,7 @@
             <point key="canvasLocation" x="296" y="301"/>
         </view>
     </objects>
+    <resources>
+        <image name="LoginNew.png" width="301" height="37"/>
+    </resources>
 </document>

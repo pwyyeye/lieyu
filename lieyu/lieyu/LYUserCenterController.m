@@ -72,15 +72,16 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 
     _data=@[
       @{@"title":@"订单",@"icon":@"userShopOrder"},
-  @{@"title":@"购物车",@"icon":@"userShopCart"},
-  @{@"title":@"收藏",@"icon":@"userFav"},
+      @{@"title":@"免费订台",@"icon":@"userShopOrder"},
+      @{@"title":@"购物车",@"icon":@"userShopCart"},
+      @{@"title":@"收藏",@"icon":@"userFav"},
 //  @{@"title":@"专属经理",@"icon":@"userManager"},
-      @{@"title":@"帮助与反馈",@"icon":@"userHelp"},
       @{@"title":@"速核码",@"icon":@"userSuHeMa"},
-    @{@"title":@"扫一扫",@"icon":@"userSaoYiSao"},
+      @{@"title":@"扫一扫",@"icon":@"userSaoYiSao"},
       @{@"title":@"设置",@"icon":@"userSetting"},
-  @{@"title":@"推荐猎娱",@"icon":@"userTuijian"},
-      ];
+      @{@"title":@"推荐猎娱",@"icon":@"userTuijian"},
+      @{@"title":@"帮助与反馈",@"icon":@"userHelp"},
+    ];
  
     
     self.collectionView.backgroundColor=[UIColor whiteColor];
@@ -248,7 +249,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     if (indexPath.row == 4) {
         cell.labeltext_cons_center.constant = 20;
     }
-    if(indexPath.row == 1){
+    if(indexPath.row == 2){
         if(num > 0){
             [cell.btn_count setTitle:[NSString stringWithFormat:@"%ld",num] forState:UIControlStateNormal];
             cell.btn_count.hidden = NO;
@@ -289,7 +290,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
         }
             break;
             
-        case 1://购物车
+        case 2://购物车
         {
             //统计我的页面的选择
             NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"购物车"};
@@ -303,7 +304,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             
         }
             
-        case 2:// 收藏
+        case 3:// 收藏
         {
             //统计我的页面的选择
             NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"收藏"};
@@ -344,7 +345,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:[UIImage imageNamed:@"CommonIcon"] shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
             break;
         }
-        case 3:// 反馈
+        case 8:// 反馈
         {
             //统计我的页面的选择
             NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"客服"};
@@ -395,8 +396,9 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             [app.navigationController pushViewController:setting animated:YES];
         }
             break;
-        case 8:{
-                   }
+        case 1:{
+            [MyUtil showPlaceMessage:@"免费订台"];
+        }
             break;
             
         default://推荐商户

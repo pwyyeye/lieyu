@@ -1142,6 +1142,9 @@
             }
             recentModel.liked = @"0";
         }
+        if ([_delegate respondsToSelector:@selector(lyRecentMessageLikeChange:)]) {
+            [_delegate lyRecentMessageLikeChange:recentModel.liked];
+        }
         [tableView reloadData];
         cell.btn_like.enabled = YES;
     }];

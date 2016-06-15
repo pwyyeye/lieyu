@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface LYGuWenBannerCollectionViewCell : UICollectionViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *imgView_banner;
 
 @end
