@@ -14,6 +14,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *userImageView;
 @property (weak, nonatomic) IBOutlet UIButton *userimageBtn;
 @property (weak, nonatomic) IBOutlet UIButton *collectButton;
+@property (weak, nonatomic) IBOutlet UIButton *checkCollectButton;
+@property (weak, nonatomic) IBOutlet UIImageView *careNumberImage;
+
 @property (weak, nonatomic) IBOutlet UILabel *namelal;
 @property (weak, nonatomic) IBOutlet UILabel *zhiwuLal;
 @property (weak, nonatomic) IBOutlet UILabel *xingzuo;

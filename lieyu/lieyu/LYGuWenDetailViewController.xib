@@ -52,25 +52,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="239"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xH6-FH-2gX">
-                                <rect key="frame" x="273" y="20" width="39" height="47"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="39" id="7F4-3k-kjb"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="39" id="XVa-T6-VMN"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="47" id="e4J-8N-lmq"/>
-                                    <constraint firstAttribute="height" constant="47" id="mSU-3W-S1j"/>
-                                </constraints>
-                                <state key="normal" image="AddCare.png"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="XVa-T6-VMN"/>
-                                        <exclude reference="e4J-8N-lmq"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <action selector="AddCare:" destination="-1" eventType="touchUpInside" id="Bue-f3-eNQ"/>
-                                </connections>
-                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="transparentBG.png" translatesAutoresizingMaskIntoConstraints="NO" id="qHR-hG-XNc">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="239"/>
+                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vUK-D9-Kza">
                                 <rect key="frame" x="128" y="69" width="64" height="64"/>
                                 <constraints>
@@ -202,9 +186,25 @@
                                     <action selector="checkCares:" destination="-1" eventType="touchUpInside" id="PpW-rr-ZP4"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="transparentBG.png" translatesAutoresizingMaskIntoConstraints="NO" id="qHR-hG-XNc">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="239"/>
-                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xH6-FH-2gX">
+                                <rect key="frame" x="273" y="20" width="39" height="47"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="39" id="7F4-3k-kjb"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="39" id="XVa-T6-VMN"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="47" id="e4J-8N-lmq"/>
+                                    <constraint firstAttribute="height" constant="47" id="mSU-3W-S1j"/>
+                                </constraints>
+                                <state key="normal" image="AddCare.png"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="XVa-T6-VMN"/>
+                                        <exclude reference="e4J-8N-lmq"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="AddCare:" destination="-1" eventType="touchUpInside" id="Bue-f3-eNQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="vUK-D9-Kza" firstAttribute="top" secondItem="9FF-m7-mFq" secondAttribute="top" constant="69" id="21b-OY-HTj"/>
@@ -251,7 +251,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <blurEffect style="light"/>
+                    <blurEffect style="extraLight"/>
                 </visualEffectView>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UX0-nN-e9m">
                     <rect key="frame" x="0.0" y="239" width="320" height="329"/>

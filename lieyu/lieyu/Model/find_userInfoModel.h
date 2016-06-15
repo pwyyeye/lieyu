@@ -18,13 +18,25 @@
 @property (nonatomic, strong) NSString *introduction;
 @property (nonatomic, strong) NSString *mobile;
 @property (nonatomic, strong) NSArray *recentImages;
-@property (nonatomic, strong) NSString *tag;
+@property (nonatomic, strong) NSString *tag;//
 @property (nonatomic, strong) NSArray *tags;
 @property (nonatomic, assign) int userid;
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSString *usernick;
-@property (nonatomic, strong) NSString *isFriend;
-@property (nonatomic, strong) NSString *usertype;
-
+@property (nonatomic, strong) NSString *isFriend;//
+@property (nonatomic, strong) NSString *userType;//
+@property (nonatomic, strong) NSString *address;
+@property (nonatomic, strong) NSString *baricon;
+@property (nonatomic, assign) int barid;
+@property (nonatomic, strong) NSString *barname;
+@property (nonatomic, assign) int beCollectNum;
+@property (nonatomic, strong) NSString *city;
+@property (nonatomic, assign) int faceScoreNum;
+@property (nonatomic, strong) NSString *latitude;
+@property (nonatomic, strong) NSString *longitude;
+@property (nonatomic, strong) NSString *wechatId;
+@property (nonatomic, strong) NSString *liked;
+@property (nonatomic, assign) int popularityNum;
+@property (nonatomic, assign) int receptionNum;
 
 @end

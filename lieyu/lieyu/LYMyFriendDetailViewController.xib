@@ -15,8 +15,10 @@
                 <outlet property="barnameLabel" destination="RcS-7F-6bU" id="U5Z-FN-rRF"/>
                 <outlet property="bigAddressImage" destination="Wnp-HL-Dav" id="IH4-TD-w6r"/>
                 <outlet property="bigBarImage" destination="ync-b2-KdE" id="73o-qv-ALs"/>
+                <outlet property="careNumberImage" destination="1H9-VJ-DeQ" id="aNj-wS-jl4"/>
                 <outlet property="checkBarAddress" destination="2B2-D1-JDi" id="evQ-9J-prj"/>
                 <outlet property="checkBarName" destination="Kbw-ZT-RKa" id="qz4-P2-MF6"/>
+                <outlet property="checkCollectButton" destination="gqn-OR-sbi" id="vjY-IL-aVr"/>
                 <outlet property="checkTrendsBtn" destination="ObI-ra-EL8" id="MMU-M4-yZE"/>
                 <outlet property="collectButton" destination="LPv-I5-1Mp" id="a2K-Jc-yO0"/>
                 <outlet property="fansOrCaresLabel" destination="Dwv-sk-Lye" id="b1M-9Q-z9S"/>
@@ -166,7 +168,7 @@
                                     <action selector="addCareof:" destination="-1" eventType="touchUpInside" id="bdh-5c-8Sy"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="粉丝" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dwv-sk-Lye">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dwv-sk-Lye">
                                 <rect key="frame" x="286" y="195" width="24" height="14"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="24" id="DWh-kP-LIj"/>
@@ -208,7 +210,7 @@
                                     </mask>
                                 </variation>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CareNumber.png" translatesAutoresizingMaskIntoConstraints="NO" id="1H9-VJ-DeQ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1H9-VJ-DeQ">
                                 <rect key="frame" x="258" y="199" width="16" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="16" id="kFM-6O-Aeh"/>
@@ -512,13 +514,13 @@
                             </constraints>
                             <variation key="default">
                                 <mask key="constraints">
+                                    <exclude reference="9RY-Yg-Kyf"/>
                                     <exclude reference="Wgg-MH-VfV"/>
                                     <exclude reference="XZc-hJ-QRk"/>
                                     <exclude reference="lvT-BT-Ukm"/>
-                                    <exclude reference="9RY-Yg-Kyf"/>
                                     <exclude reference="9wc-IK-Urg"/>
-                                    <exclude reference="x81-at-bdq"/>
                                     <exclude reference="EY9-Pv-Q75"/>
+                                    <exclude reference="x81-at-bdq"/>
                                     <exclude reference="TO4-FA-xVd"/>
                                     <exclude reference="Tdv-za-bRq"/>
                                     <exclude reference="Hj0-m2-ljm"/>
@@ -664,12 +666,11 @@
                 <constraint firstItem="zU7-Nx-qRG" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="vF6-qa-qeB"/>
                 <constraint firstAttribute="trailing" secondItem="5AL-Zr-trE" secondAttribute="trailing" id="wCY-fC-ldC"/>
             </constraints>
-            <point key="canvasLocation" x="-331" y="116"/>
+            <point key="canvasLocation" x="-444" y="85"/>
         </view>
     </objects>
     <resources>
         <image name="AddCare.png" width="16" height="20"/>
-        <image name="CareNumber.png" width="16" height="20"/>
         <image name="LoginNew.png" width="301" height="37"/>
         <image name="QRCodeHeaderbg.png" width="74" height="74"/>
         <image name="advance.png" width="24" height="24"/>

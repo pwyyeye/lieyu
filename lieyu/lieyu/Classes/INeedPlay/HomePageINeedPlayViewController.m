@@ -47,7 +47,7 @@
 #import "LYGuWenDetailViewController.h"
 #import "LYGuWenVideoViewController.h"
 #import "LYGuWenBannerCollectionViewCell.h"
-
+#import "LYMyFriendDetailViewController.h"
 #import "LYGuWenListViewController.h"
 
 #define PAGESIZE 20
@@ -517,8 +517,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 #pragma mark 选择城市action
 - (void)cityChangeClick:(UIButton *)sender {
-//    LYCityChooseViewController *cityChooseVC = [[LYCityChooseViewController alloc]init];
-//    [self.navigationController pushViewController:cityChooseVC animated:YES];
+    LYCityChooseViewController *cityChooseVC = [[LYCityChooseViewController alloc]init];
+    [self.navigationController pushViewController:cityChooseVC animated:YES];
     
 //    LYGuWenListViewController *cityChooseVC = [[LYGuWenListViewController alloc]init];
 //    cityChooseVC.contentTag = 1;
@@ -527,16 +527,16 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 //    cityChooseVC.filterSortFlag = 1;
 //    [self.navigationController pushViewController:cityChooseVC animated:YES];
 //
-    if (!self.userModel) {
-        [MyUtil showPlaceMessage:@"抱歉，请先登录！"];
-    }else{
-        LYGuWenVideoViewController *cityVC = [[LYGuWenVideoViewController alloc]init];
-        cityVC.isVideoListVC = YES;
-        [self.navigationController pushViewController:cityVC animated:YES];
-    }
+//    if (!self.userModel) {
+//        [MyUtil showPlaceMessage:@"抱歉，请先登录！"];
+//    }else{
+//        LYGuWenVideoViewController *cityVC = [[LYGuWenVideoViewController alloc]init];
+//        cityVC.isVideoListVC = YES;
+//        [self.navigationController pushViewController:cityVC animated:YES];
+//    }
     
     
-//    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:@"选择城市"]];
+    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:@"选择城市"]];
 
 //    LYGuWenPersonDetailViewController *cityChooseVC = [[LYGuWenPersonDetailViewController alloc]initWithNibName:@"LYGuWenPersonDetailViewController" bundle:[NSBundle mainBundle]];
 //    [self.navigationController pushViewController:cityChooseVC animated:YES];
@@ -614,8 +614,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             [_recommendedBarArray replaceObjectAtIndex:i withObject:[JiuBaModel mj_objectWithKeyValues:recommendedBarDic]];
             [_dataArray replaceObjectAtIndex:i withObject:array_Barlist];
             
-            if(i == 1) _recommendedTopic = [RecommendedTopic mj_objectWithKeyValues:[dataDic valueForKey:@"        recommendedTopic"]];
-            else _recommendedTopic2 = [RecommendedTopic mj_objectWithKeyValues:[dataDic valueForKey:@"        recommendedTopic"]];
+            if(i == 1) _recommendedTopic = [RecommendedTopic mj_objectWithKeyValues:[dataDic valueForKey:@"recommendedTopic"]];
+            else _recommendedTopic2 = [RecommendedTopic mj_objectWithKeyValues:[dataDic valueForKey:@"recommendedTopic"]];
         }
         
 //         NSDictionary *dataDic2 = ((LYCache *)((NSArray *)array[1]).firstObject).lyCacheValue;
@@ -809,13 +809,13 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             }
         }
         
-        if (!_recommendedTopic.id&&_index==1) {
+        if ([MyUtil isEmptyString:_recommendedTopic.id]&&collectionView.tag==1) {
             if (indexPath.item == 3) {
                 return CGSizeZero;
             }
         }
         
-        if (!_recommendedTopic2.id&&_index==2) {
+        if ([MyUtil isEmptyString:_recommendedTopic2.id]&&collectionView.tag==2) {
             if (indexPath.item == 3) {
                 return CGSizeZero;
             }
@@ -885,6 +885,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             {
                 LYGuWenBannerCollectionViewCell *guWenBannerCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LYGuWenBannerCollectionViewCell" forIndexPath:indexPath];
                 [guWenBannerCell.imgView_banner sd_setImageWithURL:[NSURL URLWithString:_guWenBannerImgUrl] placeholderImage:[UIImage imageNamed:@"empyImageBar16_9"]];
+                guWenBannerCell.imgView_banner.contentMode = UIViewContentModeScaleAspectFill;
                 return guWenBannerCell;
             }
                 break;
@@ -931,7 +932,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                     if (imageV) {
                         [imageV removeFromSuperview];
                     }
-                    if (_recommendedTopic.id&&_index==1) {
+                    if (_recommendedTopic.id&&collectionView.tag==1) {
                         UIImageView *imgV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 6, (SCREEN_WIDTH - 6) * 9 / 16)];
                         imageV.layer.cornerRadius = 2;
                         imageV.layer.masksToBounds = YES;
@@ -939,8 +940,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                         [imgV sd_setImageWithURL:[NSURL URLWithString: _recommendedTopic.imageUrl] placeholderImage:[UIImage imageNamed:@"empyImageBar16_9"]];
                         [cell addSubview:imgV];
                     }
-                    
-                    if (_recommendedTopic2.id&&_index==2) {
+                    if (_recommendedTopic2.id&&collectionView.tag==2) {
                         UIImageView *imgV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 6, (SCREEN_WIDTH - 6) * 9 / 16)];
                         imageV.layer.cornerRadius = 2;
                         imageV.layer.masksToBounds = YES;
@@ -1024,7 +1024,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             NSArray *arr = _dataArray[collectionView.tag];
             if (arr.count) {
                 UserModel *userM = arr[indexPath.item - 3];
-                LYGuWenDetailViewController *guWenDetailVC = [[LYGuWenDetailViewController alloc]init];
+//                LYGuWenDetailViewController *guWenDetailVC = [[LYGuWenDetailViewController alloc]init];
+                LYMyFriendDetailViewController *guWenDetailVC = [[LYMyFriendDetailViewController alloc]init];
                 guWenDetailVC.userID = [NSString stringWithFormat:@"%d",userM.userid];
                 [self.navigationController pushViewController:guWenDetailVC animated:YES];
             }
@@ -1128,18 +1129,26 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 #pragma mark - 顾问筛选界面跳转
 - (void)filterGuWenClick:(UIButton *)button{
-    LYGuWenListViewController *guWenListVC = [[LYGuWenListViewController alloc]init];
-    guWenListVC.filterSortFlag = button.tag;
-    guWenListVC.filterSexFlag = 2;
-    guWenListVC.filterAreaFlag = 0;
-    guWenListVC.cityName = @"上海";
-    guWenListVC.isGuWenListVC = YES;
-    guWenListVC.contentTag = button.tag;
+    if(button.tag < 3){
+        LYGuWenListViewController *guWenListVC = [[LYGuWenListViewController alloc]init];
+        guWenListVC.filterSortFlag = button.tag;
+        guWenListVC.filterSexFlag = 2;
+        guWenListVC.filterAreaFlag = 0;
+        guWenListVC.cityName = @"上海";
+        guWenListVC.isGuWenListVC = YES;
+        guWenListVC.contentTag = button.tag;
+//        guWenListVC.subidStr = @"2";
+        [self.navigationController pushViewController:guWenListVC animated:YES];
+    }else{
+        if (!self.userModel) {
+            [MyUtil showPlaceMessage:@"抱歉，请先登录！"];
+        }else{
+            LYGuWenVideoViewController *cityVC = [[LYGuWenVideoViewController alloc]init];
+            cityVC.isVideoListVC = YES;
+            [self.navigationController pushViewController:cityVC animated:YES];
+        }
+    }
     
-    
-        guWenListVC.subidStr = @"2";
-//        guWenListVC.filterSortFlag = 1;
-    [self.navigationController pushViewController:guWenListVC animated:YES];
 }
 
 #pragma mark 热门酒吧跳转
