@@ -23,13 +23,10 @@
 #import "LYOrderDetailViewController.h"
 #import "MainTabbarViewController.h"
 
-@interface LPMyOrdersViewController ()<UITableViewDelegate,UITableViewDataSource,LPOrdersFootDelegate>
+@interface LPMyOrdersViewController ()<LPOrdersFootDelegate>
 {
     UIVisualEffectView *effectView;
-    UIScrollView *scrollView;
-    NSMutableArray *arrayButton;
     NSArray *titleArray;
-    UITableView *myTableView;
     
     int pageCount;
     int perCount;
@@ -61,8 +58,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    titleArray = @[@"订单",@"待付款",@"待消费",@"待评价",@"待返利",@"待退款"];
+    if (_isFreeOrdersList) {
+        titleArray = @[@"所有订单",@"待确认",@"待评价",@"已评价"];
+    }else{
+        titleArray = @[@"订单",@"待付款",@"待消费",@"待评价",@"待返利",@"待退款"];
+    }
     arrayButton = [NSMutableArray array];
     myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStyleGrouped];
 //    [myTableView setContentOffset:CGPointMake(0, 90)];
@@ -127,7 +127,11 @@
     //title
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(100, 31, SCREEN_WIDTH - 200, 22)];
     [label setFont:[UIFont systemFontOfSize:16]];
-    [label setText:@"订单中心"];
+    if (_isFreeOrdersList) {
+        [label setText:@"免费订台"];
+    }else{
+        [label setText:@"订单中心"];
+    }
     [label setTextAlignment:NSTextAlignmentCenter];
     [label setTextColor:[UIColor blackColor]];
     [effectView addSubview:label];
@@ -138,15 +142,22 @@
     [button addTarget:self action:@selector(backForward) forControlEvents:UIControlEventTouchUpInside];
     [effectView addSubview:button];
     
+    int buttonWidth ;
+    if (_isFreeOrdersList) {
+        buttonWidth = SCREEN_WIDTH / 4;
+    }else{
+        buttonWidth = 70;
+    }
+    
     scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 26)];
-    [scrollView setContentSize:CGSizeMake(420, 26)];
+    [scrollView setContentSize:CGSizeMake(buttonWidth * titleArray.count, 26)];
     [scrollView setShowsHorizontalScrollIndicator:NO];
     [scrollView setShowsVerticalScrollIndicator:NO];
     [scrollView setBackgroundColor:[UIColor clearColor]];
     [effectView addSubview:scrollView];
     
-    for (int i = 0 ; i < 6 ; i ++) {
-        LPOrderButton *button = [[LPOrderButton alloc]initWithFrame:CGRectMake(i * 70, 0, 70, 26)];
+    for (int i = 0 ; i < titleArray.count ; i ++) {
+        LPOrderButton *button = [[LPOrderButton alloc]initWithFrame:CGRectMake(i * buttonWidth, 0, buttonWidth, 26)];
         [button.titleLabel setFont:[UIFont systemFontOfSize:12]];
         button.tag = i ;
         [button addTarget:self action:@selector(changeTableViewAtButton:) forControlEvents:UIControlEventTouchUpInside];

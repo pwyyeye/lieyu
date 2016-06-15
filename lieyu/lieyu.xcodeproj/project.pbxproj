@@ -366,6 +366,8 @@
 		384A54901CF5A8B6008825ED /* LYChooseBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 384A548E1CF5A8B6008825ED /* LYChooseBarViewController.xib */; };
 		384A54981D10FB96008825ED /* FreeOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 384A54961D10FB96008825ED /* FreeOrderTableViewCell.m */; };
 		384A54991D10FB96008825ED /* FreeOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 384A54971D10FB96008825ED /* FreeOrderTableViewCell.xib */; };
+		384A549F1D112422008825ED /* LYMyFreeOrdersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 384A549E1D112422008825ED /* LYMyFreeOrdersViewController.m */; };
+		384A54A21D112D69008825ED /* LYFreeOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 384A54A11D112D69008825ED /* LYFreeOrderModel.m */; };
 		3856646A1C62EE6A000DCFA5 /* icon_collect2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 385664681C62EE6A000DCFA5 /* icon_collect2@2x.png */; };
 		3856646B1C62EE6A000DCFA5 /* icon_collect2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 385664691C62EE6A000DCFA5 /* icon_collect2@3x.png */; };
 		3856646F1C72B919000DCFA5 /* HDZTHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3856646D1C72B919000DCFA5 /* HDZTHeaderCell.m */; };
@@ -2384,6 +2386,10 @@
 		384A54951D10FB96008825ED /* FreeOrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeOrderTableViewCell.h; sourceTree = "<group>"; };
 		384A54961D10FB96008825ED /* FreeOrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreeOrderTableViewCell.m; sourceTree = "<group>"; };
 		384A54971D10FB96008825ED /* FreeOrderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FreeOrderTableViewCell.xib; sourceTree = "<group>"; };
+		384A549D1D112422008825ED /* LYMyFreeOrdersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYMyFreeOrdersViewController.h; sourceTree = "<group>"; };
+		384A549E1D112422008825ED /* LYMyFreeOrdersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYMyFreeOrdersViewController.m; sourceTree = "<group>"; };
+		384A54A01D112D69008825ED /* LYFreeOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYFreeOrderModel.h; sourceTree = "<group>"; };
+		384A54A11D112D69008825ED /* LYFreeOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYFreeOrderModel.m; sourceTree = "<group>"; };
 		385664681C62EE6A000DCFA5 /* icon_collect2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_collect2@2x.png"; sourceTree = "<group>"; };
 		385664691C62EE6A000DCFA5 /* icon_collect2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_collect2@3x.png"; sourceTree = "<group>"; };
 		3856646C1C72B919000DCFA5 /* HDZTHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDZTHeaderCell.h; sourceTree = "<group>"; };
@@ -5595,6 +5601,8 @@
 			children = (
 				384A54941D10FB66008825ED /* controller */,
 				384A54921D10FB55008825ED /* view */,
+				384A54A01D112D69008825ED /* LYFreeOrderModel.h */,
+				384A54A11D112D69008825ED /* LYFreeOrderModel.m */,
 			);
 			name = "免费订台";
 			sourceTree = "<group>";
@@ -5612,6 +5620,8 @@
 		384A54941D10FB66008825ED /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				384A549D1D112422008825ED /* LYMyFreeOrdersViewController.h */,
+				384A549E1D112422008825ED /* LYMyFreeOrdersViewController.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -10731,6 +10741,7 @@
 				D7A1D41A1BC265CF00BCE47C /* CLLocation+CoordinateConvert.m in Sources */,
 				ADF8E1C31C214ECB00943E4D /* LYCache.m in Sources */,
 				ADF88E9E1C1197C400CF5DED /* MJRefreshBackFooter.m in Sources */,
+				384A54A21D112D69008825ED /* LYFreeOrderModel.m in Sources */,
 				D7A1D41D1BC266CD00BCE47C /* LYUserLocation.m in Sources */,
 				38979B6F1CAE6263002946F5 /* ZSApplyStatusModel.m in Sources */,
 				38E5D6D11C0EC2DA004B49D2 /* LPAlertView.m in Sources */,
@@ -10817,6 +10828,7 @@
 				D748BC7F1BA1CB35005AA996 /* LYCoreDataObject.m in Sources */,
 				3879D0631C7AE423000F5795 /* CheckProtocol.m in Sources */,
 				AD106B901C0AF044007F5FBA /* LYUserCenterHeader.m in Sources */,
+				384A549F1D112422008825ED /* LYMyFreeOrdersViewController.m in Sources */,
 				8550E70B1C2FC11C001FF2DE /* LYFriendsCommentView.m in Sources */,
 				AD106BB61C0DDEFF007F5FBA /* MJFoundation.m in Sources */,
 				15EB7C4C1BC3785200756153 /* SetMealVOModel.m in Sources */,

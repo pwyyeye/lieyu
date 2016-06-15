@@ -10,6 +10,9 @@
 #define lieyu_LYMineUrl_h
 //客户列表
 #define LY_MY_ORDER  @"lyOrderAction.do?action=list"
+//免费订台列表
+#define LY_MY_FREEORDER @"lyOrderFreeAction.do?action=list"
+
 //客户明细
 #define LY_MY_ORDERDETAIL  @"smOrderAction.do?action=custom"
 //sn 获取拼客订单明细

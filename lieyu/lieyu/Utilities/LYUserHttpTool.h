@@ -77,6 +77,8 @@
 //订单详情
 -(void) getMyOrderDetailWithParams:(NSDictionary*)params
                              block:(void(^)(OrderInfoModel* result)) block;
+#pragma mark - 获取免费订台列表
+- (void)getMyFreeOrdersWithParams:(NSDictionary *)params block:(void(^)(NSArray *dataArray))complete;
 
 //分享拼客订单
 -(void) sharePinkerOrder:(NSDictionary*)params

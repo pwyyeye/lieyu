@@ -16,6 +16,7 @@
 #import "MineUserNotification.h"
 #import "LPFriendBriefInfo.h"
 #import "TopicModel.h"
+#import "LYFreeOrderModel.h"
 
 @implementation LYUserHttpTool
 
@@ -416,6 +417,24 @@
         [app stopLoading];
     }];
     
+}
+
+#pragma mark - 获取免费订台列表
+- (void)getMyFreeOrdersWithParams:(NSDictionary *)params block:(void (^)(NSArray *))complete{
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_MY_FREEORDER baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            NSArray *dataArray = [LYFreeOrderModel mj_objectArrayWithKeyValuesArray:[response objectForKey:@"data"]];
+            complete(dataArray);
+        }else{
+            [MyUtil showPlaceMessage:@"获取数据失败！"];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
 }
 
 #pragma mark -获取我的订单明细
