@@ -595,11 +595,20 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
   //  LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
     if (array.count == 3) {//顾问的数据
         NSArray *array_GW = array.firstObject;
+
         NSDictionary *dataDic_GW = ((LYCache *)array_GW.firstObject).lyCacheValue;
-        [_newbannerListArray replaceObjectAtIndex:0 withObject:dataDic_GW[@"newbanner"]];
+        if (dataDic_GW==nil) return;
+        if (dataDic_GW[@"newbanner"]!=nil) {
+            [_newbannerListArray replaceObjectAtIndex:0 withObject:dataDic_GW[@"newbanner"]];
+        }
+        
         NSArray *array_VipList = [[NSMutableArray alloc]initWithArray:[UserModel mj_objectArrayWithKeyValuesArray:dataDic_GW[@"viplist"]]];
         [_dataArray replaceObjectAtIndex:0 withObject:array_VipList];
-        _guWenBannerImgUrl = dataDic_GW[@"banner"][0];
+        NSArray *bannerArray=dataDic_GW[@"banner"];
+        if (bannerArray.count>0) {
+             _guWenBannerImgUrl = dataDic_GW[@"banner"][0];
+        }
+        
         [_fiterArray replaceObjectAtIndex:0 withObject:[dataDic_GW valueForKey:@"filterImages"]];
         
         
