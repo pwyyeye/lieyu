@@ -176,7 +176,7 @@
         }
 
         //先删除别名，然后再注册新的－－－友盟 消息推送
-        [self addUmengAlias:[NSString stringWithFormat:@"%d",result.userid]];
+        [weakSelf addUmengAlias:[NSString stringWithFormat:@"%d",result.userid]];
         
         [weakSelf getUserCollectJiuBaList];
         [weakSelf getUserZangJiuBaList];
