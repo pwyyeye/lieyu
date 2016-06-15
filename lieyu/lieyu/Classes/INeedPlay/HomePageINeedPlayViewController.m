@@ -615,6 +615,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         [array removeObjectAtIndex:0];
         for (int i = 1; i < array.count+ 1; i ++) {//夜店，酒吧的数据
             NSDictionary *dataDic = ((LYCache *)((NSArray *)array[i-1]).firstObject).lyCacheValue;
+            if(dataDic==nil)continue;
             [_newbannerListArray replaceObjectAtIndex:i withObject:dataDic[@"newbanner"]];
             NSArray *array_Barlist = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic[@"barlist"]]] ;
             [_fiterArray replaceObjectAtIndex:i withObject:[dataDic valueForKey:@"filterImages"]];
