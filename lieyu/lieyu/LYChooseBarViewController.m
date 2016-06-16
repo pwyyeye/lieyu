@@ -192,6 +192,7 @@
     
     //地图上加锚点
     [self addAnnotation:_poisArray];
+    //输出测试的位置
     
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [app stopLoading];
@@ -336,10 +337,14 @@
     NSLog(@"%@-%@",annoView.annotation.title,annoView.annotation.subtitle);
     [_mapView selectAnnotation:annoView.annotation animated:YES];
     annoView.canShowCallout = YES;
-    
-    
-    
-}
+    //根据点击的点，更改地图的中心位置
+    AMapPOI *model = [_poisArray objectAtIndex:indexPath.section];
+    if (model) {
+        CLLocationCoordinate2D location = CLLocationCoordinate2DMake(model.location.latitude, model.location.longitude);
+        NSLog(@"%f===%f", location.latitude,location.longitude)
+        [_mapView setCenterCoordinate:location animated:YES];
+    }
+   }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 0.0000001;
