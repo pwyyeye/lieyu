@@ -73,7 +73,12 @@
     }
     [_consumerTimeLabel setText:_freeOrder.reachTime];
     _freeOrder.orderStatus == 1 ? [_orderStatusLabel setText:@"待确认"] : (_freeOrder.orderStatus == 2 ?  [_orderStatusLabel setText:@"待评价"] : [_orderStatusLabel setText:_freeOrder.isSatisfactionName]);
-    [_orderJoinLabel setText:[NSString stringWithFormat:@"%d-%d人参与",_freeOrder.minPartNumber,_freeOrder.partNumber]];
+    if (_freeOrder.minPartNumber < 10) {
+        [_orderJoinLabel setText:[NSString stringWithFormat:@"%ld～%ld人参与",_freeOrder.minPartNumber,_freeOrder.partNumber]];
+    }else{
+        [_orderJoinLabel setText:[NSString stringWithFormat:@"%ld人以上参与",_freeOrder.minPartNumber]];
+    }
+    
     if ([app.userModel.usertype isEqualToString:@"2"] || [app.userModel.usertype isEqualToString:@"3"]) {
         if (_freeOrder.orderStatus == 1) {
             _firstButton.hidden = YES;

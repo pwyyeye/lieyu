@@ -509,6 +509,12 @@
 - (void)sendTrends:(NSString *)string{
     NSString *userIdStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
     NSDictionary *paraDic;
+    BOOL isManageRelease;
+    if ([self.userModel.usertype isEqualToString:@"2"] || [self.userModel.usertype isEqualToString:@"3"]) {
+        isManageRelease = YES;
+    }else{
+        isManageRelease = NO;
+    }
     if(_isVedio){
         NSArray *array = [string componentsSeparatedByString:@","];
         if (array.count<2) {
@@ -516,20 +522,20 @@
             return;
         }
         if([MyUtil isEmptyString:_TopicID]){//没有话题
-            paraDic = @{@"userId":userIdStr,@"city":self.city,@"location":self.location,@"type":@"0",@"message":self.content,@"attachType":@"1",@"attach":[array objectAtIndex:0],@"thumbnailUrl":[array objectAtIndex:1]};
+            paraDic = @{@"userId":userIdStr,@"city":self.city,@"location":self.location,@"type":@"0",@"message":self.content,@"attachType":@"1",@"attach":[array objectAtIndex:0],@"thumbnailUrl":[array objectAtIndex:1],@"isManageRelease":[NSNumber numberWithBool:isManageRelease]};
         }else{
             paraDic = @{@"userId":userIdStr,@"city":self.city,@"location":self.location,
                             @"type":@"0",@"message":self.content,
-                        @"attachType":@"1",@"attach":[array objectAtIndex:0],@"thumbnailUrl":[array objectAtIndex:1],@"topicTypeId":_TopicID};
+                        @"attachType":@"1",@"attach":[array objectAtIndex:0],@"thumbnailUrl":[array objectAtIndex:1],@"topicTypeId":_TopicID,@"isManageRelease":[NSNumber numberWithBool:isManageRelease]};
         }
     }else{
         if (!self.TopicID.length) {
-            paraDic = @{@"userId":userIdStr,@"city":self.city,@"location":self.location,@"type":@"0",@"message":self.content,@"attachType":@"0",@"attach":string};
+            paraDic = @{@"userId":userIdStr,@"city":self.city,@"location":self.location,@"type":@"0",@"message":self.content,@"attachType":@"0",@"attach":string,@"isManageRelease":[NSNumber numberWithBool:isManageRelease]};
         }else{
             
             paraDic = @{@"userId":userIdStr,@"city":self.city,@"location":self.location,
                         @"type":@"0",@"message":self.content,
-                        @"attachType":@"0",@"attach":string,@"topicTypeId":self.TopicID};
+                        @"attachType":@"0",@"attach":string,@"topicTypeId":self.TopicID,@"isManageRelease":[NSNumber numberWithBool:isManageRelease]};
         }
     }
     __weak __typeof(self) weakSelf = self;

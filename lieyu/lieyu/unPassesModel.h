@@ -73,4 +73,8 @@
 @property (nonatomic, strong) NSString *wechatName;
 @property (nonatomic, strong) NSString *wechatId;
 
+@property (nonatomic, strong) NSString *barName;
+@property (nonatomic, strong) NSString *barAddress;
+@property (nonatomic, strong) NSString *latitudeBar;
+@property (nonatomic, strong) NSString *longitudeBar;
 @end

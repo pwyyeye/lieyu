@@ -363,6 +363,8 @@
 		3824CA681C5B47E000C00732 /* ChoosePeople.m in Sources */ = {isa = PBXBuildFile; fileRef = 3824CA671C5B47E000C00732 /* ChoosePeople.m */; };
 		3824CA6A1C5B47F300C00732 /* ChoosePeople.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3824CA691C5B47F300C00732 /* ChoosePeople.xib */; };
 		382FB47A1CD496BB001ABC49 /* LYDateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 382FB4791CD496BB001ABC49 /* LYDateUtil.m */; };
+		383894451D1291D20014C8E9 /* Bitmap@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 383894431D1291D20014C8E9 /* Bitmap@2x.png */; };
+		383894461D1291D20014C8E9 /* Bitmap@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 383894441D1291D20014C8E9 /* Bitmap@3x.png */; };
 		384A54901CF5A8B6008825ED /* LYChooseBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 384A548E1CF5A8B6008825ED /* LYChooseBarViewController.xib */; };
 		384A54981D10FB96008825ED /* FreeOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 384A54961D10FB96008825ED /* FreeOrderTableViewCell.m */; };
 		384A54991D10FB96008825ED /* FreeOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 384A54971D10FB96008825ED /* FreeOrderTableViewCell.xib */; };
@@ -2380,6 +2382,8 @@
 		3824CA691C5B47F300C00732 /* ChoosePeople.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChoosePeople.xib; sourceTree = "<group>"; };
 		382FB4781CD496BB001ABC49 /* LYDateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LYDateUtil.h; path = Apple/LYDateUtil.h; sourceTree = "<group>"; };
 		382FB4791CD496BB001ABC49 /* LYDateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LYDateUtil.m; path = Apple/LYDateUtil.m; sourceTree = "<group>"; };
+		383894431D1291D20014C8E9 /* Bitmap@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Bitmap@2x.png"; sourceTree = "<group>"; };
+		383894441D1291D20014C8E9 /* Bitmap@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Bitmap@3x.png"; sourceTree = "<group>"; };
 		384A548C1CF5A8B6008825ED /* LYChooseBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYChooseBarViewController.h; sourceTree = "<group>"; };
 		384A548D1CF5A8B6008825ED /* LYChooseBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYChooseBarViewController.m; sourceTree = "<group>"; };
 		384A548E1CF5A8B6008825ED /* LYChooseBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYChooseBarViewController.xib; sourceTree = "<group>"; };
@@ -7416,6 +7420,8 @@
 				8515083A1D02775B002375D4 /* videoLiked@3x.png */,
 				8515083B1D02775B002375D4 /* videounLiked@2x.png */,
 				8515083C1D02775B002375D4 /* videounLiked@3x.png */,
+				383894431D1291D20014C8E9 /* Bitmap@2x.png */,
+				383894441D1291D20014C8E9 /* Bitmap@3x.png */,
 				8515082A1D003515002375D4 /* popularityLevel@2x.png */,
 				8515082B1D003515002375D4 /* popularityLevel@3x.png */,
 				851508121CFD67DB002375D4 /* bigAddress@2x.png */,
@@ -9984,6 +9990,7 @@
 				38B5F4B81CBB8F1F00AE1BF5 /* DetailLabelView.xib in Resources */,
 				8551B5061C8ECA770057F0E7 /* FindNotificationTableViewCell.xib in Resources */,
 				85176B831CB502000012E23F /* userSetting@2x.png in Resources */,
+				383894451D1291D20014C8E9 /* Bitmap@2x.png in Resources */,
 				38979AC11CA40919002946F5 /* angry33.png in Resources */,
 				38979A5D1CA40919002946F5 /* kawayi10.png in Resources */,
 				8550E71A1C30181E001FF2DE /* LYFriendsHeaderTableViewCell.xib in Resources */,
@@ -10550,6 +10557,7 @@
 				15FD2AAB1BD6244200D66920 /* TaoCanTitleView.xib in Resources */,
 				38979AA71CA40919002946F5 /* angry1.png in Resources */,
 				851508081CFD619F002375D4 /* customer_gray@2x.png in Resources */,
+				383894461D1291D20014C8E9 /* Bitmap@3x.png in Resources */,
 				85F66E4A1C524F59005D1CD8 /* fujinwanyou@3x.png in Resources */,
 				38B11C211C97AE7300AD3EB8 /* find_caresb@3x.png in Resources */,
 				8551B5171C8ECF730057F0E7 /* 评论@2x.png in Resources */,

@@ -51,6 +51,7 @@
     [self initThisView];
     [self getCheckData];
     [self.submitBtn addTarget:self action:@selector(submitData) forControlEvents:UIControlEventTouchUpInside];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(chooseMoreBar:) name:@"chooseAMoreBar" object:nil];
 }
 
 - (void)initThisView{
@@ -219,6 +220,18 @@
     barid = [NSString stringWithFormat:@"%d",jiuBaNow.barid];
     [applicationVC.jiubaLal setTextColor:RGBA(186, 40, 227, 1)];
     applicationVC.jiubaLal.text=jiuBaModel.barname;
+}
+
+- (void)chooseMoreBar:(NSNotification *) user{
+    JiuBaModel *newBar = [[JiuBaModel alloc]init];
+    NSDictionary *info = user.userInfo;
+    newBar.barid = -1;
+    newBar.barname = [info objectForKey:@"barName"];
+    newBar.address = [info objectForKey:@"barAddress"];
+    newBar.longitude = [info objectForKey:@"barLongitude"];
+    newBar.latitude = [info objectForKey:@"barLatitude"];
+    
+    [self chooseJiuBa:newBar];
 }
 
 #pragma mark - 选择支付方式
@@ -444,8 +457,32 @@
     }else if (_applyType == 3){
         applyTypeString = @"2";
     }
+    
+    NSString *barName;
+    if (jiuBaNow) {
+        barName = jiuBaNow.barname;
+    }else{
+        if ([_checkModel.barid isEqualToString:@"-1"]) {
+            barName = _checkModel.barName;
+        }else{
+            barName = _checkModel.barname;
+        }
+    }
     NSMutableDictionary *dic=
-    [[NSMutableDictionary alloc]initWithDictionary:@{@"id":_checkModel.id,@"idcard":idcard,@"barid":[NSNumber numberWithInt:jiuBaNow.barid],@"userid":[NSNumber numberWithInt:self.userModel.userid],@"applyType":applyTypeString}];
+    [[NSMutableDictionary alloc]initWithDictionary:@{
+    @"id":_checkModel.id,
+    @"idcard":idcard,
+    @"userid":[NSNumber numberWithInt:self.userModel.userid],
+    @"applyType":applyTypeString,
+    @"barid":jiuBaNow ? [NSNumber numberWithInt:jiuBaNow.barid] : _checkModel.barid,
+    @"barName":barName,
+    @"barAddress":jiuBaNow ? jiuBaNow.address : _checkModel.barAddress,
+    @"longitude":jiuBaNow ? jiuBaNow.longitude : _checkModel.longitudeBar,
+    @"latitude":jiuBaNow ? jiuBaNow.latitude    : _checkModel.latitudeBar}];
+    //如果填写了微信号，上传
+    if (![MyUtil isEmptyString:applicationVC.wechatLbl.text]) {
+        [dic setObject:applicationVC.wechatLbl.text forKey:@"wechatId"];
+    }
     if (_applyType == 1) {
         if (wechatName.length) {
             [dic setObject:wechatName forKey:@"wechatName"];

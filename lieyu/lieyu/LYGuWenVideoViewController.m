@@ -11,6 +11,7 @@
 #import "LYAdviserHttpTool.h"
 #import "LYGuWenOutsideCollectionViewCell.h"
 #import "LYFriendsAMessageDetailViewController.h"
+#import "FriendsRecentModel.h"
 
 #define margin (SCREEN_WIDTH - 240) / 3
 #define LIMIT 10
@@ -375,13 +376,83 @@
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
+#pragma mark - 创建自己发布动态的Model
+- (FriendsRecentModel *)createModelForISendAMessageWithDicForMessage:(NSDictionary *)messageDic{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    FriendsRecentModel *recentM = [[FriendsRecentModel alloc]init];
+    recentM.attachType = [messageDic objectForKey:@"attachType"];
+    recentM.username = app.userModel.username;
+    recentM.userId = [NSString stringWithFormat:@"%d",app.userModel.userid];
+    recentM.usernick = app.userModel.usernick;
+    recentM.avatar_img = app.userModel.avatar_img;
+    NSDateFormatter *dateFmt = [[NSDateFormatter alloc]init];
+    [dateFmt setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    recentM.date = [dateFmt stringFromDate:[NSDate date]];
+    recentM.tags = app.userModel.tags;
+    recentM.birthday = app.userModel.birthday;
+    recentM.message = [messageDic objectForKey:@"content"];
+    recentM.liked = @"0";
+    recentM.isMeSendMessage = YES;
+    recentM.commentList = [[NSMutableArray alloc]init];
+    recentM.likeList = [[NSMutableArray alloc]init];
+    recentM.location = [messageDic objectForKey:@"location"];
+    
+    NSString *topicID = [messageDic objectForKey:@"topicID"];
+    NSString *topicName = [messageDic objectForKey:@"topicName"];
+    if (topicID.length && topicName.length) {
+        recentM.topicTypeId = topicID;
+        NSArray *strArray = [topicName componentsSeparatedByString:@"#"];
+        if(strArray.count >= 2) recentM.topicTypeName = strArray[1];
+    }else{
+        recentM.topicTypeId = @"";
+        recentM.topicTypeName = @"";
+    }
+    return recentM;
+}
+
+
 #pragma mark - 发布之后
 - (void)sendVedio:(NSString *)mediaUrl andImage:(UIImage *)image andContent:(NSString *)content andLocation:(NSString *)location andTopicID:(NSString *)topicID andTopicName:(NSString *)topicName{
-    
+    NSDictionary *dic = @{@"attachType":@"1",@"content":content,@"location":location,@"topicID":topicID,@"topicName":topicName};
+    FriendsRecentModel *recentM = [self createModelForISendAMessageWithDicForMessage:dic];
+    recentM.thunbImage = image;
+    FriendsPicAndVideoModel *pvModel = [[FriendsPicAndVideoModel alloc]init];
+    pvModel.imageLink = mediaUrl;
+    [[SDWebImageManager sharedManager] saveImageToCache:image forURL:[NSURL URLWithString:[MyUtil  getQiniuUrl:mediaUrl mediaType:QiNiuUploadTpyeDefault width:0 andHeight:0]]];//利用sdwebImage把自己发的动态图片缓存道本地（下面同理）
+    recentM.lyMomentsAttachList = @[pvModel];
+    recentM.avatar_img = self.userModel.avatar_img;
+    recentM.usernick = self.userModel.usernick;
+    if ([self.userModel.usertype isEqualToString:@"2"]||[self.userModel.usertype isEqualToString:@"3"]) {
+        recentM.isManageRelease = YES;
+    }else{
+        recentM.isManageRelease = NO;
+    }
+    recentM.liked = @"0";
+    [_dataList insertObject:recentM atIndex:0];
+    LYGuWenOutsideCollectionViewCell *cell = (LYGuWenOutsideCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+    cell.videoArray = _dataList;
+    [cell.collectViewInside reloadData];
 }
 
 - (void)sendSucceed:(NSString *)messageId{
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @end

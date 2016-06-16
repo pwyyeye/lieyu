@@ -28,6 +28,9 @@
     }else{
         [_videoImage sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlStr mediaType:QiNiuUploadTpyeDefault width:0 andHeight:0]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
     }
+    if (recentM.thunbImage) {
+        _videoImage.image = recentM.thunbImage;
+    }
     [_userAvatarImage sd_setImageWithURL:[NSURL URLWithString:recentM.avatar_img] placeholderImage:[UIImage imageNamed:@""]];
     [_userNickLabel setText:recentM.usernick];
     if (recentM.isManageRelease) {

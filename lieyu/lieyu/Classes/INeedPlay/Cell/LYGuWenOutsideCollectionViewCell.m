@@ -65,7 +65,7 @@
     [effectView addSubview:_carmerBtn];
     
     //发布按钮出来动画
-    CGFloat offset = 65;
+    CGFloat offset = 76;
     [UIView animateWithDuration:.4 animations:^{
         effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - offset - 3, 60, 60);
     }completion:^(BOOL finished) {
@@ -82,7 +82,9 @@
     }else if (_typeForShow == 2){
         _collectViewInside.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
         [_collectViewInside registerNib:[UINib nibWithNibName:@"LYGuWenVideoCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"LYGuWenVideoCollectionViewCell"];
-        [self setupCarmerBtn];
+        if (!effectView) {
+            [self setupCarmerBtn];
+        }
     }
 }
 
@@ -329,12 +331,12 @@
         }];
         if (scrollView.contentOffset.y < 0 ) {
             [UIView animateWithDuration:.4 animations:^{
-                effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30 , SCREEN_HEIGHT - 65, 60, 60);
+                effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30 , SCREEN_HEIGHT - 76, 60, 60);
             }];
         }
     }else{
         [UIView animateWithDuration:.4 animations:^{
-            effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30 , SCREEN_HEIGHT - 65, 60, 60);
+            effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30 , SCREEN_HEIGHT - 76, 60, 60);
         }];
     }
     _contentOffSetY = scrollView.contentOffset.y;

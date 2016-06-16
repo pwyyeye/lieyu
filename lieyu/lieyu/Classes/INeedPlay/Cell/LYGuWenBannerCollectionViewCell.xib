@@ -13,59 +13,29 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="369" height="118"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dDj-69-bx2">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bitmap.png" translatesAutoresizingMaskIntoConstraints="NO" id="dDj-69-bx2">
                         <rect key="frame" x="0.0" y="0.0" width="369" height="118"/>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QkQ-eJ-cHC">
                         <rect key="frame" x="0.0" y="0.0" width="369" height="118"/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.19630926724137931" colorSpace="calibratedRGB"/>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="顾问王冠.png" translatesAutoresizingMaskIntoConstraints="NO" id="VMb-si-cct">
-                        <rect key="frame" x="169" y="26" width="32" height="27"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="27" id="4iG-n3-Ltc"/>
-                            <constraint firstAttribute="width" constant="32" id="VWE-Fb-rNd"/>
-                        </constraints>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我为猎娱代言" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ayD-db-6aU">
-                        <rect key="frame" x="89" y="63" width="192" height="32"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="32" id="Y2w-XC-ExO"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
                 <constraint firstItem="dDj-69-bx2" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="1xo-mV-FrK"/>
                 <constraint firstItem="dDj-69-bx2" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="7pN-Ta-Xer"/>
-                <constraint firstItem="VMb-si-cct" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="25" id="9lL-L9-zSd"/>
                 <constraint firstAttribute="trailing" secondItem="QkQ-eJ-cHC" secondAttribute="trailing" id="Bpe-gY-9Nn"/>
                 <constraint firstItem="dDj-69-bx2" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="K5Y-qV-Ict"/>
                 <constraint firstAttribute="bottom" secondItem="dDj-69-bx2" secondAttribute="bottom" id="KOE-YP-ce8"/>
                 <constraint firstItem="QkQ-eJ-cHC" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="L51-ch-ufD"/>
                 <constraint firstItem="dDj-69-bx2" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="M65-HF-hRf"/>
                 <constraint firstItem="dDj-69-bx2" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="Q3U-Qc-xhd"/>
-                <constraint firstItem="ayD-db-6aU" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="UjZ-Kz-Tf9"/>
-                <constraint firstItem="ayD-db-6aU" firstAttribute="top" secondItem="VMb-si-cct" secondAttribute="bottom" constant="12" id="Yhy-bw-O0C"/>
                 <constraint firstAttribute="bottom" secondItem="QkQ-eJ-cHC" secondAttribute="bottom" id="ZgN-hQ-d3l"/>
-                <constraint firstItem="VMb-si-cct" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" constant="-20" id="ge9-QF-a1E"/>
                 <constraint firstItem="QkQ-eJ-cHC" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="hK7-dk-k8a"/>
-                <constraint firstItem="VMb-si-cct" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="hlY-yh-pVQ"/>
                 <constraint firstAttribute="trailing" secondItem="dDj-69-bx2" secondAttribute="trailing" id="tFq-wm-hhw"/>
-                <constraint firstItem="VMb-si-cct" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="u0S-80-Gi2"/>
-                <constraint firstItem="ayD-db-6aU" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" constant="20" id="weL-6c-t6S"/>
             </constraints>
             <size key="customSize" width="466" height="215"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="Yhy-bw-O0C"/>
-                    <exclude reference="9lL-L9-zSd"/>
-                </mask>
-            </variation>
             <connections>
                 <outlet property="imgView_banner" destination="dDj-69-bx2" id="daM-lD-5eo"/>
             </connections>
@@ -73,6 +43,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="顾问王冠.png" width="36" height="31"/>
+        <image name="Bitmap.png" width="369" height="118"/>
     </resources>
 </document>
