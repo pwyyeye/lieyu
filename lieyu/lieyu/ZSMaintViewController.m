@@ -25,6 +25,7 @@
 #import "FindNotificationViewController.h"
 #import "OrderTTL.h"
 #import "MainTabbarViewController.h"
+#import "LYMyFreeOrdersViewController.h"
 
 @interface ZSMaintViewController ()<UITextFieldDelegate>{
     UIButton *_balanceButton;
@@ -388,7 +389,12 @@
         }
         case 3://yuding
         {
-            [MyUtil showPlaceMessage:@"所有预定"];
+            NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"商户中心",@"titleName":@"免费订台"};
+            [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+            
+            LYMyFreeOrdersViewController *freeOrderVC = [[LYMyFreeOrdersViewController alloc]init];
+            freeOrderVC.isFreeOrdersList = YES;
+            [self.navigationController pushViewController:freeOrderVC animated:YES];
             break;
         }
         case 6:// 我的客户

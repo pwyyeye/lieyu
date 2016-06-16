@@ -15,7 +15,7 @@
 #define margin (SCREEN_WIDTH - 240) / 3
 #define LIMIT 10
 
-@interface LYGuWenVideoViewController ()<LYGuWenCollectionDelegate>
+@interface LYGuWenVideoViewController ()<LYGuWenCollectionDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,sendBackVedioAndImage>
 {
     UIButton *filterBtn;
     
@@ -35,8 +35,12 @@
     BOOL _isChangedFilter;
     
     UILabel *_kongLabel;
+    
+    LYFriendsSendViewController *friendsSendVC;
 }
-
+@property (nonatomic, strong) UIImagePickerController *imagePicker;
+@property (nonatomic, strong) NSMutableDictionary *notificationDict;
+@property (nonatomic, strong) NSString *typeOfImagePicker;
 @end
 
 @implementation LYGuWenVideoViewController
@@ -46,9 +50,16 @@
     NSLog(@"LYGuWenVideoViewController   dealloc    success");
 }
 
+#pragma - mark 生命周期
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+//    [self setupCarmerBtn];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+//    [effectView removeFromSuperview];
 }
 
 - (void)viewDidLoad {
@@ -59,14 +70,9 @@
     // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
+#pragma mark - 初始操作
 - (void)createMenuView{
     [self createFilterView];
-    
     
     UIBlurEffect *effectExtraLight = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
     _menuView = [[UIVisualEffectView alloc]initWithEffect:effectExtraLight];
@@ -99,6 +105,32 @@
     [filterBtn addTarget:self action:@selector(filterClick:) forControlEvents:UIControlEventTouchUpInside];
     [_menuView addSubview:filterBtn];
 }
+
+//#pragma mark - 配置发布按钮
+//- (void)setupCarmerBtn{
+//    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+//    effectView = [[UIVisualEffectView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2.f - 30, SCREEN_HEIGHT, 60, 60)];
+//    effectView.layer.cornerRadius = effectView.frame.size.width/2.f;
+//    effectView.layer.masksToBounds = YES;
+//    effectView.effect = effect;
+//    [self.view addSubview:effectView];
+//    effectView.layer.zPosition = 5;
+//    //发布按钮
+//    _carmerBtn = [[UIButton alloc]initWithFrame:CGRectMake((effectView.frame.size.width - 35)/2.f,effectView.frame.size.height /2.f - 15, 35, 30)];
+//    [_carmerBtn addTarget:self action:@selector(carmerClick:) forControlEvents:UIControlEventTouchUpInside];
+//    [_carmerBtn setBackgroundImage:[UIImage imageNamed:@"daohang_xiangji"] forState:UIControlStateNormal];
+//    [effectView addSubview:_carmerBtn];
+//    
+//    //发布按钮出来动画
+//    CGFloat offset = 60;
+//    [UIView animateWithDuration:.4 animations:^{
+//        effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - offset - 3, 60, 60);
+//    }completion:^(BOOL finished) {
+//        [UIView animateWithDuration:0.2 animations:^{
+//            effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - offset, 60, 60);
+//        }];
+//    }];
+//}
 
 - (void)createLineForMenuView{
     
@@ -141,6 +173,7 @@
     }
 }
 
+#pragma mark - 筛选
 - (void)filterClick:(UIButton *)button{
     if ([filterBtn.currentTitle isEqualToString:@"筛选"]) {
         [self filterShowAnimation];
@@ -196,6 +229,7 @@
     }
 }
 
+#pragma mark - 获取数据
 - (void)getDataForHotWith:(NSInteger)tag{
     [self getDataForHot];
 }
@@ -255,7 +289,6 @@
     cell.backgroundColor = [UIColor whiteColor];
     cell.typeForShow = 2;
     cell.delegate = self;
-    
     __weak __typeof(self)weakSelf = self;
     cell.collectViewInside.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         _start = 0 ;
@@ -275,21 +308,80 @@
     return cell;
 }
 
-//- (void)VideoSelected:(FriendsRecentModel *)recentM{
-//    LYFriendsAMessageDetailViewController *detailVC = [[LYFriendsAMessageDetailViewController alloc]init];
-//    detailVC.recentM = recentM;
-//    detailVC.isFriendToUserMessage = YES;
-//    detailVC.isMessageDetail = YES;
-//    [self.navigationController pushViewController:detailVC animated:YES];
-//}
-//
-//- (void)lyRecentMessageLikeChange:(NSString *)liked{
-//    
-//}
-
 - (void)backClick{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+//#pragma mark - scrollView的各种代理
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+//    if (scrollView.contentOffset.y > _contentOffSetY) {
+//        if (scrollView.contentOffset.y <= 0.f) {//发布按钮弹出
+//            effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 60, 60, 60);
+//        }else{
+//            [UIView animateWithDuration:0.4 animations:^{
+//                effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT, 60, 60);
+//            }];
+//        }
+//    }else{
+//        if(CGRectGetMaxY(effectView.frame) > SCREEN_HEIGHT - 5){//发布按钮下移
+//            [UIView animateWithDuration:.4 animations:^{
+//                effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 123, 60, 60);
+//            }completion:^(BOOL finished) {
+//                [UIView animateWithDuration:0.2 animations:^{
+//                    effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT , 60, 60);
+//                }];
+//            }];
+//        }
+//    }
+//}
+//
+//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+//    _contentOffSetY = scrollView.contentOffset.y;//拖拽结束获取偏移量
+//}
+
+#pragma mark - 发布视频
+
+- (void)publishVideo{
+    _typeOfImagePicker = @"filming";
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(FriendSendViewDidLoad) name:@"FriendSendViewDidLoad" object:nil];
+    [self presentViewController:self.imagePicker animated:YES completion:nil];
+}
+
+- (UIImagePickerController *)imagePicker{
+    _imagePicker = [[UIImagePickerController alloc]init];
+    _imagePicker.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeMovie];
+    _imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;//摄影
+    _imagePicker.cameraDevice = UIImagePickerControllerCameraDeviceRear;//后置摄像头
+    _imagePicker.videoQuality = UIImagePickerControllerQualityTypeIFrame1280x720;
+    _imagePicker.cameraCaptureMode = UIImagePickerControllerCameraCaptureModeVideo;//设置摄像头模式
+    _imagePicker.videoMaximumDuration = 10;
+    _imagePicker.editing = YES;
+    _imagePicker.delegate = self;
+    return _imagePicker;
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    friendsSendVC = [[LYFriendsSendViewController alloc]initWithNibName:@"LYFriendsSendViewController" bundle:[NSBundle mainBundle]];
+    friendsSendVC.delegate = self;
+    [self.navigationController pushViewController:friendsSendVC animated:YES];
+    _notificationDict = [[NSMutableDictionary alloc]initWithDictionary:@{@"info":info}];
+}
+
+#pragma mark 等待下一个页面load以后再进行操作
+- (void)FriendSendViewDidLoad{
+    friendsSendVC.typeOfImagePicker = self.typeOfImagePicker;
+    [friendsSendVC imagePickerSpecificOperation:[_notificationDict objectForKey:@"info"]];
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
+#pragma mark - 发布之后
+- (void)sendVedio:(NSString *)mediaUrl andImage:(UIImage *)image andContent:(NSString *)content andLocation:(NSString *)location andTopicID:(NSString *)topicID andTopicName:(NSString *)topicName{
+    
+}
+
+- (void)sendSucceed:(NSString *)messageId{
+    
+}
 
 @end

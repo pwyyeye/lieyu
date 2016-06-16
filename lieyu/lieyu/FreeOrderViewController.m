@@ -87,6 +87,7 @@
                 cell.barDict = _barDict;
             }
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }else if (indexPath.section == 1){
         AdvisorBookChooseTableViewCell *cell = [[[NSBundle mainBundle]loadNibNamed:@"AdvisorBookChooseTableViewCell" owner:nil options:nil]firstObject];
@@ -98,6 +99,7 @@
             [cell configureType];
         }
         [cell.anvance_button addTarget:self action:@selector(chooseSomething:) forControlEvents:UIControlEventTouchUpInside];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }else{
         return nil;

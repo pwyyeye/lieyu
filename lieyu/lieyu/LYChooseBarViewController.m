@@ -18,7 +18,6 @@
     AMapPOIAroundSearchRequest *_request;
     NSMutableArray *_poisArray;
     NSMutableArray *_annoViewArray;//annotationView的数组
-    
 //    int _oldSelectedSection;
 }
 @property (nonatomic, assign) int oldSelectedSection;

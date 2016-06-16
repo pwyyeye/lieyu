@@ -72,7 +72,7 @@
         [_userNickLabel setText:_freeOrder.vipUsernick];
     }
     [_consumerTimeLabel setText:_freeOrder.reachTime];
-    _freeOrder.orderStatus == 1 ? [_orderStatusLabel setText:@"待确认"] : (_freeOrder.orderStatus == 2 ?  [_orderStatusLabel setText:@"待评价"] : [_orderStatusLabel setText:@"已评价"]);
+    _freeOrder.orderStatus == 1 ? [_orderStatusLabel setText:@"待确认"] : (_freeOrder.orderStatus == 2 ?  [_orderStatusLabel setText:@"待评价"] : [_orderStatusLabel setText:_freeOrder.isSatisfactionName]);
     [_orderJoinLabel setText:[NSString stringWithFormat:@"%d-%d人参与",_freeOrder.minPartNumber,_freeOrder.partNumber]];
     if ([app.userModel.usertype isEqualToString:@"2"] || [app.userModel.usertype isEqualToString:@"3"]) {
         if (_freeOrder.orderStatus == 1) {
