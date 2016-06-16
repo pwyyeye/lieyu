@@ -9,15 +9,15 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LYGuWenVideoCollectionViewCell" id="gTV-IL-0wX" customClass="LYGuWenVideoCollectionViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="314" height="221"/>
+            <rect key="frame" x="0.0" y="0.0" width="314" height="274"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="314" height="221"/>
+                <rect key="frame" x="0.0" y="0.0" width="314" height="274"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kvs-VT-ULk">
-                        <rect key="frame" x="0.0" y="0.0" width="314" height="157"/>
+                        <rect key="frame" x="0.0" y="0.0" width="314" height="209.5"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="kvs-VT-ULk" secondAttribute="height" multiplier="2:1" id="Eak-FX-Jyc"/>
+                            <constraint firstAttribute="width" secondItem="kvs-VT-ULk" secondAttribute="height" multiplier="3:2" id="Eak-FX-Jyc"/>
                         </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PIg-Uv-Iwz">
@@ -29,7 +29,7 @@
                         <state key="normal" image="downArrow.png"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rOb-L2-pNl">
-                        <rect key="frame" x="124" y="46" width="66" height="66"/>
+                        <rect key="frame" x="124" y="72" width="66" height="66"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="66" id="6ed-xu-Cl1"/>
                             <constraint firstAttribute="height" constant="66" id="gA9-Sf-tK5"/>
@@ -37,14 +37,14 @@
                         <state key="normal" image="dabofangqi_icon .png"/>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RKk-SG-3KR">
-                        <rect key="frame" x="8" y="167" width="44" height="44"/>
+                        <rect key="frame" x="8" y="219.5" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="44" id="gEt-aa-nFq"/>
                             <constraint firstAttribute="width" constant="44" id="mZW-Es-Toc"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Nq-Ok-cAj">
-                        <rect key="frame" x="66" y="167" width="186" height="20"/>
+                        <rect key="frame" x="66" y="219.5" width="186" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="u8e-ko-X9N"/>
                         </constraints>
@@ -53,7 +53,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zkb-am-yYY">
-                        <rect key="frame" x="66" y="195" width="186" height="16"/>
+                        <rect key="frame" x="66" y="247.5" width="186" height="16"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="kPX-5r-4jb"/>
                         </constraints>
@@ -62,7 +62,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ub-AM-WJD">
-                        <rect key="frame" x="262" y="167" width="44" height="44"/>
+                        <rect key="frame" x="262" y="219.5" width="44" height="44"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="44" id="RSM-PZ-Vvb"/>
                             <constraint firstAttribute="width" constant="44" id="z1Q-wF-F3d"/>
@@ -102,7 +102,7 @@
                 <outlet property="userNickLabel" destination="1Nq-Ok-cAj" id="Red-PD-FmK"/>
                 <outlet property="videoImage" destination="kvs-VT-ULk" id="zOj-Lv-9DJ"/>
             </connections>
-            <point key="canvasLocation" x="266" y="284.5"/>
+            <point key="canvasLocation" x="361" y="422"/>
         </collectionViewCell>
     </objects>
     <resources>

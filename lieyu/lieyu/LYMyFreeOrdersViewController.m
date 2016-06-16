@@ -170,6 +170,12 @@
     cell.phoneButton.tag = indexPath.section;
     cell.firstButton.tag = indexPath.section;
     cell.secondButton.tag = indexPath.section;
+    
+    [cell.messageButton addTarget:self action:@selector(messageButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.phoneButton addTarget:self action:@selector(phoneButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.firstButton addTarget:self action:@selector(firstButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.secondButton addTarget:self action:@selector(secondButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    
     return cell;
 }
 
@@ -249,7 +255,7 @@
 - (void)firstButtonClick:(UIButton *)button{
     LYFreeOrderModel *model = [_dataArray objectAtIndex:button.tag];
     if ([button.titleLabel.text isEqualToString:@"满意"]) {
-        NSDictionary *dict = @{@"id":[NSNumber numberWithInt:model.id],
+        NSDictionary *dict = @{@"id":[NSNumber numberWithInteger:model.id],
                                @"orderStatus":@"3",//2：专属经理确认订单时传的状态 3：用户确认完成时的状态
                                @"isSatisfaction":@"1"};//订单状态传2时，无需传值；传3时，1：满意 0：不满意
         [LYUserHttpTool lyChangeFreeOrderStatusWithParams:dict complete:^(BOOL result) {
@@ -269,7 +275,7 @@
     if ([button.titleLabel.text isEqualToString:@"取消"]) {
         [self lyDeleteFreeOrder:button.tag];
     }else if ([button.titleLabel.text isEqualToString:@"不满意"]){
-        NSDictionary *dict = @{@"id":[NSNumber numberWithInt:model.id],
+        NSDictionary *dict = @{@"id":[NSNumber numberWithInteger:model.id],
                                @"orderStatus":@"3",//2：专属经理确认订单时传的状态 3：用户确认完成时的状态
                                @"isSatisfaction":@"0"};//订单状态传2时，无需传值；传3时，1：满意 0：不满意
         [LYUserHttpTool lyChangeFreeOrderStatusWithParams:dict complete:^(BOOL result) {
@@ -282,7 +288,7 @@
     }else if ([button.titleLabel.text isEqualToString:@"删除"]){
         [self lyDeleteFreeOrder:button.tag];
     }else if ([button.titleLabel.text isEqualToString:@"预留卡座"]){
-        NSDictionary *dict = @{@"id":[NSNumber numberWithInt:model.id],
+        NSDictionary *dict = @{@"id":[NSNumber numberWithInteger:model.id],
                                @"orderStatus":@"2"};
         [LYUserHttpTool lyChangeFreeOrderStatusWithParams:dict complete:^(BOOL result) {
             if (result) {
@@ -296,9 +302,9 @@
     }
 }
 
-- (void)lyDeleteFreeOrder:(int)index{
+- (void)lyDeleteFreeOrder:(NSInteger)index{
     LYFreeOrderModel *model = [_dataArray objectAtIndex:index];
-    NSDictionary *dict = @{@"id":[NSNumber numberWithInt:model.id]};
+    NSDictionary *dict = @{@"id":[NSNumber numberWithInteger:model.id]};
     [LYUserHttpTool lyDeleteFreeOrderWithParams:dict complete:^(BOOL result) {
         if (result) {
             [_dataArray removeObjectAtIndex:index];

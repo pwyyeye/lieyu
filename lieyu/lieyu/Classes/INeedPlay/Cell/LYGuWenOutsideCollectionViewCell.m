@@ -18,7 +18,7 @@
 #import "LYFriendsMessagesViewController.h"
 #import "LYMyFriendDetailViewController.h"
 
-@interface LYGuWenOutsideCollectionViewCell()<UICollectionViewDelegateFlowLayout,UICollectionViewDelegate,UICollectionViewDataSource,UIActionSheetDelegate,LYRecentMessageLikeDelegate>
+@interface LYGuWenOutsideCollectionViewCell()<UICollectionViewDelegateFlowLayout,UICollectionViewDelegate,UICollectionViewDataSource,UIActionSheetDelegate,LYRecentMessageLikeDelegate,UIScrollViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
     NSInteger playSection;
     MPMoviePlayerViewController *_player;
@@ -28,6 +28,12 @@
     NSInteger _selectedItem;
     
     int tag;
+    
+    
+    UIVisualEffectView *effectView;//发布按钮的背景view
+    UIButton *_carmerBtn;//照相机按钮
+    LYFriendsSendViewController *friendsSendVC;
+    CGFloat _contentOffSetY;//表的偏移量
 }
 
 @end
@@ -43,6 +49,32 @@
     _collectViewInside.backgroundColor = [UIColor groupTableViewBackgroundColor];
 }
 
+#pragma mark - 配置发布按钮
+- (void)setupCarmerBtn{
+    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+    effectView = [[UIVisualEffectView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2.f - 30, SCREEN_HEIGHT, 60, 60)];
+    effectView.layer.cornerRadius = effectView.frame.size.width/2.f;
+    effectView.layer.masksToBounds = YES;
+    effectView.effect = effect;
+    [self addSubview:effectView];
+    effectView.layer.zPosition = 5;
+    //发布按钮
+    _carmerBtn = [[UIButton alloc]initWithFrame:CGRectMake((effectView.frame.size.width - 35)/2.f,effectView.frame.size.height /2.f - 15, 35, 30)];
+    [_carmerBtn addTarget:self action:@selector(cameraClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_carmerBtn setBackgroundImage:[UIImage imageNamed:@"daohang_xiangji"] forState:UIControlStateNormal];
+    [effectView addSubview:_carmerBtn];
+    
+    //发布按钮出来动画
+    CGFloat offset = 65;
+    [UIView animateWithDuration:.4 animations:^{
+        effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - offset - 3, 60, 60);
+    }completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.2 animations:^{
+            effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - offset, 60, 60);
+        }];
+    }];
+}
+
 - (void)drawRect:(CGRect)rect{
     if (_typeForShow == 1) {
         _collectViewInside.contentInset = UIEdgeInsetsMake(90, 0, 0, 0);
@@ -50,6 +82,7 @@
     }else if (_typeForShow == 2){
         _collectViewInside.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
         [_collectViewInside registerNib:[UINib nibWithNibName:@"LYGuWenVideoCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"LYGuWenVideoCollectionViewCell"];
+        [self setupCarmerBtn];
     }
 }
 
@@ -88,7 +121,7 @@
     if (_typeForShow == 1) {
         return CGSizeMake(SCREEN_WIDTH - 6, 122);
     }else if (_typeForShow == 2){
-        return CGSizeMake(SCREEN_WIDTH - 6 , SCREEN_WIDTH / 2 + 61);
+        return CGSizeMake(SCREEN_WIDTH - 6 , SCREEN_WIDTH / 3 * 2 + 64);
     }else{
         return CGSizeMake(0, 0);
     }
@@ -130,11 +163,6 @@
         }
     }else if (_typeForShow == 2){
         FriendsRecentModel *model = (FriendsRecentModel *)[_videoArray objectAtIndex:indexPath.item];
-//        LYFriendsAMessageDetailViewController *detailVC = [[LYFriendsAMessageDetailViewController alloc]init];
-//        detailVC.recentM = model;
-//        detailVC.isFriendToUserMessage = YES;
-//        detailVC.isMessageDetail = YES;
-//        detailVC.delegate = self;
         LYMyFriendDetailViewController *detailVC = [[LYMyFriendDetailViewController alloc]init];
         detailVC.userID = model.userId;
         AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -290,5 +318,35 @@
     _player.moviePlayer.scalingMode = MPMovieScalingModeFill;
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }
+
+#pragma mark - scrollView的各种代理
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    NSLog(@"scrollView.contentOffset.y： %f",scrollView.contentOffset.y);
+    if (scrollView.contentOffset.y > _contentOffSetY) {
+        //表格向上拖，变大，消失
+        [UIView animateWithDuration:.4 animations:^{
+            effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT, 60, 60);
+        }];
+        if (scrollView.contentOffset.y < 0 ) {
+            [UIView animateWithDuration:.4 animations:^{
+                effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30 , SCREEN_HEIGHT - 65, 60, 60);
+            }];
+        }
+    }else{
+        [UIView animateWithDuration:.4 animations:^{
+            effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30 , SCREEN_HEIGHT - 65, 60, 60);
+        }];
+    }
+    _contentOffSetY = scrollView.contentOffset.y;
+}
+
+#pragma mark 发布动态
+- (void)cameraClick:(UIButton *)button{
+    if ([self.delegate respondsToSelector:@selector(publishVideo)]) {
+        [self.delegate publishVideo];
+    }
+}
+
+
 
 @end
