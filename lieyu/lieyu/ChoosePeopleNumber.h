@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LYPeopleNumberButton.h"
+#import "LYKaZuoTypeButton.h"
+
 @interface ChoosePeopleNumber : UIView
 
 @property (weak, nonatomic) IBOutlet UILabel *title_Label;
 
-@property (strong, nonatomic) IBOutletCollection(LYPeopleNumberButton) NSArray *choosebuttons;
+@property (strong, nonatomic) IBOutletCollection(LYKaZuoTypeButton) NSArray *choosebuttons;
 
 @property (nonatomic, assign) NSInteger selectedTag;
 

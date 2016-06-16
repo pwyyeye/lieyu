@@ -17,8 +17,9 @@
                     <color key="textColor" red="0.69803921570000005" green="0.14901960780000001" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tSa-L7-Vf4">
-                    <rect key="frame" x="15" y="72" width="85" height="30"/>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tSa-L7-Vf4" customClass="LYKaZuoTypeButton">
+                    <rect key="frame" x="15" y="72" width="85" height="29"/>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                     <state key="normal" title="1～2人">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
@@ -26,11 +27,12 @@
                         <action selector="chooseTypeClick:" destination="KIZ-dX-ZuG" eventType="touchUpInside" id="wQf-bC-CBE"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qqc-tA-L5k">
-                    <rect key="frame" x="118" y="72" width="85" height="30"/>
+                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qqc-tA-L5k" customClass="LYKaZuoTypeButton">
+                    <rect key="frame" x="118" y="72" width="85" height="29"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="85" id="CDW-Zz-j64"/>
                     </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                     <state key="normal" title="3～4人">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
@@ -38,8 +40,9 @@
                         <action selector="chooseTypeClick:" destination="KIZ-dX-ZuG" eventType="touchUpInside" id="321-sv-jpl"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jHK-tf-iVd">
-                    <rect key="frame" x="221" y="72" width="85" height="30"/>
+                <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jHK-tf-iVd" customClass="LYKaZuoTypeButton">
+                    <rect key="frame" x="221" y="72" width="85" height="29"/>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                     <state key="normal" title="5～6人">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
@@ -47,8 +50,9 @@
                         <action selector="chooseTypeClick:" destination="KIZ-dX-ZuG" eventType="touchUpInside" id="gGq-ZK-Q4b"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dva-Sg-3EQ">
-                    <rect key="frame" x="15" y="127" width="85" height="30"/>
+                <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dva-Sg-3EQ" customClass="LYKaZuoTypeButton">
+                    <rect key="frame" x="15" y="126" width="85" height="29"/>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                     <state key="normal" title="7～8人">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
@@ -56,8 +60,9 @@
                         <action selector="chooseTypeClick:" destination="KIZ-dX-ZuG" eventType="touchUpInside" id="buK-kB-ZM2"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="trC-mn-ZcD">
-                    <rect key="frame" x="221" y="127" width="85" height="30"/>
+                <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="trC-mn-ZcD" customClass="LYKaZuoTypeButton">
+                    <rect key="frame" x="221" y="126" width="85" height="29"/>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                     <state key="normal" title="10人以上">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
@@ -65,8 +70,9 @@
                         <action selector="chooseTypeClick:" destination="KIZ-dX-ZuG" eventType="touchUpInside" id="h81-Pz-QsB"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jzy-uI-CR6">
-                    <rect key="frame" x="118" y="127" width="85" height="30"/>
+                <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jzy-uI-CR6" customClass="LYKaZuoTypeButton">
+                    <rect key="frame" x="118" y="126" width="85" height="29"/>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                     <state key="normal" title="9～10人">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
@@ -107,7 +113,7 @@
                 <outletCollection property="choosebuttons" destination="jzy-uI-CR6" id="Scl-lh-MWI"/>
                 <outletCollection property="choosebuttons" destination="trC-mn-ZcD" id="FHR-0e-eIv"/>
             </connections>
-            <point key="canvasLocation" x="488" y="416"/>
+            <point key="canvasLocation" x="214" y="261"/>
         </view>
     </objects>
 </document>

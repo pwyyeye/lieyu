@@ -17,7 +17,6 @@
 #import "ChooseKaZuo.h"
 #import "LYKaZuoTypeButton.h"
 #import "ChoosePeopleNumber.h"
-#import "LYPeopleNumberButton.h"
 
 @interface FreeOrderViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate,LPAlertViewDelegate>
 {
@@ -137,7 +136,7 @@
     }else if (sender.tag == 1) {//选择到场人数
         _LPPeopleNumberView = [[[NSBundle mainBundle] loadNibNamed:@"ChoosePeopleNumber" owner:nil options:nil] firstObject];
         _LPPeopleNumberView.tag = 16;
-        if (_choosedType <= 0 || _choosedType >= 7) {
+        if (_choosedType <= 0 || _choosedType >= 11) {
             _LPPeopleNumberView.selectedTag = 1;
         } else {
             _LPPeopleNumberView.selectedTag = _choosedType;
@@ -208,7 +207,7 @@
 - (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexChoosePeopleNumber:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {
-        for (LYPeopleNumberButton *button in _LPKaZuoView.choose_buttons) {
+        for (LYKaZuoTypeButton *button in _LPKaZuoView.choose_buttons) {
             if (button.choosed == YES) {
                 _choosedType = button.tag;
                 //                NSLog(@"type:%ld",_choosedType);

@@ -224,8 +224,9 @@
 
 - (void)configureThisView{
     _scrollView.hidden = NO;
-    if (![_result.userType isEqualToString:@"2"] &&
-        ![_result.userType isEqualToString:@"3"]) {
+    if (![_result.usertype
+          isEqualToString:@"2"] &&
+        ![_result.usertype isEqualToString:@"3"]) {
         //对方是普通用户
         _collectButton.hidden = YES;
         _fansOrCaresNumLabel.hidden = YES;
@@ -310,9 +311,9 @@
     _zhiwuWidth.constant = nameW + 20;
     if([_result.isFriend isEqualToString:@"1"]
        || [self.userModel.usertype isEqualToString:@"2"]
-       || [_result.userType isEqualToString:@"2"]
+       || [_result.usertype isEqualToString:@"2"]
        || [self.userModel.usertype isEqualToString:@"3"]
-       || [_result.userType isEqualToString:@"3"]){
+       || [_result.usertype isEqualToString:@"3"]){
         //其中一方是专属经理或者两人是好友
         [_setBtn setTitle:@"聊天" forState:UIControlStateNormal];
     }else{
@@ -465,8 +466,8 @@
 - (IBAction)checkFans:(UIButton *)sender {
     LYGuWenFansViewController *checkFans = [[LYGuWenFansViewController alloc]initWithNibName:@"LYGuWenFansViewController" bundle:nil];
     checkFans.userID = [NSString stringWithFormat:@"%d",_result.userid];
-    if ([_result.userType isEqualToString:@"2"] ||
-        [_result.userType isEqualToString:@"3"]) {
+    if ([_result.usertype isEqualToString:@"2"] ||
+        [_result.usertype isEqualToString:@"3"]) {
         checkFans.type = 0;
     }else{
         checkFans.type = 1;
