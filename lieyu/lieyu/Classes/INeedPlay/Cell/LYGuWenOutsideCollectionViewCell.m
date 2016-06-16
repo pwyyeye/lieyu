@@ -16,6 +16,7 @@
 #import "FriendsLikeModel.h"
 #import "LYFriendsAMessageDetailViewController.h"
 #import "LYFriendsMessagesViewController.h"
+#import "LYMyFriendDetailViewController.h"
 
 @interface LYGuWenOutsideCollectionViewCell()<UICollectionViewDelegateFlowLayout,UICollectionViewDelegate,UICollectionViewDataSource,UIActionSheetDelegate,LYRecentMessageLikeDelegate>
 {
@@ -129,15 +130,13 @@
         }
     }else if (_typeForShow == 2){
         FriendsRecentModel *model = (FriendsRecentModel *)[_videoArray objectAtIndex:indexPath.item];
-//        if (_delegate && [_delegate respondsToSelector:@selector(VideoSelected:)]) {
-//            [_delegate VideoSelected:model];
-//        }
-        _selectedItem = indexPath.item;
-        LYFriendsAMessageDetailViewController *detailVC = [[LYFriendsAMessageDetailViewController alloc]init];
-        detailVC.recentM = model;
-        detailVC.isFriendToUserMessage = YES;
-        detailVC.isMessageDetail = YES;
-        detailVC.delegate = self;
+//        LYFriendsAMessageDetailViewController *detailVC = [[LYFriendsAMessageDetailViewController alloc]init];
+//        detailVC.recentM = model;
+//        detailVC.isFriendToUserMessage = YES;
+//        detailVC.isMessageDetail = YES;
+//        detailVC.delegate = self;
+        LYMyFriendDetailViewController *detailVC = [[LYMyFriendDetailViewController alloc]init];
+        detailVC.userID = model.userId;
         AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
         [app.navigationController pushViewController:detailVC animated:YES];
     }else{

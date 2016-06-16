@@ -10,6 +10,9 @@
 #import "FreeOrderTableViewCell.h"
 #import "LPOrderButton.h"
 #import "LYUserHttpTool.h"
+#import "LYFreeOrderModel.h"
+#import "LYFindConversationViewController.h"
+#import "IQKeyboardManager.h"
 
 #define LIMIT 10
 
@@ -25,13 +28,13 @@
 @implementation LYMyFreeOrdersViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
     _dataArray = [[NSMutableArray alloc]init];
     if ([self.userModel.usertype isEqualToString:@"2"]|| [self.userModel.usertype isEqualToString:@"3"]) {
         _type = @"1";
     }else{
         _type = @"0";
     }
+    [super viewDidLoad];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,15 +55,6 @@
         }else{
             btn.selected = NO;
         }
-    }
-    if (newTag <= 2) {
-        [UIView animateWithDuration:0.5 animations:^{
-            [scrollView setContentOffset:CGPointMake(0, 0)];
-        }];
-    }else if (newTag >= 3){
-        [UIView animateWithDuration:0.5 animations:^{
-            [scrollView setContentOffset:CGPointMake(420 - SCREEN_WIDTH, 0)];
-        }];
     }
     switch (newTag) {
         case 0:
@@ -124,6 +118,8 @@
     [[LYUserHttpTool shareInstance]getMyFreeOrdersWithParams:dict block:^(NSArray *dataArray) {
         if (_start == 0) {
             [_dataArray removeAllObjects];
+            
+            myTableView.contentOffset = CGPointMake(0, -90);
             [myTableView.mj_header endRefreshing];
         }
         _start = _start + LIMIT;
@@ -138,7 +134,6 @@
         }else{
             [weakSelf addKongView];
         }
-        myTableView.contentOffset = CGPointMake(0, -90);
         [myTableView reloadData];
     }];
 }
@@ -167,13 +162,27 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    FreeOrderTableViewCell *cell = [[[NSBundle mainBundle]loadNibNamed:@"FreeOrderTableViewCell" owner:nil options:nil]firstObject];
+    FreeOrderTableViewCell *cell = [myTableView dequeueReusableCellWithIdentifier:@"FreeOrderTableViewCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    LYFreeOrderModel *model = (LYFreeOrderModel *)[_dataArray objectAtIndex:indexPath.section];
+    cell.freeOrder = model;
+    cell.messageButton.tag = indexPath.section;
+    cell.phoneButton.tag = indexPath.section;
+    cell.firstButton.tag = indexPath.section;
+    cell.secondButton.tag = indexPath.section;
     return cell;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    return nil;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    return nil;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 120;
+    return 214;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -184,11 +193,119 @@
     return 3;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
 
+#pragma mark - 各按钮事件
+- (void)messageButtonClick:(UIButton *)button{
+    LYFindConversationViewController *conversationVC = [[LYFindConversationViewController alloc]init];
+    conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
+    LYFreeOrderModel *model = [_dataArray objectAtIndex:button.tag];
+    if ([self.userModel.usertype isEqualToString:@"2"] || [self.userModel.usertype isEqualToString:@"3"]) {
+        conversationVC.targetId = model.imUserId;
+        conversationVC.title = model.usernick;
+    }else{
+        conversationVC.targetId = model.vipImUserId;
+        conversationVC.title = model.vipUsernick;
+    }
+    [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
+    
+    [IQKeyboardManager sharedManager].enable = NO;
+    [IQKeyboardManager sharedManager].isAdd = YES;
+    // 把单聊视图控制器添加到导航栈。
+    UIButton *itemBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+    itemBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 0);
+    [itemBtn setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
+    [itemBtn addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:itemBtn];
+    conversationVC.navigationItem.leftBarButtonItem = item;
+    
+    [self.navigationController pushViewController:conversationVC animated:YES];
+}
 
+- (void)backBtnClick{
+    [USER_DEFAULT setObject:@"1" forKey:@"needCountIM"];
+    [IQKeyboardManager sharedManager].enable = YES;
+    [IQKeyboardManager sharedManager].isAdd = NO;
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
+- (void)phoneButtonClick:(UIButton *)button{
+    LYFreeOrderModel *model = [_dataArray objectAtIndex:button.tag];
+    if ([self.userModel.usertype isEqualToString:@"2"] || [self.userModel.usertype isEqualToString:@"3"]) {
+        if( [MyUtil isPureInt:model.mobile]){
+            NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",model.mobile];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+        }
+    }else{
+        if( [MyUtil isPureInt:model.vipMobile]){
+            NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",model.vipMobile];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+        }
+    }
+}
 
+- (void)firstButtonClick:(UIButton *)button{
+    LYFreeOrderModel *model = [_dataArray objectAtIndex:button.tag];
+    if ([button.titleLabel.text isEqualToString:@"满意"]) {
+        NSDictionary *dict = @{@"id":[NSNumber numberWithInt:model.id],
+                               @"orderStatus":@"3",//2：专属经理确认订单时传的状态 3：用户确认完成时的状态
+                               @"isSatisfaction":@"1"};//订单状态传2时，无需传值；传3时，1：满意 0：不满意
+        [LYUserHttpTool lyChangeFreeOrderStatusWithParams:dict complete:^(BOOL result) {
+            if (result) {
+                [MyUtil showPlaceMessage:@"感谢您的支持，我们将再接再厉！"];
+                [_dataArray removeObjectAtIndex:button.tag];
+                [myTableView reloadData];
+            }
+        }];
+    }else{
+        
+    }
+}
 
+- (void)secondButtonClick:(UIButton *)button{
+    LYFreeOrderModel *model = [_dataArray objectAtIndex:button.tag];
+    if ([button.titleLabel.text isEqualToString:@"取消"]) {
+        [self lyDeleteFreeOrder:button.tag];
+    }else if ([button.titleLabel.text isEqualToString:@"不满意"]){
+        NSDictionary *dict = @{@"id":[NSNumber numberWithInt:model.id],
+                               @"orderStatus":@"3",//2：专属经理确认订单时传的状态 3：用户确认完成时的状态
+                               @"isSatisfaction":@"0"};//订单状态传2时，无需传值；传3时，1：满意 0：不满意
+        [LYUserHttpTool lyChangeFreeOrderStatusWithParams:dict complete:^(BOOL result) {
+            if (result) {
+                [MyUtil showPlaceMessage:@"感谢您的支持，我们将持续改进！"];
+                [_dataArray removeObjectAtIndex:button.tag];
+                [myTableView reloadData];
+            }
+        }];
+    }else if ([button.titleLabel.text isEqualToString:@"删除"]){
+        [self lyDeleteFreeOrder:button.tag];
+    }else if ([button.titleLabel.text isEqualToString:@"预留卡座"]){
+        NSDictionary *dict = @{@"id":[NSNumber numberWithInt:model.id],
+                               @"orderStatus":@"2"};
+        [LYUserHttpTool lyChangeFreeOrderStatusWithParams:dict complete:^(BOOL result) {
+            if (result) {
+                [MyUtil showPlaceMessage:@"卡座预留成功！"];
+                [_dataArray removeObjectAtIndex:button.tag];
+                [myTableView reloadData];
+            }
+        }];
+    }else{
+        
+    }
+}
+
+- (void)lyDeleteFreeOrder:(int)index{
+    LYFreeOrderModel *model = [_dataArray objectAtIndex:index];
+    NSDictionary *dict = @{@"id":[NSNumber numberWithInt:model.id]};
+    [LYUserHttpTool lyDeleteFreeOrderWithParams:dict complete:^(BOOL result) {
+        if (result) {
+            [_dataArray removeObjectAtIndex:index];
+            [myTableView reloadData];
+        }
+    }];
+}
 
 
 @end

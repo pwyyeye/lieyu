@@ -1558,6 +1558,41 @@
     }];
 }
 
+#pragma mark - //取消或者删除免费订台
++ (void)lyDeleteFreeOrderWithParams:(NSDictionary *)dict complete:(void (^)(BOOL))complete{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_DELETE_FREEORDER baseURL:LY_SERVER params:dict success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            complete(YES);
+        }else{
+            [MyUtil showPlaceMessage:@"操作失败，请稍后重试！"];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+}
+
+#pragma mark -//预留卡座或者对订台表示满意或者不满意
++ (void)lyChangeFreeOrderStatusWithParams:(NSDictionary *)dict complete:(void (^)(BOOL))complete{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_CHANGE_FREEORDER baseURL:LY_SERVER params:dict success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            complete(YES);
+        }else{
+            [MyUtil showPlaceMessage:@"操作失败，请稍后重试！"];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+}
+
+
 
 
 @end

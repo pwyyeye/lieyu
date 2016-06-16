@@ -123,4 +123,11 @@
 #define LP_CHECK_WECHAT @"smOrderAction.do?action=login"
 //获取
 #define LP_GET_UNPASSEDDATA @"lyUsersVipApplyAction.do?action=list"
+
+//取消或者删除免费订台
+#define LY_DELETE_FREEORDER @"lyOrderFreeAction.do?action=delete"
+
+//预留卡座或者对订台表示满意或者不满意
+#define LY_CHANGE_FREEORDER @"lyOrderFreeAction.do?action=update"
+
 #endif

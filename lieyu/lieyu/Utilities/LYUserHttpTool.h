@@ -220,4 +220,11 @@
 //专属经理申请更新
 -(void) updateApplyVip:(NSDictionary*)params block:(void (^)(id <AFMultipartFormData> formData))block complete:(void (^)(BOOL result))result;
 
+
+//取消或者删除免费订台
++ (void)lyDeleteFreeOrderWithParams:(NSDictionary *)dict complete:(void(^)(BOOL result))complete;
+
+//预留卡座或者对订台表示满意或者不满意
++ (void)lyChangeFreeOrderStatusWithParams:(NSDictionary *)dict complete:(void(^)(BOOL result))complete;
+
 @end
