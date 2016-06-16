@@ -35,6 +35,8 @@
     
     NSMutableArray *_isChangedFilter;//判断是否更改筛选条件
     
+    UILabel *_kongLabel;
+    
 }
 
 @end
@@ -53,6 +55,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 //    self.titleText = @"全部顾问";
+    [self.view setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     if(_filterSortFlag == 0){
         self.titleText = @"人气顾问";
     }else if (_filterSortFlag == 1){
@@ -88,6 +91,7 @@
     [_filterBgView addGestureRecognizer:tapFilter];
     [self.view addSubview:_filterBgView];
     _filterBgView.hidden = YES;
+    _filterBgView.layer.zPosition = 4;
     
     UIVisualEffect *effect = [UIBlurEffect effectWithStyle:(UIBlurEffectStyleExtraLight)];
     _filterView = [[UIVisualEffectView alloc]initWithEffect:effect];
@@ -100,7 +104,7 @@
         HotMenuButton *btn = [[HotMenuButton alloc]init];
         btn.frame = CGRectMake(72 + i % 3 * (56 + margin), i / 3 * 35 + 20, 56, 20);
         [btn setTitle:sexTitle forState:UIControlStateNormal];
-        if(i == 0){
+        if(i == 2){
             btn.isGuWenSelected = YES;
         }
         else{
@@ -270,9 +274,11 @@
         
         NSArray *arrayTemp = model.viplist;
         if (arrayTemp.count > 0) {
+            [self hideKongView];
             if (_filterSortFlag == 0) {
                 if (_pagePopularity == 1) {
                     [[_dataArray objectAtIndex:0]removeAllObjects];
+                    cell.collectViewInside.contentOffset = CGPointMake(0, -90);
                     [cell.collectViewInside.mj_header endRefreshing];
                 }
                 [cell.collectViewInside.mj_footer endRefreshing];
@@ -295,19 +301,58 @@
                 _pageRecommend ++;
                 [[_dataArray objectAtIndex:2]addObjectsFromArray:arrayTemp];
             }
-            [cell.collectViewInside reloadData];
         }else{
-            if ([cell.collectViewInside.mj_header isRefreshing]) {
-                [cell.collectViewInside.mj_header endRefreshing];
+//            if ([cell.collectViewInside.mj_header isRefreshing]) {
+//                [cell.collectViewInside.mj_header endRefreshing];
+//            }
+            if (_filterSortFlag == 0) {
+                if (_pagePopularity == 1) {
+                    [self initKongView];
+                    [[_dataArray objectAtIndex:0]removeAllObjects];
+                    [cell.collectViewInside.mj_header endRefreshing];
+                }
             }
+            if (_filterSortFlag == 1) {
+                if (_pageDistance == 1) {
+                    [self initKongView];
+                    [[_dataArray objectAtIndex:1]removeAllObjects];
+                    [cell.collectViewInside.mj_header endRefreshing];
+                }
+            }
+            if (_filterSortFlag == 2) {
+                if (_pageRecommend == 1) {
+                    [self initKongView];
+                    [[_dataArray objectAtIndex:2]removeAllObjects];
+                    [cell.collectViewInside.mj_header endRefreshing];
+                }
+            }
+            
             [cell.collectViewInside.mj_footer endRefreshingWithNoMoreData];
         }
+        [cell.collectViewInside reloadData];
     }];
 }
 
+#pragma mark - 空界面
+- (void)initKongView{
+    if (!_kongLabel) {
+        _kongLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT / 2 - 45, SCREEN_WIDTH, 20)];
+        [_kongLabel setText:@"抱歉，暂无顾问入驻！"];
+        [_kongLabel setTextAlignment:NSTextAlignmentCenter];
+        [_kongLabel setFont:[UIFont systemFontOfSize:14]];
+        [_kongLabel setTextColor:RGBA(186, 40, 227, 1)];
+        _kongLabel.layer.zPosition = 3;
+    }
+        [self.view addSubview:_kongLabel];
+    
+}
+
+- (void)hideKongView{
+    [_kongLabel removeFromSuperview];
+}
+
+
 #pragma mark - collectionView
-
-
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     LYGuWenOutsideCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LYGuWenOutsideCollectionViewCell" forIndexPath:indexPath];
     cell.backgroundColor = [UIColor whiteColor];
@@ -372,6 +417,7 @@
 
 #pragma mark - 滑动
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [self hideKongView];
     if (scrollView == _collectView) {
         UIButton *hotBtn = _menuBtnArray[0];
         CGFloat offsetWidth = scrollView.contentOffset.x;
@@ -396,21 +442,26 @@
     _index = (NSInteger)_collectView.contentOffset.x / SCREEN_WIDTH;
     HotMenuButton *btn = [_menuBtnArray objectAtIndex:_index];
     btn.isGuWenSelected = YES;
+    _filterSortFlag = _index;
     self.titleText = [NSString stringWithFormat:@"%@顾问",btn.titleLabel.text];
     if (_dataArray.count) {
         NSArray *array = [_dataArray objectAtIndex:_index];
         if (!array.count || [[_isChangedFilter objectAtIndex:_index] isEqualToString:@"1"]) {
             LYGuWenOutsideCollectionViewCell *cell = (LYGuWenOutsideCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
-            _filterSortFlag = _index;
+//            _filterSortFlag = _index;
             [_isChangedFilter replaceObjectAtIndex:_filterSortFlag withObject:@"0"];
             [cell.collectViewInside.mj_header beginRefreshing];
         }
+//        else{
+//            [self hideKongView];
+//        }
     }
 }
 
 #pragma mark - select delegate
 - (void)GuWenSelected:(NSString *)userID{
-    LYGuWenDetailViewController *detailVC = [[LYGuWenDetailViewController alloc]initWithNibName:@"LYGuWenDetailViewController" bundle:nil];
+//    LYGuWenDetailViewController *detailVC = [[LYGuWenDetailViewController alloc]initWithNibName:@"LYGuWenDetailViewController" bundle:nil];
+    LYMyFriendDetailViewController *detailVC = [[LYMyFriendDetailViewController alloc]init];
     detailVC.userID = userID;
     [self.navigationController pushViewController:detailVC animated:YES];
 }

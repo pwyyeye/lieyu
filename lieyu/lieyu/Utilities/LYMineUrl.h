@@ -10,6 +10,9 @@
 #define lieyu_LYMineUrl_h
 //客户列表
 #define LY_MY_ORDER  @"lyOrderAction.do?action=list"
+//免费订台列表
+#define LY_MY_FREEORDER @"lyOrderFreeAction.do?action=list"
+
 //客户明细
 #define LY_MY_ORDERDETAIL  @"smOrderAction.do?action=custom"
 //sn 获取拼客订单明细
@@ -120,4 +123,11 @@
 #define LP_CHECK_WECHAT @"smOrderAction.do?action=login"
 //获取
 #define LP_GET_UNPASSEDDATA @"lyUsersVipApplyAction.do?action=list"
+
+//取消或者删除免费订台
+#define LY_DELETE_FREEORDER @"lyOrderFreeAction.do?action=delete"
+
+//预留卡座或者对订台表示满意或者不满意
+#define LY_CHANGE_FREEORDER @"lyOrderFreeAction.do?action=update"
+
 #endif

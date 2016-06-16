@@ -364,6 +364,10 @@
 		3824CA6A1C5B47F300C00732 /* ChoosePeople.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3824CA691C5B47F300C00732 /* ChoosePeople.xib */; };
 		382FB47A1CD496BB001ABC49 /* LYDateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 382FB4791CD496BB001ABC49 /* LYDateUtil.m */; };
 		384A54901CF5A8B6008825ED /* LYChooseBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 384A548E1CF5A8B6008825ED /* LYChooseBarViewController.xib */; };
+		384A54981D10FB96008825ED /* FreeOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 384A54961D10FB96008825ED /* FreeOrderTableViewCell.m */; };
+		384A54991D10FB96008825ED /* FreeOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 384A54971D10FB96008825ED /* FreeOrderTableViewCell.xib */; };
+		384A549F1D112422008825ED /* LYMyFreeOrdersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 384A549E1D112422008825ED /* LYMyFreeOrdersViewController.m */; };
+		384A54A21D112D69008825ED /* LYFreeOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 384A54A11D112D69008825ED /* LYFreeOrderModel.m */; };
 		3856646A1C62EE6A000DCFA5 /* icon_collect2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 385664681C62EE6A000DCFA5 /* icon_collect2@2x.png */; };
 		3856646B1C62EE6A000DCFA5 /* icon_collect2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 385664691C62EE6A000DCFA5 /* icon_collect2@3x.png */; };
 		3856646F1C72B919000DCFA5 /* HDZTHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3856646D1C72B919000DCFA5 /* HDZTHeaderCell.m */; };
@@ -1204,7 +1208,6 @@
 		8579682E1CFC176400284555 /* LYAdviserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8579682D1CFC176400284555 /* LYAdviserInfoModel.m */; };
 		857ABFC41D03D0FA00867DE3 /* collectNumber@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 857ABFC21D03D0FA00867DE3 /* collectNumber@2x.png */; };
 		857ABFC51D03D0FA00867DE3 /* collectNumber@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 857ABFC31D03D0FA00867DE3 /* collectNumber@3x.png */; };
-		857ABFC61D041CE400867DE3 /* LYChooseBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 384A548D1CF5A8B6008825ED /* LYChooseBarViewController.m */; };
 		857AD68C1CA8CDBB0032E0C4 /* LYFriendsNameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8540B6611C2CD8E200F16463 /* LYFriendsNameTableViewCell.xib */; };
 		857AD68D1CA8CDC00032E0C4 /* LYFriendsNameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8540B6601C2CD8E200F16463 /* LYFriendsNameTableViewCell.m */; };
 		857AD6971CA956100032E0C4 /* shopMyReceive@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 857AD6951CA956100032E0C4 /* shopMyReceive@3x.png */; };
@@ -1408,6 +1411,7 @@
 		AD078C771C33CDE800A056D1 /* iphoneIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD078C741C33CDE800A056D1 /* iphoneIcon@3x.png */; };
 		AD078C8B1C34D17E00A056D1 /* LYZSApplicationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD078C8A1C34D17E00A056D1 /* LYZSApplicationViewController.m */; };
 		AD078C8D1C34D24C00A056D1 /* LYChooseJiuBaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E184861BB5214F00681BB2 /* LYChooseJiuBaViewController.m */; };
+		AD0FF0C21D041A1D00E24060 /* LYChooseBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 384A548D1CF5A8B6008825ED /* LYChooseBarViewController.m */; };
 		AD106B8B1C0AEF16007F5FBA /* LYUserCenterController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD106B891C0AEF16007F5FBA /* LYUserCenterController.m */; };
 		AD106B901C0AF044007F5FBA /* LYUserCenterHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = AD106B8E1C0AF044007F5FBA /* LYUserCenterHeader.m */; };
 		AD106B911C0AF044007F5FBA /* LYUserCenterHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD106B8F1C0AF044007F5FBA /* LYUserCenterHeader.xib */; };
@@ -2379,6 +2383,13 @@
 		384A548C1CF5A8B6008825ED /* LYChooseBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYChooseBarViewController.h; sourceTree = "<group>"; };
 		384A548D1CF5A8B6008825ED /* LYChooseBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYChooseBarViewController.m; sourceTree = "<group>"; };
 		384A548E1CF5A8B6008825ED /* LYChooseBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYChooseBarViewController.xib; sourceTree = "<group>"; };
+		384A54951D10FB96008825ED /* FreeOrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeOrderTableViewCell.h; sourceTree = "<group>"; };
+		384A54961D10FB96008825ED /* FreeOrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreeOrderTableViewCell.m; sourceTree = "<group>"; };
+		384A54971D10FB96008825ED /* FreeOrderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FreeOrderTableViewCell.xib; sourceTree = "<group>"; };
+		384A549D1D112422008825ED /* LYMyFreeOrdersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYMyFreeOrdersViewController.h; sourceTree = "<group>"; };
+		384A549E1D112422008825ED /* LYMyFreeOrdersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYMyFreeOrdersViewController.m; sourceTree = "<group>"; };
+		384A54A01D112D69008825ED /* LYFreeOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYFreeOrderModel.h; sourceTree = "<group>"; };
+		384A54A11D112D69008825ED /* LYFreeOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYFreeOrderModel.m; sourceTree = "<group>"; };
 		385664681C62EE6A000DCFA5 /* icon_collect2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_collect2@2x.png"; sourceTree = "<group>"; };
 		385664691C62EE6A000DCFA5 /* icon_collect2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_collect2@3x.png"; sourceTree = "<group>"; };
 		3856646C1C72B919000DCFA5 /* HDZTHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDZTHeaderCell.h; sourceTree = "<group>"; };
@@ -5585,6 +5596,36 @@
 			name = cell;
 			sourceTree = "<group>";
 		};
+		384A54911D10FB4A008825ED /* 免费订台 */ = {
+			isa = PBXGroup;
+			children = (
+				384A54941D10FB66008825ED /* controller */,
+				384A54921D10FB55008825ED /* view */,
+				384A54A01D112D69008825ED /* LYFreeOrderModel.h */,
+				384A54A11D112D69008825ED /* LYFreeOrderModel.m */,
+			);
+			name = "免费订台";
+			sourceTree = "<group>";
+		};
+		384A54921D10FB55008825ED /* view */ = {
+			isa = PBXGroup;
+			children = (
+				384A54951D10FB96008825ED /* FreeOrderTableViewCell.h */,
+				384A54961D10FB96008825ED /* FreeOrderTableViewCell.m */,
+				384A54971D10FB96008825ED /* FreeOrderTableViewCell.xib */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		384A54941D10FB66008825ED /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				384A549D1D112422008825ED /* LYMyFreeOrdersViewController.h */,
+				384A549E1D112422008825ED /* LYMyFreeOrdersViewController.m */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
 		385664771C72BEF3000DCFA5 /* 活动专题 */ = {
 			isa = PBXGroup;
 			children = (
@@ -7787,6 +7828,7 @@
 		A2020D4B1BA6612C0090B92A /* 个人信息 */ = {
 			isa = PBXGroup;
 			children = (
+				384A54911D10FB4A008825ED /* 免费订台 */,
 				38EE9DD71CB6449300201734 /* 订单页面 */,
 				15B8668B1BE0AFF7002E2BB6 /* 信息中心 */,
 				ADE103B21BDF285C00D9EC38 /* 设置 */,
@@ -9623,6 +9665,7 @@
 				855EB3B91CF70A2600609B18 /* GuWenPrice@2x.png in Resources */,
 				15AE634B1BA8576500FFAD1A /* ZSOrderViewController.xib in Resources */,
 				854038941CAE5F030056C27E /* finger.mp3 in Resources */,
+				384A54991D10FB96008825ED /* FreeOrderTableViewCell.xib in Resources */,
 				ADD264751C92C0FD002894AC /* black_Selected@2x.png in Resources */,
 				85F545341C13FCD20013B92B /* LYUserDetailSexTableViewCell.xib in Resources */,
 				AD79E0841C775DFC00C45B97 /* empyImage120.png in Resources */,
@@ -10643,7 +10686,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				857ABFC61D041CE400867DE3 /* LYChooseBarViewController.m in Sources */,
 				85589C771C16BB28000E342E /* LYUserDetailTableViewCell.xib in Sources */,
 				85589C311C167E49000E342E /* PayButton.m in Sources */,
 				385665101C75EFFF000DCFA5 /* HDDetailImageCell.m in Sources */,
@@ -10699,6 +10741,7 @@
 				D7A1D41A1BC265CF00BCE47C /* CLLocation+CoordinateConvert.m in Sources */,
 				ADF8E1C31C214ECB00943E4D /* LYCache.m in Sources */,
 				ADF88E9E1C1197C400CF5DED /* MJRefreshBackFooter.m in Sources */,
+				384A54A21D112D69008825ED /* LYFreeOrderModel.m in Sources */,
 				D7A1D41D1BC266CD00BCE47C /* LYUserLocation.m in Sources */,
 				38979B6F1CAE6263002946F5 /* ZSApplyStatusModel.m in Sources */,
 				38E5D6D11C0EC2DA004B49D2 /* LPAlertView.m in Sources */,
@@ -10785,6 +10828,7 @@
 				D748BC7F1BA1CB35005AA996 /* LYCoreDataObject.m in Sources */,
 				3879D0631C7AE423000F5795 /* CheckProtocol.m in Sources */,
 				AD106B901C0AF044007F5FBA /* LYUserCenterHeader.m in Sources */,
+				384A549F1D112422008825ED /* LYMyFreeOrdersViewController.m in Sources */,
 				8550E70B1C2FC11C001FF2DE /* LYFriendsCommentView.m in Sources */,
 				AD106BB61C0DDEFF007F5FBA /* MJFoundation.m in Sources */,
 				15EB7C4C1BC3785200756153 /* SetMealVOModel.m in Sources */,
@@ -10964,6 +11008,7 @@
 				ADF8E1C21C214ECB00943E4D /* LYCache+CoreDataProperties.m in Sources */,
 				15013B071BBA3BD000061FAF /* LYCommonHttpTool.m in Sources */,
 				15B8668A1BE09888002E2BB6 /* MyBarModel.m in Sources */,
+				AD0FF0C21D041A1D00E24060 /* LYChooseBarViewController.m in Sources */,
 				15AE634A1BA8576500FFAD1A /* ZSOrderViewController.m in Sources */,
 				380656691C4E5D5B003094C9 /* ImageCollectionViewController.m in Sources */,
 				853C360F1C72BA8400F1703B /* LYBarScrollTableViewCell.m in Sources */,
@@ -11111,6 +11156,7 @@
 				8518067E1C2E796300006804 /* LYFriendsUserHeaderView.m in Sources */,
 				855397321C8DA01C00289D18 /* rscode.c in Sources */,
 				15A4CF5C1BD86CF800C22C01 /* ShaiXuanBtn.m in Sources */,
+				384A54981D10FB96008825ED /* FreeOrderTableViewCell.m in Sources */,
 				38E5D7051C1044F3004B49D2 /* ManagerInfoCell.m in Sources */,
 				15EB7C4F1BC37A1A00756153 /* ProductVOModel.m in Sources */,
 				152247B61BEB064600E68A2B /* IQTitleBarButtonItem.m in Sources */,

@@ -69,7 +69,7 @@
             <connections>
                 <outlet property="imgView_banner" destination="dDj-69-bx2" id="daM-lD-5eo"/>
             </connections>
-            <point key="canvasLocation" x="701" y="557"/>
+            <point key="canvasLocation" x="306.5" y="422"/>
         </collectionViewCell>
     </objects>
     <resources>

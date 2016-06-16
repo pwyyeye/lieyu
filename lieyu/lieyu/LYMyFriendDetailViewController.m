@@ -18,6 +18,12 @@
 #import "find_userInfoModel.h"
 #import "CareofViewController.h"
 #import "LYFriendsPersonMessageViewController.h"
+#import "LYGuWenFansViewController.h"
+#import "LYUserLocation.h"
+#import "BeerNewBarViewController.h"
+#import "LYAdviserHttpTool.h"
+#import "LYwoYaoDinWeiMainViewController.h"
+#import "FreeOrderViewController.h"
 
 @interface LYMyFriendDetailViewController ()
 {
@@ -65,21 +71,21 @@
     }
 }
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _scrollView.hidden = YES;
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.title = @"个人信息";
     self.userImageView.layer.masksToBounds =YES;
     self.userImageView.layer.cornerRadius =self.userImageView.frame.size.width/2;
     self.xingzuo.layer.cornerRadius = 10;
     self.xingzuo.layer.masksToBounds = YES;
     self.zhiwuLal.layer.cornerRadius = 10;
     self.zhiwuLal.layer.masksToBounds = YES;
-    self.guanzhuBtn.layer.cornerRadius = 4;
-    self.guanzhuBtn.layer.masksToBounds = YES;
-    self.guanzhuBtn.layer.borderColor = [UIColor blackColor].CGColor;
-    self.guanzhuBtn.layer.borderWidth = 0.5;
+    self.freeBookButton.layer.cornerRadius = 4;
+    self.onlineBookButton.layer.cornerRadius = 4;
     self.DTView.layer.cornerRadius = 4;
     self.DTView.layer.masksToBounds = YES;
     imgArray = @[_image1,_image2,_image3,_image4];
@@ -106,6 +112,7 @@
                 }
                 _zhiwuLal.text=[NSString stringWithFormat:@" %@ ",mytags];
             }
+            
             if(_customerModel.tag.count==0 && _customerModel.userTag.count>0){
                 NSMutableString *mytags=[[NSMutableString alloc] init];
                 for (int i=0; i<_customerModel.userTag.count; i++) {
@@ -134,14 +141,14 @@
             if(_customerModel.tag.count == 0 && _customerModel.tags.count == 0 && _customerModel.userTag.count == 0){
                 _zhiwuLal.text = @"保密";
             }
-            if (![MyUtil isEmptyString:_customerModel.age]) {
-                _age.text=_customerModel.age;
-            }
-            
-            if (![MyUtil isEmptyString:_customerModel.birthday]) {
-                _xingzuo.text=[MyUtil getAstroWithBirthday:_customerModel.birthday];
-                _age.text=[MyUtil getAgefromDate:_customerModel.birthday];
-            }
+//            if (![MyUtil isEmptyString:_customerModel.age]) {
+//                _age.text=_customerModel.age;
+//            }
+//            
+//            if (![MyUtil isEmptyString:_customerModel.birthday]) {
+//                _xingzuo.text=[MyUtil getAstroWithBirthday:_customerModel.birthday];
+//                _age.text=[MyUtil getAgefromDate:_customerModel.birthday];
+//            }
             
             self.namelal.text=_customerModel.friendName?_customerModel.friendName : (_customerModel.usernick ?_customerModel.usernick : (_customerModel.username?_customerModel.username:_customerModel.name));
             [self.userImageView sd_setImageWithURL:[NSURL URLWithString:_customerModel.avatar_img ? _customerModel.avatar_img : (_customerModel.icon ? _customerModel.icon : _customerModel.mark)]];
@@ -216,6 +223,54 @@
 }
 
 - (void)configureThisView{
+    _scrollView.hidden = NO;
+    if (![_result.userType isEqualToString:@"2"] &&
+        ![_result.userType isEqualToString:@"3"]) {
+        //对方是普通用户
+        _collectButton.hidden = YES;
+        _fansOrCaresNumLabel.hidden = YES;
+        _fansOrCaresLabel.hidden = YES;
+        _careNumberImage.hidden = YES;
+        _checkCollectButton.hidden = YES;
+        _popularityView.hidden = YES;
+        _qualificationView.hidden = YES;
+        _DTViewTop.constant = -225;
+    }else{
+        _collectButton.hidden = NO;
+        [_fansOrCaresLabel setText:@"粉丝"];
+        [_fansOrCaresNumLabel setText:[NSString stringWithFormat:@"%d",_result.beCollectNum]];
+        [_careNumberImage setImage:[UIImage imageNamed:@"CareNumber"]];
+        if ([_result.liked isEqualToString:@"1"]) {
+            [_collectButton setImage:[UIImage imageNamed:@"CareNumber"] forState:UIControlStateNormal];
+            _collectButton.tag = 189;
+        }else{
+            [_collectButton setImage:[UIImage imageNamed:@"AddCare"] forState:UIControlStateNormal];
+            _collectButton.tag = 589;
+        }
+        [_fansOrCaresLabel setText:@"粉丝"];
+        _popularityView.hidden = NO;
+        [_popularityNumberLabel setText:[NSString stringWithFormat:@"人气：%d",_result.popularityNum]];
+        for (UIButton *button in _identification_buttons) {
+            if (button.tag == 0) {
+                button.selected = YES;
+            }
+        }
+        _scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, 315);
+        //酒吧名字
+        if(_result.barid == -1){
+            _bigBarImage.hidden = YES;
+            _checkBarName.enabled = NO;
+        }else{
+            _bigBarImage.hidden = NO;
+            _checkBarName.enabled = YES;
+            [_checkBarName addTarget:self action:@selector(checkBarInfo) forControlEvents:UIControlEventTouchUpInside];
+        }
+        [_barnameLabel setText:_result.barname];
+        //空调地图
+        [_addressLabel setText:_result.address];
+        [_checkBarAddress addTarget:self action:@selector(checkBarLocation) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
     _namelal.text = _result.usernick;
     
     [_userImageView sd_setImageWithURL:[NSURL URLWithString:_result.avatar_img]];
@@ -229,14 +284,14 @@
     }else{
         self.sexImageView.image=[UIImage imageNamed:@"manIcon"];
     }
-    _delLal.text = _result.introduction.length?_result.introduction:@"相约随时";
+//    _delLal.text = _result.introduction.length?_result.introduction:@"相约随时";
     NSArray *tagsArrayy = _result.tags;
     if(tagsArrayy.count > 0){
         _zhiwuLal.text = [tagsArrayy[0] objectForKey:@"tagname"];
     }else{
         _zhiwuLal.text = @"秘密";
     }
-    _age.text = _result.age;
+//    _age.text = _result.age;
     if (![MyUtil isEmptyString:_result.birthday]) {
         NSString *birth = [_result.birthday substringToIndex:10];
         _xingzuo.text=[MyUtil getAstroWithBirthday:birth];
@@ -253,14 +308,21 @@
     // 名字的W
     CGFloat nameW = size.width;
     _zhiwuWidth.constant = nameW + 20;
-    if([_result.isFriend isEqualToString:@"1"] || [self.userModel.usertype isEqualToString:@"2"]){
+    if([_result.isFriend isEqualToString:@"1"]
+       || [self.userModel.usertype isEqualToString:@"2"]
+       || [_result.userType isEqualToString:@"2"]
+       || [self.userModel.usertype isEqualToString:@"3"]
+       || [_result.userType isEqualToString:@"3"]){
+        //其中一方是专属经理或者两人是好友
         [_setBtn setTitle:@"聊天" forState:UIControlStateNormal];
     }else{
         [_setBtn setTitle:@"打招呼" forState:UIControlStateNormal];
     }
+    //动态栏
     if (_result.recentImages.count == 0) {
+        _advanceImage.hidden = YES;
         if (!clearLabel) {
-            clearLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 32, 150, 20)];
+            clearLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 0, 150, 72)];
             [clearLabel setFont:[UIFont systemFontOfSize:14]];
             [clearLabel setTextColor:[UIColor darkGrayColor]];
             [clearLabel setText:@"暂无动态！"];
@@ -268,6 +330,7 @@
         self.checkTrendsBtn.enabled = NO;
         [self.DTView addSubview:clearLabel];
     }else{
+        _advanceImage.hidden = NO;
         [clearLabel removeFromSuperview];
         self.checkTrendsBtn.enabled = YES;
         for(int i = 0 ; i < _result.recentImages.count ; i ++){
@@ -311,8 +374,7 @@
         return;
     }
     NSLog(@"%@",self.userModel.usertype);
-    if([_result.isFriend isEqualToString:@"0"] && ![self.userModel.usertype isEqualToString:@"2"]){
-       
+    if ([_setBtn.titleLabel.text isEqualToString:@"打招呼"]) {
         LYAddFriendViewController *addFriendViewController=[[LYAddFriendViewController alloc]initWithNibName:@"LYAddFriendViewController" bundle:nil];
         addFriendViewController.title=@"加好友";
         if (_customerModel) {
@@ -324,21 +386,10 @@
         }
         [self.navigationController pushViewController:addFriendViewController animated:YES];
     }else{
-        
         LYFindConversationViewController *conversationVC = [[LYFindConversationViewController alloc]init];
         conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
-        if (_customerModel) {
-            conversationVC.targetId = _customerModel.imUserId; // 接收者的 targetId，这里为举例。
-//            conversationVC.userName =_customerModel.friendName?_customerModel.friendName:_customerModel.usernick; // 接受者的 username，这里为举例。
-            conversationVC.title = _customerModel.friendName?_customerModel.friendName:_customerModel.usernick; // 会话的 title。
-        }else{
-            conversationVC.targetId = [NSString stringWithFormat:@"%@",_result.imuserId];
-//            conversationVC.userName = _result.usernick;
-            conversationVC.title = _result.usernick;
-//            conversationVC.userName = _result[@"usernick"]?_result[@"usernick"]:_result[@"username"];
-//            conversationVC.title = _result[@"usernick"]?_result[@"usernick"]:_result[@"username"];
-        }
-        
+        conversationVC.targetId = [NSString stringWithFormat:@"%@",_result.imuserId];
+        conversationVC.title = _result.usernick;
         [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
         [IQKeyboardManager sharedManager].enable = NO;
         [IQKeyboardManager sharedManager].isAdd = YES;
@@ -353,11 +404,51 @@
         conversationVC.navigationItem.leftBarButtonItem = item;
         [self.navigationController pushViewController:conversationVC animated:YES];
         [conversationVC.navigationController setNavigationBarHidden:NO animated:YES];
-    }
-}
 
-- (IBAction)addCareof:(UIButton *)sender {
-    
+    }
+//    if([_result.isFriend isEqualToString:@"0"] && ![self.userModel.usertype isEqualToString:@"2"]){
+//       
+//        LYAddFriendViewController *addFriendViewController=[[LYAddFriendViewController alloc]initWithNibName:@"LYAddFriendViewController" bundle:nil];
+//        addFriendViewController.title=@"加好友";
+//        if (_customerModel) {
+//            addFriendViewController.customerModel=_customerModel;
+//            addFriendViewController.userID =[NSString stringWithFormat:@"%d",_result.userid];
+//        }else{
+//            addFriendViewController.type=self.type;
+//            addFriendViewController.userID = self.userID;
+//        }
+//        [self.navigationController pushViewController:addFriendViewController animated:YES];
+//    }else{
+//        
+//        LYFindConversationViewController *conversationVC = [[LYFindConversationViewController alloc]init];
+//        conversationVC.conversationType =ConversationType_PRIVATE; //会话类型，这里设置为 PRIVATE 即发起单聊会话。
+//        if (_customerModel) {
+//            conversationVC.targetId = _customerModel.imUserId; // 接收者的 targetId，这里为举例。
+////            conversationVC.userName =_customerModel.friendName?_customerModel.friendName:_customerModel.usernick; // 接受者的 username，这里为举例。
+//            conversationVC.title = _customerModel.friendName?_customerModel.friendName:_customerModel.usernick; // 会话的 title。
+//        }else{
+//            conversationVC.targetId = [NSString stringWithFormat:@"%@",_result.imuserId];
+////            conversationVC.userName = _result.usernick;
+//            conversationVC.title = _result.usernick;
+////            conversationVC.userName = _result[@"usernick"]?_result[@"usernick"]:_result[@"username"];
+////            conversationVC.title = _result[@"usernick"]?_result[@"usernick"]:_result[@"username"];
+//        }
+//        
+//        [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
+//        [IQKeyboardManager sharedManager].enable = NO;
+//        [IQKeyboardManager sharedManager].isAdd = YES;
+//        // 把单聊视图控制器添加到导航栈。
+//        
+//        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+//        UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(-10, 0, 44, 44)];
+//        [button setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
+//        [view addSubview:button];
+//        [button addTarget:self action:@selector(backForward) forControlEvents:UIControlEventTouchUpInside];
+//        UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:view];
+//        conversationVC.navigationItem.leftBarButtonItem = item;
+//        [self.navigationController pushViewController:conversationVC animated:YES];
+//        [conversationVC.navigationController setNavigationBarHidden:NO animated:YES];
+//    }
 }
 
 - (void)backForward{
@@ -372,23 +463,102 @@
 }
 
 - (IBAction)checkFans:(UIButton *)sender {
-    CareofViewController *caresViewController = [[CareofViewController alloc]initWithNibName:@"CareofViewController" bundle:nil];
-    caresViewController.userId = self.userID;
-    caresViewController.type = @"1";
-    [self.navigationController pushViewController:caresViewController animated:YES];
+    LYGuWenFansViewController *checkFans = [[LYGuWenFansViewController alloc]initWithNibName:@"LYGuWenFansViewController" bundle:nil];
+    checkFans.userID = [NSString stringWithFormat:@"%d",_result.userid];
+    if ([_result.userType isEqualToString:@"2"] ||
+        [_result.userType isEqualToString:@"3"]) {
+        checkFans.type = 0;
+    }else{
+        checkFans.type = 1;
+    }
+    [self.navigationController pushViewController:checkFans animated:YES];
 }
 
-- (IBAction)checkCares:(UIButton *)sender {
-    CareofViewController *caresViewController = [[CareofViewController alloc]initWithNibName:@"CareofViewController" bundle:nil];
-    caresViewController.userId = self.userID;
-    caresViewController.type = @"0";
-    [self.navigationController pushViewController:caresViewController animated:YES];
+- (IBAction)addCareof:(UIButton *)sender {
+    NSDictionary *dict = @{@"userid":[NSNumber numberWithInt:self.userModel.userid],
+                           @"vipUserid":[NSNumber numberWithInt:_result.userid]};
+    if (sender.tag == 589) {
+        [LYAdviserHttpTool lyAddCollectWithParams:dict complete:^(BOOL result) {
+            if (result) {
+                [MyUtil showPlaceMessage:@"添加关注成功！"];
+                [sender setImage:[UIImage imageNamed:@"CareNumber"] forState:UIControlStateNormal];
+                _fansOrCaresNumLabel.text = [NSString stringWithFormat:@"%d",[_fansOrCaresNumLabel.text intValue] + 1];
+                self.userModel.beCollectNum = [NSString stringWithFormat:@"%d",[self.userModel.beCollectNum intValue] + 1];
+                sender.tag = 189;
+            }else{
+                [MyUtil showPlaceMessage:@"关注失败，请稍后重试！"];
+            }
+        }];
+    }else if (sender.tag == 189){
+        [LYAdviserHttpTool lyDeleteCollectWithParams:dict complete:^(BOOL result) {
+            if (result) {
+                [MyUtil showPlaceMessage:@"取消关注成功！"];
+                [sender setImage:[UIImage imageNamed:@"AddCare"] forState:UIControlStateNormal];
+                _fansOrCaresNumLabel.text = [NSString stringWithFormat:@"%d",[_fansOrCaresNumLabel.text intValue] - 1];
+                
+                self.userModel.beCollectNum = [NSString stringWithFormat:@"%d",[self.userModel.beCollectNum intValue] - 1];
+                sender.tag = 589;
+            }else{
+                [MyUtil showPlaceMessage:@"取消关注失败，请稍后重试！"];
+            }
+        }];
+    }
+
 }
+
 
 - (IBAction)checkTrends:(UIButton *)sender {
     LYFriendsPersonMessageViewController *friendsVC = [[LYFriendsPersonMessageViewController alloc]init];
     friendsVC.isFriendToUserMessage = YES;
     friendsVC.friendsId = self.userID;
     [self.navigationController pushViewController:friendsVC animated:YES];
+}
+
+- (IBAction)checkPopularityClick:(UIButton *)sender {
+    [MyUtil showMessage:@"顾问人气是由猎娱玩友们对该顾问的服务好评数，关注数以及其图文视频直播的喜欢数综合得出。"];
+}
+
+- (IBAction)freeBookClick:(UIButton *)sender {
+    FreeOrderViewController *freeOrderVC = [[FreeOrderViewController alloc]initWithNibName:@"FreeOrderViewController" bundle:nil];
+    [self.navigationController pushViewController:freeOrderVC animated:YES];
+    freeOrderVC.userDict = @{@"avatar":_result.avatar_img,
+                             @"usernick":_result.usernick,
+                             @"userid":[NSString stringWithFormat:@"%d",_result.userid]};
+    freeOrderVC.barDict = @{@"baricon":_result.baricon,
+                            @"barname":_result.barname,
+                            @"barid":[NSString stringWithFormat:@"%d",_result.barid]};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:[self createMTADctionaryWithActionName:@"跳转" pageName:@"专属经理" titleName:@"免费预订"]];
+    [MTA trackCustomEvent:@"YDList" args:nil];
+}
+
+- (IBAction)onlineBookClick:(UIButton *)sender {
+    if (_result.barid <= 0) {
+        [MyUtil showCleanMessage:@"抱歉，该酒吧暂不支持在线预订！"];
+        return;
+    }
+    LYwoYaoDinWeiMainViewController *onlineBookVC = [[LYwoYaoDinWeiMainViewController alloc]initWithNibName:@"LYwoYaoDinWeiMainViewController" bundle:nil];
+    onlineBookVC.barid = _result.barid;
+    [self.navigationController pushViewController:onlineBookVC animated:YES];
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:[self createMTADctionaryWithActionName:@"跳转" pageName:@"专属经理" titleName:@"在线预订"]];
+    [MTA trackCustomEvent:@"YDList" args:nil];
+}
+
+//进入酒吧详情
+- (void)checkBarInfo{
+    if (_result.barid <= 0) {
+        [MyUtil showCleanMessage:@"对不起，该酒吧尚未录入信息！"];
+        return;
+    }
+    BeerNewBarViewController *barDetailVC = [[BeerNewBarViewController alloc]initWithNibName:@"BeerNewBarViewController" bundle:nil];
+    barDetailVC.beerBarId = [NSNumber numberWithInt:_result.barid];
+    [self.navigationController pushViewController:barDetailVC animated:YES];
+}
+
+//进入地图
+- (void)checkBarLocation{
+    NSDictionary *dict = @{@"title":_result.barname,
+                           @"latitude":_result.latitude,
+                           @"longitude":_result.longitude};
+    [[LYUserLocation instance] daoHan:dict];
 }
 @end

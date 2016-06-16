@@ -40,7 +40,14 @@ typedef enum : NSUInteger {
     dataForMine = 1,
 } dataType;
 
-@interface LYFriendsMessagesViewController : LYBaseViewController{
+@protocol LYRecentMessageLikeDelegate <NSObject>
+
+- (void)lyRecentMessageLikeChange:(NSString *)liked;
+
+@end
+
+@interface LYFriendsMessagesViewController : LYBaseViewController<LYRecentMessageLikeDelegate>
+{
     NSMutableArray *_dataArray;//数据数组
     NSMutableArray *_tableViewArray;//表的数组
     int _pageStartCountArray[2];
@@ -61,7 +68,13 @@ typedef enum : NSUInteger {
     UIButton *_carmerBtn;//照相机按钮
     LYFriendsSendViewController *friendsSendVC;
     CGFloat _contentOffSetY;//表的偏移量
+    
+    
+    
 }
+
+@property (nonatomic,assign) id<LYRecentMessageLikeDelegate> delegate;
+
 @property (nonatomic, strong) NSMutableDictionary *notificationDict;
 @property (nonatomic,unsafe_unretained) NSInteger pageNum;
 @property (nonatomic,unsafe_unretained) BOOL isFriendToUserMessage;//是否是好友动态

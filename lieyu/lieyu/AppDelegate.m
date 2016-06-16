@@ -609,6 +609,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 -(void)nontifyJump{
     [self nontifyJump:nil];
 }
+
 -(void)nontifyJump:(NSDictionary *) dic{
     if(dic==nil){
         dic=[USER_DEFAULT objectForKey:@"NOTIFYDIC"];

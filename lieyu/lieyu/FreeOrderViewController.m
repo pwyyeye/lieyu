@@ -219,6 +219,7 @@
                            @"orderStatus":@"1",
                            @"reachTime":_stringDate};
     [LYAdviserHttpTool lyFreeBookWithParams:dict complete:^(NSString *message) {
+        [self.navigationController popViewControllerAnimated:YES];
         [MyUtil showPlaceMessage:message];
     }];
 }

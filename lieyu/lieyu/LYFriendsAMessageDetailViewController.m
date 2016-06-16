@@ -17,8 +17,13 @@
 
 @implementation LYFriendsAMessageDetailViewController
 
+- (void)dealloc{
+    NSLog(@"LYFriendsAMessageDetailViewController   dealloc    success");
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     // Do any additional setup after loading the view from its nib.
     self.navigationItem.title = @"消息详情";
     _commentListArray = _recentM.commentList;
@@ -371,6 +376,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 
 

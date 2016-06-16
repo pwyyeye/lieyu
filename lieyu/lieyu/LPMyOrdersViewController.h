@@ -10,7 +10,16 @@
 
 #import "LPOrderDetailViewController.h"
 
-@interface LPMyOrdersViewController : LYBaseViewController<LPOrderDetailDelegate>
+@interface LPMyOrdersViewController : LYBaseViewController<LPOrderDetailDelegate,UITableViewDelegate,UITableViewDataSource>
+{    
+    UITableView *myTableView;
+    UIScrollView *scrollView;
+    NSMutableArray *arrayButton;
+}
 @property (nonatomic, assign) int orderIndex;
 @property (nonatomic, strong) NSMutableArray *bagesArr;
+@property (nonatomic, assign) BOOL isFreeOrdersList;
+
+- (void)hideKongView;
+- (void)addKongView;
 @end
