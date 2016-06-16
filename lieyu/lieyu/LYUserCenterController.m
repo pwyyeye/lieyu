@@ -33,6 +33,7 @@
 #import "LYMyOrderManageViewController.h"
 #import "CarInfoModel.h"
 #import "LPMyOrdersViewController.h"
+#import "LYMyFreeOrdersViewController.h"
 
 @interface LYUserCenterController ()<TencentSessionDelegate>{
     NSInteger num,orderNum;
@@ -397,7 +398,13 @@ static NSString * const reuseIdentifier = @"userCenterCell";
         }
             break;
         case 1:{
-            [MyUtil showPlaceMessage:@"免费订台"];
+            NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"免费订台"};
+            [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+            
+            AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+            LYMyFreeOrdersViewController *freeOrderVC = [[LYMyFreeOrdersViewController alloc]init];
+            freeOrderVC.isFreeOrdersList = YES;
+            [app.navigationController pushViewController:freeOrderVC animated:YES];
         }
             break;
             

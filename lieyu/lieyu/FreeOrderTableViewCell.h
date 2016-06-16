@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LYFreeOrderModel.h"
 
 @interface FreeOrderTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIView *bgView;
@@ -33,6 +34,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *firstButton;
 @property (weak, nonatomic) IBOutlet UIButton *secondButton;
 
-
+@property (nonatomic, strong) LYFreeOrderModel *freeOrder;
 
 @end

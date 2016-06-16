@@ -657,8 +657,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     UICollectionView *collectionView = _collectionArray[tag];
     if (!tag) {//娱乐顾问数据
         CLLocation * userLocation = [LYUserLocation instance].currentLocation;
-        NSDictionary *dic = @{@"city":@"上海",@"p":[NSString stringWithFormat:@"%ld",_currentPage_GuWen],@"per":@(PAGESIZE).stringValue,@"latitude":@(userLocation.coordinate.latitude).stringValue,@"longitude":@(userLocation.coordinate.longitude).stringValue};
+        NSDictionary *dic = @{@"city":@"上海",@"p":[NSString stringWithFormat:@"%d",_currentPage_GuWen],@"per":@(PAGESIZE).stringValue,@"latitude":@(userLocation.coordinate.latitude).stringValue,@"longitude":@(userLocation.coordinate.longitude).stringValue};
         [LYHomePageHttpTool homePageGetGuWenDataWith:dic complete:^(HomePageModel *homePageM) {
+            if (_currentPage_GuWen == 1) {
+                [_dataArray.firstObject removeAllObjects];
+            }
             if(offsetY[0] == 1){
                 [_dataArray replaceObjectAtIndex:0 withObject:homePageM.viplist];
             }else{

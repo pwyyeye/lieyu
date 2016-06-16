@@ -515,7 +515,7 @@
 }
 
 - (IBAction)checkPopularityClick:(UIButton *)sender {
-    [MyUtil showPlaceMessage:@"人气指该顾问的受欢迎程度！"];
+    [MyUtil showMessage:@"顾问人气是由猎娱玩友们对该顾问的服务好评数，关注数以及其图文视频直播的喜欢数综合得出。"];
 }
 
 - (IBAction)freeBookClick:(UIButton *)sender {
