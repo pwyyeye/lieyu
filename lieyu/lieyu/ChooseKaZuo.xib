@@ -49,20 +49,6 @@
                         <action selector="chooseTypeClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="diC-PV-UbC"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m9S-Ya-iiB" customClass="LYKaZuoTypeButton">
-                    <rect key="frame" x="238" y="80" width="65" height="65"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="65" id="Rfm-RA-Qtc"/>
-                        <constraint firstAttribute="height" constant="65" id="j6f-G7-rdt"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
-                    <state key="normal" title="其它">
-                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.90379849140000001" colorSpace="calibratedRGB"/>
-                    </state>
-                    <connections>
-                        <action selector="chooseTypeClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="IA6-1U-j8p"/>
-                    </connections>
-                </button>
                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bqd-qt-uoD" customClass="LYKaZuoTypeButton">
                     <rect key="frame" x="19" y="80" width="65" height="65"/>
                     <constraints>
@@ -75,6 +61,20 @@
                     </state>
                     <connections>
                         <action selector="chooseTypeClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="whb-KW-230"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m9S-Ya-iiB" customClass="LYKaZuoTypeButton">
+                    <rect key="frame" x="238" y="80" width="65" height="65"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="65" id="Rfm-RA-Qtc"/>
+                        <constraint firstAttribute="height" constant="65" id="j6f-G7-rdt"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                    <state key="normal" title="其它">
+                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.90379849140000001" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="chooseTypeClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="IA6-1U-j8p"/>
                     </connections>
                 </button>
             </subviews>

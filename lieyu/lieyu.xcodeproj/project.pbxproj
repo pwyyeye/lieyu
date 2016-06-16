@@ -933,6 +933,9 @@
 		851806861C2E89DC00006804 /* LYNewMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 851806841C2E89DC00006804 /* LYNewMessageTableViewCell.xib */; };
 		851806C81C2EB32900006804 /* LYPictiureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 851806C71C2EB32900006804 /* LYPictiureView.m */; };
 		851806CA1C2EB33A00006804 /* LYPictiureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 851806C91C2EB33A00006804 /* LYPictiureView.xib */; };
+		8526E84C1D12924B008F83FD /* ChoosePeopleNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 8526E84B1D12924B008F83FD /* ChoosePeopleNumber.m */; };
+		8526E84E1D129271008F83FD /* ChoosePeopleNumber.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8526E84D1D129271008F83FD /* ChoosePeopleNumber.xib */; };
+		8526E8511D12A445008F83FD /* LYPeopleNumberButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8526E8501D12A445008F83FD /* LYPeopleNumberButton.m */; };
 		853BCC971C76BA4D00DE0324 /* RecommendedTopic.m in Sources */ = {isa = PBXBuildFile; fileRef = 853BCC961C76BA4D00DE0324 /* RecommendedTopic.m */; };
 		853BCC9C1C76E90500DE0324 /* 收藏white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 853BCC981C76E90500DE0324 /* 收藏white@2x.png */; };
 		853BCC9D1C76E90500DE0324 /* 收藏white@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 853BCC991C76E90500DE0324 /* 收藏white@3x.png */; };
@@ -3067,6 +3070,11 @@
 		851806C61C2EB32900006804 /* LYPictiureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYPictiureView.h; sourceTree = "<group>"; };
 		851806C71C2EB32900006804 /* LYPictiureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYPictiureView.m; sourceTree = "<group>"; };
 		851806C91C2EB33A00006804 /* LYPictiureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYPictiureView.xib; sourceTree = "<group>"; };
+		8526E84A1D12924B008F83FD /* ChoosePeopleNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoosePeopleNumber.h; sourceTree = "<group>"; };
+		8526E84B1D12924B008F83FD /* ChoosePeopleNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoosePeopleNumber.m; sourceTree = "<group>"; };
+		8526E84D1D129271008F83FD /* ChoosePeopleNumber.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChoosePeopleNumber.xib; sourceTree = "<group>"; };
+		8526E84F1D12A445008F83FD /* LYPeopleNumberButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYPeopleNumberButton.h; sourceTree = "<group>"; };
+		8526E8501D12A445008F83FD /* LYPeopleNumberButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYPeopleNumberButton.m; sourceTree = "<group>"; };
 		853BCC951C76BA4D00DE0324 /* RecommendedTopic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendedTopic.h; sourceTree = "<group>"; };
 		853BCC961C76BA4D00DE0324 /* RecommendedTopic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendedTopic.m; sourceTree = "<group>"; };
 		853BCC981C76E90500DE0324 /* 收藏white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "收藏white@2x.png"; sourceTree = "<group>"; };
@@ -6154,6 +6162,11 @@
 				8515081D1CFD9243002375D4 /* ChooseKaZuo.xib */,
 				8515081F1CFD94F9002375D4 /* LYKaZuoTypeButton.h */,
 				851508201CFD94F9002375D4 /* LYKaZuoTypeButton.m */,
+				8526E84A1D12924B008F83FD /* ChoosePeopleNumber.h */,
+				8526E84B1D12924B008F83FD /* ChoosePeopleNumber.m */,
+				8526E84D1D129271008F83FD /* ChoosePeopleNumber.xib */,
+				8526E84F1D12A445008F83FD /* LYPeopleNumberButton.h */,
+				8526E8501D12A445008F83FD /* LYPeopleNumberButton.m */,
 			);
 			name = "自定义AlertView";
 			sourceTree = "<group>";
@@ -9694,6 +9707,7 @@
 				525CA0F01C5C6930009ED9DA /* pinglun_icon@2x.png in Resources */,
 				38B11C0C1C92AFCC00AD3EB8 /* CheckQRCode@2x.png in Resources */,
 				85F43BAE1C11459400B04466 /* LYOrderInfoTableViewCell.xib in Resources */,
+				8526E84E1D129271008F83FD /* ChoosePeopleNumber.xib in Resources */,
 				3812C5101C57622E00F4DD6B /* ChooseTime.xib in Resources */,
 				85F5454D1C1454010013B92B /* camera@2x.png in Resources */,
 				15EE516B1BA7096C00464B74 /* ZSPrepareRefundViewController.xib in Resources */,
@@ -10822,6 +10836,7 @@
 				D71E1D871BAE87E600915F37 /* BeerBarDetailCell.m in Sources */,
 				A2FD57751BAFE94400CFFF92 /* TaoCanMCell.m in Sources */,
 				15B866851BE0776D002E2BB6 /* LYMyFriendViewController.m in Sources */,
+				8526E8511D12A445008F83FD /* LYPeopleNumberButton.m in Sources */,
 				15844BD41BE1FA3600247FBC /* LYNearFriendViewController.m in Sources */,
 				15CC31D01BEB2BF100DDD03F /* RCDataBaseManager.m in Sources */,
 				8540B6791C2CE4E300F16463 /* LYFriendsAddressTableViewCell.m in Sources */,
@@ -11218,6 +11233,7 @@
 				A2020D591BA6781B0090B92A /* FunctionListCell.m in Sources */,
 				1559DCF01BD9C7C800F3FE9B /* CHChooseNumView.m in Sources */,
 				38E896E91CE70D710050A066 /* LYWishReplayViewController.m in Sources */,
+				8526E84C1D12924B008F83FD /* ChoosePeopleNumber.m in Sources */,
 				15B8668F1BE0B04C002E2BB6 /* MyMessageListViewController.m in Sources */,
 				15FD2AB11BD7231C00D66920 /* LYTaoCanXQCell.m in Sources */,
 				15A4CF7B1BD871C000C22C01 /* chiheDetailCollectionCell.m in Sources */,
