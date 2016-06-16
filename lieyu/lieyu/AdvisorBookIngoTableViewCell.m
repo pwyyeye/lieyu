@@ -24,14 +24,14 @@
 
 - (void)setBarDict:(NSDictionary *)barDict{
     _barDict = barDict;
-    [_title_label setText:@"服务经理"];
+    [_title_label setText:@"消费酒吧"];
     [_avatar_image sd_setImageWithURL:[NSURL URLWithString:[barDict objectForKey:@"baricon"]] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     [_name_label setText:[barDict objectForKey:@"barname"]];
 }
 
 - (void)setUserDict:(NSDictionary *)userDict{
     _userDict = userDict;
-    [_title_label setText:@"消费酒吧"];
+    [_title_label setText:@"服务经理"];
     [_avatar_image sd_setImageWithURL:[NSURL URLWithString:[userDict objectForKey:@"avatar"]] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     [_name_label setText:[userDict objectForKey:@"usernick"]];
 }

@@ -22,9 +22,9 @@
     
     [_imgHeaderView sd_setImageWithURL:[NSURL URLWithString:_vipModel.avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     _labelNick.text = vipModel.usernick;
-    _labelBarName.text = vipModel.barname;
+    _labelBarName.text = [NSString stringWithFormat:@"@ %@",vipModel.barname];
     _labelAddress.text = vipModel.addressabb;
-    _labelDistance.text = vipModel.distance;
+    _labelDistance.text = [NSString stringWithFormat:@"%@km",vipModel.distance];
     [_btnFlower setTitle:vipModel.facescoreNum forState:UIControlStateNormal];
     [_btnFlower setTitle:vipModel.popularityNum forState:UIControlStateNormal];
     if([vipModel.gender isEqualToString:@"0"]){
