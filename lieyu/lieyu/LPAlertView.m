@@ -125,6 +125,10 @@
         NSInteger index = [_buttonTitlesArray indexOfObject:button.titleLabel.text];
         [_delegate LPAlertView:self clickedButtonAtIndexChooseKaZuo:index];
         [self hide];
+    }else if ([_delegate respondsToSelector:@selector(LPAlertView:clickedButtonAtIndexChoosePeopleNumber:)] && _contentView.tag == 16){//选择到场人数
+        NSInteger index = [_buttonTitlesArray indexOfObject:button.titleLabel.text];
+        [_delegate LPAlertView:self clickedButtonAtIndexChoosePeopleNumber:index];
+        [self hide];
     }
 }
 
