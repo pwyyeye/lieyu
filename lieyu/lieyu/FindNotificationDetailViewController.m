@@ -16,6 +16,7 @@
 #import "LYFriendsAMessageDetailViewController.h"
 #import "LYFriendsHttpTool.h"
 #import "MainTabbarViewController.h"
+#import "LYMyFreeOrdersViewController.h"
 
 @interface FindNotificationDetailViewController ()<UITableViewDelegate,UITableViewDataSource>{
     NSArray *_dataArray;
@@ -127,6 +128,12 @@
         app.window.rootViewController = nav;
         MainTabbarViewController *tabVC = (MainTabbarViewController *)nav.viewControllers.firstObject;
         tabVC.selectedIndex = 1;
+        
+    }else if([_findNewList.type isEqualToString:@"17"]){
+        LYMyFreeOrdersViewController *detailVC = [[LYMyFreeOrdersViewController alloc]init];
+        detailVC.orderIndex=0;
+        detailVC.isFreeOrdersList=YES;
+        [self.navigationController pushViewController:detailVC animated:YES];
         
     }
 }
