@@ -202,7 +202,7 @@
 
 //从服务器获取用户是否收藏过酒吧
 - (void)getUserCollectJiuBaList{
-    __weak AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"NEEDGETLIKE"]) {
         [LYUserHttpTool getUserCollectionJiuBarListWithCompelet:^(NSArray *array) {
             for (JiuBaModel *jiuBa in array) {
