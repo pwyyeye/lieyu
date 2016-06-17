@@ -490,6 +490,7 @@
 //    [app.navigationController pushViewController:myOrderManageViewController animated:YES];
     [app.navigationController pushViewController:myOrderVC animated:YES];
 }
+
 - (IBAction)checkFansOrCares:(UIButton *)sender {
     NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"查看粉丝或者关注"};
     [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
