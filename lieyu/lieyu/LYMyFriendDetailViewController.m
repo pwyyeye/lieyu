@@ -548,6 +548,7 @@
         return;
     }
     LYwoYaoDinWeiMainViewController *onlineBookVC = [[LYwoYaoDinWeiMainViewController alloc]initWithNibName:@"LYwoYaoDinWeiMainViewController" bundle:nil];
+    onlineBookVC.choosedManagerID = [NSString stringWithFormat:@"%d",_result.userid];
     onlineBookVC.barid = _result.barid;
     [self.navigationController pushViewController:onlineBookVC animated:YES];
     [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:[self createMTADctionaryWithActionName:@"跳转" pageName:@"专属经理" titleName:@"在线预订"]];

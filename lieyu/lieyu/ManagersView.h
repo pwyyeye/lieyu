@@ -21,6 +21,9 @@
 @property (nonatomic, strong) NSMutableArray *buttonsArray;
 @property (nonatomic, assign) id<ChooseManage> delegate;
 
+@property (nonatomic, assign) NSString *choosedManagerID;
 
 - (void)configure:(NSArray *)managerList;
+
+
 @end

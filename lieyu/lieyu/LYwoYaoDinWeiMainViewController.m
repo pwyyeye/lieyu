@@ -157,6 +157,9 @@
     NSDictionary *dic=@{@"barid":[NSNumber numberWithInt:_barid],@"":@""};
     [[LYHomePageHttpTool shareInstance]getBarVipWithParams:dic block:^(NSMutableArray *result) {
         [zsList addObjectsFromArray:result];
+        if (![MyUtil isEmptyString:_choosedManagerID]) {
+            managerView.choosedManagerID = _choosedManagerID;
+        }
         [managerView configure:zsList];
     }];
 }
