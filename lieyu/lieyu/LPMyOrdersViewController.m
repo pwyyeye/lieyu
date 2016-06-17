@@ -405,7 +405,11 @@
 - (void)jumpToYue{
 //    NSLog(@"dsafds");
 //    [[NSNotificationCenter defaultCenter]postNotificationName:@"jumpToFirstViewController" object:nil];
-    
+     BOOL shanghuban = [[NSUserDefaults standardUserDefaults] boolForKey:@"shanghuban"];
+    if (shanghuban) {
+        [MyUtil showMessage:@"请先切换到用户版"];
+        return;
+    }
     MainTabbarViewController *tabBarVC = (MainTabbarViewController *)self.navigationController.viewControllers.firstObject;
 //    NSLog(@"--->%@",self.navigationController.viewControllers.firstObject);
     tabBarVC.selectedIndex = 0;

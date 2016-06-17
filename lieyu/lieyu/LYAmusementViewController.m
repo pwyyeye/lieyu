@@ -256,9 +256,9 @@
     NSString *location = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserChoosedLocation"];
     NSMutableArray *array;
     if (location) {
-        array = [[NSMutableArray alloc]initWithArray:[MyUtil getAreaWithName:location withStly:LYAreaStyleWithStateAndCityAndDistrict]];
+        array = [[NSMutableArray alloc]initWithArray:[MyUtil getAreaWithName:location withStyle:LYAreaStyleWithStateAndCityAndDistrict]];
     }else{
-        array = [[NSMutableArray alloc]initWithArray:[MyUtil getAreaWithName:@"上海" withStly:LYAreaStyleWithStateAndCityAndDistrict]];
+        array = [[NSMutableArray alloc]initWithArray:[MyUtil getAreaWithName:@"上海" withStyle:LYAreaStyleWithStateAndCityAndDistrict]];
     }
     [array insertObject:@"所有地区" atIndex:0];
 //    NSArray *array = @[@"所有地区",@"杨浦区",@"虹口区",@"闸北区",@"普陀区",@"黄浦区",@"静安区",@"长宁区",@"卢湾区",@"徐汇区",@"闵行区",@"浦东新区",@"宝山区",@"松江区",@"嘉定区",@"青浦区",@"金山区",@"奉贤区",@"南汇区",@"崇明县"];

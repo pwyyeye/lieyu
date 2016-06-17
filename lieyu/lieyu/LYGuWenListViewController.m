@@ -47,9 +47,9 @@
     NSString *location = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserChoosedLocation"];
     NSMutableArray *array;
     if (location) {
-        array = [[NSMutableArray alloc]initWithArray:[MyUtil getAreaWithName:location withStly:LYAreaStyleWithStateAndCityAndDistrict]];
+        array = [[NSMutableArray alloc]initWithArray:[MyUtil getAreaWithName:location withStyle:LYAreaStyleWithStateAndCityAndDistrict]];
     }else{
-        array = [[NSMutableArray alloc]initWithArray:[MyUtil getAreaWithName:@"上海" withStly:LYAreaStyleWithStateAndCityAndDistrict]];
+        array = [[NSMutableArray alloc]initWithArray:[MyUtil getAreaWithName:@"上海" withStyle:LYAreaStyleWithStateAndCityAndDistrict]];
     }
     [array insertObject:@"所有地区" atIndex:0];
     placeTitleArr = [NSArray arrayWithArray:array];
