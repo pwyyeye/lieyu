@@ -123,7 +123,7 @@
         [blackLabel addSubview:zeroLabel];
         return blackLabel;
     } else {
-        UILabel *secondLabel = [[UILabel alloc] initWithFrame:(CGRectMake(20, 0, 200, 60))];
+        UILabel *secondLabel = [[UILabel alloc] initWithFrame:(CGRectMake(20, 0, 200, 40))];
         secondLabel.text = @"更多城市";
         secondLabel.font = [UIFont systemFontOfSize:13];
         UILabel *zeroLabel = [[UILabel alloc] initWithFrame:(CGRectMake(0, 0, 20, 40))];
