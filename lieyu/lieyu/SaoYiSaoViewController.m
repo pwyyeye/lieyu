@@ -233,7 +233,7 @@
                     [MyUtil showMessage:@"已发送好友申请！"];
                 }
             }
-            else if ([weakSelf.userModel.usertype isEqualToString:@"2"]){
+            else if ([weakSelf.userModel.usertype isEqualToString:@"2"] || [weakSelf.userModel.usertype isEqualToString:@"3"]){
                 //商户扫码，进行核实订单
                 NSArray *tempArr = [result valueForKey:@"data"];
                 if (tempArr.count <= 1) {
@@ -299,7 +299,7 @@
     NSString *subString = [dataString substringToIndex:69];
     if([subString isEqualToString:@"http://www.lie98.com/lieyu/lyUserShakeAction.do?action=custom?userid="]){
         //如果是速核码
-        if ([self.userModel.usertype isEqualToString:@"2"]) {
+        if ([self.userModel.usertype isEqualToString:@"2"] || [self.userModel.usertype isEqualToString:@"3"]) {
             [[[UIAlertView alloc]initWithTitle:@"提示" message:@"确认核单" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil]show];
         }
         NSArray *array = [dataString componentsSeparatedByString:@"&"];
@@ -321,7 +321,7 @@
                     [MyUtil showLikePlaceMessage:[result valueForKey:@"message"]];
                 }
             }
-            else if ([self.userModel.usertype isEqualToString:@"2"]){
+            else if ([self.userModel.usertype isEqualToString:@"2"] || [self.userModel.usertype isEqualToString:@"3"]){
                 //商户扫码，进行核实订单
                 NSArray *tempArr = [result valueForKey:@"data"];
                 if (tempArr.count <= 1) {

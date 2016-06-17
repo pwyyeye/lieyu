@@ -178,7 +178,7 @@
     
     
     maintViewController.btnBackHidden = YES;
-    if(app.userModel.usertype.intValue==2){
+    if(app.userModel.usertype.intValue==2 || app.userModel.usertype.intValue == 3){
         UIWindow *window = [UIApplication sharedApplication].delegate.window;
         UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
         _effctView = [[UIVisualEffectView alloc]initWithEffect:effect];
@@ -498,7 +498,7 @@
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     LYGuWenFansViewController *checkVC = [[LYGuWenFansViewController alloc]init];
     checkVC.userID = [NSString stringWithFormat:@"%d",app.userModel.userid];
-    if ([app.userModel.usertype isEqualToString:@"2"]) {
+    if ([app.userModel.usertype isEqualToString:@"2"] || [app.userModel.usertype isEqualToString:@"3"]) {
         checkVC.type = 0;
     }else{
         checkVC.type = 1;
