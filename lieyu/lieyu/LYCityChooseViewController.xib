@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LYCityChooseViewController">
             <connections>
+                <outlet property="cityListTableView" destination="W6P-ZE-QHJ" id="gdw-KZ-PCH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,53 +16,19 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="覆盖城市" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dOP-Ng-ibE">
-                    <rect key="frame" x="20" y="17" width="64" height="20"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="更多城市，敬请期待" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQl-fg-mX4">
-                    <rect key="frame" x="97" y="532" width="126" height="21"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="21" id="enD-k5-kty"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" red="0.29803921568627451" green="0.29803921568627451" blue="0.29803921568627451" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pND-DM-hhe">
-                    <rect key="frame" x="20" y="45" width="98" height="30"/>
-                    <color key="backgroundColor" red="0.72941176470000002" green="0.15686274510000001" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <state key="normal" title="上海">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="15"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="cityClick:" destination="-1" eventType="touchUpInside" id="JHX-6o-QcH"/>
-                    </connections>
-                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="W6P-ZE-QHJ">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="ZQl-fg-mX4" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="I1y-o4-ALS"/>
-                <constraint firstAttribute="bottom" secondItem="ZQl-fg-mX4" secondAttribute="bottom" constant="15" id="SoP-5g-YC7"/>
-                <constraint firstAttribute="trailing" secondItem="ZQl-fg-mX4" secondAttribute="trailing" constant="70" id="kfL-Ze-6gg"/>
-                <constraint firstItem="ZQl-fg-mX4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="97" id="vcZ-yg-6dz"/>
+                <constraint firstAttribute="trailing" secondItem="W6P-ZE-QHJ" secondAttribute="trailing" id="Cvi-z4-828"/>
+                <constraint firstAttribute="bottom" secondItem="W6P-ZE-QHJ" secondAttribute="bottom" id="NIZ-dW-PVT"/>
+                <constraint firstItem="W6P-ZE-QHJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="dP3-ks-eez"/>
+                <constraint firstItem="W6P-ZE-QHJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="zou-9u-sDl"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="kfL-Ze-6gg"/>
-                    <exclude reference="vcZ-yg-6dz"/>
-                </mask>
-            </variation>
             <point key="canvasLocation" x="241" y="398"/>
         </view>
     </objects>

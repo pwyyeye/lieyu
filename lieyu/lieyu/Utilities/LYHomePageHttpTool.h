@@ -108,4 +108,8 @@
 
 //获取娱乐顾问数据
 + (void)homePageGetGuWenDataWith:(NSDictionary *)paraDic complete:(void(^)(HomePageModel *))complete;
+
+//获取地理位置信息
++ (void) getAllLocationInfoWith:(NSDictionary *)paraDic complete: (void(^)(NSString *locationArr))complete;
+
 @end

@@ -1105,6 +1105,8 @@
 		8550E7201C302A33001FF2DE /* daohang_fabu.png in Resources */ = {isa = PBXBuildFile; fileRef = 8550E71D1C302A33001FF2DE /* daohang_fabu.png */; };
 		8550E7211C302A33001FF2DE /* daohang_fabu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8550E71E1C302A33001FF2DE /* daohang_fabu@2x.png */; };
 		8550E7221C302A33001FF2DE /* daohang_fabu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8550E71F1C302A33001FF2DE /* daohang_fabu@3x.png */; };
+		85512F531D13A1020021A7EA /* LYCityChooseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85512F511D13A1020021A7EA /* LYCityChooseTableViewCell.m */; };
+		85512F541D13A1020021A7EA /* LYCityChooseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85512F521D13A1020021A7EA /* LYCityChooseTableViewCell.xib */; };
 		85514E421C75619400E24C78 /* SignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85514E401C75619400E24C78 /* SignViewController.m */; };
 		85514E431C75619400E24C78 /* SignViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85514E411C75619400E24C78 /* SignViewController.xib */; };
 		85514E4E1C7563CA00E24C78 /* SignDateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85514E4C1C7563CA00E24C78 /* SignDateTableViewCell.m */; };
@@ -3298,6 +3300,9 @@
 		8550E71D1C302A33001FF2DE /* daohang_fabu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daohang_fabu.png; sourceTree = "<group>"; };
 		8550E71E1C302A33001FF2DE /* daohang_fabu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daohang_fabu@2x.png"; sourceTree = "<group>"; };
 		8550E71F1C302A33001FF2DE /* daohang_fabu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daohang_fabu@3x.png"; sourceTree = "<group>"; };
+		85512F501D13A1020021A7EA /* LYCityChooseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYCityChooseTableViewCell.h; sourceTree = "<group>"; };
+		85512F511D13A1020021A7EA /* LYCityChooseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYCityChooseTableViewCell.m; sourceTree = "<group>"; };
+		85512F521D13A1020021A7EA /* LYCityChooseTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYCityChooseTableViewCell.xib; sourceTree = "<group>"; };
 		85514E3F1C75619400E24C78 /* SignViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignViewController.h; sourceTree = "<group>"; };
 		85514E401C75619400E24C78 /* SignViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignViewController.m; sourceTree = "<group>"; };
 		85514E411C75619400E24C78 /* SignViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignViewController.xib; sourceTree = "<group>"; };
@@ -8781,6 +8786,9 @@
 				85F672B91C09D7F8001BEE5B /* LYCityChooseViewController.h */,
 				85F672BA1C09D7F8001BEE5B /* LYCityChooseViewController.m */,
 				85F672BB1C09D7F8001BEE5B /* LYCityChooseViewController.xib */,
+				85512F501D13A1020021A7EA /* LYCityChooseTableViewCell.h */,
+				85512F511D13A1020021A7EA /* LYCityChooseTableViewCell.m */,
+				85512F521D13A1020021A7EA /* LYCityChooseTableViewCell.xib */,
 			);
 			name = "定位";
 			sourceTree = "<group>";
@@ -10455,6 +10463,7 @@
 				854CF48A1CA3BEAB00F7F95B /* beerBarTel@2x.png in Resources */,
 				38B5F4CE1CBBC87600AE1BF5 /* gray_add.png in Resources */,
 				AD203BB11CAEA9C70014618A /* CoinBack@3x.png in Resources */,
+				85512F541D13A1020021A7EA /* LYCityChooseTableViewCell.xib in Resources */,
 				38E5D7001C103E17004B49D2 /* LPmanager@2x.png in Resources */,
 				854405B11CB8DF7A00EA5556 /* userShopOrder@2x.png in Resources */,
 				AD399EA21C940D4D00028F23 /* logo35@2x.jpg in Resources */,
@@ -11263,6 +11272,7 @@
 				8540BFAD1C2A3CA7008CB825 /* LYTagLabel.m in Sources */,
 				15844BCE1BE1EF5000247FBC /* LYAddFriendViewController.m in Sources */,
 				85C428871C11D25D0028FC21 /* ContentViewTaocan.m in Sources */,
+				85512F531D13A1020021A7EA /* LYCityChooseTableViewCell.m in Sources */,
 				15E2406C1BB127B30090D240 /* BiaoQianBtn.m in Sources */,
 				A2FD57641BAFE6C000CFFF92 /* CheHeCell.m in Sources */,
 				853D3ABA1C35331300B4FEAD /* LYFriendsVideoTableViewCell.m in Sources */,

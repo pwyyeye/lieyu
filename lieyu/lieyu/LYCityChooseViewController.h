@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "LYBaseViewController.h"
 
+typedef void(^userChoosedLocationBlock)(NSString *location);
+
 @interface LYCityChooseViewController : LYBaseViewController
+@property (nonatomic, copy) NSString *userLocation;
+
+@property (nonatomic, copy) userChoosedLocationBlock Location;
 
 @end
