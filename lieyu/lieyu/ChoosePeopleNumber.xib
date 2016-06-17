@@ -113,7 +113,7 @@
                 <outletCollection property="choosebuttons" destination="jzy-uI-CR6" id="Scl-lh-MWI"/>
                 <outletCollection property="choosebuttons" destination="trC-mn-ZcD" id="FHR-0e-eIv"/>
             </connections>
-            <point key="canvasLocation" x="214" y="261"/>
+            <point key="canvasLocation" x="382" y="467"/>
         </view>
     </objects>
 </document>

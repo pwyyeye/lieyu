@@ -64,7 +64,7 @@
 <EScrollerViewDelegate,SDCycleScrollViewDelegate,
 UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout
 ,UIScrollViewDelegate>{
-    UIButton *_cityChooseBtn,*_searchBtn;
+    UIButton *_searchBtn;
     UIButton *_titleImageView;
     CGFloat _scale;
     NSInteger _index;//区分夜店和酒吧
@@ -90,8 +90,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     BOOL _isDragScrollToTop;//是否拖拽至顶
     NSMutableArray *_collectionArray;
     UIScrollView *_bgScrollView;
+    NSString *_userLocation;//当前定位的城市
 }
-
+@property (nonatomic,strong) UIButton *cityChooseBtn;//定位城市按钮
 @property(nonatomic,strong)NSMutableArray *bannerList;
 @property(nonatomic,strong)NSMutableArray *aryList;
 @property (nonatomic,strong) NSArray *bartypeslistArray;
@@ -110,6 +111,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     for (int i = 0; i < 3; i ++) {
         offsetY[i] = 1;
     }
+    
+    _userLocation = @"上海";
     
     _dataArray = [[NSMutableArray alloc]initWithCapacity:3];
     _newbannerListArray = [[NSMutableArray alloc]initWithCapacity:3];
@@ -429,7 +432,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     //城市搜索
     _cityChooseBtn = [[UIButton alloc]initWithFrame:CGRectMake(5, 6 + 20, 40, 30)];
     [_cityChooseBtn setImage:[UIImage imageNamed:@"选择城市"] forState:UIControlStateNormal];
-    [_cityChooseBtn setTitle:@"上海" forState:UIControlStateNormal];
+    [_cityChooseBtn setTitle:_userLocation forState:UIControlStateNormal];
     [_cityChooseBtn setTitleColor:RGBA(1, 1, 1, 1) forState:UIControlStateNormal];
     _cityChooseBtn.titleLabel.font = [UIFont systemFontOfSize:12];
     [_cityChooseBtn setImageEdgeInsets:UIEdgeInsetsMake(20, 15, 0, 0)];
@@ -518,6 +521,12 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 #pragma mark 选择城市action
 - (void)cityChangeClick:(UIButton *)sender {
     LYCityChooseViewController *cityChooseVC = [[LYCityChooseViewController alloc]init];
+    cityChooseVC.userLocation = sender.currentTitle;
+    cityChooseVC.Location = ^(NSString *location) {
+//        [_cityChooseBtn setTitle:location forState:(UIControlStateNormal)];
+        _userLocation = location;
+    };
+    
     [self.navigationController pushViewController:cityChooseVC animated:YES];
     
 //    LYGuWenListViewController *cityChooseVC = [[LYGuWenListViewController alloc]init];
@@ -657,7 +666,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     UICollectionView *collectionView = _collectionArray[tag];
     if (!tag) {//娱乐顾问数据
         CLLocation * userLocation = [LYUserLocation instance].currentLocation;
-        NSDictionary *dic = @{@"city":@"上海",@"p":[NSString stringWithFormat:@"%d",_currentPage_GuWen],@"per":@(PAGESIZE).stringValue,@"latitude":@(userLocation.coordinate.latitude).stringValue,@"longitude":@(userLocation.coordinate.longitude).stringValue};
+        NSDictionary *dic = @{@"city":_userLocation,@"p":[NSString stringWithFormat:@"%d",_currentPage_GuWen],@"per":@(PAGESIZE).stringValue,@"latitude":@(userLocation.coordinate.latitude).stringValue,@"longitude":@(userLocation.coordinate.longitude).stringValue};
         [LYHomePageHttpTool homePageGetGuWenDataWith:dic complete:^(HomePageModel *homePageM) {
             if (_currentPage_GuWen == 1) {
                 [_dataArray.firstObject removeAllObjects];

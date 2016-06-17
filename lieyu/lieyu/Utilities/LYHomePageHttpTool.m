@@ -802,4 +802,21 @@
     }];
 }
 
+//获取地理位置信息
++ (void) getAllLocationInfoWith:(NSDictionary *)paraDic complete: (void(^)(NSString *locationArr))complete
+{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_HOME_ALLLOCATION baseURL:LY_SERVER params:paraDic success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@", response[@"errorcode"]];
+        if ([code isEqualToString:@"1"]) {
+            NSArray *dataArr = response[@"data"];
+            complete(dataArr);
+        } else {
+            complete(nil);
+        }
+    } failure:^(NSError *err) {
+        
+    }];
+}
+
+
 @end
