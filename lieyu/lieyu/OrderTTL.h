@@ -17,4 +17,5 @@
 @property(nonatomic,assign) NSInteger waitRebate;
 @property(nonatomic,assign) NSInteger messageNum;
 @property(assign,nonatomic) NSInteger pushMessageNum;
+@property(assign,nonatomic) NSInteger freeOrderNum;
 @end
