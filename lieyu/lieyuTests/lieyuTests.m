@@ -58,9 +58,17 @@
 //    XCTAssert(YES, @"Pass");
 //    LYCoreDataUtil *core=[LYCoreDataUtil shareInstance];
 //    [core saveOrUpdateCoreData:@"LYCache" withParam:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE,@"lyCacheValue":@{@"key":@"value"},@"createDate":[NSDate date]} andSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE}];
-    NSLog(@"----pass-pass   %@     ---",[MyUtil encryptUseDES:@"2" withKey:@"LY888888"]);
-    NSLog(@"----pass-pass  : %@    :---",[MyUtil decryptUseDES:@"IxwbsiHqgnw=" withKey:@"LY888888"]);
-    ;
+    
+//    NSLog(@"----pass-pass   %@     ---",[MyUtil encryptUseDES:@"2" withKey:@"LY888888"]);
+//    NSLog(@"----pass-pass  : %@    :---",[MyUtil decryptUseDES:@"IxwbsiHqgnw=" withKey:@"LY888888"]);
+//    ;
+     NSLog(@"----pass-pass1%@---",[MyUtil getAreaWithName:@"中国" withStly:LYAreaStyleWithState]);
+     NSLog(@"----pass-pass2%@---",[MyUtil getAreaWithName:@"福建" withStly:LYAreaStyleWithStateAndCity]);
+    NSLog(@"----pass-pass3%@---",[MyUtil getAreaWithName:@"重庆" withStly:LYAreaStyleWithStateAndCityAndDistrict]);
+    NSLog(@"----pass-pass4%@---",[MyUtil getAreaWithName:@"无锡" withStly:LYAreaStyleWithStateAndCityAndDistrict]);
+
+    NSLog(@"----pass-pass5%@---",[MyUtil getAreaWithName:@"天津" withStly:LYAreaStyleWithStateAndCityAndDistrict]);
+
 }
 
 @end

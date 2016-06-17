@@ -136,10 +136,10 @@
     }else if (sender.tag == 1) {//选择到场人数
         _LPPeopleNumberView = [[[NSBundle mainBundle] loadNibNamed:@"ChoosePeopleNumber" owner:nil options:nil] firstObject];
         _LPPeopleNumberView.tag = 16;
-        if (_choosedType <= 0 || _choosedType >= 11) {
+        if (_choosedNum <= 0 || _choosedNum >= 11) {
             _LPPeopleNumberView.selectedTag = 1;
         } else {
-            _LPPeopleNumberView.selectedTag = _choosedType;
+            _LPPeopleNumberView.selectedTag = _choosedNum;
         }
         alertView.contentView = _LPPeopleNumberView;
         _LPPeopleNumberView.frame = CGRectMake(10, SCREEN_HEIGHT - 270, SCREEN_WIDTH - 20, 200);
@@ -207,11 +207,11 @@
 - (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexChoosePeopleNumber:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {
-        for (LYKaZuoTypeButton *button in _LPKaZuoView.choose_buttons) {
+        for (LYKaZuoTypeButton *button in _LPPeopleNumberView.choosebuttons) {
             if (button.choosed == YES) {
-                _choosedType = button.tag;
+                _choosedNum = button.tag;
                 //                NSLog(@"type:%ld",_choosedType);
-                AdvisorBookChooseTableViewCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:1]];
+                AdvisorBookChooseTableViewCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
                 [cell.content_label setText:button.titleLabel.text];
                 break;
             }
@@ -239,7 +239,8 @@
     }
     NSDictionary *dict = @{@"barid":[_barDict objectForKey:@"barid"],
                            @"vipUserid":[_userDict objectForKey:@"userid"],
-                           @"partNumber":[NSNumber numberWithInteger:_choosedNum],
+                           @"minPartNumber":[NSNumber numberWithInteger:_choosedNum],
+                           @"partNumber":[NSNumber numberWithInteger:_choosedNum + 1],
                            @"cassetteType":[NSNumber numberWithInteger:_choosedType],
                            @"orderStatus":@"1",
                            @"reachTime":_stringDate};
