@@ -270,6 +270,16 @@
         //空调地图
         [_addressLabel setText:_result.address];
         [_checkBarAddress addTarget:self action:@selector(checkBarLocation) forControlEvents:UIControlEventTouchUpInside];
+        
+        //待转正专属经理 不提供在线预订
+        if ([_result.usertype
+             isEqualToString:@"2"]) {
+            _onlineBookButton.hidden=NO;
+        }else if([_result.usertype
+                  isEqualToString:@"3"]){
+            _onlineBookButton.hidden=YES;
+        }
+        
     }
     
     _namelal.text = _result.usernick;
