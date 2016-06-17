@@ -1573,6 +1573,8 @@
 		AD57C1961CD2110500CD6190 /* 2@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD57C1931CD2110500CD6190 /* 2@3x.jpg */; };
 		AD5BEBA71BECC46A00E84C06 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AD5BEBA61BECC46A00E84C06 /* libiconv.tbd */; };
 		AD67DB921CC0C6790005BCEE /* libUMessage_Sdk_1.2.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD67DB901CC0C6790005BCEE /* libUMessage_Sdk_1.2.6.a */; };
+		AD787ABB1D129D1A007B2093 /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD787AB91D129D1A007B2093 /* area.plist */; };
+		AD787ABC1D129D1A007B2093 /* city.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD787ABA1D129D1A007B2093 /* city.plist */; };
 		AD798A371BB99A1F006D08F5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD798A361BB99A1F006D08F5 /* libPods.a */; };
 		AD79E07F1C76EE5000C45B97 /* HuoDongLinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD79E07E1C76EE5000C45B97 /* HuoDongLinkViewController.m */; };
 		AD79E0841C775DFC00C45B97 /* empyImage120.png in Resources */ = {isa = PBXBuildFile; fileRef = AD79E0801C775DFC00C45B97 /* empyImage120.png */; };
@@ -3909,6 +3911,8 @@
 		AD5BEBA61BECC46A00E84C06 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		AD67DB901CC0C6790005BCEE /* libUMessage_Sdk_1.2.6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.2.6.a; sourceTree = "<group>"; };
 		AD67DB911CC0C6790005BCEE /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
+		AD787AB91D129D1A007B2093 /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
+		AD787ABA1D129D1A007B2093 /* city.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
 		AD798A361BB99A1F006D08F5 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		AD79E07D1C76EE5000C45B97 /* HuoDongLinkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HuoDongLinkViewController.h; sourceTree = "<group>"; };
 		AD79E07E1C76EE5000C45B97 /* HuoDongLinkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HuoDongLinkViewController.m; sourceTree = "<group>"; };
@@ -8270,6 +8274,15 @@
 			name = "表情";
 			sourceTree = "<group>";
 		};
+		AD787AB41D129CA8007B2093 /* plist */ = {
+			isa = PBXGroup;
+			children = (
+				AD787AB91D129D1A007B2093 /* area.plist */,
+				AD787ABA1D129D1A007B2093 /* city.plist */,
+			);
+			name = plist;
+			sourceTree = "<group>";
+		};
 		AD8899AD1B9AFE61007BCC7C = {
 			isa = PBXGroup;
 			children = (
@@ -8673,6 +8686,7 @@
 		ADE103C31BE0EBCC00D9EC38 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AD787AB41D129CA8007B2093 /* plist */,
 				ADE103C41BE0EBDC00D9EC38 /* images */,
 			);
 			name = Resources;
@@ -9752,6 +9766,7 @@
 				38979AC51CA40919002946F5 /* angry6.png in Resources */,
 				15E240721BB2478B0090D240 /* TuiJianShangJiaViewController.xib in Resources */,
 				3812C5591C57B76100F4DD6B /* purper_star@2x.png in Resources */,
+				AD787ABB1D129D1A007B2093 /* area.plist in Resources */,
 				85176B7C1CB4F8C60012E23F /* userSuHeMa@3x.png in Resources */,
 				854CC9871C325B9A00A6CA60 /* LYFriendsChangeImageMenuView.xib in Resources */,
 				38979AAD1CA40919002946F5 /* angry15.png in Resources */,
@@ -10619,6 +10634,7 @@
 				854038961CAE60CA0056C27E /* fingerAnalyse.mp3 in Resources */,
 				8512BCAC1C4A14D20087FFA6 /* icon_zixun_normal@2x.png in Resources */,
 				8551B5131C8ECF730057F0E7 /* 表白@2x.png in Resources */,
+				AD787ABC1D129D1A007B2093 /* city.plist in Resources */,
 				38979AC01CA40919002946F5 /* angry32.png in Resources */,
 				38979A301CA40919002946F5 /* dianzan15.png in Resources */,
 			);

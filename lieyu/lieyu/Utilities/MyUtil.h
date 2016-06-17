@@ -19,6 +19,13 @@ typedef NS_ENUM(NSInteger, QiNiuUploadTpye)
     QiNiuUploadTpyeSmallMedia = 2,//小媒体资源
     QiNiuUploadTpyeBigMedia = 3,//小媒体资源
 };
+
+typedef enum {
+    LYAreaStyleWithState,//省
+    LYAreaStyleWithStateAndCity,//市
+    LYAreaStyleWithStateAndCityAndDistrict//区
+} LYAreaStyle;
+
 @interface MyUtil : NSObject
 
 +(MyUtil *)shareUtil;
@@ -122,5 +129,7 @@ typedef NS_ENUM(NSInteger, QiNiuUploadTpye)
 
 //判断用户是否有设置头像，没有头像挑战设置
 + (void)pushToAddPicForUser;
+
++(NSArray *)getAreaWithName:(NSString *)areaName withStly:(LYAreaStyle) style;
 
 @end

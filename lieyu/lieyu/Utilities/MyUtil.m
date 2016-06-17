@@ -850,4 +850,43 @@
     }
 }
 
+
+#pragma mark - 根据名称获取省市区 
++(NSArray *)getAreaWithName:(NSString *)areaName withStly:(LYAreaStyle) style{
+    NSArray *provinces;
+    NSMutableArray *mulArr=[NSMutableArray arrayWithCapacity:0];
+    if (style==LYAreaStyleWithState) {
+        provinces = [[NSArray alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"city.plist" ofType:nil]];
+        for (NSDictionary *province in provinces) {
+            [mulArr addObject:[province objectForKey:@"state"]];
+        }
+        return [mulArr copy];
+        
+    }else if (style==LYAreaStyleWithStateAndCity || ([areaName containsString:@"北京"]||[areaName containsString:@"上海"]||[areaName containsString:@"天津"]||[areaName containsString:@"重庆"])) {
+        provinces = [[NSArray alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"area.plist" ofType:nil]];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.state CONTAINS %@",[NSString stringWithFormat:@"%@", areaName]];
+        provinces = [provinces filteredArrayUsingPredicate: predicate];
+        if(provinces.count==0)return nil;
+        NSDictionary *province=provinces[0];
+        NSArray *subCities=[province objectForKey:@"cities"];
+        for (NSDictionary *city in subCities) {
+            [mulArr addObject:[city objectForKey:@"city"]];
+        }
+        return [mulArr copy];
+    }else if (style==LYAreaStyleWithStateAndCityAndDistrict) {
+        provinces = [[NSArray alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"area.plist" ofType:nil]];
+        for (NSDictionary *province in provinces) {
+            NSArray *fcities=[province objectForKey:@"cities"];
+            for (NSDictionary *city in fcities) {
+                if ([(NSString *)[city objectForKey:@"city"] containsString:areaName]) {
+                    return [city objectForKey:@"areas"];
+                }else{
+                    continue;
+                }
+            }
+        }
+    }
+    return nil;
+}
+
 @end
