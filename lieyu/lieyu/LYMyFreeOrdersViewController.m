@@ -31,6 +31,8 @@
     _dataArray = [[NSMutableArray alloc]init];
     if ([self.userModel.usertype isEqualToString:@"2"]|| [self.userModel.usertype isEqualToString:@"3"]) {
         _type = @"1";
+        BOOL shanghuban = [[NSUserDefaults standardUserDefaults] boolForKey:@"shanghuban"];
+        if(!shanghuban)_type = @"0";
     }else{
         _type = @"0";
     }
