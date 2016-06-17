@@ -15,6 +15,7 @@
 @property (nonatomic, assign) int gender;
 @property (nonatomic, assign) int id;
 @property (nonatomic, strong) NSString *imuserId;
+@property (nonatomic, strong) NSString *imuserid;
 @property (nonatomic, strong) NSString *introduction;
 @property (nonatomic, strong) NSString *mobile;
 @property (nonatomic, strong) NSArray *recentImages;
@@ -33,7 +34,9 @@
 @property (nonatomic, strong) NSString *city;
 @property (nonatomic, assign) int faceScoreNum;
 @property (nonatomic, strong) NSString *latitude;
+@property (nonatomic, strong) NSString *latitudeBar;
 @property (nonatomic, strong) NSString *longitude;
+@property (nonatomic, strong) NSString *longitudeBar;
 @property (nonatomic, strong) NSString *wechatId;
 @property (nonatomic, strong) NSString *liked;
 @property (nonatomic, assign) int popularityNum;
