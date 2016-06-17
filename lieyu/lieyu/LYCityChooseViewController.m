@@ -135,18 +135,18 @@
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
     if (cell.cityNameLabel.text != nil) {
         self.Location(cell.cityNameLabel.text);
-//        [USER_DEFAULT setObject:cell.cityNameLabel.text forKey:@"UserChoosedLocation"];
+        [USER_DEFAULT setObject:cell.cityNameLabel.text forKey:@"UserChoosedLocation"];
     }
     
     [self.navigationController popViewControllerAnimated:YES];
     [MTA trackCustomEvent:LYCLICK_MTA args:@[@"cityChoose"]];
 }
 
--(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    LYCityChooseTableViewCell *cell = [_cityListTableView cellForRowAtIndexPath:indexPath];
-    cell.accessoryType = UITableViewCellAccessoryNone;
-}
+//-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    LYCityChooseTableViewCell *cell = [_cityListTableView cellForRowAtIndexPath:indexPath];
+//    cell.accessoryType = UITableViewCellAccessoryNone;
+//}
 
 /*
 #pragma mark - Navigation
