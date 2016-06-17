@@ -33,6 +33,10 @@
         _type = @"1";
         BOOL shanghuban = [[NSUserDefaults standardUserDefaults] boolForKey:@"shanghuban"];
         if(!shanghuban)_type = @"0";
+        
+        if (_isManager) {
+            _type = @"1";
+        }
     }else{
         _type = @"0";
     }
@@ -43,6 +47,11 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void)dealloc{
+    NSLog(@"----pass-pass%@---",@"test delloc");
+}
+
 
 - (void)registerCells{
     [myTableView registerNib:[UINib nibWithNibName:@"FreeOrderTableViewCell" bundle:nil] forCellReuseIdentifier:@"FreeOrderTableViewCell"];
@@ -167,6 +176,7 @@
     FreeOrderTableViewCell *cell = [myTableView dequeueReusableCellWithIdentifier:@"FreeOrderTableViewCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     LYFreeOrderModel *model = (LYFreeOrderModel *)[_dataArray objectAtIndex:indexPath.section];
+    model.isManager=_isManager;
     cell.freeOrder = model;
     cell.messageButton.tag = indexPath.section;
     cell.phoneButton.tag = indexPath.section;
@@ -255,40 +265,61 @@
 }
 
 - (void)firstButtonClick:(UIButton *)button{
+    if (![button.titleLabel.text isEqualToString:@"满意"]) return;
+    
     LYFreeOrderModel *model = [_dataArray objectAtIndex:button.tag];
-    if ([button.titleLabel.text isEqualToString:@"满意"]) {
-        NSDictionary *dict = @{@"id":[NSNumber numberWithInteger:model.id],
-                               @"orderStatus":@"3",//2：专属经理确认订单时传的状态 3：用户确认完成时的状态
-                               @"isSatisfaction":@"1"};//订单状态传2时，无需传值；传3时，1：满意 0：不满意
-        [LYUserHttpTool lyChangeFreeOrderStatusWithParams:dict complete:^(BOOL result) {
-            if (result) {
-                [MyUtil showPlaceMessage:@"感谢您的支持，我们将再接再厉！"];
-                [_dataArray removeObjectAtIndex:button.tag];
-                [myTableView reloadData];
-            }
-        }];
-    }else{
-        
-    }
+    NSDictionary *dict = @{@"id":[NSNumber numberWithInteger:model.id],
+                           @"orderStatus":@"3",//2：专属经理确认订单时传的状态 3：用户确认完成时的状态
+                           @"isSatisfaction":@"1"};//订单状态传2时，无需传值；传3时，1：满意 0：不满意
+    [LYUserHttpTool lyChangeFreeOrderStatusWithParams:dict complete:^(BOOL result) {
+        if (result) {
+            [MyUtil showMessage:@"感谢您的支持，我们将再接再厉！"];
+            [_dataArray removeObjectAtIndex:button.tag];
+            [myTableView reloadData];
+        }
+    }];
+   
+   
 }
+
 
 - (void)secondButtonClick:(UIButton *)button{
     LYFreeOrderModel *model = [_dataArray objectAtIndex:button.tag];
     if ([button.titleLabel.text isEqualToString:@"取消"]) {
         [self lyDeleteFreeOrder:button.tag];
     }else if ([button.titleLabel.text isEqualToString:@"不满意"]){
-        NSDictionary *dict = @{@"id":[NSNumber numberWithInteger:model.id],
-                               @"orderStatus":@"3",//2：专属经理确认订单时传的状态 3：用户确认完成时的状态
-                               @"isSatisfaction":@"0"};//订单状态传2时，无需传值；传3时，1：满意 0：不满意
-        [LYUserHttpTool lyChangeFreeOrderStatusWithParams:dict complete:^(BOOL result) {
-            if (result) {
-                [MyUtil showPlaceMessage:@"感谢您的支持，我们将持续改进！"];
-                [_dataArray removeObjectAtIndex:button.tag];
-                [myTableView reloadData];
+        AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"提示" message:@"你是否确认此“不满意“操作？" cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex){
+            //在这里面执行触发的行为，省掉了代理，这样的好处是在使用多个Alert的时候可以明确定义各自触发的行为，不需要在代理方法里判断是哪个Alert了
+            if (buttonIndex == 0) {
+                
+            }else if (buttonIndex == 1){
+                NSDictionary *dict = @{@"id":[NSNumber numberWithInteger:model.id],
+                                       @"orderStatus":@"3",//2：专属经理确认订单时传的状态 3：用户确认完成时的状态
+                                       @"isSatisfaction":@"0"};//订单状态传2时，无需传值；传3时，1：满意 0：不满意
+                [LYUserHttpTool lyChangeFreeOrderStatusWithParams:dict complete:^(BOOL result) {
+                    if (result) {
+                        [MyUtil showMessage:@"感谢您的支持，我们将持续改进！"];
+                        [_dataArray removeObjectAtIndex:button.tag];
+                        [myTableView reloadData];
+                    }
+                }];
             }
         }];
+        [alert show];
+        
+       
     }else if ([button.titleLabel.text isEqualToString:@"删除"]){
-        [self lyDeleteFreeOrder:button.tag];
+        __weak typeof(self) weakSelf=self;
+        AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"提示" message:@"你是否确认删除？" cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex){
+            if (buttonIndex == 0) {
+                
+            }else if (buttonIndex == 1){
+                [weakSelf lyDeleteFreeOrder:button.tag];
+            }
+        }];
+        [alert show];
+        
+        
     }else if ([button.titleLabel.text isEqualToString:@"预留卡座"]){
         NSDictionary *dict = @{@"id":[NSNumber numberWithInteger:model.id],
                                @"orderStatus":@"2"};
@@ -309,6 +340,7 @@
     NSDictionary *dict = @{@"id":[NSNumber numberWithInteger:model.id]};
     [LYUserHttpTool lyDeleteFreeOrderWithParams:dict complete:^(BOOL result) {
         if (result) {
+            [MyUtil showPlaceMessage:@"删除成功！"];
             [_dataArray removeObjectAtIndex:index];
             [myTableView reloadData];
         }

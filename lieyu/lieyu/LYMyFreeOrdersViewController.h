@@ -10,4 +10,6 @@
 
 @interface LYMyFreeOrdersViewController : LPMyOrdersViewController
 
+@property(assign,nonatomic) BOOL isManager;
+
 @end

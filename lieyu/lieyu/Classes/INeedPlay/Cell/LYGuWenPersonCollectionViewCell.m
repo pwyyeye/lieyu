@@ -25,8 +25,11 @@
     _labelBarName.text = [NSString stringWithFormat:@"@ %@",vipModel.barname];
     _labelAddress.text = vipModel.addressabb;
     _labelDistance.text = [NSString stringWithFormat:@"%@km",vipModel.distance];
+    
     [_btnFlower setTitle:vipModel.facescoreNum forState:UIControlStateNormal];
-    [_btnFlower setTitle:vipModel.popularityNum forState:UIControlStateNormal];
+    
+    [_btnPopular setTitle:vipModel.popularityNum forState:UIControlStateNormal];
+    
     if([vipModel.gender isEqualToString:@"0"]){
         [_sexImage setImage:[UIImage imageNamed:@"woman"]];
     }else{

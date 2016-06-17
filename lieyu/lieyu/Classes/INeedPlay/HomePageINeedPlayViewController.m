@@ -741,7 +741,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     hList.city=_userLocation;
     
     __weak __typeof(self)weakSelf = self;
-    [bus getToPlayOnHomeList2:hList pageIndex:_index results:^(LYErrorMessage * ermsg,HomePageModel *homePageM){
+    [bus getToPlayOnHomeList2:hList pageIndex:tag results:^(LYErrorMessage * ermsg,HomePageModel *homePageM){
         if (ermsg.state == Req_Success)
         {
             if(tag >= 3) return;
@@ -750,7 +750,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 [array removeAllObjects];
                 weakSelf.bannerList = homePageM.banner.mutableCopy;
                 
-                [_newbannerListArray replaceObjectAtIndex:_index withObject:homePageM.newbanner.mutableCopy];
+                [_newbannerListArray replaceObjectAtIndex:tag withObject:homePageM.newbanner.mutableCopy];
                 weakSelf.bartypeslistArray = homePageM.bartypeslist;
                 [_fiterArray replaceObjectAtIndex:tag withObject:homePageM.filterImages];
             }

@@ -79,7 +79,7 @@
         [_orderJoinLabel setText:[NSString stringWithFormat:@"%ld人以上参与",_freeOrder.minPartNumber]];
     }
      BOOL shanghuban = [[NSUserDefaults standardUserDefaults] boolForKey:@"shanghuban"];
-    if (([app.userModel.usertype isEqualToString:@"2"] || [app.userModel.usertype isEqualToString:@"3"])&&shanghuban) {
+    if (([app.userModel.usertype isEqualToString:@"2"] || [app.userModel.usertype isEqualToString:@"3"])&&(shanghuban||_freeOrder.isManager)) {
         if (_freeOrder.orderStatus == 1) {
             _firstButton.hidden = YES;
             _secondButton.hidden = NO;
