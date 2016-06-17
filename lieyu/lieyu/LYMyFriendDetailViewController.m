@@ -558,8 +558,8 @@
 //进入地图
 - (void)checkBarLocation{
     NSDictionary *dict = @{@"title":_result.barname,
-                           @"latitude":_result.latitude,
-                           @"longitude":_result.longitude};
+                           @"latitude":_result.latitudeBar,
+                           @"longitude":_result.longitudeBar};
     [[LYUserLocation instance] daoHan:dict];
 }
 @end
