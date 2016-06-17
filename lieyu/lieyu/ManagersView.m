@@ -43,10 +43,19 @@
 //        button.backgroundColor = [UIColor blackColor];
         [button addTarget:self action:@selector(selectButton:) forControlEvents:UIControlEventTouchUpInside];
         buttonX = buttonX + 142;
-        if(i == 0){
-            button.selected = YES;
-            button.recommond.hidden = NO;
-            button.maskLabel.hidden = NO;
+        if ([MyUtil isEmptyString:_choosedManagerID]) {
+            //未传入选择专属经理
+            if(i == 0){
+                button.selected = YES;
+                button.recommond.hidden = NO;
+                button.maskLabel.hidden = NO;
+            }
+        }else{
+            if (model.userid == [_choosedManagerID intValue]) {
+                button.selected = YES;
+                button.recommond.hidden = NO;
+                button.maskLabel.hidden = NO;
+            }
         }
         [scrollView addSubview:button];
     }

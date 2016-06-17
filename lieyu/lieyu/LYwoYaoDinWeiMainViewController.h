@@ -32,5 +32,6 @@
 @property (nonatomic, strong) preview *subView;
 @property (nonatomic, strong) NSString *startTime;
 @property (nonatomic, strong) NSString *endTime;
+@property (nonatomic, strong) NSString *choosedManagerID;
 
 @end
