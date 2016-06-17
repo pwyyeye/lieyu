@@ -10,6 +10,7 @@
 
 @implementation LYGuWenPersonCollectionViewCell
 
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.layer.cornerRadius = 2;
