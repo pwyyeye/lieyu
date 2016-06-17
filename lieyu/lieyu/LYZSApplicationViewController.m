@@ -79,7 +79,7 @@
     }
 }
 
-//从审核页面过来
+#pragma mark - 从审核页面过来
 - (void)initCheckView{
     [self.jiubaLal setTextColor:RGBA(186, 40, 227, 1)];
     if([_checkModel.barid isEqualToString:@"-1"]){
@@ -108,6 +108,7 @@
     if (accountNum == 1) {
         _viewLine2.hidden = NO;
         [_viewLabel2 setText:@"真实姓名"];
+        [_yhkkhTex setPlaceholder:@"请输入您的真实姓名"];
         [_yhkkhTex setText:_checkModel.wechatName];
         
         _viewLine3.hidden = YES;
@@ -115,25 +116,30 @@
     }else if (accountNum == 2){
         _viewLine2.hidden = NO;
         [_viewLabel2 setText:@"支付宝账号"];
+        [_yhkkhTex setPlaceholder:@"请输入正确的帐号"];
         [_yhkkhTex setText:_checkModel.alipayaccount];
         
         _viewLine3.hidden = NO;
         [_viewLabel3 setText:@"绑定姓名"];
+        [_yhkKhmYhmTex setPlaceholder:@"用户支付宝绑定姓名"];
         [_yhkKhmYhmTex setText:_checkModel.alipayAccountName];
         
         _viewLine4.hidden = YES;
     }else if (accountNum == 3){
         _viewLine2.hidden = NO;
         [_viewLabel2 setText:@"银行卡号"];
+        [_yhkkhTex setPlaceholder:@"请输入您的卡号"];
         [_yhkkhTex setText:_checkModel.bankCard];
         _yhkkhTex.keyboardType = UIKeyboardTypeNumberPad;
         
         _viewLine3.hidden = NO;
         [_viewLabel3 setText:@"开户支行"];
+        [_yhkKhmYhmTex setPlaceholder:@"请输入您的开户支行"];
         [_yhkKhmYhmTex setText:_checkModel.bankCardDeposit];
         
         _viewLine4.hidden = NO;
         [_viewLabel4 setText:@"开户姓名"];
+        [_yhkyhmTex setPlaceholder:@"请输入您的开户姓名"];
         [_yhkyhmTex setText:_checkModel.bankCardUsername];
     }
     checkHeight = 45 * (accountNum + 1) + 231 ;

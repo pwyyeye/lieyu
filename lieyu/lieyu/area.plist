@@ -9,113 +9,113 @@
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>通州</string>
+				<string>通州区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>房山</string>
+				<string>房山区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>昌平</string>
+				<string>昌平区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>顺义</string>
+				<string>顺义区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>怀柔</string>
+				<string>怀柔区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>大兴</string>
+				<string>大兴区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>密云</string>
+				<string>密云区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>平谷</string>
+				<string>平谷区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>延庆</string>
+				<string>延庆区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>东城</string>
+				<string>东城区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>崇文</string>
+				<string>崇文区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>西城</string>
+				<string>西城区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>朝阳</string>
+				<string>朝阳区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>宣武</string>
+				<string>宣武区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>石景山</string>
+				<string>石景山区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>丰台</string>
+				<string>丰台区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>门头沟</string>
+				<string>门头沟区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>海淀</string>
+				<string>海淀区</string>
 			</dict>
 		</array>
 		<key>state</key>
-		<string>北京</string>
+		<string>北京市</string>
 	</dict>
 	<dict>
 		<key>cities</key>
@@ -124,115 +124,115 @@
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>普陀</string>
+				<string>普陀区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>闸北</string>
+				<string>闸北区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>虹口</string>
+				<string>虹口区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>杨浦</string>
+				<string>杨浦区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>卢湾</string>
+				<string>卢湾区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>徐汇</string>
+				<string>徐汇区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>长宁</string>
+				<string>长宁区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>静安</string>
+				<string>静安区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>黄浦</string>
+				<string>黄浦区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>金山</string>
+				<string>金山区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>浦东新</string>
+				<string>浦东新区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>嘉定</string>
+				<string>嘉定区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>闵行</string>
+				<string>闵行区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>宝山</string>
+				<string>宝山区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>南汇</string>
+				<string>南汇区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>青浦</string>
+				<string>青浦区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>松江</string>
+				<string>松江区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>奉贤</string>
+				<string>奉贤区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>崇明</string>
+				<string>崇明县</string>
 			</dict>
 		</array>
 		<key>state</key>
@@ -245,109 +245,109 @@
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>武清</string>
+				<string>武清区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>河东</string>
+				<string>河东区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>和平</string>
+				<string>和平区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>西青</string>
+				<string>西青区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>津南</string>
+				<string>津南区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>大港</string>
+				<string>大港区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>东丽</string>
+				<string>东丽区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>塘沽</string>
+				<string>塘沽区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>汉沽</string>
+				<string>汉沽区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>河北</string>
+				<string>河北区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>红桥</string>
+				<string>红桥区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>河西</string>
+				<string>河西区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>南开</string>
+				<string>南开区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>蓟县</string>
+				<string>蓟县区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>宁河</string>
+				<string>宁河区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>静海</string>
+				<string>静海区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>宝坻</string>
+				<string>宝坻区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>北辰</string>
+				<string>北辰区</string>
 			</dict>
 		</array>
 		<key>state</key>
@@ -360,241 +360,241 @@
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>开县</string>
+				<string>开县区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>江北</string>
+				<string>江北区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>沙坪坝</string>
+				<string>沙坪坝区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>九龙坡</string>
+				<string>九龙坡区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>南岸</string>
+				<string>南岸区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>北碚</string>
+				<string>北碚区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>万盛</string>
+				<string>万盛区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>双桥</string>
+				<string>双桥区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>渝北</string>
+				<string>渝北区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>巴南</string>
+				<string>巴南区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>黔江</string>
+				<string>黔江区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>垫江</string>
+				<string>垫江区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>武隆</string>
+				<string>武隆区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>巫山</string>
+				<string>巫山区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>巫溪</string>
+				<string>巫溪区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>云阳</string>
+				<string>云阳区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>奉节</string>
+				<string>奉节区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>忠县</string>
+				<string>忠县区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>梁平</string>
+				<string>梁平区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>璧山</string>
+				<string>璧山区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>荣昌</string>
+				<string>荣昌区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>大足</string>
+				<string>大足区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>铜梁</string>
+				<string>铜梁区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>潼南</string>
+				<string>潼南区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>綦江</string>
+				<string>綦江区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>长寿</string>
+				<string>长寿区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>彭水</string>
+				<string>彭水区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>酉阳</string>
+				<string>酉阳区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>合川</string>
+				<string>合川区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>江津</string>
+				<string>江津区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>南川</string>
+				<string>南川区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>永川</string>
+				<string>永川区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>丰都</string>
+				<string>丰都区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>城口</string>
+				<string>城口区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>大渡口</string>
+				<string>大渡口区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>渝中</string>
+				<string>渝中区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>涪陵</string>
+				<string>涪陵区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>万州</string>
+				<string>万州区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>石柱</string>
+				<string>石柱区</string>
 			</dict>
 			<dict>
 				<key>areas</key>
 				<array/>
 				<key>city</key>
-				<string>秀山</string>
+				<string>秀山区</string>
 			</dict>
 		</array>
 		<key>state</key>

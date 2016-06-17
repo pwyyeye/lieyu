@@ -33,13 +33,13 @@
         pageStartCount = _pageStartCountArray[1];
         tableView = [_tableViewArray objectAtIndex:1];
     }
-    NSString *startStr = [NSString stringWithFormat:@"%d",pageStartCount * _pageCount];
-    NSString *pageCountStr = [NSString stringWithFormat:@"%d",_pageCount];
+    NSString *startStr = [NSString stringWithFormat:@"%ld",pageStartCount * _pageCount];
+    NSString *pageCountStr = [NSString stringWithFormat:@"%ld",_pageCount];
     NSDictionary *paraDic = @{@"userId":_useridStr,@"start":startStr,@"limit":pageCountStr,@"frientId":_friendsId};
-    __weak __typeof(self) weakSelf = self;
+//    __weak __typeof(self) weakSelf = self;
     if (type == dataForFriendsMessage) {
         __weak __typeof(self) weakSelf = self;
-        [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic needLoading:need compelte:^(FriendsUserInfoModel*userInfo, NSMutableArray *dataArray) {
+        [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic needLoading:YES compelte:^(FriendsUserInfoModel*userInfo, NSMutableArray *dataArray) {
             _userBgImageUrl = userInfo.friends_img;
             weakSelf.userM = userInfo;
             [weakSelf loadDataWith:tableView dataArray:dataArray pageStartCount:pageStartCount type:type];

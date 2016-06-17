@@ -397,8 +397,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1318"
             endingLineNumber = "1318"
-            landmarkName = "@implementation HomePageINeedPlayViewController"
-            landmarkType = "3">
+            landmarkName = "-navigationController:didShowViewController:animated:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1099,7 +1099,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "866"
             endingLineNumber = "866"
-            landmarkName = "+getAreaWithName:withStly:"
+            landmarkName = "+getAreaWithName:withStyle:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1115,7 +1115,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "875"
             endingLineNumber = "875"
-            landmarkName = "+getAreaWithName:withStly:"
+            landmarkName = "+getAreaWithName:withStyle:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1131,7 +1131,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "882"
             endingLineNumber = "882"
-            landmarkName = "+getAreaWithName:withStly:"
+            landmarkName = "+getAreaWithName:withStyle:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

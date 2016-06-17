@@ -1,4 +1,4 @@
-//
+ //
 //  f.m
 //  gatako
 //
@@ -852,7 +852,7 @@
 
 
 #pragma mark - 根据名称获取省市区 
-+(NSArray *)getAreaWithName:(NSString *)areaName withStly:(LYAreaStyle) style{
++(NSArray *)getAreaWithName:(NSString *)areaName withStyle:(LYAreaStyle) style{
     NSArray *provinces;
     NSMutableArray *mulArr=[NSMutableArray arrayWithCapacity:0];
     if (style==LYAreaStyleWithState) {

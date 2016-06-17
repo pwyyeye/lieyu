@@ -2054,8 +2054,8 @@
 		15E184951BB52CA200681BB2 /* JiuBaModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JiuBaModel.m; sourceTree = "<group>"; };
 		15E184981BB5319900681BB2 /* Toast+UIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Toast+UIView.h"; sourceTree = "<group>"; };
 		15E184991BB5319900681BB2 /* Toast+UIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Toast+UIView.m"; sourceTree = "<group>"; };
-		15E1849E1BB8D20700681BB2 /* MyUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyUtil.h; sourceTree = "<group>"; };
-		15E1849F1BB8D20700681BB2 /* MyUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyUtil.m; sourceTree = "<group>"; };
+		15E1849E1BB8D20700681BB2 /* MyUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = MyUtil.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		15E1849F1BB8D20700681BB2 /* MyUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MyUtil.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		15E240501BB0FF1D0090D240 /* ZSReleaseGoodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSReleaseGoodViewController.h; sourceTree = "<group>"; };
 		15E240511BB0FF1D0090D240 /* ZSReleaseGoodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSReleaseGoodViewController.m; sourceTree = "<group>"; };
 		15E240521BB0FF1D0090D240 /* ZSReleaseGoodViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSReleaseGoodViewController.xib; sourceTree = "<group>"; };
@@ -3425,7 +3425,7 @@
 		855EB3C11CF7145A00609B18 /* nameIden_purper@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nameIden_purper@2x.png"; sourceTree = "<group>"; };
 		855EB3C21CF7145A00609B18 /* nameIden_purper@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nameIden_purper@3x.png"; sourceTree = "<group>"; };
 		855EB3C61CF718AA00609B18 /* LYGuWenListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYGuWenListViewController.h; sourceTree = "<group>"; };
-		855EB3C71CF718AA00609B18 /* LYGuWenListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYGuWenListViewController.m; sourceTree = "<group>"; };
+		855EB3C71CF718AA00609B18 /* LYGuWenListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LYGuWenListViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		855EB3C81CF718AA00609B18 /* LYGuWenListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYGuWenListViewController.xib; sourceTree = "<group>"; };
 		85653B661C508DF40012B718 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		85653B681C508E100012B718 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
@@ -3729,7 +3729,7 @@
 		A2FD578C1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSReleasePackagesViewController.m; sourceTree = "<group>"; };
 		A2FD578D1BAFEDB500CFFF92 /* ZSReleasePackagesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSReleasePackagesViewController.xib; sourceTree = "<group>"; };
 		AD04A4921C61960200FAA8D3 /* LYAmusementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYAmusementViewController.h; sourceTree = "<group>"; };
-		AD04A4931C61960200FAA8D3 /* LYAmusementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYAmusementViewController.m; sourceTree = "<group>"; };
+		AD04A4931C61960200FAA8D3 /* LYAmusementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LYAmusementViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		AD078C3F1C2BAF7700A056D1 /* UITabBarItem+CustomBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarItem+CustomBadge.h"; sourceTree = "<group>"; };
 		AD078C401C2BAF7700A056D1 /* UITabBarItem+CustomBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarItem+CustomBadge.m"; sourceTree = "<group>"; };
 		AD078C721C33CDE800A056D1 /* iphoneIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphoneIcon.png; sourceTree = "<group>"; };
@@ -3950,7 +3950,7 @@
 		AD8899CC1B9AFE61007BCC7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		AD8899D21B9AFE62007BCC7C /* lieyuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lieyuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD8899D71B9AFE62007BCC7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AD8899D81B9AFE62007BCC7C /* lieyuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = lieyuTests.m; sourceTree = "<group>"; };
+		AD8899D81B9AFE62007BCC7C /* lieyuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = lieyuTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		AD8FAB5C1C1570F600C45F1A /* libHCSStarRatingView.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libHCSStarRatingView.a; path = "Pods/../build/Debug-iphoneos/libHCSStarRatingView.a"; sourceTree = "<group>"; };
 		AD92AE9A1BE1D339009F2A34 /* lieyu_default_female@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lieyu_default_female@2x.png"; sourceTree = "<group>"; };
 		AD92AE9B1BE1D339009F2A34 /* lieyu_default_male@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lieyu_default_male@2x.png"; sourceTree = "<group>"; };
@@ -4315,7 +4315,7 @@
 		D7A600571BAC654D0006A768 /* LYAdshowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYAdshowCell.m; sourceTree = "<group>"; };
 		D7A600581BAC654D0006A768 /* LYAdshowCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYAdshowCell.xib; sourceTree = "<group>"; };
 		D7A6005B1BAC6CF50006A768 /* PlayTogetherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayTogetherViewController.h; path = Classes/PlayTogether/PlayTogetherViewController.h; sourceTree = "<group>"; };
-		D7A6005C1BAC6CF50006A768 /* PlayTogetherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayTogetherViewController.m; path = Classes/PlayTogether/PlayTogetherViewController.m; sourceTree = "<group>"; };
+		D7A6005C1BAC6CF50006A768 /* PlayTogetherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = PlayTogetherViewController.m; path = Classes/PlayTogether/PlayTogetherViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		D7A6005E1BAC6E0B0006A768 /* FindViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FindViewController.h; path = Classes/Find/FindViewController.h; sourceTree = "<group>"; };
 		D7A6005F1BAC6E0B0006A768 /* FindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FindViewController.m; path = Classes/Find/FindViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
