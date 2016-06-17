@@ -522,9 +522,12 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 - (void)cityChangeClick:(UIButton *)sender {
     LYCityChooseViewController *cityChooseVC = [[LYCityChooseViewController alloc]init];
     cityChooseVC.userLocation = sender.currentTitle;
+    
+    __weak typeof (self)weekSelf = self;
     cityChooseVC.Location = ^(NSString *location) {
 //        [_cityChooseBtn setTitle:location forState:(UIControlStateNormal)];
         _userLocation = location;
+        [weekSelf getDataWith:0];
     };
     
     [self.navigationController pushViewController:cityChooseVC animated:YES];
