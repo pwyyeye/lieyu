@@ -662,14 +662,19 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             if (_currentPage_GuWen == 1) {
                 [_dataArray.firstObject removeAllObjects];
             }
-            if(offsetY[0] == 1){
-                [_dataArray replaceObjectAtIndex:0 withObject:homePageM.viplist];
-            }else{
+//            if(offsetY[0] == 1){
+//                [_dataArray replaceObjectAtIndex:0 withObject:homePageM.viplist];
+//            }else{
                 [((NSMutableArray *)_dataArray.firstObject) addObjectsFromArray:homePageM.viplist];
+//            }
+//            _guWenBannerImgUrl = homePageM.banner.firstObject;
+            if (homePageM.newbanner.count) {
+                [_newbannerListArray replaceObjectAtIndex:tag withObject:homePageM.newbanner];
             }
-            _guWenBannerImgUrl = homePageM.banner.firstObject;
-            [_newbannerListArray replaceObjectAtIndex:tag withObject:homePageM.newbanner];
-            [_fiterArray replaceObjectAtIndex:tag withObject:homePageM.filterImages];
+//            [_newbannerListArray replaceObjectAtIndex:tag withObject:homePageM.newbanner];
+            if (homePageM.filterImages.count) {
+                [_fiterArray replaceObjectAtIndex:tag withObject:homePageM.filterImages];
+            }
 //            LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
 //            [cell.collectViewInside reloadData];
             
@@ -897,8 +902,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             case 2://banner
             {
                 LYGuWenBannerCollectionViewCell *guWenBannerCell = [collectionView dequeueReusableCellWithReuseIdentifier:@"LYGuWenBannerCollectionViewCell" forIndexPath:indexPath];
-                [guWenBannerCell.imgView_banner sd_setImageWithURL:[NSURL URLWithString:_guWenBannerImgUrl] placeholderImage:[UIImage imageNamed:@"empyImageBar16_9"]];
-                guWenBannerCell.imgView_banner.contentMode = UIViewContentModeScaleAspectFill;
+//                [guWenBannerCell.imgView_banner sd_setImageWithURL:[NSURL URLWithString:_guWenBannerImgUrl] placeholderImage:[UIImage imageNamed:@"empyImageBar16_9"]];
+//                guWenBannerCell.imgView_banner.contentMode = UIViewContentModeScaleAspectFill;
                 return guWenBannerCell;
             }
                 break;

@@ -390,7 +390,7 @@
             [MyUtil showPlaceMessage:@"请选择酒吧！"];
         }else{
             AMapPOI *model = [_poisArray objectAtIndex:_oldSelectedSection];
-            [MyUtil showMessage:[NSString stringWithFormat:@"%@,%@",model.name,model.address]];
+//            [MyUtil showMessage:[NSString stringWithFormat:@"%@,%@",model.name,model.address]];
             NSDictionary *dict = [[NSDictionary alloc]init];
             dict = @{@"barName":model.name,
                      @"barAddress":model.address,

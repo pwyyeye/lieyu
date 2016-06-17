@@ -39,4 +39,6 @@
 
 - (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexChooseKaZuo:(NSInteger)buttonIndex;
 
+- (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexChoosePeopleNumber:(NSInteger)buttonIndex;
+
 @end

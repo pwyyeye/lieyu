@@ -82,7 +82,11 @@
 //从审核页面过来
 - (void)initCheckView{
     [self.jiubaLal setTextColor:RGBA(186, 40, 227, 1)];
-    self.jiubaLal.text=_checkModel.barname;
+    if([_checkModel.barid isEqualToString:@"-1"]){
+        self.jiubaLal.text = _checkModel.barName;
+    }else{
+        self.jiubaLal.text=_checkModel.barname;
+    }
     self.wechatLbl.text = _checkModel.wechatId;
     int accountNum = 0 ;
     if ([_checkModel.applyType isEqualToString:@"1"]) {

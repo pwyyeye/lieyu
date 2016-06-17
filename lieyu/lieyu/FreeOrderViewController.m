@@ -16,6 +16,7 @@
 #import "LPAlertView.h"
 #import "ChooseKaZuo.h"
 #import "LYKaZuoTypeButton.h"
+#import "ChoosePeopleNumber.h"
 
 @interface FreeOrderViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate,LPAlertViewDelegate>
 {
@@ -27,6 +28,7 @@
 @property (nonatomic, strong) TimePickerView *LPTimeView;
 @property (nonatomic, strong) ChooseNumber *LPPeopleView;
 @property (nonatomic, strong) ChooseKaZuo *LPKaZuoView;
+@property (nonatomic, strong) ChoosePeopleNumber *LPPeopleNumberView;
 
 @end
 
@@ -131,17 +133,16 @@
         alertView.contentView = _LPTimeView;
         _LPTimeView.frame = CGRectMake(10, SCREEN_HEIGHT - 270, SCREEN_WIDTH - 20, 200);
         [_LPTimeView configreTitleForAdviser];
-    }else if (sender.tag == 1){
-        _LPPeopleView = [[[NSBundle mainBundle]loadNibNamed:@"ChooseNumber" owner:nil options:nil]firstObject];
-        if (_choosedNum <= 0) {
-            _LPPeopleView.startNum = 1;
-        }else{
-            _LPPeopleView.startNum = _choosedNum;
+    }else if (sender.tag == 1) {//选择到场人数
+        _LPPeopleNumberView = [[[NSBundle mainBundle] loadNibNamed:@"ChoosePeopleNumber" owner:nil options:nil] firstObject];
+        _LPPeopleNumberView.tag = 16;
+        if (_choosedNum <= 0 || _choosedNum >= 11) {
+            _LPPeopleNumberView.selectedTag = 1;
+        } else {
+            _LPPeopleNumberView.selectedTag = _choosedNum;
         }
-        _LPPeopleView.tag = 14;
-        alertView.contentView = _LPPeopleView;
-        _LPPeopleView.frame = CGRectMake(10, SCREEN_HEIGHT - 270, SCREEN_WIDTH - 20, 200);
-        [_LPPeopleView configureTitleForAdviser];
+        alertView.contentView = _LPPeopleNumberView;
+        _LPPeopleNumberView.frame = CGRectMake(10, SCREEN_HEIGHT - 270, SCREEN_WIDTH - 20, 200);
     }else if (sender.tag == 2){
         _LPKaZuoView = [[[NSBundle mainBundle]loadNibNamed:@"ChooseKaZuo" owner:nil options:nil]firstObject];
         _LPKaZuoView.tag = 15;
@@ -154,6 +155,8 @@
         _LPKaZuoView.frame = CGRectMake(10, SCREEN_HEIGHT - 270, SCREEN_WIDTH - 20, 200);
 //        _LPKaZuoView 
     }
+    
+    
     [alertView show];
 }
 
@@ -173,16 +176,16 @@
     }
 }
 
-- (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexChooseNum:(NSInteger)buttonIndex{
-    if (buttonIndex == 1) {
-        _choosedNum = [_LPPeopleView.numberField.text intValue];
-//        NSLog(@"number:%ld",_choosedNum);
-        AdvisorBookChooseTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
-        [cell.content_label setText:[NSString stringWithFormat:@"%ld 人",_choosedNum]];
-    }else{
-//        NSLog(@"number:%ld",_choosedNum);
-    }
-}
+//- (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexChooseNum:(NSInteger)buttonIndex{
+//    if (buttonIndex == 1) {
+//        _choosedNum = [_LPPeopleView.numberField.text intValue];
+////        NSLog(@"number:%ld",_choosedNum);
+//        AdvisorBookChooseTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
+//        [cell.content_label setText:[NSString stringWithFormat:@"%ld 人",_choosedNum]];
+//    }else{
+////        NSLog(@"number:%ld",_choosedNum);
+//    }
+//}
 
 - (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexChooseKaZuo:(NSInteger)buttonIndex{
     if (buttonIndex == 1) {
@@ -201,6 +204,26 @@
     }
 }
 
+- (void)LPAlertView:(LPAlertView *)alertView clickedButtonAtIndexChoosePeopleNumber:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        for (LYKaZuoTypeButton *button in _LPPeopleNumberView.choosebuttons) {
+            if (button.choosed == YES) {
+                _choosedNum = button.tag;
+                //                NSLog(@"type:%ld",_choosedType);
+                AdvisorBookChooseTableViewCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
+                [cell.content_label setText:button.titleLabel.text];
+                break;
+            }
+        }
+        
+    }else{
+        //        NSLog(@"type:%ld",_choosedType);
+    }
+ 
+    
+}
+
 - (IBAction)submitClick:(UIButton *)sender {
     if (!_choosedDate) {
         [MyUtil showPlaceMessage:@"请选择到达现场时间！"];
@@ -216,7 +239,8 @@
     }
     NSDictionary *dict = @{@"barid":[_barDict objectForKey:@"barid"],
                            @"vipUserid":[_userDict objectForKey:@"userid"],
-                           @"partNumber":[NSNumber numberWithInteger:_choosedNum],
+                           @"minPartNumber":[NSNumber numberWithInteger:_choosedNum],
+                           @"partNumber":[NSNumber numberWithInteger:_choosedNum + 1],
                            @"cassetteType":[NSNumber numberWithInteger:_choosedType],
                            @"orderStatus":@"1",
                            @"reachTime":_stringDate};
