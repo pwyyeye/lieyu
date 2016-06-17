@@ -667,7 +667,6 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 #pragma mark 获取数据
 -(void)getDataWith:(NSInteger)tag{
     UICollectionView *collectionView = _collectionArray[tag];
-    
     if (!tag) {//娱乐顾问数据
         CLLocation * userLocation = [LYUserLocation instance].currentLocation;
         NSDictionary *dic = @{@"city":_userLocation,@"p":[NSString stringWithFormat:@"%d",_currentPage_GuWen],@"per":@(PAGESIZE).stringValue,@"latitude":@(userLocation.coordinate.latitude).stringValue,@"longitude":@(userLocation.coordinate.longitude).stringValue};

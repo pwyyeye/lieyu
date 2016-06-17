@@ -150,7 +150,7 @@
         [_tags setTitle:mytags forState:UIControlStateNormal];
         _label_work.text = mytags;
          _userNick.text=app.userModel.usernick;
-        if ([app.userModel.usertype isEqualToString:@"2"]) {
+        if ([app.userModel.usertype isEqualToString:@"2"]||[app.userModel.usertype isEqualToString:@"3"]) {
             //专属经理
             [_TypeName setText:@"粉丝"];
             [_careTypeImage setImage:[UIImage imageNamed:@"CareNumber"]];
