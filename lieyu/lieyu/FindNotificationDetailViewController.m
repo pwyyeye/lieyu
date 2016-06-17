@@ -133,6 +133,7 @@
         LYMyFreeOrdersViewController *detailVC = [[LYMyFreeOrdersViewController alloc]init];
         detailVC.orderIndex=0;
         detailVC.isFreeOrdersList=YES;
+        detailVC.isManager=YES;
         [self.navigationController pushViewController:detailVC animated:YES];
         
     }

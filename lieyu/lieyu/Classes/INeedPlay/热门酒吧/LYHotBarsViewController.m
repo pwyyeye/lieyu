@@ -275,6 +275,7 @@
     hList.subids = _subidStr;
     hList.per = @(PAGESIZE);
     hList.titleStr = self.navigationItem.title;
+    hList.city=[USER_DEFAULT objectForKey:@"UserChoosedLocation"]==nil?@"上海":(NSString *)[USER_DEFAULT objectForKey:@"UserChoosedLocation"];
     
     [bus getToPlayOnHomeList:hList pageIndex:2 results:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList, NSArray *newbanner,NSMutableArray *bartypeslist)
      {

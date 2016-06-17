@@ -112,7 +112,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         offsetY[i] = 1;
     }
     
-    _userLocation = @"上海";
+    _userLocation = [USER_DEFAULT objectForKey:@"UserChoosedLocation"]==nil?@"上海":(NSString *)[USER_DEFAULT objectForKey:@"UserChoosedLocation"];
     
     _dataArray = [[NSMutableArray alloc]initWithCapacity:3];
     _newbannerListArray = [[NSMutableArray alloc]initWithCapacity:3];
@@ -204,39 +204,12 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 [weakSelf getDataWith:i];
             }else{
                 [weakSelf getDataWith:i];
-              /*  [weakSelf loadHomeListWith:i block:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList)
-                 {
-                     if (Req_Success == ermsg.state)
-                     {
-                         if (Req_Success == ermsg.state)
-                         {
-                             switch (i) {
-                                 case 1:
-                                 {
-                                     _currentPage_YD = 2;                                                  }
-                                     break;
-                                 case 2:{
-                                     _currentPage_Bar = 2;
-                                 }
-                                     break;
-                             }
-                             //                         cell.collectViewInside.mj_footer.hidden = NO;
-                             [collectView.mj_footer resetNoMoreData];
-                         }else{
-                             // collectView.mj_footer.hidden = YES;
-                             [collectView.mj_footer endRefreshingWithNoMoreData];
-                         }
-                         [collectView.mj_header endRefreshing];
-                     }
-                     [collectView.mj_header endRefreshing];
-                 }]; */
-                
+             
             }
         }];
         
         MJRefreshGifHeader *header=(MJRefreshGifHeader *)collectView.mj_header;
         [self initMJRefeshHeaderForGif:header];
-        
         
         
         collectView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
@@ -527,7 +500,13 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     cityChooseVC.Location = ^(NSString *location) {
 //        [_cityChooseBtn setTitle:location forState:(UIControlStateNormal)];
         _userLocation = location;
+        [sender setTitle:_userLocation forState:UIControlStateNormal];
+        _currentPage_YD=1;
+        _currentPage_Bar=1;
+        _currentPage_GuWen=1;
         [weekSelf getDataWith:0];
+        [weekSelf getDataWith:1];
+        [weekSelf getDataWith:2];
     };
     
     [self.navigationController pushViewController:cityChooseVC animated:YES];
@@ -669,7 +648,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     UICollectionView *collectionView = _collectionArray[tag];
     if (!tag) {//娱乐顾问数据
         CLLocation * userLocation = [LYUserLocation instance].currentLocation;
-        NSDictionary *dic = @{@"city":_userLocation,@"p":[NSString stringWithFormat:@"%d",_currentPage_GuWen],@"per":@(PAGESIZE).stringValue,@"latitude":@(userLocation.coordinate.latitude).stringValue,@"longitude":@(userLocation.coordinate.longitude).stringValue};
+        NSDictionary *dic = @{@"city":_userLocation,@"p":[NSString stringWithFormat:@"%d",_currentPage_GuWen],@"per":@(PAGESIZE).stringValue,@"latitude":@(userLocation.coordinate.latitude).stringValue,@"longitude":@(userLocation.coordinate.longitude).stringValue,@"sort":@"popularitydesc"};
         [LYHomePageHttpTool homePageGetGuWenDataWith:dic complete:^(HomePageModel *homePageM) {
             if (_currentPage_GuWen == 1) {
                 [_dataArray.firstObject removeAllObjects];
@@ -708,25 +687,21 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
      {
          if (Req_Success == ermsg.state)
          {
-             if (Req_Success == ermsg.state)
-             {
-                 switch (tag) {
-                     case 1:
-                     {
-                         _currentPage_YD = 2;                                                  }
-                         break;
-                     case 2:{
-                         _currentPage_Bar = 2;
-                     }
-                         break;
+             switch (tag) {
+                 case 1:
+                 {
+                     _currentPage_YD = 2;                                                  }
+                     break;
+                 case 2:{
+                     _currentPage_Bar = 2;
                  }
-                 //                         cell.collectViewInside.mj_footer.hidden = NO;
-                 [collectionView.mj_footer resetNoMoreData];
-             }else{
-                 // collectView.mj_footer.hidden = YES;
-                 [collectionView.mj_footer endRefreshingWithNoMoreData];
+                     break;
              }
-             [collectionView.mj_header endRefreshing];
+             //                         cell.collectViewInside.mj_footer.hidden = NO;
+             [collectionView.mj_footer resetNoMoreData];
+         }else{
+             // collectView.mj_footer.hidden = YES;
+             [collectionView.mj_footer endRefreshingWithNoMoreData];
          }
          [collectionView.mj_header endRefreshing];
      }];
@@ -763,8 +738,10 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         hList.subids = @"1,6,7";
         hList.bannerTypeName=@"一起玩";
     }
+    hList.city=_userLocation;
+    
     __weak __typeof(self)weakSelf = self;
-    [bus getToPlayOnHomeList2:hList pageIndex:_index results:^(LYErrorMessage * ermsg,HomePageModel *homePageM){
+    [bus getToPlayOnHomeList2:hList pageIndex:tag results:^(LYErrorMessage * ermsg,HomePageModel *homePageM){
         if (ermsg.state == Req_Success)
         {
             if(tag >= 3) return;
@@ -773,10 +750,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 [array removeAllObjects];
                 weakSelf.bannerList = homePageM.banner.mutableCopy;
                 
-                [_newbannerListArray replaceObjectAtIndex:_index withObject:homePageM.newbanner.mutableCopy];
+                [_newbannerListArray replaceObjectAtIndex:tag withObject:homePageM.newbanner.mutableCopy];
                 weakSelf.bartypeslistArray = homePageM.bartypeslist;
                 [_fiterArray replaceObjectAtIndex:tag withObject:homePageM.filterImages];
-//                [_fiterArray replaceObjectAtIndex:2 withObject:homePageM.filterImages];
             }
             
             [_recommendedBarArray replaceObjectAtIndex:tag withObject:homePageM.recommendedBar];
@@ -786,9 +762,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 _recommendedTopic2 = homePageM.recommendedTopic;
             }
             [array addObjectsFromArray:homePageM.barlist.mutableCopy] ;
-            
-//            LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
-//            [cell.collectViewInside reloadData];
+
             UICollectionView *collectView = _collectionArray[tag];
             [collectView reloadData];
         }
@@ -1164,7 +1138,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         guWenListVC.filterSortFlag = button.tag;
         guWenListVC.filterSexFlag = 2;
         guWenListVC.filterAreaFlag = 0;
-        guWenListVC.cityName = @"上海";
+        guWenListVC.cityName = [USER_DEFAULT objectForKey:@"UserChoosedLocation"]==nil?@"上海":(NSString *)[USER_DEFAULT objectForKey:@"UserChoosedLocation"];
         guWenListVC.isGuWenListVC = YES;
         guWenListVC.contentTag = button.tag;
 //        guWenListVC.subidStr = @"2";

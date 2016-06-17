@@ -31,4 +31,5 @@
 @property (nonatomic, strong) NSString *vipMobile;
 @property (nonatomic, assign) NSInteger vipUserid;
 @property (nonatomic, strong) NSString *vipUsernick;
+@property (nonatomic, assign) BOOL isManager;
 @end
