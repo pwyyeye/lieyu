@@ -72,4 +72,8 @@
 
 //获取娱乐顾问
 #define LY_HOME_GUWEN @"lyUsersVipApplyOutAction.do?action=logout"
+
+//获取所有地理信息
+#define LY_HOME_ALLLOCATION @"versionAction.do?action=add"
+
 #endif

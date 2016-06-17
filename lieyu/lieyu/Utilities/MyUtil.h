@@ -130,6 +130,6 @@ typedef enum {
 //判断用户是否有设置头像，没有头像挑战设置
 + (void)pushToAddPicForUser;
 
-+(NSArray *)getAreaWithName:(NSString *)areaName withStly:(LYAreaStyle) style;
++(NSArray *)getAreaWithName:(NSString *)areaName withStyle:(LYAreaStyle) style;
 
 @end

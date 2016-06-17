@@ -136,7 +136,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     [_headerView removeFromSuperview];
     CGFloat height = 0.f;
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    if(app.userModel.usertype.intValue==2){
+    if(app.userModel.usertype.intValue==2||app.userModel.usertype.intValue==3){
         if (SCREEN_WIDTH==320) {
             height=260;
         }else{
@@ -157,7 +157,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     self.collectionView.frame = CGRectMake(0, height, SCREEN_WIDTH, SCREEN_HEIGHT - height - 49);
     _headerView = [[LYUserCenterHeader alloc]init];
     _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, height);
-    if(app.userModel.usertype.intValue==2){
+    if(app.userModel.usertype.intValue==2||app.userModel.usertype.intValue==3){
 //        _headerView.btnChange_cons_width.constant = 60;
         _headerView.btnChange.hidden = NO;
     }else{
