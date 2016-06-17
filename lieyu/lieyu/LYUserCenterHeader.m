@@ -150,7 +150,7 @@
         [_tags setTitle:mytags forState:UIControlStateNormal];
         _label_work.text = mytags;
          _userNick.text=app.userModel.usernick;
-        if ([app.userModel.usertype isEqualToString:@"2"]) {
+        if ([app.userModel.usertype isEqualToString:@"2"]||[app.userModel.usertype isEqualToString:@"3"]) {
             //专属经理
             [_TypeName setText:@"粉丝"];
             [_careTypeImage setImage:[UIImage imageNamed:@"CareNumber"]];
@@ -490,6 +490,7 @@
 //    [app.navigationController pushViewController:myOrderManageViewController animated:YES];
     [app.navigationController pushViewController:myOrderVC animated:YES];
 }
+
 - (IBAction)checkFansOrCares:(UIButton *)sender {
     NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"查看粉丝或者关注"};
     [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];

@@ -36,7 +36,7 @@
 #import "LYMyFreeOrdersViewController.h"
 
 @interface LYUserCenterController ()<TencentSessionDelegate>{
-    NSInteger num,orderNum;
+    NSInteger num,orderNum,freeOrderNum;
     LYUserCenterHeader *_headerView;
 }
 
@@ -101,8 +101,11 @@ static NSString * const reuseIdentifier = @"userCenterCell";
                 [[LYUserHttpTool shareInstance] getOrderTTL:^(OrderTTL *result) {
                     _orderTTL=result;
                     orderNum = result.waitPay + result.waitRebate + result.waitPayBack + result.waitEvaluation + result.waitConsumption;
+                    freeOrderNum=result.freeOrderNum;
                     NSLog(@"-->%ld----%ld---%ld---%ld----%ld",result.waitPay,result.waitConsumption,result.waitEvaluation,result.waitRebate,result.waitPayBack);
                     NSIndexPath *indexP = [NSIndexPath indexPathForItem:0 inSection:0];
+                    [weakSelf.collectionView reloadItemsAtIndexPaths:@[indexP]];
+                    indexP = [NSIndexPath indexPathForItem:1 inSection:0];
                     [weakSelf.collectionView reloadItemsAtIndexPaths:@[indexP]];
 //                    [weakSelf.collectionView reloadData];
                     [_headerView loadBadge:_orderTTL];
@@ -216,7 +219,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
         NSLog(@"---->%ld",num);
 //        [weakSelf.collectionView reloadData];
 //        [weakSelf loadData];
-        NSIndexPath *indexP = [NSIndexPath indexPathForItem:1 inSection:0];
+        NSIndexPath *indexP = [NSIndexPath indexPathForItem:2 inSection:0];
         [weakSelf.collectionView reloadItemsAtIndexPaths:@[indexP]];
     }];
 }
@@ -256,7 +259,13 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             cell.btn_count.hidden = NO;
         }
     }
-    
+    if(indexPath.row == 1){
+        if(freeOrderNum){
+            [cell.btn_count setTitle:[NSString stringWithFormat:@"%ld",freeOrderNum] forState:UIControlStateNormal];
+            cell.btn_count.hidden = NO;
+        }
+        
+    }
     if(indexPath.row == 0){
         if(orderNum){
             [cell.btn_count setTitle:[NSString stringWithFormat:@"%ld",orderNum] forState:UIControlStateNormal];
