@@ -72,10 +72,10 @@
     if(self.userModel){
         NSString *usertype=self.userModel.usertype;
         int applyStatus=self.userModel.applyStatus;
-        if([usertype isEqualToString:@"2"]){
+        if([usertype isEqualToString:@"2"] || [usertype isEqualToString:@"3"]){
             NSDictionary *dic=@{@"colorRGB":RGB(255, 114, 130),@"imageContent":@"hat L",@"title":@"我是专属经理",@"delInfo":@""};
             [listArr addObject:dic];
-            userType=@"2";
+            userType=usertype;
         }else{
             if(applyStatus==1){
                 NSDictionary *dic=@{@"colorRGB":RGB(255, 114, 130),@"imageContent":@"hat L",@"title":@"我是专属经理",@"delInfo":@"审核中"};

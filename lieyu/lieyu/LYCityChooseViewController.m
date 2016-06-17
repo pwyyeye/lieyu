@@ -114,19 +114,29 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     if (section == 0) {
-        UILabel *firstLabel = [[UILabel alloc] initWithFrame:(CGRectMake(0, 0, 200, 60))];
+        UILabel *firstLabel = [[UILabel alloc] initWithFrame:(CGRectMake(20, 0, 200, 40))];
         firstLabel.text = @"定位";
-        return firstLabel;
+        firstLabel.font = [UIFont systemFontOfSize:13];
+        UILabel *zeroLabel = [[UILabel alloc] initWithFrame:(CGRectMake(0, 0, 20, 40))];
+        UILabel *blackLabel = [[UILabel alloc] initWithFrame:(CGRectMake(0, 0, 200, 40))];
+        [blackLabel addSubview:firstLabel];
+        [blackLabel addSubview:zeroLabel];
+        return blackLabel;
     } else {
-        UILabel *secondLabel = [[UILabel alloc] initWithFrame:(CGRectMake(0, 0, 200, 60))];
+        UILabel *secondLabel = [[UILabel alloc] initWithFrame:(CGRectMake(20, 0, 200, 60))];
         secondLabel.text = @"更多城市";
-        return secondLabel;
+        secondLabel.font = [UIFont systemFontOfSize:13];
+        UILabel *zeroLabel = [[UILabel alloc] initWithFrame:(CGRectMake(0, 0, 20, 40))];
+        UILabel *blackLabel = [[UILabel alloc] initWithFrame:(CGRectMake(0, 0, 200, 40))];
+        [blackLabel addSubview:secondLabel];
+        [blackLabel addSubview:zeroLabel];
+        return blackLabel;
     }
     
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 60;
+    return 40;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

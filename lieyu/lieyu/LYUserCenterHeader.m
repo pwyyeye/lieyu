@@ -178,7 +178,7 @@
     
     
     maintViewController.btnBackHidden = YES;
-    if(app.userModel.usertype.intValue==2){
+    if(app.userModel.usertype.intValue==2 || app.userModel.usertype.intValue == 3){
         UIWindow *window = [UIApplication sharedApplication].delegate.window;
         UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
         _effctView = [[UIVisualEffectView alloc]initWithEffect:effect];
@@ -490,6 +490,7 @@
 //    [app.navigationController pushViewController:myOrderManageViewController animated:YES];
     [app.navigationController pushViewController:myOrderVC animated:YES];
 }
+
 - (IBAction)checkFansOrCares:(UIButton *)sender {
     NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"查看粉丝或者关注"};
     [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
@@ -497,7 +498,7 @@
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     LYGuWenFansViewController *checkVC = [[LYGuWenFansViewController alloc]init];
     checkVC.userID = [NSString stringWithFormat:@"%d",app.userModel.userid];
-    if ([app.userModel.usertype isEqualToString:@"2"]) {
+    if ([app.userModel.usertype isEqualToString:@"2"] || [app.userModel.usertype isEqualToString:@"3"]) {
         checkVC.type = 0;
     }else{
         checkVC.type = 1;

@@ -425,7 +425,7 @@
             tabVC.selectedIndex = tabVC.viewControllers.count - 1;
             [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"shanghuban"];
             
-                if(app.userModel.usertype.intValue==2){
+                if(app.userModel.usertype.intValue==2 || app.userModel.usertype.intValue == 3){
                     UIWindow *window = [UIApplication sharedApplication].delegate.window;
                     UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
                     _effctView = [[UIVisualEffectView alloc]initWithEffect:effect];

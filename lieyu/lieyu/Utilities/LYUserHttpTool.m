@@ -1321,7 +1321,7 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     complete(response);
                 });
-            }else if ([[paraDic valueForKey:@"usertype"] isEqualToString:@"2"]){
+            }else if ([[paraDic valueForKey:@"usertype"] isEqualToString:@"2"] || [[paraDic valueForKey:@"usertype"] isEqualToString:@"3"]){
                 //商家扫码
                 NSString *message = [response valueForKey:@"message"];
                 NSArray *dataArr = [response valueForKey:@"data"];
