@@ -37,6 +37,8 @@
     LYHotBarMenuDropView *_menuDropView;//区域下拉菜单
     UIButton *_sectionBtn;//所有区域按钮
     NSString *_sectionTitle_distance,*_sectionTitle_time;//记录是否换过区
+    
+    NSString *_location;
 }
 
 @end
@@ -45,6 +47,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _location = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserChoosedLocation"];
+    if (!_location) {
+        _location = @"上海";
+    }
     // Do any additional setup after loading the view.
     [self setupAllProperty];
     [MTA trackCustomEvent:@"ZJList" args:nil];
@@ -253,13 +260,9 @@
     
     //下拉菜单
     _menuDropView = [[LYHotBarMenuDropView alloc]initWithFrame:CGRectMake(0, -SCREEN_HEIGHT, SCREEN_WIDTH,SCREEN_HEIGHT - 65)];
-    NSString *location = [[NSUserDefaults standardUserDefaults]objectForKey:@"UserChoosedLocation"];
+    
     NSMutableArray *array;
-    if (location) {
-        array = [[NSMutableArray alloc]initWithArray:[MyUtil getAreaWithName:location withStyle:LYAreaStyleWithStateAndCityAndDistrict]];
-    }else{
-        array = [[NSMutableArray alloc]initWithArray:[MyUtil getAreaWithName:@"上海" withStyle:LYAreaStyleWithStateAndCityAndDistrict]];
-    }
+    array = [[NSMutableArray alloc]initWithArray:[MyUtil getAreaWithName:_location withStyle:LYAreaStyleWithStateAndCityAndDistrict]];
     [array insertObject:@"所有地区" atIndex:0];
 //    NSArray *array = @[@"所有地区",@"杨浦区",@"虹口区",@"闸北区",@"普陀区",@"黄浦区",@"静安区",@"长宁区",@"卢湾区",@"徐汇区",@"闵行区",@"浦东新区",@"宝山区",@"松江区",@"嘉定区",@"青浦区",@"金山区",@"奉贤区",@"南汇区",@"崇明县"];
     _menuDropView.backgroundColor = [UIColor whiteColor];
@@ -342,14 +345,14 @@
     switch (tag) {
         case 0://按时间获取 reachtimedesc
         {
-            p = [NSString stringWithFormat:@"%ld",_currentPageDistance];
-            dic = @{@"p":p,@"per":[NSString stringWithFormat:@"%d",PAGESIZE],@"longitude":longitude,@"latitude":latitude,@"address":address,@"sort":@"reachtimedesc"};
+            p = [NSString stringWithFormat:@"%d",_currentPageDistance];
+            dic = @{@"p":p,@"per":[NSString stringWithFormat:@"%d",PAGESIZE],@"longitude":longitude,@"latitude":latitude,@"address":address,@"sort":@"reachtimedesc",@"city":_location};
         }
             break;
         case 1://按距离获取 distanceasc
         {
-            p = [NSString stringWithFormat:@"%ld",_currentPageTime];
-            dic = @{@"p":p,@"per":[NSString stringWithFormat:@"%d",PAGESIZE],@"longitude":longitude,@"latitude":latitude,@"address":address,@"sort":@"distanceasc"};
+            p = [NSString stringWithFormat:@"%d",_currentPageTime];
+            dic = @{@"p":p,@"per":[NSString stringWithFormat:@"%d",PAGESIZE],@"longitude":longitude,@"latitude":latitude,@"address":address,@"sort":@"distanceasc",@"city":_location};
         }
             break;
     }
@@ -402,8 +405,9 @@
                 }
                     break;
             }
+            
+            [tableView reloadData];
             if(array.count > 0){
-                [tableView reloadData];
                 [_palceLabel removeFromSuperview];
             }else{//没有组局的提示
                 [_palceLabel removeFromSuperview];
