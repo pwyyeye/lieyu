@@ -102,7 +102,7 @@
         statusModel = model;
 //        statusModel.applyType 1.支付宝 2.银行卡 3.微信
 //        statusModel.wechatAccount
-//        userModel.applyStatus 0.未申请 1.审核中 2.已审核 3.审核未通过
+//        userModel.applyStatus 0.未申请 1.审核中 2.已审核 3.审核未通过 4.待处理
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 218, 10, 200, 30)];
         label.textAlignment = NSTextAlignmentRight;
         [label setBackgroundColor:[UIColor whiteColor]];
@@ -268,6 +268,8 @@
         }else if (canApply && enterStep == 3){
             detailViewController = [[checkUnpassedViewController alloc]initWithNibName:@"checkUnpassedViewController" bundle:nil];
             detailViewController.title = @"申请专属经理";
+        }else if ([userModel.usertype isEqualToString:@"3"] || userModel.applyStatus == 4){
+            [MyUtil showLikePlaceMessage:@"您已经是专属经理！"];
         }
     }
 
