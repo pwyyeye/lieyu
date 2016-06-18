@@ -255,7 +255,7 @@
     hList.latitude = [[NSDecimalNumber alloc]initWithString:@(userLocation.coordinate.latitude).stringValue];
     switch (_filterSortFlag) {
         case 0:
-            hList.sort = @"popularityasc";
+            hList.sort = @"popularitydesc";
             hList.p = @(_pagePopularity);
             break;
         case 1:
