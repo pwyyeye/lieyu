@@ -426,7 +426,6 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     
 //    NSArray *btnArray = @[_btnGuWen,_btn_yedian,_btn_bar];
     NSArray *btnTitleArray = @[@"娱乐顾问",@"夜店",@"酒吧"];
-    CGFloat btnWidth_2 = 26;
     for (int i = 0; i < btnTitleArray.count; i ++) {
         HotMenuButton *btn = [[HotMenuButton alloc]init];
         btn.titleLabel.font = [UIFont systemFontOfSize:12];
@@ -436,7 +435,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         else btn.isHomePageMenuViewSelected = NO;
         [btn setTitle:btnTitleArray[i] forState:UIControlStateNormal];
         [_menuView addSubview:btn];
-        btn.frame = CGRectMake(SCREEN_WIDTH/3.f * i + btnWidth_2 , _menuView.frame.size.height - 16 - 4.5, 2 * btnWidth_2, 16);
+        btn.frame = CGRectMake(SCREEN_WIDTH/3.f * i, _menuView.frame.size.height - 16 - 4.5, SCREEN_WIDTH/3.f, 16);
+        [btn.titleLabel setTextAlignment:NSTextAlignmentCenter];
         [_menuBtnArray addObject:btn];
     }
 

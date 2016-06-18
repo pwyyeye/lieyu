@@ -73,7 +73,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 
     _data=@[
       @{@"title":@"订单",@"icon":@"userShopOrder"},
-      @{@"title":@"免费订台",@"icon":@"userShopOrder"},
+      @{@"title":@"免费订台",@"icon":@"free_order_icon"},
       @{@"title":@"购物车",@"icon":@"userShopCart"},
       @{@"title":@"收藏",@"icon":@"userFav"},
 //  @{@"title":@"专属经理",@"icon":@"userManager"},
