@@ -43,7 +43,7 @@
 #define LIKEKEY  [NSString stringWithFormat:@"%@%@",_userid,self.beerBarDetail.barid]
 #define BEERBARDETAIL_MTA @"酒吧详情"
 
-@interface BeerNewBarViewController ()<UIWebViewDelegate,UIScrollViewDelegate,UIActionSheetDelegate>
+@interface BeerNewBarViewController ()<UIWebViewDelegate,UIScrollViewDelegate,UIActionSheetDelegate,LYBarCommentSuccessDelegate>
 {
     NSManagedObjectContext *_context;
     NSString *_userid;//用户id
@@ -647,7 +647,12 @@
             _tableHeaderImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 9/16.f)];
             _tableHeaderImgView.tag = 1008611;
             if(_beerBarDetail.banners.count){
-            [_tableHeaderImgView sd_setImageWithURL:[NSURL URLWithString:_beerBarDetail.banners.firstObject] placeholderImage:[UIImage imageNamed:@"empyImageBar16_9"]];
+                for (NSString *imageUrl in _beerBarDetail.banners) {
+                    if (![MyUtil isEmptyString:imageUrl]) {
+                        [_tableHeaderImgView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"empyImageBar16_9"]];
+                        break;
+                    }
+                }
             }
             [_headerCell addSubview:_tableHeaderImgView];
             _headerCell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -746,7 +751,7 @@
         LYFriendsTopicsViewController *friendTopicVC = [[LYFriendsTopicsViewController alloc]init];
         friendTopicVC.topicTypeId = self.beerBarDetail.topicTypeId;
         friendTopicVC.topicName = self.beerBarDetail.topicTypeName;
-        
+        friendTopicVC.commentDelegate = self;
         friendTopicVC.isFriendsTopic = NO;
         friendTopicVC.isFriendToUserMessage = YES;
         friendTopicVC.isTopic = YES;
@@ -1079,4 +1084,14 @@
         }
     }
 }
+
+- (void)lyBarCommentsSendSuccess{
+    if ( _beerBarDetail.topicTypeMommentNum.length) {
+        _beerBarDetail.topicTypeMommentNum = [NSString stringWithFormat:@"%d",[_beerBarDetail.topicTypeMommentNum intValue] + 1];
+    }else{
+        _beerBarDetail.topicTypeMommentNum = @"1";
+    }
+    [_barTitleCell.btn_comment setTitle:[NSString stringWithFormat:@"%@条评论",_beerBarDetail.topicTypeMommentNum] forState:UIControlStateNormal];
+}
+
 @end

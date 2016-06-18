@@ -8,9 +8,18 @@
 
 #import "LYFriendsMessagesViewController.h"
 
+@protocol LYBarCommentSuccessDelegate <NSObject>
+
+- (void)lyBarCommentsSendSuccess;
+
+@end
+
 @interface LYFriendsTopicsViewController : LYFriendsMessagesViewController
 @property (nonatomic,copy) NSString *topicName;
 @property (nonatomic,copy) NSString *topicTypeId;
 @property (nonatomic,copy) NSString *headerViewImgLink;
 @property (nonatomic,unsafe_unretained) BOOL isFriendsTopic;
+
+@property (nonatomic, assign) id<LYBarCommentSuccessDelegate> commentDelegate;
+
 @end

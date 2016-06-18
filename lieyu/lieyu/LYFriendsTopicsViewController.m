@@ -196,7 +196,6 @@
 
 - (void)sendSucceed:(NSString *)messageId{//发布成功以后
     [super sendSucceed:messageId];
-    
     NSArray *dataArr = [_dataArray objectAtIndex:0];
     [self removePlaceView];
     if (!dataArr.count) {
@@ -206,9 +205,17 @@
 
 - (void)sendVedio:(NSString *)mediaUrl andImage:(UIImage *)image andContent:(NSString *)content andLocation:(NSString *)location andTopicID:(NSString *)topicID andTopicName:(NSString *)topicName{
     [super sendVedio:mediaUrl andImage:image andContent:content andLocation:location andTopicID:topicID andTopicName:topicName];
+    
+    if ([_commentDelegate respondsToSelector:@selector(lyBarCommentsSendSuccess)]) {
+        [_commentDelegate lyBarCommentsSendSuccess];
+    }
 }
 - (void)sendImagesArray:(NSArray *)imagesArray andContent:(NSString *)content andLocation:(NSString *)location andTopicID:(NSString *)topicID andTopicName:(NSString *)topicName{
     [super sendImagesArray:imagesArray andContent:content andLocation:location andTopicID:topicID andTopicName:topicName];
+    
+    if ([_commentDelegate respondsToSelector:@selector(lyBarCommentsSendSuccess)]) {
+        [_commentDelegate lyBarCommentsSendSuccess];
+    }
 }
 
 

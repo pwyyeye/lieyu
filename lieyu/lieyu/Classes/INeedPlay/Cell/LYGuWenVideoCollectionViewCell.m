@@ -43,7 +43,11 @@
     }else{
         [_likeButton setImage:[UIImage imageNamed:@"videounLiked"] forState:UIControlStateNormal];
     }
-    
+    if ([MyUtil isEmptyString:recentM.id]) {
+        _likeButton.enabled = NO;
+    }else{
+        _likeButton.enabled = YES;
+    }
 }
 
 @end

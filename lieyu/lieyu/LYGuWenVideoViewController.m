@@ -48,7 +48,7 @@
 
 
 - (void)dealloc{
-    NSLog(@"LYGuWenVideoViewController   dealloc    success");
+//    NSLog(@"LYGuWenVideoViewController   dealloc    success");
 }
 
 #pragma - mark 生命周期
@@ -435,7 +435,13 @@
 }
 
 - (void)sendSucceed:(NSString *)messageId{
-    
+    if(_dataList.count){
+        FriendsRecentModel *recentM = [_dataList objectAtIndex:0];
+        recentM.id = [NSString stringWithFormat:@"%@",messageId];
+    }
+    LYGuWenOutsideCollectionViewCell *cell = (LYGuWenOutsideCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
+//    cell.videoArray = _dataList;
+    [cell.collectViewInside reloadData];
 }
 
 
