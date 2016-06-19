@@ -87,6 +87,7 @@
         [applicationVC.viewLabel2 setText:@"真实姓名"];
         if (notEdit) {
             [applicationVC.yhkkhTex setText:@""];
+            [applicationVC.yhkkhTex setKeyboardType:UIKeyboardTypeDefault];
             [applicationVC.yhkkhTex setPlaceholder:@"请输入您的真实姓名"];
         }else{
             [applicationVC.yhkkhTex setText:_checkModel.wechatName];
@@ -102,6 +103,7 @@
         
         applicationVC.viewLine3.hidden = NO;
         [applicationVC.viewLabel3 setText:@"绑定姓名"];
+        [applicationVC.yhkkhTex setKeyboardType:UIKeyboardTypeDefault];
         if (notEdit) {
             [applicationVC.yhkkhTex setText:@""];
             [applicationVC.yhkkhTex setPlaceholder:@"请输入正确的帐号"];
@@ -472,6 +474,7 @@
     [[NSMutableDictionary alloc]initWithDictionary:@{
     @"id":_checkModel.id,
     @"idcard":idcard,
+    @"city":[USER_DEFAULT objectForKey:@"UserChoosedLocation"]==nil?@"上海":(NSString *)[USER_DEFAULT objectForKey:@"UserChoosedLocation"],
     @"userid":[NSNumber numberWithInt:self.userModel.userid],
     @"applyType":applyTypeString,
     @"barid":jiuBaNow ? [NSNumber numberWithInt:jiuBaNow.barid] : _checkModel.barid,

@@ -582,7 +582,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 #pragma mark - 本地加载数据
 - (void)getDataLocalAndReload{
     NSMutableArray *array = [self getDataFromLocal].mutableCopy;
-
+    if (array.count==0) {
+        return;
+    }
   //  LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
     if (array.count == 3) {//顾问的数据
         NSArray *array_GW = array.firstObject;
@@ -849,7 +851,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         NSMutableArray *bannerList=[NSMutableArray new];
         
         for (NSDictionary *dic in _newbannerListArray[collectionView.tag]) {
-            if ([dic objectForKey:@"img_url"]) {
+            if ([dic isKindOfClass:NSDictionary.class]&&[dic objectForKey:@"img_url"]) {
                 [bannerList addObject:[dic objectForKey:@"img_url"]];
             }
         }
