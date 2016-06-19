@@ -46,6 +46,7 @@
     //
     _bgView.layer.cornerRadius = 4;
     _userAvatarImage.layer.cornerRadius = 20;
+    _userAvatarImage.layer.masksToBounds = YES;
     _firstButton.layer.cornerRadius = 14;
     _secondButton.layer.cornerRadius = 14;
 }
@@ -58,12 +59,13 @@
 
 - (void)setFreeOrder:(LYFreeOrderModel *)freeOrder{
     _freeOrder = freeOrder;
+    BOOL shanghuban = [[NSUserDefaults standardUserDefaults] boolForKey:@"shanghuban"];
     [_consumerAddressLabel setText:_freeOrder.barname];
     _freeOrder.cassetteType == 1 ? [_kazuoTypeLabel setText:@"散座"] : (_freeOrder.cassetteType == 2 ? [_kazuoTypeLabel setText:@"小卡"] : (_freeOrder.cassetteType == 3 ? [_kazuoTypeLabel setText:@"大卡"] : [_kazuoTypeLabel setText:@"其他"]));
     [_orderNumberLabel setText:[NSString stringWithFormat:@"%d",_freeOrder.id]];
     [_orderCreateTimeLabel setText:_freeOrder.createTime];
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    if ([app.userModel.usertype isEqualToString:@"2"] || [app.userModel.usertype isEqualToString:@"3"]) {
+    if (([app.userModel.usertype isEqualToString:@"2"] || [app.userModel.usertype isEqualToString:@"3"]) && (shanghuban||_freeOrder.isManager)) {
         //用户的信息
         [_userAvatarImage sd_setImageWithURL:[NSURL URLWithString:_freeOrder.avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
         [_userNickLabel setText:_freeOrder.usernick];
@@ -74,11 +76,10 @@
     [_consumerTimeLabel setText:_freeOrder.reachTime];
     _freeOrder.orderStatus == 1 ? [_orderStatusLabel setText:@"待确认"] : (_freeOrder.orderStatus == 2 ?  [_orderStatusLabel setText:@"待评价"] : [_orderStatusLabel setText:_freeOrder.isSatisfactionName]);
     if (_freeOrder.minPartNumber < 10) {
-        [_orderJoinLabel setText:[NSString stringWithFormat:@"%ld～%ld人参与",_freeOrder.minPartNumber,_freeOrder.partNumber]];
+        [_orderJoinLabel setText:[NSString stringWithFormat:@"%d～%d人参与",_freeOrder.minPartNumber,_freeOrder.partNumber]];
     }else{
-        [_orderJoinLabel setText:[NSString stringWithFormat:@"%ld人以上参与",_freeOrder.minPartNumber]];
+        [_orderJoinLabel setText:[NSString stringWithFormat:@"%d人以上参与",_freeOrder.minPartNumber]];
     }
-     BOOL shanghuban = [[NSUserDefaults standardUserDefaults] boolForKey:@"shanghuban"];
     if (([app.userModel.usertype isEqualToString:@"2"] || [app.userModel.usertype isEqualToString:@"3"])&&(shanghuban||_freeOrder.isManager)) {
         if (_freeOrder.orderStatus == 1) {
             _firstButton.hidden = YES;

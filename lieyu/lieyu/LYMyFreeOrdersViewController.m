@@ -286,7 +286,16 @@
 - (void)secondButtonClick:(UIButton *)button{
     LYFreeOrderModel *model = [_dataArray objectAtIndex:button.tag];
     if ([button.titleLabel.text isEqualToString:@"取消"]) {
-        [self lyDeleteFreeOrder:button.tag];
+        
+        __weak typeof(self) weakSelf=self;
+        AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"提示" message:@"你是否确认取消订单？" cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex){
+            if (buttonIndex == 0) {
+                
+            }else if (buttonIndex == 1){
+                [weakSelf lyDeleteFreeOrder:button.tag];
+            }
+        }];
+        [alert show];
     }else if ([button.titleLabel.text isEqualToString:@"不满意"]){
         AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"提示" message:@"你是否确认此“不满意“操作？" cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex){
             //在这里面执行触发的行为，省掉了代理，这样的好处是在使用多个Alert的时候可以明确定义各自触发的行为，不需要在代理方法里判断是哪个Alert了

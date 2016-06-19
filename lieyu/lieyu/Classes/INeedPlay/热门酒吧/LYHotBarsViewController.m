@@ -34,6 +34,7 @@
     NSInteger _currentPagePrice;
     NSInteger _currentPageFanli;
 
+    UILabel *_kongView;
 }
 
 @property(nonatomic,strong)NSMutableArray *bannerList;
@@ -198,6 +199,7 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [self hideKongView];
     if(scrollView == _collectView){
         UIButton *hotBtn = _menuBtnArray[0];
         CGFloat offsetWidth = scrollView.contentOffset.x;
@@ -288,6 +290,11 @@
                  {
                      if(_currentPageHot == 1){
                          [array removeAllObjects];
+                         if (!barList.count) {
+                             [self initKongView];
+                         }else{
+                             [self hideKongView];
+                         }
                      }
                      [array addObjectsFromArray:barList];
                      _currentPageHot ++;
@@ -297,6 +304,11 @@
                  {
                      if(_currentPageDistance == 1) {
                          [array removeAllObjects];
+                         if (!barList.count) {
+                             [self initKongView];
+                         }else{
+                             [self hideKongView];
+                         }
                      }
                      [array addObjectsFromArray:barList];
                      _currentPageDistance ++;
@@ -306,6 +318,11 @@
                  {
                      if(_currentPagePrice == 1) {
                          [array removeAllObjects];
+                         if (!barList.count) {
+                             [self initKongView];
+                         }else{
+                             [self hideKongView];
+                         }
                      }
                      [array addObjectsFromArray:barList];
                      _currentPagePrice ++;
@@ -315,6 +332,11 @@
                  {
                      if(_currentPageFanli == 1) {
                          [array removeAllObjects];
+                         if (!barList.count) {
+                             [self initKongView];
+                         }else{
+                             [self hideKongView];
+                         }
                      }
                      [array addObjectsFromArray:barList];
                      _currentPageFanli ++;
@@ -391,6 +413,22 @@
              });
          }
      }];
+}
+
+#pragma mark - 无数据界面
+- (void)initKongView{
+    if (!_kongView) {
+        _kongView = [[UILabel alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT / 2 - 45, SCREEN_WIDTH, 16)];
+        [_kongView setFont:[UIFont systemFontOfSize:14]];
+        [_kongView setTextColor:RGBA(186, 40, 227, 1)];
+        [_kongView setText:@"抱歉，暂无酒吧入驻！"];
+        [_kongView setTextAlignment:NSTextAlignmentCenter];
+    }
+    [self.view addSubview:_kongView];
+}
+
+- (void)hideKongView{
+    [_kongView removeFromSuperview];
 }
 
 
