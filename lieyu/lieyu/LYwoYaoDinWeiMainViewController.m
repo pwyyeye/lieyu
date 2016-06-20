@@ -142,26 +142,32 @@
 }
 
 - (void)initManagerView{
-    if(managerView){
-        [managerView removeFromSuperview];
-    }
-    managerView = [[ManagersView alloc]initWithFrame:CGRectMake(0, 44, SCREEN_WIDTH, 54)];
-    _managersView.layer.shadowRadius = 2;
-    _managersView.layer.shadowColor = [[UIColor lightGrayColor]CGColor];
-    _managersView.layer.shadowOffset = CGSizeMake(0, 1);
-    _managersView.layer.shadowOpacity = 0.5;
-    managerView.delegate = self;
-    managerView.backgroundColor = [UIColor whiteColor];
-    [_managersView addSubview:managerView];
-    zsList = [NSMutableArray array];
-    NSDictionary *dic=@{@"barid":[NSNumber numberWithInt:_barid],@"":@""};
-    [[LYHomePageHttpTool shareInstance]getBarVipWithParams:dic block:^(NSMutableArray *result) {
-        [zsList addObjectsFromArray:result];
-        if (![MyUtil isEmptyString:_choosedManagerID]) {
-            managerView.choosedManagerID = _choosedManagerID;
+    if ([MyUtil isEmptyString:_choosedManagerID]) {
+        //入口不是在线预订
+        if(managerView){
+            [managerView removeFromSuperview];
         }
-        [managerView configure:zsList];
-    }];
+        managerView = [[ManagersView alloc]initWithFrame:CGRectMake(0, 44, SCREEN_WIDTH, 54)];
+        _managersView.layer.shadowRadius = 2;
+        _managersView.layer.shadowColor = [[UIColor lightGrayColor]CGColor];
+        _managersView.layer.shadowOffset = CGSizeMake(0, 1);
+        _managersView.layer.shadowOpacity = 0.5;
+        managerView.delegate = self;
+        managerView.backgroundColor = [UIColor whiteColor];
+        [_managersView addSubview:managerView];
+        zsList = [NSMutableArray array];
+        NSDictionary *dic=@{@"barid":[NSNumber numberWithInt:_barid],@"":@""};
+        [[LYHomePageHttpTool shareInstance]getBarVipWithParams:dic block:^(NSMutableArray *result) {
+            [zsList addObjectsFromArray:result];
+            if (![MyUtil isEmptyString:_choosedManagerID]) {
+                managerView.choosedManagerID = _choosedManagerID;
+            }
+            [managerView configure:zsList];
+        }];
+    }else{
+        _tableView.contentInset = UIEdgeInsetsMake(140, 0, 0, 0);
+    }
+    
 }
 
 #pragma mark - 营业时间与专属经理选框
@@ -171,6 +177,7 @@
     UITapGestureRecognizer *chooseTime = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(chooseTime:)];
     [timeView addGestureRecognizer:chooseTime];
     [self initTimeView];
+    
     [_managersView addSubview:timeView];
 
 }
@@ -197,14 +204,24 @@
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
         [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
 //        NSString *reachtime = [formatter stringFromDate:_timeView.timePicker.date];
-        if (zsList.count==0) {
+        if (zsList.count==0 && [MyUtil isEmptyString:_choosedManagerID]) {
             [MyUtil showCleanMessage:@"该酒吧暂无专属经理，无法下单！"];
             return;
         }
         tcModel = jiubaModel.recommend_package[oldIndex.section];
-        ZSDetailModel *zsModel = zsList[index];
+        NSString *checkUserID;
+        if (zsList.count) {
+            ZSDetailModel *zsModel = zsList[index];
+            checkUserID = [NSString stringWithFormat:@"%d",zsModel.userid];
+        }else if (_choosedManagerID){
+            checkUserID = _choosedManagerID;
+        }
+        if ([MyUtil isEmptyString:checkUserID]) {
+            [MyUtil showCleanMessage:@"该酒吧暂无专属经理，无法下单！"];
+            return;
+        }
         NSLog(@"%@",tcModel.smid);
-        NSDictionary *dic=@{@"smid":tcModel.smid,@"reachtime":dataAndTime,@"checkuserid":[NSNumber numberWithInt:zsModel.userid],@"allnum":[NSNumber numberWithInt:oldNumber],@"consumptionStatus":@"1"};
+        NSDictionary *dic=@{@"smid":tcModel.smid,@"reachtime":dataAndTime,@"checkuserid":checkUserID,@"allnum":[NSNumber numberWithInt:oldNumber],@"consumptionStatus":@"1"};
         __weak LYwoYaoDinWeiMainViewController *weakSelf = self;
             [[LYHomePageHttpTool shareInstance]setWoYaoDinWeiOrderInWithParams:dic complete:^(NSString *result) {
                 if(result){
@@ -347,7 +364,11 @@
         jiubaModel=result;
 //        dispatch_async(dispatch_get_main_queue(), ^{
             [weakSelf.tableView reloadData];
-            weakSelf.tableView.contentOffset = CGPointMake(0, -200);
+            if ([MyUtil isEmptyString:_choosedManagerID]) {
+                weakSelf.tableView.contentOffset = CGPointMake(0, -200);
+            }else{
+                weakSelf.tableView.contentOffset = CGPointMake(0, -140);
+            }
 //        });
             [weakSelf initTimeView];
             [weakSelf removeNoGoodView];
