@@ -238,22 +238,24 @@
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view{
 //    NSLog(@"view.tag----%ld",view.tag);
-    int i = (view.tag - 1) % 10;
-    int contentOffset = 85 * i ;
-    NSLog(@"%f",(_tableView.frame.size.height / 85) * 85);
-//    if (contentOffset < ((int)_tableView.frame.size.height / 85) * 85) {
-//        self.tableView.contentOffset = CGPointMake(0, 0);
-//    }else{
-//        self.tableView.contentOffset = CGPointMake(0, 85 * (i + 1) - _tableView.frame.size.height);
-//    }
-    int height = _tableView.contentOffset.y + _tableView.frame.size.height;
-    if(contentOffset < _tableView.contentOffset.y){
-        self.tableView.contentOffset = CGPointMake(0, contentOffset);
-    
-    }else if (contentOffset + 85 > height){
-        self.tableView.contentOffset = CGPointMake(0, contentOffset + 85 - _tableView.frame.size.height);
+    if (view.tag > 0) {
+        int i = (view.tag - 1) % 10;
+        int contentOffset = 85 * i ;
+        NSLog(@"%f",(_tableView.frame.size.height / 85) * 85);
+        //    if (contentOffset < ((int)_tableView.frame.size.height / 85) * 85) {
+        //        self.tableView.contentOffset = CGPointMake(0, 0);
+        //    }else{
+        //        self.tableView.contentOffset = CGPointMake(0, 85 * (i + 1) - _tableView.frame.size.height);
+        //    }
+        int height = _tableView.contentOffset.y + _tableView.frame.size.height;
+        if(contentOffset < _tableView.contentOffset.y){
+            self.tableView.contentOffset = CGPointMake(0, contentOffset);
+            
+        }else if (contentOffset + 85 > height){
+            self.tableView.contentOffset = CGPointMake(0, contentOffset + 85 - _tableView.frame.size.height);
+        }
+        [self tableView:_tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:i]];
     }
-    [self tableView:_tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:i]];
 }
 
 
