@@ -48,7 +48,7 @@
 -(void)getJiuBalist{
     [_listContent removeAllObjects];
      __weak __typeof(self)weakSelf = self;
-    [[LYUserHttpTool shareInstance]getJiuBaList:nil block:^(NSMutableArray *result) {
+    [[LYUserHttpTool shareInstance]getJiuBaList:@{@"city":[USER_DEFAULT objectForKey:@"UserChoosedLocation"]==nil?@"上海":(NSString *)[USER_DEFAULT objectForKey:@"UserChoosedLocation"]} block:^(NSMutableArray *result) {
         NSMutableArray *addressBookTemp = [[NSMutableArray  alloc]initWithArray:result];
         UILocalizedIndexedCollation *theCollation = [UILocalizedIndexedCollation currentCollation];
         for (JiuBaModel *addressBook in addressBookTemp) {

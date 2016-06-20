@@ -143,7 +143,7 @@
 {
     LYCityChooseTableViewCell *cell = [_cityListTableView cellForRowAtIndexPath:indexPath];
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    if (cell.cityNameLabel.text != nil) {
+    if (cell.cityNameLabel.text != nil && ![cell.cityNameLabel.text isEqualToString:[USER_DEFAULT objectForKey:@"UserChoosedLocation"]]) {
         self.Location(cell.cityNameLabel.text);
         [USER_DEFAULT setObject:cell.cityNameLabel.text forKey:@"UserChoosedLocation"];
     }

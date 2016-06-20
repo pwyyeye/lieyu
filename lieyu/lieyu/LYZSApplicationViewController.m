@@ -108,6 +108,7 @@
     if (accountNum == 1) {
         _viewLine2.hidden = NO;
         [_viewLabel2 setText:@"真实姓名"];
+        [_yhkkhTex setKeyboardType:UIKeyboardTypeDefault];
         [_yhkkhTex setPlaceholder:@"请输入您的真实姓名"];
         [_yhkkhTex setText:_checkModel.wechatName];
         
@@ -117,6 +118,7 @@
         _viewLine2.hidden = NO;
         [_viewLabel2 setText:@"支付宝账号"];
         [_yhkkhTex setPlaceholder:@"请输入正确的帐号"];
+        [_yhkkhTex setKeyboardType:UIKeyboardTypeDefault];
         [_yhkkhTex setText:_checkModel.alipayaccount];
         
         _viewLine3.hidden = NO;
@@ -246,6 +248,7 @@
     NSMutableDictionary *dic=
     [[NSMutableDictionary alloc]initWithDictionary:@{
     @"idcard":idcard,
+    @"city":[USER_DEFAULT objectForKey:@"UserChoosedLocation"]==nil?@"上海":(NSString *)[USER_DEFAULT objectForKey:@"UserChoosedLocation"],
     @"userid":[NSNumber numberWithInt:self.userModel.userid],
     @"applyType":applyType,
     @"barid":[NSNumber numberWithInt:jiuBaNow.barid],

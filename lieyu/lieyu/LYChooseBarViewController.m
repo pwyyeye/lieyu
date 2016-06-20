@@ -343,7 +343,7 @@
     AMapPOI *model = [_poisArray objectAtIndex:indexPath.section];
     if (model) {
         CLLocationCoordinate2D location = CLLocationCoordinate2DMake(model.location.latitude, model.location.longitude);
-        NSLog(@"%f===%f", location.latitude,location.longitude)
+//        NSLog(@"%f===%f", location.latitude,location.longitude)
         [_mapView setCenterCoordinate:location animated:YES];
     }
    }
