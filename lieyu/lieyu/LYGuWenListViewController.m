@@ -470,7 +470,6 @@
 
 #pragma mark - select delegate
 - (void)GuWenSelected:(NSString *)userID{
-//    LYGuWenDetailViewController *detailVC = [[LYGuWenDetailViewController alloc]initWithNibName:@"LYGuWenDetailViewController" bundle:nil];
     LYMyFriendDetailViewController *detailVC = [[LYMyFriendDetailViewController alloc]init];
     detailVC.userID = userID;
     [self.navigationController pushViewController:detailVC animated:YES];

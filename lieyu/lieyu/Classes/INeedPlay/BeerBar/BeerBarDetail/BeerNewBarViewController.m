@@ -14,7 +14,6 @@
 #import "BeerBarOrYzhDetailModel.h"
 #import "RecommendPackageModel.h"
 #import "LYwoYaoDinWeiMainViewController.h"
-#import "CHshowDetailListViewController.h"
 #import "DWTaoCanXQViewController.h"
 #import "LYUserLocation.h"
 #import "MyZSManageViewController.h"

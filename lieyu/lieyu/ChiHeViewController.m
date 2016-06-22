@@ -9,7 +9,6 @@
 #import "ChiHeViewController.h"
 #import "LYHomePageHttpTool.h"
 #import "MJRefresh.h"
-#import "CHShaiXuanViewController.h"
 #import "ProductCategoryModel.h"
 #import "CHJiuPinDetailViewController.h"
 #import "LYCarListViewController.h"

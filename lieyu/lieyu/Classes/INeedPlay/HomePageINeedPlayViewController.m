@@ -41,10 +41,8 @@
 #import "ChiHeViewController.h"
 #import "ZujuViewController.h"
 #import "LYGuWenPersonCollectionViewCell.h"
-#import "LYGuWenPersonDetailViewController.h"
 #import "LYGuWenListViewController.h"
 #import "LYHomeGuWenCollectionViewCell.h"
-#import "LYGuWenDetailViewController.h"
 #import "LYGuWenVideoViewController.h"
 #import "LYGuWenBannerCollectionViewCell.h"
 #import "LYMyFriendDetailViewController.h"
@@ -528,12 +526,6 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     
     
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:@"选择城市"]];
-
-//    LYGuWenPersonDetailViewController *cityChooseVC = [[LYGuWenPersonDetailViewController alloc]initWithNibName:@"LYGuWenPersonDetailViewController" bundle:[NSBundle mainBundle]];
-//    [self.navigationController pushViewController:cityChooseVC animated:YES];
-    
-//    LYGuWenDetailViewController *detailViewController = [[LYGuWenDetailViewController alloc]init];
-//    [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -1030,7 +1022,6 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             NSArray *arr = _dataArray[collectionView.tag];
             if (arr.count) {
                 UserModel *userM = arr[indexPath.item - 3];
-//                LYGuWenDetailViewController *guWenDetailVC = [[LYGuWenDetailViewController alloc]init];
                 LYMyFriendDetailViewController *guWenDetailVC = [[LYMyFriendDetailViewController alloc]init];
                 guWenDetailVC.userID = [NSString stringWithFormat:@"%d",userM.userid];
                 [self.navigationController pushViewController:guWenDetailVC animated:YES];
