@@ -7,7 +7,6 @@
 //
 
 #import "LYHotBarsViewController.h"
-#import "LYGuWenDetailViewController.h"
 #import "LYMyFriendDetailViewController.h"
 
 

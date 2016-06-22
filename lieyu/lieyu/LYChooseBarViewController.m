@@ -336,7 +336,7 @@
     
     NSUInteger viewTag = ( _request.page - 1 ) * 10 + indexPath.section + 1;
     MKAnnotationView *annoView = [_mapView viewWithTag:viewTag];
-    NSLog(@"%@-%@",annoView.annotation.title,annoView.annotation.subtitle);
+//    NSLog(@"%@-%@",annoView.annotation.title,annoView.annotation.subtitle);
     [_mapView selectAnnotation:annoView.annotation animated:YES];
     annoView.canShowCallout = YES;
     //根据点击的点，更改地图的中心位置
@@ -395,9 +395,10 @@
 //            [MyUtil showMessage:[NSString stringWithFormat:@"%@,%@",model.name,model.address]];
             NSDictionary *dict = [[NSDictionary alloc]init];
             dict = @{@"barName":model.name,
-                     @"barAddress":model.address,
+                     @"barAddress":[NSString stringWithFormat:@"%@%@%@%@",model.province,model.city,model.district,model.address],
                      @"barLongitude":[NSString stringWithFormat:@"%f",model.location.longitude],
-                     @"barLatitude":[NSString stringWithFormat:@"%f",model.location.latitude]};
+                     @"barLatitude":[NSString stringWithFormat:@"%f",model.location.latitude],
+                     @"city":model.city};
             [[NSNotificationCenter defaultCenter]postNotificationName:@"chooseAMoreBar" object:nil userInfo:dict];
             [self.navigationController popViewControllerAnimated:YES];
             [self.navigationController popViewControllerAnimated:YES];
@@ -433,6 +434,10 @@
     [_rightButton setTitle:@"确定" forState:UIControlStateNormal];
     [_searchBar setText:nil];
     [_searchBar resignFirstResponder];
+}
+
+- (void)dealloc{
+    
 }
 
 

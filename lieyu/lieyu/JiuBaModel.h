@@ -64,6 +64,7 @@
 @property BOOL rowSelected;
 @property (nonatomic, strong) NSString *startTime;
 @property (nonatomic, strong) NSString *endTime;
+@property (nonatomic, strong) NSString *vipCity;
 
 -(NSComparisonResult)compareJiuBaModel:(JiuBaModel *)model;
 - (NSComparisonResult)compareJiuBaModelGao:(JiuBaModel *)modelGao;

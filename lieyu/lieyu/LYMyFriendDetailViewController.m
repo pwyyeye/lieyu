@@ -16,7 +16,6 @@
 #import "SaoYiSaoViewController.h"
 #import "LYFindConversationViewController.h"
 #import "find_userInfoModel.h"
-#import "CareofViewController.h"
 #import "LYFriendsPersonMessageViewController.h"
 #import "LYGuWenFansViewController.h"
 #import "LYUserLocation.h"
