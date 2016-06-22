@@ -65,6 +65,10 @@
     
 }
 
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"chooseAMoreBar" object:nil];
+}
+
 //- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 //    NSLog(@"_scrollView.contentSize:%@",NSStringFromCGSize(_scrollView. contentSize));
 //    NSLog(@"_scrollView.frame:%@",NSStringFromCGRect(_scrollView.frame));
@@ -256,7 +260,8 @@
     @"barName":jiuBaNow.barname,
     @"barAddress":jiuBaNow.address,
     @"longitude":jiuBaNow.longitude,
-    @"latitude":jiuBaNow.latitude}];
+    @"latitude":jiuBaNow.latitude,
+    @"vipCity":jiuBaNow.vipCity}];
     //如果填写了微信号，上传
     if (![MyUtil isEmptyString:_wechatLbl.text]) {
         [dic setObject:_wechatLbl.text forKey:@"wechatId"];
@@ -331,9 +336,6 @@
     return YES;
 }
 
-- (void)dealloc{
-    NSLog(@"deall");
-}
 
 #pragma mark - 选择酒吧代理
 - (void)chooseJiuBa:(JiuBaModel *)jiuBaModel{
@@ -353,7 +355,7 @@
     newBar.address = [info objectForKey:@"barAddress"];
     newBar.longitude = [info objectForKey:@"barLongitude"];
     newBar.latitude = [info objectForKey:@"barLatitude"];
-    
+    newBar.vipCity = [info objectForKey:@"city"];
     [self chooseJiuBa:newBar];
 }
 

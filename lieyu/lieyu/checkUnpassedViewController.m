@@ -54,6 +54,10 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(chooseMoreBar:) name:@"chooseAMoreBar" object:nil];
 }
 
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"chooseAMoreBar" object:nil];
+}
+
 - (void)initThisView{
     [self.scrollerView setBackgroundColor:RGBA(245, 245, 245, 1)];
     
@@ -232,7 +236,7 @@
     newBar.address = [info objectForKey:@"barAddress"];
     newBar.longitude = [info objectForKey:@"barLongitude"];
     newBar.latitude = [info objectForKey:@"barLatitude"];
-    
+    newBar.vipCity = [info objectForKey:@"city"];
     [self chooseJiuBa:newBar];
 }
 
@@ -481,7 +485,8 @@
     @"barName":barName,
     @"barAddress":jiuBaNow ? jiuBaNow.address : _checkModel.barAddress,
     @"longitude":jiuBaNow ? jiuBaNow.longitude : _checkModel.longitudeBar,
-    @"latitude":jiuBaNow ? jiuBaNow.latitude    : _checkModel.latitudeBar}];
+    @"latitude":jiuBaNow ? jiuBaNow.latitude    : _checkModel.latitudeBar,
+    @"vipCity":jiuBaNow ? jiuBaNow.vipCity : _checkModel.vipCity}];
     //如果填写了微信号，上传
     if (![MyUtil isEmptyString:applicationVC.wechatLbl.text]) {
         [dic setObject:applicationVC.wechatLbl.text forKey:@"wechatId"];

@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="到店时间" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygC-Au-U9k">
@@ -44,25 +44,35 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QuL-su-X2p">
+                        <rect key="frame" x="64" y="8" width="248" height="27.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Xo3-Vu-h3B" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="0jP-mW-lmQ"/>
+                    <constraint firstAttribute="trailing" secondItem="QuL-su-X2p" secondAttribute="trailing" constant="8" id="4HM-UU-XaO"/>
                     <constraint firstItem="quw-rH-Lpe" firstAttribute="leading" secondItem="ygC-Au-U9k" secondAttribute="trailing" constant="18" id="82b-zj-Di2"/>
                     <constraint firstAttribute="trailing" secondItem="PxP-4H-ojC" secondAttribute="trailing" constant="16" id="9dS-ZS-g1q"/>
                     <constraint firstItem="ygC-Au-U9k" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="EtZ-SK-StE"/>
                     <constraint firstItem="Xo3-Vu-h3B" firstAttribute="leading" secondItem="quw-rH-Lpe" secondAttribute="leading" id="HLl-xO-FsB"/>
+                    <constraint firstAttribute="bottom" secondItem="QuL-su-X2p" secondAttribute="bottom" constant="8" id="Hfm-ea-h5I"/>
                     <constraint firstItem="ygC-Au-U9k" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="NWA-4G-D77"/>
                     <constraint firstAttribute="trailing" secondItem="Xo3-Vu-h3B" secondAttribute="trailing" id="UEV-T2-xLv"/>
                     <constraint firstItem="quw-rH-Lpe" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="X6N-XG-m4g"/>
                     <constraint firstAttribute="bottom" secondItem="Xo3-Vu-h3B" secondAttribute="bottom" id="bBh-WK-ThQ"/>
+                    <constraint firstItem="QuL-su-X2p" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="iYl-hV-kEX"/>
+                    <constraint firstItem="QuL-su-X2p" firstAttribute="leading" secondItem="ygC-Au-U9k" secondAttribute="trailing" constant="8" id="wLW-Db-Gc1"/>
                     <constraint firstItem="PxP-4H-ojC" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="zly-Qg-Ma4"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="anvance_button" destination="Xo3-Vu-h3B" id="dE2-Td-0bP"/>
                 <outlet property="content_label" destination="quw-rH-Lpe" id="Vk1-8I-HXQ"/>
+                <outlet property="subView" destination="QuL-su-X2p" id="hbt-5e-JGh"/>
                 <outlet property="title_label" destination="ygC-Au-U9k" id="HMn-9I-HKp"/>
             </connections>
+            <point key="canvasLocation" x="120" y="243"/>
         </tableViewCell>
     </objects>
     <resources>
