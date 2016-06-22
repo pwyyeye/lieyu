@@ -1596,7 +1596,6 @@
 		AD8899BF1B9AFE61007BCC7C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8899BE1B9AFE61007BCC7C /* AppDelegate.m */; };
 		AD8899C21B9AFE61007BCC7C /* lieyu.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AD8899C01B9AFE61007BCC7C /* lieyu.xcdatamodeld */; };
 		AD8899C51B9AFE61007BCC7C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8899C41B9AFE61007BCC7C /* ViewController.m */; };
-		AD8899C81B9AFE61007BCC7C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD8899C61B9AFE61007BCC7C /* Main.storyboard */; };
 		AD8899CA1B9AFE61007BCC7C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD8899C91B9AFE61007BCC7C /* Images.xcassets */; };
 		AD8899CD1B9AFE61007BCC7C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AD8899CB1B9AFE61007BCC7C /* LaunchScreen.xib */; };
 		AD8899D91B9AFE62007BCC7C /* lieyuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AD8899D81B9AFE62007BCC7C /* lieyuTests.m */; };
@@ -3953,7 +3952,6 @@
 		AD8899C11B9AFE61007BCC7C /* lieyu.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = lieyu.xcdatamodel; sourceTree = "<group>"; };
 		AD8899C31B9AFE61007BCC7C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		AD8899C41B9AFE61007BCC7C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		AD8899C71B9AFE61007BCC7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AD8899C91B9AFE61007BCC7C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		AD8899CC1B9AFE61007BCC7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		AD8899D21B9AFE62007BCC7C /* lieyuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = lieyuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -8348,7 +8346,6 @@
 				AD8899C91B9AFE61007BCC7C /* Images.xcassets */,
 				AD8899C31B9AFE61007BCC7C /* ViewController.h */,
 				AD8899C41B9AFE61007BCC7C /* ViewController.m */,
-				AD8899C61B9AFE61007BCC7C /* Main.storyboard */,
 				ADC66CE01C1EC38E00E597D9 /* LYMain.storyboard */,
 				15571BC01BE8E6EC006F73D0 /* NewMain.storyboard */,
 				AD8899CB1B9AFE61007BCC7C /* LaunchScreen.xib */,
@@ -9719,7 +9716,6 @@
 				85F545341C13FCD20013B92B /* LYUserDetailSexTableViewCell.xib in Resources */,
 				AD79E0841C775DFC00C45B97 /* empyImage120.png in Resources */,
 				38979A901CA40919002946F5 /* sad11.png in Resources */,
-				AD8899C81B9AFE61007BCC7C /* Main.storyboard in Resources */,
 				854038751CAE0F2F0056C27E /* 手指爱情.jpg in Resources */,
 				8549B04A1CAB71EA002DC462 /* zsQRCodeScan@2x.png in Resources */,
 				381FF0031C168755002A47BA /* icon_zixun_normal@3x.png in Resources */,
@@ -11358,14 +11354,6 @@
 				15EB35451BD4839D00BA6161 /* zh-Hans */,
 			);
 			name = UMSocialLocalizable.strings;
-			sourceTree = "<group>";
-		};
-		AD8899C61B9AFE61007BCC7C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AD8899C71B9AFE61007BCC7C /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		AD8899CB1B9AFE61007BCC7C /* LaunchScreen.xib */ = {
