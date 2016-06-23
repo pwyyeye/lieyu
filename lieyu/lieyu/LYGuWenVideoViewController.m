@@ -239,7 +239,8 @@
     NSDictionary *dict = @{@"start":[NSNumber numberWithInteger:_start],
                            @"limit":[NSNumber numberWithInteger:LIMIT],
                            @"attachType":_attachType,
-                           @"releaseUserType":[NSNumber numberWithInteger:_filterFlag]};
+                           @"releaseUserType":[NSNumber numberWithInteger:_filterFlag],
+                           @"city":[USER_DEFAULT objectForKey:@"UserChoosedLocation"]==nil?@"上海":(NSString *)[USER_DEFAULT objectForKey:@"UserChoosedLocation"]};
     [LYAdviserHttpTool lyGetAdviserVideoWithParams:dict complete:^(NSArray *dataList) {
         LYGuWenOutsideCollectionViewCell *cell = (LYGuWenOutsideCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
         if (dataList.count) {

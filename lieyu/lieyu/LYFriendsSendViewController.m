@@ -19,7 +19,7 @@
 
 #define IMGwidth ( [UIScreen mainScreen].bounds.size.width - 20 ) / 3
 
-@interface LYFriendsSendViewController ()<UIImagePickerControllerDelegate,UITextViewDelegate,UIAlertViewDelegate,ImagePickerFinish>
+@interface LYFriendsSendViewController ()<UIImagePickerControllerDelegate,UITextViewDelegate,UIAlertViewDelegate,ImagePickerFinish,CLLocationManagerDelegate,AMapSearchDelegate>
 {
     int qiniuPages;
     AppDelegate *app;
@@ -32,7 +32,16 @@
     BOOL isntFirstEdit;
     BOOL PrepareDelete;
     UILabel *TopicLbl;//话题label
+    
+    
+    AMapSearchAPI *_search;
+    NSMutableArray *poisArray;
+    AMapPOIAroundSearchRequest *request;
+    CLLocationManager *_locationManager;
+    
+    CLGeocoder *_geocoder;
 }
+@property (nonatomic, assign) CLLocationCoordinate2D coord;//包括经纬度
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 //@property (nonatomic, strong) NSMutableArray *shangchuanArray;
 @property (nonatomic, strong) NSMutableString *shangchuanString;
@@ -60,8 +69,8 @@
     self.fodderArray = [[NSMutableArray alloc]init];
     self.imageViewArray = [[NSMutableArray alloc]init];
     self.shangchuanString = [[NSMutableString alloc]init];
-    self.location = [[NSMutableString alloc]init];
-    self.city = [[NSMutableString alloc]init];
+//    self.location = [[NSMutableString alloc]init];
+//    self.city = [[NSMutableString alloc]init];
     self.keysArray = [[NSMutableArray alloc]init];
     
     [IQKeyboardManager sharedManager].enable = NO;
@@ -86,6 +95,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mediaPlayerThumbnailRequestFinished:) name:MPMoviePlayerThumbnailImageRequestDidFinishNotification object:self.player];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willexitfull) name:MPMoviePlayerWillExitFullscreenNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willEnterfull) name:MPMoviePlayerWillEnterFullscreenNotification object:nil];
+    
+    [self getLocation];
 }
 
 //- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -582,14 +593,79 @@
     [self.navigationController pushViewController:chooseLocationVC animated:YES];
 }
 
+#pragma mark - 获取地址
+- (void)getLocation{
+    poisArray = [[NSMutableArray alloc]init];
+    app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    // 配置用户key
+    [AMapSearchServices sharedServices].apiKey = @"1a62cee8b0fd0ae60c23fc8f83767d3a";
+    _locationManager = [[CLLocationManager alloc]init];
+    _locationManager.delegate = self;
+    _locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+    
+    //    if([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined){
+    //        [_locationManager requestWhenInUseAuthorization];
+    //        [self showMessage:@"定位服务当前尚未打开，请设置打开,否则无法签到!"];
+    //    }else{
+    //        _locationManager.delegate = self;
+    //
+    //    }
+    [_locationManager startUpdatingLocation];
+}
+
+- (void)loadLocatoin:(CGFloat)latitude and:(CGFloat)longtitude{
+    //初始化检索对象
+    _search = [[AMapSearchAPI alloc]init];
+    _search.delegate = self;
+    //构造AmapPOIAroundSearchRequest对象，设置周边请求参数
+    request = [[AMapPOIAroundSearchRequest alloc]init];
+    request.location = [AMapGeoPoint locationWithLatitude:latitude longitude:longtitude];
+    request.types = @"010000|020000|030000|040000|050000|060000|070000|080000|090000|100000|110000|120000|130000|140000|150000|150000|160000|170000|180000|190000|200000";
+    request.sortrule = 0;
+    request.requireExtension = YES;
+    request.page = request.page ++ ;
+    //实现周边搜索
+    [_search AMapPOIAroundSearch:request];
+}
+
+//实现 POI 搜索对应的回调函数
+- (void)onPOISearchDone:(AMapPOISearchBaseRequest *)request response:(AMapPOISearchResponse *)response{
+    if (response.pois.count == 0) {
+        //        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
+        return;
+    }
+    //通过AmapPOIAroundSearchRequest对象处理搜索结果
+    //    for(AMapPOI *p in response.pois){
+    //        NSLog(@"%@",p);
+    //    }
+    [poisArray addObjectsFromArray:response.pois];
+    //tiankong
+//    _addressStrLabel.text = [NSString stringWithFormat:@"%@",((AMapPOI *)poisArray[0]).city];
+    if(poisArray.count){
+        self.city = [[NSMutableString alloc]initWithString:((AMapPOI *)poisArray[0]).city];
+        self.location = [[NSMutableString alloc]initWithString:((AMapPOI *)poisArray[0]).city];
+        [self.locationBtn setTitle:self.location forState:UIControlStateNormal];
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
+    //    for(CLLocation *location in locations){
+    CLLocation *location = [locations firstObject];
+    _geocoder = [[CLGeocoder alloc]init];
+    _coord = location.coordinate;
+    [self loadLocatoin:_coord.latitude and:_coord.longitude];
+    [_locationManager stopUpdatingLocation];
+}
+
 #pragma mark delegate
 - (void)getLocationInfo:(NSString *)city Location:(NSString *)location{
     if([city isEqualToString:@""]){
         [self.locationBtn setTitle:@"不显示位置" forState:UIControlStateNormal];
     }else{
         [self.locationBtn setTitle:location forState:UIControlStateNormal];
+        self.city = [[NSMutableString alloc]initWithString:city];
     }
-    self.city = [[NSMutableString alloc]initWithString:city];
     self.location = [[NSMutableString alloc]initWithString:location];
 }
 
