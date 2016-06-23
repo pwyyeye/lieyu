@@ -102,7 +102,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
                     _orderTTL=result;
                     orderNum = result.waitPay + result.waitRebate + result.waitPayBack + result.waitEvaluation + result.waitConsumption;
                     freeOrderNum=result.freeOrderNum;
-                    NSLog(@"-->%ld----%ld---%ld---%ld----%ld",result.waitPay,result.waitConsumption,result.waitEvaluation,result.waitRebate,result.waitPayBack);
+                    NSLog(@"-->%d----%d---%d---%d----%d",result.waitPay,result.waitConsumption,result.waitEvaluation,result.waitRebate,result.waitPayBack);
                     NSIndexPath *indexP = [NSIndexPath indexPathForItem:0 inSection:0];
                     [weakSelf.collectionView reloadItemsAtIndexPaths:@[indexP]];
                     indexP = [NSIndexPath indexPathForItem:1 inSection:0];
