@@ -18,14 +18,17 @@
 }
 */
 - (void)awakeFromNib{
+    [_title_Label setHidden:YES];
+    [self setSelectedTag:1];
 }
+
 - (void)setSelectedTag:(NSInteger)selectedTag{
     _selectedTag = selectedTag;
     if (_selectedTag <= 0 || _selectedTag >= 11) {
         _selectedTag = 1;
     }
     for (LYKaZuoTypeButton *button in _choosebuttons) {
-        NSLog(@"%ld",button.tag);
+        NSLog(@"%d",button.tag);
         if (button.tag == _selectedTag) {
             button.selected = YES;
         }else{

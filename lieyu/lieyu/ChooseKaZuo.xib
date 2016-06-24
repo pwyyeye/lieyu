@@ -3,16 +3,17 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ChooseKaZuo">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+            <rect key="frame" x="0.0" y="0.0" width="292" height="92.5"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择卡座类型" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0LQ-hX-6An">
-                    <rect key="frame" x="106" y="21" width="108" height="21"/>
+                    <rect key="frame" x="92" y="21" width="108" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="s4H-UB-0LL"/>
                     </constraints>
@@ -21,58 +22,86 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QV2-FT-7OQ" customClass="LYKaZuoTypeButton">
-                    <rect key="frame" x="92" y="80" width="65" height="65"/>
+                    <rect key="frame" x="85" y="18.5" width="55.5" height="55.5"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="65" id="2sn-Ft-AEZ"/>
-                        <constraint firstAttribute="height" constant="65" id="Ghq-hY-kcG"/>
+                        <constraint firstAttribute="width" constant="55" id="2sn-Ft-AEZ"/>
+                        <constraint firstAttribute="height" constant="55" id="Ghq-hY-kcG"/>
+                        <constraint firstAttribute="width" secondItem="QV2-FT-7OQ" secondAttribute="height" multiplier="1:1" id="ZFC-r4-4FQ"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <state key="normal" title="小卡">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.90379849140000001" colorSpace="calibratedRGB"/>
                     </state>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="2sn-Ft-AEZ"/>
+                            <exclude reference="Ghq-hY-kcG"/>
+                        </mask>
+                    </variation>
                     <connections>
                         <action selector="chooseTypeClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="rqF-Qb-cFZ"/>
                     </connections>
                 </button>
                 <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D0t-tM-3pM" customClass="LYKaZuoTypeButton">
-                    <rect key="frame" x="165" y="80" width="65" height="65"/>
+                    <rect key="frame" x="151" y="18.5" width="55.5" height="55.5"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="65" id="3tW-Kb-29U"/>
-                        <constraint firstAttribute="height" constant="65" id="lMc-I2-BEq"/>
+                        <constraint firstAttribute="width" constant="55" id="3tW-Kb-29U"/>
+                        <constraint firstAttribute="width" secondItem="D0t-tM-3pM" secondAttribute="height" multiplier="1:1" id="HUE-Ug-lPx"/>
+                        <constraint firstAttribute="height" constant="55" id="lMc-I2-BEq"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                     <state key="normal" title="大卡">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.90379849140000001" colorSpace="calibratedRGB"/>
                     </state>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="3tW-Kb-29U"/>
+                            <exclude reference="lMc-I2-BEq"/>
+                        </mask>
+                    </variation>
                     <connections>
                         <action selector="chooseTypeClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="diC-PV-UbC"/>
                     </connections>
                 </button>
                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bqd-qt-uoD" customClass="LYKaZuoTypeButton">
-                    <rect key="frame" x="19" y="80" width="65" height="65"/>
+                    <rect key="frame" x="20" y="18.5" width="55.5" height="55.5"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="65" id="6Bq-qT-E89"/>
-                        <constraint firstAttribute="width" constant="65" id="dtR-33-uBa"/>
+                        <constraint firstAttribute="height" constant="50" id="6Bq-qT-E89"/>
+                        <constraint firstAttribute="width" secondItem="bqd-qt-uoD" secondAttribute="height" multiplier="1:1" id="bo3-Tv-xzp"/>
+                        <constraint firstAttribute="width" constant="55" id="dtR-33-uBa"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                     <state key="normal" title="散台">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.90379849140000001" colorSpace="calibratedRGB"/>
                     </state>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="6Bq-qT-E89"/>
+                            <exclude reference="dtR-33-uBa"/>
+                        </mask>
+                    </variation>
                     <connections>
                         <action selector="chooseTypeClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="whb-KW-230"/>
                     </connections>
                 </button>
                 <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m9S-Ya-iiB" customClass="LYKaZuoTypeButton">
-                    <rect key="frame" x="238" y="80" width="65" height="65"/>
+                    <rect key="frame" x="216.5" y="18.5" width="55.5" height="55.5"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="65" id="Rfm-RA-Qtc"/>
-                        <constraint firstAttribute="height" constant="65" id="j6f-G7-rdt"/>
+                        <constraint firstAttribute="width" constant="55" id="Rfm-RA-Qtc"/>
+                        <constraint firstAttribute="width" secondItem="m9S-Ya-iiB" secondAttribute="height" multiplier="1:1" id="caa-B8-wqd"/>
+                        <constraint firstAttribute="height" constant="55" id="j6f-G7-rdt"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                     <state key="normal" title="其它">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.90379849140000001" colorSpace="calibratedRGB"/>
                     </state>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="Rfm-RA-Qtc"/>
+                            <exclude reference="j6f-G7-rdt"/>
+                        </mask>
+                    </variation>
                     <connections>
                         <action selector="chooseTypeClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="IA6-1U-j8p"/>
                     </connections>
@@ -80,18 +109,32 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="QV2-FT-7OQ" firstAttribute="leading" secondItem="bqd-qt-uoD" secondAttribute="trailing" constant="8" id="CJv-F0-qHZ"/>
+                <constraint firstAttribute="trailing" secondItem="m9S-Ya-iiB" secondAttribute="trailing" constant="20" id="0uu-gq-sg4"/>
+                <constraint firstItem="QV2-FT-7OQ" firstAttribute="height" secondItem="bqd-qt-uoD" secondAttribute="height" id="2TD-d0-8fE"/>
+                <constraint firstItem="D0t-tM-3pM" firstAttribute="leading" secondItem="QV2-FT-7OQ" secondAttribute="trailing" constant="10" id="6Da-wK-dNV"/>
+                <constraint firstItem="QV2-FT-7OQ" firstAttribute="baseline" secondItem="bqd-qt-uoD" secondAttribute="baseline" id="DiS-TA-tA4"/>
+                <constraint firstItem="QV2-FT-7OQ" firstAttribute="baseline" secondItem="m9S-Ya-iiB" secondAttribute="baseline" id="EgE-F3-NyU"/>
                 <constraint firstAttribute="bottom" secondItem="bqd-qt-uoD" secondAttribute="bottom" constant="55" id="FQ6-qA-Lzv"/>
-                <constraint firstItem="D0t-tM-3pM" firstAttribute="centerX" secondItem="0LQ-hX-6An" secondAttribute="centerX" constant="37" id="JLG-OX-sSk"/>
-                <constraint firstItem="m9S-Ya-iiB" firstAttribute="leading" secondItem="D0t-tM-3pM" secondAttribute="trailing" constant="8" id="Tfb-9d-Ae7"/>
+                <constraint firstItem="D0t-tM-3pM" firstAttribute="width" secondItem="bqd-qt-uoD" secondAttribute="width" id="LEC-7y-NSc"/>
+                <constraint firstItem="bqd-qt-uoD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="LTa-nd-h5q"/>
+                <constraint firstItem="m9S-Ya-iiB" firstAttribute="width" secondItem="bqd-qt-uoD" secondAttribute="width" id="NGU-yW-Y65"/>
+                <constraint firstItem="m9S-Ya-iiB" firstAttribute="leading" secondItem="D0t-tM-3pM" secondAttribute="trailing" constant="10" id="SAp-93-jVA"/>
                 <constraint firstItem="0LQ-hX-6An" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="UZG-pr-u2B"/>
                 <constraint firstItem="0LQ-hX-6An" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="21" id="WQu-gN-l7d"/>
-                <constraint firstItem="QV2-FT-7OQ" firstAttribute="top" secondItem="bqd-qt-uoD" secondAttribute="top" id="aaJ-Ih-yjO"/>
-                <constraint firstItem="D0t-tM-3pM" firstAttribute="top" secondItem="bqd-qt-uoD" secondAttribute="top" id="b7x-xJ-ada"/>
-                <constraint firstItem="D0t-tM-3pM" firstAttribute="leading" secondItem="QV2-FT-7OQ" secondAttribute="trailing" constant="8" id="eF7-5J-h6b"/>
-                <constraint firstItem="m9S-Ya-iiB" firstAttribute="top" secondItem="bqd-qt-uoD" secondAttribute="top" id="i1t-JO-57j"/>
+                <constraint firstItem="D0t-tM-3pM" firstAttribute="height" secondItem="bqd-qt-uoD" secondAttribute="height" id="YvS-jv-pGx"/>
+                <constraint firstItem="D0t-tM-3pM" firstAttribute="leading" secondItem="QV2-FT-7OQ" secondAttribute="trailing" constant="10" id="fbm-1h-6Z0"/>
+                <constraint firstItem="QV2-FT-7OQ" firstAttribute="leading" secondItem="bqd-qt-uoD" secondAttribute="trailing" constant="10" id="fda-bn-G33"/>
+                <constraint firstItem="m9S-Ya-iiB" firstAttribute="height" secondItem="bqd-qt-uoD" secondAttribute="height" id="nEy-jg-u31"/>
+                <constraint firstItem="QV2-FT-7OQ" firstAttribute="baseline" secondItem="D0t-tM-3pM" secondAttribute="baseline" id="ppc-Qi-GBK"/>
+                <constraint firstItem="QV2-FT-7OQ" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="qWe-qT-PMI"/>
+                <constraint firstItem="QV2-FT-7OQ" firstAttribute="width" secondItem="bqd-qt-uoD" secondAttribute="width" id="swL-x7-IHu"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="FQ6-qA-Lzv"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="title_label" destination="0LQ-hX-6An" id="F5F-pt-jNc"/>
                 <outletCollection property="choose_buttons" destination="bqd-qt-uoD" id="tme-Ou-PqI"/>
@@ -99,7 +142,7 @@
                 <outletCollection property="choose_buttons" destination="D0t-tM-3pM" id="jhL-NZ-CZD"/>
                 <outletCollection property="choose_buttons" destination="m9S-Ya-iiB" id="8Wj-ts-t2L"/>
             </connections>
-            <point key="canvasLocation" x="327" y="300"/>
+            <point key="canvasLocation" x="381" y="265.25"/>
         </view>
     </objects>
 </document>

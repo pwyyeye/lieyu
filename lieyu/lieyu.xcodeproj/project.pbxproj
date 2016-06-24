@@ -370,6 +370,8 @@
 		384A54991D10FB96008825ED /* FreeOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 384A54971D10FB96008825ED /* FreeOrderTableViewCell.xib */; };
 		384A549F1D112422008825ED /* LYMyFreeOrdersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 384A549E1D112422008825ED /* LYMyFreeOrdersViewController.m */; };
 		384A54A21D112D69008825ED /* LYFreeOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 384A54A11D112D69008825ED /* LYFreeOrderModel.m */; };
+		385141D71D1D105000529BE1 /* AdviserBookChooseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 385141D51D1D105000529BE1 /* AdviserBookChooseTableViewCell.m */; };
+		385141D81D1D105000529BE1 /* AdviserBookChooseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385141D61D1D105000529BE1 /* AdviserBookChooseTableViewCell.xib */; };
 		3856646A1C62EE6A000DCFA5 /* icon_collect2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 385664681C62EE6A000DCFA5 /* icon_collect2@2x.png */; };
 		3856646B1C62EE6A000DCFA5 /* icon_collect2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 385664691C62EE6A000DCFA5 /* icon_collect2@3x.png */; };
 		3856646F1C72B919000DCFA5 /* HDZTHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3856646D1C72B919000DCFA5 /* HDZTHeaderCell.m */; };
@@ -2392,6 +2394,9 @@
 		384A549E1D112422008825ED /* LYMyFreeOrdersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYMyFreeOrdersViewController.m; sourceTree = "<group>"; };
 		384A54A01D112D69008825ED /* LYFreeOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYFreeOrderModel.h; sourceTree = "<group>"; };
 		384A54A11D112D69008825ED /* LYFreeOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYFreeOrderModel.m; sourceTree = "<group>"; };
+		385141D41D1D105000529BE1 /* AdviserBookChooseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdviserBookChooseTableViewCell.h; sourceTree = "<group>"; };
+		385141D51D1D105000529BE1 /* AdviserBookChooseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdviserBookChooseTableViewCell.m; sourceTree = "<group>"; };
+		385141D61D1D105000529BE1 /* AdviserBookChooseTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdviserBookChooseTableViewCell.xib; sourceTree = "<group>"; };
 		385664681C62EE6A000DCFA5 /* icon_collect2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_collect2@2x.png"; sourceTree = "<group>"; };
 		385664691C62EE6A000DCFA5 /* icon_collect2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_collect2@3x.png"; sourceTree = "<group>"; };
 		3856646C1C72B919000DCFA5 /* HDZTHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDZTHeaderCell.h; sourceTree = "<group>"; };
@@ -7434,6 +7439,9 @@
 				8579681B1CFBEA3800284555 /* AdvisorBookChooseTableViewCell.h */,
 				8579681C1CFBEA3800284555 /* AdvisorBookChooseTableViewCell.m */,
 				8579681D1CFBEA3800284555 /* AdvisorBookChooseTableViewCell.xib */,
+				385141D41D1D105000529BE1 /* AdviserBookChooseTableViewCell.h */,
+				385141D51D1D105000529BE1 /* AdviserBookChooseTableViewCell.m */,
+				385141D61D1D105000529BE1 /* AdviserBookChooseTableViewCell.xib */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -9913,6 +9921,7 @@
 				AD203BE41CB0C4F30014618A /* tb_3.gif in Resources */,
 				AD399EC81C940D4D00028F23 /* logo73@2x.jpg in Resources */,
 				854038811CAE0F2F0056C27E /* 指纹配配看@3x.png in Resources */,
+				385141D81D1D105000529BE1 /* AdviserBookChooseTableViewCell.xib in Resources */,
 				381A01EB1C14301A00592485 /* fanli.png in Resources */,
 				85514EA01C75F8BF00E24C78 /* sign@2x.png in Resources */,
 				855EB3B71CF70A2600609B18 /* GuWenHua@2x.png in Resources */,
@@ -10889,6 +10898,7 @@
 				38EDED621C5E258C00694758 /* HeaderTableViewCell.m in Sources */,
 				15E240581BB101340090D240 /* ZSAddStocksViewController.m in Sources */,
 				15E240AF1BB39DC50090D240 /* OrderDetailSectionBottomView.m in Sources */,
+				385141D71D1D105000529BE1 /* AdviserBookChooseTableViewCell.m in Sources */,
 				15E184791BB4EEBB00681BB2 /* ZSDetailModel.m in Sources */,
 				38B11C361C98FB6200AD3EB8 /* LPFriendBriefInfo.m in Sources */,
 				851806C81C2EB32900006804 /* LYPictiureView.m in Sources */,
