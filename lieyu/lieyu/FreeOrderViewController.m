@@ -17,6 +17,7 @@
 #import "ChooseKaZuo.h"
 #import "LYKaZuoTypeButton.h"
 #import "ChoosePeopleNumber.h"
+#import "AdviserBookChooseTableViewCell.h"
 
 @interface FreeOrderViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate,LPAlertViewDelegate>
 {
@@ -56,6 +57,7 @@
 - (void)registerCells{
     [_tableView registerNib:[UINib nibWithNibName:@"AdvisorBookChooseTableViewCell" bundle:nil] forCellReuseIdentifier:@"AdvisorBookChooseTableViewCell"];
     [_tableView registerNib:[UINib nibWithNibName:@"AdvisorBookIngoTableViewCell" bundle:nil] forCellReuseIdentifier:@"AdvisorBookIngoTableViewCell"];
+    [_tableView registerNib:[UINib nibWithNibName:@"AdviserBookChooseTableViewCell" bundle:nil] forCellReuseIdentifier:@"AdviserBookChooseTableViewCell"];
 }
 
 #pragma mark - tableView的各种代理
@@ -92,24 +94,43 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }else if (indexPath.section == 1){
-        AdvisorBookChooseTableViewCell *cell = [[[NSBundle mainBundle]loadNibNamed:@"AdvisorBookChooseTableViewCell" owner:nil options:nil]firstObject];
+        
         if (indexPath.row == 0) {
+            AdvisorBookChooseTableViewCell *cell = [[[NSBundle mainBundle]loadNibNamed:@"AdvisorBookChooseTableViewCell" owner:nil options:nil]firstObject];
             [cell configureTime];
-        }else if (indexPath.row == 1){
-            [cell configureNumber];
-        }else if (indexPath.row == 2){
-            [cell configureType];
+            [cell.anvance_button addTarget:self action:@selector(chooseSomething:) forControlEvents:UIControlEventTouchUpInside];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
+        }else{
+            AdviserBookChooseTableViewCell *cell = [[[NSBundle mainBundle]loadNibNamed:@"AdviserBookChooseTableViewCell" owner:nil options:nil] firstObject];
+            if (indexPath.row == 1){
+                [cell configureChoosePeopleNumber];
+            }else if (indexPath.row == 2){
+                [cell configureChooseKazuo];
+            }
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
         }
-        [cell.anvance_button addTarget:self action:@selector(chooseSomething:) forControlEvents:UIControlEventTouchUpInside];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
     }else{
         return nil;
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 52;
+    if (indexPath.section == 0) {
+        return 52;
+    }else if(indexPath.section == 1){
+        if (indexPath.row == 0) {
+            return 52;
+        }else if (indexPath.row == 1){
+            return 110;
+        }else{
+            return 80;
+        }
+    }else{
+        return 0;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -133,28 +154,29 @@
         alertView.contentView = _LPTimeView;
         _LPTimeView.frame = CGRectMake(10, SCREEN_HEIGHT - 270, SCREEN_WIDTH - 20, 200);
         [_LPTimeView configreTitleForAdviser];
-    }else if (sender.tag == 1) {//选择到场人数
-        _LPPeopleNumberView = [[[NSBundle mainBundle] loadNibNamed:@"ChoosePeopleNumber" owner:nil options:nil] firstObject];
-        _LPPeopleNumberView.tag = 16;
-        if (_choosedNum <= 0 || _choosedNum >= 11) {
-            _LPPeopleNumberView.selectedTag = 1;
-        } else {
-            _LPPeopleNumberView.selectedTag = _choosedNum;
-        }
-        alertView.contentView = _LPPeopleNumberView;
-        _LPPeopleNumberView.frame = CGRectMake(10, SCREEN_HEIGHT - 270, SCREEN_WIDTH - 20, 200);
-    }else if (sender.tag == 2){
-        _LPKaZuoView = [[[NSBundle mainBundle]loadNibNamed:@"ChooseKaZuo" owner:nil options:nil]firstObject];
-        _LPKaZuoView.tag = 15;
-        if (_choosedType <= 0 || _choosedType >= 5) {
-            _LPKaZuoView.selectedTag = 1;
-        }else{
-            _LPKaZuoView.selectedTag = _choosedType;
-        }
-        alertView.contentView = _LPKaZuoView;
-        _LPKaZuoView.frame = CGRectMake(10, SCREEN_HEIGHT - 270, SCREEN_WIDTH - 20, 200);
-//        _LPKaZuoView 
     }
+//    else if (sender.tag == 1) {//选择到场人数
+//        _LPPeopleNumberView = [[[NSBundle mainBundle] loadNibNamed:@"ChoosePeopleNumber" owner:nil options:nil] firstObject];
+//        _LPPeopleNumberView.tag = 16;
+//        if (_choosedNum <= 0 || _choosedNum >= 11) {
+//            _LPPeopleNumberView.selectedTag = 1;
+//        } else {
+//            _LPPeopleNumberView.selectedTag = _choosedNum;
+//        }
+//        alertView.contentView = _LPPeopleNumberView;
+//        _LPPeopleNumberView.frame = CGRectMake(10, SCREEN_HEIGHT - 270, SCREEN_WIDTH - 20, 200);
+//    }else if (sender.tag == 2){
+//        _LPKaZuoView = [[[NSBundle mainBundle]loadNibNamed:@"ChooseKaZuo" owner:nil options:nil]firstObject];
+//        _LPKaZuoView.tag = 15;
+//        if (_choosedType <= 0 || _choosedType >= 5) {
+//            _LPKaZuoView.selectedTag = 1;
+//        }else{
+//            _LPKaZuoView.selectedTag = _choosedType;
+//        }
+//        alertView.contentView = _LPKaZuoView;
+//        _LPKaZuoView.frame = CGRectMake(10, SCREEN_HEIGHT - 270, SCREEN_WIDTH - 20, 200);
+////        _LPKaZuoView 
+//    }
     
     
     [alertView show];
@@ -220,11 +242,38 @@
     }else{
         //        NSLog(@"type:%ld",_choosedType);
     }
- 
+}
+
+- (void)checkChooseKazuo{
+    AdviserBookChooseTableViewCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:1]];
     
+    for (LYKaZuoTypeButton *button in cell.chooseKazuo.choose_buttons) {
+        if (button.choosed == YES) {
+            _choosedType = button.tag;
+            //                NSLog(@"type:%ld",_choosedType);
+//            AdvisorBookChooseTableViewCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:1]];
+//            [cell.content_label setText:button.titleLabel.text];
+            break;
+        }
+    }
+}
+
+- (void)checkChoosePeopleNumber{
+    AdviserBookChooseTableViewCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
+    for (LYKaZuoTypeButton *button in cell.choosePeople.choosebuttons) {
+        if (button.choosed == YES) {
+            _choosedNum = button.tag;
+            //                NSLog(@"type:%ld",_choosedType);
+//            AdvisorBookChooseTableViewCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]];
+//            [cell.content_label setText:button.titleLabel.text];
+            break;
+        }
+    }
 }
 
 - (IBAction)submitClick:(UIButton *)sender {
+    [self checkChooseKazuo];
+    [self checkChoosePeopleNumber];
     if (!_choosedDate) {
         [MyUtil showPlaceMessage:@"请选择到达现场时间！"];
         return;

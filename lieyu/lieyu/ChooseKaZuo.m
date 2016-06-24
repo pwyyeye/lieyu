@@ -10,7 +10,8 @@
 
 @implementation ChooseKaZuo
 - (void)awakeFromNib{
-    
+    [_title_label setHidden:YES];
+    [self setSelectedTag:1];
 }
 
 - (void)setSelectedTag:(NSInteger)selectedTag{
