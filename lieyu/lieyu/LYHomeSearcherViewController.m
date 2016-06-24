@@ -17,6 +17,10 @@
 #import "BeerNewBarViewController.h"
 #import "JiuBaModel.h"
 #import "IQKeyboardManager.h"
+#import "LYUserLocation.h"
+#import "LYAdviserHttpTool.h"
+#import "LYGuWenPersonCollectionViewCell.h"
+#import "LYMyFriendDetailViewController.h"
 
 #define PAGESIZE 20
 #define SEARCHPAGE_MTA @"SEARCHPAGE"
@@ -24,11 +28,12 @@
 @interface LYHomeSearcherViewController ()<UISearchBarDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 {
     NSArray *datalist;
-    NSMutableArray *searchlist;
     NSString *keyStr;
-    NSMutableArray *hisSerchArr;
     NSMutableArray *hisRoute;
     NSArray *btnArr;
+    
+    NSMutableDictionary *_managerDict;
+    int _managerPage;
 }
 @property(nonatomic,assign) NSInteger curPageIndex;
 @end
@@ -42,11 +47,25 @@
     self.edgesForExtendedLayout = UIRectEdgeAll;
     _searchBar.delegate = self;
     _searchBar.placeholder = @"搜索";
-    self.navigationItem.title = @"搜索";
+    if (_isSearchBar) {
+        self.navigationItem.title = @"搜索酒吧";
+    }else{
+        self.navigationItem.title = @"搜索娱乐顾问";
+    }
 //    [_tableView setContentInset:UIEdgeInsetsMake(64, 0, 0, 0)];
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
-    [self setupViewStyles];
-    [self.collectView registerNib:[UINib nibWithNibName:@"HomeBarCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeBarCollectionViewCell"];
+    if(_isSearchBar){
+        [self setupViewStyles];
+    }else{
+        [self setupManagerViewStyles];
+        _managerDict = [[NSMutableDictionary alloc]init];
+        _managerPage = 1;
+    }
+    if (_isSearchBar) {
+        [self.collectView registerNib:[UINib nibWithNibName:@"HomeBarCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeBarCollectionViewCell"];
+    }else{
+        [self.collectView registerNib:[UINib nibWithNibName:@"LYGuWenPersonCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"LYGuWenPersonCollectionViewCell"];
+    }
     self.collectView.hidden = YES;
     [self loadHisData];
     hisSerchArr=[[NSMutableArray alloc]init];
@@ -91,7 +110,13 @@
 -(void)loadHisData{
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *Path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *filename = [Path stringByAppendingPathComponent:@"hisSerchData.plist"];
+    NSString *filename;
+    if (_isSearchBar) {
+        filename = [Path stringByAppendingPathComponent:@"hisSerchData.plist"];
+    }else{
+        filename = [Path stringByAppendingPathComponent:@"hisSearchManagerData.plist"];
+    }
+    
     if([fileManager fileExistsAtPath:filename]){
         hisSerchArr= [NSKeyedUnarchiver unarchiveObjectWithFile:filename];
     }else{
@@ -112,7 +137,12 @@
     if(buttonIndex==0){
         NSFileManager *fileManager = [NSFileManager defaultManager];
         NSString *Path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-        NSString *filename = [Path stringByAppendingPathComponent:@"hisSerchData.plist"];
+        NSString *filename;
+        if (_isSearchBar) {
+            filename = [Path stringByAppendingPathComponent:@"hisSerchData.plist"];
+        }else{
+            filename = [Path stringByAppendingPathComponent:@"hisSearchManagerData.plist"];
+        }
         if([fileManager fileExistsAtPath:filename]){
             hisSerchArr= [NSKeyedUnarchiver unarchiveObjectWithFile:filename];
             [hisSerchArr removeAllObjects];
@@ -132,7 +162,12 @@
 -(void)saveHisData:(NSString *)strKey{
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *Path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *filename = [Path stringByAppendingPathComponent:@"hisSerchData.plist"];
+    NSString *filename;
+    if (_isSearchBar) {
+        filename = [Path stringByAppendingPathComponent:@"hisSerchData.plist"];
+    }else{
+        filename = [Path stringByAppendingPathComponent:@"hisSearchManagerData.plist"];
+    }
     if([fileManager fileExistsAtPath:filename]){
         hisRoute= [NSKeyedUnarchiver unarchiveObjectWithFile:filename];
     }else{
@@ -194,9 +229,23 @@
     [self.collectView reloadData];
     [self.collectView setHidden:NO];
     _curPageIndex=1;
+    _managerPage = 1;
     keyStr= searchBar.text;
-    [self getData];
+    if (_isSearchBar) {
+        [self getData];
+    }else{
+        [self getManagerData];
+    }
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"确定" pageName:SEARCHPAGE_MTA titleName:@"搜索"]];
+}
+
+- (void)setupManagerViewStyles{
+    __weak __typeof(self)weakSelf = self;
+    _collectView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
+        [weakSelf getManagerData];
+    }];
+    MJRefreshBackGifFooter *footer = (MJRefreshBackGifFooter *)_collectView.mj_footer;
+    [self initMJRefeshFooterForGif:footer];
 }
 
 - (void)setupViewStyles
@@ -224,16 +273,37 @@
     [self initMJRefeshFooterForGif:footer];
 }
 
-
-//-(void)initMJRefeshFooterForGif:(MJRefreshBackGifFooter *) footer{
-//    
-//    // 设置普通状态的动画图片
-//    [footer setImages:@[[UIImage imageNamed:@"mjRefresh"]] forState:MJRefreshStateIdle];
-//    // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
-//    [footer setImages:@[[UIImage imageNamed:@"refresh1"],[UIImage imageNamed:@"refresh2"],[UIImage imageNamed:@"refresh3"],[UIImage imageNamed:@"refresh4"],[UIImage imageNamed:@"refresh5"],[UIImage imageNamed:@"refresh6"],[UIImage imageNamed:@"refresh7"],[UIImage imageNamed:@"refresh8"],[UIImage imageNamed:@"refresh9"],[UIImage imageNamed:@"refresh10"],[UIImage imageNamed:@"refresh11"],[UIImage imageNamed:@"refresh12"]] forState:MJRefreshStatePulling];
-//    // 设置正在刷新状态的动画图片
-//    [footer setImages:@[[UIImage imageNamed:@"refresh1"],[UIImage imageNamed:@"refresh2"],[UIImage imageNamed:@"refresh3"],[UIImage imageNamed:@"refresh4"],[UIImage imageNamed:@"refresh5"],[UIImage imageNamed:@"refresh6"],[UIImage imageNamed:@"refresh7"],[UIImage imageNamed:@"refresh8"],[UIImage imageNamed:@"refresh9"],[UIImage imageNamed:@"refresh10"],[UIImage imageNamed:@"refresh11"],[UIImage imageNamed:@"refresh12"]] forState:MJRefreshStateRefreshing];
-//}
+- (void)getManagerData{
+    __weak __typeof(self) weakSelf = self;
+    CLLocation *userLocation = [LYUserLocation instance].currentLocation;
+    [_managerDict setObject:[[NSDecimalNumber alloc]initWithString:@(userLocation.coordinate.longitude).stringValue] forKey:@"longitude"];
+    [_managerDict setObject:[[NSDecimalNumber alloc]initWithString:@(userLocation.coordinate.latitude).stringValue] forKey:@"latitude"];
+    [_managerDict setObject:[NSNumber numberWithInt:_managerPage] forKey:@"p"];
+    [_managerDict setObject:[NSNumber numberWithInt:PAGESIZE] forKey:@"per"];
+    [_managerDict setObject:keyStr forKey:@"usernick"];
+    [LYAdviserHttpTool lyGetAdviserListWithParams:_managerDict complete:^(HomePageModel *model) {
+        NSArray *arrayTemp = model.viplist;
+        [weakSelf saveHisData:keyStr];
+        if(arrayTemp.count){
+            if (_managerPage == 1) {
+                [searchlist removeAllObjects];
+                [_collectView.mj_header endRefreshing];
+            }
+            [searchlist addObjectsFromArray:arrayTemp];
+            [_collectView.mj_footer endRefreshing];
+            
+            _managerPage ++;
+        }else{
+            if (_managerPage == 1) {
+                [MyUtil showCleanMessage:@"搜索无结果"];
+                [_collectView.mj_header endRefreshing];
+            }else{
+                [_collectView.mj_footer endRefreshingWithNoMoreData];
+            }
+        }
+        [_collectView reloadData];
+    }];
+}
 
 -(void)getData{
     __weak LYHomeSearcherViewController * weakSelf = self;
@@ -324,22 +394,40 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake(SCREEN_WIDTH - 6, (SCREEN_WIDTH - 6) * 9 /16);
+    if (_isSearchBar) {
+        return CGSizeMake(SCREEN_WIDTH - 6, (SCREEN_WIDTH - 6) * 9 /16);
+    }else{
+        return CGSizeMake(SCREEN_WIDTH - 6, 122);
+    }
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    HomeBarCollectionViewCell *cell = [_collectView dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
-    JiuBaModel *jiubaM = searchlist[indexPath.item];
-    cell.jiuBaM = jiubaM;
-    return cell;
+    if (_isSearchBar) {
+        HomeBarCollectionViewCell *cell = [_collectView dequeueReusableCellWithReuseIdentifier:@"HomeBarCollectionViewCell" forIndexPath:indexPath];
+        JiuBaModel *jiubaM = searchlist[indexPath.item];
+        cell.jiuBaM = jiubaM;
+        return cell;
+    }else{
+        LYGuWenPersonCollectionViewCell *cell = [_collectView dequeueReusableCellWithReuseIdentifier:@"LYGuWenPersonCollectionViewCell" forIndexPath:indexPath];
+        cell.vipModel = [searchlist objectAtIndex:indexPath.item];
+        return cell;
+    }
+    
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    BeerNewBarViewController *detailVC = [[BeerNewBarViewController alloc]init];
-    JiuBaModel *model = [searchlist objectAtIndex:indexPath.item];
-    detailVC.beerBarId = @(model.barid);
-    [self.navigationController pushViewController:detailVC animated:YES];
-    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:SEARCHPAGE_MTA titleName:model.barname]];
+    if (_isSearchBar) {BeerNewBarViewController *detailVC = [[BeerNewBarViewController alloc]init];
+        JiuBaModel *model = [searchlist objectAtIndex:indexPath.item];
+        detailVC.beerBarId = @(model.barid);
+        [self.navigationController pushViewController:detailVC animated:YES];
+        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:SEARCHPAGE_MTA titleName:model.barname]];
+    }else{
+        UserModel *model = (UserModel *)[searchlist objectAtIndex:indexPath.item];
+        LYMyFriendDetailViewController *detailVC = [[LYMyFriendDetailViewController alloc]init];
+        detailVC.userID = [NSString stringWithFormat:@"%d",model.userid];
+        [self.navigationController pushViewController:detailVC animated:YES];
+        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:SEARCHPAGE_MTA titleName:model.usernick]];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
