@@ -21,8 +21,8 @@
 - (void)configureChoosePeopleNumber{
     [_titleLabel setText:@"参与人数"];
     _choosePeople = [[[NSBundle mainBundle]loadNibNamed:@"ChoosePeopleNumber" owner:nil options:nil] firstObject];
-    [_choosePeople setFrame:CGRectMake(0, 0, _chooseView.frame.size.width, 90)];
-    [_chooseView setFrame:CGRectMake(0, 0, _chooseView.frame.size.width, 90)];
+    [_choosePeople setFrame:CGRectMake(0, 0, SCREEN_WIDTH - 72, 90)];
+    [_chooseView setFrame:CGRectMake(0, 0, SCREEN_WIDTH - 72, 90)];
     [_chooseView addSubview:_choosePeople];
 }
 
