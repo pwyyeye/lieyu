@@ -623,6 +623,8 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
             if (friendRecentM) {
                 LYFriendsAMessageDetailViewController *friendMessageDetailVC = [[LYFriendsAMessageDetailViewController alloc]init];
                 friendMessageDetailVC.recentM = friendRecentM;
+                friendMessageDetailVC.isFriendToUserMessage = YES;
+                friendMessageDetailVC.isMessageDetail = YES;
                 [weakSelf.navigationController pushViewController:friendMessageDetailVC animated:YES];
             }
         }];
