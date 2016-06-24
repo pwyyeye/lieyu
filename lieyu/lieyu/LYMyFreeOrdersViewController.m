@@ -274,7 +274,10 @@
     [LYUserHttpTool lyChangeFreeOrderStatusWithParams:dict complete:^(BOOL result) {
         if (result) {
             [MyUtil showMessage:@"感谢您的支持，我们将再接再厉！"];
-            [_dataArray removeObjectAtIndex:button.tag];
+//            [_dataArray removeObjectAtIndex:button.tag];
+            model.orderStatus = 3;
+            model.isSatisfaction = YES;
+            model.isSatisfactionName = @"满意";
             [myTableView reloadData];
         }
     }];
@@ -308,7 +311,10 @@
                 [LYUserHttpTool lyChangeFreeOrderStatusWithParams:dict complete:^(BOOL result) {
                     if (result) {
                         [MyUtil showMessage:@"感谢您的支持，我们将持续改进！"];
-                        [_dataArray removeObjectAtIndex:button.tag];
+//                        [_dataArray removeObjectAtIndex:button.tag];
+                        model.orderStatus = 3;
+                        model.isSatisfactionName = @"不满意";
+                        model.isSatisfaction = YES;
                         [myTableView reloadData];
                     }
                 }];
@@ -336,6 +342,7 @@
             if (result) {
                 [MyUtil showPlaceMessage:@"卡座预留成功！"];
                 [_dataArray removeObjectAtIndex:button.tag];
+//                model.orderStatus = 2;
                 [myTableView reloadData];
             }
         }];

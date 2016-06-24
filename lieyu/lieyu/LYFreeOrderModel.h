@@ -16,7 +16,7 @@
 @property (nonatomic, strong) NSString *finishTime;
 @property (nonatomic, assign) NSInteger id;//
 @property (nonatomic, strong) NSString *imUserId;
-@property (nonatomic, assign) BOOL *isSatisfaction;
+@property (nonatomic, assign) BOOL isSatisfaction;
 @property (nonatomic, strong) NSString *isSatisfactionName;
 @property (nonatomic, strong) NSString *mobile;
 @property (nonatomic, assign) NSInteger orderStatus;//
