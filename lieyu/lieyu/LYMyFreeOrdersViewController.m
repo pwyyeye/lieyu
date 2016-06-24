@@ -22,6 +22,7 @@
     NSString *_type;
     NSMutableArray *_dataArray;
     NSMutableDictionary *_searchDict;
+    int _viewIndex;
 }
 @end
 
@@ -59,6 +60,7 @@
 
 #pragma mark - 根据按钮tag获取对应数据
 - (void)changeTableViewAtIndex:(int)newTag{
+    _viewIndex = newTag;
     for (LPOrderButton *btn in arrayButton) {
         //        NSLog(@"%ld--%d",btn.tag,newTag);
         if (btn.tag == newTag) {
@@ -274,10 +276,13 @@
     [LYUserHttpTool lyChangeFreeOrderStatusWithParams:dict complete:^(BOOL result) {
         if (result) {
             [MyUtil showMessage:@"感谢您的支持，我们将再接再厉！"];
-//            [_dataArray removeObjectAtIndex:button.tag];
-            model.orderStatus = 3;
-            model.isSatisfaction = YES;
-            model.isSatisfactionName = @"满意";
+            if (!_viewIndex) {
+                model.orderStatus = 3;
+                model.isSatisfaction = YES;
+                model.isSatisfactionName = @"满意";
+            }else{
+                [_dataArray removeObjectAtIndex:button.tag];
+            }
             [myTableView reloadData];
         }
     }];
@@ -311,10 +316,13 @@
                 [LYUserHttpTool lyChangeFreeOrderStatusWithParams:dict complete:^(BOOL result) {
                     if (result) {
                         [MyUtil showMessage:@"感谢您的支持，我们将持续改进！"];
-//                        [_dataArray removeObjectAtIndex:button.tag];
-                        model.orderStatus = 3;
-                        model.isSatisfactionName = @"不满意";
-                        model.isSatisfaction = YES;
+                        if (_viewIndex) {
+                            [_dataArray removeObjectAtIndex:button.tag];
+                        }else{
+                            model.orderStatus = 3;
+                            model.isSatisfactionName = @"不满意";
+                            model.isSatisfaction = YES;
+                        }
                         [myTableView reloadData];
                     }
                 }];
@@ -341,8 +349,12 @@
         [LYUserHttpTool lyChangeFreeOrderStatusWithParams:dict complete:^(BOOL result) {
             if (result) {
                 [MyUtil showPlaceMessage:@"卡座预留成功！"];
-                [_dataArray removeObjectAtIndex:button.tag];
-//                model.orderStatus = 2;
+                if (_viewIndex) {
+                    
+                    [_dataArray removeObjectAtIndex:button.tag];
+                }else{
+                    model.orderStatus = 2;
+                }
                 [myTableView reloadData];
             }
         }];
