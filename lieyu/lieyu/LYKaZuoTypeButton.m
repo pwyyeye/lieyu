@@ -22,14 +22,15 @@
 - (void)setSelected:(BOOL)selected{
     _choosed = selected;
     if (selected == YES) {
-        [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self setBackgroundColor:RGBA(186, 40, 227, 1)];
-        self.layer.borderWidth = 0;
-    }else if (selected == NO){
-        [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [self setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal];
         [self setBackgroundColor:[UIColor whiteColor]];
         self.layer.borderWidth = 1;
-        self.layer.borderColor = [RGBA(186, 40, 227, 1)CGColor];
+        self.layer.borderColor = [RGBA(186,40,227,1)CGColor];
+    }else if (selected == NO){
+        [self setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        [self setBackgroundColor:[UIColor whiteColor]];
+        self.layer.borderWidth = 1;
+        self.layer.borderColor = [[UIColor lightGrayColor]CGColor];
     }
 }
 
