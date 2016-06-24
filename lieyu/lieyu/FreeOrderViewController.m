@@ -141,19 +141,26 @@
     return 8;
 }
 
-- (void)chooseSomething:(UIButton *)sender{
+- (void)initChooseTimeView{
     LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"取消",@"确定", nil];
+    _LPTimeView = [[[NSBundle mainBundle]loadNibNamed:@"TimePickerView" owner:nil options:nil]firstObject];
+    _LPTimeView.tag = 11;
+    if (!_choosedDate) {
+        _LPTimeView.timePicker.date = [NSDate date];
+    }else{
+        [_LPTimeView showTimeWithDate:_choosedDate];
+    }
+    alertView.contentView = _LPTimeView;
+    _LPTimeView.frame = CGRectMake(10, SCREEN_HEIGHT - 270, SCREEN_WIDTH - 20, 200);
+    [_LPTimeView configreTitleForAdviser];
+    
+    [alertView show];
+}
+
+- (void)chooseSomething:(UIButton *)sender{
+    
     if (sender.tag == 0) {
-        _LPTimeView = [[[NSBundle mainBundle]loadNibNamed:@"TimePickerView" owner:nil options:nil]firstObject];
-        _LPTimeView.tag = 11;
-        if (!_choosedDate) {
-            _LPTimeView.timePicker.date = [NSDate date];
-        }else{
-            [_LPTimeView showTimeWithDate:_choosedDate];
-        }
-        alertView.contentView = _LPTimeView;
-        _LPTimeView.frame = CGRectMake(10, SCREEN_HEIGHT - 270, SCREEN_WIDTH - 20, 200);
-        [_LPTimeView configreTitleForAdviser];
+        [self initChooseTimeView];
     }
 //    else if (sender.tag == 1) {//选择到场人数
 //        _LPPeopleNumberView = [[[NSBundle mainBundle] loadNibNamed:@"ChoosePeopleNumber" owner:nil options:nil] firstObject];
@@ -179,7 +186,6 @@
 //    }
     
     
-    [alertView show];
 }
 
 //alertView代理时间
@@ -275,7 +281,8 @@
     [self checkChooseKazuo];
     [self checkChoosePeopleNumber];
     if (!_choosedDate) {
-        [MyUtil showPlaceMessage:@"请选择到达现场时间！"];
+//        [MyUtil showPlaceMessage:@"请选择到达现场时间！"];
+        [self initChooseTimeView];
         return;
     }
     if (_choosedNum <= 0) {
