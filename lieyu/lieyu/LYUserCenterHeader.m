@@ -152,13 +152,26 @@
          _userNick.text=app.userModel.usernick;
         if ([app.userModel.usertype isEqualToString:@"2"]||[app.userModel.usertype isEqualToString:@"3"]) {
             //专属经理
-            [_TypeName setText:@"粉丝"];
-            [_careTypeImage setImage:[UIImage imageNamed:@"CareNumber"]];
-        }else{
-            [_TypeName setText:@"关注"];
-            [_careTypeImage setImage:[UIImage imageNamed:@"collectNumber"]];
+            //粉丝按钮
+            [_beCareType_ly_Image setImage:[UIImage imageNamed:@"CareNumber"]];
+            if (!app.userModel.beCollectNum) {
+                [_beCare_ly_Number setText:@"0"];
+            } else {
+                [_beCare_ly_Number setText:app.userModel.beCollectNum];
+            }
+        }else{//普通用户隐藏粉丝按钮
+            _beCare_ly_button.hidden = YES;
+            _beCareType_ly_Image.hidden = YES;
+            _beCare_ly_Number.hidden = YES;
+            _beCareType_ly_Name.hidden = YES;
         }
-        [_beCareNumber setText:app.userModel.beCollectNum];
+        //关注按钮
+        if (!app.userModel.beCollectNum) {
+            [_beCareNumber setText:@"0"];
+        } else {
+            [_beCareNumber setText:app.userModel.collectNum];
+        }
+        [_careTypeImage setImage:[UIImage imageNamed:@"collectNumber"]];
     }
     
 
@@ -492,7 +505,7 @@
 }
 
 - (IBAction)checkFansOrCares:(UIButton *)sender {
-    NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"查看粉丝或者关注"};
+    NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"查看粉丝"};
     [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
     
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -505,4 +518,27 @@
     }
     [app.navigationController pushViewController:checkVC animated:YES];
 }
+
+
+- (IBAction)CheckCareButtonAction:(UIButton *)sender {
+    NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"查看关注"};
+    [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+    
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    LYGuWenFansViewController *checkVC = [[LYGuWenFansViewController alloc]init];
+    checkVC.userID = [NSString stringWithFormat:@"%d",app.userModel.userid];
+    
+//    if ([app.userModel.usertype isEqualToString:@"2"] || [app.userModel.usertype isEqualToString:@"3"]) {
+//        checkVC.type = 0;
+//    }else{
+        checkVC.type = 1;
+//    }
+    
+    [app.navigationController pushViewController:checkVC animated:YES];
+
+}
+
+
+
+
 @end

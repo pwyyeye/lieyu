@@ -54,5 +54,6 @@
 @property (nonatomic,copy) NSString *popularityNum;
 @property (nonatomic,copy) NSString *receptionNum;
 @property (nonatomic,copy) NSString *beCollectNum;
+@property (nonatomic,copy) NSString *collectNum;
 
 @end
