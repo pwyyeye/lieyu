@@ -203,5 +203,121 @@
     }];
     
 }
+#pragma mark - 群组操作
+//同步用户群组信息
++ (void)yuUpdataGroupInfoWith:(NSDictionary *) paraDic complete:(void(^)(NSString *))complete {
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YU_QUNZU_CUSTOM baseURL:LY_SERVER params:paraDic success:^(id response) {
+        NSString *data = response[@"data"][@"code"];
+        complete(data);
+    } failure:^(NSError *err) {
+        
+    }];
+}
+
+//创建群
++ (void)yuCreatGroupWith:(NSDictionary *) paraDic complete:(void (^)(NSDictionary *))complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YU_QUNZU_CREAT baseURL:LY_SERVER params:paraDic success:^(id response) {
+        NSDictionary *data = response[@"data"];
+        NSString *meeages = response[@"message"];
+        NSLog(@"%@",meeages);
+        complete(data);
+    } failure:^(NSError *err) {
+        
+    }];
+}
+
+//加入群
++ (void)yuJoinGroupWith:(NSDictionary *) paraDic complete: (void (^)(NSDictionary *)) complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YU_QUNZU_JOIN baseURL:QINIU_SERVER params:paraDic success:^(id response) {
+        NSDictionary *data = response[@"data"];
+        NSString *meeages = response[@"message"];
+        NSLog(@"%@",meeages);
+        complete(data);
+    } failure:^(NSError *err) {
+        
+    }];
+}
+
+//退出群
++ (void)yuQuitGroupWith: (NSDictionary *) paraDic complete:(void (^)(NSDictionary *))complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YU_QUNZU_QUIT baseURL:LY_SERVER params:paraDic success:^(id response) {
+        NSDictionary *data = response[@"data"];
+        complete(data);
+    } failure:^(NSError *err) {
+        
+    }];
+}
+
+//解散群
++ (void)yuDismissGroupWith:(NSDictionary *) paraDic complete: (void (^)(NSDictionary *)) complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YU_QUNZU_DISMISS baseURL:LY_SERVER params:paraDic success:^(id response) {
+        NSDictionary *data = response[@"data"];
+        complete(data);
+    } failure:^(NSError *err) {
+        
+    }];
+}
+
+//刷新群信息
++ (void)yuRefreashGroupWith: (NSDictionary *) paraDic complete: (void (^)(NSDictionary *)) complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YU_QUNZU_REFREASH baseURL:LY_SERVER params:paraDic success:^(id response) {
+        NSDictionary *data = response[@"data"];
+        complete(data);
+    } failure:^(NSError *err) {
+        
+    }];
+}
+
+//获取群内成员
++ (void)yuGetGroupListWith: (NSDictionary *) paraDic complete: (void (^)(NSArray *)) complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YU_QUNZU_LIST baseURL:LY_SERVER params:paraDic success:^(id response) {
+        NSArray *usersArr = response[@"data"];
+        
+        NSLog(@"%@",usersArr);
+        NSArray *dataArr = [UserModel mj_objectArrayWithKeyValuesArray:usersArr];
+        NSString *meeages = response[@"message"];
+        NSLog(@"%@",meeages);
+        complete(dataArr);
+    } failure:^(NSError *err) {
+        
+    }];
+}
+
+#pragma mark - 禁言操作
+//添加禁言群成员
++ (void)yuAddLogInWith: (NSDictionary *) paraDic complete: (void (^) (NSDictionary *)) complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YU_QUNZU_LOGIN baseURL:LY_SERVER params:paraDic success:^(id response) {
+        NSDictionary *data = response[@"data"];
+        complete(data);
+    } failure:^(NSError *err) {
+        
+    }];
+}
+
+//移除禁言群成员
++ (void)yuRemoveLogOutWith: (NSDictionary *)  paraDic complete:(void (^)(NSDictionary *)) complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YU_QUNZU_LOGOUT baseURL:LY_SERVER params:paraDic success:^(id response) {
+        NSDictionary *data = response[@"data"];
+        complete(data);
+    } failure:^(NSError *err) {
+        
+    }];
+}
+
+//查询被禁言的群成员
++ (void)yuExpandAllLogInWith: (NSDictionary *) paraDioc complete: (void (^)(NSArray *)) complete{
+    
+}
+
+//申请成为群主
++(void)yuRegisterQunZhuWith: (NSDictionary *) paaraDic complete: (void (^)(NSString *)) complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YU_QUNZU_BARMANNGER baseURL:LY_SERVER params:paaraDic success:^(id response) {
+
+        complete(response[@"message"]);
+        
+    } failure:^(NSError *err) {
+        
+    }];
+}
 
 @end

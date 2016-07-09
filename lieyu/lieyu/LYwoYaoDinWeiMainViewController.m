@@ -22,6 +22,7 @@
 #import "LPAlertView.h"
 #import "ChooseTime.h"
 #import "ChoosePayController.h"
+#import "ChiHeViewController.h"
 #import "MTA.h"
 
 #define WOYAODINGWEIPAGE_MTA @"WOYAODINGWEIPAGE"
@@ -65,6 +66,25 @@
     // Do any additional setup after loading the view from its nib.
     [self.tableView registerNib:[UINib nibWithNibName:@"LYDinWeiTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYDinWeiTableViewCell"];
     self.navigationItem.title = @"预定";
+    
+
+    UIButton *recentBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 64, 20)];
+    [recentBtn setTitle:@"单点" forState:UIControlStateNormal];
+    [recentBtn addTarget:self action:@selector(dandianBarButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    [recentBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    recentBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+    
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:recentBtn];;
+    self.navigationItem.rightBarButtonItem = rightItem;
+}
+
+- (void) dandianBarButtonAction
+{
+    ChiHeViewController *CHDetailVC = [[ChiHeViewController alloc]initWithNibName:@"ChiHeViewController" bundle:[NSBundle mainBundle]];
+    CHDetailVC.title=@"单点";
+    CHDetailVC.barid=self.barid;
+    CHDetailVC.barName=self.barName;
+    [self.navigationController pushViewController:CHDetailVC animated:YES];
 }
 
 #pragma mark - 初始化界面

@@ -31,6 +31,7 @@ NeedHideNavigationBar
 
 @property(strong,nonatomic) UIWebView *phoneCallWebView;
 
+- (IBAction)groupChatButtonAction:(UIButton *)sender;
 
 
 @end

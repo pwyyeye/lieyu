@@ -878,6 +878,15 @@
 		8504B93A1C71C36B008E5C6B /* LYHomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8504B9381C71C36B008E5C6B /* LYHomeCollectionViewCell.xib */; };
 		850918881C982D23007981C0 /* LYFindConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 850918871C982D23007981C0 /* LYFindConversationViewController.m */; };
 		850AC96F1CCDF0AD009F110C /* LYYUChooseLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 850AC96E1CCDF0AD009F110C /* LYYUChooseLocationViewController.m */; };
+		850B32B61D2DFD230080CA6D /* BarGroupChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 850B32B51D2DFD230080CA6D /* BarGroupChatViewController.m */; };
+		850B32BA1D2E46300080CA6D /* BarGroupChatAllPeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 850B32B81D2E46300080CA6D /* BarGroupChatAllPeopleViewController.m */; };
+		850B32BB1D2E46300080CA6D /* BarGroupChatAllPeopleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850B32B91D2E46300080CA6D /* BarGroupChatAllPeopleViewController.xib */; };
+		850B32BF1D2E48F80080CA6D /* GroupLeaderInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 850B32BD1D2E48F80080CA6D /* GroupLeaderInfoViewController.m */; };
+		850B32C01D2E48F80080CA6D /* GroupLeaderInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850B32BE1D2E48F80080CA6D /* GroupLeaderInfoViewController.xib */; };
+		850B32C41D2E490F0080CA6D /* GroupLeaderRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 850B32C21D2E490F0080CA6D /* GroupLeaderRegisterViewController.m */; };
+		850B32C51D2E490F0080CA6D /* GroupLeaderRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850B32C31D2E490F0080CA6D /* GroupLeaderRegisterViewController.xib */; };
+		850B32C91D2E49E30080CA6D /* LYGroupPeopleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 850B32C71D2E49E30080CA6D /* LYGroupPeopleTableViewCell.m */; };
+		850B32CA1D2E49E30080CA6D /* LYGroupPeopleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850B32C81D2E49E30080CA6D /* LYGroupPeopleTableViewCell.xib */; };
 		8512BCA81C4A14D20087FFA6 /* icon_zhuyishixiang_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8512BCA21C4A14D20087FFA6 /* icon_zhuyishixiang_normal.png */; };
 		8512BCA91C4A14D20087FFA6 /* icon_zhuyishixiang_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8512BCA31C4A14D20087FFA6 /* icon_zhuyishixiang_normal@2x.png */; };
 		8512BCAA1C4A14D20087FFA6 /* icon_zhuyishixiang_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8512BCA41C4A14D20087FFA6 /* icon_zhuyishixiang_normal@3x.png */; };
@@ -2993,6 +3002,20 @@
 		850918871C982D23007981C0 /* LYFindConversationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYFindConversationViewController.m; sourceTree = "<group>"; };
 		850AC96D1CCDF0AD009F110C /* LYYUChooseLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYYUChooseLocationViewController.h; sourceTree = "<group>"; };
 		850AC96E1CCDF0AD009F110C /* LYYUChooseLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYYUChooseLocationViewController.m; sourceTree = "<group>"; };
+		850B32B41D2DFD230080CA6D /* BarGroupChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarGroupChatViewController.h; sourceTree = "<group>"; };
+		850B32B51D2DFD230080CA6D /* BarGroupChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarGroupChatViewController.m; sourceTree = "<group>"; };
+		850B32B71D2E46300080CA6D /* BarGroupChatAllPeopleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarGroupChatAllPeopleViewController.h; sourceTree = "<group>"; };
+		850B32B81D2E46300080CA6D /* BarGroupChatAllPeopleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarGroupChatAllPeopleViewController.m; sourceTree = "<group>"; };
+		850B32B91D2E46300080CA6D /* BarGroupChatAllPeopleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BarGroupChatAllPeopleViewController.xib; sourceTree = "<group>"; };
+		850B32BC1D2E48F80080CA6D /* GroupLeaderInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupLeaderInfoViewController.h; sourceTree = "<group>"; };
+		850B32BD1D2E48F80080CA6D /* GroupLeaderInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupLeaderInfoViewController.m; sourceTree = "<group>"; };
+		850B32BE1D2E48F80080CA6D /* GroupLeaderInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupLeaderInfoViewController.xib; sourceTree = "<group>"; };
+		850B32C11D2E490F0080CA6D /* GroupLeaderRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupLeaderRegisterViewController.h; sourceTree = "<group>"; };
+		850B32C21D2E490F0080CA6D /* GroupLeaderRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupLeaderRegisterViewController.m; sourceTree = "<group>"; };
+		850B32C31D2E490F0080CA6D /* GroupLeaderRegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupLeaderRegisterViewController.xib; sourceTree = "<group>"; };
+		850B32C61D2E49E30080CA6D /* LYGroupPeopleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYGroupPeopleTableViewCell.h; sourceTree = "<group>"; };
+		850B32C71D2E49E30080CA6D /* LYGroupPeopleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYGroupPeopleTableViewCell.m; sourceTree = "<group>"; };
+		850B32C81D2E49E30080CA6D /* LYGroupPeopleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYGroupPeopleTableViewCell.xib; sourceTree = "<group>"; };
 		8512BCA21C4A14D20087FFA6 /* icon_zhuyishixiang_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_zhuyishixiang_normal.png; sourceTree = "<group>"; };
 		8512BCA31C4A14D20087FFA6 /* icon_zhuyishixiang_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_zhuyishixiang_normal@2x.png"; sourceTree = "<group>"; };
 		8512BCA41C4A14D20087FFA6 /* icon_zhuyishixiang_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_zhuyishixiang_normal@3x.png"; sourceTree = "<group>"; };
@@ -6563,6 +6586,24 @@
 			name = "聊天界面";
 			sourceTree = "<group>";
 		};
+		850B32B31D2DFD0A0080CA6D /* 酒吧群聊 */ = {
+			isa = PBXGroup;
+			children = (
+				850B32B41D2DFD230080CA6D /* BarGroupChatViewController.h */,
+				850B32B51D2DFD230080CA6D /* BarGroupChatViewController.m */,
+				850B32B71D2E46300080CA6D /* BarGroupChatAllPeopleViewController.h */,
+				850B32B81D2E46300080CA6D /* BarGroupChatAllPeopleViewController.m */,
+				850B32B91D2E46300080CA6D /* BarGroupChatAllPeopleViewController.xib */,
+				850B32BC1D2E48F80080CA6D /* GroupLeaderInfoViewController.h */,
+				850B32BD1D2E48F80080CA6D /* GroupLeaderInfoViewController.m */,
+				850B32BE1D2E48F80080CA6D /* GroupLeaderInfoViewController.xib */,
+				850B32C11D2E490F0080CA6D /* GroupLeaderRegisterViewController.h */,
+				850B32C21D2E490F0080CA6D /* GroupLeaderRegisterViewController.m */,
+				850B32C31D2E490F0080CA6D /* GroupLeaderRegisterViewController.xib */,
+			);
+			path = "酒吧群聊";
+			sourceTree = "<group>";
+		};
 		851507F81CFD4188002375D4 /* 顾问详情 */ = {
 			isa = PBXGroup;
 			children = (
@@ -7591,6 +7632,9 @@
 				853C360C1C72BA8400F1703B /* LYBarScrollTableViewCell.h */,
 				853C360D1C72BA8400F1703B /* LYBarScrollTableViewCell.m */,
 				853C360E1C72BA8400F1703B /* LYBarScrollTableViewCell.xib */,
+				850B32C61D2E49E30080CA6D /* LYGroupPeopleTableViewCell.h */,
+				850B32C71D2E49E30080CA6D /* LYGroupPeopleTableViewCell.m */,
+				850B32C81D2E49E30080CA6D /* LYGroupPeopleTableViewCell.xib */,
 			);
 			name = Cell;
 			path = ..;
@@ -8999,6 +9043,7 @@
 				853C36111C72BC4700F1703B /* BeerNewBarViewController.h */,
 				853C36121C72BC4700F1703B /* BeerNewBarViewController.m */,
 				853C36131C72BC4700F1703B /* BeerNewBarViewController.xib */,
+				850B32B31D2DFD0A0080CA6D /* 酒吧群聊 */,
 				D71E1D841BAE87E600915F37 /* BeerBarDetailCell.h */,
 				D71E1D851BAE87E600915F37 /* BeerBarDetailCell.m */,
 				D74C608D1BB6F64F00A49598 /* HomePageEntryConstant.h */,
@@ -9684,6 +9729,7 @@
 				38B5F4D61CBBC96A00AE1BF5 /* gray_less@3x.png in Resources */,
 				AD399E851C940D4D00028F23 /* logo6@2x.jpg in Resources */,
 				525CA0F01C5C6930009ED9DA /* pinglun_icon@2x.png in Resources */,
+				850B32C01D2E48F80080CA6D /* GroupLeaderInfoViewController.xib in Resources */,
 				38B11C0C1C92AFCC00AD3EB8 /* CheckQRCode@2x.png in Resources */,
 				85F43BAE1C11459400B04466 /* LYOrderInfoTableViewCell.xib in Resources */,
 				8526E84E1D129271008F83FD /* ChoosePeopleNumber.xib in Resources */,
@@ -9842,6 +9888,7 @@
 				38979A601CA40919002946F5 /* kawayi13.png in Resources */,
 				38E5D7C31C128C44004B49D2 /* triangle_down@2x.png in Resources */,
 				38979ABB1CA40919002946F5 /* angry28.png in Resources */,
+				850B32BB1D2E46300080CA6D /* BarGroupChatAllPeopleViewController.xib in Resources */,
 				385664701C72B919000DCFA5 /* HDZTHeaderCell.xib in Resources */,
 				38979A5A1CA40919002946F5 /* happy9.png in Resources */,
 				3838944E1D15369B0014C8E9 /* free_order_icon@3x@3x.png in Resources */,
@@ -9899,6 +9946,7 @@
 				38E5D7F41C12DF0C004B49D2 /* comment@3x.png in Resources */,
 				38B5F4CA1CBBC6BB00AE1BF5 /* PayNow@3x.png in Resources */,
 				38EE9CE41CB3703900201734 /* bardetail_mask.png in Resources */,
+				850B32C51D2E490F0080CA6D /* GroupLeaderRegisterViewController.xib in Resources */,
 				38B5F4E61CBE10BE00AE1BF5 /* emojiTIpTop@3x.png in Resources */,
 				15ED32841BE336DC00E086A1 /* YaoHisListViewController.xib in Resources */,
 				AD203BF91CB165AB0014618A /* wechatCheckAccountViewController.xib in Resources */,
@@ -10235,6 +10283,7 @@
 				381A01DE1C14229F00592485 /* more_purper@3x.png in Resources */,
 				38979A501CA40919002946F5 /* happy21.png in Resources */,
 				850099C11C61EEE700DDE626 /* downArrow@3x.png in Resources */,
+				850B32CA1D2E49E30080CA6D /* LYGroupPeopleTableViewCell.xib in Resources */,
 				8551B5151C8ECF730057F0E7 /* 打招呼@2x.png in Resources */,
 				ADD264781C92C0FD002894AC /* black_UnSelected@3x.png in Resources */,
 				38B11C221C97AE7300AD3EB8 /* find_caresb@2x.png in Resources */,
@@ -10736,6 +10785,7 @@
 				857AD68D1CA8CDC00032E0C4 /* LYFriendsNameTableViewCell.m in Sources */,
 				15EE51481BA7063000464B74 /* ZSWaitPayViewController.m in Sources */,
 				ADE1039F1BDE49BC00D9EC38 /* RSADataVerifier.m in Sources */,
+				850B32C91D2E49E30080CA6D /* LYGroupPeopleTableViewCell.m in Sources */,
 				15F54A951BB0393C0020EB4C /* TimeChooseTwoViewController.m in Sources */,
 				15013B021BBA33BF00061FAF /* UIImageView+HighlightedWebCache.m in Sources */,
 				ADF88EAC1C1197C400CF5DED /* MJRefreshConst.m in Sources */,
@@ -10918,6 +10968,7 @@
 				85479FAB1CDD9B920073AFEE /* LYFriendsAMessageDetailViewController.m in Sources */,
 				15EB35191BD26D2F00BA6161 /* PTAddressCell.m in Sources */,
 				85F545161C13DE000013B92B /* LYUserDetailInfoViewController.m in Sources */,
+				850B32C41D2E490F0080CA6D /* GroupLeaderRegisterViewController.m in Sources */,
 				D748BC3E1BA1C24B005AA996 /* HttpOperatorProvider+backend.m in Sources */,
 				855EB3C91CF718AA00609B18 /* LYGuWenListViewController.m in Sources */,
 				D7A600601BAC6E0B0006A768 /* FindViewController.m in Sources */,
@@ -10946,6 +10997,7 @@
 				855397301C8DA01C00289D18 /* qrinput.c in Sources */,
 				85529C271C9047B5005D8F0D /* FindNewMessageList.m in Sources */,
 				A20100E31BA94404009283D1 /* WQCalendarTileView.m in Sources */,
+				850B32B61D2DFD230080CA6D /* BarGroupChatViewController.m in Sources */,
 				380659DD1C5639F4003094C9 /* ManagersView.m in Sources */,
 				A20100E41BA94404009283D1 /* WQCalendarView.m in Sources */,
 				85514E951C757B7600E24C78 /* BarActivityList.m in Sources */,
@@ -11068,12 +11120,14 @@
 				AD078C8B1C34D17E00A056D1 /* LYZSApplicationViewController.m in Sources */,
 				853CB7541CAA253B006FC768 /* ZSTiXianRecordTableViewCell.m in Sources */,
 				AD106BBA1C0DDEFF007F5FBA /* NSObject+MJClass.m in Sources */,
+				850B32BF1D2E48F80080CA6D /* GroupLeaderInfoViewController.m in Sources */,
 				38979AEC1CAA5A09002946F5 /* LYWithdrawTypeViewController.m in Sources */,
 				D7A230C81BA711D200E8B51B /* HomePageINeedPlayViewController.m in Sources */,
 				15EB351F1BD2717E00BA6161 /* LYPlayTogetherPayViewController.m in Sources */,
 				1559DCF51BD9D6AC00F3FE9B /* CHJiuPinDetailViewController.m in Sources */,
 				A20100E21BA94404009283D1 /* WQCalendarLogic.m in Sources */,
 				D7A600591BAC654D0006A768 /* LYAdshowCell.m in Sources */,
+				850B32BA1D2E46300080CA6D /* BarGroupChatAllPeopleViewController.m in Sources */,
 				85479FA71CDD9B880073AFEE /* LYFriendsMessagesViewController.m in Sources */,
 				D736523C1BAEBB45002541CE /* CheHeModel.m in Sources */,
 				15FD2AA41BD61EC500D66920 /* DWTopInfoView.m in Sources */,
