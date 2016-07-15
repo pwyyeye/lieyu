@@ -42,7 +42,6 @@
 
 @property(strong,nonatomic) OrderTTL *orderTTL;
 
-
 @property(strong,nonatomic) EAIntroView *intro;
 
 
