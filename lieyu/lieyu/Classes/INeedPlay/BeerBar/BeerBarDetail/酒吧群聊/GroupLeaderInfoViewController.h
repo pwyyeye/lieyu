@@ -13,4 +13,5 @@
 @property (weak, nonatomic) IBOutlet UIButton *registerAdminButton;
 
 @property (strong, nonatomic) NSString *groupId;
+
 @end

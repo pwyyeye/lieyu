@@ -22,23 +22,25 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.extendedLayoutIncludesOpaqueBars = NO;
-    self.edgesForExtendedLayout = UIRectEdgeAll;
+//    [self.navigationController.navigationBar setTranslucent:NO];
+//    self.extendedLayoutIncludesOpaqueBars = NO;
+    
+    
 }
 
-- (void) viewWillDisappear:(BOOL)animated
+- (void)viewWillDisappear:(BOOL)animated
 {
-    self.extendedLayoutIncludesOpaqueBars = YES;
+//    self.extendedLayoutIncludesOpaqueBars = YES;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     UIButton *right = [UIButton buttonWithType:UIButtonTypeCustom];
-    right.frame = CGRectMake(0, 0, 65, 50);
+    right.frame = CGRectMake(0, 0, 85, 50);
     [right addTarget:self action:@selector(checkAllPeople) forControlEvents:UIControlEventTouchUpInside];
     [right setTitle:@"老司机列表" forState:UIControlStateNormal];
-    right.titleLabel.font = [UIFont systemFontOfSize:11];
+    right.titleLabel.font = [UIFont systemFontOfSize:13];
     [right setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     UIBarButtonItem *rightBut = [[UIBarButtonItem alloc]initWithCustomView:right];
     self.navigationItem.rightBarButtonItem = rightBut;
@@ -68,25 +70,31 @@
 {
     _userId_RM = userId;
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        if ([app.userModel.imuserId isEqualToString:userId]) {
+    if ([app.userModel.imuserId isEqualToString:userId]) {//是自己直接返回
+        return;
+    } else {
+        if (!app.userModel.isGrpupManage) {//普通用户
+            UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"查看" otherButtonTitles:nil, nil];
+            [actionSheet showInView:self.view];
             return;
         } else {
-            UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"从聊天室移除" otherButtonTitles:@"移出群组"@"查看", nil];
+            UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"查看" otherButtonTitles:@"移出群组",@"禁言一个月", nil];
             [actionSheet showInView:self.view];
             return ;
         }
+    }
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     switch (buttonIndex) {
-        case 0://禁言
-            [self removePersonFromChatRoom];
+        case 0://查看
+            [self goToPersonWithType:1];
             break;
         case 1://从群组移出
             [self quitFromChatRoom];
             break;
-        case 2://查看
-            [self goToPersonWithType:1];
+        case 2://禁言
+            [self removePersonFromChatRoom];
             break;
         default:
             break;
@@ -111,7 +119,7 @@
 
 #pragma mark - 群组踢人
 - (void)quitFromChatRoom{
-    NSDictionary *paraDic = @{@"groupId":self.targetId,@"userId":_userId_RM,@"minute":@"43200"};
+    NSDictionary *paraDic = @{@"groupId":self.targetId,@"userId":_userId_RM};
     
     [LYYUHttpTool yuQuitGroupWith:paraDic complete:^(NSDictionary *str) {
         NSLog(@"将%@踢出群组成功",_userId_RM);

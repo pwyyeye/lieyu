@@ -27,7 +27,7 @@
     
     _usermodel = usermodel;
     [_iconImageView sd_setImageWithURL:[NSURL URLWithString:usermodel.avatar_img]];
-    _iconImageView.layer.cornerRadius = 20;
+    _iconImageView.layer.cornerRadius = 18;
     _iconImageView.layer.masksToBounds = YES;
     _nameLabel.text = usermodel.usernick;
     NSArray *strArr = [usermodel.birthday componentsSeparatedByString:@" "];

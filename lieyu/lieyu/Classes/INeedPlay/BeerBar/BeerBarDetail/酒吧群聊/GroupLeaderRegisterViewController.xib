@@ -17,52 +17,51 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="f1s-eL-yzS">
-                    <rect key="frame" x="20" y="20" width="560" height="200"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="200" id="8kP-dO-obc"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                </textView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="字数不超过140字" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qgP-xr-LRC">
-                    <rect key="frame" x="500" y="253" width="80" height="21"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="80" id="ZFJ-Ug-7AT"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MF1-if-4yK">
-                    <rect key="frame" x="0.0" y="550" width="600" height="50"/>
+                    <rect key="frame" x="0.0" y="565" width="600" height="35"/>
+                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="50" id="YDy-Qx-WpV"/>
+                        <constraint firstAttribute="height" constant="35" id="YDy-Qx-WpV"/>
                     </constraints>
                     <state key="normal" title="立即申请">
                         <color key="titleColor" red="0.69803921570000005" green="0.14901960780000001" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="可以填写您成为机长的理由：如经常组局、派对、会维护成员的健康发展等。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xhs-9S-5Hp">
-                    <rect key="frame" x="20" y="280" width="560" height="41"/>
+                    <rect key="frame" x="20" y="260" width="560" height="41"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="字数不超过140字" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aur-Ig-Dzg">
+                    <rect key="frame" x="20" y="19" width="78" height="12"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="f1s-eL-yzS">
+                    <rect key="frame" x="20" y="40" width="560" height="200"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="8kP-dO-obc"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="MF1-if-4yK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2gt-yx-8Z1"/>
-                <constraint firstItem="f1s-eL-yzS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="CCN-Fl-3n0"/>
+                <constraint firstItem="f1s-eL-yzS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="40" id="CCN-Fl-3n0"/>
                 <constraint firstAttribute="trailing" secondItem="xhs-9S-5Hp" secondAttribute="trailing" constant="20" id="FMr-Sl-brr"/>
-                <constraint firstItem="qgP-xr-LRC" firstAttribute="trailing" secondItem="f1s-eL-yzS" secondAttribute="trailing" id="FgU-j0-Qas"/>
                 <constraint firstItem="f1s-eL-yzS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="FqT-SR-81c"/>
-                <constraint firstItem="qgP-xr-LRC" firstAttribute="top" secondItem="f1s-eL-yzS" secondAttribute="bottom" constant="33" id="ZsM-X3-1pH"/>
+                <constraint firstItem="Aur-Ig-Dzg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="19" id="TXa-m4-0TV"/>
                 <constraint firstItem="xhs-9S-5Hp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="aV2-C0-boI"/>
+                <constraint firstItem="f1s-eL-yzS" firstAttribute="leading" secondItem="Aur-Ig-Dzg" secondAttribute="leading" id="fAx-Vm-YdV"/>
                 <constraint firstAttribute="trailing" secondItem="MF1-if-4yK" secondAttribute="trailing" id="h9u-ef-1nH"/>
                 <constraint firstAttribute="bottom" secondItem="MF1-if-4yK" secondAttribute="bottom" id="owg-Ic-GPI"/>
-                <constraint firstItem="xhs-9S-5Hp" firstAttribute="top" secondItem="f1s-eL-yzS" secondAttribute="bottom" constant="60" id="uYM-yl-4ex"/>
+                <constraint firstItem="xhs-9S-5Hp" firstAttribute="top" secondItem="f1s-eL-yzS" secondAttribute="bottom" constant="20" id="uYM-yl-4ex"/>
                 <constraint firstAttribute="trailing" secondItem="f1s-eL-yzS" secondAttribute="trailing" constant="20" id="wkX-tw-U1h"/>
             </constraints>
         </view>

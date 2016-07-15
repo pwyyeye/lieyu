@@ -681,7 +681,7 @@
         case 2:{
             LYBarPointTableViewCell *barPointCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarPointTableViewCell" forIndexPath:indexPath];
             barPointCell.label_point.text = @"在线订座";
-            [barPointCell.img_icon setImage:[UIImage imageNamed:@"icon_ordersits"]];
+            [barPointCell.img_icon setImage:[UIImage imageNamed:@"Group 4 @2x"]];
             barPointCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             barPointCell.selectionStyle = UITableViewCellSelectionStyleNone;
             return barPointCell;

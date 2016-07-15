@@ -13,6 +13,7 @@
 #import "YUWishesModel.h"
 #import "BarActivityList.h"
 #import "UserModel.h"
+#import "BlockListModel.h"
 
 @implementation LYYUHttpTool
 
@@ -273,7 +274,6 @@
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YU_QUNZU_LIST baseURL:LY_SERVER params:paraDic success:^(id response) {
         NSArray *usersArr = response[@"data"];
         
-        NSLog(@"%@",usersArr);
         NSArray *dataArr = [UserModel mj_objectArrayWithKeyValuesArray:usersArr];
         NSString *meeages = response[@"message"];
         NSLog(@"%@",meeages);
@@ -306,7 +306,15 @@
 
 //查询被禁言的群成员
 + (void)yuExpandAllLogInWith: (NSDictionary *) paraDioc complete: (void (^)(NSArray *)) complete{
-    
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YU_QUNZU_EXPAND baseURL:LY_SERVER params:paraDioc success:^(id response) {
+        NSArray *Arr = response[@"users"];
+        NSArray *dataArr = [BlockListModel mj_objectArrayWithKeyValuesArray:Arr];
+        NSString *meeages = response[@"message"];
+        NSLog(@"%@",meeages);
+        complete(dataArr);
+    } failure:^(NSError *err) {
+        
+    }];
 }
 
 //申请成为群主

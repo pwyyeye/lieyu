@@ -5,9 +5,9 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BarGroupChatAllPeopleViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LYBlackListGroupViewController">
             <connections>
-                <outlet property="myTableView" destination="lbM-zg-M6q" id="K6j-ct-BhZ"/>
+                <outlet property="myTableView" destination="eGd-E6-3Wj" id="mDK-U6-sdc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,18 +16,17 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lbM-zg-M6q">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eGd-E6-3Wj">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <color key="separatorColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="lbM-zg-M6q" secondAttribute="bottom" id="DP3-VL-4g1"/>
-                <constraint firstItem="lbM-zg-M6q" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="K6c-Vx-jZr"/>
-                <constraint firstAttribute="trailing" secondItem="lbM-zg-M6q" secondAttribute="trailing" id="KVk-Pr-xTu"/>
-                <constraint firstItem="lbM-zg-M6q" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="eKz-AG-eEe"/>
+                <constraint firstItem="eGd-E6-3Wj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="EjR-hD-td0"/>
+                <constraint firstAttribute="trailing" secondItem="eGd-E6-3Wj" secondAttribute="trailing" id="acx-f9-8EA"/>
+                <constraint firstAttribute="bottom" secondItem="eGd-E6-3Wj" secondAttribute="bottom" id="oTR-f2-tBT"/>
+                <constraint firstItem="eGd-E6-3Wj" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="vt0-Xc-3kP"/>
             </constraints>
         </view>
     </objects>

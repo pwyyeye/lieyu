@@ -10,7 +10,7 @@
 #import "GroupLeaderInfoViewController.h"
 #import "LYGroupPeopleTableViewCell.h"
 #import "LYFindConversationViewController.h"
-
+#import "LYBlackListGroupViewController.h"
 #import "LYYUHttpTool.h"
 
 @interface BarGroupChatAllPeopleViewController ()<UITableViewDelegate, UITableViewDataSource>
@@ -59,15 +59,6 @@
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivesMessage) name:COMPLETE_MESSAGE object:nil];
     
     
-    //申请机长
-    UIButton *recentBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 64, 20)];
-    [recentBtn setTitle:@"申请机长" forState:UIControlStateNormal];
-    [recentBtn addTarget:self action:@selector(recentConnect) forControlEvents:UIControlEventTouchUpInside];
-    [recentBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    recentBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-    
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:recentBtn];;
-    self.navigationItem.rightBarButtonItem = rightItem;
     
     [self getData];
 }
@@ -86,10 +77,27 @@
         }
        dispatch_async(dispatch_get_main_queue(), ^{
            [_myTableView reloadData];
+           _myTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
            AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
            for (UserModel *model in self.manngerDataArray) {
                if (app.userModel.userid == model.userid) {
-                   self.navigationItem.rightBarButtonItem = nil;
+                   //查看黑名单列表
+                   UIButton *recentBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 84, 20)];
+                   [recentBtn setTitle:@"禁言黑名单" forState:UIControlStateNormal];
+                   [recentBtn addTarget:self action:@selector(checkBlockList) forControlEvents:UIControlEventTouchUpInside];
+                   [recentBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                   recentBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+                   UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:recentBtn];;
+                   self.navigationItem.rightBarButtonItem = rightItem;
+               } else {
+                   //申请机长
+                   UIButton *recentBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 64, 20)];
+                   [recentBtn setTitle:@"申请机长" forState:UIControlStateNormal];
+                   [recentBtn addTarget:self action:@selector(recentConnect) forControlEvents:UIControlEventTouchUpInside];
+                   [recentBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                   recentBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+                   UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:recentBtn];;
+                   self.navigationItem.rightBarButtonItem = rightItem;
                }
            }
            
@@ -124,6 +132,13 @@
 //    }
 //    
 //}
+
+-(void)checkBlockList {
+    LYBlackListGroupViewController *blockListVC  = [[LYBlackListGroupViewController alloc] init];
+    blockListVC.groupID = _groupID;
+    blockListVC.title = @"黑名单";
+    [self.navigationController pushViewController:blockListVC animated:YES];
+}
 
 #pragma mark - 申请机长
 - (void)recentConnect{
