@@ -73,7 +73,6 @@
     myFriendVC.imUserId = _userId_RM;
     [self resignFirstResponder];
     [self.navigationController pushViewController:myFriendVC animated:YES];
-
 }
 
 
@@ -94,7 +93,7 @@
 }
 
 
-#pragma mark - 聊天室踢人
+#pragma mark - 踢人
 - (void)removePersonFromChatRoom{
 //   121.40.229.133:80/portal/friendAction.do?action=expand&chatroomId=150&imuserId=130615&minute=1&SEM_LOGIN_TOKEN=g6hccy5yqo78xk3yarls7888
     

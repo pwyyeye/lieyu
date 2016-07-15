@@ -60,7 +60,13 @@
 @property (weak, nonatomic) IBOutlet UIImageView *careTypeImage;
 @property (weak, nonatomic) IBOutlet UILabel *TypeName;
 
+@property (weak, nonatomic) IBOutlet UIImageView *beCareType_ly_Image;
 
+@property (weak, nonatomic) IBOutlet UILabel *beCareType_ly_Name;
+
+@property (weak, nonatomic) IBOutlet UILabel *beCare_ly_Number;
+
+@property (weak, nonatomic) IBOutlet UIButton *beCare_ly_button;
 
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *buttomHeight;
 - (IBAction)checkFansOrCares:(UIButton *)sender;

@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GamePlayViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BarGroupChatAllPeopleViewController">
             <connections>
+                <outlet property="myTableView" destination="lbM-zg-M6q" id="K6j-ct-BhZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outlet property="webView" destination="iA6-5F-wF3" id="yoA-sX-GZa"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -16,20 +16,18 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iA6-5F-wF3">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lbM-zg-M6q">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
-                    <connections>
-                        <outlet property="delegate" destination="-1" id="ICv-Mn-ONF"/>
-                    </connections>
-                </webView>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="separatorColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="iA6-5F-wF3" secondAttribute="bottom" id="UqR-NY-6nV"/>
-                <constraint firstItem="iA6-5F-wF3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="duG-ZQ-pFM"/>
-                <constraint firstItem="iA6-5F-wF3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="mzO-66-LaT"/>
-                <constraint firstAttribute="trailing" secondItem="iA6-5F-wF3" secondAttribute="trailing" id="v3g-zX-VRE"/>
+                <constraint firstAttribute="bottom" secondItem="lbM-zg-M6q" secondAttribute="bottom" id="DP3-VL-4g1"/>
+                <constraint firstItem="lbM-zg-M6q" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="K6c-Vx-jZr"/>
+                <constraint firstAttribute="trailing" secondItem="lbM-zg-M6q" secondAttribute="trailing" id="KVk-Pr-xTu"/>
+                <constraint firstItem="lbM-zg-M6q" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="eKz-AG-eEe"/>
             </constraints>
         </view>
     </objects>

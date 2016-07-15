@@ -17,6 +17,7 @@
 @property(nonatomic,strong) AnnouncementModel* announcement;
 @property(nonatomic,strong) NSArray* banners;
 
+@property(nonatomic, assign) BOOL hasGroup;//群聊
 @property(nonatomic,copy)NSString * baricon;
 @property(nonatomic,strong)NSNumber * barid;
 @property(nonatomic,strong)NSNumber * barlevelid;

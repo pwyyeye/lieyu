@@ -28,6 +28,8 @@
 #import "LYUserLoginViewController.h"
 #import "zujuViewController.h"
 #import "PinkerShareController.h"
+#import "BarGroupChatViewController.h"
+
 
 #import "LYBarIconTableViewCell.h"
 #import "LYBarScrollTableViewCell.h"
@@ -37,6 +39,9 @@
 #import "LYMyFriendDetailViewController.h"
 #import "LYCache.h"
 #import "LYFriendsTopicsViewController.h"
+#import "LYYUHttpTool.h"
+#import "IQKeyboardManager.h"
+#import "BarGroupChatAllPeopleViewController.h"
 
 #define COLLECTKEY  [NSString stringWithFormat:@"%@%@sc",_userid,self.beerBarDetail.barid]
 #define LIKEKEY  [NSString stringWithFormat:@"%@%@",_userid,self.beerBarDetail.barid]
@@ -135,6 +140,10 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
+    _buttomViewHeight.constant=49;
+    _bottomBarView.hidden = NO;
+    
     if (_image_layer.alpha == 0.f) {
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
         _image_header.hidden = NO;
@@ -190,13 +199,13 @@
 #pragma mart --约束
 -(void)updateViewConstraints{
     [super updateViewConstraints];
-    if (self.beerBarDetail.isSign==0) {
-        _buttomViewHeight.constant=0;
-        _bottomBarView.hidden = YES;
-    }else{
+//    if (self.beerBarDetail.isSign==0) {
+//        _buttomViewHeight.constant=0;
+//        _bottomBarView.hidden = YES;
+//    }else{
         _buttomViewHeight.constant=49;
         _bottomBarView.hidden = NO;
-    }
+//    }
 }
 
 #pragma mark - 加载酒吧详情的数据
@@ -218,7 +227,7 @@
         [self loadWebView];
         
         if (!_beerBarDetail.isSign) {
-            _bottomEffectView.hidden = YES;
+            _bottomEffectView.hidden = NO;
             /*[self.view bringSubviewToFront:_tableView];
             [self.view bringSubviewToFront:effectView];
             [self.view bringSubviewToFront:_image_layer];
@@ -226,7 +235,7 @@
             [self.view bringSubviewToFront:_btn_collect];
             [self.view bringSubviewToFront:_btn_like];
             [self.view bringSubviewToFront:_btnShare                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ]; */
-            _view_bottom.hidden = YES;
+            _view_bottom.hidden = NO;
         }
 //        return;
     }
@@ -254,8 +263,8 @@
 //             [weakSelf setTimer];
              
              if (!_beerBarDetail.isSign) {
-                 _bottomEffectView.hidden = YES;
-                 _view_bottom.hidden = YES;
+                 _bottomEffectView.hidden = NO;
+                 _view_bottom.hidden = NO;
              /*    [weakSelf.view bringSubviewToFront:_tableView];
                  [weakSelf.view bringSubviewToFront:effectView];
                  [weakSelf.view bringSubviewToFront:_image_layer];
@@ -621,7 +630,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     if(_beerBarDetail)
-    return 7;
+    return 7 + 1;
     else return 0;
 }
 
@@ -669,7 +678,16 @@
             
         }
             break;
-        case 3://酒吧地址
+        case 2:{
+            LYBarPointTableViewCell *barPointCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarPointTableViewCell" forIndexPath:indexPath];
+            barPointCell.label_point.text = @"在线订座";
+            [barPointCell.img_icon setImage:[UIImage imageNamed:@"Group 4 @2x"]];
+            barPointCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            barPointCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return barPointCell;
+            break;
+        }
+        case 4://酒吧地址
         {
             LYBarPointTableViewCell *barPointCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarPointTableViewCell" forIndexPath:indexPath];
             [barPointCell.img_icon setImage:[UIImage imageNamed:@"beerBarPoint"]];
@@ -679,7 +697,7 @@
             return barPointCell;
         }
             break;
-        case 2:{//酒吧电话
+        case 3:{//酒吧电话
             LYBarPointTableViewCell *barPointCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarPointTableViewCell" forIndexPath:indexPath];
             barPointCell.label_point.text = [NSString stringWithFormat:@"电话%@",self.beerBarDetail.telephone];
             [barPointCell.img_icon setImage:[UIImage imageNamed:@"beerBarTel"]];
@@ -688,7 +706,7 @@
             return barPointCell;
         }
             break;
-        case 4://iconlist 签到的用户
+        case 5://iconlist 签到的用户
         {
             LYBarIconTableViewCell *iconCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarIconTableViewCell" forIndexPath:indexPath];
             iconCell.iconArray = _beerBarDetail.signUsers;
@@ -704,7 +722,7 @@
         }
             break;
             
-            case 5://activity 活动cell
+            case 6://activity 活动cell
         {
             LYBarScrollTableViewCell *scrollCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarScrollTableViewCell" forIndexPath:indexPath];
             //_activityArray = @[@"http://source.lie98.com/37680ChaletPlusLounge2.jpg"];
@@ -721,7 +739,7 @@
             return cell; */
         }
             break;
-        case 6://webview 加载酒吧详情的代理
+        case 7://webview 加载酒吧详情的代理
         {
             LYBarDescTableViewCell *barDescTitleCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarDescTableViewCell" forIndexPath:indexPath];
 //            barDescTitleCell con
@@ -958,11 +976,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 3) {//进入地图
+    if (indexPath.section == 4) {//进入地图
         //        _image_layer.userInteractionEnabled = NO;
         [self daohang];
         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"地图导航" pageName:BEERBARDETAIL_MTA titleName:self.beerBarDetail.barname]];
-    }else if(indexPath.section == 2){//打电话
+    }else if(indexPath.section == 3){//打电话
         NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",_beerBarDetail.telephone]];
         
         if ( !_phoneCallWebView ) {
@@ -972,6 +990,16 @@
         }
         
         [_phoneCallWebView loadRequest:[NSURLRequest requestWithURL:phoneURL]];
+    }else if(indexPath.section == 2){//在线订座
+        LYwoYaoDinWeiMainViewController *woYaoDinWeiMainViewController=[[LYwoYaoDinWeiMainViewController alloc]initWithNibName:@"LYwoYaoDinWeiMainViewController" bundle:nil];
+        woYaoDinWeiMainViewController.barid=_beerBarDetail.barid.intValue;
+        woYaoDinWeiMainViewController.startTime = _beerBarDetail.startTime;
+        woYaoDinWeiMainViewController.endTime = _beerBarDetail.endTime;
+        woYaoDinWeiMainViewController.barName = _beerBarDetail.barname;
+        [self.navigationController pushViewController:woYaoDinWeiMainViewController animated:YES];
+        
+        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:BEERBARDETAIL_MTA titleName:@"我要订位"]];
+        [MTA trackCustomEvent:@"YDList" args:nil];
     }
 }
 
@@ -999,8 +1027,74 @@
  // Pass the selected object to the new view controller.
  }
  */
+#pragma mark -- 底部群聊按钮
+- (IBAction)groupChatButtonAction:(UIButton *)sender
+{
+    
+    __weak __typeof(self) weakSelf = self;
+    if (!_beerBarDetail.hasGroup) {//没有群组--创建
+        NSMutableDictionary *paraDic = [[NSMutableDictionary alloc] init];
+        [paraDic setValue:_beerBarId forKey:@"groupId"];
+        AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        NSString *imuserId = app.userModel.imuserId;
+        [paraDic setValue:imuserId  forKey:@"userIds"];
+        [paraDic setValue:@"老司机经验交流群" forKey:@"groupName"];
+        [LYYUHttpTool yuCreatGroupWith:paraDic complete:^(NSDictionary *data) {
+//            NSString *code = [NSString stringWithFormat:@"%@",data[@"code"]];
+            NSLog(@"=============%@",data);
+            BarGroupChatViewController *barChatVC = [[BarGroupChatViewController alloc] initWithConversationType:ConversationType_GROUP targetId:[NSString stringWithFormat:@"%@",_beerBarId]];
+//            barChatVC.targetId = [NSString stringWithFormat:@"%@",_beerBarId];
+//            barChatVC.conversationType = ConversationType_GROUP;
+            barChatVC.title = [NSString stringWithFormat:@"%@群",_beerBarDetail.barname];
+            
+            [weakSelf.navigationController pushViewController:barChatVC animated:YES];
+            [IQKeyboardManager sharedManager].enable = NO;
+            [IQKeyboardManager sharedManager].isAdd = YES;
+            
+            barChatVC.navigationItem.leftBarButtonItem = [self getItem];
+        }];
+        
+        NSLog(@"%@",_beerBarId);
+    } else {//加入群组
+        NSMutableDictionary *paraDic = [[NSMutableDictionary alloc] init];
+        [paraDic setValue:_beerBarId forKey:@"groupId"];
+        AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        NSString *imuserId = app.userModel.imuserId;
+        [paraDic setValue:imuserId  forKey:@"userId"];
+        [paraDic setValue:@"老司机经验交流群" forKey:@"groupName"];
+        [LYYUHttpTool yuJoinGroupWith:paraDic complete:^(NSDictionary *data) {
+//            NSString *code = data[@"code"];
+            NSLog(@"=============%@",data);
+            BarGroupChatViewController *barChatVC = [[BarGroupChatViewController alloc] initWithConversationType:ConversationType_GROUP targetId:[NSString stringWithFormat:@"%@",_beerBarId]];
+//            barChatVC.targetId = [NSString stringWithFormat:@"%@",_beerBarId];
+//            barChatVC.conversationType = ConversationType_GROUP;
+            barChatVC.title = [NSString stringWithFormat:@"%@群",_beerBarDetail.barname];
+            
+            [weakSelf.navigationController pushViewController:barChatVC animated:YES];
+            [IQKeyboardManager sharedManager].enable = NO;
+            [IQKeyboardManager sharedManager].isAdd = YES;
+            
+            barChatVC.navigationItem.leftBarButtonItem = [self getItem];
+            
+            NSLog(@"-----------%@",_beerBarId);
+        }];
+        
+    }
+}
 
-
+- (UIBarButtonItem *)getItem{
+    UIButton *itemBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+    itemBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -30, 0, 0);
+    [itemBtn setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
+    [itemBtn addTarget:self action:@selector(backForward) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:itemBtn];
+    return item;
+}
+- (void)backForward{
+    [IQKeyboardManager sharedManager].enable = YES;
+    [IQKeyboardManager sharedManager].isAdd = NO;
+    [self.navigationController popViewControllerAnimated:YES];
+}
 #pragma mark-- 底部三个按钮方法
 - (IBAction)dianweiAct:(UIButton *)sender {
     LYwoYaoDinWeiMainViewController *woYaoDinWeiMainViewController=[[LYwoYaoDinWeiMainViewController alloc]initWithNibName:@"LYwoYaoDinWeiMainViewController" bundle:nil];
@@ -1023,7 +1117,6 @@
 }
 
 - (IBAction)zsliAct:(UIButton *)sender {
-    
     
     ZujuViewController *zujuVC = [[ZujuViewController alloc]initWithNibName:@"ZujuViewController" bundle:nil];
     zujuVC.title = @"组局";
@@ -1092,5 +1185,6 @@
     }
     [_barTitleCell.btn_comment setTitle:[NSString stringWithFormat:@"%@条评论",_beerBarDetail.topicTypeMommentNum] forState:UIControlStateNormal];
 }
+
 
 @end

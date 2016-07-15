@@ -33,4 +33,39 @@
 + (void)yuRemoveUserFromeChatRoomWith:(NSDictionary *)paraDic complete:(void (^)(BOOL))complete;
 //获取聊天室成员
 + (void)yuGetChatRoomAllStaffWith:(NSDictionary *)paraDic complete:(void (^)(NSArray *))complete;
+
+//同步用户群组信息
++ (void)yuUpdataGroupInfoWith:(NSDictionary *) paraDic complete:(void(^)(NSString *))complete;
+
+//创建群
++ (void)yuCreatGroupWith:(NSDictionary *) paraDic complete:(void (^)(NSDictionary *))complete;
+
+//加入群
++ (void)yuJoinGroupWith:(NSDictionary *) paraDic complete: (void (^)(NSDictionary *)) complete;
+
+//退出群
++ (void)yuQuitGroupWith: (NSDictionary *) paraDic complete:(void (^)(NSDictionary *))complete;
+
+//解散群
++ (void)yuDismissGroupWith:(NSDictionary *) paraDic complete: (void (^)(NSDictionary *)) complete;
+
+//刷新群信息
++ (void)yuRefreashGroupWith: (NSDictionary *) paraDic complete: (void (^)(NSDictionary *)) complete;
+
+//获取群内成员
++ (void)yuGetGroupListWith: (NSDictionary *) paraDic complete: (void (^)(NSArray *)) complete;
+
+//添加禁言群成员
++ (void)yuAddLogInWith: (NSDictionary *) paraDic complete: (void (^) (NSDictionary *)) complete;
+
+//移除禁言群成员
++ (void)yuRemoveLogOutWith: (NSDictionary *)  paraDic complete:(void (^)(NSDictionary *)) complete;
+
+//查询被禁言的群成员
++ (void)yuExpandAllLogInWith: (NSDictionary *) paraDioc complete: (void (^)(NSArray *)) complete;
+
+
+//申请成为群主
++(void)yuRegisterQunZhuWith: (NSDictionary *) paaraDic complete: (void (^)(NSString *)) complete;
+
 @end

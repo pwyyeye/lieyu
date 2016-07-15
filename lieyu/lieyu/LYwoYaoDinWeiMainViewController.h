@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIView *menuView;
 @property (weak, nonatomic) IBOutlet UIView *managersView;
 @property (assign, nonatomic) int barid;
+@property (strong, nonatomic) NSString *barName;
 
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 @property (weak, nonatomic) IBOutlet UILabel *NumberLbl;
