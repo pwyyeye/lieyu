@@ -75,5 +75,6 @@
 @property (copy, nonatomic)  NSString *type;
 @property (nonatomic, strong) NSString *userID;
 @property (nonatomic, strong) NSString *imUserId;
-@property (nonatomic, assign) int isChatroom;
+
+@property (assign, nonatomic) NSInteger isChatroom;
 @end

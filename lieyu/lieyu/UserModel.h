@@ -35,6 +35,7 @@
 @property(strong,nonatomic) NSString *gender;
 @property(strong,nonatomic) NSString *age;
 @property(strong,nonatomic) NSString *birthday;
+@property(assign,nonatomic) BOOL isGrpupManage;
 @property(strong,nonatomic) NSArray *tags;
 @property (nonatomic,copy) NSString *tag;
 @property(nonatomic,assign)int barid;
@@ -54,5 +55,7 @@
 @property (nonatomic,copy) NSString *popularityNum;
 @property (nonatomic,copy) NSString *receptionNum;
 @property (nonatomic,copy) NSString *beCollectNum;
+@property (nonatomic,copy) NSString *collectNum;
+
 
 @end

@@ -22,6 +22,7 @@
 #import "CustomerModel.h"
 #import "LYUserHttpTool.h"
 #import "RCDataBaseManager.h"
+
 #import <AlipaySDK/AlipaySDK.h>
 #import "UMessage.h"
 #import "WXApi.h"
@@ -38,10 +39,11 @@
 #import "LYFriendsAMessageDetailViewController.h"
 #import "LPMyOrdersViewController.h"
 #import "ZSOrderViewController.h"
+#import "LYToPlayRestfulBusiness.h"
 
 @interface AppDelegate ()
 <
-UINavigationControllerDelegate,RCIMUserInfoDataSource
+UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
 >{
     
     
@@ -65,7 +67,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource
     
     [[RCIM sharedRCIM] initWithAppKey:RONGCLOUD_IM_APPKEY ];
     [[RCIM sharedRCIM] setUserInfoDataSource:self];
-
+    [[RCIM sharedRCIM] setGroupInfoDataSource:self];
     [self loadHisData];
     [self setupDataStore];
 
@@ -751,6 +753,25 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 //         completion(userInfo);
 //    }
 }
+
+
+//获取群组信息
+- (void)getGroupInfoWithGroupId:(NSString *)groupId
+                     completion:(void (^)(RCGroup *groupInfo))completion
+{
+    LYToPlayRestfulBusiness *lyPlay = [[LYToPlayRestfulBusiness alloc] init];
+    [lyPlay getBearBarOrYzhDetail:[NSNumber numberWithInt:groupId.integerValue] results:^(LYErrorMessage *erMsg, BeerBarOrYzhDetailModel *detailItem) {
+        RCGroup *user = [[RCGroup alloc]init];
+        user.groupId = [NSString stringWithFormat:@"%@", detailItem.barid];
+        user.groupName = detailItem.barname;
+        user.portraitUri = detailItem.baricon;
+        completion(user);
+    } failure:^(BeerBarOrYzhDetailModel *model) {
+        
+    }];
+    
+}
+
 
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
     

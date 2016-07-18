@@ -59,8 +59,7 @@
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
-   
-//    [self.navigationController setNavigationBarHidden:NO];
+//        [self.navigationController setNavigationBarHidden:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -493,7 +492,7 @@
                 [MyUtil showPlaceMessage:@"添加关注成功！"];
                 [sender setImage:[UIImage imageNamed:@"CareNumber"] forState:UIControlStateNormal];
                 _fansOrCaresNumLabel.text = [NSString stringWithFormat:@"%d",[_fansOrCaresNumLabel.text intValue] + 1];
-                self.userModel.beCollectNum = [NSString stringWithFormat:@"%d",[self.userModel.beCollectNum intValue] + 1];
+                self.userModel.collectNum = [NSString stringWithFormat:@"%d",[self.userModel.collectNum intValue] + 1];
                 sender.tag = 189;
             }else{
                 [MyUtil showPlaceMessage:@"关注失败，请稍后重试！"];
@@ -506,7 +505,7 @@
                 [sender setImage:[UIImage imageNamed:@"AddCare"] forState:UIControlStateNormal];
                 _fansOrCaresNumLabel.text = [NSString stringWithFormat:@"%d",[_fansOrCaresNumLabel.text intValue] - 1];
                 
-                self.userModel.beCollectNum = [NSString stringWithFormat:@"%d",[self.userModel.beCollectNum intValue] - 1];
+                self.userModel.collectNum = [NSString stringWithFormat:@"%d",[self.userModel.collectNum intValue] - 1];
                 sender.tag = 589;
             }else{
                 [MyUtil showPlaceMessage:@"取消关注失败，请稍后重试！"];

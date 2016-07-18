@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BlockCellID" rowHeight="71" id="KGk-i7-Jjw" customClass="BlockListTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="71"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FXG-FG-I7O">
+                        <rect key="frame" x="20" y="17" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="BX7-cy-aJs"/>
+                            <constraint firstAttribute="width" constant="40" id="dhu-uo-fmn"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PwN-tu-6BC">
+                        <rect key="frame" x="80" y="29" width="80" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="wEN-Y2-l7a"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rQG-fB-6Dz">
+                        <rect key="frame" x="245" y="22" width="55" height="30"/>
+                        <color key="backgroundColor" red="0.44705882349999998" green="0.019607843140000001" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="55" id="iVT-hL-qHo"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <state key="normal" title="解禁">
+                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="PwN-tu-6BC" firstAttribute="centerY" secondItem="FXG-FG-I7O" secondAttribute="centerY" id="2Bu-xP-989"/>
+                    <constraint firstAttribute="trailing" secondItem="rQG-fB-6Dz" secondAttribute="trailing" constant="20" id="8Uh-ON-Tf6"/>
+                    <constraint firstItem="FXG-FG-I7O" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="WSB-0a-qUX"/>
+                    <constraint firstItem="rQG-fB-6Dz" firstAttribute="centerY" secondItem="PwN-tu-6BC" secondAttribute="centerY" id="hSD-Ht-OoU"/>
+                    <constraint firstItem="FXG-FG-I7O" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="17" id="mZb-KX-h9a"/>
+                    <constraint firstItem="PwN-tu-6BC" firstAttribute="leading" secondItem="FXG-FG-I7O" secondAttribute="trailing" constant="20" id="rE8-6Z-FkW"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="iconImageView" destination="FXG-FG-I7O" id="eff-6V-L0u"/>
+                <outlet property="logoutButton" destination="rQG-fB-6Dz" id="aRO-Xz-aUG"/>
+                <outlet property="nameLabel" destination="PwN-tu-6BC" id="hOr-Cv-kXj"/>
+            </connections>
+            <point key="canvasLocation" x="319" y="214.5"/>
+        </tableViewCell>
+    </objects>
+</document>

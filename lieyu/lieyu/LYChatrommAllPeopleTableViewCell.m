@@ -35,7 +35,7 @@
     NSArray *strArr = [userM.birthday componentsSeparatedByString:@" "];
     _label_constellation.text = [MyUtil getAstroWithBirthday:strArr.firstObject];
     [_imgV_header sd_setImageWithURL:[NSURL URLWithString:userM.avatar_img]];
-    if (userM.gender.intValue == 0) {
+    if (userM.gender.intValue == 1) {
         _img_sex.image = [UIImage imageNamed:@"manIcon"];
     }else{
         _img_sex.image = [UIImage imageNamed:@"woman"];

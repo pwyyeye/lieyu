@@ -25,4 +25,26 @@
 #define LY_YU_REPLY @"lyRequireAction.do?action=save"
 
 #define LY_YU_CHATOOM_ALLSTAFF @"lyRequireAction.do?action=expand"//聊天室成员
+
+#define LY_YU_QUNZU_CUSTOM  @"groupAction.do?action=custom"//同步用户群信息
+
+#define LY_YU_QUNZU_CREAT @"lyGroupManageAction.do?action=custom"//创建群
+
+#define LY_YU_QUNZU_JOIN @"groupAction.do?action=save"//加入群
+
+#define LY_YU_QUNZU_QUIT @"groupAction.do?action=update"//退出群
+
+#define LY_YU_QUNZU_DISMISS  @"groupAction.do?action=cancel"//解散群
+
+#define LY_YU_QUNZU_REFREASH  @"groupAction.do?action=delete"//  刷新群信息
+
+#define LY_YU_QUNZU_LIST  @"lyGroupManageAction.do?action=login"//获取群组成员
+
+#define LY_YU_QUNZU_LOGIN  @"groupAction.do?action=login"//添加禁言成员
+
+#define LY_YU_QUNZU_LOGOUT @"groupAction.do?action=logout"//移除禁言群成员
+
+#define LY_YU_QUNZU_EXPAND  @"lyGroupManageAction.do?action=logout"//查询被禁言群成员
+#define LY_YU_QUNZU_BARMANNGER  @"lyGroupManageAction.do?action=expand"//申请成为群主
+
 #endif /* LYYUUrl_h */
