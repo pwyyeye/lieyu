@@ -62,11 +62,17 @@
 //    NSLog(@"----pass-pass   %@     ---",[MyUtil encryptUseDES:@"2" withKey:@"LY888888"]);
 //    NSLog(@"----pass-pass  : %@    :---",[MyUtil decryptUseDES:@"IxwbsiHqgnw=" withKey:@"LY888888"]);
 //    ;
-     NSLog(@"----pass-pass1%@---",[MyUtil getAreaWithName:@"中国" withStyle:LYAreaStyleWithState]);
-     NSLog(@"----pass-pass2%@---",[MyUtil getAreaWithName:@"福建" withStyle:LYAreaStyleWithStateAndCity]);
-    NSLog(@"----pass-pass3%@---",[MyUtil getAreaWithName:@"重庆" withStyle:LYAreaStyleWithStateAndCityAndDistrict]);
-    NSLog(@"----pass-pass4%@---",[MyUtil getAreaWithName:@"无锡" withStyle:LYAreaStyleWithStateAndCityAndDistrict]);
-    NSLog(@"----pass-pass5%@---",[MyUtil getAreaWithName:@"天津" withStyle:LYAreaStyleWithStateAndCityAndDistrict]);
+//     NSLog(@"----pass-pass1%@---",[MyUtil getAreaWithName:@"中国" withStyle:LYAreaStyleWithState]);
+//     NSLog(@"----pass-pass2%@---",[MyUtil getAreaWithName:@"福建" withStyle:LYAreaStyleWithStateAndCity]);
+//    NSLog(@"----pass-pass3%@---",[MyUtil getAreaWithName:@"重庆" withStyle:LYAreaStyleWithStateAndCityAndDistrict]);
+//    NSLog(@"----pass-pass4%@---",[MyUtil getAreaWithName:@"海口" withStyle:LYAreaStyleWithStateAndCityAndDistrict]);
+//    NSLog(@"----pass-pass5%@---",[MyUtil getAreaWithName:@"天津" withStyle:LYAreaStyleWithStateAndCityAndDistrict]);
+//    NSLog(@"----pass-pass%@---",[MyUtil md5HexDigest:@"130616"]);
+    NSLog(@"----pass-pass  %@  ---",[MyUtil encryptUseDES:@"130616" withKey:@"130616"]);
+    
+    NSLog(@"----pass-pass1  %@   ---",[MyUtil encryptUseDES:@"130616"]);
+    
+    NSLog(@"----pass-pass2  %@  ---",[MyUtil decryptUseDES:@"4oNvxG3pStc=" withKey:@"130616"]);
 
 }
 

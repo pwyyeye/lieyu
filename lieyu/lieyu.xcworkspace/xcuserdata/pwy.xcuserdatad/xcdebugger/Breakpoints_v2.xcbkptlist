@@ -680,12 +680,12 @@
                   moduleName = "lieyu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu2016/lieyu/lieyu/LYFriendsSendViewController.m"
-                  timestampString = "488367254.451398"
+                  timestampString = "489057831.370751"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "495"
                   endingLineNumber = "495"
-                  offsetFromSymbolStart = "476">
+                  offsetFromSymbolStart = "468">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -695,12 +695,12 @@
                   moduleName = "lieyu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu2016/lieyu/lieyu/LYFriendsSendViewController.m"
-                  timestampString = "488367254.4515"
+                  timestampString = "489057831.370867"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "495"
                   endingLineNumber = "495"
-                  offsetFromSymbolStart = "220">
+                  offsetFromSymbolStart = "211">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -710,12 +710,12 @@
                   moduleName = "lieyu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu2016/lieyu/lieyu/LYFriendsSendViewController.m"
-                  timestampString = "488367254.451592"
+                  timestampString = "489057831.370956"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "495"
                   endingLineNumber = "495"
-                  offsetFromSymbolStart = "120">
+                  offsetFromSymbolStart = "149">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -775,12 +775,12 @@
                   moduleName = "lieyu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu2016/lieyu/lieyu/LYFriendsSendViewController.m"
-                  timestampString = "488367254.452984"
+                  timestampString = "489057831.372582"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "459"
                   endingLineNumber = "459"
-                  offsetFromSymbolStart = "756">
+                  offsetFromSymbolStart = "717">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -790,12 +790,12 @@
                   moduleName = "lieyu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu2016/lieyu/lieyu/LYFriendsSendViewController.m"
-                  timestampString = "488367254.453087"
+                  timestampString = "489057831.372718"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "459"
                   endingLineNumber = "459"
-                  offsetFromSymbolStart = "300">
+                  offsetFromSymbolStart = "322">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -805,12 +805,12 @@
                   moduleName = "lieyu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu2016/lieyu/lieyu/LYFriendsSendViewController.m"
-                  timestampString = "488367254.45318"
+                  timestampString = "489057831.372815"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "459"
                   endingLineNumber = "459"
-                  offsetFromSymbolStart = "180">
+                  offsetFromSymbolStart = "238">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -886,12 +886,12 @@
                   moduleName = "lieyu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu2016/lieyu/lieyu/Utilities/LYYUHttpTool.m"
-                  timestampString = "488367254.455274"
+                  timestampString = "489057831.375262"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "158"
                   endingLineNumber = "158"
-                  offsetFromSymbolStart = "232">
+                  offsetFromSymbolStart = "223">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -901,12 +901,12 @@
                   moduleName = "lieyu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu2016/lieyu/lieyu/Utilities/LYYUHttpTool.m"
-                  timestampString = "488367254.455377"
+                  timestampString = "489057831.375366"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "159"
                   endingLineNumber = "159"
-                  offsetFromSymbolStart = "64">
+                  offsetFromSymbolStart = "66">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -934,12 +934,12 @@
                   moduleName = "lieyu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu2016/lieyu/lieyu/Setting.m"
-                  timestampString = "488367254.455961"
+                  timestampString = "489057831.375987"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "76"
                   endingLineNumber = "76"
-                  offsetFromSymbolStart = "136">
+                  offsetFromSymbolStart = "147">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -949,12 +949,12 @@
                   moduleName = "lieyu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu2016/lieyu/lieyu/Setting.m"
-                  timestampString = "488367254.456061"
+                  timestampString = "489057831.376094"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "77"
                   endingLineNumber = "77"
-                  offsetFromSymbolStart = "24">
+                  offsetFromSymbolStart = "30">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -982,12 +982,12 @@
                   moduleName = "lieyu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu2016/lieyu/lieyu/Utilities/LYUserHttpTool.m"
-                  timestampString = "488367254.45665"
+                  timestampString = "489057831.376835"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "100"
                   endingLineNumber = "100"
-                  offsetFromSymbolStart = "232">
+                  offsetFromSymbolStart = "223">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -997,12 +997,12 @@
                   moduleName = "lieyu"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/pwy/Desktop/%E9%A1%B9%E7%9B%AE/lieyu2016/lieyu/lieyu/Utilities/LYUserHttpTool.m"
-                  timestampString = "488367254.456748"
+                  timestampString = "489057831.376939"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "101"
                   endingLineNumber = "101"
-                  offsetFromSymbolStart = "72">
+                  offsetFromSymbolStart = "67">
                </Location>
             </Locations>
          </BreakpointContent>
