@@ -11,6 +11,7 @@
 #import "LYGroupPeopleTableViewCell.h"
 #import "LYFindConversationViewController.h"
 #import "LYBlackListGroupViewController.h"
+#import "LYMyFriendDetailViewController.h"
 #import "LYYUHttpTool.h"
 
 @interface BarGroupChatAllPeopleViewController ()<UITableViewDelegate, UITableViewDataSource>
@@ -45,19 +46,18 @@
     }
     return _manngerDataArray;
 }
+-(void)viewWillAppear:(BOOL)animated{
+    [self.navigationController setNavigationBarHidden:NO];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
     [_myTableView registerNib:[UINib nibWithNibName:@"LYGroupPeopleTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYGroupPeopleTableViewCell"];
     self.title = @"老司机列表";
     _myTableView.dataSource = self;
     _myTableView.delegate = self;
-    _myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivesMessage) name:RECEIVES_MESSAGE object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivesMessage) name:COMPLETE_MESSAGE object:nil];
-    
+//    _myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     
     [self getData];
@@ -79,59 +79,36 @@
            [_myTableView reloadData];
            _myTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
            AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-           for (UserModel *model in self.manngerDataArray) {
-               if (app.userModel.userid == model.userid) {
-                   //查看黑名单列表
-                   UIButton *recentBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 84, 20)];
-                   [recentBtn setTitle:@"禁言黑名单" forState:UIControlStateNormal];
-                   [recentBtn addTarget:self action:@selector(checkBlockList) forControlEvents:UIControlEventTouchUpInside];
-                   [recentBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-                   recentBtn.titleLabel.font = [UIFont systemFontOfSize:13];
-                   UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:recentBtn];;
-                   self.navigationItem.rightBarButtonItem = rightItem;
-               } else {
-                   //申请机长
-                   UIButton *recentBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 64, 20)];
-                   [recentBtn setTitle:@"申请机长" forState:UIControlStateNormal];
-                   [recentBtn addTarget:self action:@selector(recentConnect) forControlEvents:UIControlEventTouchUpInside];
-                   [recentBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-                   recentBtn.titleLabel.font = [UIFont systemFontOfSize:13];
-                   UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:recentBtn];;
-                   self.navigationItem.rightBarButtonItem = rightItem;
-               }
-           }
            
+                   if (!_isGroupM) {
+                       NSLog(@"%d",app.userModel.userid);
+                       //申请机长
+                       UIButton *recentBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 64, 20)];
+                       [recentBtn setTitle:@"申请机长" forState:UIControlStateNormal];
+                       [recentBtn addTarget:self action:@selector(recentConnect) forControlEvents:UIControlEventTouchUpInside];
+                       [recentBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                       recentBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+                       UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:recentBtn];;
+                       self.navigationItem.rightBarButtonItem = rightItem;
+                   } else {
+                       //查看黑名单列表
+                       UIButton *recentBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 84, 20)];
+                       [recentBtn setTitle:@"禁言黑名单" forState:UIControlStateNormal];
+                       [recentBtn addTarget:self action:@selector(checkBlockList) forControlEvents:UIControlEventTouchUpInside];
+                       [recentBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                       recentBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+                       UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:recentBtn];;
+                       self.navigationItem.rightBarButtonItem = rightItem;
+                       
+                   }
        });
     }];
 }
 
-//- (void)viewWillAppear:(BOOL)animated{
-//    [super viewWillAppear:animated];
-//    if(![MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"badgeValue"]]){
-//        _noticeView.hidden = NO;
-//    }else{
-//        _noticeView.hidden = YES;
-//    }
-//    [USER_DEFAULT setObject:@"1" forKey:@"needCountIM"];
-//}
 
 -(void)dealloc{
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:RECEIVES_MESSAGE object:nil];
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:COMPLETE_MESSAGE object:nil];
-}
 
-//-(void)receivesMessage{
-//    if(![MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"badgeValue"]]){
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            _noticeView.hidden = NO;
-//        });
-//    }else{
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            _noticeView.hidden = YES;
-//        });
-//    }
-//    
-//}
+}
 
 -(void)checkBlockList {
     LYBlackListGroupViewController *blockListVC  = [[LYBlackListGroupViewController alloc] init];
@@ -165,11 +142,11 @@
     } else {//第二个分区，玩友
         userM = _dataArray[indexPath.row];
     }
-//    [cell.chatButton addTarget:self action:@selector(chatParvite:) forControlEvents:(UIControlEventTouchUpInside)];
+    [cell.chatButton addTarget:self action:@selector(chatParvite:) forControlEvents:(UIControlEventTouchUpInside)];
+    [cell.iconImag addTarget:self action:@selector(personDetail:) forControlEvents:(UIControlEventTouchUpInside)];
 //    cell.chatButton.tag = indexPath.row;
     cell.usermodel = userM;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if (app.userModel.userid == userM.userid) {
         cell.chatButton.hidden = YES;
@@ -178,31 +155,55 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    UserModel *userM = [[UserModel alloc] init];
+//    if (indexPath.section == 0) {
+//        userM = _manngerDataArray[indexPath.row];
+//    } else {
+//        userM = _dataArray[indexPath.row];
+//    }
+//    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+//    if (app.userModel.userid != userM.userid) {
+//        LYFindConversationViewController *conversationVC = [[LYFindConversationViewController alloc]init];
+//        conversationVC.targetId = userM.imuserId;
+//        conversationVC.conversationType = ConversationType_PRIVATE;
+//        conversationVC.title = userM.usernick;
+//        [self.navigationController pushViewController:conversationVC animated:YES];
+//        
+//        conversationVC.navigationItem.leftBarButtonItem = [self getItem];
+//    }
+//}
+
+-(void)personDetail: (UIButton *)sender{
+    LYGroupPeopleTableViewCell *cell=[(LYGroupPeopleTableViewCell *)[sender superview] superview];
+    NSIndexPath *index=[_myTableView indexPathForCell:cell];
     UserModel *userM = [[UserModel alloc] init];
-    if (indexPath.section == 0) {
-        userM = _manngerDataArray[indexPath.row];
+    if (!index.section) {//管理员
+        userM = _manngerDataArray[index.row];
     } else {
-        userM = _dataArray[indexPath.row];
+        userM = _dataArray[index.row];
     }
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    if (app.userModel.userid != userM.userid) {
-        LYFindConversationViewController *conversationVC = [[LYFindConversationViewController alloc]init];
-        conversationVC.targetId = userM.imuserId;
-        conversationVC.conversationType = ConversationType_PRIVATE;
-        conversationVC.title = userM.usernick;
-        [self.navigationController pushViewController:conversationVC animated:YES];
-        
-        conversationVC.navigationItem.leftBarButtonItem = [self getItem];
-    }
+    LYMyFriendDetailViewController *friendDetailViewController=[[LYMyFriendDetailViewController alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
+//    LYMyFriendDetailViewController *friendDetailViewController = [[LYMyFriendDetailViewController alloc] init];
+    //    friendDetailViewController.title=@"详细信息";
+    friendDetailViewController.type=@"4";
+    //    [friendDetailViewController.navigationController setNavigationBarHidden:NO animated:YES];
+    //    friendDetailViewController.customerModel=addressBook;
+    friendDetailViewController.userID = [NSString stringWithFormat:@"%d",userM.userid];
+    [self.navigationController pushViewController:friendDetailViewController animated:YES];
+//    friendDetailViewController.navigationItem.leftBarButtonItem = [self getItem];
+
 }
 
 -(void)chatParvite: (UIButton *)sender{
-//    LYGroupPeopleTableViewCell *cell=(LYGroupPeopleTableViewCell *)[[sender superview] superview];
-//    NSIndexPath* index=[_myTableView indexPathForCell:cell];
-    
-    UserModel *userM = _dataArray[sender.tag];
-    
+    LYGroupPeopleTableViewCell *cell=[(LYGroupPeopleTableViewCell *)[sender superview] superview];
+    NSIndexPath *index=[_myTableView indexPathForCell:cell];
+    UserModel *userM = [[UserModel alloc] init];
+    if (!index.section) {//管理员
+        userM = _manngerDataArray[index.row];
+    } else {
+        userM = _dataArray[index.row];
+    }
     LYFindConversationViewController *conversationVC = [[LYFindConversationViewController alloc]init];
     conversationVC.targetId = userM.imuserId;
     conversationVC.conversationType = ConversationType_PRIVATE;
@@ -214,7 +215,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 71;
+    return 55;
 }
 
 - (UIBarButtonItem *)getItem{

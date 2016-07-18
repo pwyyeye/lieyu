@@ -10,7 +10,9 @@
 
 @interface BlockListModel : NSObject
 
-@property (strong, nonatomic) NSString *time;
-@property (strong, nonatomic) NSString *userId;
+@property (strong, nonatomic) NSString *avatar_img;
+@property (strong, nonatomic) NSString *userid;
+@property (strong, nonatomic) NSString *imuserId;
+@property (strong, nonatomic) NSString *usernick;
 
 @end

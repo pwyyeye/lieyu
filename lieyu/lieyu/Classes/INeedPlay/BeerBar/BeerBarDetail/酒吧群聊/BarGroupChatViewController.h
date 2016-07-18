@@ -10,4 +10,6 @@
 
 @interface BarGroupChatViewController : RCConversationViewController
 
+@property(nonatomic, strong) NSArray *groupManage;//所有的老司机
+
 @end

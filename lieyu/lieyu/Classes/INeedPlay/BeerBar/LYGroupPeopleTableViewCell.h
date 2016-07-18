@@ -10,7 +10,7 @@
 @class UserModel;
 @interface LYGroupPeopleTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
+@property (weak, nonatomic) IBOutlet UIButton *iconImag;
 
 @property (weak, nonatomic) IBOutlet UILabel *typeLabel;
 

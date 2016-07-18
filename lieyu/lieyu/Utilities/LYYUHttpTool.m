@@ -286,8 +286,9 @@
 #pragma mark - 禁言操作
 //添加禁言群成员
 + (void)yuAddLogInWith: (NSDictionary *) paraDic complete: (void (^) (NSDictionary *)) complete{
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YU_QUNZU_LOGIN baseURL:LY_SERVER params:paraDic success:^(id response) {
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YU_QUNZU_LOGIN baseURL:QINIU_SERVER params:paraDic success:^(id response) {
         NSDictionary *data = response[@"data"];
+        
         complete(data);
     } failure:^(NSError *err) {
         
@@ -295,9 +296,9 @@
 }
 
 //移除禁言群成员
-+ (void)yuRemoveLogOutWith: (NSDictionary *)  paraDic complete:(void (^)(NSDictionary *)) complete{
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YU_QUNZU_LOGOUT baseURL:LY_SERVER params:paraDic success:^(id response) {
-        NSDictionary *data = response[@"data"];
++ (void)yuRemoveLogOutWith: (NSDictionary *)  paraDic complete:(void (^)(NSString *)) complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YU_QUNZU_LOGOUT baseURL:QINIU_SERVER params:paraDic success:^(id response) {
+        NSString *data = response[@"errorcode"];
         complete(data);
     } failure:^(NSError *err) {
         
@@ -307,8 +308,8 @@
 //查询被禁言的群成员
 + (void)yuExpandAllLogInWith: (NSDictionary *) paraDioc complete: (void (^)(NSArray *)) complete{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YU_QUNZU_EXPAND baseURL:LY_SERVER params:paraDioc success:^(id response) {
-        NSArray *Arr = response[@"users"];
-        NSArray *dataArr = [BlockListModel mj_objectArrayWithKeyValuesArray:Arr];
+        NSArray *data = response[@"data"];
+        NSArray *dataArr = [BlockListModel mj_objectArrayWithKeyValuesArray:data];
         NSString *meeages = response[@"message"];
         NSLog(@"%@",meeages);
         complete(dataArr);

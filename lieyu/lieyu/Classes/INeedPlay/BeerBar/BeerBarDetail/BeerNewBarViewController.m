@@ -927,29 +927,30 @@
             break;
         case 4:
         {
-            CGFloat btnWidth = (SCREEN_WIDTH - 14 - (7 - 1) * 7)/7.f;
-            if(_beerBarDetail.signUsers.count) return btnWidth + 16;
-            else return 0;
+            return 60;
         }
             break;
             case 5:
         {
-            if(_activityArray.count) return 213;
+            CGFloat btnWidth = (SCREEN_WIDTH - 14 - (7 - 1) * 7)/7.f;
+            if(_beerBarDetail.signUsers.count) return btnWidth + 16;
             else return 0;
+            
         }
             break;
             
         case 6:
         {
 //            return 76;
+            if(_activityArray.count) return 213;
+            else return 0;
+        }
+            break;
+            case 7:
+        {
             return _webView.frame.size.height + 55;
         }
             break;
-//            case 5:
-//        {
-//            return _webView.frame.size.height;
-//        }
-//            break;
     }
     return h;
 }
@@ -1038,45 +1039,37 @@
         AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
         NSString *imuserId = app.userModel.imuserId;
         [paraDic setValue:imuserId  forKey:@"userIds"];
-        [paraDic setValue:@"老司机经验交流群" forKey:@"groupName"];
+        [paraDic setValue:_beerBarDetail.barname forKey:@"groupName"];
         [LYYUHttpTool yuCreatGroupWith:paraDic complete:^(NSDictionary *data) {
 //            NSString *code = [NSString stringWithFormat:@"%@",data[@"code"]];
-            NSLog(@"=============%@",data);
             BarGroupChatViewController *barChatVC = [[BarGroupChatViewController alloc] initWithConversationType:ConversationType_GROUP targetId:[NSString stringWithFormat:@"%@",_beerBarId]];
-//            barChatVC.targetId = [NSString stringWithFormat:@"%@",_beerBarId];
-//            barChatVC.conversationType = ConversationType_GROUP;
             barChatVC.title = [NSString stringWithFormat:@"%@群",_beerBarDetail.barname];
-            
+            barChatVC.groupManage = [_beerBarDetail.groupManage componentsSeparatedByString:@","];
             [weakSelf.navigationController pushViewController:barChatVC animated:YES];
             [IQKeyboardManager sharedManager].enable = NO;
             [IQKeyboardManager sharedManager].isAdd = YES;
             
             barChatVC.navigationItem.leftBarButtonItem = [self getItem];
         }];
-        
-        NSLog(@"%@",_beerBarId);
     } else {//加入群组
         NSMutableDictionary *paraDic = [[NSMutableDictionary alloc] init];
         [paraDic setValue:_beerBarId forKey:@"groupId"];
         AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
         NSString *imuserId = app.userModel.imuserId;
         [paraDic setValue:imuserId  forKey:@"userId"];
-        [paraDic setValue:@"老司机经验交流群" forKey:@"groupName"];
+        [paraDic setValue:_beerBarDetail.barname forKey:@"groupName"];
         [LYYUHttpTool yuJoinGroupWith:paraDic complete:^(NSDictionary *data) {
+           
 //            NSString *code = data[@"code"];
-            NSLog(@"=============%@",data);
             BarGroupChatViewController *barChatVC = [[BarGroupChatViewController alloc] initWithConversationType:ConversationType_GROUP targetId:[NSString stringWithFormat:@"%@",_beerBarId]];
-//            barChatVC.targetId = [NSString stringWithFormat:@"%@",_beerBarId];
-//            barChatVC.conversationType = ConversationType_GROUP;
             barChatVC.title = [NSString stringWithFormat:@"%@群",_beerBarDetail.barname];
-            
+            barChatVC.groupManage = [_beerBarDetail.groupManage componentsSeparatedByString:@","];
             [weakSelf.navigationController pushViewController:barChatVC animated:YES];
             [IQKeyboardManager sharedManager].enable = NO;
             [IQKeyboardManager sharedManager].isAdd = YES;
             
             barChatVC.navigationItem.leftBarButtonItem = [self getItem];
             
-            NSLog(@"-----------%@",_beerBarId);
         }];
         
     }
@@ -1090,6 +1083,7 @@
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:itemBtn];
     return item;
 }
+
 - (void)backForward{
     [IQKeyboardManager sharedManager].enable = YES;
     [IQKeyboardManager sharedManager].isAdd = NO;

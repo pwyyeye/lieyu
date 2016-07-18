@@ -7,7 +7,7 @@
 //
 
 #import "LYGroupPeopleTableViewCell.h"
-#import "LYFindConversationViewController.h"
+#import "UIButton+WebCache.h"
 
 @implementation LYGroupPeopleTableViewCell
 
@@ -26,9 +26,9 @@
 {
     
     _usermodel = usermodel;
-    [_iconImageView sd_setImageWithURL:[NSURL URLWithString:usermodel.avatar_img]];
-    _iconImageView.layer.cornerRadius = 18;
-    _iconImageView.layer.masksToBounds = YES;
+    [_iconImag sd_setImageWithURL:[NSURL URLWithString:usermodel.avatar_img] forState:UIControlStateNormal];
+    _iconImag.imageView.layer.cornerRadius = 18;
+    _iconImag.imageView.layer.masksToBounds = YES;
     _nameLabel.text = usermodel.usernick;
     NSArray *strArr = [usermodel.birthday componentsSeparatedByString:@" "];
     _starLabel.text = [MyUtil getAstroWithBirthday:strArr.firstObject];

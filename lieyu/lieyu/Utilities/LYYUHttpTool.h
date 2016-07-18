@@ -59,7 +59,7 @@
 + (void)yuAddLogInWith: (NSDictionary *) paraDic complete: (void (^) (NSDictionary *)) complete;
 
 //移除禁言群成员
-+ (void)yuRemoveLogOutWith: (NSDictionary *)  paraDic complete:(void (^)(NSDictionary *)) complete;
++ (void)yuRemoveLogOutWith: (NSDictionary *)  paraDic complete:(void (^)(NSString *)) complete;
 
 //查询被禁言的群成员
 + (void)yuExpandAllLogInWith: (NSDictionary *) paraDioc complete: (void (^)(NSArray *)) complete;

@@ -14,7 +14,10 @@
 @interface BarGroupChatViewController ()<UIActionSheetDelegate>
 {
     NSString *_userId_RM;
+    BOOL _isGroupManage;
 }
+
+
 @end
 
 @implementation BarGroupChatViewController
@@ -25,7 +28,6 @@
 //    [self.navigationController.navigationBar setTranslucent:NO];
 //    self.extendedLayoutIncludesOpaqueBars = NO;
     
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -35,7 +37,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.view.subviews[0].frame = CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT);
+    //判断是否老司机
+    for (NSString *userId in _groupManage) {
+        AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        if (app.userModel.userid == userId.integerValue) {
+            _isGroupManage = YES;
+        } else {
+            _isGroupManage = NO;
+        }
+    }
+    
     UIButton *right = [UIButton buttonWithType:UIButtonTypeCustom];
     right.frame = CGRectMake(0, 0, 85, 50);
     [right addTarget:self action:@selector(checkAllPeople) forControlEvents:UIControlEventTouchUpInside];
@@ -49,6 +61,7 @@
 -(void)checkAllPeople{
     BarGroupChatAllPeopleViewController *barGroupVC = [[BarGroupChatAllPeopleViewController alloc] init];
     barGroupVC.groupID = [NSString stringWithFormat:@"%@",self.targetId];
+    barGroupVC.isGroupM = _isGroupManage;
     [self.navigationController pushViewController:barGroupVC animated:YES];
     barGroupVC.navigationItem.leftBarButtonItem = [self getItem];
 }
@@ -73,12 +86,12 @@
     if ([app.userModel.imuserId isEqualToString:userId]) {//是自己直接返回
         return;
     } else {
-        if (!app.userModel.isGrpupManage) {//普通用户
+        if (!_isGroupManage) {//普通用户
             UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"查看" otherButtonTitles:nil, nil];
             [actionSheet showInView:self.view];
             return;
         } else {
-            UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"查看" otherButtonTitles:@"移出群组",@"禁言一个月", nil];
+            UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"查看" otherButtonTitles:@"禁言一个月", nil];
             [actionSheet showInView:self.view];
             return ;
         }
@@ -90,17 +103,14 @@
         case 0://查看
             [self goToPersonWithType:1];
             break;
-        case 1://从群组移出
-            [self quitFromChatRoom];
-            break;
-        case 2://禁言
+        case 1://禁言
             [self removePersonFromChatRoom];
             break;
         default:
             break;
     }
 }
-
+#pragma mark --- 移出群组
 - (void)goToPersonWithType:(int)type{
     LYMyFriendDetailViewController *myFriendVC = [[LYMyFriendDetailViewController alloc]init];
     myFriendVC.isChatroom = type;
@@ -111,7 +121,7 @@
 
 #pragma mark - 群组禁言
 - (void)removePersonFromChatRoom{
-    NSDictionary *paraDic = @{@"groupId":self.targetId,@"userId":_userId_RM,@"minute":@"43200"};
+    NSDictionary *paraDic = @{@"groupId":self.targetId,@"userId":_userId_RM,@"minute":@"20"};
     [LYYUHttpTool yuAddLogInWith:paraDic complete:^(NSDictionary *dic) {
         NSLog(@"将%@禁言成功",_userId_RM);
     }];

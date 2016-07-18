@@ -8,13 +8,15 @@
 
 #import "LYBlackListGroupViewController.h"
 #import "LYGroupPeopleTableViewCell.h"
+#import "BlockListTableViewCell.h"
 #import "BlockListModel.h"
 #import "LYYUHttpTool.h"
+
 
 @interface LYBlackListGroupViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
-@property (strong, nonatomic) NSArray *dataArray;
+@property (strong, nonatomic) NSMutableArray *dataArray;
 @end
 
 @implementation LYBlackListGroupViewController
@@ -23,11 +25,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    [_myTableView registerNib:[UINib nibWithNibName:@"LYGroupPeopleTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYGroupPeopleTableViewCell"];
+    [_myTableView registerNib:[UINib nibWithNibName:@"BlockListTableViewCell" bundle:nil] forCellReuseIdentifier:@"BlockCellID"];
     self.title = @"黑名单列表";
     _myTableView.dataSource = self;
     _myTableView.delegate = self;
-    
+    [self getData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,17 +56,28 @@
 
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    LYGroupPeopleTableViewCell *cell = [_myTableView dequeueReusableCellWithIdentifier:@"LYGroupPeopleTableViewCell" forIndexPath:indexPath];
+    BlockListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BlockCellID" forIndexPath:indexPath];
     BlockListModel *model=_dataArray[indexPath.row];
-    cell.typeLabel.text = model.userId;
-    cell.chatButton.titleLabel.text = @"解除";
-    [cell.chatButton addTarget:self action:@selector(logoutPerson:) forControlEvents:(UIControlEventTouchUpInside)];
+    cell.nameLabel.text = model.usernick;
+    [cell.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.avatar_img]];
+    [cell.logoutButton addTarget:self action:@selector(logoutPerson:) forControlEvents:(UIControlEventTouchUpInside)];
     return cell;
 }
 
 - (void) logoutPerson:(UIButton *) sender{
-        LYGroupPeopleTableViewCell *cell=(LYGroupPeopleTableViewCell *)[[sender superview] superview];
-        NSIndexPath *index=[_myTableView indexPathForCell:cell];
+    
+    LYGroupPeopleTableViewCell *cell=(LYGroupPeopleTableViewCell *)[sender superview];
+    NSIndexPath *index=[_myTableView indexPathForCell:cell];
+    BlockListModel *model = _dataArray[index.row];
+    NSDictionary *paraDic = @{@"userId":model.imuserId,@"groupId":_groupID};
+    [LYYUHttpTool yuRemoveLogOutWith:paraDic complete:^(NSString *result) {
+        if (result) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_dataArray removeObjectAtIndex:index.row];
+                [_myTableView reloadData];
+            });
+        }
+    }];
     
 }
 

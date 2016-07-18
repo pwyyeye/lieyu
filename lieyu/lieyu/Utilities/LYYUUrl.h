@@ -44,8 +44,7 @@
 
 #define LY_YU_QUNZU_LOGOUT @"groupAction.do?action=logout"//移除禁言群成员
 
-#define LY_YU_QUNZU_EXPAND  @"groupAction.do?action=expand"//查询被禁言群成员
-
+#define LY_YU_QUNZU_EXPAND  @"lyGroupManageAction.do?action=logout"//查询被禁言群成员
 #define LY_YU_QUNZU_BARMANNGER  @"lyGroupManageAction.do?action=expand"//申请成为群主
 
 #endif /* LYYUUrl_h */

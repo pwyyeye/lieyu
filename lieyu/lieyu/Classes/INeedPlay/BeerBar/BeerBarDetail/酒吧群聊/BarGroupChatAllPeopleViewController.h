@@ -10,4 +10,5 @@
 
 @interface BarGroupChatAllPeopleViewController : LYBaseViewController
 @property(nonatomic, strong) NSString *groupID;
+@property(nonatomic, assign) BOOL isGroupM;
 @end
