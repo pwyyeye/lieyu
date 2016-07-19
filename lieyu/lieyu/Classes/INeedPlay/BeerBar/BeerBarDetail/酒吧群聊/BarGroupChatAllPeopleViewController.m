@@ -14,12 +14,13 @@
 #import "LYMyFriendDetailViewController.h"
 #import "LYYUHttpTool.h"
 
-@interface BarGroupChatAllPeopleViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface BarGroupChatAllPeopleViewController ()<UITableViewDelegate, UITableViewDataSource,UIActionSheetDelegate>
 {
     UIView *_noticeView;//角标
 //    NSMutableArray *_dataArray;//玩家数组
     NSMutableArray *_manngerDataArray;//管理员数组
     NSIndexPath *_indexPath;
+    NSString *_imUserId;
 }
 
 @property (strong, nonatomic) NSMutableArray *dataArray;//玩家数组
@@ -143,7 +144,7 @@
         userM = _dataArray[indexPath.row];
     }
     [cell.chatButton addTarget:self action:@selector(chatParvite:) forControlEvents:(UIControlEventTouchUpInside)];
-    [cell.iconImag addTarget:self action:@selector(personDetail:) forControlEvents:(UIControlEventTouchUpInside)];
+//    [cell.iconImag addTarget:self action:@selector(personDetail:) forControlEvents:(UIControlEventTouchUpInside)];
 //    cell.chatButton.tag = indexPath.row;
     cell.usermodel = userM;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -155,25 +156,69 @@
     return cell;
 }
 
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    UserModel *userM = [[UserModel alloc] init];
-//    if (indexPath.section == 0) {
-//        userM = _manngerDataArray[indexPath.row];
-//    } else {
-//        userM = _dataArray[indexPath.row];
-//    }
-//    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-//    if (app.userModel.userid != userM.userid) {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UserModel *userM = [[UserModel alloc] init];
+    if (indexPath.section == 0) {
+        userM = _manngerDataArray[indexPath.row];
+    } else {
+        userM = _dataArray[indexPath.row];
+    }
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    _imUserId = userM.imuserId;
+    if (app.userModel.userid != userM.userid) {
+        if (_isGroupM) {//第一个分区，管理员
+             UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"查看" otherButtonTitles:@"禁言一个月", nil];
+            [actionSheet showInView:self.view];
+        } else {//第二个分区，玩友
+            [self goToPersonWithType:1];
+
+        }
 //        LYFindConversationViewController *conversationVC = [[LYFindConversationViewController alloc]init];
 //        conversationVC.targetId = userM.imuserId;
 //        conversationVC.conversationType = ConversationType_PRIVATE;
 //        conversationVC.title = userM.usernick;
 //        [self.navigationController pushViewController:conversationVC animated:YES];
-//        
 //        conversationVC.navigationItem.leftBarButtonItem = [self getItem];
-//    }
-//}
+    }
+}
 
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    switch (buttonIndex) {
+        case 0://查看
+            [self goToPersonWithType:1];
+            break;
+        case 1://禁言
+            if (_isGroupM) {
+                [self removePersonFromChatRoom];
+            }
+            break;
+        default:
+            break;
+    }
+}
+
+#pragma mark --- 查看
+- (void)goToPersonWithType:(int)type{
+    LYMyFriendDetailViewController *myFriendVC = [[LYMyFriendDetailViewController alloc]init];
+    myFriendVC.isChatroom = type;
+    myFriendVC.imUserId = _imUserId;
+    [self resignFirstResponder];
+    [self.navigationController pushViewController:myFriendVC animated:YES];
+}
+
+#pragma mark - 群组禁言
+- (void)removePersonFromChatRoom{
+    NSDictionary *paraDic = @{@"groupId":_groupID,@"userId":_imUserId,@"minute":@"43200"};
+    __block BarGroupChatAllPeopleViewController *weekSelf = self;
+    [LYYUHttpTool yuAddLogInWith:paraDic complete:^(NSDictionary *dic) {
+        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"禁言成功！" preferredStyle:(UIAlertControllerStyleAlert)];
+        UIAlertAction *alertSure = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:nil];
+        [alertVC addAction:alertSure];
+        [weekSelf presentViewController:alertVC animated:YES completion:nil];
+    }];
+}
+
+#pragma marks ---- 点击头像的方法（已弃用）
 -(void)personDetail: (UIButton *)sender{
     LYGroupPeopleTableViewCell *cell=[(LYGroupPeopleTableViewCell *)[sender superview] superview];
     NSIndexPath *index=[_myTableView indexPathForCell:cell];
@@ -184,17 +229,14 @@
         userM = _dataArray[index.row];
     }
     LYMyFriendDetailViewController *friendDetailViewController=[[LYMyFriendDetailViewController alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
-//    LYMyFriendDetailViewController *friendDetailViewController = [[LYMyFriendDetailViewController alloc] init];
-    //    friendDetailViewController.title=@"详细信息";
     friendDetailViewController.type=@"4";
-    //    [friendDetailViewController.navigationController setNavigationBarHidden:NO animated:YES];
-    //    friendDetailViewController.customerModel=addressBook;
     friendDetailViewController.userID = [NSString stringWithFormat:@"%d",userM.userid];
     [self.navigationController pushViewController:friendDetailViewController animated:YES];
 //    friendDetailViewController.navigationItem.leftBarButtonItem = [self getItem];
 
 }
 
+#pragma marks --- 直接搭讪
 -(void)chatParvite: (UIButton *)sender{
     LYGroupPeopleTableViewCell *cell=[(LYGroupPeopleTableViewCell *)[sender superview] superview];
     NSIndexPath *index=[_myTableView indexPathForCell:cell];

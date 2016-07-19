@@ -87,8 +87,7 @@
         return;
     } else {
         if (!_isGroupManage) {//普通用户
-            UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"查看" otherButtonTitles:nil, nil];
-            [actionSheet showInView:self.view];
+            [self goToPersonWithType:1];
             return;
         } else {
             UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"查看" otherButtonTitles:@"禁言一个月", nil];
@@ -104,13 +103,16 @@
             [self goToPersonWithType:1];
             break;
         case 1://禁言
-            [self removePersonFromChatRoom];
+            if (_isGroupManage) {
+                [self removePersonFromChatRoom];
+            }
             break;
         default:
             break;
     }
 }
-#pragma mark --- 移出群组
+
+#pragma mark --- 查看
 - (void)goToPersonWithType:(int)type{
     LYMyFriendDetailViewController *myFriendVC = [[LYMyFriendDetailViewController alloc]init];
     myFriendVC.isChatroom = type;
@@ -121,13 +123,17 @@
 
 #pragma mark - 群组禁言
 - (void)removePersonFromChatRoom{
-    NSDictionary *paraDic = @{@"groupId":self.targetId,@"userId":_userId_RM,@"minute":@"20"};
+    NSDictionary *paraDic = @{@"groupId":self.targetId,@"userId":_userId_RM,@"minute":@"43200"};
+    __block BarGroupChatViewController *weekSelf = self;
     [LYYUHttpTool yuAddLogInWith:paraDic complete:^(NSDictionary *dic) {
-        NSLog(@"将%@禁言成功",_userId_RM);
+        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"禁言成功！" preferredStyle:(UIAlertControllerStyleAlert)];
+        UIAlertAction *alertSure = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:nil];
+        [alertVC addAction:alertSure];
+        [weekSelf presentViewController:alertVC animated:YES completion:nil];
     }];
 }
 
-#pragma mark - 群组踢人
+#pragma mark - 群组踢人（已废弃）
 - (void)quitFromChatRoom{
     NSDictionary *paraDic = @{@"groupId":self.targetId,@"userId":_userId_RM};
     
