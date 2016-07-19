@@ -9,6 +9,9 @@
 #ifndef lieyu_ZSUrl_h
 #define lieyu_ZSUrl_h
 //服务器
+
+//#define LY_SERVER @"http://121.40.229.133:80/lieyu/"
+//#define QINIU_SERVER @"http://121.40.229.133:80/portal/"
 //
 //#define LY_SERVER @"http://121.40.229.133:80/lieyu/"
 //#define QINIU_SERVER @"http://121.40.229.133:80/portal/"
@@ -20,7 +23,6 @@
 #define LY_IMTOKEN  @"friendAction.do?action=custom"
 //7牛token
 #define LY_QINIUTOKEN  @"fileServerAction.do?action=cancel"
-
 
 //7牛视频上传token
 #define LY_QINIU_MEDIA_TOKEN  @"fileServerAction.do?action=login"

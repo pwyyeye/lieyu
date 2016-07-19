@@ -10,10 +10,14 @@
 #import "IQKeyboardManager.h"
 #import <RongIMKit/RongIMKit.h>
 #import "LYFindConversationViewController.h"
+#import "LYYUHttpTool.h"
+
 
 //#import "RCDChatViewController.h"
 @interface LYRecentContactViewController ()
-
+{
+    NSString *_targetId;//创建聊天
+}
 @end
 
 @implementation LYRecentContactViewController
@@ -72,6 +76,7 @@
     LYFindConversationViewController *conversationVC = [[LYFindConversationViewController alloc]init];
     conversationVC.conversationType =model.conversationType;
     conversationVC.targetId = model.targetId;
+    _targetId = model.targetId;
 //    conversationVC.userName =model.conversationTitle;
     conversationVC.title = model.conversationTitle;
     
@@ -85,6 +90,8 @@
     [button addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:view];
     conversationVC.navigationItem.leftBarButtonItem = item;
+    
+   
     
     [self.navigationController pushViewController:conversationVC animated:YES];
     
@@ -133,6 +140,8 @@
    
     
 }
+
+
 
 - (void)willDisplayConversationTableCell:(RCConversationBaseCell *)cell atIndexPath:(NSIndexPath *)indexPath{
     if (cell.model.unreadMessageCount>0) {

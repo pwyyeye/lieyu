@@ -240,9 +240,9 @@
 }
 
 //退出群
-+ (void)yuQuitGroupWith: (NSDictionary *) paraDic complete:(void (^)(NSDictionary *))complete{
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YU_QUNZU_QUIT baseURL:LY_SERVER params:paraDic success:^(id response) {
-        NSDictionary *data = response[@"data"];
++ (void)yuQuitGroupWith: (NSDictionary *) paraDic complete:(void (^)(NSString *))complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YU_QUNZU_QUIT baseURL:QINIU_SERVER params:paraDic success:^(id response) {
+        NSString *data = response[@"errorcode"];
         complete(data);
     } failure:^(NSError *err) {
         

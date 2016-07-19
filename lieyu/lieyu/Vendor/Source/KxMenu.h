@@ -64,4 +64,7 @@
 + (UIFont *) titleFont;
 + (void) setTitleFont: (UIFont *) titleFont;
 
++ (CGFloat) alpha;
++(void) setAlpha:(CGFloat) alpha;
+
 @end

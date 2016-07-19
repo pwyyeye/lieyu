@@ -766,6 +766,7 @@ typedef enum {
 static KxMenu *gMenu;
 static UIColor *gTintColor;
 static UIFont *gTitleFont;
+static CGFloat gAlpha;
 
 @implementation KxMenu {
     
@@ -823,9 +824,10 @@ static UIFont *gTitleFont;
                                                    object:nil];
     }
 
-    
     _menuView = [[KxMenuView alloc] init];
-    [_menuView showMenuInView:view fromRect:rect menuItems:menuItems];    
+    [_menuView showMenuInView:view fromRect:rect menuItems:menuItems];
+#warning 这个后来修改的
+    _menuView.alpha = 0.9;
 }
 
 - (void) dismissMenu
@@ -881,6 +883,18 @@ static UIFont *gTitleFont;
 {
     if (titleFont != gTitleFont) {
         gTitleFont = titleFont;
+    }
+}
+
++ (CGFloat) alpha
+{
+    return gAlpha;
+}
+
++ (void) setAlpha:(CGFloat)alpha
+{
+    if (alpha != gAlpha) {
+        gAlpha = alpha;
     }
 }
 
