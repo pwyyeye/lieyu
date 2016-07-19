@@ -10,13 +10,17 @@
 #import "BarGroupChatAllPeopleViewController.h"
 #import "LYMyFriendDetailViewController.h"
 #import "LYYUHttpTool.h"
+#import "KxMenu.h"
+#import <RongIMKit/RCIM.h>
 
 @interface BarGroupChatViewController ()<UIActionSheetDelegate>
 {
     NSString *_userId_RM;
     BOOL _isGroupManage;
+    BOOL _notificationStatus;//通知状态
 }
 
+@property(assign,nonatomic) BOOL isShow;//顶部
 
 @end
 
@@ -25,9 +29,11 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-//    [self.navigationController.navigationBar setTranslucent:NO];
-//    self.extendedLayoutIncludesOpaqueBars = NO;
-    
+
+    [[RCIMClient sharedRCIMClient] getConversationNotificationStatus:self.conversationType targetId:self.targetId success:^(RCConversationNotificationStatus nStatus) {
+        _notificationStatus = nStatus;
+    } error:^(RCErrorCode status) {
+    }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -48,16 +54,80 @@
         }
     }
     
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(10, 0, 44, 44)];
+    [button setImage:[UIImage imageNamed:@"more1"] forState:UIControlStateNormal];
+    [view addSubview:button];
+    [button addTarget:self action:@selector(moreAct:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:view];
+    self.navigationItem.rightBarButtonItem = item;
+    
+    /*
     UIButton *right = [UIButton buttonWithType:UIButtonTypeCustom];
-    right.frame = CGRectMake(0, 0, 85, 50);
+    right.frame = CGRectMake(0, 0, 30, 50);
     [right addTarget:self action:@selector(checkAllPeople) forControlEvents:UIControlEventTouchUpInside];
-    [right setTitle:@"老司机列表" forState:UIControlStateNormal];
-    right.titleLabel.font = [UIFont systemFontOfSize:13];
-    [right setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    UIBarButtonItem *rightBut = [[UIBarButtonItem alloc]initWithCustomView:right];
-    self.navigationItem.rightBarButtonItem = rightBut;
+    [right setImage:[UIImage imageNamed:@"列表"] forState:(UIControlStateNormal)];
+//    right.titleLabel.font = [UIFont systemFontOfSize:13];
+//    [right setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:right];
+    
+    UIButton *quitBut = [UIButton buttonWithType:UIButtonTypeCustom];
+    quitBut.frame = CGRectMake(0, 0,30, 50);
+    [quitBut addTarget:self action:@selector(quitFromChatRoom) forControlEvents:UIControlEventTouchUpInside];
+//    [quitBut setTitle:@"老司机列表" forState:UIControlStateNormal];
+    [quitBut setImage:[UIImage imageNamed:@"退出"] forState:(UIControlStateNormal)];
+//    [quitBut setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    UIBarButtonItem *quitItem = [[UIBarButtonItem alloc]initWithCustomView:quitBut];
+    self.navigationItem.rightBarButtonItems = @[quitItem,rightItem];
+     */
 }
 
+#pragma mark ---- 顶部按钮
+- (void)moreAct:(id)sender{
+    if (_isShow) {
+        [KxMenu dismissMenu];
+        _isShow=NO;
+        return;
+    }
+    _isShow=YES;
+    
+    NSArray *menuItems =
+    @[
+      [KxMenuItem menuItem:@"老司机列表"
+                     image:[UIImage imageNamed:@"列表"]
+                    target:self
+                    action:@selector(checkAllPeople)],
+      _notificationStatus?
+      [KxMenuItem menuItem:@"关闭通知"
+                     image:[UIImage imageNamed:@"关闭通知"]
+                    target:self
+                    action:@selector(notificationChoose)]:[KxMenuItem menuItem:@"打开通知"
+                                                                image:[UIImage imageNamed:@"打开通知"]
+                                                               target:self
+                                                               action:@selector(notificationChoose)],
+      
+      [KxMenuItem menuItem:@"退出群组"
+                     image:[UIImage imageNamed:@"退出"]
+                    target:self
+                    action:@selector(quitFromGroup)]
+      
+      ];
+    for (KxMenuItem *item in menuItems) {
+        item.foreColor = [UIColor blackColor];
+    }
+    //    KxMenuItem *first = menuItems[0];
+    
+    //    first.alignment = NSTextAlignmentCenter;
+    
+    [KxMenu setTintColor:RGBA(246, 246, 246, 1)];
+    [KxMenu setTitleFont:[UIFont italicSystemFontOfSize:13]];
+    
+    [KxMenu showMenuInView:self.view
+                  fromRect:CGRectMake(SCREEN_WIDTH-75, 64, 100,0)
+                 menuItems:menuItems];
+}
+
+#pragma marks ---- 查看所有成员
 -(void)checkAllPeople{
     BarGroupChatAllPeopleViewController *barGroupVC = [[BarGroupChatAllPeopleViewController alloc] init];
     barGroupVC.groupID = [NSString stringWithFormat:@"%@",self.targetId];
@@ -104,7 +174,7 @@
             break;
         case 1://禁言
             if (_isGroupManage) {
-                [self removePersonFromChatRoom];
+                [self removePersonFromGroup];
             }
             break;
         default:
@@ -122,25 +192,44 @@
 }
 
 #pragma mark - 群组禁言
-- (void)removePersonFromChatRoom{
+- (void)removePersonFromGroup{
     NSDictionary *paraDic = @{@"groupId":self.targetId,@"userId":_userId_RM,@"minute":@"43200"};
     __block BarGroupChatViewController *weekSelf = self;
     [LYYUHttpTool yuAddLogInWith:paraDic complete:^(NSDictionary *dic) {
-        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"禁言成功！" preferredStyle:(UIAlertControllerStyleAlert)];
+        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"提示：该用户将被禁言1个月" message:@"禁言成功！" preferredStyle:(UIAlertControllerStyleAlert)];
         UIAlertAction *alertSure = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:nil];
         [alertVC addAction:alertSure];
         [weekSelf presentViewController:alertVC animated:YES completion:nil];
     }];
 }
 
-#pragma mark - 群组踢人（已废弃）
-- (void)quitFromChatRoom{
-    NSDictionary *paraDic = @{@"groupId":self.targetId,@"userId":_userId_RM};
-    
-    [LYYUHttpTool yuQuitGroupWith:paraDic complete:^(NSDictionary *str) {
-        NSLog(@"将%@踢出群组成功",_userId_RM);
+#pragma marks --- 通知
+-(void)notificationChoose{
+    [[RCIMClient sharedRCIMClient] setConversationNotificationStatus:self.conversationType targetId:self.targetId isBlocked:_notificationStatus success:^(RCConversationNotificationStatus nStatus) {
+        _notificationStatus = nStatus;
+    } error:^(RCErrorCode status) {
     }];
-    
+    [[RCIMClient sharedRCIMClient] getConversationNotificationStatus:self.conversationType targetId:self.targetId success:^(RCConversationNotificationStatus nStatus) {
+        _notificationStatus = nStatus;
+    } error:^(RCErrorCode status) {
+    }];
+}
+
+#pragma mark - 退出群组
+- (void)quitFromGroup{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    NSDictionary *paraDic = @{@"groupId":self.targetId,@"userId":app.userModel.imuserId};
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否退出群组，不再接收该群组消息？" preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertAction *alertSure = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+        [LYYUHttpTool yuQuitGroupWith:paraDic complete:^(NSString *str) {
+            
+        }];
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    UIAlertAction *alertQuit = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleDefault) handler:nil];
+    [alertVC addAction:alertSure];
+    [alertVC addAction:alertQuit];
+    [self presentViewController:alertVC animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

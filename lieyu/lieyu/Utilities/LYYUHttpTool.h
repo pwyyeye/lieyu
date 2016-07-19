@@ -44,7 +44,7 @@
 + (void)yuJoinGroupWith:(NSDictionary *) paraDic complete: (void (^)(NSDictionary *)) complete;
 
 //退出群
-+ (void)yuQuitGroupWith: (NSDictionary *) paraDic complete:(void (^)(NSDictionary *))complete;
++ (void)yuQuitGroupWith: (NSDictionary *) paraDic complete:(void (^)(NSString *))complete;
 
 //解散群
 + (void)yuDismissGroupWith:(NSDictionary *) paraDic complete: (void (^)(NSDictionary *)) complete;

@@ -412,7 +412,7 @@
     alerLabel.frame = CGRectMake(0, 64 + 50, SCREEN_WIDTH, SCREEN_HEIGHT - 64 - 50);
     alerLabel.tag = 10086;
     alerLabel.textAlignment = NSTextAlignmentCenter;
-    alerLabel.text = @"暂无套餐";
+    alerLabel.text = @"暂无套餐，试试右上角单点";
     [self.view addSubview:alerLabel];
 }
 
