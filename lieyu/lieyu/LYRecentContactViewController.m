@@ -74,7 +74,6 @@
     conversationVC.targetId = model.targetId;
 //    conversationVC.userName =model.conversationTitle;
     conversationVC.title = model.conversationTitle;
-    RCConversationModel *mod = self.conversationListDataSource[1];
     
     [IQKeyboardManager sharedManager].enable = NO;
     [IQKeyboardManager sharedManager].isAdd = YES;

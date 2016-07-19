@@ -45,27 +45,27 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0z-3p-dxV">
-                        <rect key="frame" x="333" y="14" width="44" height="25"/>
+                        <rect key="frame" x="307" y="14" width="70" height="30"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="44" id="PDS-Fj-9vm"/>
-                            <constraint firstAttribute="height" constant="25" id="hog-rB-uhF"/>
+                            <constraint firstAttribute="width" constant="70" id="PDS-Fj-9vm"/>
+                            <constraint firstAttribute="height" constant="30" id="hog-rB-uhF"/>
                         </constraints>
                         <state key="normal" title="搭讪">
                             <color key="titleColor" red="0.69803921570000005" green="0.14901960780000001" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="管理员" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2LM-Fq-DKm">
-                        <rect key="frame" x="50" y="12" width="21" height="9"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="管理员" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2LM-Fq-DKm">
+                        <rect key="frame" x="51" y="12" width="21" height="9"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="21" id="cBk-eE-92y"/>
                             <constraint firstAttribute="height" constant="9" id="q70-IH-ywt"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="7"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tbt-xb-nlb">
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tbt-xb-nlb">
                         <rect key="frame" x="10" y="10" width="36" height="36"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="36" id="3jZ-Nz-qra"/>
