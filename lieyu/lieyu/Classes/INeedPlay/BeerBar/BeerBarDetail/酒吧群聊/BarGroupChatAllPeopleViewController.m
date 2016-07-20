@@ -13,6 +13,7 @@
 #import "LYBlackListGroupViewController.h"
 #import "LYMyFriendDetailViewController.h"
 #import "LYYUHttpTool.h"
+#import<QuartzCore/QuartzCore.h>
 
 @interface BarGroupChatAllPeopleViewController ()<UITableViewDelegate, UITableViewDataSource,UIActionSheetDelegate>
 {
@@ -146,13 +147,18 @@
     [cell.chatButton addTarget:self action:@selector(chatParvite:) forControlEvents:(UIControlEventTouchUpInside)];
 //    [cell.iconImag addTarget:self action:@selector(personDetail:) forControlEvents:(UIControlEventTouchUpInside)];
 //    cell.chatButton.tag = indexPath.row;
+    cell.borderView.backgroundColor = [UIColor whiteColor];
+    cell.borderView.layer.borderColor = [RGB(186, 40, 227) CGColor];
+    cell.borderView.layer.borderWidth = 0.5f;
+    cell.borderView.layer.cornerRadius = 2;
+    cell.borderView.layer.masksToBounds = YES;
     cell.usermodel = userM;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if (app.userModel.userid == userM.userid) {
         cell.chatButton.hidden = YES;
+        cell.borderView.hidden = YES;
     }
-    
     return cell;
 }
 
