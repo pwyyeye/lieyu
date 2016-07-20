@@ -89,7 +89,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 16.png" translatesAutoresizingMaskIntoConstraints="NO" id="9ZH-Pd-9Ic">
-                                        <rect key="frame" x="70" y="14" width="30" height="30"/>
+                                        <rect key="frame" x="73" y="14" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="PjO-Er-eEN"/>
                                             <constraint firstAttribute="height" constant="30" id="mJR-U3-Xwc"/>
@@ -112,8 +112,8 @@
                                 <color key="backgroundColor" red="0.72941176470588232" green="0.14901960784313725" blue="0.8901960784313725" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="aZi-Z4-kaI" secondAttribute="bottom" constant="9" id="28w-hM-wwy"/>
+                                    <constraint firstItem="9ZH-Pd-9Ic" firstAttribute="centerX" secondItem="aZi-Z4-kaI" secondAttribute="centerX" constant="-72" id="JCu-Mn-w9x"/>
                                     <constraint firstAttribute="height" constant="49" id="bvB-uS-EAn"/>
-                                    <constraint firstItem="9ZH-Pd-9Ic" firstAttribute="leading" secondItem="3nz-fQ-7yP" secondAttribute="leading" constant="70" id="gof-x1-A5p"/>
                                     <constraint firstAttribute="trailing" secondItem="aZi-Z4-kaI" secondAttribute="trailing" constant="40" id="hDM-gU-kof"/>
                                     <constraint firstAttribute="bottom" secondItem="9ZH-Pd-9Ic" secondAttribute="bottom" constant="5" id="hmA-Hf-ChQ"/>
                                     <constraint firstItem="aZi-Z4-kaI" firstAttribute="leading" secondItem="3nz-fQ-7yP" secondAttribute="leading" constant="40" id="kVe-Pn-yuo"/>

@@ -8,12 +8,14 @@
 
 #import "LYGroupPeopleTableViewCell.h"
 #import "UIButton+WebCache.h"
+#import<QuartzCore/QuartzCore.h>
 
 @implementation LYGroupPeopleTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -37,12 +39,12 @@
     _typeLabel.layer.cornerRadius = 3;
     if (usermodel.isGrpupManage) {
         _typeLabel.text = @"管理员";
-        
         _typeLabel.backgroundColor = RGB(178, 38, 217);
     } else {
         _typeLabel.text = @"玩友";
         _typeLabel.backgroundColor = RGB(130, 130, 130);
     }
+    
 }
 
 

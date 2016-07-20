@@ -18,10 +18,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MF1-if-4yK">
-                    <rect key="frame" x="0.0" y="565" width="600" height="35"/>
+                    <rect key="frame" x="0.0" y="551" width="600" height="49"/>
                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="35" id="YDy-Qx-WpV"/>
+                        <constraint firstAttribute="height" constant="49" id="YDy-Qx-WpV"/>
                     </constraints>
                     <state key="normal" title="立即申请">
                         <color key="titleColor" red="0.69803921570000005" green="0.14901960780000001" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>

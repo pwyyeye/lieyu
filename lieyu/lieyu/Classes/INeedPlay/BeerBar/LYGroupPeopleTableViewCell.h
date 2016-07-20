@@ -22,6 +22,7 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *chatButton;
 
+@property (weak, nonatomic) IBOutlet UILabel *borderView;
 
 @property (strong, nonatomic) UserModel *usermodel;
 
