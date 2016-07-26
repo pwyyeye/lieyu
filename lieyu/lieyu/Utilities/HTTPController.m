@@ -26,8 +26,7 @@
     }
     NSURL* baseURL = [NSURL URLWithString:baseStr];
     //获得请求管理者
-    AFHTTPRequestOperationManager* mgr = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:baseURL];
-//    mgr.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@[@"text/html",@"text/json"], nil];
+    AFHTTPSessionManager *mgr = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL];
 #ifdef ContentType
     mgr.responseSerializer.acceptableContentTypes = [NSSet setWithObject:ContentType];
 #endif
@@ -38,7 +37,7 @@
         {
             //GET请求
             [mgr GET:url parameters:params
-             success:^(AFHTTPRequestOperation* operation, NSDictionary* responseObj) {
+             success:^(NSURLSessionTask* operation, NSDictionary* responseObj) {
                  if (success) {
                      NSString *code = [NSString stringWithFormat:@"%@",responseObj[@"errorcode"]];
 //                     NSLog(@"---->%@",responseObj);
@@ -52,7 +51,7 @@
                      
                      success(responseObj);
                  }
-             } failure:^(AFHTTPRequestOperation* operation, NSError* error) {
+             } failure:^(NSURLSessionTask* operation, NSError* error) {
                  [app stopLoading];
                  if([error code]==-1009){
                      [MyUtil showCleanMessage:@"无网络连接！"];
@@ -68,7 +67,7 @@
         {
             //POST请求
             [mgr POST:url parameters:params
-              success:^(AFHTTPRequestOperation* operation, NSDictionary* responseObj) {
+              success:^(NSURLSessionTask* operation, NSDictionary* responseObj) {
                   if (success) {
                       NSString *code = [NSString stringWithFormat:@"%@",responseObj[@"errorcode"]];
                       if ([code isEqualToString:@"-1"]) {
@@ -80,7 +79,7 @@
                       }
                       success(responseObj);
                   }
-              } failure:^(AFHTTPRequestOperation* operation, NSError* error) {
+              } failure:^(NSURLSessionTask* operation, NSError* error) {
                   [app stopLoading];
                   if([error code]==-1009){
                       [MyUtil showCleanMessage:@"无网络连接！"];
@@ -97,10 +96,10 @@
 }
 //文件上传
 + (void)requestFileWihtUrl:(NSString*)url
-                  baseURL:(NSString*)baseStr
-                       params:(NSDictionary*)params block:(void (^)(id <AFMultipartFormData> formData))block
-                  success:(void (^)(id response))success
-                  failure:(void (^)(NSError* err))failure
+                   baseURL:(NSString*)baseStr
+                    params:(NSDictionary*)params block:(void (^)(id <AFMultipartFormData> formData))block
+                   success:(void (^)(id response))success
+                   failure:(void (^)(NSError* err))failure
 {
     //添加userid
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -110,16 +109,16 @@
     }
     NSURL* baseURL = [NSURL URLWithString:baseStr];
     //获得请求管理者
-    AFHTTPRequestOperationManager* mgr = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:baseURL];
+    AFHTTPSessionManager* mgr = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL];
     
 #ifdef ContentType
     mgr.responseSerializer.acceptableContentTypes = [NSSet setWithObject:ContentType];
 #endif
     mgr.requestSerializer.HTTPShouldHandleCookies = YES;
     
-//    mgr.requestSerializer = [AFHTTPRequestSerializer serializer];
-//    mgr.responseSerializer = [AFHTTPResponseSerializer serializer];
-    [mgr POST:url parameters:params constructingBodyWithBlock:block success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    //    mgr.requestSerializer = [AFHTTPRequestSerializer serializer];
+    //    mgr.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [mgr POST:url parameters:params constructingBodyWithBlock:block success:^(NSURLSessionTask *operation, id responseObject) {
         if (success) {
             NSString *code = [NSString stringWithFormat:@"%@",responseObject[@"errorcode"]];
             if ([code isEqualToString:@"-1"]) {
@@ -131,16 +130,16 @@
             }
             success(responseObject);
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
         if (failure) {
             failure(error);
         }
-
+        
     }];
     
     
     
-                    
+    
     
 }
 -(instancetype)initWith:(NSString *)urlStr withType:(int)type withUrlName:(NSString *)name{
@@ -173,115 +172,6 @@
     return self;
 }
 
-
--(void)onSearch{
-    //
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    urlPam = [urlPam stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-//     [self showToast:@"查询中....."];
-    [manager GET:urlPam parameters:pamDic success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        if ([urlName isEqual:@"login"]) {
-//            NSLog(@"JSON: %@", responseObject);
-
-        }
-        //判断是否登录如果未登录 则进入登录页面
-        NSNumber *status=[responseObject objectForKey:@"status"];
-        NSLog(@"----pass-httprequest header%@---",operation.request);
-//        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-
-        if([status integerValue] == -1){
-            
-//            UIViewController *vc=[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
-//            [app stopLoading];
-//        
-//            [app.navigationController pushViewController:vc animated:YES];
-//            [app.navigationController presentViewController:vc animated:YES completion:^{
-//                
-//            }];
-        }else if([status integerValue] == 0){
-            id array=[responseObject objectForKey:@"msg"];
-            if ([array isKindOfClass:[NSString class]]) {
-                ShowMessage(array);
-            }else if([array isKindOfClass:[NSArray class]]){
-                ShowMessage([array objectAtIndex:0]);
-            }
-            
-//            [app stopLoading];
-        }else{
-            [self.delegate didRecieveResults:responseObject withName:urlName];
-        }
-        
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-//        [app stopLoading];
-        
-        //[mi_statusbar setHidden:YES];
-        //[timer invalidate];
-//        [indicator stopAnimating];
-//        [alertView dismissWithClickedButtonIndex:0 animated:YES];
-        NSLog(@"Error: %@", error);
-    }];
-    
-}
--(void)onSearchForPostJson{
-     //[self showToast:@"查询中....."];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    //申明返回的结果是json类型
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    //申明请求的数据是json类型
-    //manager.requestSerializer=[AFJSONRequestSerializer serializer];
-    //如果报接受类型不一致请替换一致text/html或别的
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    //传入的参数
-    NSDictionary *parameters = pamDic;
-    //你的接口地址
-    NSString *url=urlPam;
-    //发送请求
-    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        //[mi_statusbar setHidden:YES];
-        //[timer invalidate];
-        //[indicator stopAnimating];
-        //[alertView dismissWithClickedButtonIndex:0 animated:YES];
-        NSLog(@"----pass-httprequest header%@---",operation.request);
-        //判断是否登录如果未登录 则进入登录页面
-        NSNumber *status=[responseObject objectForKey:@"status"];
-
-        if([status integerValue] == -1){
-//            
-//            UIViewController *vc=[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
-//            [app stopLoading];
-            
-//            [app.navigationController pushViewController:vc animated:YES];
-        }else if([status integerValue] == 0){
-            id array=[responseObject objectForKey:@"msg"];
-            if ([array isKindOfClass:[NSString class]]) {
-                 ShowMessage(array);
-            }else if([array isKindOfClass:[NSArray class]]){
-                  ShowMessage([array objectAtIndex:0]);
-            }
-            
-//            [app stopLoading];
-           
-        }else{
-            [self.delegate didRecieveResults:responseObject withName:urlName];
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        //[mi_statusbar setHidden:YES];
-        //[timer invalidate];
-        //[indicator stopAnimating];
-        
-        //[alertView dismissWithClickedButtonIndex:0 animated:YES];
-//        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-//        [app stopLoading];
-
-        NSLog(@"Error: %@", error);
-        NSLog ( @"operation: %@" , operation. responseString );
-    }];
-}
-
 //上传文件 示例：
 //   [httpController onFileForPostJson:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 //   [formData appendPartWithFileData:UIImagePNGRepresentation(_idcard_zhengmian.image) name:@"idcard_1" fileName:@"idcard_1.png" mimeType:@"image/png"];
@@ -310,15 +200,20 @@
     NSDictionary *dic =[mutableUrlRequest allHTTPHeaderFields];
     
     NSLog(@"dic=================%@",dic);
-     NSLog(@"mutableUrlRequest=================%@",mutableUrlRequest);
+    NSLog(@"mutableUrlRequest=================%@",mutableUrlRequest);
     
     NSData *data= [mutableUrlRequest HTTPBody];
     
     NSLog(@"-----%@",data);
 //    NSMutableURLRequest *mulRequest=[[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:urlPam parameters:pamDic constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block error:nil];
-    
-    NSProgress * progress=nil;
-    NSURLSessionUploadTask *uploadTask=[manager uploadTaskWithStreamedRequest:mutableUrlRequest progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+    NSURLSessionUploadTask *uploadTask=[manager uploadTaskWithStreamedRequest:mutableUrlRequest progress:^(NSProgress * _Nonnull uploadProgress) {
+//        // This is not called back on the main queue.
+//        // You are responsible for dispatching to the main queue for UI updates
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            //Update the progress view
+//            [progressView setProgress:uploadProgress.fractionCompleted];
+//        });
+    } completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         NSLog(@"----pass-pass%@---",responseObject);
         if (error) {
             NSLog(@"%@",error);
@@ -339,52 +234,6 @@
 
 }
 
-//同步请求 无法100％同步 相对同步
--(void)onSyncPostJson{
-    
-    AFHTTPRequestSerializer *requestSerializer=[AFHTTPRequestSerializer serializer];
-//    AFJSONRequestSerializer *requestSerializer = [AFJSONRequestSerializer serializer];
-    NSMutableURLRequest *request = [requestSerializer requestWithMethod:@"POST" URLString:urlPam parameters:pamDic error:nil];
-    
-    AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    AFHTTPResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
-    responseSerializer.acceptableContentTypes=[NSSet setWithObject:@"text/html"];
-    @try {
-        [requestOperation setResponseSerializer:responseSerializer];
-        [requestOperation start];
-        [requestOperation waitUntilFinished];
-        NSDictionary *responseObject=[requestOperation responseObject];
-        NSNumber *status=[responseObject objectForKey:@"status"];
-//        AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-        
-        if([status integerValue] == -1){
-//            
-//            UIViewController *vc=[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
-//            [app stopLoading];
-//            
-//            [app.navigationController pushViewController:vc animated:YES];
-        }else if([status integerValue] == 0){
-            id array=[responseObject objectForKey:@"msg"];
-            if ([array isKindOfClass:[NSString class]]) {
-                ShowMessage(array);
-            }else if([array isKindOfClass:[NSArray class]]){
-                ShowMessage([array objectAtIndex:0]);
-            }
-            
-//            [app stopLoading];
-            
-        }else{
-            [self.delegate didRecieveResults:responseObject withName:urlName];
-        }
-    }
-    @catch (NSException *exception) {
-        NSLog(@"----pass-onSyncPostJson%@---",exception);
-    }
-    @finally {
-        
-    }
-
-}
 
 //七牛上传图片
 +(void)uploadImageToQiuNiu:(UIImage *)image complete:(QNUpCompletionHandler)completionHandler{

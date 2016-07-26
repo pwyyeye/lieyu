@@ -9,7 +9,7 @@
 #import "MyUtil.h"
 #import "sys/utsname.h"
 #import <Reachability.h>
-#import "GTM_Base64.h"
+#import "QN_GTM_Base64.h"
 #import <CommonCrypto/CommonCryptor.h>
 #import "LYUserLoginViewController.h"
 #import "LYUserDetailController.h"
@@ -224,7 +224,7 @@
     if (cryptStatus == kCCSuccess) {
         NSData *data = [NSData dataWithBytes:buffer length:(NSUInteger)numBytesEncrypted];
         
-        ciphertext = [[NSString alloc] initWithData:[GTM_Base64 encodeData:data] encoding:NSUTF8StringEncoding];
+        ciphertext = [[NSString alloc] initWithData:[QN_GTM_Base64 encodeData:data] encoding:NSUTF8StringEncoding];
     }
     return ciphertext;
 }
@@ -232,7 +232,7 @@
 #pragma --mark des 解密 // kCCOptionPKCS7Padding|kCCOptionECBMode（保持和java一致）,  kCCOptionPKCS7Padding（原先）,
 + (NSString *) decryptUseDES:(NSString*)cipherText
 {
-    NSData* cipherData = [GTM_Base64 decodeString:cipherText];
+    NSData* cipherData = [QN_GTM_Base64 decodeString:cipherText];
     unsigned char buffer[1024];
     memset(buffer, 0, sizeof(char));
     size_t numBytesDecrypted = 0;
@@ -278,7 +278,7 @@
     if (cryptStatus == kCCSuccess) {
         NSData *data = [NSData dataWithBytes:buffer length:(NSUInteger)numBytesEncrypted];
         
-        ciphertext = [[NSString alloc] initWithData:[GTM_Base64 encodeData:data] encoding:NSUTF8StringEncoding];
+        ciphertext = [[NSString alloc] initWithData:[QN_GTM_Base64 encodeData:data] encoding:NSUTF8StringEncoding];
     }
     return ciphertext;
 }
@@ -286,7 +286,7 @@
 #pragma --mark des 解密
 + (NSString *) decryptUseDES:(NSString*)cipherText withKey:(NSString *)key;
 {
-    NSData* cipherData = [GTM_Base64 decodeString:cipherText];
+    NSData* cipherData = [QN_GTM_Base64 decodeString:cipherText];
     unsigned char buffer[1024];
     memset(buffer, 0, sizeof(char));
     size_t numBytesDecrypted = 0;
