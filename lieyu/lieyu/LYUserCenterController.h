@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "OrderTTL.h"
 #import "UMSocial.h"
-@interface LYUserCenterController : UICollectionViewController<UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate >
+@interface LYUserCenterController : UICollectionViewController<UICollectionViewDelegateFlowLayout,UINavigationControllerDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 @property(strong,nonatomic) NSArray *data;
 @property(strong,nonatomic) OrderTTL *orderTTL;
 @end

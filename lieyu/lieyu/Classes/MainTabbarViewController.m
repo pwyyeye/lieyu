@@ -58,8 +58,6 @@
 }
 
 
-
-
 - (void)postANotification{
     [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
 }

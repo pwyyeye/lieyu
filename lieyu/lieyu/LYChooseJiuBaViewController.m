@@ -252,10 +252,13 @@
     for (NSArray *section in _listContent) {
         for (JiuBaModel *addressBook in section)
         {
-            NSComparisonResult result = [addressBook.barname compare:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchText length])];
-            if (result == NSOrderedSame)
-            {
-                [_filteredListContent addObject:addressBook];
+            if (addressBook.barname.length >= searchText.length && searchText != nil ) {
+                
+                NSComparisonResult result = [addressBook.barname compare:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch | NSWidthInsensitiveSearch)range:NSMakeRange(0, [searchText length])];
+                if ( result == NSOrderedSame)
+                {
+                    [_filteredListContent addObject:addressBook];
+                }
             }
         }
     }

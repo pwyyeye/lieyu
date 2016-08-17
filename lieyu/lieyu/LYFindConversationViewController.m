@@ -32,6 +32,15 @@
 
 @implementation LYFindConversationViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [[RCIMClient sharedRCIMClient] getConversationNotificationStatus:self.conversationType targetId:self.targetId success:^(RCConversationNotificationStatus nStatus) {
+        _notificationStatus = nStatus;
+    } error:^(RCErrorCode status) {
+    }];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -107,7 +116,7 @@
     [self.navigationController pushViewController:chatRoomAllPeopelVC animated:YES];
 }
 
-#pragma marks ---- 查看所有成员
+#pragma mark ---- 查看所有群组成员
 -(void)checkAllPeople{
     BarGroupChatAllPeopleViewController *barGroupVC = [[BarGroupChatAllPeopleViewController alloc] init];
     barGroupVC.groupID = [NSString stringWithFormat:@"%@",self.targetId];
@@ -132,10 +141,7 @@
     [self presentViewController:alertVC animated:YES completion:nil];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-}
+
 
 - (void)didTapCellPortrait:(NSString *)userId{
 //    NSLog(@"------>%@",userId);
@@ -213,7 +219,7 @@
 }
 
 
-#pragma mark - 踢人
+#pragma mark - 踢人（已废弃）
 - (void)removePersonFromChatRoom{
 //   121.40.229.133:80/portal/friendAction.do?action=expand&chatroomId=150&imuserId=130615&minute=1&SEM_LOGIN_TOKEN=g6hccy5yqo78xk3yarls7888
     
@@ -254,7 +260,7 @@
     return beerModel?@[beerModel]:nil;
 }
 
-#pragma marks --- 检测用户身份（管理员或玩家）
+#pragma mark --- 检测用户身份（管理员或玩家）
 -(void)checkUserInfo{
     NSArray *groupManage = [_beerBarDetail.groupManage componentsSeparatedByString:@","];
     //判断是否老司机
@@ -280,16 +286,13 @@
     }];
 }
 
-#pragma marks --- 通知
+#pragma mark --- 设置是否接收通知
 -(void)notificationChoose{
     [[RCIMClient sharedRCIMClient] setConversationNotificationStatus:self.conversationType targetId:self.targetId isBlocked:_notificationStatus success:^(RCConversationNotificationStatus nStatus) {
         _notificationStatus = nStatus;
     } error:^(RCErrorCode status) {
     }];
-    [[RCIMClient sharedRCIMClient] getConversationNotificationStatus:self.conversationType targetId:self.targetId success:^(RCConversationNotificationStatus nStatus) {
-        _notificationStatus = nStatus;
-    } error:^(RCErrorCode status) {
-    }];
+    
 }
 
 - (void)didReceiveMemoryWarning {

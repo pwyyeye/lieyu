@@ -12,6 +12,7 @@
 #import "LYYUHttpTool.h"
 #import "KxMenu.h"
 #import <RongIMKit/RCIM.h>
+#import "RCMessageContent.h"
 
 @interface BarGroupChatViewController ()<UIActionSheetDelegate>
 {
@@ -29,7 +30,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-
+    RCMessageContent *messageContent = [[RCMessageContent alloc] init];
     [[RCIMClient sharedRCIMClient] getConversationNotificationStatus:self.conversationType targetId:self.targetId success:^(RCConversationNotificationStatus nStatus) {
         _notificationStatus = nStatus;
     } error:^(RCErrorCode status) {
@@ -205,14 +206,19 @@
 
 #pragma marks --- 通知
 -(void)notificationChoose{
+    NSLog(@"111111111111--%d", _notificationStatus);
+
     [[RCIMClient sharedRCIMClient] setConversationNotificationStatus:self.conversationType targetId:self.targetId isBlocked:_notificationStatus success:^(RCConversationNotificationStatus nStatus) {
         _notificationStatus = nStatus;
+        NSLog(@"222222222222222--%d", _notificationStatus);
+
     } error:^(RCErrorCode status) {
     }];
-    [[RCIMClient sharedRCIMClient] getConversationNotificationStatus:self.conversationType targetId:self.targetId success:^(RCConversationNotificationStatus nStatus) {
-        _notificationStatus = nStatus;
-    } error:^(RCErrorCode status) {
-    }];
+    NSLog(@"333333333333333--%d", _notificationStatus);
+//    [[RCIMClient sharedRCIMClient] getConversationNotificationStatus:self.conversationType targetId:self.targetId success:^(RCConversationNotificationStatus nStatus) {
+//        _notificationStatus = nStatus;
+//    } error:^(RCErrorCode status) {
+//    }];
 }
 
 #pragma mark - 退出群组

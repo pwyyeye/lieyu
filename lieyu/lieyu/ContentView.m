@@ -15,7 +15,7 @@
     self.selectButton = @[_selectBtn1, _selectBtn2, _selectBtn3];
     self.buttonStatusArray = [[NSMutableArray alloc]initWithArray:@[@"1",@"0",@"0"]];
 }
-
+ 
 - (void)contentViewChooseBtn{
     if([_defaultString isEqualToString:@"我请客"] || [_defaultString isEqualToString:@"选择正确的拼客方式"] || !_defaultString){
         [self.redioButton1 setBackgroundImage:[UIImage imageNamed: @"CustomBtn_Selected"] forState:UIControlStateNormal];

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "OrderTTL.h"
+#import "MineMenuButton.h"
 @interface LYUserCenterHeader : UICollectionReusableView
 //顶部带背景view
 @property (nonatomic, assign) int badgeNum;
@@ -67,9 +68,16 @@
 @property (weak, nonatomic) IBOutlet UILabel *beCare_ly_Number;
 
 @property (weak, nonatomic) IBOutlet UIButton *beCare_ly_button;
+@property (weak, nonatomic) IBOutlet UIButton *caresButton;
 
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *buttomHeight;
 - (IBAction)checkFansOrCares:(UIButton *)sender;
+
+@property (weak, nonatomic) IBOutlet MineMenuButton *firstMenuButton;
+@property (weak, nonatomic) IBOutlet MineMenuButton *secondMenuButton;
+@property (weak, nonatomic) IBOutlet MineMenuButton *thirdMenuButton;
+@property (weak, nonatomic) IBOutlet MineMenuButton *forthMenuButton;
+
 //设置
 - (IBAction)gotoSetting:(id)sender;
 //消息中心
@@ -89,5 +97,14 @@
 
 //load角标
 -(void)loadBadge:(OrderTTL *)orderTTL;
+
+#pragma mark - 按钮事件
+- (IBAction)notificationCenterClick:(UIButton *)sender;
+- (IBAction)businessCenterClick:(UIButton *)sender;
+- (IBAction)QRCodeClick:(MineMenuButton *)sender;
+- (IBAction)MineMoneyBagClick:(MineMenuButton *)sender;
+- (IBAction)MineGroupClick:(MineMenuButton *)sender;
+- (IBAction)MineApplyClick:(MineMenuButton *)sender;
+
 
 @end

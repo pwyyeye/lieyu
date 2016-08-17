@@ -69,6 +69,8 @@
 - (void)getData{
     NSDictionary *dic = @{@"groupId":_groupID};
     __block BarGroupChatAllPeopleViewController *weekSelf = self;
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app startLoading];
     [LYYUHttpTool yuGetGroupListWith:dic complete:^(NSArray *Arr) {
         for (UserModel *model in Arr) {
             if (model.isGrpupManage) {//是管理员
@@ -80,10 +82,8 @@
        dispatch_async(dispatch_get_main_queue(), ^{
            [_myTableView reloadData];
            _myTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-           AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-           
+           [app stopLoading];
                    if (!_isGroupM) {
-                       NSLog(@"%d",app.userModel.userid);
                        //申请机长
                        UIButton *recentBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 64, 20)];
                        [recentBtn setTitle:@"申请机长" forState:UIControlStateNormal];
@@ -109,7 +109,7 @@
 
 
 -(void)dealloc{
-
+    
 }
 
 -(void)checkBlockList {
@@ -158,6 +158,9 @@
     if (app.userModel.userid == userM.userid) {
         cell.chatButton.hidden = YES;
         cell.borderView.hidden = YES;
+    } else {
+        cell.chatButton.hidden = NO;
+        cell.borderView.hidden = NO;
     }
     return cell;
 }
@@ -186,6 +189,10 @@
 //        [self.navigationController pushViewController:conversationVC animated:YES];
 //        conversationVC.navigationItem.leftBarButtonItem = [self getItem];
     }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 55;
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -262,9 +269,6 @@
 
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 55;
-}
 
 - (UIBarButtonItem *)getItem{
     UIButton *itemBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];

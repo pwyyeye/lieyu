@@ -231,7 +231,7 @@
         }else{
             dic=[datalist objectAtIndex:3];
         }
-
+        
     }
     else if(indexPath.section == 1){
 //        if(indexPath.row==0 || indexPath.row == 1){

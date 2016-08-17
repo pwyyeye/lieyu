@@ -37,7 +37,7 @@
     self.navigationController.navigationBar.titleTextAttributes = dict;
     
     //设置电池状态栏为黑色
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault] ;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 }
 
 - (void)viewDidAppear:(BOOL)animated
