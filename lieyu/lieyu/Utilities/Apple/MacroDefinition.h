@@ -208,7 +208,8 @@ description:__VA_ARGS__];                             \
 
 //----------------------颜色类--------------------------
 
-
+#define NAVIGATIONBARTITLECOLOR [UIColor blackColor]
+#define NAVIGATIONBARTINTCOLOR [UIColor whiteColor]
 
 //----------------------其他----------------------------
 

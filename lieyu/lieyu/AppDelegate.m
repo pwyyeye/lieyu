@@ -40,15 +40,16 @@
 #import "LPMyOrdersViewController.h"
 #import "ZSOrderViewController.h"
 #import "LYToPlayRestfulBusiness.h"
-#import <PLStreamingKit/PLStreamingEnv.h>
+#import "ZSBirthdayManagerViewController.h"
 
-
+#import "ZSManageHttpTool.h"
+#import "AddressBookModel.h"
 
 @interface AppDelegate ()
 <
 UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
 >{
-    
+    BOOL _insertBirthday;
     
 }
 @end
@@ -61,6 +62,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+//    _insertBirthday = NO;
     [self.window makeKeyAndVisible];
     // Override point for customization after application launch.
     //设置电池状态栏为白色
@@ -89,13 +91,11 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
         maintViewController.btnBackHidden = YES;
         _navShangHu = [[UINavigationController alloc]initWithRootViewController:maintViewController];
         app.window.rootViewController = _navShangHu;
-        
-        
-        
     }
     if(![MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"desKey"]]){
         self.desKey=[USER_DEFAULT objectForKey:@"desKey"];
     }
+    
     
 
 //    NSError *setCategoryErr=nil;
@@ -108,7 +108,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
     
     
     
-    
+ /*
     //引导页启动
     if (![[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
         
@@ -119,7 +119,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
     }else{
         [self animationWithApp];
     }
-
+*/
     [self startLocation];
     
     //IM推送
@@ -239,6 +239,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
         NSDictionary * userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
         [self takeNotification:userInfo andApplicationStatus:application.applicationState];
     }
+    
     
     //是否需要统计IM消息角标
     [USER_DEFAULT setObject:@"1" forKey:@"needCountIM"];
@@ -543,7 +544,8 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
             }
             
             if([[dic objectForKey:@"type"] isEqualToString:@"13"] ||[[dic objectForKey:@"type"] isEqualToString:@"14"]||
-               [[dic objectForKey:@"type"] isEqualToString:@"1"]) {
+               [[dic objectForKey:@"type"] isEqualToString:@"1"]||
+               [[dic objectForKey:@"type"] isEqualToString:@"18"]) {
                 if(self.s_app_id!=nil){
                     [self nontifyJump:dic];
                 }else{
@@ -624,7 +626,36 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 #pragma mark - 跳转
 -(void)nontifyJump{
     [self nontifyJump:nil];
+    if (!_insertBirthday) {
+        [self getTodayBirthday];
+        _insertBirthday = YES;
+    }
 }
+
+- (void)getTodayBirthday{
+    __weak __typeof(self) weakSelf = self;
+    UserModel *userMode = ((AppDelegate *)[UIApplication sharedApplication].delegate).userModel;
+    NSDate *date = [NSDate date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *dateString = [formatter stringFromDate:date];
+    if (![USER_DEFAULT objectForKey:@"todayBirthdayGet"] || ![[USER_DEFAULT objectForKey:@"todayBirthdayGet"] isEqualToString:dateString]) {
+        if (userMode.userid && [userMode.usertype isEqualToString:@"2"]) {
+            [[ZSManageHttpTool shareInstance]zsGetTodayFriendBirthdayWithParams:nil complete:^(NSArray *result) {
+                if (result.count > 0) {
+                    NSString *message = [NSString stringWithFormat:@"今天有%ld位好友过生日，取送上祝福吧～",result.count];
+                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:message delegate:weakSelf cancelButtonTitle:@"取消" otherButtonTitles:@"去看看", nil];
+                    alert.tag = 123;
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [alert show];
+                        });
+                }
+                [USER_DEFAULT setObject:dateString forKey:@"todayBirthdayGet"];
+            }];
+        }
+    }
+}
+
 
 -(void)nontifyJump:(NSDictionary *) dic{
     if(dic==nil){
@@ -655,7 +686,19 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
             ZSOrderViewController *orderManageViewController=[[ZSOrderViewController alloc]initWithNibName:@"ZSOrderViewController" bundle:nil];
             [self.navigationController pushViewController:orderManageViewController animated:YES];
         }
+    }else if ([[dic objectForKey:@"type"] isEqualToString:@"18"]){
+        if ([self.userModel.usertype isEqualToString:@"2"] || [self.userModel.usertype isEqualToString:@"3"]) {
+            ZSBirthdayManagerViewController *birthdayManagerVC = [[ZSBirthdayManagerViewController alloc]initWithNibName:@"ZSBirthdayManagerViewController" bundle:nil];
+            [self.navigationController pushViewController:birthdayManagerVC animated:YES];
+            NSDate *date = [NSDate date];
+            NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+            [formatter setDateFormat:@"yyyy-MM-dd"];
+            NSString *dateString = [formatter stringFromDate:date];
+            [USER_DEFAULT setObject:dateString forKey:@"todayBirthdayGet"];
+        }
     }
+    
+    
     if ([USER_DEFAULT objectForKey:@"NOTIFYDIC"]!=nil) {
         [USER_DEFAULT removeObjectForKey:@"NOTIFYDIC"];
         
@@ -928,6 +971,7 @@ didReceiveLocalNotification:(UILocalNotification *)notification {
     [_intro setDelegate:self];
     [_intro showInView:self.window animateDuration:1.0];
 }
+
 - (void)introDidFinish{
     NSLog(@"----pass-introDidFinish%@---",@"introDidFinish");
     [USER_DEFAULT setObject:@"NO" forKey:@"firstUseApp"];
@@ -979,10 +1023,23 @@ didReceiveLocalNotification:(UILocalNotification *)notification {
 
 #pragma mark - alert 代理
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if(buttonIndex==0){
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/gb/app/yi-dong-cai-bian/id1056569271"]];
+    if (alertView.tag == 123) {
+        if (buttonIndex == 1) {
+            //去看看
+            ZSBirthdayManagerViewController *birthdayManagerVC =[[ZSBirthdayManagerViewController alloc] init];
+            BOOL shanghuban = [[NSUserDefaults standardUserDefaults] boolForKey:@"shanghuban"];
+            if(shanghuban){
+                [_navShangHu pushViewController:birthdayManagerVC animated:YES];
+            }else{
+                [self.navigationController pushViewController:birthdayManagerVC animated:YES];
+            }
+        }
+    }else{
+        if(buttonIndex==0){
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/gb/app/yi-dong-cai-bian/id1056569271"]];
+        }
+        [alertView show];
     }
-    [alertView show];
 }
 
 

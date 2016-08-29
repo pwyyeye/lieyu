@@ -18,6 +18,7 @@
     self.cusImageView.layer.masksToBounds =YES;
     
     self.cusImageView.layer.cornerRadius =self.cusImageView.frame.size.width/2;
+    self.descLabel.hidden = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -34,7 +35,19 @@
         _nameLal.text = @"暂无昵称";
     }
     [_smallImageView setHidden:YES];
-    [_cusImageView sd_setImageWithURL:[NSURL URLWithString:_infoModel.avatar_img] placeholderImage:[UIImage imageNamed:@""]];
+    [_cusImageView sd_setImageWithURL:[NSURL URLWithString:_infoModel.avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+}
+
+- (void)setMemberModel:(CustomerModel *)memberModel{
+    _memberModel = memberModel;
+    _smallImageView.hidden = YES;
+    _countLal.hidden = YES;
+    if ([[memberModel.friendName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]length] > 0) {
+        [_nameLal setText:memberModel.friendName];
+    }else{
+        [_nameLal setText:@"暂无昵称"];
+    }
+    [_cusImageView sd_setImageWithURL:[NSURL URLWithString:memberModel.icon]];
 }
 
 @end

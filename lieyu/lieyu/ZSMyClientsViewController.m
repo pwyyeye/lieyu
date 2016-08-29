@@ -12,6 +12,11 @@
 #import "ZSCustomerDetailViewController.h"
 #import "ZSManageHttpTool.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import "LYAddressBook.h"
+#import "LYAddFriendByAddressBookViewController.h"
+#import "AddressBookModel.h"
+#import "ZSManageHttpTool.h"
+
 @interface ZSMyClientsViewController ()
 
 @end
@@ -28,39 +33,79 @@
     _filteredListContent = [NSMutableArray new];
     _searchBar.barTintColor=[UIColor whiteColor];
     [self getMyCustomerslist];
-    // Do any additional setup after loading the view from its nib.
+    [self initRightItemsButton];
 }
+
+#pragma mark - 初始化顶部右侧按钮
+- (void)initRightItemsButton{
+    UIButton *addButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
+    [addButton setImage:[UIImage imageNamed:@"add5"] forState:UIControlStateNormal];
+    [addButton addTarget:self action:@selector(addClient:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *addItem = [[UIBarButtonItem alloc]initWithCustomView:addButton];
+    self.navigationItem.rightBarButtonItem = addItem;
+}
+
+
+#pragma mark - 按钮事件
+- (void)addClient:(UIButton *)button{
+    LYAddressBook *addressBook = [[LYAddressBook alloc]init];
+    NSMutableArray *updateArray = [[NSMutableArray alloc]init];
+    NSArray *array = [addressBook getAddressBook];
+    for (AddressBookModel *userModel in array) {
+        NSDictionary *dict = @{@"mobile":userModel.mobile,
+                               @"name":userModel.name,
+                               @"birthday":userModel.birthday,
+                               @"headUrl":@""};
+        [updateArray addObject:dict];
+    }
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:updateArray options:NSJSONWritingPrettyPrinted error:&error];
+    NSString *jsonString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSDictionary *dict = @{@"isBirthdayImport":@"0",//0是否，1是
+                           @"phonebookVoList":jsonString};
+    __weak __typeof(self) weakSelf = self;
+    [[ZSManageHttpTool shareInstance]zsImportAddressBookWithParams:dict complete:^(NSArray *dataList) {
+        LYAddFriendByAddressBookViewController *addFriendByAddressBookVC =  [[LYAddFriendByAddressBookViewController alloc]initWithNibName:@"LYAddFriendByAddressBookViewController" bundle:[NSBundle mainBundle]];
+        [weakSelf.navigationController pushViewController:addFriendByAddressBookVC animated:YES];
+        addFriendByAddressBookVC.dataList = [[NSMutableArray alloc]initWithArray:dataList];
+    }];
+}
+
+
 -(void)getMyCustomerslist{
     [_listContent removeAllObjects];
     __weak __typeof(self)weakSelf = self;
     NSDictionary *dic=@{@"userid":[NSString stringWithFormat:@"%d",self.userModel.userid]};
     [[ZSManageHttpTool shareInstance] getUsersFriendWithParams:dic block:^(NSMutableArray *result) {
-        NSMutableArray *addressBookTemp = [[NSMutableArray array]init];
-        [addressBookTemp addObjectsFromArray:result];
+//        NSMutableArray *addressBookTemp = [[NSMutableArray array]init];
+//        [addressBookTemp addObjectsFromArray:result];
+//        
+//        UILocalizedIndexedCollation *theCollation = [UILocalizedIndexedCollation currentCollation];
+//        for (CustomerModel *addressBook in addressBookTemp) {
+//            NSInteger sect = [theCollation sectionForObject:addressBook
+//                                    collationStringSelector:@selector(username)];
+//            addressBook.sectionNumber = sect;
+//            
+//        }
+//        NSInteger highSection = [[theCollation sectionTitles] count];
+//        NSMutableArray *sectionArrays = [NSMutableArray arrayWithCapacity:highSection];
+//        for (int i=0; i<=highSection; i++) {
+//            NSMutableArray *sectionArray = [NSMutableArray arrayWithCapacity:1];
+//            [sectionArrays addObject:sectionArray];
+//        }
+//        
+//        for (CustomerModel *addressBook in addressBookTemp) {
+//            [(NSMutableArray *)[sectionArrays objectAtIndex:addressBook.sectionNumber] addObject:addressBook];
+//        }
+//        
+//        for (NSMutableArray *sectionArray in sectionArrays) {
+//            NSArray *sortedSection = [theCollation sortedArrayFromArray:sectionArray collationStringSelector:@selector(username)];
+//            [_listContent addObject:sortedSection];
+//            
+//        }
         
-        UILocalizedIndexedCollation *theCollation = [UILocalizedIndexedCollation currentCollation];
-        for (CustomerModel *addressBook in addressBookTemp) {
-            NSInteger sect = [theCollation sectionForObject:addressBook
-                                    collationStringSelector:@selector(username)];
-            addressBook.sectionNumber = sect;
-            
-        }
-        NSInteger highSection = [[theCollation sectionTitles] count];
-        NSMutableArray *sectionArrays = [NSMutableArray arrayWithCapacity:highSection];
-        for (int i=0; i<=highSection; i++) {
-            NSMutableArray *sectionArray = [NSMutableArray arrayWithCapacity:1];
-            [sectionArrays addObject:sectionArray];
-        }
-        
-        for (CustomerModel *addressBook in addressBookTemp) {
-            [(NSMutableArray *)[sectionArrays objectAtIndex:addressBook.sectionNumber] addObject:addressBook];
-        }
-        
-        for (NSMutableArray *sectionArray in sectionArrays) {
-            NSArray *sortedSection = [theCollation sortedArrayFromArray:sectionArray collationStringSelector:@selector(username)];
-            [_listContent addObject:sortedSection];
-            
-        }
+        LYAddressBook *addressBook = [[LYAddressBook alloc]init];
+        _listContent = [addressBook getCustomArrayToSectionArray:result];
         
         
         [weakSelf.tableView reloadData];
@@ -147,7 +192,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    return 59;
+    return 55;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

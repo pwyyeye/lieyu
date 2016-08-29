@@ -14,7 +14,9 @@
     self.mesImageView.layer.masksToBounds =YES;
     
     self.mesImageView.layer.cornerRadius =self.mesImageView.frame.size.width/2;
-    // Initialization code
+    
+    self.backImageView.hidden = YES;
+    self.CoutentImageView.hidden = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -172,10 +172,15 @@
         [_tags setTitle:mytags forState:UIControlStateNormal];
         _label_work.text = mytags;
          _userNick.text=app.userModel.usernick;
-        if ([app.userModel.usertype isEqualToString:@"2"]||[app.userModel.usertype isEqualToString:@"3"]) {
-            //专属经理
-            //粉丝按钮
-//            [_beCareType_ly_Image setImage:[UIImage imageNamed:@"CareNumber"]];
+        if([app.userModel.usertype isEqualToString:@"2"] || [app.userModel.usertype isEqualToString:@"3"]){
+            _businessButton.hidden = NO;
+        }else{
+            _businessButton.hidden = YES;
+        }
+//        if ([app.userModel.usertype isEqualToString:@"2"]||[app.userModel.usertype isEqualToString:@"3"]) {
+//            //专属经理
+//            //粉丝按钮
+////            [_beCareType_ly_Image setImage:[UIImage imageNamed:@"CareNumber"]];
             if (!app.userModel.beCollectNum) {
                 [_beCare_ly_button setTitle:@"粉丝：0" forState:UIControlStateNormal];
 //                [_beCare_ly_Number setText:@"0"];
@@ -183,14 +188,14 @@
                 [_beCare_ly_button setTitle:[NSString stringWithFormat:@"粉丝：%@",app.userModel.beCollectNum] forState:UIControlStateNormal];
 //                [_beCare_ly_Number setText:app.userModel.beCollectNum];
             }
-        }else{//普通用户隐藏粉丝按钮
-            _beCare_ly_button.hidden = YES;
-//            _beCareType_ly_Image.hidden = YES;
-            _beCare_ly_Number.hidden = YES;
-//            _beCareType_ly_Name.hidden = YES;
-        }
+//        }else{//普通用户隐藏粉丝按钮
+//            _beCare_ly_button.hidden = YES;
+////            _beCareType_ly_Image.hidden = YES;
+//            _beCare_ly_Number.hidden = YES;
+////            _beCareType_ly_Name.hidden = YES;
+//        }
         //关注按钮
-        if (!app.userModel.beCollectNum) {
+        if (!app.userModel.collectNum) {
             [_caresButton setTitle:@"关注：0" forState:UIControlStateNormal];
 //            [_beCareNumber setText:@"0"];
         } else {
@@ -537,11 +542,7 @@
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     LYGuWenFansViewController *checkVC = [[LYGuWenFansViewController alloc]init];
     checkVC.userID = [NSString stringWithFormat:@"%d",app.userModel.userid];
-    if ([app.userModel.usertype isEqualToString:@"2"] || [app.userModel.usertype isEqualToString:@"3"]) {
-        checkVC.type = 0;
-    }else{
-        checkVC.type = 1;
-    }
+    checkVC.type = 0;
     [app.navigationController pushViewController:checkVC animated:YES];
 }
 

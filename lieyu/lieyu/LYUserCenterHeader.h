@@ -69,6 +69,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *beCare_ly_button;
 @property (weak, nonatomic) IBOutlet UIButton *caresButton;
+@property (weak, nonatomic) IBOutlet UIButton *businessButton;
 
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *buttomHeight;
 - (IBAction)checkFansOrCares:(UIButton *)sender;

@@ -107,7 +107,8 @@ typedef enum {
 + (NSString *)calculateDateFromNowWith:(NSString *)dateString;
 
 + (NSString *)calculatedDateFromNowWith:(NSString *)dateString;
-
+//pragma mark - 获取是今天，一周内，一月内，还是其他时间
++ (NSString *)configureDateFromNowWith:(NSString *)dateString;
 + (void)showLikePlaceMessage:(NSString* )message;
 //获取字符长度 中文＝2 英文＝1
 + (int)countTheStrLength:(NSString*)strtemp;

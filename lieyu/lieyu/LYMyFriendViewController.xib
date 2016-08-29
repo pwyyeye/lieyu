@@ -8,7 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LYMyFriendViewController">
             <connections>
                 <outlet property="searchBar" destination="Y3W-6l-Rqm" id="7AO-Kr-7ks"/>
-                <outlet property="searchDisplayController" destination="M9N-zk-k2d" id="hL2-ji-PiV"/>
+                <outlet property="searchDisplayController" destination="XA8-Oz-7AZ" id="LlO-CN-YEM"/>
                 <outlet property="tableView" destination="YEa-uo-AZf" id="8cH-z1-vgr"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -51,6 +51,14 @@
                 <outlet property="searchContentsController" destination="-1" id="aKZ-dr-caO"/>
                 <outlet property="searchResultsDataSource" destination="-1" id="n6g-5T-jlz"/>
                 <outlet property="searchResultsDelegate" destination="-1" id="aEi-E0-eEg"/>
+            </connections>
+        </searchDisplayController>
+        <searchDisplayController id="XA8-Oz-7AZ">
+            <connections>
+                <outlet property="delegate" destination="-1" id="pST-u8-Yn7"/>
+                <outlet property="searchContentsController" destination="-1" id="BPs-pP-dfY"/>
+                <outlet property="searchResultsDataSource" destination="-1" id="Hmb-N5-dpC"/>
+                <outlet property="searchResultsDelegate" destination="-1" id="sTQ-uK-QfJ"/>
             </connections>
         </searchDisplayController>
     </objects>

@@ -129,9 +129,6 @@
 //专属经理 我的客户
 #define ZS_USERS_FRIEND  @"lyUsersFriendAction.do?action=list"
 
-
-
-
 //一周卡座是否满座
 #define ZS_KUZUOISFULL  @"lySetDeckFullAction.do?action=list"
 //获取账户余额记录
@@ -141,4 +138,22 @@
 #define LY_GET_TIXIANRECORD @"managerAccountAction.do?action=list"
 //申请提现
 #define LP_APPLICATION_WITHDRAW @"managerAccountAction.do?action=add"
+
+
+#pragma mark - 生日管家
+//导入通讯录和生日
+#define ZS_IMPORT_ADDRESSBOOK @"lyPhonebookAction.do?action=importExcel"
+
+//单条添加或更新好友生日
+#define ZS_ADD_FRIENDBIRTHDAY @"lyPhonebookAction.do?action=add"
+
+//生日管家（好友生日列表）
+#define ZS_GET_FRIENDBIRTHDAY @"lyPhonebookAction.do?action=list"
+
+//生日管家（删除好友生日）
+#define ZS_DELETE_FRIENDBIRTHDAY @"lyPhonebookAction.do?action=delete"
+
+//生日管家（今天好友生日列表）
+#define ZS_TODY_FRIENDBIRTHDAY @"lyPhonebookAction.do?action=expand"
+
 #endif
