@@ -11,8 +11,10 @@
 #import "ZSBirthdayManagerViewController.h"
 
 @interface ZSManageCustomerViewController ()<UITableViewDelegate,UITableViewDataSource>
+
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *titleArray;
+
 @end
 
 @implementation ZSManageCustomerViewController
