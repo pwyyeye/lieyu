@@ -12,6 +12,7 @@
 #import <asl.h>
 #import <PLCameraStreamingKit/PLCameraStreamingKit.h>
 #import "UMSocial.h"
+#import "IQKeyboardManager.h"
 
 #import "RegisterLiveShowView.h"
 #import "CloseLiveShowView.h"
@@ -220,7 +221,8 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(notice:) name:@"kobe24" object:nil];
     
-    
+    [IQKeyboardManager sharedManager].enable = NO;
+    [IQKeyboardManager sharedManager].isAdd = YES;
     
 }
 
