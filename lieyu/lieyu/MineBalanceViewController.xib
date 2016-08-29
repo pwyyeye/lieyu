@@ -19,7 +19,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="balanceIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="efE-xc-kmw">
-                    <rect key="frame" x="130" y="49.5" width="60" height="48"/>
+                    <rect key="frame" x="130" y="51.5" width="60" height="48"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="v6e-WX-6FW"/>
                         <constraint firstAttribute="width" constant="60" id="yja-AG-qJG"/>
@@ -32,30 +32,30 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hn-QC-vI3">
-                    <rect key="frame" x="42" y="239" width="236" height="42"/>
+                    <rect key="frame" x="42" y="241" width="236" height="38"/>
                     <color key="backgroundColor" red="0.6705882353" green="0.0" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="42" id="12C-cF-pCm"/>
+                        <constraint firstAttribute="height" constant="38" id="12C-cF-pCm"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <state key="normal" title="充值">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rk7-2c-RZp">
-                    <rect key="frame" x="42" y="297" width="236" height="42"/>
+                    <rect key="frame" x="42" y="295" width="236" height="38"/>
                     <color key="backgroundColor" red="0.6705882353" green="0.0" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="42" id="Gp7-dx-wWy"/>
+                        <constraint firstAttribute="height" constant="38" id="Gp7-dx-wWy"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <state key="normal" title="提现">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的余额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0uc-dd-len">
-                    <rect key="frame" x="120" y="113" width="80" height="24"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <rect key="frame" x="128" y="115" width="64" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -66,7 +66,7 @@
                 <constraint firstItem="0uc-dd-len" firstAttribute="top" secondItem="efE-xc-kmw" secondAttribute="bottom" constant="16" id="E8y-q6-L9s"/>
                 <constraint firstItem="0uc-dd-len" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="F3o-gl-1sQ"/>
                 <constraint firstAttribute="trailing" secondItem="0hn-QC-vI3" secondAttribute="trailing" constant="42" id="IPE-dl-cOh"/>
-                <constraint firstItem="1zb-me-CsU" firstAttribute="top" secondItem="0uc-dd-len" secondAttribute="bottom" constant="4" id="JbD-gL-EMD"/>
+                <constraint firstItem="1zb-me-CsU" firstAttribute="top" secondItem="0uc-dd-len" secondAttribute="bottom" constant="6" id="JbD-gL-EMD"/>
                 <constraint firstItem="rk7-2c-RZp" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Ldz-CF-qm8"/>
                 <constraint firstItem="0hn-QC-vI3" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="20" id="TcK-pd-py3"/>
                 <constraint firstItem="1zb-me-CsU" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Vpk-g8-ccl"/>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZSBirthdayManagerViewController">
+            <connections>
+                <outlet property="searchBar" destination="p0a-TO-GYd" id="4WP-e0-h0s"/>
+                <outlet property="tableView" destination="xVY-j4-dBW" id="bHi-2v-SUG"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您还没有管理任何生日" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PBa-IV-4n6">
+                    <rect key="frame" x="80" y="230" width="160" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <searchBar contentMode="redraw" placeholder="搜索" translatesAutoresizingMaskIntoConstraints="NO" id="p0a-TO-GYd">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="oBu-kY-GwV"/>
+                    </constraints>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="XGw-NU-hk2"/>
+                    </connections>
+                </searchBar>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xVY-j4-dBW">
+                    <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                    <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="xVY-j4-dBW" secondAttribute="bottom" id="7y2-c0-Eqk"/>
+                <constraint firstItem="xVY-j4-dBW" firstAttribute="top" secondItem="p0a-TO-GYd" secondAttribute="bottom" id="K1Z-d8-blr"/>
+                <constraint firstAttribute="trailing" secondItem="xVY-j4-dBW" secondAttribute="trailing" id="XNt-am-j8O"/>
+                <constraint firstAttribute="trailing" secondItem="p0a-TO-GYd" secondAttribute="trailing" id="Y0h-am-pAL"/>
+                <constraint firstItem="PBa-IV-4n6" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ivU-We-asy"/>
+                <constraint firstItem="p0a-TO-GYd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="kug-jz-gwH"/>
+                <constraint firstItem="xVY-j4-dBW" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="q2q-Cx-1KW"/>
+                <constraint firstItem="p0a-TO-GYd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="rWL-rD-yff"/>
+                <constraint firstItem="PBa-IV-4n6" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="u6V-it-d7R"/>
+                <constraint firstItem="xVY-j4-dBW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="uGp-ZP-YlK"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="q2q-Cx-1KW"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="453" y="174"/>
+        </view>
+    </objects>
+</document>

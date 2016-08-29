@@ -181,7 +181,7 @@
 {
     
     __weak __typeof(self)weakSelf = self;
-    NSDictionary *dic=@{@"user":[NSNumber numberWithInt:self.userModel.userid],@"searchValue":nowsearchBar.text,@"firstResult":@"0",@"searchValue":@"50"};
+    NSDictionary *dic=@{@"user":[NSNumber numberWithInt:self.userModel.userid],@"searchValue":nowsearchBar.text,@"firstResult":@"0",@"fetchSize":@"50"};
     [[LYUserHttpTool shareInstance]getFindFriendListWithParams:dic block:^(NSMutableArray *result) {
         
         [searchlist removeAllObjects];

@@ -26,6 +26,7 @@
 #import "OrderTTL.h"
 #import "MainTabbarViewController.h"
 #import "LYMyFreeOrdersViewController.h"
+#import "ZSManageCustomerViewController.h"
 
 @interface ZSMaintViewController ()<UITextFieldDelegate>{
     UIButton *_balanceButton;
@@ -40,7 +41,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.title = @"商户中心";
+    self.navigationItem.leftBarButtonItem = nil;
+    self.navigationItem.hidesBackButton = YES;
+    [self initRightItem];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     
     listArr =[[NSMutableArray alloc]init];
@@ -48,14 +52,49 @@
     self.tableView.bounces=NO;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.tableView.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-//    [self.tableView setContentInset:UIEdgeInsetsMake(20, 0, 0, 0)];
+    //    [self.tableView setContentInset:UIEdgeInsetsMake(20, 0, 0, 0)];
     [self getDataForShowList];
     
     
-//   [ [NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goToShanHu) name:@"loadUserInfo" object:nil];
-//    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-//    [app addObserver:self forKeyPath:@"desKey" options:NSKeyValueObservingOptionNew context:nil];
+    //   [ [NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goToShanHu) name:@"loadUserInfo" object:nil];
+    //    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    //    [app addObserver:self forKeyPath:@"desKey" options:NSKeyValueObservingOptionNew context:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getData) name:@"loadUserInfo" object:nil];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO];
+    //    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if (![MyUtil isEmptyString:app.s_app_id]) {
+        [self getBalance];
+        [self getBadge];
+    }
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    UITextField *text = [self.view viewWithTag:123];
+    text.text = @"";
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+}
+
+- (void)initRightItem{
+    UIButton *userButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 40)];
+    [userButton setTitle:@"用户版" forState:UIControlStateNormal];
+    [userButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 20, 0, 0)];
+    [userButton.titleLabel setFont:[UIFont systemFontOfSize:13]];
+    [userButton setTitleColor:NAVIGATIONBARTITLECOLOR forState:UIControlStateNormal];
+    [userButton addTarget:self action:@selector(gotoUserInterface) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:userButton];
+    self.navigationItem.rightBarButtonItem = rightItem;
 }
 
 - (void)getData{
@@ -79,103 +118,83 @@
 }
 
 - (void)dealloc{
-   NSLog(@"----pass-pass%@---",@"test");
+    NSLog(@"----pass-pass%@---",@"test");
 }
 
 #pragma mark 初始化数据
 -(void)getDataForShowList{
     [listArr removeAllObjects];
-    NSDictionary *myNotification = @{@"colorRGB":RGB(65, 154, 241),@"imageContent":@"shopMyNotification",@"title":@"消息通知",@"delInfo":@""};
+    NSDictionary *myNotification = @{@"colorRGB":RGB(65, 154, 241),@"imageContent":@"shopMyNotification",@"title":@"消息中心",@"delInfo":@""};
     NSDictionary *myReceiveDic = @{@"colorRGB":RGB(254, 221, 87),@"imageContent":@"shopMyReceive",@"title":@"我的收入",@"delInfo":@""};
     NSDictionary *dic=@{@"colorRGB":RGB(255, 186, 62),@"imageContent":@"classic20",@"title":@"卡座设置",@"delInfo":@""};
     NSDictionary *dic1=@{@"colorRGB":RGB(136, 223, 121),@"imageContent":@"Fill20179",@"title":@"最近联系",@"delInfo":@"您有客户留言请及时查收"};
     NSDictionary *dic2=@{@"colorRGB":RGB(254, 147, 87),@"imageContent":@"Fill20219",@"title":@"订单管理",@"delInfo":@"您有订单要处理请及时确定"};
-    NSDictionary *dic3=@{@"colorRGB":RGB(65, 241, 221),@"imageContent":@"Fill20176",@"title":@"我的客户",@"delInfo":@""};
-//    NSDictionary *dic4=@{@"colorRGB":RGB(186, 40, 227),@"imageContent":@"Fill20176",@"title":@"速核码扫描",@"delInfo":@""};
+    NSDictionary *dic3=@{@"colorRGB":RGB(65, 241, 221),@"imageContent":@"Fill20176",@"title":@"客户管理",@"delInfo":@""};
     NSDictionary *dic5=@{@"colorRGB":RGB(154, 147, 87),@"imageContent":@"Fill20520",@"title":@"免费订台",@"delInfo":@"您有订单要处理请及时确定"};
-//    NSDictionary *dic4=@{@"colorRGB":RGB(84, 225, 255),@"imageContent":@"Fill2097",@"title":@"商铺管理",@"delInfo":@""};
-    
-    [listArr addObject:myNotification];
-    [listArr addObject:myReceiveDic];
+    NSDictionary *dic6 = @{@"colorRGB":RGB(154, 147, 87),@"imageContent":@"Fill20520",@"title":@"套餐管理",@"delInfo":@""};
+    [listArr addObject:myNotification];//消息中心
+    [listArr addObject:myReceiveDic];//我的收入
     [listArr addObject:dic2];//订单管理
-    [listArr addObject:dic5];
-//    [listArr addObject:dic4];//速核码扫描
-    [listArr addObject:dic];//卡座已满
-    [listArr addObject:dic1];//通知中心
-    [listArr addObject:dic3];//我的客户
-    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 258)];
+    [listArr addObject:dic5];//免费订台
+    //    [listArr addObject:dic4];//速核码扫描
+    [listArr addObject:dic];//卡座设置
+    [listArr addObject:dic6];//新增套餐管理
+    [listArr addObject:dic1];//最近联系
+    [listArr addObject:dic3];//客户管理
+    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 151)];
     
-//    view.backgroundColor=RGB(35, 166, 116);
-    view.backgroundColor = RGB(186, 40, 227);
-    
-    //外部圆
-//    cImageView=[[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 44, 68, 88, 88)];
-//    [view addSubview:cImageView];
-//    [cImageView setImage:[UIImage imageNamed:@"yuanhuan"]];
-//    myPhotoImageView=[[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 30, 81.7, 60, 60)];
-//    //照片圆形
-//    myPhotoImageView.layer.masksToBounds =YES;
-//    
-//    myPhotoImageView.layer.cornerRadius =myPhotoImageView.frame.size.width/2;
-//    myPhotoImageView.backgroundColor=[UIColor lightGrayColor];
-//    [myPhotoImageView setImageWithURL:[NSURL URLWithString:self.userModel.avatar_img]];
-//    [view addSubview:myPhotoImageView];
-//    namelal=[[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 50,167,100,18)];
-//    [namelal setTextColor:RGB(255,255,255)];
-//    namelal.font=[UIFont boldSystemFontOfSize:12];
-//    namelal.backgroundColor=[UIColor clearColor];
-//    namelal.text=@"我是VIP专属经理";
-//    namelal.textAlignment=NSTextAlignmentLeft;
-//    [view addSubview:namelal];
-//    orderInfoLal=[[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 133,200,266,16)];
-//    [orderInfoLal setTextColor:RGB(255,255,255)];
-//    orderInfoLal.font=[UIFont boldSystemFontOfSize:10];
-//    orderInfoLal.backgroundColor=[UIColor clearColor];
-////    orderInfoLal.text=@"您有30个订单要处理，请即时处理！";
-//    orderInfoLal.textAlignment=NSTextAlignmentLeft;
-//    [view addSubview:orderInfoLal];
-    CGFloat btnWidth = 71;
-    UIButton *ScanButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 4 - btnWidth/2.f, 77, btnWidth, btnWidth)];
-    ScanButton.backgroundColor = [UIColor clearColor];
-    [ScanButton setImage:[UIImage imageNamed:@"zsQRCodeScan"] forState:UIControlStateNormal];
-    [ScanButton addTarget:self action:@selector(zsQRCodeScanClick) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:ScanButton];
-    
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 4 - 28, CGRectGetMaxY(ScanButton.frame) + 11, 56, 18)];
-    label.text = @"速核码";
-    label.textColor = [UIColor whiteColor];
-    label.font = [UIFont systemFontOfSize:12 weight:UIFontWeightLight];
-    label.textAlignment = NSTextAlignmentCenter;
-    [view addSubview:label];
-    
-    btnWidth = 80;
-    _balanceButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 4 * 3 - btnWidth/2.f, 71, btnWidth, btnWidth)];
-    _balanceButton.backgroundColor = [UIColor clearColor];
-    _balanceButton.titleLabel.font = [UIFont systemFontOfSize:16 weight:UIFontWeightLight];
-    [_balanceButton setBackgroundImage:[UIImage imageNamed:@"icon_balance"] forState:UIControlStateNormal];
-//    [balanceButton setTitle:@"9999.00" forState:UIControlStateNormal];
-    [_balanceButton setTitleEdgeInsets:UIEdgeInsetsMake(45, 0, 0, 0)];
-    [_balanceButton addTarget:self action:@selector(pushMyReceived) forControlEvents:UIControlEventTouchUpInside];
-    [view addSubview:_balanceButton];
+    //    view.backgroundColor=RGB(35, 166, 116);
+    //    view.backgroundColor = RGB(186, 40, 227);
+    view.backgroundColor = [UIColor whiteColor];
     
     
+    UIButton *suheButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH / 2, 106)];
+    //    [suheButton setImage:[UIImage imageNamed:@"businessSuhe"] forState:UIControlStateNormal];
+    [suheButton addTarget:self action:@selector(zsQRCodeScanClick) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:suheButton];
+    UIImageView *suheImageView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 4 - 17, 25, 34, 34)];
+    [suheImageView setImage:[UIImage imageNamed:@"businessSuhe"]];
+    suheImageView.contentMode = UIViewContentModeScaleAspectFit;
+    UILabel *suheLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 4 - 25, 63, 50, 20)];
+    [suheLabel setText:@"速核码"];
+    [suheLabel setTextAlignment:NSTextAlignmentCenter];
+    [suheLabel setFont:[UIFont systemFontOfSize:14]];
+    [suheLabel setTextColor:[UIColor blackColor]];
+    [suheButton addSubview:suheImageView];
+    [suheButton addSubview:suheLabel];
     
-    UILabel *balanceLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 4 * 3 - 28, CGRectGetMaxY(_balanceButton.frame) + 11, 56, 18)];
-    balanceLabel.text = @"余额";
-    balanceLabel.textAlignment = NSTextAlignmentCenter;
-    balanceLabel.textColor = [UIColor whiteColor];
-    balanceLabel.font = [UIFont systemFontOfSize:12 weight:UIFontWeightLight];
-    [view addSubview:balanceLabel];
+    UIButton *balanceButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/ 2, 0, SCREEN_WIDTH/ 2, 106)];
+    //    [yueButton setImage:[UIImage imageNamed:@"balanceIcon"] forState:UIControlStateNormal];
+    [balanceButton addTarget:self action:@selector(pushMyReceived) forControlEvents:UIControlEventTouchUpInside];
+    [view addSubview:balanceButton];
+    UIImageView *balanceImageView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 4 - 20, 30, 40, 32)];
+    [balanceImageView setImage:[UIImage imageNamed:@"balanceIcon"]];
+    balanceImageView.contentMode = UIViewContentModeScaleAspectFit;
+    UILabel *balanceLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 4 - 25, 63, 50, 20)];
+    [balanceLabel setText:@"余额"];
+    [balanceLabel setTextAlignment:NSTextAlignmentCenter];
+    [balanceLabel setFont:[UIFont systemFontOfSize:14]];
+    [balanceLabel setTextColor:[UIColor blackColor]];
+    [balanceButton addSubview:balanceLabel];
+    [balanceButton addSubview:balanceImageView];
     
-    UITextField *textView = [[UITextField alloc]initWithFrame:CGRectMake(5, 258 - 42 - 8, SCREEN_WIDTH - 10, 42)];
+    UILabel *spaceLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2, 19, 0.5, 68)];
+    [spaceLabel setBackgroundColor:RGBA(204, 204, 204, 1)];
+    [view addSubview:spaceLabel];
+    
+    UIView *textPlaceView = [[UIView alloc]initWithFrame:CGRectMake(0, 106, SCREEN_WIDTH, 45)];
+    [textPlaceView setBackgroundColor:RGBA(204, 204, 204, 204)];
+    [view addSubview:textPlaceView];
+    
+    UITextField *textView = [[UITextField alloc]initWithFrame:CGRectMake(5, 6, SCREEN_WIDTH - 10, 33)];
     textView.placeholder = @"输入用户消费码";
-    textView.font = [UIFont fontWithName:@"Arial-BoldMT" size:28];
+    textView.font = [UIFont systemFontOfSize:13];
     textView.delegate = self;
     textView.tag = 123;
     textView.borderStyle = UITextBorderStyleRoundedRect;
     textView.keyboardType = UIKeyboardTypeNumberPad;
     textView.textAlignment = NSTextAlignmentCenter;
-    [view addSubview:textView];
+    [textPlaceView addSubview:textView];
     
     //返回按钮
     _btnBack=[[UIButton alloc] initWithFrame:CGRectMake(5, 10, 48, 48)];
@@ -199,66 +218,33 @@
     [self.navigationController pushViewController:zsMyReceiveVC animated:YES];
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    if (![MyUtil isEmptyString:app.s_app_id]) {
-        [self getBalance];
-        [self getBadge];
-    }
-    
-//    [[ZSManageHttpTool shareInstance] getPersonBalanceWithParams:nil complete:^(ZSBalance *balance) {
-//        _balance = balance;
-//        [_balanceButton setTitle:[NSString stringWithFormat:@"%.2f",_balance.balances.floatValue] forState:UIControlStateNormal];
-//    }];
-    //    _scrollView.contentOffset=CGPointMake(0, -kImageOriginHight+100);
-}
-
--(void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES];
-    
-    //    _scrollView.contentOffset=CGPointMake(0, -kImageOriginHight+100);
-}
-
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    UITextField *text = [self.view viewWithTag:123];
-    text.text = @"";
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-}
 
 #pragma mark - 角标
 - (void)getBadge{
-        [[LYUserHttpTool shareInstance] getOrderTTL:^(OrderTTL *result) {
-            _orderTTL=result;
-            NSIndexPath *indexP = [NSIndexPath indexPathForRow:0 inSection:0];
-            ZSListCell *cell = [_tableView cellForRowAtIndexPath:indexP];
-            if (result.pushMessageNum > 0) {//有消息
-                cell.mesImageView.hidden = NO;
-            }else{//无新消息
-                cell.mesImageView.hidden = YES;
-            }
-        }];
+    [[LYUserHttpTool shareInstance] getOrderTTL:^(OrderTTL *result) {
+        _orderTTL=result;
+        NSIndexPath *indexP = [NSIndexPath indexPathForRow:0 inSection:0];
+        ZSListCell *cell = [_tableView cellForRowAtIndexPath:indexP];
+        if (result.pushMessageNum > 0) {//有消息
+            cell.mesImageView.hidden = NO;
+        }else{//无新消息
+            cell.mesImageView.hidden = YES;
+        }
+    }];
     
     
     int pageCount = 0,perCount = 20;
-        NSDictionary *dic=@{@"p":[NSNumber numberWithInt:pageCount],@"per":[NSNumber numberWithInt:perCount],@"orderStatus":@"1,2"};
-      [[ZSManageHttpTool shareInstance]getZSOrderList2WithParams:dic block:^(NSMutableArray *result) {
-              NSIndexPath *indexP = [NSIndexPath indexPathForRow:2 inSection:0];
-              ZSListCell *cell = [_tableView cellForRowAtIndexPath:indexP];
-              if (result.count > 0) {//有消息
-                  cell.mesImageView.hidden = NO;
-              }else{//无新消息
-                  cell.mesImageView.hidden = YES;
-              }
-
-      }];
+    NSDictionary *dic=@{@"p":[NSNumber numberWithInt:pageCount],@"per":[NSNumber numberWithInt:perCount],@"orderStatus":@"1,2"};
+    [[ZSManageHttpTool shareInstance]getZSOrderList2WithParams:dic block:^(NSMutableArray *result) {
+        NSIndexPath *indexP = [NSIndexPath indexPathForRow:2 inSection:0];
+        ZSListCell *cell = [_tableView cellForRowAtIndexPath:indexP];
+        if (result.count > 0) {//有消息
+            cell.mesImageView.hidden = NO;
+        }else{//无新消息
+            cell.mesImageView.hidden = YES;
+        }
+        
+    }];
 }
 
 #pragma mark - 扫一扫
@@ -296,7 +282,7 @@
 #pragma mark tableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return listArr.count + 1;
+    return listArr.count;
     
 }
 
@@ -307,12 +293,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == listArr.count) {
-        UITableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-        cell.textLabel.text = @"切换为用户版";
-        cell.textLabel.textAlignment = NSTextAlignmentCenter;
-        return cell;
-    }
+    //    if (indexPath.row == listArr.count) {
+    //        UITableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    //        cell.textLabel.text = @"切换为用户版";
+    //        cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    //        return cell;
+    //    }
     static NSString *CellIdentifier = @"ZSListCell";
     
     ZSListCell *cell = (ZSListCell *)[_tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -324,153 +310,122 @@
         
     }
     NSDictionary *dic=[listArr objectAtIndex:indexPath.row];
-    UIColor *bColor=[dic objectForKey:@"colorRGB"];
-    UIImage *imge=[UIImage imageNamed:[dic objectForKey:@"imageContent"]];
+    //    UIColor *bColor=[dic objectForKey:@"colorRGB"];
+    //    UIImage *imge=[UIImage imageNamed:[dic objectForKey:@"imageContent"]];
     NSString *title=[dic objectForKey:@"title"];
-//    NSString *delInfo=[dic objectForKey:@"delInfo"];
-//    @{@"colorRGB":RGB(255, 186, 62),@"imageContent":@"classic20",@"title":@"卡座已满",@"delInfo":@""}
     [cell.mesImageView setHidden:YES];
-    cell.backImageView.backgroundColor=bColor;
-    cell.CoutentImageView.image=imge;
+    //    cell.backImageView.backgroundColor=bColor;
+    //    cell.CoutentImageView.image=imge;
     cell.titleLbl.text=title;
-//    cell.delLal.text=delInfo;
-//    cell.disImageView;
+    //    cell.delLal.text=delInfo;
+    //    cell.disImageView;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    return 68;
+    return 50;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [_tableView deselectRowAtIndexPath:indexPath animated:false];
-    
-    switch (indexPath.row) {
-        case 0:{
-            FindNotificationViewController *findNotificationVC = [[FindNotificationViewController alloc]init];
-            [self.navigationController pushViewController:findNotificationVC animated:YES];
+//    [_tableView deselectRowAtIndexPath:indexPath animated:false];
+    if (indexPath.row == 0) {
+        //消息中心
+        FindNotificationViewController *findNotificationVC = [[FindNotificationViewController alloc]init];
+        [self.navigationController pushViewController:findNotificationVC animated:YES];
+    }else if (indexPath.row == 1){
+        //我的收入
+        ZSMyReceiveViewController *zsMyReceiveVC = [[ZSMyReceiveViewController alloc]init];
+        if(_balance == nil){
+            [MyUtil showCleanMessage:@"余额获取失败"];
+            [MyUtil gotoLogin];
+            return;
         }
-            break;
-        case 1:{
-            ZSMyReceiveViewController *zsMyReceiveVC = [[ZSMyReceiveViewController alloc]init];
-            if(_balance == nil){
-                [MyUtil showCleanMessage:@"余额获取失败"];
-                [MyUtil gotoLogin];
-                return;
-            }
-            zsMyReceiveVC.balance = _balance;
-            [self.navigationController pushViewController:zsMyReceiveVC animated:YES];
-        }
-            break;
-            
-        case 4://卡座
-        {
-            ZSSeatControlView *seatControlView=[[ZSSeatControlView alloc]initWithNibName:@"ZSSeatControlView" bundle:nil];
-            [self.navigationController pushViewController:seatControlView animated:YES];
-            break;
-        }
-            
-        case 5:// 通知中心
-        {
-            LYRecentContactViewController * chat=[[LYRecentContactViewController alloc]init];
-            chat.title=@"最近联系";
-            [self.navigationController pushViewController:chat animated:YES];
-            break;
-        }
-            
-        case 2:// 订单管理
-        {
-            ZSOrderViewController *orderManageViewController=[[ZSOrderViewController alloc]initWithNibName:@"ZSOrderViewController" bundle:nil];
-            [self.navigationController pushViewController:orderManageViewController animated:YES];
-            break;
-        }
-        case 3://yuding
-        {
-            NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"商户中心",@"titleName":@"免费订台"};
-            [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
-            
-            LYMyFreeOrdersViewController *freeOrderVC = [[LYMyFreeOrdersViewController alloc]init];
-            freeOrderVC.isFreeOrdersList = YES;
-            [self.navigationController pushViewController:freeOrderVC animated:YES];
-            break;
-        }
-        case 6:// 我的客户
-        {
-            ZSMyClientsViewController *myClientViewController=[[ZSMyClientsViewController alloc]initWithNibName:@"ZSMyClientsViewController" bundle:nil];
-            
-            [self.navigationController pushViewController:myClientViewController animated:YES];
-            break;
-        }
-//        case 1://速核码扫描
-//        {
-//            SaoYiSaoViewController *saoyisaoVC = [[SaoYiSaoViewController alloc]initWithNibName:@"SaoYiSaoViewController" bundle:nil];
-//            [self.navigationController pushViewController:saoyisaoVC animated:YES];
-//        }
-        default:
-        {
-//            ZSMyShopsManageViewController *myShopManageViewController=[[ZSMyShopsManageViewController alloc]initWithNibName:@"ZSMyShopsManageViewController" bundle:nil];
-//            [self.navigationController pushViewController:myShopManageViewController animated:YES];
-            
-            AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-            
-            UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"LYMain" bundle:[NSBundle mainBundle]];
-            NSLog(@"--->%@",[storyBoard instantiateViewControllerWithIdentifier:@"LYNavigationController"]);
-            UINavigationController *nav = (UINavigationController *)[storyBoard instantiateViewControllerWithIdentifier:@"LYNavigationController"];
-            app.navigationController = nav;
-            app.window.rootViewController = nav;
-            MainTabbarViewController *tabVC = (MainTabbarViewController *)nav.viewControllers.firstObject;
-            tabVC.selectedIndex = tabVC.viewControllers.count - 1;
-            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"shanghuban"];
-            
-                if(app.userModel.usertype.intValue==2 || app.userModel.usertype.intValue == 3){
-                    UIWindow *window = [UIApplication sharedApplication].delegate.window;
-                    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
-                    _effctView = [[UIVisualEffectView alloc]initWithEffect:effect];
-                    //            effctView.frame = [UIScreen mainScreen].bounds;
-                    _effctView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-                    [window addSubview:_effctView];
-                    
-                    CGFloat imgVWidth = 50;
-                    
-                    UIImageView *imgV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, imgVWidth, imgVWidth)];
-                    imgV.center = _effctView.center;
-                    imgV.image = [UIImage imageNamed:@"loading1"];
-                    [_effctView addSubview:imgV];
-                    
-                    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(imgV.frame),SCREEN_WIDTH, imgVWidth)];
-                    titleLabel.textColor = [UIColor blackColor];
-                    titleLabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightMedium];
-                    titleLabel.textAlignment = NSTextAlignmentCenter;
-                    titleLabel.text = @"切换中....";
-                    [_effctView addSubview:titleLabel];
-                    
-                    NSMutableArray *imgArray = [[NSMutableArray alloc]initWithCapacity:9];
-                    for (int i = 1; i < 10; i ++) {
-                        
-                        UIImage *img = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"loading%d@2x",i] ofType:@"png"]];
-                        [imgArray addObject:(__bridge UIImage *)img.CGImage];
-                    }
-                    
-                    CAKeyframeAnimation *keyFrameA = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
-                    keyFrameA.duration = imgArray.count * 0.1;
-                    keyFrameA.delegate = self;
-                    keyFrameA.values = imgArray;
-                    keyFrameA.repeatCount = 1;
-                    [imgV.layer addAnimation:keyFrameA forKey:nil];
-                
-                
-            }
-         
+        zsMyReceiveVC.balance = _balance;
+        [self.navigationController pushViewController:zsMyReceiveVC animated:YES];
+    }else if (indexPath.row == 2){
+        //订单管理
+        ZSOrderViewController *orderManageViewController=[[ZSOrderViewController alloc]initWithNibName:@"ZSOrderViewController" bundle:nil];
+        [self.navigationController pushViewController:orderManageViewController animated:YES];
+    }else if (indexPath.row == 3){
+        //免费订台
+        NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"商户中心",@"titleName":@"免费订台"};
+        [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+        
+        LYMyFreeOrdersViewController *freeOrderVC = [[LYMyFreeOrdersViewController alloc]init];
+        freeOrderVC.isFreeOrdersList = YES;
+        [self.navigationController pushViewController:freeOrderVC animated:YES];
+    }else if (indexPath.row == 4){
+        //卡座设置
+        ZSSeatControlView *seatControlView=[[ZSSeatControlView alloc]initWithNibName:@"ZSSeatControlView" bundle:nil];
+        [self.navigationController pushViewController:seatControlView animated:YES];
+    }else if (indexPath.row == 5){
+        //套餐管理
+        [MyUtil showPlaceMessage:@"套餐管理敬请期待！"];
+    }else if (indexPath.row == 6){
+        //最近联系
+        LYRecentContactViewController * chat=[[LYRecentContactViewController alloc]init];
+        chat.title=@"最近联系";
+        [self.navigationController pushViewController:chat animated:YES];
 
-            break;
-        }
+    }else if (indexPath.row == 7){
+        //客户管理
+        ZSManageCustomerViewController *zsManagerCustomerVC = [[ZSManageCustomerViewController alloc]init];
+        [self.navigationController pushViewController:zsManagerCustomerVC animated:YES];
+    }else if (indexPath.row == 8){
         
     }
+}
+
+- (void)gotoUserInterface{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"LYMain" bundle:[NSBundle mainBundle]];
+    NSLog(@"--->%@",[storyBoard instantiateViewControllerWithIdentifier:@"LYNavigationController"]);
+    UINavigationController *nav = (UINavigationController *)[storyBoard instantiateViewControllerWithIdentifier:@"LYNavigationController"];
+    app.navigationController = nav;
+    app.window.rootViewController = nav;
+    MainTabbarViewController *tabVC = (MainTabbarViewController *)nav.viewControllers.firstObject;
+    tabVC.selectedIndex = tabVC.viewControllers.count - 1;
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"shanghuban"];
     
+    if(app.userModel.usertype.intValue==2 || app.userModel.usertype.intValue == 3){
+        UIWindow *window = [UIApplication sharedApplication].delegate.window;
+        UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+        _effctView = [[UIVisualEffectView alloc]initWithEffect:effect];
+        //            effctView.frame = [UIScreen mainScreen].bounds;
+        _effctView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        [window addSubview:_effctView];
+        
+        CGFloat imgVWidth = 50;
+        
+        UIImageView *imgV = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, imgVWidth, imgVWidth)];
+        imgV.center = _effctView.center;
+        imgV.image = [UIImage imageNamed:@"loading1"];
+        [_effctView addSubview:imgV];
+        
+        UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(imgV.frame),SCREEN_WIDTH, imgVWidth)];
+        titleLabel.textColor = [UIColor blackColor];
+        titleLabel.font = [UIFont systemFontOfSize:14 weight:UIFontWeightMedium];
+        titleLabel.textAlignment = NSTextAlignmentCenter;
+        titleLabel.text = @"切换中....";
+        [_effctView addSubview:titleLabel];
+        
+        NSMutableArray *imgArray = [[NSMutableArray alloc]initWithCapacity:9];
+        for (int i = 1; i < 10; i ++) {
+            
+            UIImage *img = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"loading%d@2x",i] ofType:@"png"]];
+            [imgArray addObject:(__bridge UIImage *)img.CGImage];
+        }
+        
+        CAKeyframeAnimation *keyFrameA = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
+        keyFrameA.duration = imgArray.count * 0.1;
+        keyFrameA.delegate = self;
+        keyFrameA.values = imgArray;
+        keyFrameA.repeatCount = 1;
+        [imgV.layer addAnimation:keyFrameA forKey:nil];
+    }
 }
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
@@ -486,15 +441,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 - (IBAction)backAct:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }

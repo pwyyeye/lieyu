@@ -14,6 +14,7 @@
     // Initialization code
     _label_badge.layer.cornerRadius = CGRectGetHeight(_label_badge.frame)/2.f;
     _label_badge.layer.masksToBounds = YES;
+    _imgView.hidden = YES;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 

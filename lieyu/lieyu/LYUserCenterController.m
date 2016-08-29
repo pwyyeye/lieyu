@@ -34,6 +34,8 @@
 #import "CarInfoModel.h"
 #import "LPMyOrdersViewController.h"
 #import "LYMyFreeOrdersViewController.h"
+#import "ZSManageHttpTool.h"
+#import "AddressBookModel.h"
 
 @interface LYUserCenterController ()<TencentSessionDelegate>{
     NSInteger num,orderNum,freeOrderNum;
@@ -158,7 +160,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 //        }
 //        
 //    }
-    height = 292;
+    height = 312;
     
     
     self.collectionView.frame = CGRectMake(0, height, SCREEN_WIDTH, SCREEN_HEIGHT - height - 49);
@@ -175,8 +177,6 @@ static NSString * const reuseIdentifier = @"userCenterCell";
         _headerView.btnChange.hidden = YES;
     }
     [self.view addSubview:_headerView];
-//    [self loadHeaderViewBadge];
-//    [self getGoodsNum];
 }
 -(void) viewDidAppear:(BOOL)animated
 {
@@ -186,7 +186,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
         [MTA trackPageViewBegin:self.title];
     }
     [super viewWillAppear:animated];
-
+    UserModel *userModel = ((AppDelegate *)[UIApplication sharedApplication].delegate).userModel;
 }
 
 -(void)viewWillDisappear:(BOOL)animated{

@@ -699,6 +699,52 @@
   return  [NSString stringWithFormat:@"%@ %@",strDiff,dateStringPart];
 }
 
+#pragma mark - 获取今年的天数
++ (int)getdaysThisYear{
+    NSInteger dateYear = [[self getThisYear]integerValue];
+    if (dateYear % 400 == 0 || (dateYear % 4 == 0 && dateYear % 100 != 0)) {
+        return 366;
+    }else{
+        return 365;
+    }
+}
+
++ (NSString *)getThisYear{
+    NSDate *date = [NSDate date];
+    NSDateFormatter *dateFomatter = [[NSDateFormatter alloc]init];
+    [dateFomatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *dateString = [dateFomatter stringFromDate:date];
+    return [dateString substringWithRange:NSMakeRange(0, 4)];
+}
+
+#pragma mark - 获取是今天，一周内，一月内，还是其他时间
++ (NSString *)configureDateFromNowWith:(NSString *)dateString{
+    NSDateFormatter *dateFomatter = [[NSDateFormatter alloc]init];
+    [dateFomatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *date = [dateFomatter dateFromString:dateString];
+//    NSDate *date = [dateFomatter dateFromString:exam];
+    NSDate *today = [NSDate date];
+    NSString *todayString = [dateFomatter stringFromDate:today];
+    NSString *stringInterval;
+    NSInteger interval;
+    if ([dateString isEqualToString:todayString]) {
+        stringInterval = @"今天";
+    }else{
+        NSTimeInterval nowInterval = [date timeIntervalSinceNow];
+        interval = nowInterval / (24 * 3600) + 1;
+        if (interval < 0) {//已经过去了
+            stringInterval = @"其他";
+            interval = [self getdaysThisYear] + interval;
+        }else if (interval <= 6) {
+            stringInterval = @"7天内";
+        }else if(interval <= 30){
+            stringInterval = @"30天内";
+        }else{
+            stringInterval = @"其他";
+        }
+    }
+    return [NSString stringWithFormat:@"%@ %ld",stringInterval,interval];
+}
 
 #pragma --mark  获取字符长度 中文＝2 英文＝1
 + (int)countTheStrLength:(NSString*)strtemp {

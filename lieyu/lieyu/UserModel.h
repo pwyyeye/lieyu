@@ -9,11 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface UserModel : NSObject
-//"beCollectNum": 5,
-//"friends_img": "20160122035539955.jpg",
-//"isFriend": 0,
-//"recentImages": [],
-//"type": 0,
 
 @property(nonatomic,assign)int applyStatus;
 @property(nonatomic,copy)NSString * avatar_img;
@@ -57,5 +52,9 @@
 @property (nonatomic,copy) NSString *beCollectNum;
 @property (nonatomic,copy) NSString *collectNum;
 
+@property (nonatomic, strong) NSString *lastDayForBirthday;
+@property (nonatomic, strong) NSString *typeDate;
+@property (nonatomic, strong) NSData *image;
+@property NSInteger sectionNumber;
 
 @end

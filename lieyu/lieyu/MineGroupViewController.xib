@@ -33,7 +33,7 @@
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kd3-yh-Th9">
                     <rect key="frame" x="0.0" y="42" width="320" height="0.5"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="0.5" id="AVW-qY-AMR"/>
                     </constraints>
@@ -52,7 +52,7 @@
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owU-lh-QBL">
                     <rect key="frame" x="159" y="42" width="1" height="40"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="0.5" id="8vd-eU-h8P"/>
                         <constraint firstAttribute="width" constant="1" id="Z5P-AH-HHk"/>
@@ -76,22 +76,30 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <searchBar contentMode="redraw" placeholder="搜索" translatesAutoresizingMaskIntoConstraints="NO" id="aHF-qp-BIb">
+                <searchBar contentMode="redraw" searchBarStyle="prominent" placeholder="搜索" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHF-qp-BIb">
                     <rect key="frame" x="0.0" y="82" width="320" height="44"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="maB-Qn-a4G"/>
                     </constraints>
-                    <color key="barTintColor" red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="barTintColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                     <textInputTraits key="textInputTraits"/>
                 </searchBar>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您的娱客帮里还没有成员哦～" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnH-iJ-8U9">
+                    <rect key="frame" x="69" y="232" width="182" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.43137254899999999" green="0.43137254899999999" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9Os-IK-klr">
                     <rect key="frame" x="0.0" y="126" width="320" height="354"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
                 </tableView>
             </subviews>
-            <color key="backgroundColor" red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="aHF-qp-BIb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2Rl-du-ZoA"/>
+                <constraint firstItem="xnH-iJ-8U9" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="2de-mF-pqp"/>
                 <constraint firstItem="NKn-Qs-tPW" firstAttribute="centerY" secondItem="plk-O4-HOB" secondAttribute="centerY" id="2qD-cK-leK"/>
                 <constraint firstAttribute="trailing" secondItem="kd3-yh-Th9" secondAttribute="trailing" id="33F-mb-pbI"/>
                 <constraint firstItem="NKn-Qs-tPW" firstAttribute="width" secondItem="plk-O4-HOB" secondAttribute="width" id="3xz-67-Yoe"/>
@@ -107,6 +115,7 @@
                 <constraint firstItem="NKn-Qs-tPW" firstAttribute="leading" secondItem="owU-lh-QBL" secondAttribute="trailing" id="Vi0-ab-dvJ"/>
                 <constraint firstAttribute="trailing" secondItem="NKn-Qs-tPW" secondAttribute="trailing" id="WNJ-za-Nem"/>
                 <constraint firstItem="owU-lh-QBL" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="cT6-vU-gHo"/>
+                <constraint firstItem="xnH-iJ-8U9" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="haB-th-zyt"/>
                 <constraint firstItem="FBh-pw-qHY" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="5" id="jg4-wg-47V"/>
                 <constraint firstAttribute="trailing" secondItem="9Os-IK-klr" secondAttribute="trailing" id="mRK-Fy-8Mb"/>
                 <constraint firstItem="9Os-IK-klr" firstAttribute="top" secondItem="aHF-qp-BIb" secondAttribute="bottom" id="nNj-0e-cRi"/>
@@ -121,7 +130,7 @@
                     <exclude reference="5IO-SE-B6N"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="274" y="147"/>
+            <point key="canvasLocation" x="83" y="159"/>
         </view>
     </objects>
 </document>

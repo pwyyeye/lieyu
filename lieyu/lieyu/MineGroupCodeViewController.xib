@@ -3,18 +3,106 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MineGroupCodeViewController">
             <connections>
+                <outlet property="codeView" destination="fcp-sm-vsN" id="72z-JB-tiQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="娱客帮动态二维码" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2D3-mH-ooN">
+                    <rect key="frame" x="104" y="231" width="112" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.43137254901960786" green="0.43137254901960786" blue="0.43137254901960786" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="该二维码7天内有效，重新进入将更新" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="syo-Ce-bIL">
+                    <rect key="frame" x="44" y="249" width="232" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.43137254901960786" green="0.43137254901960786" blue="0.43137254901960786" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pOj-aK-ubK">
+                    <rect key="frame" x="44" y="328" width="44" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="mYO-Vz-4uz"/>
+                        <constraint firstAttribute="height" constant="44" id="o80-D3-QQm"/>
+                    </constraints>
+                    <state key="normal" backgroundImage="codeButton.png"/>
+                    <connections>
+                        <action selector="downloadQRCode:" destination="-1" eventType="touchUpInside" id="5k8-b3-sKW"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1H9-Wu-tac">
+                    <rect key="frame" x="210" y="306" width="66" height="66"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="66" id="E4x-ui-EvJ"/>
+                        <constraint firstAttribute="width" constant="66" id="a2a-Bq-p4r"/>
+                    </constraints>
+                    <state key="normal" backgroundImage="codeButton.png"/>
+                    <connections>
+                        <action selector="downloadQRCode:" destination="-1" eventType="touchUpInside" id="any-7A-YlW"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jld-H5-k45">
+                    <rect key="frame" x="88" y="317" width="122" height="55"/>
+                    <subviews>
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wKG-7F-xyS">
+                            <rect key="frame" x="34" y="0.0" width="55" height="55"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="55" id="ozS-Md-VDd"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="codeButton.png"/>
+                            <connections>
+                                <action selector="downloadQRCode:" destination="-1" eventType="touchUpInside" id="2ac-9u-el9"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="wKG-7F-xyS" secondAttribute="bottom" id="GEd-Ib-RgL"/>
+                        <constraint firstItem="wKG-7F-xyS" firstAttribute="top" secondItem="Jld-H5-k45" secondAttribute="top" id="U55-OP-2wD"/>
+                        <constraint firstItem="wKG-7F-xyS" firstAttribute="centerX" secondItem="Jld-H5-k45" secondAttribute="centerX" id="U9u-Nc-47L"/>
+                        <constraint firstAttribute="height" constant="55" id="dAX-Up-PPP"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fcp-sm-vsN">
+                    <rect key="frame" x="99.5" y="80" width="121" height="121"/>
+                    <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="fcp-sm-vsN" secondAttribute="height" multiplier="1:1" id="Djo-Mu-XE3"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="1H9-Wu-tac" secondAttribute="bottom" constant="108" id="2xZ-c4-6Fm"/>
+                <constraint firstItem="pOj-aK-ubK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="44" id="9mp-im-I5U"/>
+                <constraint firstItem="Jld-H5-k45" firstAttribute="leading" secondItem="pOj-aK-ubK" secondAttribute="trailing" id="DMv-mV-UbB"/>
+                <constraint firstAttribute="trailing" secondItem="1H9-Wu-tac" secondAttribute="trailing" constant="44" id="InV-Jw-ggG"/>
+                <constraint firstItem="2D3-mH-ooN" firstAttribute="top" secondItem="fcp-sm-vsN" secondAttribute="bottom" constant="30" id="Jaa-aw-XJr"/>
+                <constraint firstAttribute="bottom" secondItem="Jld-H5-k45" secondAttribute="bottom" constant="108" id="KO9-Qs-bYX"/>
+                <constraint firstItem="fcp-sm-vsN" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="X40-uH-nlz"/>
+                <constraint firstItem="2D3-mH-ooN" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="a80-N8-h3I"/>
+                <constraint firstItem="2D3-mH-ooN" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="eXE-qM-iRa"/>
+                <constraint firstItem="fcp-sm-vsN" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="fZ7-RI-G7T"/>
+                <constraint firstItem="syo-Ce-bIL" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="hNR-mZ-WNd"/>
+                <constraint firstItem="syo-Ce-bIL" firstAttribute="top" secondItem="2D3-mH-ooN" secondAttribute="bottom" constant="1" id="r7A-lU-ji7"/>
+                <constraint firstAttribute="bottom" secondItem="pOj-aK-ubK" secondAttribute="bottom" constant="108" id="vSi-4L-fjs"/>
+                <constraint firstItem="1H9-Wu-tac" firstAttribute="leading" secondItem="Jld-H5-k45" secondAttribute="trailing" id="wyz-cZ-RWv"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="103" y="184"/>
         </view>
     </objects>
+    <resources>
+        <image name="codeButton.png" width="169" height="169"/>
+    </resources>
 </document>

@@ -17,6 +17,7 @@
 #import "BrandModel.h"
 #import "ZSTiXianRecord.h"
 #import "ZSBalance.h"
+#import "AddressBookModel.h"
 
 @implementation ZSManageHttpTool
 + (ZSManageHttpTool *)shareInstance
@@ -586,6 +587,94 @@
 //        }
     } failure:^(NSError *err) {
 //        [MyUtil showLikePlaceMessage:@"申请失败，请重新尝试！"];
+    }];
+}
+
+#pragma mark - 生日管家
+#pragma mark - 导入通讯录和生日
+- (void)zsImportAddressBookWithParams:(NSDictionary *)params complete:(void(^)(NSArray *))complete{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:ZS_IMPORT_ADDRESSBOOK baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            NSArray *dataList = [AddressBookModel mj_objectArrayWithKeyValuesArray:[response objectForKey:@"data"]];
+            complete(dataList);
+        }else{
+            [MyUtil showPlaceMessage:@"上传数据发生错误！"];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+}
+
+#pragma mark - 单条添加或更新好友生日
+- (void)zsAddFriendBirthdayWithParams:(NSDictionary *)params complete:(void (^)(BOOL))complete{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:ZS_ADD_FRIENDBIRTHDAY baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            if ([[response objectForKey:@"message"] isEqualToString:@"单条添加或更新好友生日成功"]) {
+                complete(YES);
+            }
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+}
+
+#pragma mark - 生日管家（好友生日列表）
+- (void)zsGetFriendBirthdayWithParams:(NSDictionary *)params complete:(void (^)(NSArray *))complete{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:ZS_GET_FRIENDBIRTHDAY baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            NSArray *dataListVO30 = [AddressBookModel mj_objectArrayWithKeyValuesArray:[[response objectForKey:@"data"] objectForKey:@"vo30List"]];
+            NSArray *dataListVO7 = [AddressBookModel mj_objectArrayWithKeyValuesArray:[[response objectForKey:@"data"] objectForKey:@"vo7List"]];
+            NSArray *dataListOther = [AddressBookModel mj_objectArrayWithKeyValuesArray:[[response objectForKey:@"data"] objectForKey:@"voOtherList"]];
+            NSMutableArray *dataList = [[NSMutableArray alloc]initWithObjects:dataListVO7, dataListVO30, dataListOther, nil];
+            complete(dataList);
+        }else{
+            [MyUtil showPlaceMessage:@"获取数据发生错误！"];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+}
+
+#pragma mark - 生日管家（删除好友生日）
+- (void)zsDeleteFriendBirthdayWithParams:(NSDictionary *)params complete:(void (^)(BOOL))complete{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:ZS_DELETE_FRIENDBIRTHDAY baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            if ([[response objectForKey:@"message"] isEqualToString:@"删除好友生日成功"]) {
+                complete(YES);
+            }
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+}
+
+#pragma mark - 生日管家（今天好友生日列表）
+- (void)zsGetTodayFriendBirthdayWithParams:(NSDictionary *)params complete:(void (^)(NSArray *))complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:ZS_TODY_FRIENDBIRTHDAY baseURL:LY_SERVER params:params success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            NSArray *dataList = [AddressBookModel mj_objectArrayWithKeyValuesArray:[response objectForKey:@"data"]];
+            complete(dataList);
+        }else{
+            
+        }
+    } failure:^(NSError *err) {
     }];
 }
 

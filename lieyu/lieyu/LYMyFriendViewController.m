@@ -137,7 +137,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    return 59;
+    return 55;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -192,6 +192,7 @@
     }
     else {
         addressBook = (CustomerModel*)[[_listContent objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
     LYMyFriendDetailViewController *friendDetailViewController=[[LYMyFriendDetailViewController alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
@@ -270,10 +271,12 @@
     for (NSArray *section in _listContent) {
         for (CustomerModel *addressBook in section)
         {
-            NSComparisonResult result = [addressBook.friendName compare:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchText length])];
-            if (result == NSOrderedSame)
-            {
-                [_filteredListContent addObject:addressBook];
+            if(addressBook.friendName.length >= searchText.length && searchText != nil){
+                NSComparisonResult result = [addressBook.friendName compare:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [searchText length])];
+                if (result == NSOrderedSame)
+                {
+                    [_filteredListContent addObject:addressBook];
+                }
             }
         }
     }

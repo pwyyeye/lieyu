@@ -91,4 +91,16 @@
 
 -(void) getZSOrderList2WithParams:(NSDictionary*)params
                             block:(void(^)(NSMutableArray* result)) block;
+
+#pragma mark - 生日管家
+//导入通讯录和生日
+- (void)zsImportAddressBookWithParams:(NSDictionary *)params complete:(void(^)(NSArray *))complete;
+//单条添加或更新好友生日
+- (void)zsAddFriendBirthdayWithParams:(NSDictionary *)params complete:(void(^)(BOOL))complete;
+//生日管家（好友生日列表）
+- (void)zsGetFriendBirthdayWithParams:(NSDictionary *)params complete:(void(^)(NSArray *))complete;
+//生日管家（删除好友生日）
+- (void)zsDeleteFriendBirthdayWithParams:(NSDictionary *)params complete:(void(^)(BOOL))complete;
+//生日管家（今天好友生日列表）
+- (void)zsGetTodayFriendBirthdayWithParams:(NSDictionary *)params complete:(void(^)(NSArray *))complete;
 @end

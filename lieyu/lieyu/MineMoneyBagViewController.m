@@ -10,6 +10,8 @@
 #import "MineMoneyBagCollectionViewCell.h"
 #import "MineYubiViewController.h"
 #import "MineBalanceViewController.h"
+#import "MineWithdrawListViewController.h"
+#import "ZSTiXianRecordViewController.h"
 
 #define IDENTIFIER @"MineMoneyBagCollectionViewCell"
 
@@ -34,6 +36,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的钱包";
+    [self initRightItem];
+}
+
+- (void)initRightItem{
+    UIButton *listButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 80, 40)];
+    [listButton setTitle:@"提现记录" forState:UIControlStateNormal];
+    [listButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 20, 0, 0)];
+    [listButton.titleLabel setFont:[UIFont systemFontOfSize:13]];
+    [listButton setTitleColor:NAVIGATIONBARTITLECOLOR forState:UIControlStateNormal];
+    [listButton addTarget:self action:@selector(withdrawListClick:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:listButton];
+    self.navigationItem.rightBarButtonItem = rightItem;
+}
+
+- (void)withdrawListClick:(UIButton *)button{
+//    MineWithdrawListViewController *mineWithdrawListVC = [[MineWithdrawListViewController alloc]init];
+    ZSTiXianRecordViewController *mineWithdrawListVC = [[ZSTiXianRecordViewController alloc]init];
+    [self.navigationController pushViewController:mineWithdrawListVC animated:YES];
 }
 
 #pragma mark - collectionview的代理事件
@@ -72,8 +92,10 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0 && indexPath.item == 0) {
         //进入娱币商城
+        [MyUtil showPlaceMessage:@"娱币商城敬请期待！"];
     }else if (indexPath.section == 0 && indexPath.item == 1){
         //进入猎娱VIP
+        [MyUtil showPlaceMessage:@"猎娱VIP敬请期待！"];
     }
 }
 

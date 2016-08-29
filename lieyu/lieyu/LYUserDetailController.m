@@ -327,8 +327,6 @@
     
     [_alertView.showView addSubview:_datePicker];
     [_alertView show];
-    
-
 }
 
 -(void)showAlertViewForSex{

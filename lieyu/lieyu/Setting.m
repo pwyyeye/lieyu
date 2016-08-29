@@ -21,6 +21,8 @@
 #import "ZSApplyStatusModel.h"
 #import "WechatCheckAccountViewController.h"
 #import "checkUnpassedViewController.h"
+#import "IQKeyboardManager.h"
+#import "LYPrivateViewController.h"
 
 @interface Setting (){
     UIButton *_logoutButton;
@@ -46,7 +48,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 //    _data=@[@"编辑个人资料",@"清除缓存",@"通知",@"账户管理",@"猎娱APP分享",@"申请专属经理",@"关于猎娱",@"收货地址"];
 //    _data=@[@"编辑个人资料",@"清除缓存",@"通知",@"账户管理",@"猎娱APP分享",@"申请专属经理",@"关于猎娱"];
-    _data = @[@"账户管理",@"申请专属经理",@"通知设置",@"分享猎娱",@"清除缓存",@"关于猎娱"];
+    _data = @[@"账户管理",@"通知设置",@"隐私设置",@"清除缓存",@"分享猎娱",@"帮助与反馈",@"关于猎娱"];
     
     self.title=@"个人设置";
     
@@ -147,7 +149,7 @@
     return _data.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.row == 1 || indexPath.row == 4  || indexPath.row == 5) return 60;
+    if(indexPath.row == 3 || indexPath.row == 6) return 60;
     else return 50;
     
     
@@ -177,22 +179,23 @@
     titleLabel.layer.masksToBounds = YES;
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     
-    if(indexPath.row == 0 || indexPath.row == 2){
+    if(indexPath.row == 0 || indexPath.row == 4){
             shapeLayer.path = [UIBezierPath bezierPathWithRoundedRect:titleLabel.bounds byRoundingCorners:UIRectCornerTopLeft|UIRectCornerTopRight cornerRadii:CGSizeMake(2, 2)].CGPath;
             titleLabel.layer.mask = shapeLayer;
-    }else if(indexPath.row == 1 || indexPath.row == 5){
+    }else if(indexPath.row == 3 || indexPath.row == 6){
         shapeLayer.path = [UIBezierPath bezierPathWithRoundedRect:titleLabel.bounds byRoundingCorners:UIRectCornerBottomLeft|UIRectCornerBottomRight cornerRadii:CGSizeMake(2, 2)].CGPath;
         titleLabel.layer.mask = shapeLayer;
-    }else if(indexPath.row == 6|| indexPath.row == 7){
-        titleLabel.layer.cornerRadius = 2;
     }
+//    else if(indexPath.row == 6|| indexPath.row == 7){
+//        titleLabel.layer.cornerRadius = 2;
+//    }
     titleLabel.text=[NSString stringWithFormat:@"  %@",_data[indexPath.row]];
     [cell.contentView addSubview:titleLabel];
     
     
     CALayer *layerShadow=[[CALayer alloc]init];
     layerShadow.backgroundColor = RGB(237, 237, 237).CGColor;
-    if (indexPath.row == 1 || indexPath.row == 5 || indexPath.row == 6 || indexPath.row == 7) {
+    if (indexPath.row == 3 || indexPath.row == 6) {
         layerShadow.frame=CGRectMake(0,50 , SCREEN_WIDTH, 10);
     }else{
     layerShadow.frame=CGRectMake(0, 49, SCREEN_WIDTH,  1);
@@ -202,10 +205,10 @@
     cell.selectionStyle=UITableViewCellSelectionStyleNone;//cell选中时的颜色
     
     
-    if([userModel.usertype isEqualToString:@"1"] &&indexPath.row == 1){
-        //普通用户
-        [self getApplyType];
-    }
+//    if([userModel.usertype isEqualToString:@"1"] &&indexPath.row == 1){
+//        //普通用户
+//        [self getApplyType];
+//    }
     
     UIImageView *imgView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"arrowRight"]];
     imgView.frame = CGRectMake(SCREEN_WIDTH - 26, 17, 8, 15 );
@@ -224,9 +227,20 @@
 //        detailViewController=[[LYUserDetailInfoViewController alloc] init];
         
     }else*/ if (indexPath.row==4) {
+        NSString *string= [NSString stringWithFormat:@"猎娱 | 中高端玩咖美女帅哥社交圈，轻奢夜生活娱乐！"];
+        [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
+        [UMSocialData defaultData].extConfig.wechatTimelineData.url = @"http://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653";
+        [UMSocialData defaultData].extConfig.wechatSessionData.url = @"http://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653";
+        [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:[UIImage imageNamed:@"CommonIcon"] shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
+        
         [USER_DEFAULT removeObjectForKey:@"user_name"];
         [USER_DEFAULT removeObjectForKey:@"user_pass"];
-        
+    }else if(indexPath.row == 2){
+        //隐私设置
+        detailViewController = [[LYPrivateViewController alloc]init];
+    }else if(indexPath.row==0){
+        detailViewController=[[LYAccountManager alloc] init];
+    }else if(indexPath.row == 3){
         [USER_DEFAULT removeObjectForKey:@"OPENIDSTR"];
         [[NSNotificationCenter defaultCenter] postNotificationName:UIApplicationDidReceiveMemoryWarningNotification object:nil];
         
@@ -234,51 +248,63 @@
         
         [[LYCoreDataUtil shareInstance] deleteLocalSQLLite];
         [MyUtil showMessage:@"清除成功！"];
-        
-    }else if(indexPath.row == 2){
-        UserNotificationViewController *userNotifitionVC = [[UserNotificationViewController alloc]init];
-        [self.navigationController pushViewController:userNotifitionVC animated:YES];
-    }else if(indexPath.row==0){
-        detailViewController=[[LYAccountManager alloc] init];
-    }else if(indexPath.row == 3){
-        NSString *string= [NSString stringWithFormat:@"猎娱 | 中高端玩咖美女帅哥社交圈，轻奢夜生活娱乐！"];
-        [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
-        [UMSocialData defaultData].extConfig.wechatTimelineData.url = @"http://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653";
-        [UMSocialData defaultData].extConfig.wechatSessionData.url = @"http://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653";
-        [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:[UIImage imageNamed:@"CommonIcon"] shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
-    }else if(indexPath.row==5){
+    }else if(indexPath.row==6){
         detailViewController=[[AboutLieyu alloc] initWithNibName:@"AboutLieyu" bundle:nil];
     }else if (indexPath.row == 1){
-        if([userModel.usertype isEqualToString:@"2"] && !canApply){
-            [MyUtil showLikePlaceMessage:@"您已经是专属经理了！"];
-            return;
-        }else if ([userModel.usertype isEqualToString:@"1"]){
-            if (userModel.applyStatus == 1 && !canApply) {
-                [MyUtil showLikePlaceMessage:@"正在审核中！"];
-                return;
-            }
-        }
-        if (canApply && enterStep == 1) {
-            detailViewController = [[LYZSApplicationViewController alloc]initWithNibName:@"LYZSApplicationViewController" bundle:nil];
-            detailViewController.title=@"申请专属经理";
-        }else if (canApply && enterStep == 2){
-            detailViewController = [[wechatCheckAccountViewController alloc]initWithNibName:@"wechatCheckAccountViewController" bundle:nil];
-            ((wechatCheckAccountViewController *)detailViewController).nsCode=sn;
-            detailViewController.title = @"微信帐号验证";
-        }else if (canApply && enterStep == 3){
-            detailViewController = [[checkUnpassedViewController alloc]initWithNibName:@"checkUnpassedViewController" bundle:nil];
-            detailViewController.title = @"申请专属经理";
-        }else if ([userModel.usertype isEqualToString:@"3"] || userModel.applyStatus == 4){
-            [MyUtil showLikePlaceMessage:@"您已经是专属经理！"];
-        }
+//        if([userModel.usertype isEqualToString:@"2"] && !canApply){
+//            [MyUtil showLikePlaceMessage:@"您已经是专属经理了！"];
+//            return;
+//        }else if ([userModel.usertype isEqualToString:@"1"]){
+//            if (userModel.applyStatus == 1 && !canApply) {
+//                [MyUtil showLikePlaceMessage:@"正在审核中！"];
+//                return;
+//            }
+//        }
+//        if (canApply && enterStep == 1) {
+//            detailViewController = [[LYZSApplicationViewController alloc]initWithNibName:@"LYZSApplicationViewController" bundle:nil];
+//            detailViewController.title=@"申请专属经理";
+//        }else if (canApply && enterStep == 2){
+//            detailViewController = [[wechatCheckAccountViewController alloc]initWithNibName:@"wechatCheckAccountViewController" bundle:nil];
+//            ((wechatCheckAccountViewController *)detailViewController).nsCode=sn;
+//            detailViewController.title = @"微信帐号验证";
+//        }else if (canApply && enterStep == 3){
+//            detailViewController = [[checkUnpassedViewController alloc]initWithNibName:@"checkUnpassedViewController" bundle:nil];
+//            detailViewController.title = @"申请专属经理";
+//        }else if ([userModel.usertype isEqualToString:@"3"] || userModel.applyStatus == 4){
+//            [MyUtil showLikePlaceMessage:@"您已经是专属经理！"];
+//        }
+        detailViewController = [[UserNotificationViewController alloc]init];
+    }else if(indexPath.row == 5){
+        //统计我的页面的选择
+        NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"设置页面",@"titleName":@"客服"};
+        [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+        
+        RCPublicServiceChatViewController *conversationVC = [[RCPublicServiceChatViewController alloc] init];
+        conversationVC.conversationType = ConversationType_APPSERVICE;
+        conversationVC.targetId = @"KEFU144946169476221";//KEFU144946169476221 KEFU144946167494566  测试
+        conversationVC.title = @"猎娱客服";
+        [USER_DEFAULT setObject:@"0" forKey:@"needCountIM"];
+        [IQKeyboardManager sharedManager].enable = NO;
+        [IQKeyboardManager sharedManager].isAdd = YES;
+        
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+        UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(-10, 0, 44, 44)];
+        [button setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
+        [view addSubview:button];
+        [button addTarget:self action:@selector(backForword) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:view];
+        conversationVC.navigationItem.leftBarButtonItem = item;
+        [self.navigationController pushViewController:conversationVC animated:YES];
+        [conversationVC.navigationController setNavigationBarHidden:NO animated:YES];
     }
-
-    
-    // Push the view controller.
-   /* UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
-    self.navigationItem.backBarButtonItem = left;*/
     [self.navigationController pushViewController:detailViewController animated:YES];
-   
+}
+
+- (void)backForword{
+    [USER_DEFAULT setObject:@"1" forKey:@"needCountIM"];
+    [IQKeyboardManager sharedManager].enable = YES;
+    [IQKeyboardManager sharedManager].isAdd = NO;
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
