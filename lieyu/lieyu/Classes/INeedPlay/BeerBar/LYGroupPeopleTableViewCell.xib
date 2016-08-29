@@ -34,10 +34,10 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="篮球" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4vQ-jT-T0x">
-                        <rect key="frame" x="94" y="30" width="39" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="篮球" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4vQ-jT-T0x">
+                        <rect key="frame" x="95" y="30" width="65" height="17"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="39" id="oz0-0u-bJn"/>
+                            <constraint firstAttribute="width" constant="65" id="oz0-0u-bJn"/>
                             <constraint firstAttribute="height" constant="17" id="vHG-Qq-u46"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -110,7 +110,7 @@
                 <outlet property="typeLabel" destination="2LM-Fq-DKm" id="gCq-Nz-TQQ"/>
                 <outlet property="workTypeLabel" destination="4vQ-jT-T0x" id="kz8-F0-m91"/>
             </connections>
-            <point key="canvasLocation" x="504" y="550.5"/>
+            <point key="canvasLocation" x="313" y="333.5"/>
         </tableViewCell>
     </objects>
 </document>

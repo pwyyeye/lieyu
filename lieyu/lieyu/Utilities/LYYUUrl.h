@@ -22,6 +22,7 @@
 #define LY_YU_JUBAO @"versionAction.do?action=list"
 
 #define LY_YU_CHATROOM_REMOVE @"friendAction.do?action=expand"//聊天室踢人
+
 #define LY_YU_REPLY @"lyRequireAction.do?action=save"
 
 #define LY_YU_CHATOOM_ALLSTAFF @"lyRequireAction.do?action=expand"//聊天室成员

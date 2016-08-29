@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iaT-Jy-S54" customClass="LiveShowEndView">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="直播结束" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ut9-Hq-gic">
+                    <rect key="frame" x="240" y="70" width="120" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="SAt-8v-Xh5"/>
+                        <constraint firstAttribute="width" constant="120" id="eMO-j8-PZs"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="188" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qhC-Ew-FT8">
+                    <rect key="frame" x="279" y="134" width="42" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="d4i-Er-nYd"/>
+                        <constraint firstAttribute="width" constant="42" id="tfn-os-9Xn"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="看过人数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QW7-Dl-sHw">
+                    <rect key="frame" x="270" y="168" width="60" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="Klo-yq-Jto"/>
+                        <constraint firstAttribute="width" constant="60" id="vAp-KG-C7m"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分享到" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jWR-jC-u5l">
+                    <rect key="frame" x="279" y="292" width="42" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vpv-C0-mBR">
+                    <rect key="frame" x="288" y="322" width="25" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="AjV-2c-VZj"/>
+                        <constraint firstAttribute="width" constant="30" id="P1Z-El-FE2"/>
+                    </constraints>
+                    <state key="normal" image="live_wechatmonent.png"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c9B-g4-6lO">
+                    <rect key="frame" x="351" y="320" width="30" height="30"/>
+                    <state key="normal" image="live_B_sina.png"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NHZ-Bf-pjt">
+                    <rect key="frame" x="420" y="323" width="23" height="23"/>
+                    <state key="normal" image="live_B_momo.png"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ltt-GB-D7Z">
+                    <rect key="frame" x="220" y="323" width="28" height="23"/>
+                    <state key="normal" image="live_B_wechat.png"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRq-ge-4hU">
+                    <rect key="frame" x="161" y="324" width="20" height="22"/>
+                    <state key="normal" image="live_B_qq.png"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hPQ-TG-Mn6">
+                    <rect key="frame" x="195" y="450" width="210" height="45"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                    <state key="normal" title="关注">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hlg-Xs-0zc">
+                    <rect key="frame" x="195" y="515" width="210" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="210" id="U58-sc-DbY"/>
+                        <constraint firstAttribute="height" constant="45" id="mMZ-cZ-8EK"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                    <state key="normal" title="返回">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Vpv-C0-mBR" firstAttribute="width" secondItem="gRq-ge-4hU" secondAttribute="width" id="0j9-QR-WyE"/>
+                <constraint firstItem="c9B-g4-6lO" firstAttribute="centerY" secondItem="gRq-ge-4hU" secondAttribute="centerY" id="0zv-FP-Rwj"/>
+                <constraint firstItem="hlg-Xs-0zc" firstAttribute="centerX" secondItem="iaT-Jy-S54" secondAttribute="centerX" id="3on-YB-z5r"/>
+                <constraint firstItem="Vpv-C0-mBR" firstAttribute="centerX" secondItem="iaT-Jy-S54" secondAttribute="centerX" id="6Vp-oJ-ugJ"/>
+                <constraint firstItem="c9B-g4-6lO" firstAttribute="leading" secondItem="Vpv-C0-mBR" secondAttribute="trailing" constant="35" id="6i5-Vt-0Cu"/>
+                <constraint firstItem="NHZ-Bf-pjt" firstAttribute="height" secondItem="gRq-ge-4hU" secondAttribute="height" id="9Kb-fS-V3Y"/>
+                <constraint firstItem="ltt-GB-D7Z" firstAttribute="centerY" secondItem="gRq-ge-4hU" secondAttribute="centerY" id="A05-ai-A72"/>
+                <constraint firstItem="Ut9-Hq-gic" firstAttribute="top" secondItem="iaT-Jy-S54" secondAttribute="top" constant="70" id="AIP-Cn-yuo"/>
+                <constraint firstItem="jWR-jC-u5l" firstAttribute="centerY" secondItem="iaT-Jy-S54" secondAttribute="centerY" id="Bwx-Hn-QLp"/>
+                <constraint firstItem="hlg-Xs-0zc" firstAttribute="width" secondItem="hPQ-TG-Mn6" secondAttribute="width" id="C92-Ly-7rh"/>
+                <constraint firstItem="ltt-GB-D7Z" firstAttribute="width" secondItem="gRq-ge-4hU" secondAttribute="width" id="Fbt-UN-1jx"/>
+                <constraint firstItem="QW7-Dl-sHw" firstAttribute="centerX" secondItem="qhC-Ew-FT8" secondAttribute="centerX" id="H6w-Re-RKT"/>
+                <constraint firstItem="Vpv-C0-mBR" firstAttribute="centerY" secondItem="iaT-Jy-S54" secondAttribute="centerY" constant="35" id="Hpi-ah-dEt"/>
+                <constraint firstItem="QW7-Dl-sHw" firstAttribute="top" secondItem="qhC-Ew-FT8" secondAttribute="bottom" constant="13" id="KWC-vH-js5"/>
+                <constraint firstItem="qhC-Ew-FT8" firstAttribute="top" secondItem="Ut9-Hq-gic" secondAttribute="bottom" constant="30" id="KY0-eE-R8z"/>
+                <constraint firstItem="hPQ-TG-Mn6" firstAttribute="centerX" secondItem="iaT-Jy-S54" secondAttribute="centerX" id="Kpc-vh-Mz3"/>
+                <constraint firstItem="NHZ-Bf-pjt" firstAttribute="width" secondItem="gRq-ge-4hU" secondAttribute="width" id="M47-gc-zKj"/>
+                <constraint firstItem="Vpv-C0-mBR" firstAttribute="leading" secondItem="ltt-GB-D7Z" secondAttribute="trailing" constant="35" id="MAk-Ju-cVk"/>
+                <constraint firstItem="Vpv-C0-mBR" firstAttribute="height" secondItem="gRq-ge-4hU" secondAttribute="height" id="Okp-G4-CHp"/>
+                <constraint firstItem="c9B-g4-6lO" firstAttribute="width" secondItem="gRq-ge-4hU" secondAttribute="width" id="W56-nU-XvM"/>
+                <constraint firstItem="hlg-Xs-0zc" firstAttribute="height" secondItem="hPQ-TG-Mn6" secondAttribute="height" id="Wh4-H0-LLm"/>
+                <constraint firstItem="ltt-GB-D7Z" firstAttribute="height" secondItem="gRq-ge-4hU" secondAttribute="height" id="bSt-S4-nRx"/>
+                <constraint firstItem="NHZ-Bf-pjt" firstAttribute="leading" secondItem="c9B-g4-6lO" secondAttribute="trailing" constant="35" id="dgi-Nw-Aq0"/>
+                <constraint firstItem="ltt-GB-D7Z" firstAttribute="leading" secondItem="gRq-ge-4hU" secondAttribute="trailing" constant="35" id="drQ-Gh-hIw"/>
+                <constraint firstItem="NHZ-Bf-pjt" firstAttribute="centerY" secondItem="gRq-ge-4hU" secondAttribute="centerY" id="eHR-xU-yKX"/>
+                <constraint firstItem="Vpv-C0-mBR" firstAttribute="centerY" secondItem="gRq-ge-4hU" secondAttribute="centerY" id="eg4-V4-E2c"/>
+                <constraint firstItem="jWR-jC-u5l" firstAttribute="centerX" secondItem="QW7-Dl-sHw" secondAttribute="centerX" id="jHK-5Y-xHW"/>
+                <constraint firstItem="c9B-g4-6lO" firstAttribute="height" secondItem="gRq-ge-4hU" secondAttribute="height" id="oxU-O8-GcH"/>
+                <constraint firstItem="hlg-Xs-0zc" firstAttribute="top" secondItem="hPQ-TG-Mn6" secondAttribute="bottom" constant="20" id="oyN-6N-LVx"/>
+                <constraint firstAttribute="bottom" secondItem="hlg-Xs-0zc" secondAttribute="bottom" constant="40" id="rJG-As-5hb"/>
+                <constraint firstItem="Ut9-Hq-gic" firstAttribute="centerX" secondItem="iaT-Jy-S54" secondAttribute="centerX" id="ubJ-La-PUz"/>
+                <constraint firstItem="qhC-Ew-FT8" firstAttribute="centerX" secondItem="Ut9-Hq-gic" secondAttribute="centerX" id="x55-p5-8Bi"/>
+            </constraints>
+            <connections>
+                <outlet property="backButton" destination="hlg-Xs-0zc" id="C0w-l3-BQC"/>
+                <outlet property="focusButton" destination="hPQ-TG-Mn6" id="kZJ-cW-ld1"/>
+                <outlet property="lookNumLabel" destination="qhC-Ew-FT8" id="jsc-e4-R0P"/>
+                <outlet property="momoButton" destination="NHZ-Bf-pjt" id="GMr-5w-0GZ"/>
+                <outlet property="qqButton" destination="gRq-ge-4hU" id="BSL-mQ-u0a"/>
+                <outlet property="sinaButton" destination="c9B-g4-6lO" id="ilm-4U-xKF"/>
+                <outlet property="wechatButton" destination="ltt-GB-D7Z" id="4bk-4T-0O9"/>
+                <outlet property="wechatmonentButton" destination="Vpv-C0-mBR" id="zDf-CS-MfS"/>
+            </connections>
+            <point key="canvasLocation" x="441" y="397"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="live_B_momo.png" width="23" height="23"/>
+        <image name="live_B_qq.png" width="20" height="20"/>
+        <image name="live_B_sina.png" width="23" height="19"/>
+        <image name="live_B_wechat.png" width="26" height="21"/>
+        <image name="live_wechatmonent.png" width="25" height="25"/>
+    </resources>
+</document>

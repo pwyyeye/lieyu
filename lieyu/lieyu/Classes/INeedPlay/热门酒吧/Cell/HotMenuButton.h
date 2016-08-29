@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface HotMenuButton : UIButton
+
 @property (nonatomic,unsafe_unretained) BOOL isMenuSelected;
 @property (nonatomic,unsafe_unretained) BOOL isHomePageMenuViewSelected;
 @property (nonatomic,unsafe_unretained) BOOL isFriendsMenuViewSelected;
 @property (nonatomic,unsafe_unretained) BOOL isGuWenSelected;//顾问筛选按钮
+@property (nonatomic,unsafe_unretained) BOOL isLiveListMenuSelected;
+
 @end

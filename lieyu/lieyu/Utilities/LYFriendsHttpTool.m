@@ -14,6 +14,10 @@
 #import "FriendsCommentModel.h"
 #import "FriendsNewsModel.h"
 #import "FriendsUserInfoModel.h"
+#import "LYLiveShowListModel.h"
+
+#import "AFNetworking.h"//主要用于网络请求方法
+#import "UIKit+AFNetworking.h"//里面有异步加载图片的方法
 
 @implementation LYFriendsHttpTool
 
@@ -257,6 +261,76 @@
         }
     } failure:^(NSError *err) {
         [MyUtil showLikePlaceMessage:@"获取失败，请检查网络"];
+    }];
+}
+
+#pragma mark ----  直播
+
+//开始直播
++(void) beginToLiveShowWithParams:(NSDictionary *)params complete:(void(^)(NSDictionary *dict))complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Live_beginLive baseURL:@"http://10.17.114.61/" params:params success:^(id response) {
+        NSDictionary *dic = (NSDictionary *)response[@"data"];
+        
+        
+        complete(dic);
+        
+    } failure:^(NSError *err) {
+        NSLog(@"数据错误");
+    }];
+}
+
+//获取直播列表
++(void) getLiveShowlistWithParams:(NSDictionary *)params complete: (void (^)(NSArray *Arr)) complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Live_getList baseURL:@"http://10.17.114.61/" params:params success:^(id response) {
+        NSArray *array = [LYLiveShowListModel mj_objectArrayWithKeyValuesArray:response[@"data"]];
+        complete(array);
+    } failure:^(NSError *err) {
+        NSLog(@"数据错误");
+    }];
+
+}
+
+//进入直播间
++(void) getLiveShowRoomWithParams:(NSDictionary *)params complete: (void (^)(NSDictionary *Arr))complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Live_enter baseURL:@"http://10.17.114.61/" params:params success:^(id response) {
+        NSDictionary *dict = (NSDictionary *)response[@"data"];
+        complete(dict);
+    } failure:^(NSError *err) {
+        
+    }];
+}
+
+
+//结束直播
++(void) closeLiveShowWithParams: (NSDictionary *)params complete : (void(^)(NSDictionary *dict))complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Live_closeLive baseURL:@"http://10.17.114.61/" params:params success:^(id response) {
+        
+    } failure:^(NSError *err) {
+        NSLog(@"%@", [err localizedDescription]);
+    }];
+}
+
+//点赞
++(void) watchLikeWithParms: (NSDictionary *) parms complete: (void(^)(NSDictionary *dict))complete {
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Live_like baseURL:@"http://10.17.114.61/" params:parms success:^(id response) {
+        
+    } failure:^(NSError *err) {
+        
+    }];
+    
+}
+
+//请求人员列表
++(void) requestListWithParms:(NSDictionary *) parms complete: (void(^)(NSDictionary *dict))complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Live_requestlist baseURL:@"http://10.17.114.61/" params:parms success:^(id response) {
+        if ([response[@"errorcode"] isEqualToString:@"success"]) {
+            NSDictionary *dic = response[@"data"];
+            complete(dic);
+        } else {
+            [MyUtil showMessage:@"获取观众失败"];
+        }
+    } failure:^(NSError *err) {
+        
     }];
 }
 

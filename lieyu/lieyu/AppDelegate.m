@@ -40,6 +40,9 @@
 #import "LPMyOrdersViewController.h"
 #import "ZSOrderViewController.h"
 #import "LYToPlayRestfulBusiness.h"
+#import <PLStreamingKit/PLStreamingEnv.h>
+
+
 
 @interface AppDelegate ()
 <
@@ -241,7 +244,17 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
     [USER_DEFAULT setObject:@"1" forKey:@"needCountIM"];
     //是否需要打开跳转到通知指定页面
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nontifyJump) name:@"loadUserInfo" object:nil];
+    
+    [self initqiniuZhiBo];
+    
      return YES;
+}
+
+
+#pragma mark --- 七牛直播
+-(void)initqiniuZhiBo{
+    
+    [PLStreamingEnv initEnv];
 }
 
 - (void)animationWithApp{
@@ -464,7 +477,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
      withString:@""];
     
     [[RCIMClient sharedRCIMClient] setDeviceToken:token];
-    
+    //打开@功能
+    [RCIM sharedRCIM].enableMessageMentioned = YES;
     [UMessage registerDeviceToken:deviceToken];
 }
 /**

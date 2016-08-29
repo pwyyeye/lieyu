@@ -499,8 +499,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     YUWishesModel *model = [_dataList objectAtIndex:indexPath.section];
-
-    
         [self communicateWithFriend:model];
     
 }

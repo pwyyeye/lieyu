@@ -20,7 +20,6 @@
     // Do any additional setup after loading the view from its nib.
     [_registerAdminButton addTarget:self action:@selector(registerAdmin) forControlEvents:(UIControlEventTouchUpInside)];
     
-    
 }
 
 -(void)registerAdmin{

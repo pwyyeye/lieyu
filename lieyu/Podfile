@@ -1,4 +1,8 @@
 platform :ios, '7.0'
+target “lieyu” do
 pod "Qiniu", "~> 7.0"
-pod "RongCloudIMKit"
+pod 'RongCloudIMKit', '~> 2.6.10'
+pod 'PLCameraStreamingKit'
+pod 'PLPlayerKit'
 pod "HCSStarRatingView", "~> 1.4.3"
+end
