@@ -18,9 +18,21 @@
 #import "MainTabbarViewController.h"
 #import "LPMyOrdersViewController.h"
 #import "LYGuWenFansViewController.h"
+#import "MyCodeViewController.h"
+#import "MineMoneyBagViewController.h"
+#import "MineGroupViewController.h"
+#import "FindNotificationViewController.h"
+#import "wechatCheckAccountViewController.h"
+#import "LYZSApplicationViewController.h"
+#import "checkUnpassedViewController.h"
 
 @implementation LYUserCenterHeader{
     UIVisualEffectView *_effctView ;
+    
+    ZSApplyStatusModel *statusModel;
+    BOOL canApply;//
+    int enterStep;//1开始、2支付
+    NSString *sn;
 }
 
 - (void)awakeFromNib {
@@ -47,8 +59,6 @@
     [self.headView bringSubviewToFront:_btnSetting];
     [self.headView bringSubviewToFront:_xingzuo];
     
-//    self.avatar_img.layer.borderColor=RGBA(255,255,255,0.3).CGColor; //要设置的颜色
-//    self.avatar_img.layer.borderWidth=2.5;
     [self.avatar_btn addTarget:self action:@selector(changeAvatar) forControlEvents:UIControlEventTouchUpInside];
     
     _img_icon.layer.cornerRadius = CGRectGetHeight(_img_icon.frame)/2.f;
@@ -61,6 +71,18 @@
     _label_work.layer.masksToBounds = YES;
     
     
+}
+
+- (void)drawRect:(CGRect)rect{
+    
+    [self.firstMenuButton setMenuName:@"速核码"];
+    [self.firstMenuButton setImageUrl:@"userSuHeMa"];
+    [self.secondMenuButton setMenuName:@"我的钱包"];
+    [self.secondMenuButton setImageUrl:@"MineMoneyBag"];
+    [_thirdMenuButton setMenuName:@"娱客帮"];
+    [_thirdMenuButton setImageUrl:@"MineGroup"];
+    [_forthMenuButton setMenuName:@"商家入驻"];
+    [_forthMenuButton setImageUrl:@"MineApply"];
 }
 
 - (void)changeAvatar{
@@ -153,25 +175,29 @@
         if ([app.userModel.usertype isEqualToString:@"2"]||[app.userModel.usertype isEqualToString:@"3"]) {
             //专属经理
             //粉丝按钮
-            [_beCareType_ly_Image setImage:[UIImage imageNamed:@"CareNumber"]];
+//            [_beCareType_ly_Image setImage:[UIImage imageNamed:@"CareNumber"]];
             if (!app.userModel.beCollectNum) {
-                [_beCare_ly_Number setText:@"0"];
+                [_beCare_ly_button setTitle:@"粉丝：0" forState:UIControlStateNormal];
+//                [_beCare_ly_Number setText:@"0"];
             } else {
-                [_beCare_ly_Number setText:app.userModel.beCollectNum];
+                [_beCare_ly_button setTitle:[NSString stringWithFormat:@"粉丝：%@",app.userModel.beCollectNum] forState:UIControlStateNormal];
+//                [_beCare_ly_Number setText:app.userModel.beCollectNum];
             }
         }else{//普通用户隐藏粉丝按钮
             _beCare_ly_button.hidden = YES;
-            _beCareType_ly_Image.hidden = YES;
+//            _beCareType_ly_Image.hidden = YES;
             _beCare_ly_Number.hidden = YES;
-            _beCareType_ly_Name.hidden = YES;
+//            _beCareType_ly_Name.hidden = YES;
         }
         //关注按钮
         if (!app.userModel.beCollectNum) {
-            [_beCareNumber setText:@"0"];
+            [_caresButton setTitle:@"关注：0" forState:UIControlStateNormal];
+//            [_beCareNumber setText:@"0"];
         } else {
-            [_beCareNumber setText:app.userModel.collectNum];
+            [_caresButton setTitle:[NSString stringWithFormat:@"关注：%@",app.userModel.collectNum] forState:UIControlStateNormal];
+//            [_beCareNumber setText:app.userModel.collectNum];
         }
-        [_careTypeImage setImage:[UIImage imageNamed:@"collectNumber"]];
+//        [_careTypeImage setImage:[UIImage imageNamed:@"collectNumber"]];
     }
     
 
@@ -181,10 +207,10 @@
     
 }
 
-- (IBAction)gotoShanghu:(id)sender {
+- (void)gotoShanghu{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     ZSMaintViewController *maintViewController=[[ZSMaintViewController alloc]initWithNibName:@"ZSMaintViewController" bundle:nil];
-    [app.navigationController pushViewController:maintViewController animated:NO];
+    [app.navigationController pushViewController:maintViewController animated:YES];
     maintViewController.btnBackHidden = YES;
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"shanghuban"];
     
@@ -541,4 +567,75 @@
 
 
 
+- (IBAction)notificationCenterClick:(UIButton *)sender {
+    FindNotificationViewController *findNotificationVC = [[FindNotificationViewController alloc]initWithNibName:@"FindNotificationViewController" bundle:nil];
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    [app.navigationController pushViewController:findNotificationVC animated:YES];
+}
+
+- (IBAction)businessCenterClick:(UIButton *)sender {
+    [self gotoShanghu];
+}
+
+- (IBAction)QRCodeClick:(MineMenuButton *)sender {
+    MyCodeViewController *codeViewController = [[MyCodeViewController alloc]initWithNibName:@"MyCodeViewController" bundle:nil];
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [app.navigationController pushViewController:codeViewController animated:YES];
+}
+
+- (IBAction)MineMoneyBagClick:(MineMenuButton *)sender {
+    MineMoneyBagViewController *mineMoneyBagVC = [[MineMoneyBagViewController alloc]initWithNibName:@"MineMoneyBagViewController" bundle:nil];
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    [app.navigationController pushViewController:mineMoneyBagVC animated:YES];
+}
+
+- (IBAction)MineGroupClick:(MineMenuButton *)sender {
+    MineGroupViewController *mineGroupVC = [[MineGroupViewController alloc]initWithNibName:@"MineGroupViewController" bundle:nil];
+    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    [app.navigationController pushViewController:mineGroupVC animated:YES];
+}
+
+- (IBAction)MineApplyClick:(MineMenuButton *)sender {
+    [LYUserHttpTool getZSJLStatusComplete:^(ZSApplyStatusModel *model) {
+        UserModel *userModel = ((AppDelegate *)[UIApplication sharedApplication].delegate).userModel;
+        statusModel = model;
+        //        statusModel.applyType 1.支付宝 2.银行卡 3.微信
+        //        statusModel.wechatAccount
+        //        userModel.applyStatus 0.未申请 1.审核中 2.已审核 3.审核未通过 4.待处理
+        UIViewController *detailViewController;
+        if ([userModel.usertype isEqualToString:@"2"]) {
+            [MyUtil showLikePlaceMessage:@"您已经是专属经理！"];
+            return ;
+        }
+        if (userModel.applyStatus == 1) {
+            if ([statusModel.applyType isEqualToString:@"3"] && !statusModel.wechatAccount.length) {
+//                canApply = YES;
+//                enterStep = 2;
+                detailViewController = [[wechatCheckAccountViewController alloc]initWithNibName:@"wechatCheckAccountViewController" bundle:nil];
+                ((wechatCheckAccountViewController *)detailViewController).nsCode=statusModel.sn;
+                detailViewController.title = @"微信帐号验证";
+            }else{
+                if ([userModel.usertype isEqualToString:@"1"]){
+                    [MyUtil showLikePlaceMessage:@"正在审核中！"];
+                }
+            }
+        }else if(userModel.applyStatus == 0){
+//            canApply = YES;
+//            enterStep = 1;
+            detailViewController = [[LYZSApplicationViewController alloc]initWithNibName:@"LYZSApplicationViewController" bundle:nil];
+            detailViewController.title=@"申请专属经理";
+        }else if (userModel.applyStatus == 3){
+//            canApply = YES;
+//            enterStep = 3;
+            detailViewController = [[checkUnpassedViewController alloc]initWithNibName:@"checkUnpassedViewController" bundle:nil];
+            detailViewController.title = @"申请专属经理";
+        }else if ([userModel.usertype isEqualToString:@"3"] || userModel.applyStatus == 4){
+            [MyUtil showLikePlaceMessage:@"您已经是专属经理！"];
+            return ;
+        }
+        AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+        [app.navigationController pushViewController:detailViewController animated:YES];
+    }];
+    
+}
 @end

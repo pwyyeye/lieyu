@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MineBalanceViewController">
+            <connections>
+                <outlet property="balanceLabel" destination="1zb-me-CsU" id="PHR-iy-iPl"/>
+                <outlet property="rechargeButton" destination="0hn-QC-vI3" id="Rhb-0H-VBw"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="withdrawButton" destination="rk7-2c-RZp" id="xVs-ZU-1aP"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="balanceIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="efE-xc-kmw">
+                    <rect key="frame" x="130" y="49.5" width="60" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="v6e-WX-6FW"/>
+                        <constraint firstAttribute="width" constant="60" id="yja-AG-qJG"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥500" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zb-me-CsU">
+                    <rect key="frame" x="121" y="141" width="78.5" height="38.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hn-QC-vI3">
+                    <rect key="frame" x="42" y="239" width="236" height="42"/>
+                    <color key="backgroundColor" red="0.6705882353" green="0.0" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="42" id="12C-cF-pCm"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <state key="normal" title="充值">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rk7-2c-RZp">
+                    <rect key="frame" x="42" y="297" width="236" height="42"/>
+                    <color key="backgroundColor" red="0.6705882353" green="0.0" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="42" id="Gp7-dx-wWy"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <state key="normal" title="提现">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的余额" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0uc-dd-len">
+                    <rect key="frame" x="120" y="113" width="80" height="24"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="rk7-2c-RZp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="42" id="AJL-uR-9cW"/>
+                <constraint firstItem="0uc-dd-len" firstAttribute="top" secondItem="efE-xc-kmw" secondAttribute="bottom" constant="16" id="E8y-q6-L9s"/>
+                <constraint firstItem="0uc-dd-len" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="F3o-gl-1sQ"/>
+                <constraint firstAttribute="trailing" secondItem="0hn-QC-vI3" secondAttribute="trailing" constant="42" id="IPE-dl-cOh"/>
+                <constraint firstItem="1zb-me-CsU" firstAttribute="top" secondItem="0uc-dd-len" secondAttribute="bottom" constant="4" id="JbD-gL-EMD"/>
+                <constraint firstItem="rk7-2c-RZp" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Ldz-CF-qm8"/>
+                <constraint firstItem="0hn-QC-vI3" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="20" id="TcK-pd-py3"/>
+                <constraint firstItem="1zb-me-CsU" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Vpk-g8-ccl"/>
+                <constraint firstItem="efE-xc-kmw" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="dMC-qc-g3N"/>
+                <constraint firstItem="0hn-QC-vI3" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="iJt-Kr-rld"/>
+                <constraint firstItem="1zb-me-CsU" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-80" id="ofH-y8-PQf"/>
+                <constraint firstItem="rk7-2c-RZp" firstAttribute="top" secondItem="0hn-QC-vI3" secondAttribute="bottom" constant="16" id="xwp-Yn-TSu"/>
+                <constraint firstItem="0hn-QC-vI3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="42" id="yAi-5z-j7v"/>
+                <constraint firstAttribute="trailing" secondItem="rk7-2c-RZp" secondAttribute="trailing" constant="42" id="yEe-Nj-654"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="304" y="346"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="balanceIcon.png" width="60" height="48"/>
+    </resources>
+</document>
