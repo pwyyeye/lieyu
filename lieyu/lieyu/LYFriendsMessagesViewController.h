@@ -68,9 +68,6 @@ typedef enum : NSUInteger {
     UIButton *_carmerBtn;//照相机按钮
     LYFriendsSendViewController *friendsSendVC;
     CGFloat _contentOffSetY;//表的偏移量
-    
-    
-    
 }
 
 @property (nonatomic,assign) id<LYRecentMessageLikeDelegate> delegate;

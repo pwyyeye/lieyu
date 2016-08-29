@@ -25,6 +25,8 @@
 #import "LYPictiureView.h"
 #import "LYDateUtil.h"
 
+#import "LiveListViewController.h"
+
 #define LYFriendsAllCommentCellID @"LYFriendsAllCommentTableViewCell"
 #define LYFriendsLikeCellID @"LYFriendsLikeTableViewCell"
 
@@ -32,6 +34,7 @@
 {
     BOOL _friendsBtnSelect;//朋友圈按钮选择状态
     HotMenuButton *_friendsBtn,*_myBtn;//朋友圈按钮 我的按钮
+    UIButton *_liveShow;//直播按钮
     UILabel *_myBadge;//我的角标
     UIView *_lineView;//导航按钮下划线
     NSInteger _saveImageAndVideoIndex;
@@ -163,8 +166,8 @@
         pageStartCount = _pageStartCountArray[1];
         tableView = [_tableViewArray objectAtIndex:1];
     }
-    NSString *startStr = [NSString stringWithFormat:@"%d",pageStartCount * _pageCount];
-    NSString *pageCountStr = [NSString stringWithFormat:@"%d",_pageCount];
+    NSString *startStr = [NSString stringWithFormat:@"%ld",pageStartCount * _pageCount];
+    NSString *pageCountStr = [NSString stringWithFormat:@"%ld",_pageCount];
     NSDictionary *paraDic = nil;
     __weak __typeof(self) weakSelf = self;
     if (type == dataForFriendsMessage) {//玩友圈数据
@@ -172,7 +175,7 @@
         [LYFriendsHttpTool friendsGetRecentInfoWithParams:paraDic compelte:^(NSMutableArray *dataArray) {
             [weakSelf loadDataWith:tableView dataArray:dataArray pageStartCount:pageStartCount type:type];
         }];
-
+        
     }else if(type == dataForMine){//我的玩友圈数据
         paraDic = @{@"userId":_useridStr,@"start":startStr,@"limit":pageCountStr,@"frientId":_useridStr};
         [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic needLoading:need compelte:^(FriendsUserInfoModel*userInfo, NSMutableArray *dataArray) {
@@ -234,6 +237,7 @@
         _myBtn.isFriendsMenuViewSelected = NO;
         _friendsBtn.isFriendsMenuViewSelected = YES;
     }else{
+        
         _myBtn.isFriendsMenuViewSelected = YES;
         _friendsBtn.isFriendsMenuViewSelected = NO;
     }
@@ -259,6 +263,22 @@
     }
     _lineView.backgroundColor = RGBA(186, 40, 227, 1);
     [navMenuView addSubview:_lineView];
+    
+    //配置直播按钮
+    _liveShow = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 50, 0, 40, 44)];
+    [_liveShow setTitle:@"直播" forState:UIControlStateNormal];
+    [_liveShow setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [_liveShow.titleLabel setFont:[UIFont systemFontOfSize:16]];
+    [_liveShow addTarget:self action:@selector(recentConnect) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigationController.navigationBar addSubview:_liveShow];
+    
+}
+
+#pragma mark --- 进入直播列表
+-(void) recentConnect{
+    LiveListViewController *liveVC = [[LiveListViewController alloc] init];
+    [self.navigationController pushViewController:liveVC animated:YES];
+    
 }
 
 #pragma mark - 移除导航栏的按钮
@@ -269,13 +289,16 @@
     [_carmerBtn removeFromSuperview];
     [_lineView removeFromSuperview];
     [effectView removeFromSuperview];
+    [_liveShow removeFromSuperview];
     
     _myBtn = nil;
     _friendsBtn = nil;
+    _liveShow = nil;
 }
 
 #pragma mark - 配置发布按钮
 - (void)setupCarmerBtn{
+    
     UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
     effectView = [[UIVisualEffectView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2.f - 30, SCREEN_HEIGHT - 60, 60, 60)];
     effectView.layer.cornerRadius = effectView.frame.size.width/2.f;
@@ -400,7 +423,6 @@
     tableView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
         [weakSelf getDataWithType:i needLoad:NO];
     }];
-
 }
 
 
@@ -445,7 +467,10 @@
     [self setupTableForHeaderForMinPage];//为我的界面添加表头
         UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesChooseBgImage)];
     [_headerView.ImageView_bg addGestureRecognizer:tapGes];
+    
+    
 }
+
 
 - (void)setUserM:(FriendsUserInfoModel *)userM{
     _userM = userM;
@@ -817,7 +842,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSArray *arr = _dataArray[tableView.tag];
-    NSLog(@"--->%ld",indexPath.section);
+//    NSLog(@"--->%ld",indexPath.section);
     
     FriendsRecentModel *recentM = arr[indexPath.section];
     switch (indexPath.row) {

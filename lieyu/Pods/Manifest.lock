@@ -16,21 +16,49 @@ PODS:
     - AFNetworking/NSURLSession
   - HappyDNS (0.3.9)
   - HCSStarRatingView (1.4.5)
+  - pili-librtmp (1.0.3.1)
+  - PLCameraStreamingKit (1.8.1):
+    - PLCameraStreamingKit/precompiled (= 1.8.1)
+    - PLStreamingKit (= 1.2.5)
+  - PLCameraStreamingKit/precompiled (1.8.1):
+    - PLStreamingKit (= 1.2.5)
+  - PLPlayerKit (2.2.2):
+    - HappyDNS
+    - pili-librtmp (= 1.0.3.1)
+    - PLPlayerKit/precompiled (= 2.2.2)
+  - PLPlayerKit/precompiled (2.2.2):
+    - HappyDNS
+    - pili-librtmp (= 1.0.3.1)
+  - PLStreamingKit (1.2.5):
+    - HappyDNS
+    - pili-librtmp (= 1.0.3.1)
+    - PLStreamingKit/precompiled (= 1.2.5)
+  - PLStreamingKit/precompiled (1.2.5):
+    - HappyDNS
+    - pili-librtmp (= 1.0.3.1)
   - Qiniu (7.1.0.1):
     - AFNetworking (~> 3)
     - HappyDNS (~> 0.3)
-  - RongCloudIMKit (2.6.7)
+  - RongCloudIMKit (2.6.10)
 
 DEPENDENCIES:
   - HCSStarRatingView (~> 1.4.3)
+  - PLCameraStreamingKit
+  - PLPlayerKit
   - Qiniu (~> 7.0)
-  - RongCloudIMKit
+  - RongCloudIMKit (~> 2.6.10)
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   HappyDNS: 17be04178df2dd09f0ee6ac33628589b7f9910e8
   HCSStarRatingView: bff3f89314d3b5013ce826ea11897d3129ff6b8c
+  pili-librtmp: 0adf2516f4b5958b3cb079a4c3d4f6a4a9f49ce9
+  PLCameraStreamingKit: 12b672cbef9ba15bbb28ec543fb77f7d4cea66dc
+  PLPlayerKit: b5182ef942dce71678c9db07c2e1959df91e81cc
+  PLStreamingKit: 4b46739689d020b8e2eb755827ec86447c0291b7
   Qiniu: 0e92ff0d1b9afbc55275306671284e4ebeb08d03
-  RongCloudIMKit: bf5e835bd9a2ecd7c12a64919a0dbf0bb4038755
+  RongCloudIMKit: 6dd84b468701815012a0d8babd99cef3b19c000f
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: e6dd440bd8cda8705a52cf1bfb2ee512050955c1
+
+COCOAPODS: 1.1.0.beta.1

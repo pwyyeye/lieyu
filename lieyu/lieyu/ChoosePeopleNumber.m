@@ -28,7 +28,6 @@
         _selectedTag = 1;
     }
     for (LYKaZuoTypeButton *button in _choosebuttons) {
-        NSLog(@"%d",button.tag);
         if (button.tag == _selectedTag) {
             button.selected = YES;
         }else{

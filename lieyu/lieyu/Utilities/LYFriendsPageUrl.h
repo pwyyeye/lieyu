@@ -37,6 +37,7 @@
 
 //获取最新消息
 #define LY_Friends_NewMessage @"lyMomentsAction.do?action=login"
+
 //获取最新消息明细
 #define LY_Friends_NewMessageDetail @"lyMomentsAction.do?action=expand"
 
@@ -54,5 +55,26 @@
 
 //根据话题ID获取玩友圈动态
 #define LY_Friends_TopicMessage @"lyMomentsOutAction.do?action=expand"
+
+
+#pragma mark -- 直播接口
+//开始直播
+#define LY_Live_beginLive @"/lieyu//app/api/liveroom/create?1=1"
+
+//获取直播列表
+#define LY_Live_getList @"/lieyu//app/api/liveroom/list?1=1"
+
+//进入直播间
+#define LY_Live_enter @"/lieyu//app/api/liveroom/live?1=1"
+
+//结束直播
+#define LY_Live_closeLive @"/lieyu//app/api/liveroom/close?1=1"
+
+//点赞
+#define LY_Live_like @"/lieyu//app/api/liveroom/likeLiveRoom?1=1"
+
+//请求人员列表和点赞
+#define LY_Live_requestlist @"/lieyu//app/api/liveroom/roomUserList?1=1"
+
 
 #endif /* LYFriendsPageUrl_h */

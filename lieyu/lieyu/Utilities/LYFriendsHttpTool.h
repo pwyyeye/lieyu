@@ -44,4 +44,27 @@
 + (void)friendsPingBiUserWithParams:(NSDictionary *)params complete:(void(^)(NSString *))complete;
 //根据话题ID获取玩友圈动态
 + (void)friendsGetFriendsTopicWithParams:(NSDictionary *)params complete:(void(^)(NSArray *))complete;
+
+
+#pragma mark ----  直播方法
+
+//开始直播
++(void) beginToLiveShowWithParams:(NSDictionary *)params complete:(void(^)(NSDictionary *dict))complete;
+
+//获取直播列表
++(void) getLiveShowlistWithParams:(NSDictionary *)params complete: (void (^)(NSArray *Arr)) complete;
+
+//进入直播间
++(void) getLiveShowRoomWithParams:(NSDictionary *)params complete: (void (^)(NSDictionary *Arr))complete;
+
+//结束直播
++(void) closeLiveShowWithParams: (NSDictionary *)params complete : (void(^)(NSDictionary *dict))complete;
+
+//点赞
++(void) watchLikeWithParms: (NSDictionary *) parms complete: (void(^)(NSDictionary *dict))complete;
+
+
+//请求人员列表
++(void) requestListWithParms:(NSDictionary *) parms complete: (void(^)(NSDictionary *dict))complete;
+
 @end
