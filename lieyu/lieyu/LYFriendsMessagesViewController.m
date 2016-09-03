@@ -24,6 +24,7 @@
 #import "LYFriendsCommentView.h"
 #import "LYPictiureView.h"
 #import "LYDateUtil.h"
+#import "DaShangView.h"
 
 #import "LiveListViewController.h"
 
@@ -38,12 +39,13 @@
     UILabel *_myBadge;//我的角标
     UIView *_lineView;//导航按钮下划线
     NSInteger _saveImageAndVideoIndex;
-    UIScrollView *_scrollViewForTableView;//表的基成视图
+//    UIScrollView *_scrollViewForTableView;//表的基成视图
     NSString *_results;//新消息条数
     NSString *_icon;//新消息头像
     NSArray *_topicArray;//话题数组
     NSString *jubaoMomentID;//要删除的动态ID
     UIView *_bigView;//评论的背景view
+    DaShangView *_daShangView;//打赏View
     NSString *jubaoUserID;//被举报人的ID
     ISEmojiView *_emojiView;//表情键盘
     NSInteger _deleteMessageTag;//删除动态的btn的tag
@@ -80,12 +82,11 @@
     [super viewDidLoad];
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if(app.userModel) _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
-
 //    [self setupAllProperty];//配置初始化
     self.pagesCount = 4;
     _notificationDict = [[NSMutableDictionary alloc]init];
     if(!_isFriendToUserMessage) self.pageNum = 2;
-    [self addTableViewHeaderViewForTopic];
+//    [self addTableViewHeaderViewForTopic];
     
 }
 
@@ -365,6 +366,10 @@
 - (void)setupTableView{
     _scrollViewForTableView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     if(_isFriendToUserMessage) _scrollViewForTableView.frame = CGRectMake(0, -64, SCREEN_WIDTH, SCREEN_HEIGHT);
+    if (_pageNum == 2) {//直接进入我的玩友圈
+        _scrollViewForTableView.contentOffset = CGPointMake(SCREEN_WIDTH, 0);
+        _scrollViewForTableView.scrollEnabled = NO;
+    }
     _scrollViewForTableView.contentSize = CGSizeMake(SCREEN_WIDTH * _pageNum, SCREEN_HEIGHT);
     _scrollViewForTableView.pagingEnabled = YES;
     _scrollViewForTableView.delegate = self;
@@ -463,12 +468,10 @@
         _myBadge.hidden = YES;
     }
     
-//    if(_pageNum <= 1) return;
+    if(_pageNum <= 1) return;
     [self setupTableForHeaderForMinPage];//为我的界面添加表头
         UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesChooseBgImage)];
     [_headerView.ImageView_bg addGestureRecognizer:tapGes];
-    
-    
 }
 
 
@@ -539,57 +542,57 @@
 }
 
 #pragma mark - 话题的表头
-- (void)addTableViewHeaderViewForTopic{
-    UITableView *tableView = _tableViewArray.firstObject;
-    UIScrollView *topicScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 86)];
-    topicScrollView.scrollsToTop = NO;
-    topicScrollView.backgroundColor  = RGB(237, 237, 237);
-    topicScrollView.showsHorizontalScrollIndicator = NO;
-    topicScrollView.showsVerticalScrollIndicator = NO;
-    
-    tableView.tableHeaderView = topicScrollView;
-    
-    
-    NSDictionary *dic = @{@"type":@"2"};
-    [LYUserHttpTool getTopicList:dic complete:^(NSArray *dataList) {
-        _topicArray = dataList;
-        CGFloat btnWidth = 128;
-        for (int i = 0; i < dataList.count; i ++) {
-            
-            UIButton *topicBtn = [[UIButton alloc]initWithFrame:CGRectMake(i *(btnWidth  + 8) + 8, 8, btnWidth, 70)];
-            TopicModel *topicM = dataList[i];
-            [topicBtn setTitle:topicM.name forState:UIControlStateNormal];
-            topicBtn.titleLabel.font = [UIFont systemFontOfSize:20 weight:UIFontWeightMedium];
-            topicBtn.titleLabel.layer.shadowColor = RGBA(0, 0, 0, .5).CGColor;
-            topicBtn.titleLabel.layer.shadowOffset = CGSizeMake(0, 1);
-            topicBtn.titleLabel.layer.shadowOpacity = 1;
-            topicBtn.titleLabel.layer.shadowRadius = 2;
-            topicBtn.layer.cornerRadius = 4;
-            topicBtn.clipsToBounds = YES;
-            [topicBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?imageView2/0/w/256/h/140",topicM.linkurl] ] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
-            [topicScrollView addSubview:topicBtn];
-            topicBtn.tag = i;
-            [topicBtn addTarget:self action:@selector(topicClick:) forControlEvents:UIControlEventTouchUpInside];
-            if(i == dataList.count - 1){
-                topicScrollView.contentSize = CGSizeMake(CGRectGetMaxX(topicBtn.frame) + 8, topicScrollView.contentSize.height);
-            }
-        }
-    }];
-    
-}
-#pragma mark - 话题action
-- (void)topicClick:(UIButton *)button{
-    
-    TopicModel *topicM = _topicArray[button.tag];
-    LYFriendsTopicsViewController *fridendTopicVC = [[LYFriendsTopicsViewController alloc]init];
-    fridendTopicVC.topicTypeId = topicM.id;
-    fridendTopicVC.topicName = topicM.name;
-    fridendTopicVC.isFriendsTopic = YES;
-    fridendTopicVC.isFriendToUserMessage = YES;
-    fridendTopicVC.isTopic = YES;
-    fridendTopicVC.headerViewImgLink = topicM.linkurl;
-    [self.navigationController pushViewController:fridendTopicVC animated:YES];
-}
+//- (void)addTableViewHeaderViewForTopic{
+//    UITableView *tableView = _tableViewArray.firstObject;
+//    UIScrollView *topicScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 86)];
+//    topicScrollView.scrollsToTop = NO;
+//    topicScrollView.backgroundColor  = RGB(237, 237, 237);
+//    topicScrollView.showsHorizontalScrollIndicator = NO;
+//    topicScrollView.showsVerticalScrollIndicator = NO;
+//    
+//    tableView.tableHeaderView = topicScrollView;
+//    
+//    
+//    NSDictionary *dic = @{@"type":@"2"};
+//    [LYUserHttpTool getTopicList:dic complete:^(NSArray *dataList) {
+//        _topicArray = dataList;
+//        CGFloat btnWidth = 128;
+//        for (int i = 0; i < dataList.count; i ++) {
+//            
+//            UIButton *topicBtn = [[UIButton alloc]initWithFrame:CGRectMake(i *(btnWidth  + 8) + 8, 8, btnWidth, 70)];
+//            TopicModel *topicM = dataList[i];
+//            [topicBtn setTitle:topicM.name forState:UIControlStateNormal];
+//            topicBtn.titleLabel.font = [UIFont systemFontOfSize:20 weight:UIFontWeightMedium];
+//            topicBtn.titleLabel.layer.shadowColor = RGBA(0, 0, 0, .5).CGColor;
+//            topicBtn.titleLabel.layer.shadowOffset = CGSizeMake(0, 1);
+//            topicBtn.titleLabel.layer.shadowOpacity = 1;
+//            topicBtn.titleLabel.layer.shadowRadius = 2;
+//            topicBtn.layer.cornerRadius = 4;
+//            topicBtn.clipsToBounds = YES;
+//            [topicBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?imageView2/0/w/256/h/140",topicM.linkurl] ] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
+//            [topicScrollView addSubview:topicBtn];
+//            topicBtn.tag = i;
+//            [topicBtn addTarget:self action:@selector(topicClick:) forControlEvents:UIControlEventTouchUpInside];
+//            if(i == dataList.count - 1){
+//                topicScrollView.contentSize = CGSizeMake(CGRectGetMaxX(topicBtn.frame) + 8, topicScrollView.contentSize.height);
+//            }
+//        }
+//    }];
+//    
+//}
+//#pragma mark - 话题action
+//- (void)topicClick:(UIButton *)button{
+//    
+//    TopicModel *topicM = _topicArray[button.tag];
+//    LYFriendsTopicsViewController *fridendTopicVC = [[LYFriendsTopicsViewController alloc]init];
+//    fridendTopicVC.topicTypeId = topicM.id;
+//    fridendTopicVC.topicName = topicM.name;
+//    fridendTopicVC.isFriendsTopic = YES;
+//    fridendTopicVC.isFriendToUserMessage = YES;
+//    fridendTopicVC.isTopic = YES;
+//    fridendTopicVC.headerViewImgLink = topicM.linkurl;
+//    [self.navigationController pushViewController:fridendTopicVC animated:YES];
+//}
 
 
 #pragma mark - UIScrollViewDelegate
@@ -784,6 +787,9 @@
             
             [addressCell.btn_comment addTarget:self action:@selector(commentClick:) forControlEvents:UIControlEventTouchUpInside];
             
+            //打赏
+            [addressCell.btn_dashang addTarget:self action:@selector(dashangAction) forControlEvents:(UIControlEventTouchUpInside)];
+            
             return addressCell;
         }
             break;
@@ -809,7 +815,7 @@
             }
         }
             break;
-            
+      
         default:{ //评论 4-8
             if(!recentM.commentList.count){//没有评论
                 LYFriendsAllCommentTableViewCell *allCommentCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsAllCommentCellID forIndexPath:indexPath];
@@ -873,7 +879,8 @@
                     size.height = 20;
                 }
             }
-            return 70 + size.height ;
+            CGFloat height = size.height >= 30 ? size.height: 30;//打赏的高度
+            return 70 + height ;
         }
             break;
             
@@ -920,7 +927,8 @@
             return 36;
         }
             break;
-            
+        
+            break;
         default://评论
         {
             if(!recentM.commentList.count) return 36;
@@ -991,6 +999,7 @@
     button.indexTag = indexTag;
     [button addTarget:self action:@selector(pushUserPage:) forControlEvents:UIControlEventTouchUpInside];
 }
+
 #pragma mark - 点击动态中话题文字
 - (void)topicNameClick:(UIButton *)button{
     FriendsRecentModel *friendRecentM = _dataArray[_index][button.tag];
@@ -1013,7 +1022,6 @@
         return;
     }else{
         BeerNewBarViewController * controller = [[BeerNewBarViewController alloc] initWithNibName:@"BeerNewBarViewController" bundle:nil];
-        
         
         controller.beerBarId = [NSNumber numberWithInt:[friendRecentM.isBarTopicType intValue]];
         [self.navigationController pushViewController:controller animated:YES];
@@ -1091,6 +1099,32 @@
         }];
     }
 }
+
+#pragma mark - 打赏
+-(void)dashangAction{
+    _daShangView = [[[NSBundle mainBundle] loadNibNamed:@"DaShangView" owner:self options:nil] lastObject];
+    _daShangView.frame = CGRectMake(10, 200, SCREEN_WIDTH - 20, 300);
+    _daShangView.backgroundColor = [UIColor whiteColor];
+    _daShangView.layer.cornerRadius = 3.f;
+    _daShangView.layer.masksToBounds = YES;
+//    _daShangView.giftCollectionView.delegate = self;
+    _daShangView.giftCollectionView.tag = 888;
+    [self.view addSubview:_daShangView];
+    [self.view bringSubviewToFront:_daShangView];
+    [_daShangView.closeButton addTarget:self action:@selector(dashangCloseViewAction:) forControlEvents:(UIControlEventTouchUpInside)];
+    [_daShangView.sendGiftButton addTarget:self action:@selector(sendGiftButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
+}
+
+-(void)dashangCloseViewAction:(UIButton *)sender{
+    [_daShangView removeFromSuperview];
+    _daShangView = nil;
+}
+
+-(void)sendGiftButtonAction:(UIButton *)sender{
+    [_daShangView removeFromSuperview];
+    _daShangView = nil;
+}
+
 #pragma mark - 表白action
 - (void)likeFriendsClick:(UIButton *)button{
     if(![MyUtil isUserLogin]){
@@ -1505,17 +1539,17 @@
     CGFloat picWidth = 0;
     for (int i = 0;i < imagesArray.count;i ++) {
         UIImage *image = imagesArray[i];
-        pvModel.imageLink = [pvModel.imageLink stringByAppendingString:[[NSString stringWithFormat:@"myPicture%d%d",_saveImageAndVideoIndex,i] stringByAppendingString:@","]];
+        pvModel.imageLink = [pvModel.imageLink stringByAppendingString:[[NSString stringWithFormat:@"myPicture%ld%d",(long)_saveImageAndVideoIndex,i] stringByAppendingString:@","]];
         
-        appendLink = [NSString stringWithFormat:@"myPicture%d%d,",_saveImageAndVideoIndex,i];
-        if(i == imagesArray.count - 1) appendLink = [NSString stringWithFormat:@"myPicture%d%d",_saveImageAndVideoIndex,i];
+        appendLink = [NSString stringWithFormat:@"myPicture%ld%d,",(long)_saveImageAndVideoIndex,i];
+        if(i == imagesArray.count - 1) appendLink = [NSString stringWithFormat:@"myPicture%ld%d",(long)_saveImageAndVideoIndex,i];
         
         if(!i) imageLink = appendLink;
         else imageLink = [imageLink stringByAppendingString:appendLink];
         
         picWidth = imagesArray.count == 1 ? 0 : 450;
         
-        [[SDWebImageManager sharedManager] saveImageToCache:image forURL:[NSURL URLWithString:[MyUtil getQiniuUrl:[NSString stringWithFormat:@"myPicture%d%d",_saveImageAndVideoIndex,i] width:0 andHeight:0]]];
+        [[SDWebImageManager sharedManager] saveImageToCache:image forURL:[NSURL URLWithString:[MyUtil getQiniuUrl:[NSString stringWithFormat:@"myPicture%ld%d",(long)_saveImageAndVideoIndex,i] width:0 andHeight:0]]];
         _saveImageAndVideoIndex ++;
         
     }

@@ -55,7 +55,7 @@ typedef enum : NSUInteger {
     NSString *_useridStr;//用户id
     NSString *_userBgImageUrl;//用户上传的个人背景图
     LYFriendsUserHeaderView *_headerView;//我的表头
-   
+
     NSInteger _index;//判断是哪个节目 0－玩友圈 1-我的界面
     MPMoviePlayerViewController *player;
     NSInteger playerSection;
@@ -71,7 +71,7 @@ typedef enum : NSUInteger {
 }
 
 @property (nonatomic,assign) id<LYRecentMessageLikeDelegate> delegate;
-
+@property (nonatomic, strong) UIScrollView *scrollViewForTableView;
 @property (nonatomic, strong) NSMutableDictionary *notificationDict;
 @property (nonatomic,unsafe_unretained) NSInteger pageNum;
 @property (nonatomic,unsafe_unretained) BOOL isFriendToUserMessage;//是否是好友动态
@@ -88,7 +88,7 @@ typedef enum : NSUInteger {
 
 #pragma mark - 添加表头
 - (void)addTableViewHeader;
-
+- (void)getFriendsNewMessage;
 - (void)setupTableForHeaderForMinPage;
 
 #pragma mark - 配置导航
