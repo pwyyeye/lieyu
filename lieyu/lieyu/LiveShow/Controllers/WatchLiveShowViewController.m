@@ -13,6 +13,8 @@
 #import "Reachability.h"
 #import <asl.h>
 #import "UMSocial.h"
+#import "ISEmojiView.h"
+#import "LYFriendsCommentView.h"
 
 #import "RegisterLiveShowView.h"
 #import "CloseLiveShowView.h"
@@ -20,6 +22,8 @@
 #import "UserHeader.h"
 #import "LiveSetView.h"
 #import "LiveShowEndView.h"
+#import "ChatUseres.h"
+#import "DaShangView.h"
 
 #import "LYFriendsHttpTool.h"
 #import "LYYUHttpTool.h"
@@ -63,7 +67,19 @@
 //距离底部
 #define distanceOfBottom CGRectGetMaxY(self.view.bounds) - 20
 
-@interface WatchLiveShowViewController () <PLPlayerDelegate,UICollectionViewDataSource, UICollectionViewDelegate ,UICollectionViewDelegateFlowLayout>
+@interface WatchLiveShowViewController () <PLPlayerDelegate,UICollectionViewDataSource, UICollectionViewDelegate ,UICollectionViewDelegateFlowLayout,ISEmojiViewDelegate>
+
+{
+    NSTimer *_timer;//定时器
+    int _takeNum;//聊天数
+    int _likeNum;//点赞数
+    LYFriendsCommentView *_commentView;//弹出的评论框
+    NSString *defaultComment;//残留评论
+    ISEmojiView *_emojiView;//表情键盘
+    UIView *_bigView;//评论的背景view
+    UIButton *_iconButton, *_giftButton;
+}
+
 @property (nonatomic, strong) PLPlayer  *player;
 
 //上方主播View
@@ -74,23 +90,23 @@
 @property (nonatomic, strong) UIButton *isFoucsButton;
 
 
-//注册/退出/详情/设置View
+//注册/退出/详情/打赏View
 @property (nonatomic, strong) RegisterLiveShowView *registerView;
 @property (nonatomic, strong) LiveShowEndView *closeView;
 @property (nonatomic, strong) AnchorDetailView *anchorDetailView;
+@property (nonatomic, strong) DaShangView *daShangView;
 
 //退出
 @property (nonatomic, strong) UIButton *backButton;
 
 //观众列表
 @property (nonatomic, strong) UICollectionView *audienceCollectionView;
-
+@property (nonatomic, strong) NSMutableArray *dataArray;
 /** 直播开始前的占位图片 */
 @property(nonatomic, weak) UIImageView *placeHolderView;
 /** 粒子动画 */
 @property(nonatomic, weak) CAEmitterLayer *emitterLayer;
 
-@property(nonatomic, strong) NSArray *_dataArray;//聊天室
 
 @property(nonatomic, strong)RCCollectionViewHeader *collectionViewHeader;
 
@@ -184,9 +200,24 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     [self.emitterLayer setHidden:NO];
     [self initPLplayer];
     [self initUI];
-    [self joinChatRoom];
+    if (_chatRoomId != nil) {
+        [self joinChatRoom];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timerUpdataAction) userInfo:nil repeats:YES];
+        [_timer fire];
+    }
 }
 
+#pragma mark -- 定时获取直播室人员和点赞数
+-(void)timerUpdataAction{
+    NSDictionary *dictionary = @{@"chatNum":[NSString stringWithFormat:@"%d",_takeNum],@"liveChatId":_chatRoomId};
+    [self.dataArray removeAllObjects];
+    [LYFriendsHttpTool requestListWithParms:dictionary complete:^(NSDictionary *dict) {
+        _likeNum = (int)dict[@"likeNum"];
+        _userView.numberLabel.text = [NSString stringWithFormat:@"%d",_likeNum];
+        self.dataArray = dict[@"users"];
+        [_audienceCollectionView reloadData];
+    }];
+}
 #pragma mark --- 初始化页面
 -(void)initUI {
     //粒子动画
@@ -209,15 +240,13 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     _userView.layer.cornerRadius = SCREEN_HEIGHT / 30;
     _userView.layer.masksToBounds = YES;
     _userView.backgroundColor = RGBA(33, 33, 33, 0.5);
-    _userView.iconIamgeView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@",_hostUser[@"avatar_img"]]];
-    //    _userView.userNameLabel.text = @"";
-    _userView.numberLabel.text = [NSString stringWithFormat:@"%@", _hostUser[@"usernick"]];
+    [_userView.iconIamgeView sd_setImageWithURL:[NSURL URLWithString:_hostUser[@"avatar_img"]]];
+    _userView.numberLabel.text = _hostUser[@"usernick"];
     _userView.iconIamgeView.layer.cornerRadius = _userView.iconIamgeView.frame.size.height/2;
     _userView.iconIamgeView.layer.masksToBounds = YES;
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(anchorDetail)];
     [_userView addGestureRecognizer:tapGes];
     
-  
     [_userView.isFoucsButton addTarget:self action:@selector(foucsButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
     [_CAEmitterView addSubview:_userView];
     
@@ -261,6 +290,19 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 
 #pragma mark --- 礼物、点赞等事件
 -(void) giftButtonAction{
+    _daShangView = [[[NSBundle mainBundle] loadNibNamed:@"DaShangView" owner:self options:nil] lastObject];
+    _daShangView.frame = CGRectMake(10, 200, SCREEN_WIDTH - 20, 300);
+    _daShangView.backgroundColor = [UIColor whiteColor];
+    _daShangView.layer.cornerRadius = 3.f;
+    _daShangView.layer.masksToBounds = YES;
+    _daShangView.giftCollectionView.tag = 888;
+    _daShangView.giftCollectionView.delegate = self;
+    _daShangView.giftCollectionView.dataSource = self;
+    [self.view addSubview:_daShangView];
+    [self.view bringSubviewToFront:_daShangView];
+    [_daShangView.closeButton addTarget:self action:@selector(dashangCloseViewAction:) forControlEvents:(UIControlEventTouchUpInside)];
+    [_daShangView.sendGiftButton addTarget:self action:@selector(sendGiftButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
+    [_daShangView.giftButton addTarget:self action:@selector(giftAction:) forControlEvents:(UIControlEventTouchUpInside)];
     
 }
 
@@ -276,6 +318,24 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     [self sendMessage:giftMessage pushContent:@""];
 }
 
+
+-(void)giftAction:(UIButton *) sender{
+    NSLog(@"%ld",sender.tag);
+}
+
+
+-(void)sendGiftButtonAction:(UIButton *) sender{
+    [_daShangView removeFromSuperview];
+    _daShangView = nil;
+}
+
+
+-(void)dashangCloseViewAction:(UIButton *) sender{
+    [_daShangView removeFromSuperview];
+    _daShangView = nil;
+}
+
+#pragma mark -- 分享
 -(void)liveShareButtonAction{
     NSString *string= [NSString stringWithFormat:@"下载猎娱App猎寻更多特色酒吧。http://10.17.30.44:8080/liveroom/live?liveChatId=%@",self.chatRoomId];
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
@@ -404,12 +464,16 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     [self.view bringSubviewToFront:_closeView];
     [_closeView.backButton addTarget:self action:@selector(closebackButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
     [_closeView.focusButton addTarget:self action:@selector(closeFocusButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
-    
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"backLive.png"]];
+    imageView.frame = _closeView.bounds;
+    [_closeView addSubview:imageView];
+    [_closeView sendSubviewToBack:imageView];
+    imageView.userInteractionEnabled = YES;
+    [self.player stop];//关闭播放器
 }
 
 -(void)closebackButtonAction{
     [self dismissViewControllerAnimated:YES completion:NULL];
-    [self.player stop];
 }
 
 -(void)closeFocusButtonAction{
@@ -423,8 +487,33 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 
 #pragma mark -- 点击头像事件
 -(void)anchorDetail{
-    AnchorDetailView *anchorView = [[AnchorDetailView alloc] init];
-    anchorView.frame = self.view.bounds;
+    _anchorDetailView = [[[NSBundle mainBundle] loadNibNamed:@"AnchorDetailView" owner:self options:nil] lastObject];
+    _anchorDetailView.frame = CGRectMake(0, 0, SCREEN_WIDTH/5 *4,SCREEN_HEIGHT / 3);
+    _anchorDetailView.center = self.view.center;
+    _anchorDetailView.backgroundColor = [UIColor whiteColor];
+    _anchorDetailView.nickNameLabel.text = self.hostUser[@"usernick"];
+    [_anchorDetailView.anchorIcon sd_setImageWithURL:[NSURL URLWithString:self.hostUser[@"avatar_img"]]];
+    if ([_hostUser[@"gender"] isEqualToString:@"0"]) {
+        _anchorDetailView.genderIamge.image=[UIImage imageNamed:@"woman"];
+    }else{
+        _anchorDetailView.genderIamge.image=[UIImage imageNamed:@"manIcon"];
+    }
+    [self.view addSubview:_anchorDetailView];
+    [self.view bringSubviewToFront:_anchorDetailView];
+    
+    [_anchorDetailView.focusButton addTarget:self action:@selector(focusButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
+    [_anchorDetailView.secretMaeeageButton addTarget:self action:@selector(secretButton:) forControlEvents:(UIControlEventTouchUpInside)];
+    [_anchorDetailView.mainViewButton addTarget:self action:@selector(mainViewButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
+}
+
+-(void)focusButtonAction:(UIButton *) sender{
+    
+}
+-(void)secretButton:(UIButton *) sender{
+    
+}
+-(void)mainViewButtonAction:(UIButton *) sender{
+    
 }
 
 #pragma mark --UICollectionViewDataSource
@@ -434,7 +523,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 -( NSInteger )collectionView:( UICollectionView *)collectionView numberOfItemsInSection:( NSInteger )section
 {
     if (collectionView.tag == 188) {//观众列表
-        return 31;
+        return _dataArray.count;
     }else {//信息
         return self.conversationDataRepository.count;
     }
@@ -450,10 +539,18 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 {
     if (collectionView.tag == 188) {
         UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier : _CELL forIndexPath :indexPath];
-        cell.backgroundColor = [ UIColor colorWithRed :(( arc4random ()% 255 )/ 255.0 ) green :(( arc4random ()% 255 )/ 255.0 ) blue :(( arc4random ()% 255 )/ 255.0 ) alpha : 1.0f ];
         
+        ChatUseres *user = [[ChatUseres alloc] init];
+        user = _dataArray[indexPath.row];
+        _iconButton = [UIButton buttonWithType:(UIButtonTypeSystem)];
+        _iconButton.frame= cell.bounds;
+        _iconButton.tag = user.id;
+        _iconButton.backgroundColor = [UIColor whiteColor];
+        [_iconButton.imageView sd_setImageWithURL:[NSURL URLWithString:user.avatar_img]];
+        [cell addSubview:_iconButton];
+        [_iconButton addTarget:self action:@selector(ceshiAction:) forControlEvents:(UIControlEventTouchUpInside)];
         cell.layer.borderColor = RGB(187, 47, 217).CGColor;
-        cell.layer.borderWidth = 2.f;
+        cell.layer.borderWidth = 1.f;
         cell.layer.cornerRadius = cell.frame.size.height /2;
         cell.layer.masksToBounds = YES;
         return cell;
@@ -484,13 +581,22 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
         }
         return cell;
     }
-
 }
+
+#pragma mark -- 点击聊天室成员
+-(void)ceshiAction:(UIButton *)sender{
+    LYMyFriendDetailViewController *myFriendVC = [[LYMyFriendDetailViewController alloc]init];
+    myFriendVC.isChatroom = 4;
+    myFriendVC.imUserId = [NSString stringWithFormat:@"%ld",sender.tag];
+    [self.navigationController pushViewController:myFriendVC animated:YES];
+}
+
+
 /* 定义每个UICollectionView 的大小 */
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (collectionView.tag == 188) {
-        CGFloat width = SCREEN_WIDTH / 8;
+        CGFloat width = SCREEN_WIDTH / 10;
         return CGSizeMake(width, width);
     } else {
         RCMessageModel *model =
@@ -549,36 +655,28 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     return CGSizeMake(__width, __height);
 }
 
-
-
 /* 定义每个UICollectionView 的边缘 */
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    if (collectionView.tag == 199) {
+    if (collectionView.tag == 188) {
         return UIEdgeInsetsMake(15, 5, 15, 5);//上 左 下 右
     }else{
-        return UIEdgeInsetsMake(5, 5, 5, 5);
+        return UIEdgeInsetsMake(2, 5, 2, 5);
     }
 }
 
 #pragma mark --- UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"%ld",indexPath.row);
-    //    LYMyFriendDetailViewController *LYMyFriendDetailVC = [[LYMyFriendDetailViewController alloc] init];
-    //    LYMyFriendDetailVC.type = @"4";
-    //    LYMyFriendDetailVC.imUserId = @"";
-    //    [self.navigationController pushViewController:LYMyFriendDetailVC animated:NO];
+    if (collectionView.tag == 188) {
+            LYMyFriendDetailViewController *LYMyFriendDetailVC = [[LYMyFriendDetailViewController alloc] init];
+            LYMyFriendDetailVC.type = @"4";
+            LYMyFriendDetailVC.imUserId = @"";
+            [self.navigationController pushViewController:LYMyFriendDetailVC animated:NO];
+    } else {
+        
+    }
 }
-
-#pragma mark --- 获取聊天室成员
--(void)getChatRoomPeople:(NSString *) chatRoomID{
-    NSDictionary *dict = @{@"id":chatRoomID};
-    [LYYUHttpTool yuGetChatRoomAllStaffWith:dict complete:^(NSArray *dataArray) {
-        __dataArray = dataArray;
-        [_audienceCollectionView reloadData];
-    }];
-}
-
 
 #pragma mark -- 初始化聊天室
 - (id)initWithCoder:(NSCoder *)aDecoder {
@@ -631,7 +729,6 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     user.userId = app.userModel.imuserId;
     user.name = app.userModel.username;
     [RCIM sharedRCIM].currentUserInfo = user;
-    
     
     //初始化UI
     [self initializedSubViews];
@@ -709,18 +806,38 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     self.conversationMessageCollectionView.dataSource = self;
     self.conversationMessageCollectionView.delegate = self;
     [self.contentView addSubview:self.conversationMessageCollectionView];
-    //输入区
-    if(self.inputBar == nil){
-        float inputBarOriginY = distanceOfBottom - SCREEN_WIDTH / 8;
-        float inputBarOriginX = SCREEN_WIDTH / 6 ;
-        float inputBarSizeWidth = SCREEN_WIDTH / 3 *2 ;
-        float inputBarSizeHeight = MinHeight_InputView;
-        self.inputBar = [[RCInputBarControl alloc]initWithFrame:CGRectMake(inputBarOriginX, inputBarOriginY,inputBarSizeWidth,inputBarSizeHeight)
-                                                inViewConroller:self];
-        self.inputBar.delegate = self;
-        self.inputBar.backgroundColor = [UIColor clearColor];
-        [self.view addSubview:self.inputBar];
-    }
+//    //输入区
+//    if(self.inputBar == nil){
+//        float inputBarOriginY = distanceOfBottom - SCREEN_WIDTH / 8;
+//        float inputBarOriginX = SCREEN_WIDTH / 6 ;
+//        float inputBarSizeWidth = SCREEN_WIDTH / 3 *2 ;
+//        float inputBarSizeHeight = MinHeight_InputView;
+//        self.inputBar = [[RCInputBarControl alloc]initWithFrame:CGRectMake(inputBarOriginX, inputBarOriginY,inputBarSizeWidth,inputBarSizeHeight)
+//                                                inViewConroller:self];
+//        self.inputBar.delegate = self;
+//        self.inputBar.backgroundColor = [UIColor clearColor];
+//        [self.view addSubview:self.inputBar];
+//    }
+    _commentView = [[[NSBundle mainBundle]loadNibNamed:@"LYFriendsCommentView" owner:nil options:nil] firstObject];
+    _commentView.frame = CGRectMake(SCREEN_WIDTH / 6, distanceOfBottom - SCREEN_WIDTH / 8,SCREEN_WIDTH / 3 * 2 , MinHeight_InputView);
+    _commentView.bgView.backgroundColor = [UIColor grayColor];
+    _commentView.bgView.layer.borderColor = RGBA(200,200,200, .2).CGColor;
+    _commentView.bgView.layer.borderWidth = 0.5;
+    _commentView.layer.cornerRadius = _commentView.frame.size.height / 2;
+    _commentView.layer.masksToBounds = YES;
+    _commentView.textField.placeholder = @"说点什么吧";
+    [self.view addSubview:_commentView];
+    _commentView.textField.delegate = self;
+    [_commentView.btn_emotion addTarget:self action:@selector(emotionClick:) forControlEvents:UIControlEventTouchUpInside];
+    _bigView = [[UIView alloc]init];
+    _bigView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(bigViewGes)];
+    [_bigView addGestureRecognizer:tapGes];
+    [self.view addSubview:_bigView];
+    [self.view insertSubview:_bigView belowSubview:_commentView];
+    _bigView.hidden = YES;
+    
+    
     [self registerClass:[LYTextMessageCell class]forCellWithReuseIdentifier:rctextCellIndentifier];
     [self registerClass:[LYTipMessageCell class]forCellWithReuseIdentifier:rcTipMessageCellIndentifier];
     [self registerClass:[LYGiftMessageCell class]forCellWithReuseIdentifier:rcGiftMessageCellIndentifier];
@@ -733,6 +850,116 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     
 }
 
+#pragma mark --- 键盘监听事件
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBorderApearce:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    _bigView.hidden = NO;
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    if (![textField.text isEqualToString:@""]) {
+        NSString *text = [NSString stringWithFormat:@"%@", _commentView.textField.text];
+        RCTextMessage *rcTextMessage = [RCTextMessage messageWithContent:text];
+        [self sendMessage:rcTextMessage pushContent:nil];
+        textField.text = @"";
+    }
+    [textField endEditing:YES];
+    _commentView.frame = CGRectMake(SCREEN_WIDTH / 6, distanceOfBottom - SCREEN_WIDTH / 8,SCREEN_WIDTH / 3 * 2 , MinHeight_InputView);
+    _bigView.hidden = YES;
+    
+    return YES;
+}
+
+//kvo监听评论输入框的字符 有字符就改变键盘的发送按钮为蓝色
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
+    //    NSLog(@"-->%@",change[@"new"]);
+    NSString *newStr =change[@"new"];
+    if (newStr.length) {
+        [_emojiView.sendBtn setBackgroundColor:RGBA(10, 96, 255, 1)];
+        [_emojiView.sendBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    }else {
+        [_emojiView.sendBtn setTitleColor:RGBA(114, 114, 114, 1) forState:UIControlStateNormal];
+        [_emojiView.sendBtn setBackgroundColor:[UIColor whiteColor]];
+    }
+}
+
+
+//键盘弹出
+- (void)keyBorderApearce:(NSNotification *)note{
+    
+    CGRect rect = [note.userInfo[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
+    [UIView animateWithDuration:.25 animations:^{
+        _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - rect.size.height - 49, SCREEN_WIDTH, 49);
+    }];
+}
+
+//评论视图背景view 的手势去除评论view
+- (void)bigViewGes{
+    //    if (_commentView.textField.text.length) {
+    defaultComment = _commentView.textField.text;
+    //    }
+    [_commentView.textField endEditing:YES];
+    _commentView.frame = CGRectMake(SCREEN_WIDTH / 6, distanceOfBottom - SCREEN_WIDTH / 8,SCREEN_WIDTH / 3 * 2 , MinHeight_InputView);
+    _bigView.hidden = YES;
+}
+
+- (void)emotionClick:(UIButton *)button{
+    button.selected = !button.selected;
+    if(button.selected){//评论框右侧按钮切换为表情
+        [button setImage:[UIImage imageNamed:@"biaoqing_icon_keybo"] forState:UIControlStateNormal];
+        _commentView.btn_send_cont_width.constant = 60;
+        [_commentView.btn_send setTitle:@"发送" forState:UIControlStateNormal];
+        [_commentView.btn_send addTarget:self action:@selector(sendMessageClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self updateViewConstraints];
+        [_commentView.textField endEditing:YES];
+        _emojiView = [[ISEmojiView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 216)];
+        _emojiView.delegate = self;
+        _emojiView.backgroundColor = RGBA(244, 244, 246, 1);
+        _emojiView.inputView = _commentView.textField;
+        _commentView.textField.inputView = _emojiView;
+        [_commentView.textField becomeFirstResponder];
+        [UIView animateWithDuration:.1 animations:^{
+            CGFloat y = SCREEN_HEIGHT - CGRectGetHeight(_commentView.frame) - CGRectGetHeight(_emojiView.frame);
+            _commentView.frame = CGRectMake(0,y , CGRectGetWidth(_commentView.frame), CGRectGetHeight(_commentView.frame));
+        }];
+        if (_commentView.textField.text.length) {
+            [_emojiView.sendBtn setBackgroundColor:RGBA(10, 96, 255, 1)];
+            [_emojiView.sendBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        }
+    }else{//评论框右侧按钮切换为键盘
+        [button setImage:[UIImage imageNamed:@"biaoqing_icon"] forState:UIControlStateNormal];
+        [_commentView.textField endEditing:YES];
+        _commentView.textField.inputView = UIKeyboardAppearanceDefault;
+        _commentView.btn_send_cont_width.constant = 0;
+        [_commentView.btn_send setTitle:@"" forState:UIControlStateNormal];
+        [self updateViewConstraints];
+        [_commentView.textField becomeFirstResponder];
+    }
+    
+}
+
+#pragma mark - 表情键盘的代理方法
+#pragma mark - WTT
+- (void)sendMessageClick:(UIButton *)button{
+    [self textFieldShouldReturn:_commentView.textField];
+}
+
+#pragma mark - 表情键盘的发送按钮
+- (void)emojiView:(ISEmojiView *)emojiView didPressSendButton:(UIButton *)sendbutton{
+    [self textFieldShouldReturn:_commentView.textField];
+}
+#pragma mark - 表情键盘的表情点击按钮
+-(void)emojiView:(ISEmojiView *)emojiView didSelectEmoji:(NSString *)emoji{
+    _commentView.textField.text = [_commentView.textField.text stringByAppendingString:emoji];
+}
+#pragma mark - 表情键盘的表情删除按钮
+- (void)emojiView:(ISEmojiView *)emojiView didPressDeleteButton:(UIButton *)deletebutton{
+    if (_commentView.textField.text.length > 0) {
+        NSRange lastRange = [_commentView.textField.text rangeOfComposedCharacterSequenceAtIndex:_commentView.textField.text.length-1];
+        _commentView.textField.text = [_commentView.textField.text substringToIndex:lastRange.location];
+    }
+}
 
 /**
  *  全屏和半屏模式切换
@@ -748,15 +975,15 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     _conversationViewFrame.origin.y = 30;
     //     CGRect _conversationViewFrame = CGRectMake(0, distanceOfBottom - MinHeight_InputView - SCREEN_HEIGHT / 8 * 3, SCREEN_WIDTH, SCREEN_HEIGHT /8 * 3);
     [self.conversationMessageCollectionView setFrame:_conversationViewFrame];
-    float inputBarOriginY = distanceOfBottom - SCREEN_WIDTH / 8;
-    float inputBarOriginX = SCREEN_WIDTH / 6 ;
-    float inputBarSizeWidth = SCREEN_WIDTH / 3 *2 ;
-    float inputBarSizeHeight = MinHeight_InputView;
-    //添加输入框
-    self.inputBar.layer.cornerRadius = 8.f;
-    self.inputBar.layer.masksToBounds = YES;
-    self.inputBar.backgroundColor = [UIColor redColor];
-    [self.inputBar changeInputBarFrame:CGRectMake(inputBarOriginX, inputBarOriginY,inputBarSizeWidth,inputBarSizeHeight)];
+//    float inputBarOriginY = distanceOfBottom - SCREEN_WIDTH / 8;
+//    float inputBarOriginX = SCREEN_WIDTH / 6 ;
+//    float inputBarSizeWidth = SCREEN_WIDTH / 3 *2 ;
+//    float inputBarSizeHeight = MinHeight_InputView;
+//    //添加输入框
+//    self.inputBar.layer.cornerRadius = 8.f;
+//    self.inputBar.layer.masksToBounds = YES;
+//    self.inputBar.backgroundColor = [UIColor redColor];
+//    [self.inputBar changeInputBarFrame:CGRectMake(inputBarOriginX, inputBarOriginY,inputBarSizeWidth,inputBarSizeHeight)];
     [self.conversationMessageCollectionView reloadData];
     [self.unreadButtonView setFrame:CGRectMake((self.view.frame.size.width - 80)/2, self.view.frame.size.height - MinHeight_InputView - 30, 80, 30)];
 }
@@ -1029,11 +1256,10 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
                                                                               direction:MessageDirection_SEND
                                                                               messageId:messageId
                                                                                 content:messageContent];
-//                                   if ([message.content isMemberOfClass:[LYGiftMessage class]] ) {
-//                                       message.messageId = -1;//插入消息时如果id是-1不判断是否存在
-//                                   }
+                                   if ([message.content isMemberOfClass:[LYGiftMessage class]] ) {
+                                       message.messageId = -1;//插入消息时如果id是-1不判断是否存在
+                                   }
                                    [__weakself appendAndDisplayMessage:message];
-                                   //                                   [__weakself.inputBar clearInputView];
                                });
                            } error:^(RCErrorCode nErrorCode, long messageId) {
                                [[RCIMClient sharedRCIMClient]deleteMessages:@[ @(messageId) ]];
@@ -1092,8 +1318,6 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
         CGRect collectionViewRect = self.conversationMessageCollectionView.frame;
         collectionViewRect.size.height = self.contentView.bounds.size.height - self.inputBar.frame.size.height -30;
         [self.conversationMessageCollectionView setFrame:collectionViewRect];
-        [self.inputBar setInputBarStatus:CHKBottomBarDefaultStatus];
-        self.inputBar.height = MinHeight_InputView;
     }
 }
 
@@ -1163,7 +1387,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"kobe24" object:nil];
 }
 
-- (void)onConnectionStatusChanged:(RCConnectionStatus)status {
+- (void)onRCIMConnectionStatusChanged:(RCConnectionStatus)status {
     self.currentConnectionStatus = status;
 }
 

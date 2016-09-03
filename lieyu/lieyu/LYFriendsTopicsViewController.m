@@ -33,9 +33,8 @@
         pageStartCount = _pageStartCountArray[1];
         tableView = [_tableViewArray objectAtIndex:1];
     }
-
-    NSString *startStr = [NSString stringWithFormat:@"%d",pageStartCount * _pageCount];
-    NSString *pageCountStr = [NSString stringWithFormat:@"%d",_pageCount];
+    NSString *startStr = [NSString stringWithFormat:@"%ld",pageStartCount * _pageCount];
+    NSString *pageCountStr = [NSString stringWithFormat:@"%ld",(long)_pageCount];
     NSDictionary *paraDic = @{@"userId":_useridStr,@"start":startStr,@"limit":pageCountStr,@"topicTypeId":_topicTypeId};
     __weak __typeof(self) weakSelf = self;
     if (type == dataForFriendsMessage) {
@@ -82,6 +81,7 @@
     UITableView *tableView = _tableViewArray.firstObject;
     UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 187 / 375)];
     [imgView sd_setImageWithURL:[NSURL URLWithString:_headerViewImgLink] placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
+    
     tableView.tableHeaderView = imgView;
 }
 
@@ -210,6 +210,8 @@
         [_commentDelegate lyBarCommentsSendSuccess];
     }
 }
+
+
 - (void)sendImagesArray:(NSArray *)imagesArray andContent:(NSString *)content andLocation:(NSString *)location andTopicID:(NSString *)topicID andTopicName:(NSString *)topicName{
     [super sendImagesArray:imagesArray andContent:content andLocation:location andTopicID:topicID andTopicName:topicName];
     

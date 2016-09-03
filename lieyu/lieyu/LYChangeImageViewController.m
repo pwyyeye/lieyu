@@ -24,6 +24,7 @@
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     self.title = @"选择更该方式";
     self.tableView.tableFooterView = [[UIView alloc]init];
+    [self.navigationController setNavigationBarHidden:NO];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -99,8 +100,6 @@
         }];
     }];
 }
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

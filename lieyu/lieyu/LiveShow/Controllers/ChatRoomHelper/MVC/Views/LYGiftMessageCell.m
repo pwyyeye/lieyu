@@ -61,8 +61,6 @@
         default:
             break;
     }
-    
-    
     if (_likeMessage) {
         if(_likeMessage.senderUserInfo){
             if ([_likeMessage.senderUserInfo.userId isEqualToString:[RCIM sharedRCIM].currentUserInfo.userId]) {

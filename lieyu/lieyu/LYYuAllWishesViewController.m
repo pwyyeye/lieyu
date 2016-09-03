@@ -55,7 +55,7 @@
     [self.navigationController.navigationBar addSubview:_myTitle];
     if (_type == 0) {
         [self.navigationController.navigationBar addSubview:_rightButton];
-        [self.navigationController.navigationBar addSubview:_ringButton];
+//        [self.navigationController.navigationBar addSubview:_ringButton];
         if (detailViewController.isChanged == YES) {
             [self refreshData];
             detailViewController.isChanged = NO;
@@ -67,7 +67,11 @@
         }
     }
     [self.navigationController setNavigationBarHidden:NO animated:NO];
-    
+    if (_type == 0) {
+        [self.tableView setFrame:(CGRectMake(0, -64, SCREEN_WIDTH, SCREEN_HEIGHT))];
+    } else {
+        [self.tableView setFrame:(CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT))];
+    }
     [self initReleaseWishButton];
 }
 
@@ -87,11 +91,11 @@
     _dataList = [[NSMutableArray alloc]init];
     limit = 10;
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStyleGrouped];
     if (_type == 0) {
         self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 49, 0);
     }else if (_type == 1){
-        [self.tableView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64)];
+        [self.tableView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     }
     [self.view addSubview:self.tableView];
     

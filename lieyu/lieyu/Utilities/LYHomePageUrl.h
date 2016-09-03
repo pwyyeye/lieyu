@@ -76,4 +76,29 @@
 //获取所有地理信息
 #define LY_HOME_ALLLOCATION @"versionAction.do?action=add"
 
+//获取首页数据 part－1
+#define LY_HOME_FIRSTSCREEN @"lieAction.do?action=list"
+//获取首页数据 part－2
+#define LY_HOME_LIST @"lieAction.do?action=expand"
+//根据类型获取banner列表
+#define LY_GET_BANNERLIST @"lybannerimagesAction2.do?action=expand"
+//获取攻略列表
+#define LY_GET_STRATEGYLIST @"strategyAction.do?action=expand"
+//获取攻略详情
+#define LY_GET_STRATEGYDETAIL @"strategyAction.do?action=custom"
+//攻略点赞
+#define LY_ADDLIKE_STRATEGY @"strategyAction.do?action=login"
+//攻略取消点赞
+#define LY_CANCELLIKE_STRATEGY @"strategyAction.do?action=logout"
+//攻略收藏
+#define LY_ADDCOLL_STRATEGY @"strategyAction.do?action=importExcel"
+//攻略取消收藏
+#define LY_CANCELCOLL_STRATEGY @"strategyAction.do?action=exportExcel"
+//获取攻略评论列表
+#define LY_GET_STRATEGYCOMMENT @"lyStrategyCommentAction.do?action=list"
+//攻略添加评论
+#define LY_ADDCOMMENT_STRATEGY @"lyStrategyCommentAction.do?action=add"
+//攻略删除评论
+#define LY_DELETECOMMENT_STRATEGY @"lyStrategyCommentAction.do?action=delete"
+
 #endif

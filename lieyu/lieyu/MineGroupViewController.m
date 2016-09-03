@@ -228,31 +228,31 @@
 #pragma mark - 按钮事件
 - (void)addGroup:(UIButton *)sender{
     /*
-    AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"选择发布平台" message:nil cancelButtonTitle:@"发布到娱" otherButtonTitles:@"其它平台" block:^(NSInteger buttonIndex) {
-        if (buttonIndex == 0) {
-            NSDictionary *dict = @{@"actionName":@"跳转",@"pageName":@"我的娱客帮",@"titleName":@"分享",@"value":@"分享到娱"};
-            [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
-            
-        }else if (buttonIndex == 1){
-            NSDictionary *dict = @{@"actionName":@"跳转",@"pageName":@"我的娱客帮",@"titleName":@"分享",@"value":@"分享到其他平台"};
-            [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
-            
-            NSString *string= [NSString stringWithFormat:@"猎娱 | 中高端玩咖美女帅哥社交圈，轻奢夜生活娱乐！"];
-            [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
-            [UMSocialData defaultData].extConfig.wechatTimelineData.url = @"http://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653";
-            [UMSocialData defaultData].extConfig.wechatSessionData.url = @"http://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653";
-            @try {
-                [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:[UIImage imageNamed:@"CommonIcon"] shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
-            }
-            @catch (NSException *exception) {
-                [MyUtil showCleanMessage:@"无法分享！"];
-            }
-            @finally {
-                
-            }
-        }
-    }];
-    [alert show];*/
+     AlertBlock *alert = [[AlertBlock alloc]initWithTitle:@"选择发布平台" message:nil cancelButtonTitle:@"发布到娱" otherButtonTitles:@"其它平台" block:^(NSInteger buttonIndex) {
+     if (buttonIndex == 0) {
+     NSDictionary *dict = @{@"actionName":@"跳转",@"pageName":@"我的娱客帮",@"titleName":@"分享",@"value":@"分享到娱"};
+     [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
+     
+     }else if (buttonIndex == 1){
+     NSDictionary *dict = @{@"actionName":@"跳转",@"pageName":@"我的娱客帮",@"titleName":@"分享",@"value":@"分享到其他平台"};
+     [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
+     
+     NSString *string= [NSString stringWithFormat:@"猎娱 | 中高端玩咖美女帅哥社交圈，轻奢夜生活娱乐！"];
+     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
+     [UMSocialData defaultData].extConfig.wechatTimelineData.url = @"http://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653";
+     [UMSocialData defaultData].extConfig.wechatSessionData.url = @"http://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653";
+     @try {
+     [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:[UIImage imageNamed:@"CommonIcon"] shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
+     }
+     @catch (NSException *exception) {
+     [MyUtil showCleanMessage:@"无法分享！"];
+     }
+     @finally {
+     
+     }
+     }
+     }];
+     [alert show];*/
     NSDictionary *dict = @{@"actionName":@"跳转",@"pageName":@"我的娱客帮",@"titleName":@"分享",@"value":@"分享到其他平台"};
     [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
     

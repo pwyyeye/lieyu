@@ -15,18 +15,24 @@
 @end
 
 @interface EScrollerView : UIView<UIScrollViewDelegate> {
-	CGRect viewSize;
-	UIScrollView *scrollView;
-	NSArray *imageArray;
+    CGRect viewSize;
+    UIScrollView *scrollView;
+    NSArray *imageArray;
     NSMutableArray *titleArray;
     UIPageControl *pageControl;
     id<EScrollerViewDelegate> delegate;
     int currentPageIndex;
     UILabel *noteTitle;
-
-
 }
+
+
+@property (nonatomic, assign) BOOL isDragVertical;
+
 @property(nonatomic,retain)id<EScrollerViewDelegate> delegate;
 @property(nonatomic,retain)NSArray *daoHangArray;
--(id)initWithFrameRect:(CGRect)rect scrolArray:(NSArray *)array needTitile:(BOOL)isNeedTitle;
+
+- (id)initWithFrameRect:(CGRect)rect scrolArray:(NSArray *)array needTitile:(BOOL)isNeedTitle;
+- (void)setScrollViewFrame:(CGRect)rect;
+- (id)configureImagesArray:(NSArray *)array;
+- (instancetype)initWithRect:(CGRect)rect;
 @end

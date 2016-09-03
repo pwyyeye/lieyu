@@ -15,6 +15,7 @@
 #import "FriendsNewsModel.h"
 #import "FriendsUserInfoModel.h"
 #import "LYLiveShowListModel.h"
+#import "ChatUseres.h"
 
 #import "AFNetworking.h"//主要用于网络请求方法
 #import "UIKit+AFNetworking.h"//里面有异步加载图片的方法
@@ -293,10 +294,14 @@
 //进入直播间
 +(void) getLiveShowRoomWithParams:(NSDictionary *)params complete: (void (^)(NSDictionary *Arr))complete{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Live_enter baseURL:@"http://10.17.114.61/" params:params success:^(id response) {
-        NSDictionary *dict = (NSDictionary *)response[@"data"];
-        complete(dict);
+//        if ([response[@"message"] isEqualToString:@"return success!"]) {
+            NSDictionary *dict = (NSDictionary *)response[@"data"];
+            complete(dict);
+//        } else {
+//            [MyUtil showLikePlaceMessage:@"获取失败，请检查网络"];
+//        }
     } failure:^(NSError *err) {
-        
+        [MyUtil showLikePlaceMessage:@"获取失败，请检查网络"];
     }];
 }
 
@@ -325,7 +330,9 @@
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Live_requestlist baseURL:@"http://10.17.114.61/" params:parms success:^(id response) {
         if ([response[@"errorcode"] isEqualToString:@"success"]) {
             NSDictionary *dic = response[@"data"];
-            complete(dic);
+            NSArray *users = [ChatUseres mj_objectArrayWithKeyValuesArray:dic[@"roomUserList"][@"users"]];
+            NSDictionary *results = @{@"users":users,@"likeNum":dic[@"likeNum"]};
+            complete(results);
         } else {
             [MyUtil showMessage:@"获取观众失败"];
         }

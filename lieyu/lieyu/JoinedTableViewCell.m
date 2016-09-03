@@ -8,7 +8,7 @@
 
 #import "JoinedTableViewCell.h"
 #import "YUPinkerListModel.h"
-#import "LYFriendsPersonMessageViewController.h"
+//#import "LYFriendsPersonMessageViewController.h"
 #import "UIImageView+WebCache.h"
 
 @implementation JoinedTableViewCell

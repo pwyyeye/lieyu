@@ -47,7 +47,7 @@
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postANotification) name:@"RCKitDispatchMessageNotification" object:nil];
     if([USER_DEFAULT objectForKey:@"badgeValue"]!=nil){
         NSArray *items = self.tabBar.items;
-        UITabBarItem *item=[items objectAtIndex:3];
+        UITabBarItem *item=[items objectAtIndex:1];
         item.badgeValue=((NSString *)[USER_DEFAULT objectForKey:@"badgeValue"]);
     }
     self.tabBar.layer.shadowColor = [[UIColor lightGrayColor]CGColor];
@@ -74,33 +74,29 @@
 
 -(void)doChange{
     NSArray *items = self.tabBar.items;
-    UITabBarItem *item=[items objectAtIndex:3];
-    
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    OrderTTL *ttl=app.orderTTL;
-    
-    NSString *count=[USER_DEFAULT objectForKey:@"badgeValue"];
-    if (![MyUtil isEmptyString:count]) {
-        [USER_DEFAULT setObject:[NSString stringWithFormat:@"%d",count.intValue+1+ttl.pushMessageNum]  forKey:@"badgeValue"];
-    }else{
-        [USER_DEFAULT setObject:[NSString stringWithFormat:@"%d",1+ttl.pushMessageNum] forKey:@"badgeValue"];
-    }
+    UITabBarItem *item=[items objectAtIndex:1];
+//    NSString *count=[USER_DEFAULT objectForKey:@"badgeValue"];
+//    if (![MyUtil isEmptyString:count]) {
+//        [USER_DEFAULT setObject:[NSString stringWithFormat:@"%ld",count.intValue+1+ttl.pushMessageNum]  forKey:@"badgeValue"];
+//    }else{
+//        [USER_DEFAULT setObject:[NSString stringWithFormat:@"%ld",1+ttl.pushMessageNum] forKey:@"badgeValue"];
+//    }
     
     if (![MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"badgeValue"]]) {
         NSString *badgeValue=(NSString *)[USER_DEFAULT objectForKey:@"badgeValue"];
-        item.badgeValue=badgeValue.intValue+ttl.pushMessageNum>99?@"99":[NSString stringWithFormat:@"%d",+ttl.pushMessageNum+badgeValue.intValue] ;
-        [UIApplication sharedApplication].applicationIconBadgeNumber=badgeValue.intValue+ttl.pushMessageNum>99?99:badgeValue.intValue+ttl.pushMessageNum;
-    }else if(ttl.pushMessageNum>0){
-        //设置应用icon角标
-        [UIApplication sharedApplication].applicationIconBadgeNumber=ttl.pushMessageNum>99?99:ttl.pushMessageNum;
-        //设置发现角标
-        item.badgeValue=ttl.pushMessageNum>99?@"99":[NSString stringWithFormat:@"%d",ttl.pushMessageNum];
+        item.badgeValue=badgeValue.intValue>99?@"99":[NSString stringWithFormat:@"%d",badgeValue.intValue] ;
+        [UIApplication sharedApplication].applicationIconBadgeNumber=badgeValue.intValue>99?99:badgeValue.intValue;
+        
+//    }else if(ttl.pushMessageNum>0){
+//        //设置应用icon角标
+//        [UIApplication sharedApplication].applicationIconBadgeNumber=ttl.pushMessageNum>99?99:ttl.pushMessageNum;
+//        //设置发现角标
+//        item.badgeValue=ttl.pushMessageNum>99?@"99":[NSString stringWithFormat:@"%ld",(long)ttl.pushMessageNum];
+        
     }else{
         item.badgeValue=nil;
         [UIApplication sharedApplication].applicationIconBadgeNumber=0;
     }
-    
-    
 }
 
 -(void)tabbarChagneComplete:(NSNotification*) notification{
@@ -110,14 +106,12 @@
 }
 
 -(void)doComplete{
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    OrderTTL *ttl=app.orderTTL;
     NSString *delBadgeValue=[USER_DEFAULT objectForKey:@"delBadgeValue"];
     NSString *badgeValue=[USER_DEFAULT objectForKey:@"badgeValue"];
     NSArray *items= self.tabBar.items;
-    UITabBarItem *item=[items objectAtIndex:3];
+    UITabBarItem *item=[items objectAtIndex:1];
     
-    if (![MyUtil isEmptyString:badgeValue] || ttl.pushMessageNum>0) {//判断角标是否存在 －－存在
+    if (![MyUtil isEmptyString:badgeValue]) {//判断角标是否存在 －－存在
         //减去已读角标
         if (![MyUtil isEmptyString:delBadgeValue]) {
             int result=badgeValue.intValue-delBadgeValue.intValue;
@@ -130,14 +124,14 @@
         if ([USER_DEFAULT objectForKey:@"badgeValue"]) {
             NSString *badgeValue=(NSString *)[USER_DEFAULT objectForKey:@"badgeValue"];
             //设置应用icon角标
-            [UIApplication sharedApplication].applicationIconBadgeNumber=(badgeValue.intValue+ttl.pushMessageNum)>99?99:badgeValue.intValue+ttl.pushMessageNum;
+            [UIApplication sharedApplication].applicationIconBadgeNumber=(badgeValue.intValue)>99?99:badgeValue.intValue;
             //设置发现角标
-            item.badgeValue=badgeValue.intValue+ttl.pushMessageNum>99?@"99":[NSString stringWithFormat:@"%d",ttl.pushMessageNum+badgeValue.intValue];
-        }else if(ttl.pushMessageNum>0){
-            //设置应用icon角标
-            [UIApplication sharedApplication].applicationIconBadgeNumber=ttl.pushMessageNum>99?99:ttl.pushMessageNum;
-            //设置发现角标
-            item.badgeValue=ttl.pushMessageNum>99?@"99":[NSString stringWithFormat:@"%d",ttl.pushMessageNum];
+            item.badgeValue=badgeValue.intValue>99?@"99":[NSString stringWithFormat:@"%d",badgeValue.intValue];
+//        }else if(ttl.pushMessageNum>0){
+//            //设置应用icon角标
+//            [UIApplication sharedApplication].applicationIconBadgeNumber=ttl.pushMessageNum>99?99:ttl.pushMessageNum;
+//            //设置发现角标
+//            item.badgeValue=ttl.pushMessageNum>99?@"99":[NSString stringWithFormat:@"%ld",(long)ttl.pushMessageNum];
         }else{
             [UIApplication sharedApplication].applicationIconBadgeNumber=0;
             item.badgeValue=nil;
@@ -165,10 +159,10 @@
 
 - (void)setupViewStyles
 {
-    NSArray * aryImages = @[@"iNeedPlay_normal",@"PlayTogether_normal",@"wanyouquan_normal",@"Find_normal",@"Mine_normal"];
-    NSArray * selectedImages = @[@"iNeedPlay_selected",@"PlayTogether_selected",@"wanyouquan_selected",@"Find_selected",@"Mine_selected"];
-//    NSArray * aryImages = @[@"iNeedPlay_normal",@"wanyouquan_normal",@"Find_normal",@"Mine_normal"];
-//    NSArray * selectedImages = @[@"iNeedPlay_selected",@"wanyouquan_selected",@"Find_selected",@"Mine_selected"];
+//    NSArray * aryImages = @[@"iNeedPlay_normal",@"PlayTogether_normal",@"wanyouquan_normal",@"Find_normal",@"Mine_normal"];
+//    NSArray * selectedImages = @[@"iNeedPlay_selected",@"PlayTogether_selected",@"wanyouquan_selected",@"Find_selected",@"Mine_selected"];
+    NSArray * aryImages = @[@"iNeedPlay_normal",@"wantan_normal",@"Mine_normal"];
+    NSArray * selectedImages = @[@"iNeedPlay_selected",@"wantan_select",@"Mine_selected"];
 
     
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:RGBA(153, 50, 204, 1.0), NSForegroundColorAttributeName,[UIFont systemFontOfSize:10],NSFontAttributeName,nil] forState:UIControlStateSelected];
@@ -180,10 +174,8 @@
     {
         item.image = [[UIImage imageNamed:aryImages[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         item.selectedImage = [[UIImage imageNamed:selectedImages[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-
         i ++;
     }
-
     self.view.backgroundColor = [UIColor whiteColor];
 }
 
@@ -238,8 +230,8 @@
 }
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
     [USER_DEFAULT setObject:@"1" forKey:@"needCountIM"];
-    NSLog(@"----pass-tabBarController%d---",self.selectedIndex);
-    if (YES||self.selectedIndex==3||self.selectedIndex==4) {
+    NSLog(@"----pass-tabBarController%lu---",(unsigned long)self.selectedIndex);
+    if (YES||self.selectedIndex==1||self.selectedIndex==2) {
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         if([MyUtil isEmptyString:app.s_app_id]){
 //            LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
@@ -275,16 +267,15 @@
 }
 //跳到猎
 - (void)jumpToFirstView{
-    self.selectedIndex = 0;
-//    [self setSelectedIndex:0];
+//    self.selectedIndex = 0;
 }
 //跳到娱
 - (void)jumpToSecondView{
-    self.selectedIndex = 1;
+//    self.selectedIndex = 1;
 }
 //跳到发现
 - (void)jumpToforthPage{
-    self.selectedIndex = 3;
+//    self.selectedIndex = 3;
 }
 
 -(void)viewWillAppear:(BOOL)animated{

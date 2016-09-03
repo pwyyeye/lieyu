@@ -13,7 +13,10 @@
     NSMutableArray *_tableViewArray;//表的数组
     NSInteger _pageCount;//每页数
     NSString *_useridStr;//用户id
-    NSInteger _index;//判断是0最热，1最新
+    //    NSInteger _index;//判断是0最热，1最新
     CGFloat _contentOffSetY;//表的偏移量
 }
+
+@property (nonatomic, assign) NSInteger index;//判断是0最热，1最新
+
 @end

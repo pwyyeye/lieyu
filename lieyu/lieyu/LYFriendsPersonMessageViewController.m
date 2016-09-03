@@ -35,6 +35,9 @@
     }
     NSString *startStr = [NSString stringWithFormat:@"%ld",pageStartCount * _pageCount];
     NSString *pageCountStr = [NSString stringWithFormat:@"%ld",_pageCount];
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if(app.userModel) _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
+    
     NSDictionary *paraDic = @{@"userId":_useridStr,@"start":startStr,@"limit":pageCountStr,@"frientId":_friendsId};
 //    __weak __typeof(self) weakSelf = self;
     if (type == dataForFriendsMessage) {

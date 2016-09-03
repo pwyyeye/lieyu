@@ -17,6 +17,8 @@
 #import "CustomerModel.h"
 #import "GameList.h"
 #import "HomePageModel.h"
+#import "HomepageBannerModel.h"
+#import "StrategyCommentModel.h"
 
 @implementation LYHomePageHttpTool
 + (LYHomePageHttpTool *)shareInstance
@@ -32,30 +34,30 @@
 -(void) getTogetherListWithParams:(NSDictionary*)params block:(void(^)(NSMutableArray* result)) block{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
-        [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YIQIWAN_LIST baseURL:LY_SERVER params:params success:^(id response) {
-            NSArray *dataList = response[@"data"];
-            NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
-            NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
-            
-            if ([code isEqualToString:@"1"]) {
-                NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[PinKeModel mj_objectArrayWithKeyValuesArray:dataList]];
-                if([[params objectForKey:@"p"] intValue] == 1 && params.count == 2){
-                    //存储缓存讯息
-                    LYCoreDataUtil *core = [LYCoreDataUtil shareInstance];
-                    [core saveOrUpdateCoreData:@"LYCache" withParam:@{@"lyCacheKey":CACHE_PLAY_TOGETHER_HOMEPAGE,@"lyCacheValue":dataList,@"createDate":[NSDate date]} andSearchPara:@{@"lyCacheKey":CACHE_PLAY_TOGETHER_HOMEPAGE}];
-                }
-                dispatch_async(dispatch_get_main_queue(), ^(void) {
-                    block(tempArr);
-                });
-                
-            }else{
-                [MyUtil showMessage:message];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_YIQIWAN_LIST baseURL:LY_SERVER params:params success:^(id response) {
+        NSArray *dataList = response[@"data"];
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        
+        if ([code isEqualToString:@"1"]) {
+            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[PinKeModel mj_objectArrayWithKeyValuesArray:dataList]];
+            if([[params objectForKey:@"p"] intValue] == 1 && params.count == 2){
+                //存储缓存讯息
+                LYCoreDataUtil *core = [LYCoreDataUtil shareInstance];
+                [core saveOrUpdateCoreData:@"LYCache" withParam:@{@"lyCacheKey":CACHE_PLAY_TOGETHER_HOMEPAGE,@"lyCacheValue":dataList,@"createDate":[NSDate date]} andSearchPara:@{@"lyCacheKey":CACHE_PLAY_TOGETHER_HOMEPAGE}];
             }
-            [app stopLoading];
-        } failure:^(NSError *err) {
-//            [MyUtil showMessage:@"获取数据失败！"];
-            [app stopLoading];
-        }];
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                block(tempArr);
+            });
+            
+        }else{
+            [MyUtil showMessage:message];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        //            [MyUtil showMessage:@"获取数据失败！"];
+        [app stopLoading];
+    }];
 }
 
 #pragma mark 一起玩列表详细
@@ -108,7 +110,7 @@
         //[MyUtil showCleanMessage:@"获取数据失败！"];
         [app stopLoading];
     }];
-
+    
 }
 
 
@@ -146,7 +148,7 @@
 
 #pragma mark录入拼客订单
 -(void) inTogetherOrderInWithParams:(NSDictionary*)params
-                            complete:(void (^)(NSString *result))result{
+                           complete:(void (^)(NSString *result))result{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
     
@@ -364,8 +366,8 @@
 #pragma mark购物车列表
 -(void) getCarListWithParams:(NSDictionary*)params
                        block:(void(^)(NSMutableArray* result)) block{
-//    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-//    [app startLoading];
+    //    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    //    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_CH_CARLIST baseURL:LY_SERVER params:params success:^(id response) {
         NSArray *dataList = response[@"data"];
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
@@ -380,10 +382,10 @@
         }else{
             [MyUtil showMessage:message];
         }
-//        [app stopLoading];
+        //        [app stopLoading];
     } failure:^(NSError *err) {
         [MyUtil showCleanMessage:@"获取数据失败！"];
-//        [app stopLoading];
+        //        [app stopLoading];
     }];
 }
 #pragma mark购物车数量变更
@@ -444,7 +446,7 @@
 #pragma mark购物车删除
 -(void) delcarWithParams:(NSDictionary*)params complete:(void (^)(BOOL result))result{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-//    [app startLoading];
+    //    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_CH_DEL baseURL:LY_SERVER params:params success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
@@ -452,11 +454,11 @@
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 result(YES);
             });
-//            [app stopLoading];
+            //            [app stopLoading];
         }else{
             result(NO);
             [MyUtil showMessage:message];
-//            [app stopLoading];
+            //            [app stopLoading];
         }
     } failure:^(NSError *err) {
         result(NO);
@@ -496,7 +498,7 @@
 -(void) getBarVipWithParams:(NSDictionary*)params
                       block:(void(^)(NSMutableArray* result)) block{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-//    [app startLoading];
+    //    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_BAR_VIPLIST baseURL:LY_SERVER params:params success:^(id response) {
         NSArray *dataList = response[@"data"];
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
@@ -511,7 +513,7 @@
         }else{
             [MyUtil showMessage:message];
         }
-//        [app stopLoading];
+        //        [app stopLoading];
     } failure:^(NSError *err) {
         //[MyUtil showCleanMessage:@"获取数据失败！"];
         [app stopLoading];
@@ -546,22 +548,22 @@
 
 #pragma mark 给酒吧点赞
 - (void)likeJiuBa:(NSDictionary *)params compelete:(void(^)(bool))result{
-//    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-//    [app startLoading];
+    //    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    //    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_DIANZANG baseURL:LY_SERVER params:params success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
         if ([code isEqualToString:@"1"]) {
             result(YES);
             [MyUtil showPlaceMessage:message];
-//            [app stopLoading];
+            //            [app stopLoading];
         }else{
             result(NO);
-//            [app stopLoading];
+            //            [app stopLoading];
             [MyUtil showPlaceMessage:message];
         }
     } failure:^(NSError *err) {
-//          [app stopLoading];
+        //          [app stopLoading];
         [MyUtil showPlaceMessage:@"点赞失败，请检查网络连接"];
         result(NO);
     }];
@@ -569,18 +571,18 @@
 
 #pragma mark 给酒吧取消点赞
 - (void)unLikeJiuBa:(NSDictionary *)params compelete:(void(^)(bool))result{
-//    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-//    [app startLoading];
+    //    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    //    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_QUXIAOZANG baseURL:LY_SERVER params:params success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
         if ([code isEqualToString:@"1"]) {
             result(YES);
             [MyUtil showPlaceMessage:message];
-//            [app stopLoading];
+            //            [app stopLoading];
         }else{
             result(NO);
-//            [app stopLoading];
+            //            [app stopLoading];
             [MyUtil showPlaceMessage:message];
         }
     } failure:^(NSError *err) {
@@ -635,13 +637,13 @@
     NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:nil error:nil];
     NSDictionary *dic= (NSDictionary *)[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
     NSLog(@"--->%@",dic);
-
+    
     UserModel *userM = [[UserModel alloc]init];
     userM.avatar_img =[dic objectForKey:@"headimgurl"];
     userM.usernick = [dic objectForKey:@"nickname"];
     userM.gender =[dic objectForKey:@"sex"];
     userM.openID =[dic objectForKey:@"openid"];  //dic[@"openi                                                                                                                                                                                                                                        d"];
-    compelete(userM);  
+    compelete(userM);
 }
 
 #pragma mark 获取酒吧的活动列表
@@ -662,7 +664,7 @@
         }
         [app stopLoading];
     } failure:^(NSError *err) {
-//        [MyUtil showCleanMessage:@"获取数据失败！"];
+        //        [MyUtil showCleanMessage:@"获取数据失败！"];
         [app stopLoading];
     }];
 }
@@ -701,7 +703,7 @@
             [MyUtil showCleanMessage:message];
         }
     } failure:^(NSError *err) {
-//        [MyUtil showCleanMessage:@"获取数据失败"];
+        //        [MyUtil showCleanMessage:@"获取数据失败"];
     }];
 }
 
@@ -711,7 +713,7 @@
     [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_ACTIVITY_DETAIL baseURL:LY_SERVER params:paraDic success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
-
+        
         if ([code isEqualToString:@"1"]) {
             BarActivityList *actionDetail = [BarActivityList mj_objectWithKeyValues:response[@"data"]];
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -766,7 +768,7 @@
         }else{
             complete(nil);
         }
-
+        
     } failure:^(NSError *err) {
         
     }];
@@ -787,7 +789,7 @@
                                                               @"createDate":[NSDate date]}
                          andSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE_GUWEN}];
             
-                                            
+            
             homePageM.banner = [dataDic valueForKey:@"banner"];
             homePageM.newbanner=[dataDic valueForKey:@"newbanner"];
             homePageM.filterImages = [dataDic valueForKey:@"filterImages"];
@@ -817,6 +819,198 @@
         
     }];
 }
+
+#pragma mark - 获取首页数据
+//获取首页数据 part－1
++ (void)getHomepageFirstScreenDataWith:(NSDictionary *)param complete:(void (^)(NSDictionary *))complete{
+    AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_HOME_FIRSTSCREEN baseURL:LY_SERVER params:param success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            NSArray *arrayBanner = [HomepageBannerModel mj_objectArrayWithKeyValuesArray:[[response objectForKey:@"data"] objectForKey:@"bannerList"]];
+            BarTopicInfo *activeModel;
+            if ([[response objectForKey:@"data"] objectForKey:@"recommendedTopic"]) {
+                activeModel = [BarTopicInfo mj_objectWithKeyValues:[[response objectForKey:@"data"] objectForKey:@"recommendedTopic"]];
+            }
+            NSDictionary *result = @{@"bannerList":arrayBanner,
+                                     @"filterImageList":[[response objectForKey:@"data"] objectForKey:@"filterImageList"],
+                                     @"recommendedTopic":activeModel};
+            complete(result);
+        }else{
+            
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+}
+
++ (void)getHomepageListDataWith:(NSDictionary *)param complete:(void (^)(NSDictionary *))complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_HOME_LIST baseURL:LY_SERVER params:param success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            NSArray *arrayRec = [JiuBaModel mj_objectArrayWithKeyValuesArray:[[response objectForKey:@"data"] objectForKey:@"recommendBarList"]];
+            NSArray *arrayBar = [JiuBaModel mj_objectArrayWithKeyValuesArray:[[response objectForKey:@"data"] objectForKey:@"barList"]];
+            NSDictionary *result = @{@"recommendBarList":arrayRec,
+                                     @"barList":arrayBar};
+            complete(result);
+        }else{
+            
+        }
+    } failure:^(NSError *err) {
+        
+    }];
+}
+
+#pragma mark - 获取banner列表
++ (void)getBannerListWith:(NSDictionary *)param complete:(void(^)(NSArray *))complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_GET_BANNERLIST baseURL:LY_SERVER params:param success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            NSArray *array = [HomepageBannerModel mj_objectArrayWithKeyValuesArray:[response objectForKey:@"data"]];
+            complete(array);
+        }else{
+            
+        }
+    } failure:^(NSError *err) {
+        
+    }];
+}
+
+#pragma mark - 获取攻略列表
++ (void)getStrategyListWith:(NSDictionary *)param complete:(void (^)(NSArray *))complete{
+    AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_GET_STRATEGYLIST baseURL:LY_SERVER params:param success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            NSArray *array = [StrategryModel mj_objectArrayWithKeyValuesArray:[response objectForKey:@"data"]];
+            complete(array);
+        }else{
+            
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+}
+
+
+#pragma mark - 获取攻略详情
++ (void)getStrategyDetailWith:(NSDictionary *)param complete:(void (^)(StrategryModel *))complete{
+    AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_GET_STRATEGYDETAIL baseURL:LY_SERVER params:param success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            StrategryModel *model = [StrategryModel mj_objectWithKeyValues:[response objectForKey:@"data"]];
+            complete(model);
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+}
+
+#pragma mark - 攻略点赞
++ (void)addLikeStrategyWith:(NSDictionary *)param complete:(void (^)(BOOL))complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_ADDLIKE_STRATEGY baseURL:LY_SERVER params:param success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            complete(YES);
+        }else{
+            complete(NO);
+        }
+    } failure:^(NSError *err) {
+    }];
+}
+
+#pragma mark - 攻略取消点赞
++ (void)cancelLikeStrategyWith:(NSDictionary *)param complete:(void (^)(BOOL))complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_CANCELLIKE_STRATEGY baseURL:LY_SERVER params:param success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            complete(YES);
+        }else{
+            complete(NO);
+        }
+    } failure:^(NSError *err) {
+    }];
+}
+
+#pragma mark - 攻略收藏
++ (void)addCollectStrategyWith:(NSDictionary *)param complete:(void (^)(BOOL))complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_ADDCOLL_STRATEGY baseURL:LY_SERVER params:param success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            complete(YES);
+        }else{
+            complete(NO);
+        }
+    } failure:^(NSError *err) {
+    }];
+}
+
+#pragma mark - 攻略取消收藏
++ (void)cancelCollectStrategyWith:(NSDictionary *)param complete:(void (^)(BOOL))complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_CANCELCOLL_STRATEGY baseURL:LY_SERVER params:param success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            complete(YES);
+        }else{
+            complete(NO);
+        }
+    } failure:^(NSError *err) {
+        
+    }];
+}
+
+#pragma mark - 获取攻略评论列表
++ (void)getStrategyCommentWithParam:(NSDictionary *)param complete:(void (^)(NSArray *))complete{
+    AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_GET_STRATEGYCOMMENT baseURL:LY_SERVER params:param success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            NSArray *array = [StrategyCommentModel mj_objectArrayWithKeyValuesArray:[[response objectForKey:@"data"] objectForKey:@"items"]];
+            complete(array);
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+}
+
+#pragma mark - 攻略添加评论
++ (void)addStrategyCommentWithParam:(NSDictionary *)param complete:(void (^)(BOOL))complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_ADDCOMMENT_STRATEGY baseURL:LY_SERVER params:param success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            complete(YES);
+        }else{
+            complete(NO);
+        }
+    } failure:^(NSError *err) {
+        
+    }];
+}
+
+#pragma mark - 攻略删除评论
++ (void)deleteStrategyCommentWithParam:(NSDictionary *)param complete:(void (^)(BOOL))complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_DELETECOMMENT_STRATEGY baseURL:LY_SERVER params:param success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            complete(YES);
+        }else{
+            complete(NO);
+        }
+    } failure:^(NSError *err) {
+        
+    }];
+}
+
+
 
 
 @end

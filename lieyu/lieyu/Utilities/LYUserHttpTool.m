@@ -1,3 +1,4 @@
+
 //
 //  LYUserHttpTool.m
 //  lieyu
@@ -80,7 +81,7 @@
     [HTTPController requestWihtMethod:RequestMethodTypeGet url:LY_DL_THIRD baseURL:LY_SERVER params:params success:^(id response) {
         if([response[@"errorcode"] isEqualToString:@"-2"]){//登录失败
             compelte(0,nil);
-//            [MyUtil showPlaceMessage:@"登录失败"];
+            //            [MyUtil showPlaceMessage:@"登录失败"];
         }else{//登录成功
             UserModel *userM = [UserModel mj_objectWithKeyValues:response[@"data"]];
             compelte(1,userM);
@@ -213,7 +214,7 @@
 
 #pragma mark -第三方注册
 -(void) setThirdZhuCe:(NSDictionary*)params
-        complete:(void (^)(BOOL result))result{
+             complete:(void (^)(BOOL result))result{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
     
@@ -439,7 +440,7 @@
 
 #pragma mark -获取我的订单明细
 -(void) getMyOrderDetailWithParams:(NSDictionary*)params
-                           block:(void(^)(OrderInfoModel* result)) block{
+                             block:(void(^)(OrderInfoModel* result)) block{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_MY_ORDERDETAIL baseURL:LY_SERVER params:params success:^(id response) {
@@ -448,7 +449,7 @@
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
         
         if ([code isEqualToString:@"1"]) {
-
+            
             OrderInfoModel *orderInfo=[OrderInfoModel mj_objectWithKeyValues:data];
             block(orderInfo);
             
@@ -466,7 +467,7 @@
 
 #pragma mark -通过sn获取我的订单明细
 -(void) getOrderDetailWithSN:(NSDictionary*)params
-                             block:(void(^)(OrderInfoModel* result)) block{
+                       block:(void(^)(OrderInfoModel* result)) block{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_MY_ORDERDETAILSN baseURL:LY_SERVER params:params success:^(id response) {
@@ -494,7 +495,7 @@
 
 #pragma mark -分享拼客订单
 -(void) sharePinkerOrder:(NSDictionary*)params
-          complete:(void (^)(BOOL result))result{
+                complete:(void (^)(BOOL result))result{
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
     
@@ -639,7 +640,7 @@
 -(void)getOrderTTL:(void (^)(OrderTTL* result))block{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_MY_ORDER_TTL baseURL:LY_SERVER params:nil success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
-//        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
+        //        NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
         NSDictionary *data=response[@"data"];
         OrderTTL *ttl=[OrderTTL mj_objectWithKeyValues:data];
         if ([code isEqualToString:@"1"]) {
@@ -647,7 +648,7 @@
                 block(ttl);
             });
         }else{
-//            [MyUtil showMessage:message];
+            //            [MyUtil showMessage:message];
         }
         
         
@@ -936,7 +937,7 @@
 
 #pragma mark - 点赞的酒吧
 -(void) getMyBarZangWithParams:(NSDictionary*)params
-                     block:(void(^)(NSMutableArray* result)) block{
+                         block:(void(^)(NSMutableArray* result)) block{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_MY_BAR_ZANG baseURL:LY_SERVER params:params success:^(id response) {
         NSArray *dataList = response[@"data"];
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
@@ -956,7 +957,7 @@
     }];
 }
 
-        
+
 #pragma mark 收藏酒吧
 -(void) addMyBarWithParams:(NSDictionary*)params
                   complete:(void (^)(BOOL result))result{
@@ -1269,7 +1270,7 @@
 #pragma mark - 获取用户的推送配置
 + (void)getUserNotificationWithPara:(NSDictionary *)paraDic compelte:(void (^)(NSArray *))compelte{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-//    [app startLoading];
+    //    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_USERNOTIFITION baseURL:QINIU_SERVER params:paraDic success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
         if ([code isEqualToString:@"1"]) {
@@ -1279,21 +1280,21 @@
             //成功获取数据后则存储或更新最新数据
             LYCoreDataUtil *core = [LYCoreDataUtil shareInstance];
             [core saveOrUpdateCoreData:@"LYCache" withParam:@{
-    @"lyCacheKey":CACHE_SYSTEM_NOTIFICATION,@"lyCacheValue":dataArray,@"createDate":[NSDate date]}andSearchPara:@{@"lyCacheKey":CACHE_SYSTEM_NOTIFICATION}];
+                                                              @"lyCacheKey":CACHE_SYSTEM_NOTIFICATION,@"lyCacheValue":dataArray,@"createDate":[NSDate date]}andSearchPara:@{@"lyCacheKey":CACHE_SYSTEM_NOTIFICATION}];
         }else{
-//            compelte(nil);
+            //            compelte(nil);
         }
-//        [app stopLoading];
+        //        [app stopLoading];
     } failure:^(NSError *err) {
-//        compelte(nil);
-//                [app stopLoading];
+        //        compelte(nil);
+        //                [app stopLoading];
     }];
 }
 
 #pragma mark - 修改用户的推送配置
 + (void)changeUserNotificationWithPara:(NSDictionary *)paraDic compelte:(void (^)(bool))compelte{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-//    [app startLoading];
+    //    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_USERCHANGENOTIFICATION baseURL:QINIU_SERVER params:paraDic success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
         if ([code isEqualToString:@"1"]) {
@@ -1315,26 +1316,26 @@
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_QRCODE_SCAN baseURL:LY_SERVER params:paraDic success:^(id response) {
         NSString *errorCode = [response valueForKey:@"errorcode"];
         
-//        if ([errorCode isEqualToString:@"1"]) {
-            if ([[paraDic valueForKey:@"usertype"] isEqualToString:@"1"]) {
-                //普通用户进行扫码
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    complete(response);
-                });
-            }else if ([[paraDic valueForKey:@"usertype"] isEqualToString:@"2"] || [[paraDic valueForKey:@"usertype"] isEqualToString:@"3"]){
-                //商家扫码
-                NSString *message = [response valueForKey:@"message"];
-                NSArray *dataArr = [response valueForKey:@"data"];
-                NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[OrderInfoModel mj_objectArrayWithKeyValuesArray:dataArr]];
-                NSDictionary *dict = @{@"errorcode":errorCode,
-                                       @"message":message,
-                                       @"data":tempArr};
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    complete(dict);
-                });
-//            }
+        //        if ([errorCode isEqualToString:@"1"]) {
+        if ([[paraDic valueForKey:@"usertype"] isEqualToString:@"1"]) {
+            //普通用户进行扫码
+            dispatch_async(dispatch_get_main_queue(), ^{
+                complete(response);
+            });
+        }else if ([[paraDic valueForKey:@"usertype"] isEqualToString:@"2"] || [[paraDic valueForKey:@"usertype"] isEqualToString:@"3"]){
+            //商家扫码
+            NSString *message = [response valueForKey:@"message"];
+            NSArray *dataArr = [response valueForKey:@"data"];
+            NSMutableArray *tempArr = [[NSMutableArray alloc]initWithArray:[OrderInfoModel mj_objectArrayWithKeyValuesArray:dataArr]];
+            NSDictionary *dict = @{@"errorcode":errorCode,
+                                   @"message":message,
+                                   @"data":tempArr};
+            dispatch_async(dispatch_get_main_queue(), ^{
+                complete(dict);
+            });
+            //            }
         }else{
-//            [MyUtil showLikePlaceMessage:[response valueForKey:@"message"]];
+            //            [MyUtil showLikePlaceMessage:[response valueForKey:@"message"]];
             [MyUtil showMessage:[response valueForKey:@"message"]];
         }
         [app stopLoading];
@@ -1373,7 +1374,7 @@
         if ([errorCode isEqualToString:@"1"]) {
             complete(message);
         }else{
-//            [MyUtil showLikePlaceMessage:message];
+            //            [MyUtil showLikePlaceMessage:message];
             [MyUtil showMessage:message];
         }
     } failure:^(NSError *err) {
@@ -1383,7 +1384,7 @@
 
 #pragma mark - 获取远程版本 判断是否强制升级
 - (void) getAppUpdateStatus:(NSDictionary*)params
-                  complete:(void (^)(BOOL result))result{
+                   complete:(void (^)(BOOL result))result{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_FORCED_UPDATE baseURL:LY_SERVER params:params success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
         if ([code isEqualToString:@"1"]) {
@@ -1417,14 +1418,14 @@
 
 #pragma mark - 获取DES KEY
 -(void) getAppDesKey:(NSDictionary*)params
-                  complete:(void (^)(NSString * result))result{
+            complete:(void (^)(NSString * result))result{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_GET_DES baseURL:LY_SERVER params:params success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
         if ([code isEqualToString:@"1"]) {
             NSString *key = response[@"data"];
-                dispatch_async(dispatch_get_main_queue(), ^(void) {
-                    result(key);
-                });
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                result(key);
+            });
         }
     } failure:^(NSError *err) {
     }];
@@ -1437,10 +1438,10 @@
     [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LP_CHECK_CONSUMERID baseURL:LY_SERVER params:params success:^(id response) {
         NSString *code = [response valueForKey:@"errorcode"];
-//        if ([code isEqualToString:@"1"]) {
+        //        if ([code isEqualToString:@"1"]) {
         [MyUtil showMessage:[response valueForKey:@"message"]];
         [app stopLoading];
-//        }
+        //        }
         complete();
     } failure:^(NSError *err) {
         [app stopLoading];
@@ -1592,6 +1593,20 @@
     }];
 }
 
+
+#pragma mark - 获取定位城市的相关信息
++ (void)lyLocationCityGetStatusWithParams:(NSDictionary *)dict complete:(void(^)(NSDictionary *dict))complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_LOCATION_GETSTATUS baseURL:LY_SERVER params:dict success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            complete([response objectForKey:@"data"]);
+        }else{
+            complete(nil);
+        }
+    } failure:^(NSError *err) {
+        
+    }];
+}
 
 
 

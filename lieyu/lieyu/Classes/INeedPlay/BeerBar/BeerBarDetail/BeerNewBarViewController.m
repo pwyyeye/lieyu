@@ -98,7 +98,7 @@
     _tableView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);
     [self setupViewStyles];                                                     //tableView registe cell
     
-//    self.image_layer.hidden = YES;
+    //    self.image_layer.hidden = YES;
     //wtt
     self.image_layer.alpha = 0.f;
     
@@ -112,18 +112,18 @@
     self.view_bottom.layer.shadowRadius = 2;
     
     [self loadBarDetail];                        //load data
-  
+    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadMyCollectedAndLikeBar) name:@"loadMyCollectedAndLikeBar" object:nil];
     
     [MTA trackCustomKeyValueEvent:@"BarDetail" props:nil];
     
-   
+    
     NSLog(@"%@",self.navigationController.interactivePopGestureRecognizer);
     UIGestureRecognizer *ges = self.navigationController.interactivePopGestureRecognizer;
     [_tableView.panGestureRecognizer requireGestureRecognizerToFail:ges];
     
-
+    
 }
 
 #pragma mark - 加载是否我已经收藏和喜欢了的酒吧
@@ -149,11 +149,11 @@
         _image_header.hidden = NO;
     }else{
         _image_header.hidden = YES;
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     }
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [_timer setFireDate:[NSDate distantPast]];
-   
+    
     //签到的背景view
     UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
     effectView = [[UIVisualEffectView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2.f - 30, SCREEN_HEIGHT - 60, 60, 60)];
@@ -199,13 +199,13 @@
 #pragma mart --约束
 -(void)updateViewConstraints{
     [super updateViewConstraints];
-//    if (self.beerBarDetail.isSign==0) {
-//        _buttomViewHeight.constant=0;
-//        _bottomBarView.hidden = YES;
-//    }else{
-        _buttomViewHeight.constant=49;
-        _bottomBarView.hidden = NO;
-//    }
+    //    if (self.beerBarDetail.isSign==0) {
+    //        _buttomViewHeight.constant=0;
+    //        _bottomBarView.hidden = YES;
+    //    }else{
+    _buttomViewHeight.constant=49;
+    _bottomBarView.hidden = NO;
+    //    }
 }
 
 #pragma mark - 加载酒吧详情的数据
@@ -229,15 +229,15 @@
         if (!_beerBarDetail.isSign) {
             _bottomEffectView.hidden = NO;
             /*[self.view bringSubviewToFront:_tableView];
-            [self.view bringSubviewToFront:effectView];
-            [self.view bringSubviewToFront:_image_layer];
-            [self.view bringSubviewToFront:_btnBack];
-            [self.view bringSubviewToFront:_btn_collect];
-            [self.view bringSubviewToFront:_btn_like];
-            [self.view bringSubviewToFront:_btnShare                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ]; */
+             [self.view bringSubviewToFront:effectView];
+             [self.view bringSubviewToFront:_image_layer];
+             [self.view bringSubviewToFront:_btnBack];
+             [self.view bringSubviewToFront:_btn_collect];
+             [self.view bringSubviewToFront:_btn_like];
+             [self.view bringSubviewToFront:_btnShare                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ]; */
             _view_bottom.hidden = NO;
         }
-//        return;
+        //        return;
     }
     
     __weak __typeof(self ) weakSelf = self;
@@ -247,9 +247,9 @@
          if (erMsg.state == Req_Success) {
              weakSelf.beerBarDetail = detailItem;
              
-//             _tableHeaderImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 9 /16)];
-//             [_tableHeaderImgView sd_setImageWithURL:[NSURL URLWithString:detailItem.banners.firstObject]];
-//             weakSelf.tableView.tableHeaderView = _tableHeaderImgView;
+             //             _tableHeaderImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 9 /16)];
+             //             [_tableHeaderImgView sd_setImageWithURL:[NSURL URLWithString:detailItem.banners.firstObject]];
+             //             weakSelf.tableView.tableHeaderView = _tableHeaderImgView;
              
              weakSelf.title=weakSelf.beerBarDetail.barname;
              //判断用户是否已经喜欢过
@@ -260,18 +260,18 @@
              [weakSelf loadMyBarInfo];
              //加载webview
              [weakSelf loadWebView];
-//             [weakSelf setTimer];
+             //             [weakSelf setTimer];
              
              if (!_beerBarDetail.isSign) {
                  _bottomEffectView.hidden = NO;
                  _view_bottom.hidden = NO;
-             /*    [weakSelf.view bringSubviewToFront:_tableView];
-                 [weakSelf.view bringSubviewToFront:effectView];
-                 [weakSelf.view bringSubviewToFront:_image_layer];
-                 [weakSelf.view bringSubviewToFront:_btnBack];
-                 [weakSelf.view bringSubviewToFront:_btn_collect];
-                 [weakSelf.view bringSubviewToFront:_btn_like];
-                 [weakSelf.view bringSubviewToFront:_btnShare                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ]; */
+                 /*    [weakSelf.view bringSubviewToFront:_tableView];
+                  [weakSelf.view bringSubviewToFront:effectView];
+                  [weakSelf.view bringSubviewToFront:_image_layer];
+                  [weakSelf.view bringSubviewToFront:_btnBack];
+                  [weakSelf.view bringSubviewToFront:_btn_collect];
+                  [weakSelf.view bringSubviewToFront:_btn_like];
+                  [weakSelf.view bringSubviewToFront:_btnShare                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ]; */
              }
          }
      } failure:^(BeerBarOrYzhDetailModel *beerModel) {
@@ -291,19 +291,19 @@
 
 #pragma mark - 从本地获取数据
 - (NSArray *)getDataFromLocal{
-     NSString *keyStr = [NSString stringWithFormat:@"%@%@",CACHE_JIUBADETAIL,_beerBarId.stringValue];
-//     NSPredicate *pre = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"lyCacheKey == '%@'",keyStr]];
+    NSString *keyStr = [NSString stringWithFormat:@"%@%@",CACHE_JIUBADETAIL,_beerBarId.stringValue];
+    //     NSPredicate *pre = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"lyCacheKey == '%@'",keyStr]];
     NSDictionary *paraDic = @{@"lyCacheKey":keyStr};
     NSArray *dataArray = [[LYCoreDataUtil shareInstance] getCoreData:@"LYCache" andSearchPara:paraDic];
-// NSArray *dataArray = [[LYCoreDataUtil shareInstance] getCoreData:@"LYCache" withPredicate:pre];
-        NSDictionary *dataDic = ((LYCache *)dataArray.firstObject).lyCacheValue;
-        BeerBarOrYzhDetailModel *beerModel = [BeerBarOrYzhDetailModel initFormDictionary:dataDic];
-
+    // NSArray *dataArray = [[LYCoreDataUtil shareInstance] getCoreData:@"LYCache" withPredicate:pre];
+    NSDictionary *dataDic = ((LYCache *)dataArray.firstObject).lyCacheValue;
+    BeerBarOrYzhDetailModel *beerModel = [BeerBarOrYzhDetailModel initFormDictionary:dataDic];
+    
     return beerModel?@[beerModel]:nil;
-   
-//    NSPredicate *pre = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"lyCacheKey == %@",keyStr]];
-//    NSArray *array = [[LYCoreDataUtil shareInstance] getCoreData:@"LYCache" withPredicate:pre];
-//    return array;
+    
+    //    NSPredicate *pre = [NSPredicate predicateWithFormat:[NSString stringWithFormat:@"lyCacheKey == %@",keyStr]];
+    //    NSArray *array = [[LYCoreDataUtil shareInstance] getCoreData:@"LYCache" withPredicate:pre];
+    //    return array;
 }
 
 
@@ -318,7 +318,7 @@
                     _userCollected = YES;
                     
                     if (_image_layer.alpha <= 0.f) {//white
-                         [_btn_collect setBackgroundImage:[UIImage imageNamed:@"收藏whited"] forState:UIControlStateNormal];
+                        [_btn_collect setBackgroundImage:[UIImage imageNamed:@"收藏whited"] forState:UIControlStateNormal];
                     }else{
                         [_btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect2"] forState:UIControlStateNormal];
                     }
@@ -350,9 +350,9 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
-   // if (scrollView.contentOffset.y > SCREEN_WIDTH/183*95 - self.image_layer.size.height) {
-//        self.image_layer.hidden = NO;
-//        self.image_layer.alpha = scrollView.contentOffset.y / 64.f;
+    // if (scrollView.contentOffset.y > SCREEN_WIDTH/183*95 - self.image_layer.size.height) {
+    //        self.image_layer.hidden = NO;
+    //        self.image_layer.alpha = scrollView.contentOffset.y / 64.f;
     //根据偏移量改变导航view透明度
     if (scrollView.contentOffset.y >= SCREEN_WIDTH /16 * 9 - 64) {
         self.image_layer.alpha = 1;
@@ -364,11 +364,11 @@
         self.image_layer.alpha = 0;
     }
     
-//    self.image_layer.alpha = scrollView.contentOffset.y / (SCREEN_WIDTH / 16 * 9 - 64);
-//        self.image_layer.layer.shadowRadius = 2;
-//        self.image_layer.layer.shadowOpacity = 0.5;
-//        self.image_layer.layer.shadowOffset = CGSizeMake(0, 1);
-//        self.image_layer.layer.shadowColor = [[UIColor lightGrayColor]CGColor];
+    //    self.image_layer.alpha = scrollView.contentOffset.y / (SCREEN_WIDTH / 16 * 9 - 64);
+    //        self.image_layer.layer.shadowRadius = 2;
+    //        self.image_layer.layer.shadowOpacity = 0.5;
+    //        self.image_layer.layer.shadowOffset = CGSizeMake(0, 1);
+    //        self.image_layer.layer.shadowColor = [[UIColor lightGrayColor]CGColor];
     if (self.image_layer.alpha <= 0.f) {//white
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
         [_btnBack setImage:[UIImage imageNamed:@"return_white"] forState:UIControlStateNormal];
@@ -386,7 +386,7 @@
     }else{//black
         _image_header.hidden = NO;
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
-         [_btnBack setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
+        [_btnBack setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
         if (_userCollected) {
             [_btn_collect setBackgroundImage:[UIImage imageNamed:@"icon_collect2"] forState:UIControlStateNormal];
         }else{
@@ -397,46 +397,46 @@
         }else{
             [_btn_like setBackgroundImage:[UIImage imageNamed:@"icon_like_2"] forState:UIControlStateNormal];
         }
-                [_btnShare setImage:[UIImage imageNamed:@"share_black"] forState:UIControlStateNormal];
+        [_btnShare setImage:[UIImage imageNamed:@"share_black"] forState:UIControlStateNormal];
     }
     
     if (_tableView.contentOffset.y < 0) {
         CGFloat y = scrollView.contentOffset.y;
-//        CGFloat hegiht = SCREEN_WIDTH * 95 / 183.f;
+        //        CGFloat hegiht = SCREEN_WIDTH * 95 / 183.f;
         CGFloat hegiht = SCREEN_WIDTH * 9 / 16.f;
-//        _tableHeaderImgView.frame = CGRectMake(- ((hegiht - y) * 183 / 95.f - SCREEN_WIDTH ) /2.f, y, (hegiht - y) * 183 / 95.f, hegiht -y);
+        //        _tableHeaderImgView.frame = CGRectMake(- ((hegiht - y) * 183 / 95.f - SCREEN_WIDTH ) /2.f, y, (hegiht - y) * 183 / 95.f, hegiht -y);
         _tableHeaderImgView.frame = CGRectMake(- ((hegiht - y) * 16 / 9.f - SCREEN_WIDTH ) /2.f, y, (hegiht - y) * 16 / 9.f, hegiht -y);
     }
     
-   /* if (scrollView.contentOffset.y > _contentOffSetY) {
-        if (scrollView.contentOffset.y <= 0.f) {
-            [UIView animateWithDuration:0.2 animations:^{
-                effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 120, 60, 60);
-            }];
-        }else{
-        [UIView animateWithDuration:0.4 animations:^{
-            effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT, 60, 60);
-        }];
-        }
-    }else{
-        if (scrollView.contentOffset.y <= 0.f) {
-            
-        }else{
-        if(CGRectGetMaxY(effectView.frame) > SCREEN_HEIGHT - 5){
-            [UIView animateWithDuration:.4 animations:^{
-                effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 123, 60, 60);
-            }completion:^(BOOL finished) {
-                [UIView animateWithDuration:0.2 animations:^{
-                    effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 120, 60, 60);
-                }];
-            }];
-        }
-        }
-    } */
+    /* if (scrollView.contentOffset.y > _contentOffSetY) {
+     if (scrollView.contentOffset.y <= 0.f) {
+     [UIView animateWithDuration:0.2 animations:^{
+     effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 120, 60, 60);
+     }];
+     }else{
+     [UIView animateWithDuration:0.4 animations:^{
+     effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT, 60, 60);
+     }];
+     }
+     }else{
+     if (scrollView.contentOffset.y <= 0.f) {
+     
+     }else{
+     if(CGRectGetMaxY(effectView.frame) > SCREEN_HEIGHT - 5){
+     [UIView animateWithDuration:.4 animations:^{
+     effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 123, 60, 60);
+     }completion:^(BOOL finished) {
+     [UIView animateWithDuration:0.2 animations:^{
+     effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 120, 60, 60);
+     }];
+     }];
+     }
+     }
+     } */
     if (scrollView.contentOffset.y > _contentOffSetY) {
-//        [UIView animateWithDuration:0.4 animations:^{
-//            effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT, 60, 60);
-//        }];
+        //        [UIView animateWithDuration:0.4 animations:^{
+        //            effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT, 60, 60);
+        //        }];
         //签到按钮下移
         if (scrollView.contentOffset.y <= 0.f) {
             [UIView animateWithDuration:0.2 animations:^{
@@ -468,8 +468,8 @@
 - (void)loadWebView{
     
     _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0,55, SCREEN_WIDTH, 2500)];
-//    _webView.backgroundColor = [UIColor redColor];
-//    _webView.tintColor = [UIColor redColor];
+    //    _webView.backgroundColor = [UIColor redColor];
+    //    _webView.tintColor = [UIColor redColor];
     _webView.delegate = self;
     _webView.tag = 10086;
     
@@ -483,7 +483,7 @@
     [_webView loadHTMLString:webStr baseURL:nil];
     //    });
     
-   
+    
 }
 
 
@@ -611,7 +611,7 @@
     webView.frame = CGRectMake(0,55, SCREEN_WIDTH, clientheight+20);
     //获取WebView最佳尺寸（点）
     CGSize frame = [webView sizeThatFits:webView.frame.size];
-
+    
     //获取内容实际高度（像素）
     //    NSString * height_str= [webView stringByEvaluatingJavaScriptFromString: @"document.getElementById('webview_content_wrapper').offsetHeight;"];
     //    float height = [height_str floatValue];
@@ -622,7 +622,7 @@
     //webView.frame = CGRectMake(0, self.tableView.contentSize.height - 30, SCREEN_WIDTH, frame.height);
     //    webView.backgroundColor = [UIColor redColor];
     [_tableView reloadData];
-
+    
 }
 
 #pragma mark -- tableviewDelegate
@@ -630,7 +630,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     if(_beerBarDetail)
-    return 7 + 1;
+        return 7 + 1;
     else return 0;
 }
 
@@ -651,7 +651,7 @@
             if (imgV) {
                 [imgV removeFromSuperview];
             }
-//            _tableHeaderImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 95/183.f)];
+            //            _tableHeaderImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 95/183.f)];
             _tableHeaderImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 9/16.f)];
             _tableHeaderImgView.tag = 1008611;
             if(_beerBarDetail.banners.count){
@@ -722,7 +722,7 @@
         }
             break;
             
-            case 6://activity 活动cell
+        case 6://activity 活动cell
         {
             LYBarScrollTableViewCell *scrollCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarScrollTableViewCell" forIndexPath:indexPath];
             //_activityArray = @[@"http://source.lie98.com/37680ChaletPlusLounge2.jpg"];
@@ -734,15 +734,15 @@
                 [btn addTarget:self action:@selector(activtyClick:) forControlEvents:UIControlEventTouchUpInside];
             }
             return scrollCell;
-           /* UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-            cell.backgroundColor = [UIColor redColor];
-            return cell; */
+            /* UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+             cell.backgroundColor = [UIColor redColor];
+             return cell; */
         }
             break;
         case 7://webview 加载酒吧详情的代理
         {
             LYBarDescTableViewCell *barDescTitleCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarDescTableViewCell" forIndexPath:indexPath];
-//            barDescTitleCell con
+            //            barDescTitleCell con
             
             UIWebView *webV = [barDescTitleCell viewWithTag:10086];
             if (webV) {
@@ -777,7 +777,7 @@
 }
 
 #pragma mark － 签到
-- (void)signClick:(id)sender { 
+- (void)signClick:(id)sender {
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied){
         UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"定位功能不可用" message:@"请前往设置隐私中开启定位服务" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alertView show];
@@ -785,28 +785,28 @@
         [MyUtil pushToAddPicForUser];//判断是否有头像，没有跳转修改
         CGFloat distance = [[LYUserLocation alloc] configureDistance:_beerBarDetail.latitude And:_beerBarDetail.longitude];
         if ((distance >=0 && distance <= _beerBarDetail.allowDistance.floatValue)||_beerBarDetail.allowDistance==nil?YES:_beerBarDetail.allowDistance.intValue==0) {
-        NSDictionary *dic = @{@"barid":_beerBarId};
-        [LYHomePageHttpTool signWith:dic complete:^(bool result) {
-            if (result) {
-                AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-                CustomerModel *customerM = [[CustomerModel alloc]init];
-                customerM.userid = app.userModel.userid;
-                UserModel *userM = [[UserModel alloc]init];
-                userM.avatar_img = app.userModel.avatar_img;
-                customerM.userInfo = userM;
-                if (_beerBarDetail.signUsers.count) {
-                    [_beerBarDetail.signUsers insertObject:customerM atIndex:0];
-                }else {
-                    [_beerBarDetail.signUsers addObject:customerM];
+            NSDictionary *dic = @{@"barid":_beerBarId};
+            [LYHomePageHttpTool signWith:dic complete:^(bool result) {
+                if (result) {
+                    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+                    CustomerModel *customerM = [[CustomerModel alloc]init];
+                    customerM.userid = app.userModel.userid;
+                    UserModel *userM = [[UserModel alloc]init];
+                    userM.avatar_img = app.userModel.avatar_img;
+                    customerM.userInfo = userM;
+                    if (_beerBarDetail.signUsers.count) {
+                        [_beerBarDetail.signUsers insertObject:customerM atIndex:0];
+                    }else {
+                        [_beerBarDetail.signUsers addObject:customerM];
+                    }
+                    [_tableView reloadData];
                 }
-                [_tableView reloadData];
-            }
-        }];
-
-    }else if (distance >= _beerBarDetail.allowDistance.floatValue){
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"您需要在酒吧，才能签到!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-        [alertView show];
-    }
+            }];
+            
+        }else if (distance >= _beerBarDetail.allowDistance.floatValue){
+            UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"提示" message:@"您需要在酒吧，才能签到!" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alertView show];
+        }
     }
 }
 
@@ -832,17 +832,17 @@
         return;
     }
     
-//    if ([addressBook.userInfo.usertype isEqualToString:@"2"]) {
-//        [MyUtil showPlaceMessage:@"专属经理"];
-//    }else{
-//        [MyUtil showPlaceMessage:@"普通人"];
-//    }
+    //    if ([addressBook.userInfo.usertype isEqualToString:@"2"]) {
+    //        [MyUtil showPlaceMessage:@"专属经理"];
+    //    }else{
+    //        [MyUtil showPlaceMessage:@"普通人"];
+    //    }
     
     LYMyFriendDetailViewController *friendDetailViewController=[[LYMyFriendDetailViewController alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
-//    friendDetailViewController.title=@"详细信息";
+    //    friendDetailViewController.title=@"详细信息";
     friendDetailViewController.type=@"4";
-//    [friendDetailViewController.navigationController setNavigationBarHidden:NO animated:YES];
-//    friendDetailViewController.customerModel=addressBook;
+    //    [friendDetailViewController.navigationController setNavigationBarHidden:NO animated:YES];
+    //    friendDetailViewController.customerModel=addressBook;
     friendDetailViewController.userID = [NSString stringWithFormat:@"%d",addressBook.userid];
     [self.navigationController pushViewController:friendDetailViewController animated:YES];
 }
@@ -864,8 +864,8 @@
 
 #pragma mark - 电话
 - (void)telephoneClick:(UIButton *)button{
-//    UIActionSheet *sheet = [[UIActionSheet alloc]initWithTitle:@"拨打电话" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:[NSString stringWithFormat:@"%@",_beerBarDetail.telephone], nil];
-//    [sheet showInView:self.view];
+    //    UIActionSheet *sheet = [[UIActionSheet alloc]initWithTitle:@"拨打电话" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:[NSString stringWithFormat:@"%@",_beerBarDetail.telephone], nil];
+    //    [sheet showInView:self.view];
 }
 
 - (void)onTime{
@@ -894,7 +894,7 @@
             else return 0;
         }
         return 3;
-
+        
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -907,7 +907,7 @@
     switch (indexPath.section) {
         case 0:
         {
-//            return SCREEN_WIDTH * 95 / 183;
+            //            return SCREEN_WIDTH * 95 / 183;
             return SCREEN_WIDTH * 9 / 16;
         }
             break;
@@ -930,7 +930,7 @@
             return 60;
         }
             break;
-            case 5:
+        case 5:
         {
             CGFloat btnWidth = (SCREEN_WIDTH - 14 - (7 - 1) * 7)/7.f;
             if(_beerBarDetail.signUsers.count) return btnWidth + 16;
@@ -941,12 +941,12 @@
             
         case 6:
         {
-//            return 76;
+            //            return 76;
             if(_activityArray.count) return 213;
             else return 0;
         }
             break;
-            case 7:
+        case 7:
         {
             return _webView.frame.size.height + 55;
         }
@@ -955,13 +955,13 @@
     return h;
 }
 
-#pragma mark - UIACTIONSheetDelegate 
+#pragma mark - UIACTIONSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 0) {
-//        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel://%@",_beerBarDetail.telephone];
+        //        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel://%@",_beerBarDetail.telephone];
         //            NSLog(@"str======%@",str);
-//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
-       
+        //        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+        
     }
 }
 
@@ -1041,7 +1041,7 @@
         [paraDic setValue:imuserId  forKey:@"userIds"];
         [paraDic setValue:_beerBarDetail.barname forKey:@"groupName"];
         [LYYUHttpTool yuCreatGroupWith:paraDic complete:^(NSDictionary *data) {
-//            NSString *code = [NSString stringWithFormat:@"%@",data[@"code"]];
+            //            NSString *code = [NSString stringWithFormat:@"%@",data[@"code"]];
             BarGroupChatViewController *barChatVC = [[BarGroupChatViewController alloc] initWithConversationType:ConversationType_GROUP targetId:[NSString stringWithFormat:@"%@",_beerBarId]];
             barChatVC.title = [NSString stringWithFormat:@"%@",_beerBarDetail.barname];
             barChatVC.groupManage = [_beerBarDetail.groupManage componentsSeparatedByString:@","];
@@ -1059,8 +1059,8 @@
         [paraDic setValue:imuserId  forKey:@"userId"];
         [paraDic setValue:_beerBarDetail.barname forKey:@"groupName"];
         [LYYUHttpTool yuJoinGroupWith:paraDic complete:^(NSDictionary *data) {
-           
-//            NSString *code = data[@"code"];
+            
+            //            NSString *code = data[@"code"];
             BarGroupChatViewController *barChatVC = [[BarGroupChatViewController alloc] initWithConversationType:ConversationType_GROUP targetId:[NSString stringWithFormat:@"%@",_beerBarId]];
             barChatVC.title = [NSString stringWithFormat:@"%@",_beerBarDetail.barname];
             barChatVC.groupManage = [_beerBarDetail.groupManage componentsSeparatedByString:@","];
@@ -1138,7 +1138,7 @@
         [self.navigationController pushViewController:loginVC animated:YES];
     }else{
         NSDictionary *dic=@{@"barid":self.beerBarDetail.barid};
-  
+        
         __weak BeerNewBarViewController *weakSelf = self;
         //判断用户是否已经收藏过
         if (_userCollected) {

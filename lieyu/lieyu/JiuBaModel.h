@@ -11,28 +11,6 @@
 #import "RecommendPackageModel.h"
 @interface JiuBaModel : NSObject
 
-//"address": "莉莉玛莲街道",
-//"announcement": null,
-//"banners": [],
-//"baricon": "http://7xn0lq.com2.z0.glb.qiniucdn.com/?imageView2/0/w/80/h/80",
-//"barid": 2,
-//"barlevelid": 0,
-//"barlevelname": "",
-//"barname": "丽丽酒吧",
-//"bartypename": "",
-//"distance": "0",
-//"environment_num": "",
-//"fav_num": 11,
-//"id": 2,
-//"latitude": "26.074508",
-//"longitude": "119.29649399999994",
-//"lowest_consumption": 30,
-//"recommend_package": [],
-//"star_num": "",
-//"subtitle": "丽丽",
-//"subtypename": "",
-//"tese": [],
-//"today_sm_buynum": ""
 @property(nonatomic,assign)int id;
 @property (nonatomic, copy) NSString * address;
 @property (nonatomic, retain) AnnouncementModel * announcement;
@@ -46,8 +24,9 @@
 @property (nonatomic, copy) NSString * bartypename;
 @property (nonatomic, copy) NSString * distance;
 @property (nonatomic, copy) NSString * environment_num;
-@property(nonatomic,copy)NSString * fav_num;
-@property(nonatomic,copy) NSString *like_num; 
+@property(nonatomic,assign)int fav_num;
+@property(nonatomic,assign) int like_num;
+@property (nonatomic, assign) int commentNum;
 @property (nonatomic, copy) NSString * barname;
 @property (nonatomic, copy) NSString * latitude;
 @property (nonatomic, copy) NSString * longitude;
@@ -65,6 +44,16 @@
 @property (nonatomic, strong) NSString *startTime;
 @property (nonatomic, strong) NSString *endTime;
 @property (nonatomic, strong) NSString *vipCity;
+
+
+@property (nonatomic,copy) NSString *topicTypeId;
+@property (nonatomic,copy) NSString *topicTypeName;
+
+@property(nonatomic, assign) BOOL hasGroup;//群聊
+@property(nonatomic, strong) NSString *groupManage;//拼接了所有的老司机
+
+@property (nonatomic, assign) int isLiked;
+
 
 -(NSComparisonResult)compareJiuBaModel:(JiuBaModel *)model;
 - (NSComparisonResult)compareJiuBaModelGao:(JiuBaModel *)modelGao;

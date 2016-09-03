@@ -49,7 +49,6 @@ static NSString *liveShowListID = @"liveShowListID";
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     _pageNum = 2;
-    _index = 0;
     _chooseType = 0;
     
     _tableViewArray = [NSMutableArray array];
@@ -66,7 +65,11 @@ static NSString *liveShowListID = @"liveShowListID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     _type = 0;
-    _friendsBtnSelect = YES;
+    if (!_index) {//0热门
+        _friendsBtnSelect = YES;
+    } else {
+        _friendsBtnSelect = NO;
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -111,7 +114,6 @@ static NSString *liveShowListID = @"liveShowListID";
         _newBtn.isLiveListMenuSelected = YES;
         _hotBtn.isLiveListMenuSelected = NO;
     }
-
     
     _lineView = [[UIView alloc]init];
     _lineView.bounds = CGRectMake(0,0,42, 2);
@@ -147,7 +149,7 @@ static NSString *liveShowListID = @"liveShowListID";
             butt.titleLabel.font = [UIFont systemFontOfSize:11];
             [butt addTarget:self action:@selector(chooseTypeButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
         }
-        if (i== _chooseType) {
+        if (i== 1) {
             [butt setTitleColor:RGB(187, 40, 217) forState:(UIControlStateNormal)];
         }
         [_chooseView addSubview:butt];
@@ -169,8 +171,8 @@ static NSString *liveShowListID = @"liveShowListID";
 }
 
 -(void)hotButtonClick{
-    [_scrollViewForTableView setContentOffset:CGPointZero];
     _friendsBtnSelect = YES;
+    _index = 0;
     [self refreshData];
     _hotBtn.isLiveListMenuSelected = YES;
     _newBtn.isLiveListMenuSelected = NO;
@@ -180,8 +182,8 @@ static NSString *liveShowListID = @"liveShowListID";
 }
 
 -(void)newButtonClick{
-    [_scrollViewForTableView setContentOffset:CGPointMake(SCREEN_WIDTH, 0)];
     _friendsBtnSelect = NO;
+    _index = 1;
     [self refreshData];
     _hotBtn.isLiveListMenuSelected = NO;
     _newBtn.isLiveListMenuSelected = YES;
@@ -195,37 +197,47 @@ static NSString *liveShowListID = @"liveShowListID";
     UIButton *but2 = (UIButton *)[self.view viewWithTag:101];
     UIButton *but3 = (UIButton *)[self.view viewWithTag:102];
     UIButton *but4 = (UIButton *)[self.view viewWithTag:103];
-
+    UIButton *but5 = (UIButton *)[self.view viewWithTag:104];
     switch (sender.tag) {
-        case 100:
+        case 100://全部
             _chooseType = 0;
             [but1 setTitleColor:RGB(217, 40, 187) forState:(UIControlStateNormal)];
-            [but2 setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
-            [but3 setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
-            [but4 setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
+            [but2 setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
+            [but3 setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
+            [but4 setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
+            [but5 setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
             break;
         case 101:
             _chooseType = 1;
             [but2 setTitleColor:RGB(217, 40, 187) forState:(UIControlStateNormal)];
-            [but1 setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
-            [but3 setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
-            [but4 setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
+            [but1 setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
+            [but3 setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
+            [but4 setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
+            [but5 setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
             break;
         case 102:
             _chooseType = 2;
             [but3 setTitleColor:RGB(217, 40, 187) forState:(UIControlStateNormal)];
-            [but2 setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
-            [but1 setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
-            [but4 setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
+            [but2 setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
+            [but1 setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
+            [but4 setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
+            [but5 setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
             break;
         case 103:
             _chooseType = 3;
             [but4 setTitleColor:RGB(217, 40, 187) forState:(UIControlStateNormal)];
-            [but2 setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
-            [but3 setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
-            [but1 setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
+            [but2 setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
+            [but3 setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
+            [but1 setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
+            [but5 setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
             break;
         case 104:
+            _chooseType = 4;
+            [but5 setTitleColor:RGB(217, 40, 187) forState:(UIControlStateNormal)];
+            [but2 setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
+            [but3 setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
+            [but1 setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
+            [but4 setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
             break;
         default:
             break;
@@ -363,7 +375,34 @@ static NSString *liveShowListID = @"liveShowListID";
         } else {
             UITableView *newTableView = (UITableView *)_tableViewArray[1];
             for (LYLiveShowListModel *model in Arr) {
-                [self.rencentDataArray addObject:model];
+                roomHostUser *user = model.roomHostUser;
+                switch (_chooseType) {
+                    case 0://全部
+                        [self.rencentDataArray addObject:model];
+                        break;
+                    case 1://美女
+                        if (user.gender == 0) {
+                            [self.rencentDataArray addObject:model];
+                        }
+                        break;
+                    case 2://帅哥
+                        if (user.gender == 1) {
+                            [self.rencentDataArray addObject:model];
+                        }
+                        break;
+                    case 3://娱乐顾问
+                        if (user.roleid != 1) {
+                            [self.rencentDataArray addObject:model];
+                        }
+                        break;
+                    case 4://玩友
+                        if (user.roleid == 1) {
+                            [self.rencentDataArray addObject:model];
+                        }
+                        break;
+                    default:
+                        break;
+                }
             }
             if (_rencentDataArray.count <= 0) {
                 if (_rencentDataArray.count <= 0) {
@@ -384,6 +423,11 @@ static NSString *liveShowListID = @"liveShowListID";
             });
         }
             }];
+    if (!_index) {
+        [_scrollViewForTableView setContentOffset:CGPointZero];
+    } else {
+        [_scrollViewForTableView setContentOffset:CGPointMake(SCREEN_WIDTH, 0)];
+    }
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -545,9 +589,15 @@ static NSString *liveShowListID = @"liveShowListID";
     NSDictionary *dict = @{@"roomid":roomId};
     __weak LiveListViewController *weakSelf = self;
     [LYFriendsHttpTool getLiveShowRoomWithParams:dict complete:^(NSDictionary *Arr) {
-        watchLiveVC.contentURL = Arr[@"liveRtmpUrl"];
-        watchLiveVC.chatRoomId = Arr[@"chatroomid"];
+        if ([Arr[@"roomType"] isEqualToString:@"live"]) {
+            watchLiveVC.contentURL = Arr[@"liveRtmpUrl"];
+            watchLiveVC.chatRoomId = Arr[@"chatroomid"];
+        } else {
+            watchLiveVC.contentURL = Arr[@"playbackURL"];
+            watchLiveVC.chatRoomId = nil;
+        }
         watchLiveVC.hostUser = Arr[@"roomHostUser"];
+
         [weakSelf presentViewController:watchLiveVC animated:YES completion:NULL];
     }];
     

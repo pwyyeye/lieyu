@@ -2,7 +2,7 @@
 //  MineMoneyBagViewController.m
 //  lieyu
 //
-//  Created by 王婷婷 on 16/8/16.
+//  Created by 王婷婷 on 16/8/29.
 //  Copyright © 2016年 狼族（上海）网络科技有限公司. All rights reserved.
 //
 
@@ -13,21 +13,22 @@
 #import "MineWithdrawListViewController.h"
 #import "ZSTiXianRecordViewController.h"
 
+
 #define IDENTIFIER @"MineMoneyBagCollectionViewCell"
 
 @interface MineMoneyBagViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
     NSArray *_dataArray;
 }
+
 @end
 
 @implementation MineMoneyBagViewController
-
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     _dataArray = @[@{@"title":@"娱币商城",@"image":@"shopIcon"},
-                   @{@"title":@"猎娱VIP",@"image":@"VIPIcon@3x"}];
+                   @{@"title":@"猎娱VIP",@"image":@"VIPIcon"}];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     [_collectionView registerNib:[UINib nibWithNibName:@"MineMoneyBagCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"MineMoneyBagCollectionViewCell"];
@@ -50,8 +51,13 @@
     self.navigationItem.rightBarButtonItem = rightItem;
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 - (void)withdrawListClick:(UIButton *)button{
-//    MineWithdrawListViewController *mineWithdrawListVC = [[MineWithdrawListViewController alloc]init];
+    //    MineWithdrawListViewController *mineWithdrawListVC = [[MineWithdrawListViewController alloc]init];
     ZSTiXianRecordViewController *mineWithdrawListVC = [[ZSTiXianRecordViewController alloc]init];
     [self.navigationController pushViewController:mineWithdrawListVC animated:YES];
 }
@@ -99,9 +105,18 @@
     }
 }
 
-#pragma mark - 按钮事件
-- (IBAction)balanceClick:(UIButton *)sender {
-    MineBalanceViewController *mineBalanceVC = [[MineBalanceViewController alloc]initWithNibName:@"MineBalanceViewController" bundle:[NSBundle mainBundle]];
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+- (IBAction)balanceClick:(UIButton *)sender {MineBalanceViewController *mineBalanceVC = [[MineBalanceViewController alloc]initWithNibName:@"MineBalanceViewController" bundle:[NSBundle mainBundle]];
     [self.navigationController pushViewController:mineBalanceVC animated:YES];
 }
 

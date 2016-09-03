@@ -45,14 +45,14 @@
 
 - (void)withdrawButtonClick:(UIButton *)sender{
     //提现
-//    UIAlertView *withdrawAlertView = [[UIAlertView alloc]initWithTitle:@"请输入提现金额" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-//    withdrawAlertView.tag = 2;
-//    [withdrawAlertView setAlertViewStyle:UIAlertViewStylePlainTextInput];
-//    UITextField *withdrawField = [withdrawAlertView textFieldAtIndex:0];
-//    withdrawField.textAlignment = NSTextAlignmentCenter;
-//    withdrawField.keyboardType = UIKeyboardTypeNumberPad;
-//    withdrawField.text = @"500";
-//    [withdrawAlertView show];
+    //    UIAlertView *withdrawAlertView = [[UIAlertView alloc]initWithTitle:@"请输入提现金额" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    //    withdrawAlertView.tag = 2;
+    //    [withdrawAlertView setAlertViewStyle:UIAlertViewStylePlainTextInput];
+    //    UITextField *withdrawField = [withdrawAlertView textFieldAtIndex:0];
+    //    withdrawField.textAlignment = NSTextAlignmentCenter;
+    //    withdrawField.keyboardType = UIKeyboardTypeNumberPad;
+    //    withdrawField.text = @"500";
+    //    [withdrawAlertView show];
     LYWithdrawTypeViewController *lyWithdrawTypeVC = [[LYWithdrawTypeViewController alloc]initWithNibName:@"LYWithdrawTypeViewController" bundle:[NSBundle mainBundle]];
     //需要参数
     lyWithdrawTypeVC.type = @"1";
@@ -67,7 +67,7 @@
     if (alertView.tag == 1) {
         //充值
         if (buttonIndex == 1) {
-//            NSLog(@"充值：%@",textField.text);
+            //            NSLog(@"充值：%@",textField.text);
             ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
             //            detailViewController.orderNo=result;
             detailViewController.payAmount=[textField.text doubleValue];

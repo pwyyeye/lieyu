@@ -60,11 +60,11 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KVO-wV-dK7">
                         <rect key="frame" x="252" y="8" width="59" height="43"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="v7w-dw-RVd">
-                                <rect key="frame" x="13" y="6" width="17" height="17"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="liveVideo.png" translatesAutoresizingMaskIntoConstraints="NO" id="v7w-dw-RVd">
+                                <rect key="frame" x="13" y="6" width="13" height="13"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="17" id="TTj-XP-XEG"/>
-                                    <constraint firstAttribute="width" constant="17" id="Vsi-Lg-wEl"/>
+                                    <constraint firstAttribute="height" constant="13" id="TTj-XP-XEG"/>
+                                    <constraint firstAttribute="width" constant="13" id="Vsi-Lg-wEl"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="直播" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xcs-Jp-n7G">
@@ -208,6 +208,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="liveVideo.png" width="12" height="9"/>
         <image name="live_listlike.png" width="11" height="11"/>
     </resources>
 </document>

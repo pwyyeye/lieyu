@@ -11,12 +11,6 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="friendPresentBG.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Dyb-Vu-Cgj">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="240"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="240" id="Yme-jp-aVd"/>
-                    </constraints>
-                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AQI-I7-pbQ">
                     <rect key="frame" x="264" y="79" width="72" height="72"/>
                     <constraints>
@@ -63,6 +57,12 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="32" id="F3T-4C-w1j"/>
                         <constraint firstAttribute="height" constant="32" id="ns9-3f-Vhw"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="friendPresentBG.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Dyb-Vu-Cgj">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="240"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="240" id="Yme-jp-aVd"/>
                     </constraints>
                 </imageView>
             </subviews>

@@ -21,4 +21,9 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *label_work_contraint_width;
 @property (weak, nonatomic) IBOutlet UIButton *btn_topic;
 @property (nonatomic,strong) FriendsRecentModel *recentM;
+
+@property (weak, nonatomic) IBOutlet UIImageView *dashangImageView;
+
+@property (weak, nonatomic) IBOutlet UILabel *dashangNumLabel;
+
 @end

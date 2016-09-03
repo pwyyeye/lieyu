@@ -16,6 +16,24 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
+-(void)layoutSubviews{
+    [_dianpingButton addTarget:self action:@selector(isShowMoreButton) forControlEvents:(UIControlEventTouchUpInside)];
+    _isShow = NO;
+    _moreView.alpha = 0.f;
+    _moreView.layer.cornerRadius = 5.f;
+    _moreView.layer.masksToBounds = YES;
+}
+
+-(void)isShowMoreButton{
+    if (_isShow) {
+        _moreView.alpha = 0.f;
+        _isShow = NO;
+    } else {
+        _moreView.alpha = 1.f;
+        _isShow = YES;
+    }
+}
+
 - (void)setRecentM:(FriendsRecentModel *)recentM{
     _recentM = recentM;
     _label_address.text = recentM.location;
@@ -25,9 +43,11 @@
     if([MyUtil isEmptyString:recentM.id]){
         self.btn_comment.enabled = NO;
         self.btn_like.enabled = NO;
+        self.btn_dashang.enabled = NO;
     }else {
         self.btn_comment.enabled = YES;
         self.btn_like.enabled = YES;
+        self.btn_dashang.enabled = YES;
     }
 }
 

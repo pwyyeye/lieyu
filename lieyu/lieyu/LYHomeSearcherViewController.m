@@ -47,12 +47,13 @@
     self.edgesForExtendedLayout = UIRectEdgeAll;
     _searchBar.delegate = self;
     _searchBar.placeholder = @"搜索";
+    [_searchBar becomeFirstResponder];
     if (_isSearchBar) {
         self.navigationItem.title = @"搜索酒吧";
     }else{
         self.navigationItem.title = @"搜索娱乐顾问";
     }
-//    [_tableView setContentInset:UIEdgeInsetsMake(64, 0, 0, 0)];
+    //    [_tableView setContentInset:UIEdgeInsetsMake(64, 0, 0, 0)];
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
     if(_isSearchBar){
         [self setupViewStyles];
@@ -72,19 +73,19 @@
     self.curPageIndex = 1;
     datalist=[[NSMutableArray alloc]init];
     _searchBar.returnKeyType = UIReturnKeySearch;
-
+    
     for (id img in (_searchBar.subviews[0]).subviews)
     {
         NSLog(@"%@",(_searchBar.subviews[0]).subviews);
         if ([img isKindOfClass:NSClassFromString(@"UISearchBarBackground")])
         {
-//            [img removeFromSuperview];
-
+            //            [img removeFromSuperview];
+            
         }
         if ([img isKindOfClass:NSClassFromString(@"UISearchBarTextField")])
         {
             UITextField *textField = (UITextField *)img;
-//            textField.clipsToBounds = YES;
+            //            textField.clipsToBounds = YES;
             textField.backgroundColor = RGBA(234, 235, 240, 1);
         }
         
@@ -95,7 +96,7 @@
     UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_searchBar.frame), SCREEN_WIDTH, 0.5)];
     lineView.backgroundColor = RGBA(228, 229, 230, 1);
     [self.view addSubview:lineView];
-
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -154,7 +155,7 @@
             [btn setTitle:@"" forState:UIControlStateNormal];
         }
         self.btn_clean.hidden = YES;
-         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"确定" pageName:SEARCHPAGE_MTA titleName:@"删除历史记录"]];
+        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"确定" pageName:SEARCHPAGE_MTA titleName:@"删除历史记录"]];
     }
 }
 
@@ -251,7 +252,7 @@
 - (void)setupViewStyles
 {
     __weak LYHomeSearcherViewController * weakSelf = self;
-//    [self.collectView registerNib:[UINib nibWithNibName:@"LYWineBaraCell" bundle:nil] forCellReuseIdentifier:@"wineBarCell"];
+    //    [self.collectView registerNib:[UINib nibWithNibName:@"LYWineBaraCell" bundle:nil] forCellReuseIdentifier:@"wineBarCell"];
     self.collectView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
         [weakSelf loadItemList:^(LYErrorMessage *ermsg, NSArray *bannerList, NSArray *barList) {
             if (Req_Success == ermsg.state) {
@@ -312,7 +313,7 @@
          if (Req_Success == ermsg.state)
          {
              if (barList.count == PAGESIZE)
-             { 
+             {
                  weakSelf.curPageIndex = 2;
                  weakSelf.collectView.mj_footer.hidden = NO;
              }

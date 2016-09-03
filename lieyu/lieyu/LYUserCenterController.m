@@ -52,15 +52,15 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     [super viewDidLoad];
     
     
-//    self.navigationController.delegate=self;
-
+    //    self.navigationController.delegate=self;
+    
     
     self.automaticallyAdjustsScrollViewInsets = YES;
     
     self.edgesForExtendedLayout=UIRectEdgeNone;
     self.title=@"我";
     
-       // Uncomment the following line to preserve selection between presentations
+    // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Register cell classes
@@ -72,19 +72,19 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     
     [self.collectionView registerNib:[UINib nibWithNibName:@"LYUserCenterFooter" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"userCenterFooter"];
     //
-
-//    _data=@[
-//      @{@"title":@"订单",@"icon":@"userShopOrder"},
-//      @{@"title":@"免费订台",@"icon":@"free_order_icon"},
-//      @{@"title":@"购物车",@"icon":@"userShopCart"},
-//      @{@"title":@"收藏",@"icon":@"userFav"},
-////  @{@"title":@"专属经理",@"icon":@"userManager"},
-//      @{@"title":@"速核码",@"icon":@"userSuHeMa"},
-//      @{@"title":@"扫一扫",@"icon":@"userSaoYiSao"},
-//      @{@"title":@"设置",@"icon":@"userSetting"},
-//      @{@"title":@"推荐猎娱",@"icon":@"userTuijian"},
-//      @{@"title":@"帮助与反馈",@"icon":@"userHelp"},
-//    ];
+    
+    //    _data=@[
+    //      @{@"title":@"订单",@"icon":@"userShopOrder"},
+    //      @{@"title":@"免费订台",@"icon":@"free_order_icon"},
+    //      @{@"title":@"购物车",@"icon":@"userShopCart"},
+    //      @{@"title":@"收藏",@"icon":@"userFav"},
+    ////  @{@"title":@"专属经理",@"icon":@"userManager"},
+    //      @{@"title":@"速核码",@"icon":@"userSuHeMa"},
+    //      @{@"title":@"扫一扫",@"icon":@"userSaoYiSao"},
+    //      @{@"title":@"设置",@"icon":@"userSetting"},
+    //      @{@"title":@"推荐猎娱",@"icon":@"userTuijian"},
+    //      @{@"title":@"帮助与反馈",@"icon":@"userHelp"},
+    //    ];
     
     _data=@[@[@{@"title":@"扫一扫",@"icon":@"userSaoYiSao"},],
             @[@{@"title":@"订单",@"icon":@"userShopOrder"},
@@ -116,7 +116,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             [weakSelf.collectionView reloadItemsAtIndexPaths:@[indexP]];
             indexP = [NSIndexPath indexPathForItem:1 inSection:1];
             [weakSelf.collectionView reloadItemsAtIndexPaths:@[indexP]];
-//                    [weakSelf.collectionView reloadData];
+            //                    [weakSelf.collectionView reloadData];
             [_headerView loadBadge:_orderTTL];
         }];
     }
@@ -134,7 +134,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self loadHeaderView];
-
+    
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     [self loadHeaderViewBadge];
@@ -145,21 +145,21 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     [_headerView removeFromSuperview];
     CGFloat height = 0.f;
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-//    if(app.userModel.usertype.intValue==2||app.userModel.usertype.intValue==3){
-//        if (SCREEN_WIDTH==320) {
-//            height=260;
-//        }else{
-//            height = 299;
-//        }
-//        
-//    }else{
-//        if (SCREEN_WIDTH==320) {
-//            height = 209;
-//        }else{
-//            height = 239;
-//        }
-//        
-//    }
+    //    if(app.userModel.usertype.intValue==2||app.userModel.usertype.intValue==3){
+    //        if (SCREEN_WIDTH==320) {
+    //            height=260;
+    //        }else{
+    //            height = 299;
+    //        }
+    //
+    //    }else{
+    //        if (SCREEN_WIDTH==320) {
+    //            height = 209;
+    //        }else{
+    //            height = 239;
+    //        }
+    //
+    //    }
     height = 312;
     
     
@@ -170,10 +170,10 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     _headerView.layer.shadowOffset = CGSizeMake(0, 2);
     _headerView.layer.shadowRadius = 4;
     if(app.userModel.usertype.intValue==2||app.userModel.usertype.intValue==3){
-//        _headerView.btnChange_cons_width.constant = 60;
+        //        _headerView.btnChange_cons_width.constant = 60;
         _headerView.btnChange.hidden = NO;
     }else{
-//        _headerView.btnChange_cons_width.constant = 0;
+        //        _headerView.btnChange_cons_width.constant = 0;
         _headerView.btnChange.hidden = YES;
     }
     [self.view addSubview:_headerView];
@@ -192,7 +192,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-//    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    //    [self.navigationController setNavigationBarHidden:NO animated:YES];
     if (![MyUtil isEmptyString:self.title]) {
         [MTA trackPageViewEnd:self.title];
     }
@@ -224,8 +224,8 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             }
         }
         NSLog(@"---->%ld",num);
-//        [weakSelf.collectionView reloadData];
-//        [weakSelf loadData];
+        //        [weakSelf.collectionView reloadData];
+        //        [weakSelf loadData];
         NSIndexPath *indexP = [NSIndexPath indexPathForItem:2 inSection:1];
         [weakSelf.collectionView reloadItemsAtIndexPaths:@[indexP]];
     }];
@@ -247,11 +247,11 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     LYUserCenterCell *cell = (LYUserCenterCell *)[collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     cell.btn_count.hidden = YES;
     [cell.btn_count setTitle:@"" forState:UIControlStateNormal];
-        
+    
     // Configure the cell
     cell.icon.image=nil;
     cell.text.text=@"";
-        
+    
     NSDictionary *dic=_data[indexPath.section][indexPath.row];
     cell.icon.image=[UIImage imageNamed:[dic objectForKey:@"icon"]];
     cell.text.text=[dic objectForKey:@"title"];
@@ -273,7 +273,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             cell.btn_count.hidden = NO;
         }
     }
-        
+    
     if (((NSArray *)_data[indexPath.section]).count == indexPath.row + 1) {
         cell.layerShadowBottom.hidden = YES;
     }else{
@@ -383,7 +383,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 }
 
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
-//    [self.navigationController setNavigationBarHidden:NO];
+    //    [self.navigationController setNavigationBarHidden:NO];
     //每次当navigation中的界面切换，设为空。本次赋值只在程序初始化时执行一次
     static UIViewController *lastController = nil;
     
@@ -393,7 +393,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
         //若该实例实现了viewWillDisappear方法，则调用
         if ([lastController respondsToSelector:@selector(viewWillDisappear:)])
         {
-//            [lastController viewWillDisappear:animated];
+            //            [lastController viewWillDisappear:animated];
         }
         
         
@@ -402,9 +402,9 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     //将当前要显示的view设置为lastController，在下次view切换调用本方法时，会执行viewWillDisappear
     lastController = viewController;
     
-//    [viewController viewWillAppear:animated];
+    //    [viewController viewWillAppear:animated];
     
- 
+    
 }
 
 

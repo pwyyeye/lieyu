@@ -20,7 +20,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 - (void)configureCell:(PinKeModel*)model
@@ -46,7 +46,7 @@
     _jiubaNameLal.text=model.barinfo.barname;
     _taoCanNameLal.text=model.title;
     _addressLal.text=model.barinfo.address;
-    _shoucangCountLal.text=model.barinfo.fav_num;
+    _shoucangCountLal.text=[NSString stringWithFormat:@"%d",model.barinfo.fav_num];
     _price.text=[NSString stringWithFormat:@"¥%@",pinKeModel.price] ;
     NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
     NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"￥%@",pinKeModel.marketprice] attributes:attribtDic];

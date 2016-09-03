@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StrategyDetailInfoTableViewCell" rowHeight="109" id="KGk-i7-Jjw" customClass="StrategyDetailInfoTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="109"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="108.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016年火爆音乐节华丽蜕变，积累8年打2016年火爆音乐节华丽蜕变，积累8年打" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UvR-cC-p1f">
+                        <rect key="frame" x="29" y="8" width="262" height="57.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016年火爆音乐节华丽蜕变" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JhQ-cV-Xwc">
+                        <rect key="frame" x="29" y="75" width="262" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.43137254899999999" green="0.43137254899999999" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Jj-1T-sWI">
+                        <rect key="frame" x="13" y="100.5" width="294" height="0.5"/>
+                        <color key="backgroundColor" red="0.75686274509803919" green="0.75686274509803919" blue="0.75686274509803919" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="6Gc-rd-037"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="3Jj-1T-sWI" secondAttribute="bottom" constant="7.5" id="2rE-BS-WvU"/>
+                    <constraint firstItem="3Jj-1T-sWI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="13" id="A9p-8M-9TH"/>
+                    <constraint firstItem="JhQ-cV-Xwc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="29" id="GIh-r7-PJN"/>
+                    <constraint firstAttribute="trailing" secondItem="JhQ-cV-Xwc" secondAttribute="trailing" constant="29" id="Ilz-U7-w76"/>
+                    <constraint firstItem="3Jj-1T-sWI" firstAttribute="top" secondItem="JhQ-cV-Xwc" secondAttribute="bottom" constant="9" id="JPq-TW-CSN"/>
+                    <constraint firstItem="UvR-cC-p1f" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="MJb-zz-fSS"/>
+                    <constraint firstItem="JhQ-cV-Xwc" firstAttribute="top" secondItem="UvR-cC-p1f" secondAttribute="bottom" constant="10" id="ZmI-lB-fPg"/>
+                    <constraint firstAttribute="trailing" secondItem="UvR-cC-p1f" secondAttribute="trailing" constant="29" id="qa0-OF-BIB"/>
+                    <constraint firstItem="UvR-cC-p1f" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="29" id="tcr-rG-C4h"/>
+                    <constraint firstAttribute="trailing" secondItem="3Jj-1T-sWI" secondAttribute="trailing" constant="13" id="xcq-c7-jkl"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="2rE-BS-WvU"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="subtitleLabel" destination="JhQ-cV-Xwc" id="3lI-v1-nXe"/>
+                <outlet property="titleLabel" destination="UvR-cC-p1f" id="iLT-rm-7QJ"/>
+            </connections>
+            <point key="canvasLocation" x="271" y="424.5"/>
+        </tableViewCell>
+    </objects>
+</document>

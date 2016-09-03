@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <RongIMLib/RongIMLib.h>
+#import "GiftContent.h"
 
 #define RCGiftMessageIdentifier @"RC:GiftMsg"
 /* 点赞消息
@@ -18,7 +19,11 @@
 @interface LYGiftMessage : RCMessageContent
 
 /*
- * 类型 0 赞，1，鼓掌
+ * 类型 2 赞，1，礼物
  */
 @property(nonatomic, strong) NSString *type;
+
+@property (nonatomic ,strong) GiftContent *gift;
+
+
 @end

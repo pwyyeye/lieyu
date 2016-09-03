@@ -441,12 +441,6 @@
                                         </mask>
                                     </variation>
                                 </imageView>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kbw-ZT-RKa">
-                                    <rect key="frame" x="66" y="63" width="254" height="30"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="30" id="nQc-9w-9sF"/>
-                                    </constraints>
-                                </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2B2-D1-JDi">
                                     <rect key="frame" x="66" y="104" width="254" height="30"/>
                                     <constraints>
@@ -464,6 +458,12 @@
                                         <color key="titleColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <state key="selected" image="epIden_purper.png"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kbw-ZT-RKa">
+                                    <rect key="frame" x="66" y="63" width="254" height="30"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="30" id="nQc-9w-9sF"/>
+                                    </constraints>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

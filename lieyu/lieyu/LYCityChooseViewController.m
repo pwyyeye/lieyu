@@ -8,7 +8,7 @@
 
 #import "LYCityChooseViewController.h"
 #import "LYHomePageHttpTool.h"
-#import "LYCityChooseTableViewCell.h" 
+#import "LYCityChooseTableViewCell.h"
 
 #define ADDRESSPAGE_MTA @"ADDRESSPAGE"
 #define ADDRESSPAGE_TIMEEVENT_MTA @"ADDRESSPAGE_TIMEEVENT"
@@ -51,10 +51,10 @@
 //获取数据
 - (void) getData
 {
-   [LYHomePageHttpTool getAllLocationInfoWith:nil complete:^(NSString *locationArr) {
-       self.dataArray = [locationArr componentsSeparatedByString:@","];
-       [_cityListTableView reloadData];
-   }];
+    [LYHomePageHttpTool getAllLocationInfoWith:nil complete:^(NSString *locationArr) {
+        self.dataArray = [locationArr componentsSeparatedByString:@","];
+        [_cityListTableView reloadData];
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -143,9 +143,9 @@
 {
     LYCityChooseTableViewCell *cell = [_cityListTableView cellForRowAtIndexPath:indexPath];
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    if (cell.cityNameLabel.text != nil && ![cell.cityNameLabel.text isEqualToString:[USER_DEFAULT objectForKey:@"UserChoosedLocation"]]) {
+    if (cell.cityNameLabel.text != nil && ![cell.cityNameLabel.text isEqualToString:[USER_DEFAULT objectForKey:@"ChooseCityLastTime"]]) {
         self.Location(cell.cityNameLabel.text);
-        [USER_DEFAULT setObject:cell.cityNameLabel.text forKey:@"UserChoosedLocation"];
+        [USER_DEFAULT setObject:cell.cityNameLabel.text forKey:@"ChooseCityLastTime"];
     }
     
     [self.navigationController popViewControllerAnimated:YES];
@@ -159,13 +159,13 @@
 //}
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

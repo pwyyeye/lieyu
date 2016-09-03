@@ -139,7 +139,7 @@
                      block:(void(^)(NSMutableArray* result)) block;
 //点赞的酒吧
 -(void) getMyBarZangWithParams:(NSDictionary*)params
-                     block:(void(^)(NSMutableArray* result)) block;
+                         block:(void(^)(NSMutableArray* result)) block;
 //收藏酒吧
 -(void) addMyBarWithParams:(NSDictionary*)params
                   complete:(void (^)(BOOL result))result;
@@ -226,5 +226,9 @@
 
 //预留卡座或者对订台表示满意或者不满意
 + (void)lyChangeFreeOrderStatusWithParams:(NSDictionary *)dict complete:(void(^)(BOOL result))complete;
+
+
+//获取定位城市的相关信息
++ (void)lyLocationCityGetStatusWithParams:(NSDictionary *)dict complete:(void(^)(NSDictionary *dict))complete;
 
 @end

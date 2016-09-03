@@ -86,6 +86,13 @@
     _weChatMonmentButton.tag = 104;
     _lyMonmentButton.tag = 105;
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(registerAction)];
+    [self addGestureRecognizer:tap];
+    
+}
+
+-(void)registerAction{
+    [self.titleTextFiled resignFirstResponder];
 }
 
 - (IBAction)SliderValueDidChange:(UISlider *)sender {
@@ -102,6 +109,9 @@
 - (IBAction)shareAction:(UIButton *)sender {
     switch (sender.tag) {
         case 101://微信
+            if (_shareType != 0) {
+                _isShare = YES;
+            }
             if (_isShare) {
                 _shareType = 0;
                 _isShare = NO;
@@ -118,6 +128,9 @@
             
             break;
         case 102://QQ
+            if (_shareType != 1) {
+                _isShare = YES;
+            }
             if (_isShare) {
                 _shareType = 1;
                 _isShare = NO;
@@ -133,6 +146,9 @@
             
             break;
         case 103://sina
+            if (_shareType != 2) {
+                _isShare = YES;
+            }
             if (_isShare) {
                 _shareType = 2;
                 _isShare = NO;
@@ -146,22 +162,23 @@
                 _shareType = -1;//不分享
                 [self.weiboButton setImage:[UIImage imageNamed:@"live_B_sina.png"] forState:(UIControlStateNormal)];
             }
-            
             break;
         case 104://微信朋友圈
+            if (_shareType != 3) {
+                _isShare = YES;
+            }
             if (_isShare) {
                 _shareType = 3;
                 _isShare = NO;
                 [self.weChatSessionButton setImage:[UIImage imageNamed:@"live_B_wechat.png"] forState:(UIControlStateNormal)];
                 [self.weiboButton setImage:[UIImage imageNamed:@"live_B_sina.png"] forState:(UIControlStateNormal)];
-                [self.weChatMonmentButton setImage:[UIImage imageNamed:@"live_wechatmoment.png"] forState:(UIControlStateNormal)];
+                [self.weChatMonmentButton setImage:[UIImage imageNamed:@"live_wechatmonent.png"] forState:(UIControlStateNormal)];
                 [self.qqButton setImage:[UIImage imageNamed:@"live_B_qq.png"] forState:(UIControlStateNormal)];
             } else {
                 _isShare = YES;
                 _shareType = -1;//不分享
                 [self.weChatMonmentButton setImage:[UIImage imageNamed:@"live_B_wechatmoment.png"] forState:(UIControlStateNormal)];
             }
-            
             break;
 //        case 105:
 //            _shareType = 4;
@@ -169,6 +186,7 @@
         default:
             break;
     }
+    
 }
 
 #pragma mark -- 选择图片
@@ -299,7 +317,7 @@
         _imgUrl = @"http://www.sinaimg.cn/dy/slidenews/76_img/2016_33/76522_1899053_733117.jpg";
     }
     if ([_titleTextFiled.text  isEqualToString: @""]) {
-        _titleTextFiled.text = @"#凡人皆有一死！#";
+        _titleTextFiled.text = @"#凡人皆需侍奉！#";
     }
             NSDictionary *dict = @{@"cityCode":@"310000",@"liveimg":_imgUrl,@"livename":_titleTextFiled.text,@"liveChatId":_roomId,@"livekey":@"true"};
             [LYFriendsHttpTool beginToLiveShowWithParams:dict complete:^(NSDictionary *dict) {

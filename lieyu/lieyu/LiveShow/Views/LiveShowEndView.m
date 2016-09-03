@@ -7,6 +7,7 @@
 //
 
 #import "LiveShowEndView.h"
+#import "UMSocial.h"
 
 @implementation LiveShowEndView
 
@@ -28,6 +29,63 @@
     [self setCornerRadiusView:self.focusButton With:self.focusButton.frame.size.height / 2 and:YES];
     
 }
+//获取控制器
+-(UIViewController *)getCurrentViewController{
+    UIResponder *next = [self nextResponder];
+    do {
+        if ([next isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)next;
+        }
+        next = [next nextResponder];
+    } while (next != nil);
+    return nil;
+}
+
+- (IBAction)shareButtonAction:(UIButton *)sender {
+    
+    UIViewController *selfVC = [self getCurrentViewController];
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    CLLocation *location = app.userLocation;
+    
+    switch (sender.tag) {
+        case 100://分享微信好友
+        {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatSession] content:@"友盟社会化分享让您快速实现分享等社会化功能，http://umeng.com/social" image:nil location:location urlResource:nil presentedController:selfVC completion:^(UMSocialResponseEntity *response){
+        }];
+            
+        }
+            break;
+        case 99://分享到QQ
+        {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToQQ] content:@"友盟社会化分享让您快速实现分享等社会化功能，http://umeng.com/social" image:nil location:location urlResource:nil presentedController:selfVC completion:^(UMSocialResponseEntity *response){
+        }];
+        }
+            break;
+        case 102://分享到微博
+        {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToSina] content:@"友盟社会化分享让您快速实现分享等社会化功能，http://umeng.com/social" image:nil location:location urlResource:nil presentedController:selfVC completion:^(UMSocialResponseEntity *response){
+            if (response.responseCode == UMSResponseCodeSuccess) {
+                NSLog(@"分享成功！");
+            }
+        }];
+        }
+            break;
+        case 101://分享到微信朋友圈
+        {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatTimeline] content:@"友盟社会化分享让您快速实现分享等社会化功能，http://umeng.com/social" image:nil location:location urlResource:nil presentedController:selfVC completion:^(UMSocialResponseEntity *response){
+            if (response.responseCode == UMSResponseCodeSuccess) {
+                NSLog(@"分享成功！");
+            }
+        }];
+        }
+            break;
+        default:
+            break;
+    }
+
+    
+}
+
+
+
+
+
 -(void)setCornerRadiusView:(UIView *) maskView With:(CGFloat) size and:(BOOL) mask{
     maskView.layer.cornerRadius = size;
     maskView.layer.masksToBounds = YES;

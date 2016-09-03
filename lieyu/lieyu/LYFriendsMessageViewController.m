@@ -24,6 +24,8 @@
 
 @implementation LYFriendsMessageViewController
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self getData];

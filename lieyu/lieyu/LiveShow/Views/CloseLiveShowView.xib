@@ -41,17 +41,13 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" tag="101" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vqk-9Z-H09">
-                    <rect key="frame" x="288" y="325" width="25" height="25"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="30" id="4xh-sr-4XB"/>
-                        <constraint firstAttribute="height" constant="30" id="jmi-Wn-kIK"/>
-                    </constraints>
+                    <rect key="frame" x="315" y="330" width="30" height="30"/>
                     <state key="normal" image="live_wechatmonent.png"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="15"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <action selector="shareButtonAction:" destination="9lZ-IV-giz" eventType="touchUpInside" id="ifa-pq-oqN"/>
+                        <action selector="shareButtonAction:" destination="9lZ-IV-giz" eventType="touchUpInside" id="BwM-r5-p47"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SeM-eN-ub9">
@@ -87,31 +83,14 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5cM-ET-fmn">
-                    <rect key="frame" x="417" y="324" width="27" height="27"/>
-                    <state key="normal" image="live_B_wanyou.png"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="15"/>
-                    </userDefinedRuntimeAttributes>
-                </button>
-                <button opaque="NO" tag="100" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ciV-0L-Gfd">
-                    <rect key="frame" x="222" y="327" width="26" height="22"/>
-                    <state key="normal" image="live_B_wechat.png"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="15"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="shareButtonAction:" destination="9lZ-IV-giz" eventType="touchUpInside" id="im9-DD-pVK"/>
-                    </connections>
-                </button>
-                <button opaque="NO" tag="99" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DDU-5n-9MR">
-                    <rect key="frame" x="160" y="327" width="20" height="22"/>
+                <button opaque="NO" tag="99" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DDU-5n-9MR">
+                    <rect key="frame" x="185" y="329" width="30" height="30"/>
                     <state key="normal" image="live_B_qq.png"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="15"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <action selector="shareButtonAction:" destination="9lZ-IV-giz" eventType="touchUpInside" id="4aL-8B-FGf"/>
+                        <action selector="shareButtonAction:" destination="9lZ-IV-giz" eventType="touchUpInside" id="fgi-oK-6vJ"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ccQ-1Y-HAU">
@@ -122,59 +101,69 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="22.5"/>
                     </userDefinedRuntimeAttributes>
                 </button>
-                <button opaque="NO" tag="102" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9sb-BV-toB">
-                    <rect key="frame" x="353" y="327" width="25" height="22"/>
+                <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9sb-BV-toB">
+                    <rect key="frame" x="385" y="329" width="30" height="30"/>
                     <state key="normal" image="live_B_sina.png"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="15"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <action selector="shareButtonAction:" destination="9lZ-IV-giz" eventType="touchUpInside" id="uC8-lE-y98"/>
+                        <action selector="shareButtonAction:" destination="9lZ-IV-giz" eventType="touchUpInside" id="iBR-QW-d2h"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ciV-0L-Gfd">
+                    <rect key="frame" x="255" y="329" width="30" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="IYF-db-R5O"/>
+                        <constraint firstAttribute="height" constant="30" id="xit-s2-ZaI"/>
+                    </constraints>
+                    <state key="normal" image="live_B_wechat.png"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="15"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="shareButtonAction:" destination="9lZ-IV-giz" eventType="touchUpInside" id="gCI-0N-Xj3"/>
                     </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="ciV-0L-Gfd" firstAttribute="width" secondItem="DDU-5n-9MR" secondAttribute="width" id="01z-fi-GCf"/>
                 <constraint firstItem="xJj-Lk-wgs" firstAttribute="width" secondItem="jzt-n5-HEb" secondAttribute="width" id="0of-8I-kV5"/>
-                <constraint firstItem="vqk-9Z-H09" firstAttribute="width" secondItem="DDU-5n-9MR" secondAttribute="width" id="3Ms-uY-x64"/>
                 <constraint firstItem="Izc-3d-IXQ" firstAttribute="top" secondItem="9lZ-IV-giz" secondAttribute="top" constant="67" id="3e2-hr-SZM"/>
                 <constraint firstItem="CRf-6i-qDd" firstAttribute="centerX" secondItem="Izc-3d-IXQ" secondAttribute="centerX" id="3oF-4m-xf9"/>
                 <constraint firstItem="SeM-eN-ub9" firstAttribute="top" secondItem="ccQ-1Y-HAU" secondAttribute="bottom" constant="20" id="51N-ee-WTE"/>
-                <constraint firstItem="vqk-9Z-H09" firstAttribute="height" secondItem="DDU-5n-9MR" secondAttribute="height" id="B6C-t0-0te"/>
-                <constraint firstItem="ciV-0L-Gfd" firstAttribute="height" secondItem="DDU-5n-9MR" secondAttribute="height" id="BRu-gr-ga7"/>
+                <constraint firstItem="9sb-BV-toB" firstAttribute="centerY" secondItem="DDU-5n-9MR" secondAttribute="centerY" id="590-4R-4bU"/>
+                <constraint firstItem="9sb-BV-toB" firstAttribute="leading" secondItem="vqk-9Z-H09" secondAttribute="trailing" constant="40" id="7gM-df-kYU"/>
                 <constraint firstItem="uda-iw-cTS" firstAttribute="centerX" secondItem="Izc-3d-IXQ" secondAttribute="centerX" id="Ez7-3U-zGh"/>
                 <constraint firstItem="CRf-6i-qDd" firstAttribute="height" secondItem="jzt-n5-HEb" secondAttribute="height" id="FcJ-7U-Eee"/>
                 <constraint firstItem="CRf-6i-qDd" firstAttribute="centerY" secondItem="jzt-n5-HEb" secondAttribute="centerY" id="GMu-rr-oD8"/>
                 <constraint firstItem="XRS-aQ-vAE" firstAttribute="top" secondItem="CRf-6i-qDd" secondAttribute="bottom" constant="45" id="Gxf-mD-9AY"/>
                 <constraint firstAttribute="bottom" secondItem="SeM-eN-ub9" secondAttribute="bottom" constant="40" id="HSg-Vr-Ep5"/>
-                <constraint firstItem="9sb-BV-toB" firstAttribute="width" secondItem="DDU-5n-9MR" secondAttribute="width" id="IpT-T5-YZN"/>
                 <constraint firstItem="xJj-Lk-wgs" firstAttribute="centerY" secondItem="jzt-n5-HEb" secondAttribute="centerY" id="JQs-fC-rJc"/>
-                <constraint firstItem="vqk-9Z-H09" firstAttribute="top" secondItem="uda-iw-cTS" secondAttribute="bottom" constant="12" id="JSn-QO-2jT"/>
-                <constraint firstItem="5cM-ET-fmn" firstAttribute="height" secondItem="DDU-5n-9MR" secondAttribute="height" id="LTa-Uc-f1U"/>
-                <constraint firstItem="9sb-BV-toB" firstAttribute="centerY" secondItem="DDU-5n-9MR" secondAttribute="centerY" id="Ldh-2g-PpK"/>
+                <constraint firstItem="vqk-9Z-H09" firstAttribute="centerX" secondItem="9lZ-IV-giz" secondAttribute="centerX" constant="30" id="Mf7-nM-JJu"/>
                 <constraint firstItem="Izc-3d-IXQ" firstAttribute="centerX" secondItem="9lZ-IV-giz" secondAttribute="centerX" id="Moh-Sq-TCq"/>
+                <constraint firstItem="ciV-0L-Gfd" firstAttribute="top" secondItem="uda-iw-cTS" secondAttribute="bottom" constant="18" id="NiV-M3-8Fp"/>
                 <constraint firstItem="CRf-6i-qDd" firstAttribute="top" secondItem="Izc-3d-IXQ" secondAttribute="bottom" constant="18" id="O3T-uZ-geo"/>
+                <constraint firstItem="ciV-0L-Gfd" firstAttribute="centerX" secondItem="9lZ-IV-giz" secondAttribute="centerX" constant="-30" id="QJo-5l-LXE"/>
+                <constraint firstItem="ciV-0L-Gfd" firstAttribute="leading" secondItem="DDU-5n-9MR" secondAttribute="trailing" constant="40" id="RQ7-BW-KaJ"/>
                 <constraint firstItem="uda-iw-cTS" firstAttribute="centerY" secondItem="9lZ-IV-giz" secondAttribute="centerY" id="Rxw-bK-j4h"/>
-                <constraint firstItem="9sb-BV-toB" firstAttribute="height" secondItem="DDU-5n-9MR" secondAttribute="height" id="Sde-Dk-mih"/>
-                <constraint firstItem="ciV-0L-Gfd" firstAttribute="leading" secondItem="DDU-5n-9MR" secondAttribute="trailing" constant="35" id="Tlc-h0-O8W"/>
+                <constraint firstItem="vqk-9Z-H09" firstAttribute="width" secondItem="DDU-5n-9MR" secondAttribute="width" id="TaK-0S-d8D"/>
                 <constraint firstItem="ccQ-1Y-HAU" firstAttribute="centerX" secondItem="Izc-3d-IXQ" secondAttribute="centerX" id="Tnl-bp-o7f"/>
                 <constraint firstItem="SeM-eN-ub9" firstAttribute="centerX" secondItem="Izc-3d-IXQ" secondAttribute="centerX" id="VOk-k9-9xt"/>
                 <constraint firstItem="SeM-eN-ub9" firstAttribute="width" secondItem="ccQ-1Y-HAU" secondAttribute="width" id="VZk-1h-V39"/>
                 <constraint firstItem="XRS-aQ-vAE" firstAttribute="centerX" secondItem="Izc-3d-IXQ" secondAttribute="centerX" id="Zfy-hC-I9l"/>
-                <constraint firstItem="5cM-ET-fmn" firstAttribute="centerY" secondItem="DDU-5n-9MR" secondAttribute="centerY" id="bGl-me-uuk"/>
-                <constraint firstItem="vqk-9Z-H09" firstAttribute="leading" secondItem="ciV-0L-Gfd" secondAttribute="trailing" constant="35" id="c8G-lD-CQm"/>
                 <constraint firstItem="SeM-eN-ub9" firstAttribute="height" secondItem="ccQ-1Y-HAU" secondAttribute="height" id="ckU-jj-Sfr"/>
-                <constraint firstItem="vqk-9Z-H09" firstAttribute="centerY" secondItem="DDU-5n-9MR" secondAttribute="centerY" id="hih-Iu-DWf"/>
-                <constraint firstItem="5cM-ET-fmn" firstAttribute="width" secondItem="DDU-5n-9MR" secondAttribute="width" id="igD-9y-2Iu"/>
+                <constraint firstItem="9sb-BV-toB" firstAttribute="height" secondItem="DDU-5n-9MR" secondAttribute="height" id="dSd-Vi-hhn"/>
+                <constraint firstItem="vqk-9Z-H09" firstAttribute="centerY" secondItem="DDU-5n-9MR" secondAttribute="centerY" id="k5T-Bz-2Kw"/>
                 <constraint firstItem="xJj-Lk-wgs" firstAttribute="height" secondItem="jzt-n5-HEb" secondAttribute="height" id="kGL-dO-TkM"/>
                 <constraint firstItem="xJj-Lk-wgs" firstAttribute="leading" secondItem="CRf-6i-qDd" secondAttribute="trailing" id="lcb-kR-5FG"/>
-                <constraint firstItem="5cM-ET-fmn" firstAttribute="leading" secondItem="9sb-BV-toB" secondAttribute="trailing" constant="35" id="mGt-J1-pfy"/>
                 <constraint firstItem="CRf-6i-qDd" firstAttribute="leading" secondItem="jzt-n5-HEb" secondAttribute="trailing" id="oPr-6G-BfF"/>
-                <constraint firstItem="vqk-9Z-H09" firstAttribute="centerX" secondItem="Izc-3d-IXQ" secondAttribute="centerX" id="oyN-zc-Jl8"/>
-                <constraint firstItem="9sb-BV-toB" firstAttribute="leading" secondItem="vqk-9Z-H09" secondAttribute="trailing" constant="35" id="qlf-wV-11L"/>
+                <constraint firstItem="9sb-BV-toB" firstAttribute="width" secondItem="DDU-5n-9MR" secondAttribute="width" id="rDG-lY-d0g"/>
                 <constraint firstItem="CRf-6i-qDd" firstAttribute="width" secondItem="jzt-n5-HEb" secondAttribute="width" id="rcR-fK-Myv"/>
-                <constraint firstItem="ciV-0L-Gfd" firstAttribute="width" secondItem="DDU-5n-9MR" secondAttribute="width" id="uVX-YF-97G"/>
-                <constraint firstItem="ciV-0L-Gfd" firstAttribute="centerY" secondItem="DDU-5n-9MR" secondAttribute="centerY" id="x9J-va-PKq"/>
+                <constraint firstItem="ciV-0L-Gfd" firstAttribute="centerY" secondItem="DDU-5n-9MR" secondAttribute="centerY" id="vs2-13-dyB"/>
+                <constraint firstItem="ciV-0L-Gfd" firstAttribute="height" secondItem="DDU-5n-9MR" secondAttribute="height" id="wPA-SY-y4k"/>
+                <constraint firstItem="vqk-9Z-H09" firstAttribute="height" secondItem="DDU-5n-9MR" secondAttribute="height" id="zUJ-hR-HyV"/>
             </constraints>
             <connections>
                 <outlet property="backButton" destination="ccQ-1Y-HAU" id="KkL-Ar-m19"/>
@@ -182,7 +171,6 @@
                 <outlet property="notSaveButton" destination="SeM-eN-ub9" id="Hq1-Od-CuM"/>
                 <outlet property="qqButton" destination="DDU-5n-9MR" id="BSu-Rj-CvJ"/>
                 <outlet property="sinaButton" destination="9sb-BV-toB" id="O4D-ab-inN"/>
-                <outlet property="wanyouButton" destination="5cM-ET-fmn" id="h1i-B8-bqN"/>
                 <outlet property="weChatButton" destination="ciV-0L-Gfd" id="jVc-Pl-saN"/>
                 <outlet property="weChatMonmentButton" destination="vqk-9Z-H09" id="gup-O8-0r3"/>
             </connections>
@@ -192,7 +180,6 @@
     <resources>
         <image name="live_B_qq.png" width="20" height="20"/>
         <image name="live_B_sina.png" width="23" height="19"/>
-        <image name="live_B_wanyou.png" width="27" height="27"/>
         <image name="live_B_wechat.png" width="26" height="21"/>
         <image name="live_wechatmonent.png" width="25" height="25"/>
     </resources>

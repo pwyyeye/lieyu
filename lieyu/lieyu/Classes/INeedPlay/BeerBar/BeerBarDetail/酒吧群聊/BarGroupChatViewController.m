@@ -55,9 +55,9 @@ static NSString *const rcGiftMessageCellIndentifier = @"rcGiftMessageCellIndenti
     }];
     [RCIM sharedRCIM].enableMessageMentioned = YES;
     [RCIM sharedRCIM].groupMemberDataSource = self;
-//    [self getAllMembersOfGroup:[NSString stringWithFormat:@"%@",self.targetId] result:^(NSArray<NSString *> *userIdList) {
-//        
-//    }];
+    //    [self getAllMembersOfGroup:[NSString stringWithFormat:@"%@",self.targetId] result:^(NSArray<NSString *> *userIdList) {
+    //
+    //    }];
     
     
     
@@ -65,7 +65,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"rcGiftMessageCellIndenti
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-//    self.extendedLayoutIncludesOpaqueBars = YES;
+    //    self.extendedLayoutIncludesOpaqueBars = YES;
 }
 
 - (void)viewDidLoad {
@@ -102,22 +102,22 @@ static NSString *const rcGiftMessageCellIndentifier = @"rcGiftMessageCellIndenti
     self.navigationItem.rightBarButtonItem = item;
     
     /*
-    UIButton *right = [UIButton buttonWithType:UIButtonTypeCustom];
-    right.frame = CGRectMake(0, 0, 30, 50);
-    [right addTarget:self action:@selector(checkAllPeople) forControlEvents:UIControlEventTouchUpInside];
-    [right setImage:[UIImage imageNamed:@"列表"] forState:(UIControlStateNormal)];
-//    right.titleLabel.font = [UIFont systemFontOfSize:13];
-//    [right setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:right];
-    
-    UIButton *quitBut = [UIButton buttonWithType:UIButtonTypeCustom];
-    quitBut.frame = CGRectMake(0, 0,30, 50);
-    [quitBut addTarget:self action:@selector(quitFromChatRoom) forControlEvents:UIControlEventTouchUpInside];
-//    [quitBut setTitle:@"老司机列表" forState:UIControlStateNormal];
-    [quitBut setImage:[UIImage imageNamed:@"退出"] forState:(UIControlStateNormal)];
-//    [quitBut setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    UIBarButtonItem *quitItem = [[UIBarButtonItem alloc]initWithCustomView:quitBut];
-    self.navigationItem.rightBarButtonItems = @[quitItem,rightItem];
+     UIButton *right = [UIButton buttonWithType:UIButtonTypeCustom];
+     right.frame = CGRectMake(0, 0, 30, 50);
+     [right addTarget:self action:@selector(checkAllPeople) forControlEvents:UIControlEventTouchUpInside];
+     [right setImage:[UIImage imageNamed:@"列表"] forState:(UIControlStateNormal)];
+     //    right.titleLabel.font = [UIFont systemFontOfSize:13];
+     //    [right setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:right];
+     
+     UIButton *quitBut = [UIButton buttonWithType:UIButtonTypeCustom];
+     quitBut.frame = CGRectMake(0, 0,30, 50);
+     [quitBut addTarget:self action:@selector(quitFromChatRoom) forControlEvents:UIControlEventTouchUpInside];
+     //    [quitBut setTitle:@"老司机列表" forState:UIControlStateNormal];
+     [quitBut setImage:[UIImage imageNamed:@"退出"] forState:(UIControlStateNormal)];
+     //    [quitBut setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+     UIBarButtonItem *quitItem = [[UIBarButtonItem alloc]initWithCustomView:quitBut];
+     self.navigationItem.rightBarButtonItems = @[quitItem,rightItem];
      */
 }
 
@@ -141,9 +141,9 @@ static NSString *const rcGiftMessageCellIndentifier = @"rcGiftMessageCellIndenti
                      image:[UIImage imageNamed:@"关闭通知"]
                     target:self
                     action:@selector(notificationChoose)]:[KxMenuItem menuItem:@"打开通知"
-                                                                image:[UIImage imageNamed:@"打开通知"]
-                                                               target:self
-                                                               action:@selector(notificationChoose)],
+                                                                         image:[UIImage imageNamed:@"打开通知"]
+                                                                        target:self
+                                                                        action:@selector(notificationChoose)],
       
       [KxMenuItem menuItem:@"退出群组"
                      image:[UIImage imageNamed:@"退出"]
@@ -245,18 +245,18 @@ static NSString *const rcGiftMessageCellIndentifier = @"rcGiftMessageCellIndenti
 #pragma marks --- 通知
 -(void)notificationChoose{
     NSLog(@"111111111111--%d", _notificationStatus);
-
+    
     [[RCIMClient sharedRCIMClient] setConversationNotificationStatus:self.conversationType targetId:self.targetId isBlocked:_notificationStatus success:^(RCConversationNotificationStatus nStatus) {
         _notificationStatus = nStatus;
         NSLog(@"222222222222222--%d", _notificationStatus);
-
+        
     } error:^(RCErrorCode status) {
     }];
     NSLog(@"333333333333333--%d", _notificationStatus);
-//    [[RCIMClient sharedRCIMClient] getConversationNotificationStatus:self.conversationType targetId:self.targetId success:^(RCConversationNotificationStatus nStatus) {
-//        _notificationStatus = nStatus;
-//    } error:^(RCErrorCode status) {
-//    }];
+    //    [[RCIMClient sharedRCIMClient] getConversationNotificationStatus:self.conversationType targetId:self.targetId success:^(RCConversationNotificationStatus nStatus) {
+    //        _notificationStatus = nStatus;
+    //    } error:^(RCErrorCode status) {
+    //    }];
 }
 
 #pragma mark - 退出群组
@@ -420,13 +420,13 @@ static NSString *const rcGiftMessageCellIndentifier = @"rcGiftMessageCellIndenti
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

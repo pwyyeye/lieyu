@@ -16,12 +16,13 @@
 #import "UMSocial.h"
 #import "UMSocialControllerService.h"
 #import "UMSocialWechatHandler.h"
-#import "UMSocialSinaHandler.h"   
+#import "UMSocialSinaHandler.h"
 #import "PTjoinInViewController.h"
 #import "LYUserLoginViewController.h"
 #import "CustomerModel.h"
 #import "LYUserHttpTool.h"
 #import "RCDataBaseManager.h"
+#import <PLStreamingKit/PLStreamingEnv.h>
 
 #import <AlipaySDK/AlipaySDK.h>
 #import "UMessage.h"
@@ -50,7 +51,7 @@
 UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
 >{
     BOOL _insertBirthday;
-    
+    BOOL _locationCertain;
 }
 @end
 
@@ -62,7 +63,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-//    _insertBirthday = NO;
+    //    _insertBirthday = NO;
     [self.window makeKeyAndVisible];
     // Override point for customization after application launch.
     //设置电池状态栏为白色
@@ -75,11 +76,11 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
     [[RCIM sharedRCIM] setGroupInfoDataSource:self];
     [self loadHisData];
     [self setupDataStore];
-
-   
+    
+    
     
     _navigationController= (UINavigationController *)self.window.rootViewController;
-//    _navigationController.delegate = self;
+    //    _navigationController.delegate = self;
     self.window.backgroundColor = [UIColor whiteColor];
     
     BOOL shanghuban = [[NSUserDefaults standardUserDefaults] boolForKey:@"shanghuban"];
@@ -97,39 +98,35 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
     }
     
     
-
-//    NSError *setCategoryErr=nil;
-//    NSError *activationErr=nil;
-//    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&setCategoryErr];
-//    [[AVAudioSession sharedInstance] setActive:YES error:&activationErr];
+    
+    //    NSError *setCategoryErr=nil;
+    //    NSError *activationErr=nil;
+    //    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&setCategoryErr];
+    //    [[AVAudioSession sharedInstance] setActive:YES error:&activationErr];
     
     _timer=[NSTimer scheduledTimerWithTimeInterval:60*5 target:self selector:@selector(doHeart) userInfo:nil repeats:YES];
     [_timer setFireDate:[NSDate distantFuture]];//暂停
     
     
     
- /*
-    //引导页启动
-    if (![[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
-        
-        [self showIntroWithCrossDissolve];
-        UIViewController *view=[[UIViewController alloc] init];
-        view.view=_intro;
-        self.window.rootViewController=view;
-    }else{
-        [self animationWithApp];
-    }
-*/
+    /*
+     //引导页启动
+     if (![[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
+     
+     [self showIntroWithCrossDissolve];
+     UIViewController *view=[[UIViewController alloc] init];
+     view.view=_intro;
+     self.window.rootViewController=view;
+     }else{
+     [self animationWithApp];
+     }
+     */
     [self startLocation];
     
     //IM推送
     if ([application
          respondsToSelector:@selector(registerUserNotificationSettings:)]) {
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings
-                                                settingsForTypes:(UIUserNotificationTypeBadge |
-                                                                  UIUserNotificationTypeSound |
-                                                                  UIUserNotificationTypeAlert)
-                                                categories:nil];
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert) categories:nil];
         [application registerUserNotificationSettings:settings];
     } else {
         UIRemoteNotificationType myTypes = UIRemoteNotificationTypeBadge |
@@ -139,7 +136,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
     }
     NSDictionary *pushServiceData = [[RCIMClient sharedRCIMClient] getPushExtraFromLaunchOptions:launchOptions];
     if (pushServiceData) {
-//        [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
+        //        [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
         NSLog(@"该启动事件包含来自融云的推送服务");
         for (id key in [pushServiceData allKeys]) {
             NSLog(@"%@", pushServiceData[key]);
@@ -147,7 +144,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
     } else {
         NSLog(@"该启动事件不包含来自融云的推送服务");
     }
-
+    
     
     //设置友盟社会化组件appkey
     [UMSocialData setAppKey:UmengAppkey];
@@ -174,10 +171,10 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
     [[MTAConfig getInstance] setDebugEnable:NO];
     
     //其它SDK内置启动MTA情况下需要调用下面方法,传入MTA_SDK_VERSION,并检 查返回值。
-//    [MTA startWithAppkey:@"I9IU4CZP47CE" checkedSdkVersion:MTA_SDK_VERSION];
-//    if([MTA startWithAppkey:@"I9IU4CZP47CE" checkedSdkVersion:MTA_SDK_VERSION]){
-//        NSLog(@"MTA start");
-//    }
+    //    [MTA startWithAppkey:@"I9IU4CZP47CE" checkedSdkVersion:MTA_SDK_VERSION];
+    //    if([MTA startWithAppkey:@"I9IU4CZP47CE" checkedSdkVersion:MTA_SDK_VERSION]){
+    //        NSLog(@"MTA start");
+    //    }
     
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE80_
     if(UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))
@@ -199,8 +196,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
         categorys.identifier = @"category1";//这组动作的唯一标示
         [categorys setActions:@[action1,action2] forContext:(UIUserNotificationActionContextDefault)];
         
-        UIUserNotificationSettings *userSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge|UIUserNotificationTypeSound|UIUserNotificationTypeAlert
-                                                                                     categories:[NSSet setWithObject:categorys]];
+        UIUserNotificationSettings *userSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge|UIUserNotificationTypeSound|UIUserNotificationTypeAlert categories:[NSSet setWithObject:categorys]];
         [UMessage registerRemoteNotificationAndUserNotificationSettings:userSettings];
         
     } else{
@@ -218,22 +214,22 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
     
 #endif
     
- 
+    
     //for log
     [UMessage setLogEnabled:NO];
     
-   
+    
     
     NSString *username=[USER_DEFAULT objectForKey:@"username"];
     NSString *password=[USER_DEFAULT objectForKey:@"pass"];
     NSString *openID = [[NSUserDefaults standardUserDefaults] objectForKey:@"OPENIDSTR"];
-
+    
     if((([MyUtil isEmptyString:username] || [MyUtil isEmptyString:password]) && [MyUtil isEmptyString:openID])){
-         LPUserLoginViewController *login=[[LPUserLoginViewController alloc] initWithNibName:@"LPUserLoginViewController" bundle:nil];
+        LPUserLoginViewController *login=[[LPUserLoginViewController alloc] initWithNibName:@"LPUserLoginViewController" bundle:nil];
         [self.navigationController pushViewController:login animated:YES];
-//         self.window.rootViewController=login;
+        //         self.window.rootViewController=login;
     }
-
+    
     //处理消息推送
     if (launchOptions.count>0) {
         NSDictionary * userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
@@ -244,11 +240,11 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
     //是否需要统计IM消息角标
     [USER_DEFAULT setObject:@"1" forKey:@"needCountIM"];
     //是否需要打开跳转到通知指定页面
-     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nontifyJump) name:@"loadUserInfo" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nontifyJump) name:@"loadUserInfo" object:nil];
     
     [self initqiniuZhiBo];
     
-     return YES;
+    return YES;
 }
 
 
@@ -266,7 +262,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
     imgV.backgroundColor = RGBA(5, 5, 5, 1);
     imgV.contentMode = UIViewContentModeCenter;
     [self.window addSubview:imgV];
-//    [self.window bringSubviewToFront:imgV];
+    //    [self.window bringSubviewToFront:imgV];
     self.window.userInteractionEnabled = NO;
     
     NSMutableArray *imgNameArr = [[NSMutableArray alloc]initWithCapacity:90];
@@ -276,7 +272,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
     
     NSMutableArray *imgArr = [[NSMutableArray alloc]init];
     for(int i = 0; i < imgNameArr.count; i ++){
-//        UIImage *img =[UIImage imageNamed:imgNameArr[i]];
+        //        UIImage *img =[UIImage imageNamed:imgNameArr[i]];
         NSString *path = [[NSBundle mainBundle] pathForResource:imgNameArr[i] ofType:nil];
         UIImage *img = [UIImage imageWithContentsOfFile:path];
         [imgArr addObject:(__bridge UIImage*)img.CGImage];
@@ -293,133 +289,140 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
 }
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
-     UIImageView *imgV = (UIImageView *)[self.window viewWithTag:10086];
+    UIImageView *imgV = (UIImageView *)[self.window viewWithTag:10086];
     [UIView animateWithDuration:.5 animations:^{
         imgV.alpha = 0.0;
-         [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
     }completion:^(BOOL finished) {
         [imgV.layer removeAllAnimations];
         [imgV removeFromSuperview];
-
+        
         self.window.userInteractionEnabled = YES;
-//        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
+        //        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
     }];
     
 }
-  
+
 - (void)onReceived:(RCMessage *)message left:(int)nLeft object:(id)object{
     NSLog(@"ndifadhfjkhsajkdfaygfhrajkfhdskfjhdkjads");
 }
 
 //开始定位
 -(void)startLocation{
+    _locationCertain = NO;
+    if (![USER_DEFAULT objectForKey:@"ChooseCityLastTime"]) {
+        [USER_DEFAULT setObject:@"上海" forKey:@"ChooseCityLastTime"];
+        [USER_DEFAULT setObject:@"1" forKey:@"LastCityHasBar"];
+        [USER_DEFAULT setObject:@"1" forKey:@"LastCityHasNightClub"];
+    }//上次默认不为空，则不进行改变
     if (![CLLocationManager locationServicesEnabled])
-        
     {
         [MyUtil showMessage:@"请开启定位服务!"];
         //提示开启定位服务
+        [USER_DEFAULT setObject:@"" forKey:@"LocationCityThisTime"];
         return ;
     }
-    
-    
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined
-        
         && [[[UIDevice currentDevice] systemVersion] floatValue] > 8.0)
-        
     {
         if (!locationManager)
-            
         {
-            
             locationManager = [[CLLocationManager alloc] init];
-            
         }
-        
-        
-        
         if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])
-            
         {
-            
             [locationManager performSelector:@selector(requestWhenInUseAuthorization)];//用这个方法，plist里要加字段NSLocationWhenInUseUsageDescription
-            
         }
-        
     }
-    
-    else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted
-             
-             || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied)
-        
+    else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied)
     {
-        
         //提示开启当前应用定位服务
         [MyUtil showMessage:@"请开启定位服务!"];
+        [USER_DEFAULT setObject:@"" forKey:@"LocationCityThisTime"];
         return ;
-        
     }
     if (!locationManager)
-        
     {
-        
         locationManager = [[CLLocationManager alloc] init];
-        
     }
     locationManager.delegate = self;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     locationManager.distanceFilter = 100.0f;
     [locationManager startUpdatingLocation];
 }
+
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error{
     //    [self showMessage:@"定位失败!"];
 }
+
 //定位代理经纬度回调
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-    
-    
-//    [locationManager stopUpdatingLocation];
-    NSLog(@"location ok");
-    _userLocation=newLocation;
-    NSLog(@"%@",[NSString stringWithFormat:@"经度:%3.5f\n纬度:%3.5f",newLocation.coordinate.latitude,newLocation.coordinate.longitude]);
-    [self saveHisData];
-    CLGeocoder * geoCoder = [[CLGeocoder alloc] init];
-    [geoCoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+    //    UserModel *userModel = ((AppDelegate *)[UIApplication sharedApplication].delegate).userModel;
+    //    if (!userModel.userid) {
+    //        LPUserLoginViewController *login=[[LPUserLoginViewController alloc] initWithNibName:@"LPUserLoginViewController" bundle:nil];
+    //        [self.navigationController pushViewController:login animated:YES];
+    //    }else{
+    if (!_locationCertain) {
+        //没有确定位置
+        _userLocation=newLocation;
+        NSLog(@"%@",[NSString stringWithFormat:@"经度:%3.5f\n纬度:%3.5f",newLocation.coordinate.latitude,newLocation.coordinate.longitude]);
+        [self saveHisData];
+        CLGeocoder * geoCoder = [[CLGeocoder alloc] init];
+        [geoCoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+            if(!_locationCertain){
+                for (CLPlacemark * placemark in placemarks) {
+                    _citystr= placemark.locality;
+                    if (_citystr && !_locationCertain) {
+                        //                        NSDictionary *dict = @{@"city":@"南宁市"};
+                        NSDictionary *dict = @{@"city":_citystr};
+                        _locationCertain = YES;
+                        [LYUserHttpTool lyLocationCityGetStatusWithParams:dict complete:^(NSDictionary *dict) {
+                            if (dict) {
+                                //                        NSDictionary *dict = @{@"city":@"北为",
+                                //                                               @"hasBar":@"0",
+                                //                                               @"hasNightclub":@"1",
+                                //                                               @"cityIsExist":@"1"};
+                                if ([[dict objectForKey:@"cityIsExist"] isEqualToString:@"1"]) {
+                                    [USER_DEFAULT setObject:[dict objectForKey:@"city"] forKey:@"LocationCityThisTime"];
+                                    [USER_DEFAULT setObject:[dict objectForKey:@"hasBar"] forKey:@"ThisTimeHasBar"];
+                                    [USER_DEFAULT setObject:[dict objectForKey:@"hasNightclub"] forKey:@"ThisTimeHasNightClub"];
+                                }else{
+                                    [USER_DEFAULT setObject:@"" forKey:@"LocationCityThisTime"];
+                                }
+                            }
+                            [[NSNotificationCenter defaultCenter]postNotificationName:@"locationCityThisTime" object:nil];
+                        }];
+                        break;
+                    }
+                    break;
+                }
+            }
+        }];
         
-        for (CLPlacemark * placemark in placemarks) {
-            
-            NSDictionary *test = [placemark addressDictionary];
-            //  Country(国家)  State(城市)  SubLocality(区)
-//            NSLog(@"%@", [test objectForKey:@"State"]);
-//            NSLog(@"%@", placemark.locality);
-            _citystr= placemark.locality;
-            
-        }
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"cityChange" object:nil];
-    }];
-    
+    }
+    //    }
 }
 
 #pragma mark 获取历史搜索数据
 -(void)loadHisData{
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *Path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *filename = [Path stringByAppendingPathComponent:@"hisLocation.plist"];
-    if([fileManager fileExistsAtPath:filename]){
-        _userLocation= [NSKeyedUnarchiver unarchiveObjectWithFile:filename];
-    }else{
-        _userLocation = [[CLLocation alloc]initWithLatitude:31.2 longitude:121.4];
-        
-    }
+    //    NSFileManager *fileManager = [NSFileManager defaultManager];
+    //    NSString *Path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    //    NSString *filename = [Path stringByAppendingPathComponent:@"hisLocation.plist"];
+    //    if([fileManager fileExistsAtPath:filename]){
+    //        _userLocation= [NSKeyedUnarchiver unarchiveObjectWithFile:filename];
+    //    }else{
+    //        _userLocation = [[CLLocation alloc]initWithLatitude:31.2 longitude:121.4];
+    //    }
     
 }
 
 #pragma mark 保存历史数据
 -(void)saveHisData{
-//    NSFileManager *fileManager = [NSFileManager defaultManager];
+    //    NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *Path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *filename = [Path stringByAppendingPathComponent:@"hisLocation.plist"];
-//    NSString *filename1 = [Path stringByAppendingPathComponent:@"hiscity.plist"];
+    //    NSString *filename1 = [Path stringByAppendingPathComponent:@"hiscity.plist"];
     [NSKeyedArchiver archiveRootObject:_userLocation toFile:filename];
     
     
@@ -432,29 +435,29 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-//    if ([viewController conformsToProtocol:@protocol(NeedHideNavigationBar)])
-//    {
-//        [viewController.navigationController setNavigationBarHidden:YES];
-//    }
-//    else
-//    {
-//        BOOL isTabBarContrller = [viewController isKindOfClass:[UITabBarController class]];
-//        UIViewController *dstController = viewController;
-//        if (isTabBarContrller)
-//        {
-//            UITabBarController * tabBarController = (UITabBarController *)viewController;
-//            dstController = tabBarController.selectedViewController;
-//        }
-//        
-//        if (![dstController conformsToProtocol:@protocol(NeedHideNavigationBar)])
-//        {
-//            [dstController.navigationController setNavigationBarHidden:NO];
-//        }
-//        else
-//        {
-//            [dstController.navigationController setNavigationBarHidden:YES];
-//        }
-//    }
+    //    if ([viewController conformsToProtocol:@protocol(NeedHideNavigationBar)])
+    //    {
+    //        [viewController.navigationController setNavigationBarHidden:YES];
+    //    }
+    //    else
+    //    {
+    //        BOOL isTabBarContrller = [viewController isKindOfClass:[UITabBarController class]];
+    //        UIViewController *dstController = viewController;
+    //        if (isTabBarContrller)
+    //        {
+    //            UITabBarController * tabBarController = (UITabBarController *)viewController;
+    //            dstController = tabBarController.selectedViewController;
+    //        }
+    //
+    //        if (![dstController conformsToProtocol:@protocol(NeedHideNavigationBar)])
+    //        {
+    //            [dstController.navigationController setNavigationBarHidden:NO];
+    //        }
+    //        else
+    //        {
+    //            [dstController.navigationController setNavigationBarHidden:YES];
+    //        }
+    //    }
 }
 
 //注册用户通知设置
@@ -524,7 +527,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 
 #pragma --mark 消息推送处理
 -(void)takeNotification:(NSDictionary *)dic andApplicationStatus:(UIApplicationState) status{
-   
+    
     [self getTTL];
     if ([dic objectForKey:@"aps"]&&[dic objectForKey:@"d"]) {
         [UMessage didReceiveRemoteNotification:dic];
@@ -581,25 +584,25 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-//    UIApplication *app=[UIApplication sharedApplication];
-//    __block UIBackgroundTaskIdentifier bgTask;
-//    bgTask =[app beginBackgroundTaskWithExpirationHandler:^{
-//        if (bgTask!=UIBackgroundTaskInvalid) {
-//            bgTask=UIBackgroundTaskInvalid;
-//        }
-//    }];
-//    
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//        if (bgTask!=UIBackgroundTaskInvalid) {
-//            bgTask=UIBackgroundTaskInvalid;
-//        }
-//    });
+    //    UIApplication *app=[UIApplication sharedApplication];
+    //    __block UIBackgroundTaskIdentifier bgTask;
+    //    bgTask =[app beginBackgroundTaskWithExpirationHandler:^{
+    //        if (bgTask!=UIBackgroundTaskInvalid) {
+    //            bgTask=UIBackgroundTaskInvalid;
+    //        }
+    //    }];
+    //
+    //    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    //        if (bgTask!=UIBackgroundTaskInvalid) {
+    //            bgTask=UIBackgroundTaskInvalid;
+    //        }
+    //    });
     
-//    [_timer setFireDate:[NSDate distantPast]];//开启
+    //    [_timer setFireDate:[NSDate distantPast]];//开启
     NSFileManager *manager = [NSFileManager defaultManager];
     NSString *pngDir = [NSHomeDirectory() stringByAppendingString:@"/tmp"];
     NSArray *contents = [manager contentsOfDirectoryAtPath:pngDir error:nil];
-//    NSLog(@"%@",contents);
+    //    NSLog(@"%@",contents);
     NSEnumerator *e = [contents objectEnumerator];
     NSString *filename;
     while (filename = [e nextObject]) {
@@ -614,8 +617,9 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     if ([[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
-            LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
-            [login autoLogin];
+        LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
+        [login autoLogin];
+        UserModel *userModel = ((AppDelegate *)[UIApplication sharedApplication].delegate).userModel;
     }
     
     [_timer setFireDate:[NSDate distantPast]];//开启
@@ -646,9 +650,9 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
                     NSString *message = [NSString stringWithFormat:@"今天有%ld位好友过生日，取送上祝福吧～",result.count];
                     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:message delegate:weakSelf cancelButtonTitle:@"取消" otherButtonTitles:@"去看看", nil];
                     alert.tag = 123;
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            [alert show];
-                        });
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [alert show];
+                    });
                 }
                 [USER_DEFAULT setObject:dateString forKey:@"todayBirthdayGet"];
             }];
@@ -717,6 +721,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     if ([[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
         LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
         [login autoLogin];
+        UserModel *userModel = ((AppDelegate *)[UIApplication sharedApplication].delegate).userModel;
         
         [[LYCommonHttpTool shareInstance] getTokenByqiNiuWithParams:nil block:^(NSString *result) {
             _qiniu_token=result;
@@ -731,20 +736,20 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 
 - (void)startLoading
 {
-     [DejalBezelActivityView activityViewForView:self.window];
+    [DejalBezelActivityView activityViewForView:self.window];
     
 }
 
 - (void)stopLoading
 {
     [DejalBezelActivityView removeViewAnimated:NO];
-
+    
 }
 
 //获取IMToken
 -(void)getImToken{
     if(_userModel){
-//        NSLog(@"userid=%d",_userModel.userid);
+        //        NSLog(@"userid=%d",_userModel.userid);
         NSDictionary *dic=@{@"userId":[NSNumber numberWithInt:_userModel.userid]};
         [[LYCommonHttpTool shareInstance] getTokenByIMWithParams:dic block:^(NSString *result) {
             _im_token=result;
@@ -755,21 +760,21 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 
 //IM连接服务器
 -(void)connectWithToken{
-//    NSLog(@"_im_token=%@",_im_token);
-//    _im_token=@"aqw73LOC9fju/Zfr+G0uCIZ6iyJm4gkQBO3AbCIB4IoMo7IJ9CyOesCxoHF0+KU1I2fSIds0iGGsdNrAeyA1L6CePnAuGYiF";
+    //    NSLog(@"_im_token=%@",_im_token);
+    //    _im_token=@"aqw73LOC9fju/Zfr+G0uCIZ6iyJm4gkQBO3AbCIB4IoMo7IJ9CyOesCxoHF0+KU1I2fSIds0iGGsdNrAeyA1L6CePnAuGYiF";
     @try {
         [[RCIM sharedRCIM] connectWithToken: _im_token success:^(NSString *userId) {
             // Connect 成功
             NSLog(@"****登录成功%@",userId);
         }
-        error:^(RCConnectErrorCode status) {
-            NSLog(@"****登录失败");
-            // Connect 失败
-            }
-        tokenIncorrect:^() {
-            NSLog(@"Token 失效的状态处理");
-            // Token 失效的状态处理
-        }];
+                                      error:^(RCConnectErrorCode status) {
+                                          NSLog(@"****登录失败");
+                                          // Connect 失败
+                                      }
+                             tokenIncorrect:^() {
+                                 NSLog(@"Token 失效的状态处理");
+                                 // Token 失效的状态处理
+                             }];
     }
     @catch (NSException *exception) {
         NSLog(@"----pass-pass%@---",exception);
@@ -783,7 +788,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 // 获取用户信息的方法。
 -(void)getUserInfoWithUserId:(NSString *)userId completion:(void(^)(RCUserInfo* userInfo))completion
 {
-//    LYUserHttpTool
+    //    LYUserHttpTool
     NSDictionary *dic = @{@"imUserId":userId};
     [[LYUserHttpTool shareInstance]getUserInfo:dic block:^(CustomerModel *result) {
         RCUserInfo *user = [[RCUserInfo alloc]init];
@@ -794,21 +799,21 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         completion(user);
     }];
     //看本地缓存是否存在
-//    RCUserInfo *userInfo=[[RCDataBaseManager shareInstance] getUserByUserId:userId];
-//    if (userInfo==nil) {
-//        
-//    }else{
-//        NSDictionary *dic = @{@"imUserId":userId};
-//        [[LYUserHttpTool shareInstance]getUserInfo:dic block:^(CustomerModel *result) {
-//            RCUserInfo *user = [[RCUserInfo alloc]init];
-//            user.userId =result.imUserId;
-//            user.name = result.name;
-//            user.portraitUri = result.mark;
-//            [[RCDataBaseManager shareInstance] insertUserToDB:user];
-//            
-//        }];
-//         completion(userInfo);
-//    }
+    //    RCUserInfo *userInfo=[[RCDataBaseManager shareInstance] getUserByUserId:userId];
+    //    if (userInfo==nil) {
+    //
+    //    }else{
+    //        NSDictionary *dic = @{@"imUserId":userId};
+    //        [[LYUserHttpTool shareInstance]getUserInfo:dic block:^(CustomerModel *result) {
+    //            RCUserInfo *user = [[RCUserInfo alloc]init];
+    //            user.userId =result.imUserId;
+    //            user.name = result.name;
+    //            user.portraitUri = result.mark;
+    //            [[RCDataBaseManager shareInstance] insertUserToDB:user];
+    //
+    //        }];
+    //         completion(userInfo);
+    //    }
 }
 
 
@@ -853,7 +858,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         NSArray *arrayStr = [[url query] componentsSeparatedByString:@"&"];
         if (arrayStr.count>=2) {
             NSArray *arrayStr2 = [arrayStr[0] componentsSeparatedByString:@"="];
-            code = arrayStr2[1]; 
+            code = arrayStr2[1];
         }
         
     }
@@ -895,7 +900,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 - (void)application:(UIApplication *)application
 didReceiveLocalNotification:(UILocalNotification *)notification {
     //震动
-//    [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
+    //    [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
     NSLog(@"----pass-pass%@---",notification);
     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
     AudioServicesPlaySystemSound(1007);
@@ -939,14 +944,14 @@ didReceiveLocalNotification:(UILocalNotification *)notification {
         page4.bgImage = [UIImage imageNamed:@"4.jpg"];
     }
     
-//    EAIntroPage *page5 = [EAIntroPage page];
-//    
-//    if (isRetina) {
-//        page5.bgImage = [UIImage imageNamed:@"5_retina.jpg"];
-//    }else{
-//        page5.bgImage = [UIImage imageNamed:@"5.jpg"];
-//    }
-
+    //    EAIntroPage *page5 = [EAIntroPage page];
+    //
+    //    if (isRetina) {
+    //        page5.bgImage = [UIImage imageNamed:@"5_retina.jpg"];
+    //    }else{
+    //        page5.bgImage = [UIImage imageNamed:@"5.jpg"];
+    //    }
+    
     //    page4.titleImage = [UIImage imageNamed:@"skip-btn"];
     //
     //    page4.imgPositionY = SCREEN_HEIGHT-100;
@@ -966,7 +971,7 @@ didReceiveLocalNotification:(UILocalNotification *)notification {
     _intro.skipButton = [[UIButton alloc] initWithFrame:CGRectZero];
     _intro.pageControl.currentPageIndicatorTintColor = RGB(211, 20, 237);
     _intro.pageControl.pageIndicatorTintColor = RGB(219, 217, 217);
-//    _intro.pageControlY=35;
+    //    _intro.pageControlY=35;
     
     [_intro setDelegate:self];
     [_intro showInView:self.window animateDuration:1.0];

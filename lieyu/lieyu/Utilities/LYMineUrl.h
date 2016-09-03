@@ -130,4 +130,9 @@
 //预留卡座或者对订台表示满意或者不满意
 #define LY_CHANGE_FREEORDER @"lyOrderFreeAction.do?action=update"
 
+//获取定位城市的相关信息
+#define LY_LOCATION_GETSTATUS @"lieAction.do?action=custom"
+
+
+
 #endif

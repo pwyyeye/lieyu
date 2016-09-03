@@ -22,14 +22,14 @@
     _view_cons_width.constant = 0.5;
     _view_cont_one_width.constant = 0.5;
     
-//    _label_address.shadowOffset = CGSizeMake(0, 0.5);
-//    _label_barName.shadowOffset = CGSizeMake(0, 0.5);
-//        _label_distance.shadowOffset = CGSizeMake(0, 0.5);
-//        _label_fanli.shadowOffset = CGSizeMake(0, 0.5);
-//        _label_price.shadowOffset = CGSizeMake(0, 0.5);
-//    _label_barDescr.shadowOffset = CGSizeMake(0, 0.5);
-//    _label_collect.shadowOffset = CGSizeMake(0, 0.5);
-//        _label_zang.shadowOffset = CGSizeMake(0, 0.5);
+    //    _label_address.shadowOffset = CGSizeMake(0, 0.5);
+    //    _label_barName.shadowOffset = CGSizeMake(0, 0.5);
+    //        _label_distance.shadowOffset = CGSizeMake(0, 0.5);
+    //        _label_fanli.shadowOffset = CGSizeMake(0, 0.5);
+    //        _label_price.shadowOffset = CGSizeMake(0, 0.5);
+    //    _label_barDescr.shadowOffset = CGSizeMake(0, 0.5);
+    //    _label_collect.shadowOffset = CGSizeMake(0, 0.5);
+    //        _label_zang.shadowOffset = CGSizeMake(0, 0.5);
 }
 
 - (void)setJiuBaM:(JiuBaModel *)jiuBaM{
@@ -37,9 +37,9 @@
     
     _label_barName.text = jiuBaM.barname;
     if(jiuBaM.banners.count ){
-//        NSLog(@"---->%@----->%@",jiuBaM.banners,jiuBaM.banners.firstObject);
+        //        NSLog(@"---->%@----->%@",jiuBaM.banners,jiuBaM.banners.firstObject);
         NSString *str = jiuBaM.banners.firstObject;
-//        NSLog(@"-->%@",str);
+        //        NSLog(@"-->%@",str);
         if(![str isKindOfClass:[NSNull class]]){
             [_imgView_bg sd_setImageWithURL:[NSURL URLWithString:jiuBaM.banners[0]] placeholderImage:[UIImage imageNamed:@"empyImageBar16_9"]];
         }
@@ -65,10 +65,10 @@
         }
     }
     
-    if ([jiuBaM.fav_num integerValue]) {
-        int num = [jiuBaM.fav_num intValue];
+    if (jiuBaM.fav_num) {
+        int num = jiuBaM.fav_num;
         if(num < 10000){
-            [_label_collect setText:jiuBaM.fav_num];
+            [_label_collect setText:[NSString stringWithFormat:@"%d",jiuBaM.fav_num]];
         }else{
             [_label_collect setText:[NSString stringWithFormat:@"%dw+",num / 10000]];
         }
@@ -76,15 +76,15 @@
         [_label_collect setText:@"0"];
     }
     
-    if ([jiuBaM.like_num integerValue]) {
-        int num = [jiuBaM.like_num intValue];
+    if (jiuBaM.like_num) {
+        int num = jiuBaM.like_num;
         if(num < 10000){
-            [_label_zang setText:jiuBaM.like_num ];
+            [_label_zang setText:[NSString stringWithFormat:@"%d",jiuBaM.like_num ]];
         }else{
-              [_label_zang setText:[NSString stringWithFormat:@"%dw+",num / 10000] ];
+            [_label_zang setText:[NSString stringWithFormat:@"%dw+",num / 10000] ];
         }
     }else{
-         [_label_zang setText:@"0"];
+        [_label_zang setText:@"0"];
     }
     
     int fanli=jiuBaM.rebate.floatValue * 100;

@@ -17,7 +17,7 @@
 -(void)setImageUrl:(NSString *)imageUrl{
     _imageUrl = imageUrl;
     _iconImage = [[UIImageView alloc]initWithFrame:CGRectMake(buttonWidth / 2 - 13, 15, 26, 26)];
-//    _iconImage.backgroundColor = [UIColor redColor];
+    //    _iconImage.backgroundColor = [UIColor redColor];
     [_iconImage setContentMode:UIViewContentModeScaleAspectFit];
     [self addSubview:_iconImage];
     [_iconImage setImage:[UIImage imageNamed:_imageUrl]];

@@ -10,4 +10,13 @@
 
 @interface DaShangViewCell : UICollectionViewCell
 
+
+@property (weak, nonatomic) IBOutlet UIImageView *DSChooseImage;
+
+@property (weak, nonatomic) IBOutlet UIImageView *giftImageView;
+
+@property (weak, nonatomic) IBOutlet UILabel *giftNameLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *YuBiLabel;
+
 @end

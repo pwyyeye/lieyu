@@ -12,6 +12,7 @@
 #import <RongIMToolKit/RongIMToolKit.h>
 #import <RongIMToolKit/RCInputBarControl.h>
 #import "RongIMKit.h"
+
 ///输入栏扩展输入的唯一标示
 #define PLUGIN_BOARD_ITEM_ALBUM_TAG    1001
 #define PLUGIN_BOARD_ITEM_CAMERA_TAG   1002

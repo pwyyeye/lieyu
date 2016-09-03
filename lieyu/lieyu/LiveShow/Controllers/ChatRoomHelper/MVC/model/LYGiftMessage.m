@@ -27,6 +27,8 @@
         self.type = [dict objectForKey:@"type"];
         NSDictionary *userinfoDic = [dict objectForKey:@"user"];
         [self decodeUserInfo:userinfoDic];
+        NSDictionary *giftDic = [dict objectForKey:@"gift"];
+        [self decodeUserInfo:giftDic];
     } else {
         self.rawJSONData = data;
     }
@@ -50,6 +52,22 @@
             [__dic setObject:self.senderUserInfo.userId forKeyedSubscript:@"id"];
         }
         [dict setObject:__dic forKey:@"user"];
+    }
+    if (self.gift) {
+        NSMutableDictionary *_dict = [[NSMutableDictionary alloc] init];
+        if (self.gift.giftId) {
+            [_dict setObject:self.gift.giftId forKeyedSubscript:@"giftId"];
+        }
+        if (self.gift.giftUrl) {
+            [_dict setObject:self.gift.giftUrl forKeyedSubscript:@"giftUrl"];
+        }
+        if (self.gift.giftLocalUrl) {
+            [_dict setObject:self.gift.giftLocalUrl forKeyedSubscript:@"giftLocalUrl"];
+        }
+        if (self.gift.giftId) {
+            [_dict setObject:self.gift.giftId forKeyedSubscript:@"giftId"];
+        }
+        [dict setObject:_dict forKey:@"gift"];
     }
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:nil];
     return jsonData;
