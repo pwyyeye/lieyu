@@ -17,4 +17,8 @@
 
 @property (copy, nonatomic) void(^begainImage)(UIImage *);
 
+@property (nonatomic, strong) NSString *streamID;
+
+@property (nonatomic, strong) NSString *roomId;//生成直播间ID
+
 @end

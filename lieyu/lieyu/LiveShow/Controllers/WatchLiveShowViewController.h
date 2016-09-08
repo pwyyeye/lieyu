@@ -46,7 +46,6 @@ UIScrollViewDelegate, UINavigationControllerDelegate,RCInputBarControlDelegate,R
  播放内容地址
  */
 @property(nonatomic, strong) NSString *contentURL;
-
 @property (nonatomic, strong) NSDictionary *hostUser;//主播
 
 #pragma mark - 聊天界面属性

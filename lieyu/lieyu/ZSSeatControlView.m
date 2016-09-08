@@ -44,10 +44,7 @@
     [[ZSManageHttpTool shareInstance] getDeckFullWithParams:dic block:^(NSMutableArray *result) {
         listArr = result;
         [weakSelf.tableView reloadData];
-        
     }];
-     
-   
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,7 +56,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return listArr.count;
-    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

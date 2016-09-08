@@ -7,11 +7,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="70" id="KGk-i7-Jjw" customClass="CustomerCell">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="70" id="KGk-i7-Jjw" customClass="CustomerCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="58.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="58"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TfL-Fo-Z5Y">
@@ -49,10 +49,20 @@
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="帮主" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FUw-hD-1dN">
-                        <rect key="frame" x="282" y="21.5" width="28" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="帮主" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FUw-hD-1dN">
+                        <rect key="frame" x="282" y="22" width="28" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RGa-cs-mvz">
+                        <rect key="frame" x="100" y="22" width="120" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="BBY-Gc-nWS"/>
+                            <constraint firstAttribute="width" constant="120" id="Psa-vb-GVK"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -60,6 +70,7 @@
                     <constraint firstItem="AOX-6Q-QS3" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="1Ck-TS-34e"/>
                     <constraint firstItem="AOX-6Q-QS3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="29L-hb-XB6"/>
                     <constraint firstItem="TfL-Fo-Z5Y" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="18" id="3qw-ey-S9e"/>
+                    <constraint firstItem="RGa-cs-mvz" firstAttribute="leading" secondItem="AOX-6Q-QS3" secondAttribute="trailing" constant="55" id="74U-S4-2gH"/>
                     <constraint firstItem="TfL-Fo-Z5Y" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Ekr-8g-bbs"/>
                     <constraint firstItem="wNB-ch-WCo" firstAttribute="centerX" secondItem="TfL-Fo-Z5Y" secondAttribute="centerX" id="Iff-Uj-ueF"/>
                     <constraint firstItem="wNB-ch-WCo" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="N6q-hv-oiA"/>
@@ -68,6 +79,7 @@
                     <constraint firstItem="TfL-Fo-Z5Y" firstAttribute="leading" secondItem="byH-EM-rF4" secondAttribute="trailing" constant="29" id="acq-bS-opc"/>
                     <constraint firstItem="byH-EM-rF4" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="eQ1-F3-Ait"/>
                     <constraint firstItem="FUw-hD-1dN" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="fU3-gd-9U1"/>
+                    <constraint firstItem="RGa-cs-mvz" firstAttribute="centerY" secondItem="byH-EM-rF4" secondAttribute="centerY" id="kr9-ne-e7l"/>
                     <constraint firstItem="AOX-6Q-QS3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="mug-16-kMf"/>
                     <constraint firstAttribute="trailing" secondItem="FUw-hD-1dN" secondAttribute="trailing" constant="10" id="sAP-Jf-kGx"/>
                     <constraint firstItem="byH-EM-rF4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="23" id="udq-Y9-Dr5"/>
@@ -88,6 +100,7 @@
                 <outlet property="descLabel" destination="FUw-hD-1dN" id="HiF-H9-HNK"/>
                 <outlet property="nameLal" destination="byH-EM-rF4" id="jPl-r1-Xos"/>
                 <outlet property="smallImageView" destination="TfL-Fo-Z5Y" id="NwZ-tC-wyY"/>
+                <outlet property="tipLabel" destination="RGa-cs-mvz" id="dec-Im-gsM"/>
             </connections>
             <point key="canvasLocation" x="64" y="262.5"/>
         </tableViewCell>

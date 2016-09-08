@@ -23,4 +23,8 @@
 
 @property (nonatomic, strong) NSString *vipUserid;
 
+@property (nonatomic, strong) UILabel *redTip;
+@property (nonatomic, assign) int tipNum;
+@property (nonatomic, assign) BOOL isOpen;
+
 @end

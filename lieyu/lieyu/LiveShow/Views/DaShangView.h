@@ -17,5 +17,6 @@
 
 @property (strong, nonatomic) UIButton *giftButton;
 @property (assign, nonatomic) int memony;
+@property (assign, nonatomic) NSInteger number;
 
 @end

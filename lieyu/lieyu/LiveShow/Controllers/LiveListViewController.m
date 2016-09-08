@@ -555,7 +555,7 @@ static NSString *liveShowListID = @"liveShowListID";
     }
     if (roomUser.userTag) {
         cell.firstTaglabel.text = [NSString stringWithFormat:@"%@",roomUser.userTag[0]];
-        if (roomUser.userTag[1]) {
+        if (roomUser.userTag.count >= 2 ) {
             cell.secondTagLabel.text = [NSString stringWithFormat:@"%@",roomUser.userTag[1]];
         } else {
             cell.secondTagLabel.hidden = YES;

@@ -16,6 +16,11 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *redTiPot;
 
+@property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
+
+@property (weak, nonatomic) IBOutlet UIImageView *smallTip;
+
+
 -(void) setIamge:(UIImage *) image andLabel:(NSString *)text;
 
 @end

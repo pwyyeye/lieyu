@@ -29,7 +29,7 @@
                             <constraint firstAttribute="width" constant="70" id="bz0-bq-Q4j"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RedTipPot.png" translatesAutoresizingMaskIntoConstraints="NO" id="bWI-rz-BzT">
@@ -39,11 +39,29 @@
                             <constraint firstAttribute="width" constant="7" id="la9-dI-LeB"/>
                         </constraints>
                     </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Fon-tL-130">
+                        <rect key="frame" x="259" y="34" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="A90-1Q-xSE"/>
+                            <constraint firstAttribute="height" constant="30" id="rbu-kT-ljn"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RedTipPot.png" translatesAutoresizingMaskIntoConstraints="NO" id="MFb-mw-wez">
+                        <rect key="frame" x="279" y="32" width="8" height="7"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="8" id="6n5-sm-INB"/>
+                            <constraint firstAttribute="height" constant="7" id="S0g-qc-yTS"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="Fon-tL-130" secondAttribute="trailing" constant="8" id="0Mw-v0-Beq"/>
+                    <constraint firstItem="MFb-mw-wez" firstAttribute="centerY" secondItem="Fon-tL-130" secondAttribute="centerY" constant="-14" id="2jn-Vs-oyv"/>
                     <constraint firstItem="off-7t-eF1" firstAttribute="centerY" secondItem="X8n-Fr-jyx" secondAttribute="centerY" id="SDl-ye-Ldx"/>
                     <constraint firstItem="X8n-Fr-jyx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="18" id="Y1O-qp-Dcz"/>
                     <constraint firstItem="bWI-rz-BzT" firstAttribute="centerY" secondItem="X8n-Fr-jyx" secondAttribute="centerY" id="bDN-QN-Fzi"/>
+                    <constraint firstItem="Fon-tL-130" firstAttribute="centerY" secondItem="X8n-Fr-jyx" secondAttribute="centerY" id="ebz-RN-XyV"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="MFb-mw-wez" secondAttribute="trailing" constant="2" id="he2-rx-Y16"/>
                     <constraint firstAttribute="trailingMargin" secondItem="bWI-rz-BzT" secondAttribute="trailing" constant="7" id="kDb-gf-Wyh"/>
                     <constraint firstItem="X8n-Fr-jyx" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="rcx-7r-VU6"/>
                     <constraint firstItem="off-7t-eF1" firstAttribute="leading" secondItem="X8n-Fr-jyx" secondAttribute="trailing" constant="6" id="x3q-aI-NKv"/>
@@ -51,11 +69,13 @@
             </tableViewCellContentView>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
+                <outlet property="iconImageView" destination="Fon-tL-130" id="BDd-vr-rRM"/>
                 <outlet property="redTiPot" destination="bWI-rz-BzT" id="stm-Xv-3iz"/>
+                <outlet property="smallTip" destination="MFb-mw-wez" id="Ksa-Tm-d0Q"/>
                 <outlet property="tagIamgeView" destination="X8n-Fr-jyx" id="bY0-Wc-jiu"/>
                 <outlet property="tagLabel" destination="off-7t-eF1" id="JSh-ff-IO0"/>
             </connections>
-            <point key="canvasLocation" x="407" y="409"/>
+            <point key="canvasLocation" x="507" y="458"/>
         </tableViewCell>
     </objects>
     <resources>

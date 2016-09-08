@@ -1,12 +1,12 @@
 //
-//  LYFriendsMessagesViewController.m
+//  UserMomentViewController.m
 //  lieyu
 //
-//  Created by 狼族 on 16/4/22.
+//  Created by 狼族 on 16/9/8.
 //  Copyright © 2016年 狼族（上海）网络科技有限公司. All rights reserved.
 //
 
-#import "LYFriendsMessagesViewController.h"
+#import "UserMomentViewController.h"
 #import "HotMenuButton.h"
 #import "IQKeyboardManager.h"
 #import "TopicModel.h"
@@ -30,16 +30,12 @@
 
 #define LYFriendsAllCommentCellID @"LYFriendsAllCommentTableViewCell"
 #define LYFriendsLikeCellID @"LYFriendsLikeTableViewCell"
-
-@interface LYFriendsMessagesViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,emojiClickDelegate,ImagePickerFinish,UIImagePickerControllerDelegate,UINavigationControllerDelegate,sendBackVedioAndImage,ISEmojiViewDelegate,UITextFieldDelegate>
+@interface UserMomentViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,emojiClickDelegate,ImagePickerFinish,UIImagePickerControllerDelegate,UINavigationControllerDelegate,sendBackVedioAndImage,ISEmojiViewDelegate,UITextFieldDelegate>
 {
-    BOOL _friendsBtnSelect;//朋友圈按钮选择状态
-    HotMenuButton *_friendsBtn,*_myBtn;//朋友圈按钮 我的按钮
     UIButton *_liveShow;//直播按钮
     UILabel *_myBadge;//我的角标
-    UIView *_lineView;//导航按钮下划线
     NSInteger _saveImageAndVideoIndex;
-//    UIScrollView *_scrollViewForTableView;//表的基成视图
+    //    UIScrollView *_scrollViewForTableView;//表的基成视图
     NSString *_results;//新消息条数
     NSString *_icon;//新消息头像
     NSArray *_topicArray;//话题数组
@@ -67,8 +63,9 @@
     BOOL isDisturb;
     LYFriendsVideoTableViewCell *friendsVedioCell;
     
-    NSTimer *_timer;//定时获取我的新消息
-    
+    UIImageView *bgIamge;//背景图
+    UIImageView *_iconIamge;//头像
+    UILabel *_nameLabel;//姓名
     NSInteger _giftNumber;//礼物数量
     NSInteger _giftValue;//礼物价值
 }
@@ -76,136 +73,101 @@
 @property (nonatomic, strong) NSString *typeOfImagePicker;
 @property (nonatomic, strong) UIImagePickerController *imagePicker;
 
-
 @end
 
-@implementation LYFriendsMessagesViewController
+#define headerHeight SCREEN_WIDTH * 187 / 375
+
+#define iconWidth SCREEN_WIDTH / 6
+
+@implementation UserMomentViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if(app.userModel) _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
-//    [self setupAllProperty];//配置初始化
+    //    [self setupAllProperty];//配置初始化
     self.pagesCount = 4;
     _notificationDict = [[NSMutableDictionary alloc]init];
-    if(!_isFriendToUserMessage) self.pageNum = 2;
-//    [self addTableViewHeaderViewForTopic];
-    
+    [self setupTableView];//配置表
+    _pageCount = 10;
+    _pageStartCount = 0;
+    self.title = @"我的玩友圈";
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    if(app.userModel.userid != _useridStr.intValue){
-        _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
-        if(_pageNum == 2){
-            UITableView *tableView = _tableViewArray[_index];
-            [tableView.mj_header beginRefreshing];
-        }
-    }
+//    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+//    if(app.userModel.userid != _useridStr.intValue){
+//        _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
+//        if(_pageNum == 2){
+//            UITableView *tableView = _tableViewArray[_index];
+//            [tableView.mj_header beginRefreshing];
+//        }
+//    }
     
     [self setupCarmerBtn];
     
     [self setupMenuView];//配置导航
     
-    UITableView *tableView = _tableViewArray[_index];
-    [tableView reloadData];
-   
+    [_userTablewView reloadData];
+    
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [IQKeyboardManager sharedManager].enable = NO;
     [IQKeyboardManager sharedManager].isAdd = YES;
-    
-    _timer = [NSTimer scheduledTimerWithTimeInterval:15 target:self selector:@selector(getFriendsNewMessage) userInfo:nil repeats:YES];//定时器获取新消息数
-    [_timer fire];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [IQKeyboardManager sharedManager].enable = YES;
     [IQKeyboardManager sharedManager].isAdd = NO;
     
-    [_timer invalidate];
-    _timer = nil;
-    
-    
-    if(_friendsBtn.isFriendsMenuViewSelected) _friendsBtnSelect = YES;
-    else _friendsBtnSelect = NO;
     if (isExidtEffectView) {
         isExidtEffectView = NO;
         [emojisView hideEmojiEffectView];
     }
-    
+    [_liveShow removeFromSuperview];
+    _liveShow = nil;
     
     [effectView removeFromSuperview];//移除发布按钮
-    [self removeNavMenuView];//移除导航菜单
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"sendGift" object:nil];
-
+    
 }
 
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackStateDidChangeNotification object:nil];
-
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerLoadStateDidChangeNotification object:nil];
-
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerScalingModeDidChangeNotification object:nil];
-
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
-
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerDidExitFullscreenNotification object:nil];
-
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"FriendSendViewDidLoad" object:nil];
-
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
     
 }
 
-- (void)setupAllProperty{
-    _dataArray = [[NSMutableArray alloc]initWithCapacity:_pageNum];
-    for (int i = 0; i < _pageNum; i ++) {
-        [_dataArray addObject:[[NSMutableArray alloc]init]];
-    }
-    _tableViewArray = [[NSMutableArray alloc]initWithCapacity:_pageNum];
-    _pageStartCountArray[0] = 0;
-    _pageStartCountArray[1] = 0;
-    _pageCount = 10;
-    
-    _friendsBtnSelect = YES;
-}
-
-- (void)setPageNum:(NSInteger)pageNum{
-    _pageNum = pageNum;
-    [self setupAllProperty];
-     [self setupTableView];//配置表
-}
 
 #pragma mark - 获取最新玩友圈数据
 - (void)getDataWithType:(dataType)type needLoad:(BOOL)need{
-    UITableView *tableView = nil;
-    __block int pageStartCount;
-    if (type == dataForFriendsMessage) {
-        pageStartCount = _pageStartCountArray[0];
-        tableView = _tableViewArray.firstObject;
-    }else if(type == dataForMine){
-        pageStartCount = _pageStartCountArray[1];
-        tableView = [_tableViewArray objectAtIndex:1];
-    }
-    NSString *startStr = [NSString stringWithFormat:@"%ld",pageStartCount * _pageCount];
+   
+    NSString *startStr = [NSString stringWithFormat:@"%ld",_pageStartCount * _pageCount];
     NSString *pageCountStr = [NSString stringWithFormat:@"%ld",_pageCount];
     NSDictionary *paraDic = nil;
     __weak __typeof(self) weakSelf = self;
-    if (type == dataForFriendsMessage) {//玩友圈数据
-        paraDic = @{@"start":startStr,@"limit":pageCountStr};
-        [LYFriendsHttpTool friendsGetRecentInfoWithParams:paraDic compelte:^(NSMutableArray *dataArray) {
-            [weakSelf loadDataWith:tableView dataArray:dataArray pageStartCount:pageStartCount type:type];
-        }];
-    }else if(type == dataForMine){//我的玩友圈数据
+    if(type == dataForMine){//我的玩友圈数据
         paraDic = @{@"userId":_useridStr,@"start":startStr,@"limit":pageCountStr,@"frientId":_useridStr};
         [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic needLoading:need compelte:^(FriendsUserInfoModel*userInfo, NSMutableArray *dataArray) {
             _userBgImageUrl = userInfo.friends_img;
-            [weakSelf loadDataWith:tableView dataArray:dataArray pageStartCount:pageStartCount type:type];
-            [weakSelf addTableViewHeader];
+            [weakSelf loadDataWith:_userTablewView dataArray:dataArray pageStartCount:_pageStartCount type:type];
+            [weakSelf setupTableForHeaderForUserMomentPage];
         }];
+    } else {
+        
     }
 }
 
@@ -213,7 +175,7 @@
     if(dataArray.count){
         NSString *str = dataArray.firstObject;
         if (dataArray.count == 1 && [str isKindOfClass:[NSString class]]) {
-            [tableView.mj_footer endRefreshing];
+            [_userTablewView.mj_footer endRefreshing];
         }else{
             if(pageStartCount == 0){//下啦刷新时
                 [_dataArray replaceObjectAtIndex:tableView.tag withObject:dataArray];
@@ -221,72 +183,99 @@
                 NSMutableArray *muArr = _dataArray[tableView.tag];
                 [muArr addObjectsFromArray:dataArray];
             }
-            pageStartCount ++;
-            if (type == dataForFriendsMessage) {
-                _pageStartCountArray[0] = pageStartCount;
-            }else if(type == dataForMine){
-                _pageStartCountArray[1] = pageStartCount;
-            }
-            [tableView.mj_footer endRefreshing];
+            _pageStartCount ++;
+            
+            [_userTablewView.mj_footer endRefreshing];
             
         }
     }else{
-         [tableView.mj_footer endRefreshingWithNoMoreData];
+        [_userTablewView.mj_footer endRefreshingWithNoMoreData];
     }
     
-    [tableView reloadData];
-    [tableView.mj_header endRefreshing];
+    [_userTablewView reloadData];
+    [_userTablewView.mj_header endRefreshing];
+}
+
+#pragma mark - 添加表头
+- (void)setupTableForHeaderForUserMomentPage{
+    UIView *headerView = [[UIView alloc] init];
+    headerView.backgroundColor = [UIColor whiteColor];
+    headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 187 / 375);
+    //背景图
+    bgIamge = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, headerHeight)];
+    [bgIamge setImage:[UIImage imageNamed:@"empyImage16_9"]];
+    //    [imgView sd_setImageWithURL:[NSURL URLWithString:_headerViewImgLink] placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
+    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesChooseImage)];
+    [bgIamge addGestureRecognizer:tapGes];
+    bgIamge.userInteractionEnabled = YES;
+    [self setupBackIamgeView];
+    [headerView addSubview:bgIamge];
+    //头像和姓名
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    _iconIamge = [[UIImageView alloc] init];
+    [_iconIamge sd_setImageWithURL:[NSURL URLWithString:app.userModel.avatar_img]];
+    _iconIamge.frame = CGRectMake(SCREEN_WIDTH - 10 - iconWidth, headerHeight - 50, iconWidth, iconWidth);
+    _iconIamge.userInteractionEnabled = YES;
+    _iconIamge.layer.cornerRadius = _iconIamge.frame.size.height / 2;
+    _iconIamge.layer.masksToBounds = YES;
+    [headerView addSubview:_iconIamge];
+    _nameLabel = [[UILabel alloc] init];
+    _nameLabel.textColor = [UIColor whiteColor];
+    [_nameLabel setText:app.userModel.usernick];
+    [_nameLabel setTextAlignment:NSTextAlignmentRight];
+    _nameLabel.frame =CGRectMake(SCREEN_WIDTH - iconWidth - 10 - 7 - 90, SCREEN_WIDTH * 187 / 375 - 30, 90, 30);
+    _nameLabel.backgroundColor = [UIColor clearColor];
+    [headerView addSubview:_nameLabel];
+    _userTablewView.tableHeaderView = headerView;
+}
+
+
+#pragma mark --设置背景图
+-(void)setupBackIamgeView{
+    
+    NSData *imageData = [[NSUserDefaults standardUserDefaults] objectForKey:@"FriendUserBgImage"];
+    if(!_userBgImageUrl){
+        bgIamge.image = [[UIImage alloc]initWithData:imageData];
+    }else{
+        if(imageData){
+            //                [_headerView.ImageView_bg sd_setImageWithURL:[NSURL URLWithString:_userBgImageUrl] placeholderImage:[[UIImage alloc]initWithData:imageData]];
+            [bgIamge setImage:[UIImage imageWithData:imageData]];
+        }else{
+            [bgIamge sd_setImageWithURL:[NSURL URLWithString:_userBgImageUrl] placeholderImage:[UIImage imageNamed:@"friendPresentBG.jpg"]];
+        }
+    }
+    if(imageData == nil && [MyUtil isEmptyString:_userBgImageUrl]){
+        bgIamge.image = [UIImage imageNamed:@"friendPresentBG.jpg"];
+    }
+    bgIamge.userInteractionEnabled = YES;
+    bgIamge.clipsToBounds = YES;
+}
+#pragma mark - 表头选择背景action
+- (void)tapGesChooseImage{
+    
+    LYChangeImageViewController *changeImageVC = [[LYChangeImageViewController alloc]init];
+    __weak typeof(self) weakSelf = self;
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"" preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:nil];
+    UIAlertAction *imageAction = [UIAlertAction actionWithTitle:@"选一张美图" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+        [weakSelf.navigationController pushViewController:changeImageVC animated:YES];
+    }];
+    [alertVC addAction:cancelAction];
+    [alertVC addAction:imageAction];
+    [self presentViewController:alertVC animated:YES completion:^{
+        
+    }];
+    [changeImageVC setPassImage:^(NSString *imageurl,UIImage *image) {
+        bgIamge.image = image;
+        _headerView.ImageView_bg.image = image;
+        _userBgImageUrl = [MyUtil getQiniuUrl:imageurl width:0 andHeight:0];
+        NSData *imageData = UIImagePNGRepresentation(image);
+        [[NSUserDefaults standardUserDefaults] setObject:imageData forKey:@"FriendUserBgImage"];
+    }];
 }
 
 #pragma mark - 配置导航
 - (void)setupMenuView{
-    CGFloat friendsBtn_Width = 42;
-    //导航菜单
-    UIView *navMenuView = [[UIView alloc]initWithFrame:CGRectMake( (SCREEN_WIDTH - friendsBtn_Width * 2 - 16)/2.f, 0, friendsBtn_Width * 2 + 16, 44)];
-    [self.navigationController.navigationBar addSubview:navMenuView];
-    
-    //    朋友圈按钮
-    _friendsBtn = [[HotMenuButton alloc]initWithFrame:CGRectMake(0, 12, friendsBtn_Width, 20)];
-    [_friendsBtn setTitle:@"玩友圈" forState:UIControlStateNormal];
-    _friendsBtn.titleLabel.textColor = RGBA(255, 255, 255, 1);
-    [_friendsBtn addTarget:self action:@selector(friendsClick:) forControlEvents:UIControlEventTouchUpInside];
-    [navMenuView addSubview:_friendsBtn];
-    
-    //    我的按钮
-    _myBtn = [[HotMenuButton alloc]initWithFrame:CGRectMake(friendsBtn_Width + 16, 12, friendsBtn_Width, 20)];
-    [_myBtn setTitle:@"我的" forState:UIControlStateNormal];
-    
-    if(_friendsBtnSelect) {//朋友圈按钮选择状态
-        _myBtn.isFriendsMenuViewSelected = NO;
-        _friendsBtn.isFriendsMenuViewSelected = YES;
-    }else{
-        
-        _myBtn.isFriendsMenuViewSelected = YES;
-        _friendsBtn.isFriendsMenuViewSelected = NO;
-    }
-    
-    [_myBtn addTarget:self action:@selector(myClick:) forControlEvents:UIControlEventTouchUpInside];
-    [navMenuView addSubview:_myBtn];
-    
-    //我的角标
-//    _myBadge = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2.f + 16 + 30 + 5, 10, 5, 5)];
-    _myBadge = [[UILabel alloc]initWithFrame:CGRectMake(navMenuView.frame.size.width - 5, 10, 5, 5)];
-    _myBadge.backgroundColor = [UIColor redColor];
-    _myBadge.layer.cornerRadius = CGRectGetWidth(_myBadge.frame) / 2.f;
-    _myBadge.layer.masksToBounds = YES;
-    _myBadge.hidden = YES;
-    [navMenuView addSubview:_myBadge];
-    
-    _lineView = [[UIView alloc]init];
-    _lineView.bounds = CGRectMake(0,0,42, 2);
-    if (_friendsBtnSelect) {
-        _lineView.center = CGPointMake(_friendsBtn.center.x, navMenuView.frame.size.height - 1);
-    }else{
-        _lineView.center = CGPointMake(_myBtn.center.x, navMenuView.frame.size.height - 1);
-    }
-    _lineView.backgroundColor = RGBA(186, 40, 227, 1);
-    [navMenuView addSubview:_lineView];
-    
     //配置直播按钮
     _liveShow = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 50, 0, 40, 44)];
     [_liveShow setTitle:@"直播" forState:UIControlStateNormal];
@@ -304,20 +293,7 @@
     
 }
 
-#pragma mark - 移除导航栏的按钮
-- (void)removeNavMenuView{
-    [_friendsBtn removeFromSuperview];
-    [_myBadge removeFromSuperview];
-    [_myBtn removeFromSuperview];
-    [_carmerBtn removeFromSuperview];
-    [_lineView removeFromSuperview];
-    [effectView removeFromSuperview];
-    [_liveShow removeFromSuperview];
-    
-    _myBtn = nil;
-    _friendsBtn = nil;
-    _liveShow = nil;
-}
+
 
 #pragma mark - 配置发布按钮
 - (void)setupCarmerBtn{
@@ -337,7 +313,6 @@
     
     //发布按钮出来动画
     CGFloat offset = 150;
-    if(_isTopic)offset = 130;
     [UIView animateWithDuration:.4 animations:^{
         effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - offset - 3, 60, 60);
     }completion:^(BOOL finished) {
@@ -349,99 +324,36 @@
     
 }
 
-#pragma mark - 玩友圈action
-- (void)friendsClick:(UIButton *)friendsBtn{
-    if (isExidtEffectView) [emojisView hideEmojiEffectView];
-    _friendsBtnSelect = YES;
-    [_scrollViewForTableView setContentOffset:CGPointZero];
-//    _pageStartCountArray[0] = 0;
-    if(((NSArray *)_dataArray[0]).count == 0) [self getDataWithType:0 needLoad:NO];
-    _index = 0;
-    _friendsBtn.isFriendsMenuViewSelected = YES;
-    _myBtn.isFriendsMenuViewSelected = NO;
-    [UIView animateWithDuration:0.1 animations:^{
-        _lineView.center = CGPointMake(friendsBtn.center.x, _lineView.center.y);
-    }];
-}
-
-#pragma mark - 我的action
-- (void)myClick:(UIButton *)myBtn{
-    [_scrollViewForTableView setContentOffset:CGPointMake(SCREEN_WIDTH, 0)];
-    if(![MyUtil isUserLogin]){
-        [MyUtil showCleanMessage:@"请先登录！"];
-        [MyUtil gotoLogin];
-        return;
-    }
-    if (isExidtEffectView) [emojisView hideEmojiEffectView];
-    _index = 1;
-    _friendsBtnSelect = NO;
-//    _pageStartCountArray[1] = 0;
-    _friendsBtn.isFriendsMenuViewSelected = NO;
-    _myBtn.isFriendsMenuViewSelected = YES;
-    if(((NSArray *)_dataArray[1]).count == 0) [self getDataWithType:1 needLoad:YES];//没有数据去加载数据
-    [UIView animateWithDuration:0.1 animations:^{
-        _lineView.center = CGPointMake(myBtn.center.x, _lineView.center.y);
-    }];
-}
 
 #pragma mark - 配置表的cell
 - (void)setupTableView{
-    _scrollViewForTableView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    if(_isFriendToUserMessage) _scrollViewForTableView.frame = CGRectMake(0, -64, SCREEN_WIDTH, SCREEN_HEIGHT);
-    if (_pageNum == 2) {//直接进入我的玩友圈
-        _scrollViewForTableView.contentOffset = CGPointMake(SCREEN_WIDTH, 0);
-        _scrollViewForTableView.scrollEnabled = NO;
-    }
-    _scrollViewForTableView.contentSize = CGSizeMake(SCREEN_WIDTH * _pageNum, SCREEN_HEIGHT);
-    _scrollViewForTableView.pagingEnabled = YES;
-    _scrollViewForTableView.delegate = self;
-    _scrollViewForTableView.scrollsToTop = NO;
-    [self.view addSubview:_scrollViewForTableView];
-    
-    for (int i = 0; i < _pageNum; i ++) {
-        UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(i * SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
-        tableView.tag = i;
-        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        tableView.contentInset = UIEdgeInsetsMake(64, 0, 49, 0);//玩友圈的表的内边距调整
-        if(i == 1) tableView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);//我的表的内边距调整
-        if(_isFriendToUserMessage) tableView.contentInset = UIEdgeInsetsZero;//好友动态表的内边距调整
-        if(_isTopic || _isMessageDetail) tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);//详情和话题表的内边距调整
-        [_tableViewArray addObject:tableView];
-        if(i == 1) tableView.scrollsToTop = NO;
-        [_scrollViewForTableView addSubview:tableView];
-        [self setupMJRefreshForTableView:tableView i:i];//为表配置上下刷新控件
-        }
-    
+    _userTablewView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
+    _userTablewView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _userTablewView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);//我的表的内边距调整
+    _userTablewView.scrollsToTop = NO;
+    _userTablewView.tag = 1;
+    [self.view addSubview:_userTablewView];
+    [self setupMJRefreshForTableView:_userTablewView i:1];//为表配置上下刷新控件
     NSArray *array = @[LYFriendsNameCellID,LYFriendsAddressCellID,LYFriendsLikeCellID,LYFriendsCommentCellID,LYFriendsAllCommentCellID,LYFriendsVideoCellID,LYFriendsAllLikeCellID];
     for (NSString *cellIdentifer in array) {//注册单元格
-        [_tableViewArray enumerateObjectsUsingBlock:^(UITableView *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [obj registerNib:[UINib nibWithNibName:cellIdentifer bundle:nil] forCellReuseIdentifier:cellIdentifer];
-            [obj registerClass:[UITableViewCell class] forCellReuseIdentifier:LYFriendsCellID];
-            [obj registerClass:[LYFriendsImgTableViewCell class] forCellReuseIdentifier:LYFriendsImgCellID];
-        }];
+            [_userTablewView registerNib:[UINib nibWithNibName:cellIdentifer bundle:nil] forCellReuseIdentifier:cellIdentifer];
+            [_userTablewView registerClass:[UITableViewCell class] forCellReuseIdentifier:LYFriendsCellID];
+            [_userTablewView registerClass:[LYFriendsImgTableViewCell class] forCellReuseIdentifier:LYFriendsImgCellID];
     }
     
     //表设置代理
-    [_tableViewArray enumerateObjectsUsingBlock:^(UITableView *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        obj.dataSource = self;
-        obj.delegate = self;
-    }];
-    
-    [self startGetData];//开始获取数据
-    
+        _userTablewView.dataSource = self;
+        _userTablewView.delegate = self;
+    [_userTablewView.mj_header beginRefreshing];
+
 }
 
-#pragma mark - 获取数据
-- (void)startGetData{
-    UITableView *tableView = _tableViewArray.firstObject;
-    [tableView.mj_header beginRefreshing];
-}
 
 #pragma mark - 为表配置上下刷新控件
 - (void)setupMJRefreshForTableView:(UITableView *)tableView i:(NSInteger)i{
     __weak __typeof(self) weakSelf = self;
     tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
-        _pageStartCountArray[i] = 0;
+        _pageStartCount = 0;
         [weakSelf getDataWithType:i needLoad:NO];
     }];
     MJRefreshGifHeader *header = (MJRefreshGifHeader *)tableView.mj_header;
@@ -453,169 +365,10 @@
 }
 
 
-#pragma mark - 获取我的未读消息数
-- (void)getFriendsNewMessage{
-    _results = @"";
-    _icon = @"";
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    if(app.userModel == nil)return;
-    
-    NSDictionary *paraDic = @{@"userId":_useridStr};
-    __weak __typeof(self) weakSelf = self;
-    [LYFriendsHttpTool friendsGetFriendsMessageNotificationWithParams:paraDic compelte:^(NSString * reslults, NSString *icon) {
-        _results = reslults;
-        _icon = icon;
-        if(_results) _myBadge.hidden = NO;
-        else _myBadge.hidden = YES;
-        if(_results.integerValue){
-            _myBadge.hidden = NO;
-            if(_pageNum <= 1) return;
-            UITableView *tableView = [_tableViewArray objectAtIndex:1];
-            tableView.tableHeaderView = nil;
-            [weakSelf addTableViewHeader];
-        }
-    }];
-}
-
-#pragma mark - 添加表头
-- (void)addTableViewHeader{
-    _headerView = [[[NSBundle mainBundle]loadNibNamed:@"LYFriendsUserHeaderView" owner:nil options:nil]firstObject];
-    _headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 240);
-    if(_results.integerValue){//有新消息
-        _headerView.btn_newMessage.hidden = NO;
-        _myBadge.hidden = NO;
-    }else{
-        _headerView.btn_newMessage.hidden = YES;
-        _headerView.imageView_NewMessageIcon.hidden = YES;
-        _myBadge.hidden = YES;
-    }
-    
-    if(_pageNum <= 1) return;
-    [self setupTableForHeaderForMinPage];//为我的界面添加表头
-        UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesChooseBgImage)];
-    [_headerView.ImageView_bg addGestureRecognizer:tapGes];
-}
-
 
 - (void)setUserM:(FriendsUserInfoModel *)userM{
     _userM = userM;
 }
-
-- (void)setupTableForHeaderForMinPage{
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    UITableView *tableView = nil;
-    UserModel *userM = [[UserModel alloc]init];
-    if(_tableViewArray.count >= 2){
-        tableView = [_tableViewArray objectAtIndex:1];
-        userM = app.userModel;
-    }else{
-        tableView = [_tableViewArray objectAtIndex:0];
-        userM.avatar_img = _userM.avatar_img;
-        userM.usernick = _userM.usernick;
-    }
-    [_headerView.imageView_NewMessageIcon sd_setImageWithURL:[NSURL URLWithString:_icon]  placeholderImage:[UIImage imageNamed:@"empyImage120"]];
-    _headerView.imageView_NewMessageIcon.clipsToBounds = YES;
-    [_headerView.btn_newMessage setTitle:[NSString stringWithFormat:@"%@条新消息",_results] forState:UIControlStateNormal];
-    [_headerView.btn_header sd_setBackgroundImageWithURL:[NSURL URLWithString:userM.avatar_img?userM.avatar_img:@""] forState:UIControlStateNormal ];
-    
-    if(_isFriendToUserMessage)  [_headerView.btn_header addTarget:self action:@selector(headerImgClick:) forControlEvents:UIControlEventTouchUpInside];
-    _headerView.label_name.text = userM.usernick;
-    tableView.tableHeaderView = _headerView;
-    [_headerView.btn_newMessage addTarget:self action:@selector(newClick) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self updateViewConstraints];
-    
-    if(_isFriendToUserMessage){
-        [_headerView.ImageView_bg sd_setImageWithURL:[NSURL URLWithString:_userM.friends_img] placeholderImage:[UIImage imageNamed:@"friendPresentBG.jpg"]];
-        
-    }else{
-        NSData *imageData = [[NSUserDefaults standardUserDefaults] objectForKey:@"FriendUserBgImage"];
-        if(!_userBgImageUrl){
-            _headerView.ImageView_bg.image = [[UIImage alloc]initWithData:imageData];
-        }else{
-            if(imageData){
-//                [_headerView.ImageView_bg sd_setImageWithURL:[NSURL URLWithString:_userBgImageUrl] placeholderImage:[[UIImage alloc]initWithData:imageData]];
-                [_headerView.ImageView_bg setImage:[UIImage imageWithData:imageData]];
-            }else{
-                [_headerView.ImageView_bg sd_setImageWithURL:[NSURL URLWithString:_userBgImageUrl] placeholderImage:[UIImage imageNamed:@"friendPresentBG.jpg"]];
-            }
-        }
-        if(imageData == nil && [MyUtil isEmptyString:_userBgImageUrl]){
-            _headerView.ImageView_bg.image = [UIImage imageNamed:@"friendPresentBG.jpg"];
-        }
-        _headerView.ImageView_bg.userInteractionEnabled = YES;
-    }
-    _headerView.ImageView_bg.clipsToBounds = YES;
-}
-
-- (void)headerImgClick:(UIButton *)button{
-    
-    LYMyFriendDetailViewController *myFriendVC = [[LYMyFriendDetailViewController  alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
-    myFriendVC.userID = _userM.userId;
-    [self.navigationController pushViewController:myFriendVC animated:YES];
-    
-}
-
-#pragma mark - 表头选择背景action
-- (void)tapGesChooseBgImage{
-    UIActionSheet *menuSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"更改相册封面", nil];
-    menuSheet.tag = 200;
-    [menuSheet showInView:self.view];
-}
-
-#pragma mark - 话题的表头
-//- (void)addTableViewHeaderViewForTopic{
-//    UITableView *tableView = _tableViewArray.firstObject;
-//    UIScrollView *topicScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 86)];
-//    topicScrollView.scrollsToTop = NO;
-//    topicScrollView.backgroundColor  = RGB(237, 237, 237);
-//    topicScrollView.showsHorizontalScrollIndicator = NO;
-//    topicScrollView.showsVerticalScrollIndicator = NO;
-//    
-//    tableView.tableHeaderView = topicScrollView;
-//    
-//    
-//    NSDictionary *dic = @{@"type":@"2"};
-//    [LYUserHttpTool getTopicList:dic complete:^(NSArray *dataList) {
-//        _topicArray = dataList;
-//        CGFloat btnWidth = 128;
-//        for (int i = 0; i < dataList.count; i ++) {
-//            
-//            UIButton *topicBtn = [[UIButton alloc]initWithFrame:CGRectMake(i *(btnWidth  + 8) + 8, 8, btnWidth, 70)];
-//            TopicModel *topicM = dataList[i];
-//            [topicBtn setTitle:topicM.name forState:UIControlStateNormal];
-//            topicBtn.titleLabel.font = [UIFont systemFontOfSize:20 weight:UIFontWeightMedium];
-//            topicBtn.titleLabel.layer.shadowColor = RGBA(0, 0, 0, .5).CGColor;
-//            topicBtn.titleLabel.layer.shadowOffset = CGSizeMake(0, 1);
-//            topicBtn.titleLabel.layer.shadowOpacity = 1;
-//            topicBtn.titleLabel.layer.shadowRadius = 2;
-//            topicBtn.layer.cornerRadius = 4;
-//            topicBtn.clipsToBounds = YES;
-//            [topicBtn sd_setBackgroundImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?imageView2/0/w/256/h/140",topicM.linkurl] ] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
-//            [topicScrollView addSubview:topicBtn];
-//            topicBtn.tag = i;
-//            [topicBtn addTarget:self action:@selector(topicClick:) forControlEvents:UIControlEventTouchUpInside];
-//            if(i == dataList.count - 1){
-//                topicScrollView.contentSize = CGSizeMake(CGRectGetMaxX(topicBtn.frame) + 8, topicScrollView.contentSize.height);
-//            }
-//        }
-//    }];
-//    
-//}
-//#pragma mark - 话题action
-//- (void)topicClick:(UIButton *)button{
-//    
-//    TopicModel *topicM = _topicArray[button.tag];
-//    LYFriendsTopicsViewController *fridendTopicVC = [[LYFriendsTopicsViewController alloc]init];
-//    fridendTopicVC.topicTypeId = topicM.id;
-//    fridendTopicVC.topicName = topicM.name;
-//    fridendTopicVC.isFriendsTopic = YES;
-//    fridendTopicVC.isFriendToUserMessage = YES;
-//    fridendTopicVC.isTopic = YES;
-//    fridendTopicVC.headerViewImgLink = topicM.linkurl;
-//    [self.navigationController pushViewController:fridendTopicVC animated:YES];
-//}
-
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -624,14 +377,7 @@
         [emojisView hideEmojiEffectView];
     }
     
-    if(_scrollViewForTableView != scrollView){
-        CGFloat offset;
-        if(_isTopic){//话题
-            offset = 10;
-        }else{
-            offset = 0;
-        }
-        
+    CGFloat offset = 0;
         if (scrollView.contentOffset.y > _contentOffSetY) {
             if (scrollView.contentOffset.y <= 0.f) {//发布按钮弹出
                 effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 150 + offset, 60, 60);
@@ -651,57 +397,46 @@
                 }];
             }
         }
-    }else{
-        if (!_index) {//玩友圈
-            _friendsBtn.isFriendsMenuViewSelected = YES;
-        }else{
-            _friendsBtn.isFriendsMenuViewSelected = NO;
-        }
-        _myBtn.isFriendsMenuViewSelected = !_friendsBtn.isFriendsMenuViewSelected;
-    }
+ 
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-    if(_scrollViewForTableView  != scrollView){
-    _contentOffSetY = scrollView.contentOffset.y;//拖拽结束获取偏移量
-    }
+        _contentOffSetY = scrollView.contentOffset.y;//拖拽结束获取偏移量
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    if(scrollView == _scrollViewForTableView){
-        _index = scrollView.contentOffset.x / SCREEN_WIDTH;
-        
-        [_tableViewArray enumerateObjectsUsingBlock:^(UITableView *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            obj.scrollsToTop = NO;
-        }];
-        UITableView *tableView = _tableViewArray[_index];
-        tableView.scrollsToTop = YES;
-        
-        if (_index == 1) {
-            _myBtn.isFriendsMenuViewSelected = YES;
-            _friendsBtn.isFriendsMenuViewSelected = NO;
-            [UIView animateWithDuration:0.1 animations:^{
-                _lineView.center = CGPointMake(_myBtn.center.x, _lineView.center.y);
-            }];
-            NSArray *array = _dataArray[_index];
-            if(array.count) return;
-            [self getDataWithType:dataForMine needLoad:YES];//获取我的玩友圈数据
-        }else{
-            _myBtn.isFriendsMenuViewSelected = NO;
-            _friendsBtn.isFriendsMenuViewSelected = YES;
-            [UIView animateWithDuration:0.1 animations:^{
-                _lineView.center = CGPointMake(_friendsBtn.center.x, _lineView.center.y);
-            }];
-        }
-    }
-}
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+//    if(scrollView == _scrollViewForTableView){
+//        _index = scrollView.contentOffset.x / SCREEN_WIDTH;
+//        
+//        [_tableViewArray enumerateObjectsUsingBlock:^(UITableView *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//            obj.scrollsToTop = NO;
+//        }];
+//        UITableView *tableView = _tableViewArray[_index];
+//        tableView.scrollsToTop = YES;
+//        
+//        if (_index == 1) {
+//            _myBtn.isFriendsMenuViewSelected = YES;
+//            _friendsBtn.isFriendsMenuViewSelected = NO;
+//            [UIView animateWithDuration:0.1 animations:^{
+//                _lineView.center = CGPointMake(_myBtn.center.x, _lineView.center.y);
+//            }];
+//            NSArray *array = _dataArray[_index];
+//            if(array.count) return;
+//            [self getDataWithType:dataForMine needLoad:YES];//获取我的玩友圈数据
+//        }else{
+//            _myBtn.isFriendsMenuViewSelected = NO;
+//            _friendsBtn.isFriendsMenuViewSelected = YES;
+//            [UIView animateWithDuration:0.1 animations:^{
+//                _lineView.center = CGPointMake(_friendsBtn.center.x, _lineView.center.y);
+//            }];
+//        }
+//    }
+//}
 
 #pragma mark - UITableViewDelegate&UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     NSArray *array = ((NSArray *)_dataArray[tableView.tag]);
-    if (_pageNum == 2 && array.count == 0) {//解决进入个人动态不刷新
-        [self getDataWithType:1 needLoad:YES];
-    }
+    [self getDataWithType:1 needLoad:YES];
     return array.count;
 }
 
@@ -750,14 +485,6 @@
                 nameCell.btn_delete.enabled = YES;
             }
             
-            if(_isFriendToUserMessage) {//好友动态隐藏删除按钮
-                nameCell.btn_delete.hidden = YES;
-                if(_isTopic){
-                    nameCell.btn_delete.hidden = NO;
-                    if([recentM.userId isEqualToString:_useridStr]) nameCell.btn_delete.hidden = YES;//话题中我的话题隐藏删除按钮
-                }
-            }
-            
             if([MyUtil isEmptyString:[NSString stringWithFormat:@"%@",recentM.id]]){
                 nameCell.btn_delete.enabled = NO;
             }
@@ -788,7 +515,7 @@
                 }else{
                     [videoCell.imgView_video sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlStr mediaType:QiNiuUploadTpyeDefault width:0 andHeight:0]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
                 }
-
+                
                 [videoCell.btn_play addTarget:self action:@selector(playVideo:) forControlEvents:UIControlEventTouchUpInside];
                 UIView *view = [videoCell viewWithTag:6611];
                 if (indexPath.section != playerSection && view) {
@@ -802,26 +529,8 @@
             
         case 2://地址
         {
-            if (_pageNum == 2) {//个人界面隐藏
                 UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:LYFriendsCellID forIndexPath:indexPath];
                 return cell;
-            } else {
-                LYFriendsAddressTableViewCell *addressCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsAddressCellID forIndexPath:indexPath];
-                addressCell.recentM = recentM;
-                addressCell.btn_like.tag = indexPath.section;
-                addressCell.btn_comment.tag = indexPath.section;
-                [addressCell.btn_like addTarget:self action:@selector(likeFriendsClick:) forControlEvents:UIControlEventTouchUpInside];
-                
-                UILongPressGestureRecognizer *likeLongPress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(likeLongPressClick:)];
-                [addressCell.btn_like addGestureRecognizer:likeLongPress];
-                
-                [addressCell.btn_comment addTarget:self action:@selector(commentClick:) forControlEvents:UIControlEventTouchUpInside];
-                
-                //打赏
-                [addressCell.btn_dashang addTarget:self action:@selector(dashangAction) forControlEvents:(UIControlEventTouchUpInside)];
-                
-                return addressCell;
-            }
         }
             break;
             
@@ -846,7 +555,7 @@
             }
         }
             break;
-      
+            
         default:{ //评论 4-8
             if(!recentM.commentList.count){//没有评论
                 LYFriendsAllCommentTableViewCell *allCommentCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsAllCommentCellID forIndexPath:indexPath];
@@ -879,7 +588,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSArray *arr = _dataArray[tableView.tag];
-//    NSLog(@"--->%ld",indexPath.section);
+    //    NSLog(@"--->%ld",indexPath.section);
     
     FriendsRecentModel *recentM = arr[indexPath.section];
     switch (indexPath.row) {
@@ -958,7 +667,7 @@
             return 36;
         }
             break;
-        
+            
             break;
         default://评论
         {
@@ -1036,7 +745,6 @@
     FriendsRecentModel *friendRecentM = _dataArray[_index][button.tag];
     if ([friendRecentM.isBarTopicType isEqualToString:@"0"]) {
         if (friendRecentM.topicTypeName.length && friendRecentM.topicTypeId.length) {
-            if(_isTopic) return;
             LYFriendsTopicsViewController *friendsTopicVC = [[LYFriendsTopicsViewController alloc]init];
             friendsTopicVC.topicTypeId = friendRecentM.topicTypeId;
             friendsTopicVC.topicName = friendRecentM.topicTypeName;
@@ -1044,7 +752,7 @@
             friendsTopicVC.isFriendsTopic = YES;
             NSString *imageUrl = [MyUtil getQiniuUrl:friendRecentM.topicTypeBgUrl width:0 andHeight:0];
             friendsTopicVC.headerViewImgLink = imageUrl;
-    
+            
             friendsTopicVC.isTopic = YES;
             if([friendRecentM.isBarTopicType isEqualToString:@"0"]) friendsTopicVC.isFriendsTopic = YES;
             [self.navigationController pushViewController:friendsTopicVC animated:YES];
@@ -1122,10 +830,9 @@
         [LYFriendsHttpTool friendsDeleteMyMessageWithParams:paraDic compelte:^(bool result) {
             if (result) {
                 [array removeObjectAtIndex:_deleteMessageTag];
-                UITableView *tableView = [_tableViewArray objectAtIndex:_index];
-//                [tableView reloadData];
+                //                [tableView reloadData];
                 
-                [tableView deleteSections:[NSIndexSet indexSetWithIndex:_deleteMessageTag] withRowAnimation:UITableViewRowAnimationTop];
+                [_userTablewView deleteSections:[NSIndexSet indexSetWithIndex:_deleteMessageTag] withRowAnimation:UITableViewRowAnimationTop];
             }
         }];
     }
@@ -1138,7 +845,7 @@
     _daShangView.backgroundColor = [UIColor whiteColor];
     _daShangView.layer.cornerRadius = 3.f;
     _daShangView.layer.masksToBounds = YES;
-//    _daShangView.giftCollectionView.delegate = self;
+    //    _daShangView.giftCollectionView.delegate = self;
     _daShangView.giftCollectionView.tag = 888;
     [self.view addSubview:_daShangView];
     [self.view bringSubviewToFront:_daShangView];
@@ -1155,19 +862,19 @@
 }
 
 -(void)sendGiftButtonAction:(UIButton *)sender{
-        switch (_giftNumber) {
-            case 0:
-                
-                break;
-            case 1://单个送
-                [MyUtil showMessage:[NSString stringWithFormat:@"%ld",_giftValue]];
-                break;
-                
-            default:
-                [MyUtil showMessage:@"壕！一次送一个呦"];
-                return;
-                break;
-        }
+    switch (_giftNumber) {
+        case 0:
+            
+            break;
+        case 1://单个送
+            [MyUtil showMessage:[NSString stringWithFormat:@"%ld",_giftValue]];
+            break;
+            
+        default:
+            [MyUtil showMessage:@"壕！一次送一个呦"];
+            return;
+            break;
+    }
     [_daShangView removeFromSuperview];
     _daShangView = nil;
 }
@@ -1185,8 +892,7 @@
         return;
     }
     if (isExidtEffectView) [emojisView hideEmojiEffectView];
-    UITableView *tableView = [_tableViewArray objectAtIndex:_index];
-    LYFriendsAddressTableViewCell *cell = (LYFriendsAddressTableViewCell *)[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:button.tag]];
+    LYFriendsAddressTableViewCell *cell = (LYFriendsAddressTableViewCell *)[_userTablewView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:button.tag]];
     cell.btn_like.enabled = NO;
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     FriendsRecentModel *recentModel = _dataArray[_index][button.tag];
@@ -1204,10 +910,10 @@
         [emojisView windowShowEmoji:@{@"emojiName":@"dianzan",
                                       @"emojiNumber":@"24"}];
     }
-
+    
     [LYFriendsHttpTool friendsLikeMessageWithParams:paraDic compelte:^(bool result) {
         if (![USER_DEFAULT objectForKey:@"firstUseFriendLike"]) {
-            float distance = button.superview.superview.frame.origin.y - tableView.contentOffset.y;
+            float distance = button.superview.superview.frame.origin.y - _userTablewView.contentOffset.y;
             imageSubview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
             //            imageSubview.backgroundColor = RGBA(0, 0, 0, 0.1);
             imageSubview.backgroundColor = [UIColor clearColor];
@@ -1253,75 +959,16 @@
             }
             recentModel.liked = @"0";
         }
-        if ([_delegate respondsToSelector:@selector(lyRecentMessageLikeChange:)]) {
-            [_delegate lyRecentMessageLikeChange:recentModel.liked];
-        }
-        [tableView reloadData];
+//        if ([_delegate respondsToSelector:@selector(lyRecentMessageLikeChange:)]) {
+//            [_delegate lyRecentMessageLikeChange:recentModel.liked];
+//        }
+        [_userTablewView reloadData];
         cell.btn_like.enabled = YES;
     }];
 }
 #pragma mark － 长按表白
 - (void)likeLongPressClick:(UILongPressGestureRecognizer *)gesture{
-    //    if (!emojiEffectView) {
-    //        UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-    //        emojiEffectView = [[UIVisualEffectView alloc]initWithEffect:blurEffect];
-    //        emojiEffectView.tag = 577;
-    //        [emojiEffectView setFrame:CGRectMake(-80, 0, 80, SCREEN_HEIGHT)];
-    //        [emojiEffectView setAlpha:1];
-    //        emojiEffectView.layer.shadowColor = [RGBA(0, 0, 0, 1) CGColor];
-    //        emojiEffectView.layer.shadowOffset = CGSizeMake(0.5, 0);
-    //        emojiEffectView.layer.shadowRadius = 1;
-    //        emojiEffectView.layer.shadowOpacity = 0.3;
-    ////        [self.view bringSubviewToFront:emojiEffectView];
-    //
-    //
-    //        int margin = ( SCREEN_HEIGHT - 240 ) / 7;
-    //
-    //        emoji_angry = [[UIButton alloc]initWithFrame:CGRectMake(-80, margin, 80, 40)];
-    //        [emoji_angry setImage:[UIImage imageNamed:@"angry0"] forState:UIControlStateNormal];
-    //        [emoji_angry.imageView setContentMode:UIViewContentModeScaleAspectFit];
-    //        emoji_angry.tag = 201;
-    //        [emoji_angry addTarget:self action:@selector(clickEmojiBtn:) forControlEvents:UIControlEventTouchUpInside];
-    //
-    //        emoji_sad = [[UIButton alloc]initWithFrame:CGRectMake(-80, margin * 2 + 40, 80, 40)];
-    //        [emoji_sad setImage:[UIImage imageNamed:@"sad0"] forState:UIControlStateNormal];
-    //        [emoji_sad.imageView setContentMode:UIViewContentModeScaleAspectFit];
-    //        emoji_sad.tag = 202;
-    //        [emoji_sad addTarget:self action:@selector(clickEmojiBtn:) forControlEvents:UIControlEventTouchUpInside];
-    //
-    //        emoji_wow = [[UIButton alloc]initWithFrame:CGRectMake(-80, margin * 3 + 80, 80, 40)];
-    //        [emoji_wow setImage:[UIImage imageNamed:@"wow0"] forState:UIControlStateNormal];
-    //        [emoji_wow.imageView setContentMode:UIViewContentModeScaleAspectFit];
-    //        emoji_wow.tag = 203;
-    //        [emoji_wow addTarget:self action:@selector(clickEmojiBtn:) forControlEvents:UIControlEventTouchUpInside];
-    //
-    //        emoji_kawayi = [[UIButton alloc]initWithFrame:CGRectMake(-80, margin * 4 + 120, 80, 40)];
-    //        [emoji_kawayi setImage:[UIImage imageNamed:@"kawayi0"] forState:UIControlStateNormal];
-    //        [emoji_kawayi.imageView setContentMode:UIViewContentModeScaleAspectFit];
-    //        emoji_kawayi.tag = 204;
-    //        [emoji_kawayi addTarget:self action:@selector(clickEmojiBtn:) forControlEvents:UIControlEventTouchUpInside];
-    //
-    //        emoji_happy = [[UIButton alloc]initWithFrame:CGRectMake(-80, margin * 5 + 160, 80, 40)];
-    //        [emoji_happy setImage:[UIImage imageNamed:@"happy0"] forState:UIControlStateNormal];
-    //        [emoji_happy.imageView setContentMode:UIViewContentModeScaleAspectFit];
-    //        emoji_happy.tag = 205;
-    //        [emoji_happy addTarget:self action:@selector(clickEmojiBtn:) forControlEvents:UIControlEventTouchUpInside];
-    //
-    //        emoji_zan = [[UIButton alloc]initWithFrame:CGRectMake(-80, margin * 6 + 200, 80, 40)];
-    //        [emoji_zan setImage:[UIImage imageNamed:@"dianzan0"] forState:UIControlStateNormal];
-    //        [emoji_zan.imageView setContentMode:UIViewContentModeScaleAspectFit];
-    //        emoji_zan.tag = 206;
-    //        [emoji_zan addTarget:self action:@selector(clickEmojiBtn:) forControlEvents:UIControlEventTouchUpInside];
-    //
-    //        [_mainWindow addSubview:emojiEffectView];
-    //        [_mainWindow addSubview:emoji_zan];
-    //        [_mainWindow addSubview:emoji_happy];
-    //        [_mainWindow addSubview:emoji_kawayi];
-    //        [_mainWindow addSubview:emoji_wow];
-    //        [_mainWindow addSubview:emoji_angry];
-    //        [_mainWindow addSubview:emoji_sad];
-    //
-    //    }
+   
     isExidtEffectView = YES;
     gestureViewTag = (int)gesture.view.tag;
     if (!emojiEffectView) {
@@ -1372,8 +1019,7 @@
         [MyUtil gotoLogin];
         return;
     }
-    UITableView *tableView = [_tableViewArray objectAtIndex:_index];
-    LYFriendsAddressTableViewCell *cell = (LYFriendsAddressTableViewCell *)[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:gestureViewTag]];
+    LYFriendsAddressTableViewCell *cell = (LYFriendsAddressTableViewCell *)[_userTablewView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:gestureViewTag]];
     cell.btn_like.enabled = NO;
     FriendsRecentModel *recentM = _dataArray[_index][gestureViewTag];
     NSDictionary *paraDic = @{@"userId":_useridStr,
@@ -1409,8 +1055,7 @@
             }
             recentM.liked = @"0";
         }
-        [tableView reloadData];
-        //        cell.btn_like.enabled = YES;
+        [_userTablewView reloadData];
     }];
 }
 
@@ -1423,7 +1068,7 @@
 - (void)pushFriendsMessageDetailVCWithIndex:(NSInteger)index{
     FriendsRecentModel *recentM = _dataArray[_index][index];
     LYFriendsAMessageDetailViewController *messageDetailVC = [[LYFriendsAMessageDetailViewController alloc]init];
-//    messageDetailVC.recentM = recentM;
+    //    messageDetailVC.recentM = recentM;
     messageDetailVC.recentM = recentM;
     messageDetailVC.isFriendToUserMessage = YES;
     messageDetailVC.isMessageDetail = YES;
@@ -1443,9 +1088,7 @@
         if ([likeM.userId isEqualToString:_useridStr]) {//如果头像是自己return
             return;
         }
-        //    LYFriendsToUserMessageViewController *messageVC = [[LYFriendsToUserMessageViewController alloc]init];
-        //    messageVC.friendsId = likeM.userId;
-        //    [self.navigationController pushViewController:messageVC animated:YES];
+        
         //跳转到朋友详情页面
         LYMyFriendDetailViewController *myFriendVC = [[LYMyFriendDetailViewController  alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
         myFriendVC.userID = likeM.userId;
@@ -1466,11 +1109,7 @@
         idStr = commentModel.toUserId;
     }
     
-    
     if([idStr isEqualToString:_useridStr]) return;
-    //    LYFriendsToUserMessageViewController *friendsUserMegVC = [[LYFriendsToUserMessageViewController alloc]init];
-    //    friendsUserMegVC.friendsId = commentModel.userId;
-    //    [self.navigationController pushViewController:friendsUserMegVC animated:YES];
     
     LYMyFriendDetailViewController *myFriendVC = [[LYMyFriendDetailViewController  alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
     myFriendVC.userID = idStr;
@@ -1481,10 +1120,9 @@
 - (void)playVideo:(UIButton *)button{
     playerSection = button.tag;
     NSArray *array = _dataArray[_index];
-    UITableView *tableView = [_tableViewArray objectAtIndex:_index];
     FriendsRecentModel *recentM = (FriendsRecentModel *)array[button.tag];
     FriendsPicAndVideoModel *pvM = (FriendsPicAndVideoModel *)recentM.lyMomentsAttachList[0];
-    //    NSString *urlString = [MyUtil configureNetworkConnect] == 1 ?[MyUtil getQiniuUrl:pvM.imageLink mediaType:QiNiuUploadTpyeSmallMedia width:0 andHeight:0] : [MyUtil getQiniuUrl:pvM.imageLink mediaType:QiNiuUploadTpyeMedia width:0 andHeight:0];
+    
     QiNiuUploadTpye quType = [MyUtil configureNetworkConnect] == 1 ? QiNiuUploadTpyeSmallMedia : QiNiuUploadTpyeMedia;
     
     NSURL *url;
@@ -1493,8 +1131,7 @@
     }else{
         url = [NSURL URLWithString:[MyUtil getQiniuUrl:pvM.imageLink mediaType:QiNiuUploadTpyeBigMedia width:0 andHeight:0]];
     }
-    //    NSLog(@"--->%@",[MyUtil getQiniuUrl:pvM.imageLink mediaType:quType width:0 andHeight:0]);
-//    NSURL *url = [NSURL URLWithString:[[MyUtil getQiniuUrl:pvM.imageLink mediaType:quType width:0 andHeight:0] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] ;
+    
     if (recentM.isMeSendMessage){
         url = [[NSURL alloc] initFileURLWithPath:pvM.imageLink];
         
@@ -1502,14 +1139,13 @@
     
     
     if (player.moviePlayer.playbackState != MPMoviePlaybackStateStopped) {
-        //               [player removeFromParentViewController];
         //不是正常停止
         isDisturb = YES;
     }
     
     [player.view removeFromSuperview];
     
-    friendsVedioCell = [tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:button.tag]];
+    friendsVedioCell = [_userTablewView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:button.tag]];
     player = [[MPMoviePlayerViewController alloc]initWithContentURL:url];
     player.moviePlayer.scalingMode = MPMovieScalingModeAspectFill;
     player.view.frame = friendsVedioCell.imgView_video.frame;
@@ -1559,7 +1195,6 @@
 
 #pragma mark - 作为代理收取视频路径地址与截图
 - (void)sendVedio:(NSString *)mediaUrl andImage:(UIImage *)image andContent:(NSString *)content andLocation:(NSString *)location andTopicID:(NSString *)topicID andTopicName:(NSString *)topicName{
-    UITableView *tableView = [_tableViewArray objectAtIndex:_index];
     NSDictionary *dic = @{@"attachType":@"1",@"content":content,@"location":location,@"topicID":topicID,@"topicName":topicName};
     FriendsRecentModel *recentM = [self createModelForISendAMessageWithDicForMessage:dic];
     recentM.thunbImage = image;
@@ -1571,17 +1206,15 @@
     
     NSMutableArray *arr1 = _dataArray[0];
     [arr1 insertObject:recentM atIndex:0];
-     if(_dataArray.count == 2){
+    if(_dataArray.count == 2){
         NSMutableArray *arr2 = _dataArray[1];
-         if(arr2.count) [arr2 insertObject:recentM atIndex:0];
+        if(arr2.count) [arr2 insertObject:recentM atIndex:0];
     }
-    [tableView reloadData];
-    
+    [_userTablewView reloadData];
 }
 
 #pragma mark - 作为代理接受返回的图片
 - (void)sendImagesArray:(NSArray *)imagesArray andContent:(NSString *)content andLocation:(NSString *)location andTopicID:(NSString *)topicID andTopicName:(NSString *)topicName{
-    UITableView *tableView = [_tableViewArray objectAtIndex:_index];
     NSDictionary *dic = @{@"attachType":@"0",@"content":content,@"location":location,@"topicID":topicID,@"topicName":topicName};
     FriendsRecentModel *recentM = [self createModelForISendAMessageWithDicForMessage:dic];
     
@@ -1609,13 +1242,13 @@
     recentM.lyMomentsAttachList = @[pvModel];
     
     
-        NSMutableArray *arr1 = _dataArray[0];
-        [arr1 insertObject:recentM atIndex:0];
-     if(_dataArray.count == 2){
+    NSMutableArray *arr1 = _dataArray[0];
+    [arr1 insertObject:recentM atIndex:0];
+    if(_dataArray.count == 2){
         NSMutableArray *arr2 = _dataArray[1];
         if(arr2.count) [arr2 insertObject:recentM atIndex:0];
     }
-    [tableView reloadData];
+    [_userTablewView reloadData];
     
 }
 
@@ -1662,48 +1295,21 @@
             recentM.id = [NSString stringWithFormat:@"%@",messageId];
         }
     }
-    
-//    NSMutableArray *arr = _dataArray.firstObject;
-//    FriendsRecentModel *recentM = arr.firstObject;
-//    recentM.id = [NSString stringWithFormat:@"%@",messageId];
-    
-//    [self reloadTableViewAndSetUpPropertyneedSetContentOffset:YES];
-    [_tableViewArray enumerateObjectsUsingBlock:^(UITableView *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [obj reloadData];
-    }];
+        [_userTablewView reloadData];
 }
 
 #pragma mark - 隐藏引导页
 - (void)hideDefaultPage:(UITapGestureRecognizer *)gesture{
-    //    if (gesture.view.tag == 541128) {
-    //
-    //        [USER_DEFAULT setObject:@"NO" forKey:@"firstUseFriendLike"];
-    //        [imageSubview removeFromSuperview];
-    //        [imageView removeFromSuperview];
-    //    }else if (gesture.view.tag == 541127){
-    //
+  
     [imageSubview removeFromSuperview];
     [imageView removeFromSuperview];
-    //    }
+
 }
 
 - (void)hideImageTip:(UIGestureRecognizer *)gesture{
     [USER_DEFAULT setObject:@"NO" forKey:@"firstUseFriendLike"];
     [imageSubview removeFromSuperview];
     [imageView removeFromSuperview];
-}
-
-#pragma mark - 新消息action
-- (void)newClick{
-    _results = @"";
-    _icon = @"";
-    LYFriendsMessageViewController *messageVC = [[LYFriendsMessageViewController alloc]init];
-    [self.navigationController pushViewController:messageVC animated:YES];
-    
-//    [self removeTableViewHeader];
-    UITableView *tableView = [_tableViewArray objectAtIndex:1];
-    tableView.tableHeaderView = nil;
-    [self addTableViewHeader];
 }
 
 #pragma mark - 拍照action
@@ -1742,10 +1348,10 @@
                     [[NSUserDefaults standardUserDefaults] setObject:imageData forKey:@"FriendUserBgImage"];
                 }];
             }
-            break;
-            
+                break;
+                
             default:
-            break;
+                break;
         }
     }else if(actionSheet.tag == 100){
         switch (buttonIndex) {
@@ -1753,20 +1359,20 @@
             {
                 [self takePhotoActionClick];
             }
-            break;
+                break;
             case 1://相册
             {
                 [self photosActionClick];
                 
             }
-            break;
+                break;
             case 2://短视频
             {
                 [self filmingActionClick];
             }
-            break;
+                break;
             default:
-            break;
+                break;
         }
     }else if(actionSheet.tag == 300){
         if (!buttonIndex) {//删除我的评论
@@ -1784,8 +1390,7 @@
                     NSMutableArray *commentArr = ((FriendsRecentModel *)_dataArray[_index][_section]).commentList;
                     [commentArr removeObjectAtIndex:_indexRow - 4];
                     recetnM.commentNum = [NSString stringWithFormat:@"%d",recetnM.commentNum.intValue - 1];
-                    UITableView *tableView = _tableViewArray[_index];
-                    [tableView reloadData];
+                    [_userTablewView reloadData];
                 }
             }];
         }
@@ -1815,10 +1420,7 @@
             NSDictionary *dict = @{@"shieldUserid":jubaoUserID};
             [LYFriendsHttpTool friendsPingBiUserWithParams:dict complete:^(NSString *message) {
                 [MyUtil showLikePlaceMessage:message];
-//                _pageStartCountFriends = 0;
-//                [weakSelf getDataFriendsWithSetContentOffSet:NO needLoading:YES];
-                UITableView *tableView = _tableViewArray.firstObject;
-                [tableView.mj_header beginRefreshing];
+                [_userTablewView.mj_header beginRefreshing];
             }];
         }else if (buttonIndex == 1){
             [self jubaoDT];
@@ -2126,10 +1728,7 @@
             }
             [recentM.commentList addObject:commentModel];
             recentM.commentNum = [NSString stringWithFormat:@"%d",recentM.commentNum.intValue + 1];
-            //           [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:4 + recentM.commentList.count inSection:_commentBtnTag]] withRowAnimation:UITableViewRowAnimationTop];
-            //            weakSelf.tableView reloadRowsAtIndexPaths:<#(nonnull NSArray<NSIndexPath *> *)#> withRowAnimation:<#(UITableViewRowAnimation)#>
-            UITableView *tableView = [_tableViewArray objectAtIndex:_index];
-            [tableView reloadData];
+            [_userTablewView reloadData];
         }
     }];
     return YES;
@@ -2161,8 +1760,7 @@
     //        }
     
     NSArray *urlArray = [((FriendsPicAndVideoModel *)((FriendsRecentModel *)_dataArray[_index][section]).lyMomentsAttachList[0]).imageLink componentsSeparatedByString:@","];
-    UITableView *tableView = [_tableViewArray objectAtIndex:_index];
-    LYFriendsImgTableViewCell *imgCell = (LYFriendsImgTableViewCell *)[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:section]];
+    LYFriendsImgTableViewCell *imgCell = (LYFriendsImgTableViewCell *)[_userTablewView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:section]];
     for (UIButton *btn in imgCell.btnArray) {
         CGRect rect = [imgCell convertRect:btn.frame toView:app.window];
         [oldFrameArray addObject:NSStringFromCGRect(rect)];
@@ -2174,9 +1772,5 @@
     [app.window addSubview:picView];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    
-}
 
 @end

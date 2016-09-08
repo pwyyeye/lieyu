@@ -56,8 +56,16 @@
 //根据话题ID获取玩友圈动态
 #define LY_Friends_TopicMessage @"lyMomentsOutAction.do?action=expand"
 
+//玩友--关注
+#define LY_Friends_follow @"/lieyu//app/api/sns/follow?1=1"
+
+//玩友--取消关注
+#define LY_Frienfs_Unfollow @"/lieyu//app/api/sns/removefollow?1=1"
 
 #pragma mark -- 直播接口
+//获取stream
+#define LY_Live_getstream @"/lieyu//app/api/liveroom/createTempStream?1=1"
+
 //开始直播
 #define LY_Live_beginLive @"/lieyu//app/api/liveroom/create?1=1"
 
@@ -76,5 +84,7 @@
 //请求人员列表和点赞
 #define LY_Live_requestlist @"/lieyu//app/api/liveroom/roomUserList?1=1"
 
+//获取直播状态
+#define LY_Live_liveStatus @"/lieyu//app/api/liveroom/getLiveStatus?1=1"
 
 #endif /* LYFriendsPageUrl_h */
