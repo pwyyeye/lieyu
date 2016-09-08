@@ -23,6 +23,8 @@
 #import "LiveSetView.h"
 #import "InputTextFieldView.h"
 #import "ChatUseres.h"
+#import "DMHeartFlyView.h"
+#import "AudienceCell.h"
 
 #import "LYFriendsHttpTool.h"
 #import "LYYUHttpTool.h"
@@ -94,6 +96,9 @@ PLStreamingSendingBufferDelegate,UICollectionViewDataSource, UICollectionViewDel
     NSString *defaultComment;//残留评论
     ISEmojiView *_emojiView;//表情键盘
     UIView *_bigView;//评论的背景view
+    CGFloat _heartSize;//红心的大小
+    NSTimer *_burstTimer;//延时
+    NSInteger _chatuserid;
 }
 
 //配置信息
@@ -114,6 +119,7 @@ PLStreamingSendingBufferDelegate,UICollectionViewDataSource, UICollectionViewDel
 //注册/退出/详情/设置View
 @property (nonatomic, strong) RegisterLiveShowView *registerView;
 @property (nonatomic, strong) CloseLiveShowView *closeView;
+@property (nonatomic, strong) UIImageView *backImage;
 @property (nonatomic, strong) AnchorDetailView *anchorDetailView;
 
 @property (nonatomic, strong) InputTextFieldView *inputTextFieldView;
@@ -124,11 +130,6 @@ PLStreamingSendingBufferDelegate,UICollectionViewDataSource, UICollectionViewDel
 //观众列表
 @property (nonatomic, strong) UICollectionView *audienceCollectionView;
 @property(nonatomic, strong) NSMutableArray *dataArray;//聊天室
-/** 直播开始前的占位图片 */
-@property(nonatomic, weak) UIImageView *placeHolderView;
-/** 粒子动画 */
-@property(nonatomic, weak) CAEmitterLayer *emitterLayer;
-
 
 
 @property(nonatomic, strong)RCCollectionViewHeader *collectionViewHeader;
@@ -178,7 +179,7 @@ static NSString *const rcTipMessageCellIndentifier = @"LYTipMessageCellIndentifi
  *  礼物cell标示
  */
 static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndentifier";
-#define _CELL @ "acell"
+#define _CELL @ "audienceCellID"
 
 
 @implementation LiveShowViewController
@@ -205,26 +206,48 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     
     [_timer invalidate];
     _timer = nil;
+    
+    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.dataArray = [NSMutableArray array];
-
-    _registerView = [[[NSBundle mainBundle] loadNibNamed:@"RegisterLiveShowView" owner:self options:nil] lastObject];
-    _registerView.frame = self.view.bounds;
-    _registerView.alpha = 0.5f;
-    _registerView.backgroundColor = [UIColor blackColor];
-    [self.view addSubview:_registerView];
-    [self.view bringSubviewToFront:_registerView];
-    [_registerView.backButton addTarget:self action:@selector(registerbackButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
-    [self.session setBeautifyModeOn:YES];
-    [_registerView setBegainImage:^(UIImage *img) {
-        _begainImage = img;
+    __weak typeof(self) weakSelf = self;
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    NSDate* dat = [NSDate date];
+    NSTimeInterval a=[dat timeIntervalSince1970]*1000;
+    NSString *time13 = [NSString stringWithFormat:@"%f",a];
+    NSString *times = [time13 substringToIndex:13];
+    _roomid =  [NSString stringWithFormat:@"%d%@", app.userModel.userid,times];
+    NSDictionary *roomDict = @{@"liveChatId":_roomid,@"1":@"1"};
+    //获取直播的stream配置摄像头,请求stream之后将创建开始界面，所以必须传递roomid,此处已经开始配置好了音频和视频，当点击开始直播请求结束后，收到通知才开始推流。
+    [LYFriendsHttpTool getStreamWithParms:roomDict complete:^(NSDictionary *dict) {
+        _stream = dict[@"stream"];
+        NSString *jsonString = _stream;
+        NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *err;
+        NSDictionary *streamJSON = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                                   options:NSJSONReadingMutableContainers
+                                                                     error:&err];
+        _streamId = streamJSON[@"id"];
+        [weakSelf initPLplayer];//初始化摄像头
+        _registerView = [[[NSBundle mainBundle] loadNibNamed:@"RegisterLiveShowView" owner:weakSelf options:nil] lastObject];
+        _registerView.frame = self.view.bounds;
+        _registerView.alpha = 0.5f;
+        _registerView.backgroundColor = [UIColor blackColor];
+        [weakSelf.view addSubview:_registerView];
+        [weakSelf.view bringSubviewToFront:_registerView];
+        _registerView.streamID = _streamId;//将streamid和roomid配置给开始界面
+        _registerView.roomId = _roomid;
+        [_registerView.backButton addTarget:weakSelf action:@selector(registerbackButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
+        [_registerView setBegainImage:^(UIImage *img) {
+            _begainImage = img;
+        }];
     }];
-    _stream= @"ceshi";
-    [self initPLplayer];//初始化摄像头
+    
+    [self.session setBeautifyModeOn:YES];
 //    [self beginLiveShow];
     //获取通知中心单例对象
     NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
@@ -240,12 +263,11 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     _stream = sender.userInfo[@"stream"];
     _chatRoomId = sender.userInfo[@"chatroomid"];
     _roomid = sender.userInfo[@"roomid"];
-    [self initPLplayer];//初始化摄像头
-    [self.registerView setHidden:YES];
-    [self.emitterLayer setHidden:NO];
+//    [self initPLplayer];//初始化摄像头
+    [_registerView  removeFromSuperview];
+    _registerView = nil;
     [self initUI];
     [self beginLiveShow];
-    
     [self joinChatRoom];
     _timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timerUpdataAction) userInfo:nil repeats:YES];
     [_timer fire];
@@ -256,7 +278,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     NSDictionary *dictionary = @{@"chatNum":[NSString stringWithFormat:@"%d",_takeNum],@"liveChatId":_chatRoomId};
     [self.dataArray removeAllObjects];
     [LYFriendsHttpTool requestListWithParms:dictionary complete:^(NSDictionary *dict) {
-        _likeNum = (int)dict[@"likeNum"];
+        _likeNum = [dict[@"likeNum"] integerValue];
         _userView.numberLabel.text = [NSString stringWithFormat:@"%d",_likeNum];
         self.dataArray = dict[@"users"];
         [_audienceCollectionView reloadData];
@@ -270,7 +292,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     UIView *CAEmitterView = [[UIView alloc] initWithFrame:self.view.bounds];
     CAEmitterView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:CAEmitterView];
-    [CAEmitterView.layer addSublayer:self.emitterLayer];
+    _heartSize = 36;
 
     //返回按钮
     _backButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
@@ -283,7 +305,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"UserHeader" owner:self options:nil];
     //得到第一个UIView
     _userView = [nib objectAtIndex:0];
-    _userView.frame = CGRectMake(20, 30, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 15);
+    _userView.frame = CGRectMake(20, 30, 140, SCREEN_HEIGHT / 15);
     _userView.layer.cornerRadius = SCREEN_HEIGHT / 30;
     _userView.layer.masksToBounds = YES;
     _userView.backgroundColor = RGBA(33, 33, 33, 0.5);
@@ -291,8 +313,8 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     [_userView.iconIamgeView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",app.userModel.avatar_img]]];
     _userView.iconIamgeView.layer.cornerRadius = _userView.iconIamgeView.frame.size.height/2;
     _userView.iconIamgeView.layer.masksToBounds = YES;
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDetail)];
-    [_userView.iconIamgeView addGestureRecognizer:tapGesture];
+//    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDetail)];
+//    [_userView.iconIamgeView addGestureRecognizer:tapGesture];
     _userView.iconIamgeView.userInteractionEnabled = YES;
     _userView.userNameLabel.text = [NSString stringWithFormat:@"%@",app.userModel.usernick];
     _userView.isFoucsButton.hidden = YES;
@@ -302,7 +324,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     UICollectionViewFlowLayout *layout=[[ UICollectionViewFlowLayout alloc ] init ];
     [layout setScrollDirection:(UICollectionViewScrollDirectionHorizontal)];
     _audienceCollectionView = [[ UICollectionView alloc ] initWithFrame : CGRectMake(10, SCREEN_HEIGHT / 12 + 30 +10, SCREEN_WIDTH - 20, SCREEN_HEIGHT / 13) collectionViewLayout :layout];
-    [_audienceCollectionView registerClass :[ UICollectionViewCell class ] forCellWithReuseIdentifier : _CELL ];
+    [_audienceCollectionView registerClass :[ AudienceCell class ] forCellWithReuseIdentifier : _CELL ];
     _audienceCollectionView.tag = 199;
     _audienceCollectionView.showsHorizontalScrollIndicator = NO;
     _audienceCollectionView. backgroundColor =[UIColor clearColor];
@@ -356,7 +378,8 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     NSString *string= [NSString stringWithFormat:@"下载猎娱App猎寻更多特色酒吧。http://10.17.30.44:8080/liveroom/live?liveChatId=%@",self.chatRoomId];
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"http://10.17.30.44:8080/liveroom/live?liveChatId=%@",self.chatRoomId];
-    [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"http://10.17.30.44:8080/liveroom/live?liveChatId=%@",self.chatRoomId];
+    [[UMSocialData defaultData].extConfig.wechatSessionData.urlResource setResourceType:(UMSocialUrlResourceTypeMusic) url:[NSString stringWithFormat:@"http://10.17.30.44:8080/liveroom/live?liveChatId=%@",self.chatRoomId]];
+//    [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"http://10.17.30.44:8080/liveroom/live?liveChatId=%@",self.chatRoomId];
     [UMSocialData defaultData].extConfig.qqData.url = [NSString stringWithFormat:@"http://10.17.30.44:8080/liveroom/live?liveChatId=%@",self.chatRoomId];
     [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:nil shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,nil] delegate:nil];
 }
@@ -379,55 +402,6 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     [self.session setBeautify:sender.value];
 }
 
-#pragma mark -- 粒子动画
-- (CAEmitterLayer *)emitterLayer
-{
-    if (!_emitterLayer) {
-        CAEmitterLayer *emitterLayer = [CAEmitterLayer layer];
-        // 发射器在xy平面的中心位置
-        emitterLayer.emitterPosition = CGPointMake(self.view.frame.size.width-50,self.view.frame.size.height-50);
-        // 发射器的尺寸大小
-        emitterLayer.emitterSize = CGSizeMake(20, 20);
-        // 渲染模式
-        emitterLayer.renderMode = kCAEmitterLayerUnordered;
-        // 开启三维效果
-        //    _emitterLayer.preservesDepth = YES;
-        NSMutableArray *array = [NSMutableArray array];
-        // 创建粒子
-            // 发射单元
-            CAEmitterCell *stepCell = [CAEmitterCell emitterCell];
-            // 粒子的创建速率，默认为1/s
-            stepCell.birthRate = 1;
-            // 粒子存活时间
-            stepCell.lifetime = arc4random_uniform(4) + 1;
-            // 粒子的生存时间容差
-            stepCell.lifetimeRange = 1.5;
-            // 颜色
-            // fire.color=[[UIColor colorWithRed:0.8 green:0.4 blue:0.2 alpha:0.1]CGColor];
-            UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"paopao@2x"]];
-            // 粒子显示的内容
-            stepCell.contents = (id)[image CGImage];
-            // 粒子的名字
-            //            [fire setName:@"step%d", i];
-            // 粒子的运动速度
-            stepCell.velocity = arc4random_uniform(100) + 100;
-            // 粒子速度的容差
-            stepCell.velocityRange = 80;
-            // 粒子在xy平面的发射角度
-            stepCell.emissionLongitude = M_PI+M_PI_2;;
-            // 粒子发射角度的容差
-            stepCell.emissionRange = M_PI_2/6;
-            // 缩放比例
-            stepCell.scale = 0.3;
-            [array addObject:stepCell];
-        
-        
-        emitterLayer.emitterCells = array;
-        [self.view.layer addSublayer:emitterLayer];
-        _emitterLayer = emitterLayer;
-    }
-    return _emitterLayer;
-}
 
 #pragma mark --- 初始化播放器
 -(void) initPLplayer{
@@ -484,20 +458,40 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
                 self.session.captureDevicePosition = AVCaptureDevicePositionBack;
                 self.session.delegate = self;
                 self.session.bufferDelegate = self;
+                __weak typeof(self) weakSelf = self;
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    UIView *previewView = self.session.previewView;
-                    previewView.autoresizingMask = UIViewAutoresizingFlexibleHeight| UIViewAutoresizingFlexibleWidth;
-                    [self.view insertSubview:previewView atIndex:0];
-                    [self.registerView setBeginLive:^(CGFloat value) {
-                        [self.session setBeautify:value];
-                        _beautify = value;
-                    }];
-                    if (![_stream isEqualToString:@"ceshi"]) {//正确stream的推流画面覆盖之前的
-                        UIView *previewView = self.session.previewView;
+                    UIView *previewView = [[UIView alloc] init];
+                    if ([_stream isEqualToString:@"ceshi"]) {
+                        previewView = self.session.previewView;
                         previewView.autoresizingMask = UIViewAutoresizingFlexibleHeight| UIViewAutoresizingFlexibleWidth;
-                        [self.view insertSubview:previewView atIndex:1];
-                        [self.session setBeautify:_beautify];
+                        [self.view insertSubview:previewView atIndex:0];
+                        [self.registerView setBeginLive:^(CGFloat value) {
+                            [weakSelf.session setBeautify:value];
+                            _beautify = value;
+                        }];
+                    } else {
+//                        previewView.alpha = 0;
+//                        [previewView removeFromSuperview];
+//                        previewView = nil;
+                        UIView *previewViewNew = self.session.previewView;
+                        previewViewNew.autoresizingMask = UIViewAutoresizingFlexibleHeight| UIViewAutoresizingFlexibleWidth;
+                        [self.view insertSubview:previewViewNew atIndex:0];
+                        [self.registerView setBeginLive:^(CGFloat value) {
+                            [weakSelf.session setBeautify:value];
+                            _beautify = value;
+                        }];
+//                        [self.session setBeautify:_beautify];
                     }
+                    
+//                    if (![_stream isEqualToString:@"ceshi"]) {//正确stream的推流画面覆盖之前的
+//                        previewView.alpha = 0;
+//                        [previewView removeFromSuperview];
+//                        previewView = nil;
+//                       UIView *previewViewNew = self.session.previewView;
+//                        previewViewNew.autoresizingMask = UIViewAutoresizingFlexibleHeight| UIViewAutoresizingFlexibleWidth;
+//                        [self.view insertSubview:previewViewNew atIndex:1];
+//                        [self.session setBeautify:_beautify];
+//                    }
                 });
             });
         };
@@ -667,34 +661,66 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 }
 
 #pragma mark --- 展示用户详情以及交互
--(void)showDetail{
+-(void)showDetailWith:(ChatUseres *) chatuser{
     _anchorDetailView = [[[NSBundle mainBundle] loadNibNamed:@"AnchorDetailView" owner:self options:nil] lastObject];
-    _anchorDetailView.frame = CGRectMake(0, 0, SCREEN_WIDTH/5 *4,SCREEN_HEIGHT / 3);
+    _anchorDetailView.frame = CGRectMake(0, 0, SCREEN_WIDTH/5 * 3,SCREEN_HEIGHT / 4);
     _anchorDetailView.center = self.view.center;
+    [_anchorDetailView.anchorIcon sd_setImageWithURL:[NSURL URLWithString:chatuser.avatar_img]];
+    _anchorDetailView.nickNameLabel.text = chatuser.usernick;
+    _chatuserid = chatuser.id;
+    [_anchorDetailView.focusButton addTarget:self action:@selector(focusButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
+    [_anchorDetailView.mainViewButton addTarget:self action:@selector(mainButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
+    _anchorDetailView.layer.cornerRadius = 10.f;
+    _anchorDetailView.layer.masksToBounds = YES;
     _anchorDetailView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_anchorDetailView];
     [self.view bringSubviewToFront:_anchorDetailView];
 }
 
+-(void)focusButtonAction:(UIButton *) sender{
+    NSDictionary *dict = @{@"followid":[NSString stringWithFormat:@"%ld",_chatuserid]};
+   [LYFriendsHttpTool followFriendWithParms:dic complete:^(NSDictionary *dict) {
+       [MyUtil showMessage:@"关注成功"];
+       sender.titleLabel.text = @"已关注";
+       sender.userInteractionEnabled = NO;
+   }];
+    
+}
+-(void)mainButtonAction:(UIButton *)sender{
+    LYMyFriendDetailViewController *LYMyFriendDetailVC = [[LYMyFriendDetailViewController alloc] init];
+    LYMyFriendDetailVC.type = @"4";
+    LYMyFriendDetailVC.imUserId = [NSString stringWithFormat:@"%ld",_chatuserid];
+    [self.navigationController pushViewController:LYMyFriendDetailVC animated:NO];
+}
 
 #pragma mark -- 返回（结束播放）
 //结束直播弹出结束画面
 -(void)closeButtonAction:(UIButton *) sender{
-    _closeView = [[[NSBundle mainBundle] loadNibNamed:@"CloseLiveShowView" owner:self options:nil] lastObject];
-    _closeView.frame = self.view.bounds;
-    _closeView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:_closeView];
-    [self.view bringSubviewToFront:_closeView];
-    [_closeView.backButton addTarget:self action:@selector(backButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
-    [_closeView.notSaveButton addTarget:self action:@selector(notSaveBackButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
-    dispatch_sync(self.sessionQueue, ^{
-        [self.session destroy];
-    });
-    _closeView.begainImage = _begainImage;
-    _closeView.chatRoomID = _chatRoomId;
-    self.session = nil;
-    self.sessionQueue = nil;
-    
+    UIAlertController *alertCloseView = [UIAlertController alertControllerWithTitle:@"确定要退出吗？" message:@"" preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+        _backImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"BackImage.png"]];
+        _backImage.frame = self.view.bounds;
+        [self.view addSubview:_backImage];
+        [self.view bringSubviewToFront:_backImage];
+        _backImage.userInteractionEnabled = YES;
+        _closeView = [[[NSBundle mainBundle] loadNibNamed:@"CloseLiveShowView" owner:self options:nil] lastObject];
+        _closeView.frame = self.view.bounds;
+        [self.view addSubview:_closeView];
+        [self.view bringSubviewToFront:_closeView];
+        [_closeView.backButton addTarget:self action:@selector(backButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
+        [_closeView.notSaveButton addTarget:self action:@selector(notSaveBackButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
+        dispatch_sync(self.sessionQueue, ^{
+            [self.session destroy];
+        });
+        _closeView.begainImage = _begainImage;
+        _closeView.chatRoomID = _chatRoomId;
+        self.session = nil;
+        self.sessionQueue = nil;
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:nil];
+    [alertCloseView addAction:cancelAction];
+    [alertCloseView addAction:sureAction];
+    [self presentViewController:alertCloseView animated:YES completion:nil];
 }
 
 //结束画面返回
@@ -719,10 +745,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
-#pragma mark -- 关注
--(void)foucsButtonAction: (UIButton *) sender{
-    NSLog(@"我关注了");
-}
+
 
 #pragma mark --UICollectionViewDataSource
 
@@ -745,12 +768,11 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 -( UICollectionViewCell *)collectionView:( UICollectionView *)collectionView cellForItemAtIndexPath:( NSIndexPath *)indexPath
 {
     if (collectionView.tag == 199) {
-        UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier : _CELL forIndexPath :indexPath];
-        UIImageView *iconIamge = [[UIImageView alloc] initWithFrame:cell.bounds];
-        iconIamge.userInteractionEnabled = YES;
+        AudienceCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier : _CELL forIndexPath :indexPath];
         ChatUseres *user = _dataArray[indexPath.row];
-        [iconIamge sd_setImageWithURL:[NSURL URLWithString:user.avatar_img]];
-        [cell addSubview:iconIamge];
+        [cell.iconButton.imageView sd_setImageWithURL:[NSURL URLWithString:user.avatar_img]];
+        
+//        [cell.iconButton addTarget:self action:@selector(ceshiAction:) forControlEvents:(UIControlEventTouchUpInside)];
         cell.layer.borderColor = RGB(187, 47, 217).CGColor;
         cell.layer.borderWidth = 1.f;
         cell.layer.cornerRadius = cell.frame.size.height /2;
@@ -779,9 +801,37 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 //            __cell.isFullScreenMode = YES;
             [__cell setDataModel:model];
             [__cell setDelegate:self];
+
             cell = __cell;
         }
         return cell;
+    }
+}
+//显示点赞
+-(void)showTheLove{
+    DMHeartFlyView* heart = [[DMHeartFlyView alloc]initWithFrame:CGRectMake(0, 0, _heartSize, _heartSize)];
+    [self.view addSubview:heart];
+    CGPoint fountainSource = CGPointMake(SCREEN_WIDTH - 20 - _heartSize/2.0, CGRectGetMaxY(self.view.bounds) - SCREEN_WIDTH / 4 - 15);
+    heart.center = fountainSource;
+    [heart animateInView:self.view];
+}
+
+#pragma mark -- 点击聊天室成员
+-(void)ceshiAction:(UIButton *)sender{
+    LYMyFriendDetailViewController *myFriendVC = [[LYMyFriendDetailViewController alloc]init];
+    myFriendVC.isChatroom = 4;
+    myFriendVC.imUserId = [NSString stringWithFormat:@"%ld",sender.tag];
+    [self.navigationController pushViewController:myFriendVC animated:YES];
+}
+
+//cell消失时
+-(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (collectionView.tag == 199) {
+        AudienceCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier : _CELL forIndexPath :indexPath];
+        cell.iconButton.imageView.image = nil;
+//        [cell.iconButton removeTarget:self action:@selector(ceshiAction:) forControlEvents:(UIControlEventTouchUpInside)];
+    } else {
     }
 }
 
@@ -865,12 +915,20 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 //    LYMyFriendDetailVC.type = @"4";
 //    LYMyFriendDetailVC.imUserId = @"";
 //    [self.navigationController pushViewController:LYMyFriendDetailVC animated:NO];
+    
+    if (collectionView.tag == 199) {
+        ChatUseres *user = _dataArray[indexPath.row];
+        [self showDetailWith:user];
+    } else {
+        
+    }
 }
 
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"kobe24" object:nil];
+    
 }
 
 #pragma mark --- 聊天室
@@ -924,7 +982,6 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     user.userId = app.userModel.imuserId;
     user.name = app.userModel.username;
     [RCIM sharedRCIM].currentUserInfo = user;
-    
     
     //初始化UI
     [self initializedSubViews];
@@ -1317,7 +1374,6 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     if([rcMessage.content isMemberOfClass:[LYGiftMessage class]]){
         model.messageId = -1;
     }
-    ++_takeNum ;//记录聊天数
     if ([self appendMessageModel:model]) {
         NSIndexPath *indexPath =
         [NSIndexPath indexPathForItem:self.conversationDataRepository.count - 1
@@ -1347,7 +1403,9 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
          * 当id为－1时，不检查是否重复，直接插入
          * 该场景用于插入临时提示。
          */
+        ++_takeNum ;//记录聊天数
         if (newId == -1) {
+            [self showTheLove];//接受到消息
             break;
         }
         if (newId == __item.messageId) {
@@ -1362,7 +1420,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     //数量不可能无限制的大，这里限制收到消息过多时，就对显示消息数量进行限制。
     //用户可以手动下拉更多消息，查看更多历史消息。
     if (self.conversationDataRepository.count>100) {
-        //                NSRange range = NSMakeRange(0, 1);
+        //NSRange range = NSMakeRange(0, 1);
         RCMessageModel *message = self.conversationDataRepository[0];
         [[RCIMClient sharedRCIMClient]deleteMessages:@[@(message.messageId)]];
         [self.conversationDataRepository removeObjectAtIndex:0];

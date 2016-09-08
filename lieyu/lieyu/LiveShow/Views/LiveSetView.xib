@@ -12,16 +12,15 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ym3-Pf-VH2">
-                    <rect key="frame" x="60" y="48" width="40" height="50"/>
+                    <rect key="frame" x="60" y="48" width="60" height="50"/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <state key="normal" title="翻转">
                         <color key="titleColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l0l-4Y-Y7v">
-                    <rect key="frame" x="60" y="8" width="40" height="50"/>
+                    <rect key="frame" x="60" y="8" width="60" height="50"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="40" id="DPB-mf-hwB"/>
                         <constraint firstAttribute="height" constant="50" id="JR6-m8-FEH"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -43,7 +42,7 @@
                     <rect key="frame" x="20" y="100" width="25" height="25"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zyE-5K-AqP">
-                    <rect key="frame" x="60" y="88" width="40" height="50"/>
+                    <rect key="frame" x="60" y="88" width="60" height="50"/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                     <state key="normal" title="美颜">
                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -59,6 +58,7 @@
                 <constraint firstItem="zyE-5K-AqP" firstAttribute="height" secondItem="l0l-4Y-Y7v" secondAttribute="height" id="91f-WU-rdX"/>
                 <constraint firstItem="ebO-Mw-gIE" firstAttribute="top" secondItem="wab-Jq-259" secondAttribute="bottom" constant="15" id="F6h-g6-vXU"/>
                 <constraint firstItem="ebO-Mw-gIE" firstAttribute="width" secondItem="Szi-SD-qsl" secondAttribute="width" id="OF4-sM-sdv"/>
+                <constraint firstAttribute="trailing" secondItem="Ym3-Pf-VH2" secondAttribute="trailing" id="RPp-GV-wCI"/>
                 <constraint firstItem="wab-Jq-259" firstAttribute="width" secondItem="Szi-SD-qsl" secondAttribute="width" id="Rz4-Jp-JJ3"/>
                 <constraint firstItem="Ym3-Pf-VH2" firstAttribute="height" secondItem="l0l-4Y-Y7v" secondAttribute="height" id="Son-kU-ut0"/>
                 <constraint firstItem="Ym3-Pf-VH2" firstAttribute="width" secondItem="l0l-4Y-Y7v" secondAttribute="width" id="cYV-NF-eZt"/>

@@ -230,7 +230,7 @@
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
     [USER_DEFAULT setObject:@"1" forKey:@"needCountIM"];
     NSLog(@"----pass-tabBarController%lu---",(unsigned long)self.selectedIndex);
-    if (YES||self.selectedIndex==1||self.selectedIndex==2) {
+    if (self.selectedIndex==1||self.selectedIndex==2) {
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         if([MyUtil isEmptyString:app.s_app_id]){
 //            LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];

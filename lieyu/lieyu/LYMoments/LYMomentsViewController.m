@@ -12,7 +12,7 @@
 #import "LYChangeImageViewController.h"
 #import "LYFriendsMessageViewController.h"
 
-#import "UserMomentsViewController.h"
+#import "UserMomentViewController.h"
 
 #define headerHeight SCREEN_WIDTH * 187 / 375
 
@@ -125,7 +125,7 @@
     if(_results.integerValue){//有新消息
         _messageButton = [UIButton buttonWithType:(UIButtonTypeSystem)];
         _messageButton.frame = CGRectMake(SCREEN_WIDTH / 4, headerHeight+ 5, SCREEN_WIDTH / 2 , 40);
-        _messageButton.layer.cornerRadius = 8.f;
+        _messageButton.layer.cornerRadius = _messageButton.frame.size.height / 2;
         _messageButton.layer.masksToBounds = YES;
         [_messageButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
         [_messageButton setTitle:[NSString stringWithFormat:@"%ld条新消息",_results.integerValue] forState:(UIControlStateNormal)];
@@ -220,7 +220,7 @@
     LYFriendsMessageViewController *messageVC = [[LYFriendsMessageViewController alloc]init];
     [self.navigationController pushViewController:messageVC animated:YES];
     
-    //    [self removeTableViewHeader];
+    //[self removeTableViewHeader];
     UITableView *tableView = [_tableViewArray objectAtIndex:0];
     tableView.tableHeaderView = nil;
     [self addTableViewHeader];
@@ -228,11 +228,11 @@
 
 #pragma mark -- 跳转到个人界面
 -(void)iconIamgeAction{
-    UserMomentsViewController *userMomentVC = [[UserMomentsViewController alloc] init];
-    userMomentVC.isFriendToUserMessage = NO;
+    UserMomentViewController *userMomentVC = [[UserMomentViewController alloc] init];
     
     [self.navigationController pushViewController:userMomentVC animated:YES];
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

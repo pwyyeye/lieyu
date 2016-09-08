@@ -30,6 +30,7 @@ static NSString *daShangCellID = @"dashangCellID";
 }
 
 -(void)setupSubviews{
+    _number = 0;
     _memony = 888;
     self.giftCollectionView.backgroundColor = [UIColor whiteColor];
     self.giftCollectionView.delegate = self;
@@ -72,7 +73,7 @@ static NSString *daShangCellID = @"dashangCellID";
     _giftButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
     _giftButton.frame = cell.bounds;
     _giftButton.backgroundColor = [UIColor clearColor];
-    _giftButton.tag = indexPath.row;
+    _giftButton.tag = [giftDic[@"giftValue"] integerValue];
     [_giftButton addTarget:self action:@selector(giftButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
     
     [cell addSubview:_giftButton];
@@ -85,10 +86,22 @@ static NSString *daShangCellID = @"dashangCellID";
     DaShangViewCell *cellNew = (DaShangViewCell *)[sender superview];
     if (cellNew.DSChooseImage.hidden) {
         cellNew.DSChooseImage.hidden = NO;
+        ++_number;
     } else {
         cellNew.DSChooseImage.hidden = YES;
+        --_number;
     }
+    NSString *value = [NSString stringWithFormat:@"%ld", sender.tag];
+    NSString *number = [NSString stringWithFormat:@"%ld", _number];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        //创建一个消息对象
+        NSNotification * notice = [NSNotification notificationWithName:@"sendGift" object:nil userInfo:@{@"value":value,@"number":number}];
+        //发送消息
+        [[NSNotificationCenter defaultCenter]postNotification:notice];
+    });
+    
 }
+
 
 - (BOOL) collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -103,6 +116,7 @@ static NSString *daShangCellID = @"dashangCellID";
 {
     return UIEdgeInsetsMake(5, 5, 5, 5);
 }
+
 //直播界面不执行方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     DaShangViewCell *cell = (DaShangViewCell *)[collectionView cellForItemAtIndexPath:indexPath];

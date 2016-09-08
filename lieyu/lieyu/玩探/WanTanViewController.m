@@ -22,6 +22,9 @@ static NSString *wantanCellID = @"wantanCellID";
 @interface WanTanViewController ()
 {
     UILabel *_myTitle;
+    NSString *_results;
+    NSString *_icon;
+    NSTimer *_timers;//定时获取我的新消息
 }
 @end
 
@@ -35,6 +38,8 @@ static NSString *wantanCellID = @"wantanCellID";
     if (self.navigationController.navigationBarHidden != NO) {
         [self.navigationController setNavigationBarHidden:NO];
     }
+    _timers = [NSTimer scheduledTimerWithTimeInterval:15 target:self selector:@selector(getNewMessage) userInfo:nil repeats:YES];//定时器获取新消息数
+    [_timers fire];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -64,7 +69,23 @@ static NSString *wantanCellID = @"wantanCellID";
     [_myTitle setFont:[UIFont systemFontOfSize:16]];
     [_myTitle setText:@"玩探"];
 }
-
+#pragma mark - 获取我的未读消息数
+- (void)getNewMessage{
+    _results = @"";
+    _icon = @"";
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if(app.userModel == nil)return;
+    
+    NSDictionary *paraDic = @{@"userId":[NSString stringWithFormat:@"%d",app.userModel.userid]};
+    __weak __typeof(self) weakSelf = self;
+    [LYFriendsHttpTool friendsGetFriendsMessageNotificationWithParams:paraDic compelte:^(NSString * reslults, NSString *icon) {
+        _results = reslults;
+        _icon = icon;
+        if(_results.integerValue){
+            [weakSelf.tableView reloadData];
+        }
+    }];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -95,8 +116,19 @@ static NSString *wantanCellID = @"wantanCellID";
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 
     if (indexPath.section == 0) {
-        cell.redTiPot.hidden = NO;
+        cell.redTiPot.hidden = YES;
         [cell setIamge:[UIImage imageNamed:@"wanyouquan.png"] andLabel:@"玩友圈"];
+        cell.iconImageView.layer.cornerRadius = cell.iconImageView.frame.size.height / 2;
+        cell.iconImageView.layer.masksToBounds = YES;
+        cell.iconImageView.image = nil;
+        if (_results) {
+            cell.iconImageView.image = nil;
+            [cell.iconImageView sd_setImageWithURL:[NSURL URLWithString:_icon]];
+            cell.smallTip.hidden = NO;
+        } else {
+            cell.smallTip.hidden = YES;
+        }
+        
     } else if(indexPath.section == 1){
         if (indexPath.row == 0) {
             
@@ -173,6 +205,7 @@ static NSString *wantanCellID = @"wantanCellID";
             [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
             
             LYMyFriendViewController *myFriendViewController=[[LYMyFriendViewController alloc]initWithNibName:@"LYMyFriendViewController" bundle:nil];
+            myFriendViewController.tipNum = 3;
             [self.navigationController pushViewController:myFriendViewController animated:YES];
             
         }

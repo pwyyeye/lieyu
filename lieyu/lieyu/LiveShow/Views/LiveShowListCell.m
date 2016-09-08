@@ -60,7 +60,7 @@
     }
     if (((roomHostUser *)listModel.roomHostUser).userTag.count) {
         _firstTaglabel.text = [NSString stringWithFormat:@"%@",((roomHostUser *)listModel.roomHostUser).userTag[0]];
-        if (((roomHostUser *)listModel.roomHostUser).userTag.count > 1) {
+        if (((roomHostUser *)listModel.roomHostUser).userTag.count >= 2) {
             _secondTagLabel.text = [NSString stringWithFormat:@"%@",((roomHostUser *)listModel.roomHostUser).userTag[1]];
         } else {
             _secondTagLabel.hidden = YES;

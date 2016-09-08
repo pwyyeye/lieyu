@@ -25,7 +25,7 @@
 UIScrollViewDelegate, UINavigationControllerDelegate,RCInputBarControlDelegate,RCIMConnectionStatusDelegate>
 
 @property (nonatomic, strong) NSString *stream;//直播流
-
+@property (nonatomic, strong) NSString *streamId;//直播ID
 @property (nonatomic, strong) NSString *chatRoomId;//聊天室ID
 @property (nonatomic, strong) NSString *roomid;//直播室ID
 #pragma mark - 会话属性
@@ -33,6 +33,7 @@ UIScrollViewDelegate, UINavigationControllerDelegate,RCInputBarControlDelegate,R
 /*!
  当前会话的会话类型
  */
+
 @property(nonatomic) RCConversationType conversationType;
 
 /*!

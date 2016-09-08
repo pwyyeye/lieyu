@@ -48,6 +48,10 @@
 
 #pragma mark ----  直播方法
 
+//获取stream
++(void)getStreamWithParms: (NSDictionary *)parms complete:(void(^)(NSDictionary *dict))complete;
+
+
 //开始直播
 +(void) beginToLiveShowWithParams:(NSDictionary *)params complete:(void(^)(NSDictionary *dict))complete;
 
@@ -63,8 +67,15 @@
 //点赞
 +(void) watchLikeWithParms: (NSDictionary *) parms complete: (void(^)(NSDictionary *dict))complete;
 
-
 //请求人员列表
 +(void) requestListWithParms:(NSDictionary *) parms complete: (void(^)(NSDictionary *dict))complete;
+
+//获取直播状态
++(void) getLiveStatusWithParms:(NSDictionary *) parms complete: (void(^)(NSDictionary *dict))complete;
+
+#pragma mark --- 最新关注-取消关注
++(void) followFriendWithParms:(NSDictionary *) parms complete: (void(^)(NSDictionary *dict))complete;
+
++(void) unFollowFriendWithParms:(NSDictionary *) parms complete: (void(^)(NSDictionary *dict))complete;
 
 @end

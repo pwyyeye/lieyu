@@ -20,7 +20,6 @@
     NSString *_chatroomid;//聊天室ID
     NSString *_roomid;//直播室ID
     BOOL _isShare;//是否分享
-    NSString *_roomId;//生成直播间ID
 }
 
 @property (weak, nonatomic) IBOutlet UIImageView *LiveImageView;
@@ -257,29 +256,29 @@
 //    [self openLiveShowRoom];
     UIViewController *selfVC = [self getCurrentViewController];
      CLLocation *location = app.userLocation;
-    NSDate* dat = [NSDate date];
-    NSTimeInterval a=[dat timeIntervalSince1970]*1000;
-    NSString *time13 = [NSString stringWithFormat:@"%f",a];
-    NSString *times = [time13 substringToIndex:13];
-    _roomId =  [NSString stringWithFormat:@"%d%@", app.userModel.userid,times];
-    
-     UMSocialUrlResource *urlResource = [[UMSocialUrlResource alloc] initWithSnsResourceType:UMSocialUrlResourceTypeImage url:@"www.baidu.com"];
+//    NSDate* dat = [NSDate date];
+//    NSTimeInterval a=[dat timeIntervalSince1970]*1000;
+//    NSString *time13 = [NSString stringWithFormat:@"%f",a];
+//    NSString *times = [time13 substringToIndex:13];
+//    _roomId =  [NSString stringWithFormat:@"%d%@", app.userModel.userid,times];
+    NSString *liveStr = [NSString stringWithFormat:@"下载猎娱App猎寻更多特色酒吧。http://10.17.30.44:8080/liveroom/live?liveChatId=%@",_roomId];
+     UMSocialUrlResource *urlResource = [[UMSocialUrlResource alloc] initWithSnsResourceType:UMSocialUrlResourceTypeMusic url:liveStr];
      switch (_shareType) {
      case 0://分享微信好友
-         {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatSession] content:@"友盟社会化分享让您快速实现分享等社会化功能，http://umeng.com/social" image:_LiveImageView.image location:location urlResource:urlResource presentedController:selfVC completion:^(UMSocialResponseEntity *response){
+         {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatSession] content:@"测试一下" image:_LiveImageView.image location:location urlResource:urlResource presentedController:selfVC completion:^(UMSocialResponseEntity *response){
          }];
              [self openLiveShowRoom];
              
          }
      break;
      case 1://分享到QQ
-         {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToQQ] content:@"友盟社会化分享让您快速实现分享等社会化功能，http://umeng.com/social" image:_LiveImageView.image location:location urlResource:urlResource presentedController:selfVC completion:^(UMSocialResponseEntity *response){
+         {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToQQ] content:@"测试一下" image:_LiveImageView.image location:location urlResource:urlResource presentedController:selfVC completion:^(UMSocialResponseEntity *response){
      }];
              [self openLiveShowRoom];
          }
      break;
      case 2://分享到微博
-         {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToSina] content:@"友盟社会化分享让您快速实现分享等社会化功能，http://umeng.com/social" image:_LiveImageView.image location:location urlResource:urlResource presentedController:selfVC completion:^(UMSocialResponseEntity *response){
+         {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToSina] content:@"测试一下" image:_LiveImageView.image location:location urlResource:urlResource presentedController:selfVC completion:^(UMSocialResponseEntity *response){
      if (response.responseCode == UMSResponseCodeSuccess) {
      NSLog(@"分享成功！");
      }
@@ -288,7 +287,7 @@
          }
      break;
      case 3://分享到微信朋友圈
-         {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatTimeline] content:@"友盟社会化分享让您快速实现分享等社会化功能，http://umeng.com/social" image:_LiveImageView.image location:location urlResource:urlResource presentedController:selfVC completion:^(UMSocialResponseEntity *response){
+         {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatTimeline] content:@"测试一下" image:_LiveImageView.image location:location urlResource:urlResource presentedController:selfVC completion:^(UMSocialResponseEntity *response){
      if (response.responseCode == UMSResponseCodeSuccess) {
      NSLog(@"分享成功！");
      }
@@ -319,8 +318,8 @@
     if ([_titleTextFiled.text  isEqualToString: @""]) {
         _titleTextFiled.text = @"#凡人皆需侍奉！#";
     }
-            NSDictionary *dict = @{@"cityCode":@"310000",@"liveimg":_imgUrl,@"livename":_titleTextFiled.text,@"liveChatId":_roomId,@"livekey":@"true"};
-            [LYFriendsHttpTool beginToLiveShowWithParams:dict complete:^(NSDictionary *dict) {
+            NSDictionary *dic = @{@"cityCode":@"310000",@"liveimg":_imgUrl,@"livename":_titleTextFiled.text,@"liveChatId":_roomId,@"streamId":_streamID};
+            [LYFriendsHttpTool beginToLiveShowWithParams:dic complete:^(NSDictionary *dict) {
                _stream = dict[@"stream"];
                 _chatroomid = dict[@"chatroomid"];
                 _roomid = dict[@"roomId"];

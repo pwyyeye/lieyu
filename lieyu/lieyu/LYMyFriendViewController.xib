@@ -7,7 +7,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LYMyFriendViewController">
             <connections>
-                <outlet property="searchBar" destination="Y3W-6l-Rqm" id="7AO-Kr-7ks"/>
                 <outlet property="searchDisplayController" destination="XA8-Oz-7AZ" id="LlO-CN-YEM"/>
                 <outlet property="tableView" destination="YEa-uo-AZf" id="8cH-z1-vgr"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -21,14 +20,6 @@
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="YEa-uo-AZf">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <searchBar key="tableHeaderView" contentMode="redraw" placeholder="搜索" id="Y3W-6l-Rqm">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                        <textInputTraits key="textInputTraits"/>
-                        <connections>
-                            <outlet property="delegate" destination="-1" id="exg-En-HAy"/>
-                        </connections>
-                    </searchBar>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="YEi-UU-Ojz"/>
                         <outlet property="delegate" destination="-1" id="cXU-AQ-r7U"/>
@@ -47,7 +38,6 @@
         <searchDisplayController id="M9N-zk-k2d">
             <connections>
                 <outlet property="delegate" destination="-1" id="5va-ZB-W6x"/>
-                <outlet property="searchBar" destination="Y3W-6l-Rqm" id="v2W-Jd-mGh"/>
                 <outlet property="searchContentsController" destination="-1" id="aKZ-dr-caO"/>
                 <outlet property="searchResultsDataSource" destination="-1" id="n6g-5T-jlz"/>
                 <outlet property="searchResultsDelegate" destination="-1" id="aEi-E0-eEg"/>
