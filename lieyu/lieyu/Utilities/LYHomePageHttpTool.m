@@ -19,6 +19,7 @@
 #import "HomePageModel.h"
 #import "HomepageBannerModel.h"
 #import "StrategyCommentModel.h"
+#import "ActivityModel.h"
 
 @implementation LYHomePageHttpTool
 + (LYHomePageHttpTool *)shareInstance
@@ -688,6 +689,27 @@
     }];
 }
 
+#pragma mark - 获取活动列表
++ (void)getNewActivityListWithParam:(NSDictionary *)param complete:(void(^)(NSDictionary *))complete{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_BAR_ACTIVITYLIST baseURL:LY_SERVER params:param success:^(id response) {
+        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
+        if([code isEqualToString:@"1"]){
+            NSArray *bannerList = [HomepageBannerModel mj_objectArrayWithKeyValuesArray:[[response objectForKey:@"data"] objectForKey:@"bannerList"]];
+            NSArray *activityList = [BarActivityList mj_objectArrayWithKeyValuesArray:[[response objectForKey:@"data"] objectForKey:@"activityList"]];
+            NSDictionary *result = @{@"bannerList":bannerList,
+                                     @"activityList":activityList};
+            complete(result);
+        }else{
+//            [MyUtil showPlaceMessage:@"获取数据失败，请稍后重试！"];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+}
+
 #pragma mark - 获取所有专题列表
 + (void)getActionList:(NSDictionary *)paraDic complete:(void(^)(NSMutableArray *result))complete{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_ACTION_LIST baseURL:LY_SERVER params:paraDic success:^(id response) {
@@ -888,7 +910,7 @@
             NSArray *array = [StrategryModel mj_objectArrayWithKeyValuesArray:[response objectForKey:@"data"]];
             complete(array);
         }else{
-            
+            [MyUtil showPlaceMessage:@"获取数据失败，请稍后重试！"];
         }
         [app stopLoading];
     } failure:^(NSError *err) {
@@ -918,8 +940,10 @@
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_ADDLIKE_STRATEGY baseURL:LY_SERVER params:param success:^(id response) {
         NSString *errorCode = [response objectForKey:@"errorcode"];
         if ([errorCode isEqualToString:@"1"]) {
+            [MyUtil showPlaceMessage:@"感谢您的点赞！"];
             complete(YES);
         }else{
+            [MyUtil showPlaceMessage:@"点赞失败，请稍后重试"];
             complete(NO);
         }
     } failure:^(NSError *err) {
@@ -931,8 +955,10 @@
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_CANCELLIKE_STRATEGY baseURL:LY_SERVER params:param success:^(id response) {
         NSString *errorCode = [response objectForKey:@"errorcode"];
         if ([errorCode isEqualToString:@"1"]) {
+            [MyUtil showPlaceMessage:@"取消点赞成功！"];
             complete(YES);
         }else{
+            [MyUtil showPlaceMessage:@"取消点赞失败，请稍后重试"];
             complete(NO);
         }
     } failure:^(NSError *err) {
@@ -944,8 +970,10 @@
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_ADDCOLL_STRATEGY baseURL:LY_SERVER params:param success:^(id response) {
         NSString *errorCode = [response objectForKey:@"errorcode"];
         if ([errorCode isEqualToString:@"1"]) {
+            [MyUtil showPlaceMessage:@"感谢您的收藏！"];
             complete(YES);
         }else{
+            [MyUtil showPlaceMessage:@"收藏失败，请稍后重试"];
             complete(NO);
         }
     } failure:^(NSError *err) {
@@ -957,8 +985,10 @@
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_CANCELCOLL_STRATEGY baseURL:LY_SERVER params:param success:^(id response) {
         NSString *errorCode = [response objectForKey:@"errorcode"];
         if ([errorCode isEqualToString:@"1"]) {
+            [MyUtil showPlaceMessage:@"取消收藏成功！"];
             complete(YES);
         }else{
+            [MyUtil showPlaceMessage:@"取消收藏失败，请稍后重试"];
             complete(NO);
         }
     } failure:^(NSError *err) {

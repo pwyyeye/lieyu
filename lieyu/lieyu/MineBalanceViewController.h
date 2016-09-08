@@ -7,8 +7,12 @@
 //
 
 #import "LYBaseViewController.h"
+#import "ZSBalance.h"
 
 @interface MineBalanceViewController : LYBaseViewController
+
+@property (nonatomic, strong) ZSBalance *balance;
+
 @property (weak, nonatomic) IBOutlet UILabel *balanceLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *rechargeButton;

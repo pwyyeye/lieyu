@@ -116,9 +116,11 @@
             NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
             [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
             model.date = [formatter stringFromDate:[NSDate date]];
-//            [_dataList insertObject:model atIndex:0];
-            [_dataList addObject:model];
+            [_dataList insertObject:model atIndex:0];
             [_tableView reloadData];
+            if ([_delegate respondsToSelector:@selector(StrategySendCommentSuccess)]) {
+                [_delegate StrategySendCommentSuccess];
+            }
         }
     }];
     return YES;

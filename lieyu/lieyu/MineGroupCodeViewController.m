@@ -21,6 +21,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"分享二维码";
+    
+    [self getData];
+}
+
+- (void)getData{
+    //获取完字符串之后操作
     _imageWidth = SCREEN_HEIGHT / 2 - 150;
     _codeString = @"fdhjsakhfjkhdsajklfhdjklashfjdkslaf";
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, _imageWidth, _imageWidth)];

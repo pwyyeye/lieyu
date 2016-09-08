@@ -107,21 +107,30 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
     _timer=[NSTimer scheduledTimerWithTimeInterval:60*5 target:self selector:@selector(doHeart) userInfo:nil repeats:YES];
     [_timer setFireDate:[NSDate distantFuture]];//暂停
     
+    [USER_DEFAULT setObject:@"上海" forKey:@"ChooseCityLastTime"];
+    [USER_DEFAULT setObject:@"1" forKey:@"LastCityHasBar"];
+    [USER_DEFAULT setObject:@"1" forKey:@"LastCityHasNightClub"];
+    [USER_DEFAULT setObject:@"2015-03-21" forKey:@"LocationTodayPosition"];
     
     
-    /*
      //引导页启动
      if (![[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
-     
-     [self showIntroWithCrossDissolve];
-     UIViewController *view=[[UIViewController alloc] init];
-     view.view=_intro;
-     self.window.rootViewController=view;
+         [self showIntroWithCrossDissolve];
+         UIViewController *view=[[UIViewController alloc] init];
+         view.view=_intro;
+         self.window.rootViewController=view;
      }else{
-     [self animationWithApp];
+         [self animationWithApp];
      }
-     */
-    [self startLocation];
+     
+    
+//    NSDate *date = [NSDate date];
+//    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+//    [formatter setDateFormat:@"yyyy-MM-dd"];
+//    NSString *dateString = [formatter stringFromDate:date];
+//    if (![USER_DEFAULT objectForKey:@"LocationTodayPosition"] || ![[USER_DEFAULT objectForKey:@"LocationTodayPosition"] isEqualToString:dateString]) {
+//        [self startLocation];
+//    }
     
     //IM推送
     if ([application
@@ -227,7 +236,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
     if((([MyUtil isEmptyString:username] || [MyUtil isEmptyString:password]) && [MyUtil isEmptyString:openID])){
         LPUserLoginViewController *login=[[LPUserLoginViewController alloc] initWithNibName:@"LPUserLoginViewController" bundle:nil];
         [self.navigationController pushViewController:login animated:YES];
-        //         self.window.rootViewController=login;
+        //         self.window.roxotViewController=login;
     }
     
     //处理消息推送
@@ -391,6 +400,12 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
                                     [USER_DEFAULT setObject:@"" forKey:@"LocationCityThisTime"];
                                 }
                             }
+                            
+                            NSDate *date = [NSDate date];
+                            NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+                            [formatter setDateFormat:@"yyyy-MM-dd"];
+                            NSString *dateString = [formatter stringFromDate:date];
+                            [USER_DEFAULT setObject:dateString forKey:@"LocationTodayPosition"];
                             [[NSNotificationCenter defaultCenter]postNotificationName:@"locationCityThisTime" object:nil];
                         }];
                         break;

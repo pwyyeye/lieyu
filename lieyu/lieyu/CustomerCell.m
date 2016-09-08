@@ -42,12 +42,12 @@
     _memberModel = memberModel;
     _smallImageView.hidden = YES;
     _countLal.hidden = YES;
-    if ([[memberModel.friendName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]length] > 0) {
-        [_nameLal setText:memberModel.friendName];
+    if ([[memberModel.usernick stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]length] > 0) {
+        [_nameLal setText:memberModel.usernick];
     }else{
         [_nameLal setText:@"暂无昵称"];
     }
-    [_cusImageView sd_setImageWithURL:[NSURL URLWithString:memberModel.icon]];
+    [_cusImageView sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:memberModel.avatar_img width:0 andHeight:0]]];
 }
 
 @end

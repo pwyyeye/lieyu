@@ -10,30 +10,10 @@
 #import "TagModel.h"
 @class UserModel;
 @interface CustomerModel : NSObject
-//"avatar_img": "null",
-//"id": 0,
-//"tag": [
-//        {
-//            "id": 0,
-//            "tagId": "2",
-//            "tagName": "歌手"
-//        }
-//        ],
-//"userid": 3,
-//"username": "aaa"
- 
-//"friend": 108888,
-//"friendName": "马东",
-//"icon": "http://source.lie98.com/1",
-//"id": 3,
-//"imUserId": "bX0gUrK6LVw=",
-//"makeDate": 0,
-//"makeWay": 1,
-//"mobile": "1",
-//"online": "",
-//"user": 130610,
-//"username": "陈华阳"
+
 @property(nonatomic,assign)int friend;
+@property (nonatomic, strong) NSString *friendStatus;
+@property (nonatomic, strong) NSString *password;
 @property(nonatomic,copy)NSString * friendName;
 @property(nonatomic,copy)NSString * name;
 @property(nonatomic,copy)NSString * icon;

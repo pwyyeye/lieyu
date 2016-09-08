@@ -66,6 +66,7 @@
 #import "LYYUHttpTool.h"
 #import "BarGroupChatViewController.h"
 #import "IQKeyboardManager.h"
+#import "ActivityMainViewController.h"
 
 #define PAGESIZE 20
 #define HOMEPAGE_MTA @"HOMEPAGE"
@@ -170,9 +171,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [self setupData];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeLocationCity) name:@"locationCityThisTime" object:nil];
     //初始化
+    [self changeLocationCity];
 }
 
-- (void)setupData{_dataList = [[NSMutableArray alloc]initWithCapacity:3];
+- (void)setupData{
+    _dataList = [[NSMutableArray alloc]initWithCapacity:3];
     for (int i = 0 ; i < 3 ; i ++) {
         NSMutableArray *array = [[NSMutableArray alloc]init];
         [_dataList addObject:array];
@@ -212,6 +215,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         [USER_DEFAULT setObject:[USER_DEFAULT objectForKey:@"ThisTimeHasNightClub"] forKey:@"LastCityHasNightClub"];
         [self createUI];
     }
+    [USER_DEFAULT setObject:@"" forKey:@"LocationCityThisTime"];
+    [USER_DEFAULT setObject:@"" forKey:@"ThisTimeHasBar"];
+    [USER_DEFAULT setObject:@"" forKey:@"ThisTimeHasNightClub"];
 }
 
 - (NSArray *)imagesArray{
@@ -226,7 +232,6 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 - (void)createUI{
     //看好有什么，没有什么。
     //0:表示只有直播 1:表示有夜店和直播 2：表示有酒吧和直播 3:表示有夜店、酒吧和直播
-    NSLog(@"%@",USER_DEFAULT);
     if([[USER_DEFAULT objectForKey:@"LastCityHasNightClub"] isEqualToString:@"1"] && [[USER_DEFAULT objectForKey:@"LastCityHasBar"] isEqualToString:@"1"]){
         _indexExistsType = 3;
         _tableViewAmount = 3;
@@ -814,7 +819,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             }else if (indexPath.section == 2){
                 return 284;
             }else if (indexPath.section == 3){
-                return 270;
+                return SCREEN_WIDTH / 16 * 9 + 57;
             }else{
                 return 0;
             }
@@ -824,7 +829,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             }else if (indexPath.section == 1){
                 return 284;
             }else if (indexPath.section == 2){
-                return 270;
+                return SCREEN_WIDTH / 16 * 9 + 57;
             }else{
                 return 0;
             }
@@ -838,7 +843,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             }else if (indexPath.section == 2){
                 return 284;
             }else if (indexPath.section == 3){
-                return 270;
+                return SCREEN_WIDTH / 16 * 9 + 57;
             }else{
                 return 0;
             }
@@ -848,7 +853,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             }else if (indexPath.section == 1){
                 return 284;
             }else if (indexPath.section == 2){
-                return 270;
+                return SCREEN_WIDTH / 16 * 9 + 57;
             }else{
                 return 0;
             }
@@ -898,12 +903,14 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     if (tableView.tag == 0) {
         if (((RecommendedTopic *)[_ydDict objectForKey:@"recommendedTopic"]).name) {
             if (indexPath.section == 0) {//活动
-                RecommendedTopic *topic = [_ydDict objectForKey:@"recommendedTopic"];
-                ActionPage *aPage = [[ActionPage alloc]init];
-                aPage.ActionImage = ((HomepageActiveTableViewCell *)[tableView cellForRowAtIndexPath:indexPath]).topicImage.image;
-                if(!topic.id) return;
-                aPage.topicid = topic.id;
-                [self.navigationController pushViewController:aPage animated:YES];
+//                RecommendedTopic *topic = [_ydDict objectForKey:@"recommendedTopic"];
+                ActivityMainViewController *activityMainVC = [[ActivityMainViewController alloc]init];
+                [self.navigationController pushViewController:activityMainVC animated:YES];
+//                ActionPage *aPage = [[ActionPage alloc]init];
+//                aPage.ActionImage = ((HomepageActiveTableViewCell *)[tableView cellForRowAtIndexPath:indexPath]).topicImage.image;
+//                if(!topic.id) return;
+//                aPage.topicid = topic.id;
+//                [self.navigationController pushViewController:aPage animated:YES];
             }else if (indexPath.section == 3){//酒吧
                 JiuBaModel *model = [((NSMutableArray *)[_ydDict objectForKey:@"barList"]) objectAtIndex:indexPath.row];
                 BeerNewBarViewController * controller = [[BeerNewBarViewController alloc] initWithNibName:@"BeerNewBarViewController" bundle:nil];
@@ -923,12 +930,14 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     }else if (tableView.tag == 1){
         if (((RecommendedTopic *)[_barDict objectForKey:@"recommendedTopic"]).name) {
             if (indexPath.section == 0) {//活动
-                RecommendedTopic *topic = [_barDict objectForKey:@"recommendedTopic"];
-                ActionPage *aPage = [[ActionPage alloc]init];
-                aPage.ActionImage = ((HomepageActiveTableViewCell *)[tableView cellForRowAtIndexPath:indexPath]).topicImage.image;
-                if(!topic.id) return;
-                aPage.topicid = topic.id;
-                [self.navigationController pushViewController:aPage animated:YES];
+//                RecommendedTopic *topic = [_barDict objectForKey:@"recommendedTopic"];
+//                ActionPage *aPage = [[ActionPage alloc]init];
+//                aPage.ActionImage = ((HomepageActiveTableViewCell *)[tableView cellForRowAtIndexPath:indexPath]).topicImage.image;
+//                if(!topic.id) return;
+//                aPage.topicid = topic.id;
+//                [self.navigationController pushViewController:aPage animated:YES];
+                ActivityMainViewController *activityMainVC = [[ActivityMainViewController alloc]init];
+                [self.navigationController pushViewController:activityMainVC animated:YES];
             }else if (indexPath.section == 3){//酒吧
                 JiuBaModel *model = [((NSMutableArray *)[_barDict objectForKey:@"barList"]) objectAtIndex:indexPath.row];
                 BeerNewBarViewController * controller = [[BeerNewBarViewController alloc] initWithNibName:@"BeerNewBarViewController" bundle:nil];
@@ -1284,35 +1293,34 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     }else if (tableview.tag == 2){
         bannerArray = [_liveDict objectForKey:@"bannerList"];
     }
-    NSDictionary *dic =bannerArray[_index];
-    NSNumber *ad_type=[dic objectForKey:@"ad_type"];
-    NSNumber *linkid=[dic objectForKey:@"linkid"];
+    HomepageBannerModel *bannerModel = [bannerArray objectAtIndex:index];
+    NSInteger ad_type = [bannerModel.ad_type integerValue];
+    NSInteger linkid = [bannerModel.linkid integerValue];
     //    "ad_type": 1,//banner图片类别 0广告，1：酒吧/3：套餐/2：活动/4：拼客 5：专题 6:专题活动
     //    "linkid": 1 //对应的id  比如酒吧 就是对应酒吧id  套餐就是对应套餐id 活动就对应活动页面的id
-    if(ad_type.intValue ==1){
+    if(ad_type ==1){
         //酒吧
         BeerNewBarViewController * controller = [[BeerNewBarViewController alloc] initWithNibName:@"BeerNewBarViewController" bundle:nil];
-        
-        controller.beerBarId = linkid;
-        NSString *str = [NSString stringWithFormat:@"首页滑动视图酒吧ID%@",linkid];
+        controller.beerBarId = [[NSNumber alloc]initWithInteger:linkid];
+        NSString *str = [NSString stringWithFormat:@"首页滑动视图酒吧ID%ld",linkid];
         [self.navigationController pushViewController:controller animated:YES];
         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:str]];
-    }else if(ad_type.intValue ==2){
+    }else if(ad_type ==2){
         //有活动内容才跳转
-        if(![MyUtil isEmptyString:[dic objectForKey:@"linkurl"]]){
+        if(![MyUtil isEmptyString:bannerModel.linkurl]){
             HuoDongLinkViewController *huodong2=[[HuoDongLinkViewController alloc] init];
-            huodong2.linkUrl=[dic objectForKey:@"linkurl"];
-            huodong2.title=[dic objectForKey:@"title"]==nil?@"活动详情":[dic objectForKey:@"title"];
+            huodong2.linkUrl=bannerModel.linkurl;
+            huodong2.title = bannerModel.title == nil ? @"活动详情" : bannerModel.title;
             [self.navigationController pushViewController:huodong2 animated:YES];
             
-        }else if ([dic objectForKey:@"content"]) {
+        }else if (bannerModel.content) {
             HuoDongViewController *huodong=[[HuoDongViewController alloc] init];
-            huodong.content=[dic objectForKey:@"content"];
-            huodong.title=[dic objectForKey:@"title"]==nil?@"活动详情":[dic objectForKey:@"title"];
+            huodong.content = bannerModel.content;
+            huodong.title = bannerModel.title == nil ? @"活动详情" : bannerModel.title;
             [self.navigationController pushViewController:huodong animated:YES];
         }
         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:@"活动"]];
-    }else if (ad_type.intValue ==3){
+    }else if (ad_type ==3){
         //    套餐/3
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd"];
@@ -1320,49 +1328,49 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
         DWTaoCanXQViewController *taoCanXQViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"DWTaoCanXQViewController"];
         taoCanXQViewController.title=@"套餐详情";
-        taoCanXQViewController.smid=linkid.intValue;
-        taoCanXQViewController.dateStr=dateStr;
+        taoCanXQViewController.smid = linkid ;
+        taoCanXQViewController.dateStr = dateStr;
         [self.navigationController pushViewController:taoCanXQViewController animated:YES];
-        NSString *str = [NSString stringWithFormat:@"首页滑动视图套餐详情ID%@",linkid];
+        NSString *str = [NSString stringWithFormat:@"首页滑动视图套餐详情ID%ld",linkid];
         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:str]];
-    }else if (ad_type.intValue ==4){
+    }else if (ad_type ==4){
         //    4：拼客
         UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
         LYPlayTogetherMainViewController *playTogetherMainViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"LYPlayTogetherMainViewController"];
         playTogetherMainViewController.title=@"我要拼客";
-        playTogetherMainViewController.smid=linkid.intValue;
+        playTogetherMainViewController.smid = (int)linkid;
         [self.navigationController pushViewController:playTogetherMainViewController animated:YES];
-        NSString *str = [NSString stringWithFormat:@"首页滑动视图我要拼客ID%@",linkid];
+        NSString *str = [NSString stringWithFormat:@"首页滑动视图我要拼客ID%ld",linkid];
         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:str]];
-    }else if (ad_type.intValue ==5){//专题
-        if (linkid==nil) {
+    }else if (ad_type ==5){//专题
+        if (!linkid) {
             return;
         }
         ActionPage *actionPage=[[ActionPage alloc] initWithNibName:@"ActionPage" bundle:nil];
-        actionPage.topicid=[linkid stringValue];
+        actionPage.topicid=[NSString stringWithFormat:@"%ld",linkid];
         [self.navigationController pushViewController:actionPage animated:YES];
-    }else if (ad_type.intValue ==6){//专题活动
-        if (linkid==nil) {
+    }else if (ad_type ==6){//专题活动
+        if (!linkid) {
             return;
         }
         ActionDetailViewController *actionDetailVC = [[ActionDetailViewController alloc]init];
         //        actionDetailVC.barActivity = aBarList;
-        actionDetailVC.actionID=[linkid stringValue];
+        actionDetailVC.actionID=[NSString stringWithFormat:@"%ld",linkid];
         [self.navigationController pushViewController:actionDetailVC animated:YES];
-    }else if (ad_type.intValue ==7){//单品
+    }else if (ad_type ==7){//单品
         ChiHeViewController *CHDetailVC = [[ChiHeViewController alloc]initWithNibName:@"ChiHeViewController" bundle:[NSBundle mainBundle]];
         CHDetailVC.title=@"吃喝专场";
-        CHDetailVC.barid=linkid.intValue;
-        CHDetailVC.barName=[dic objectForKey:@"title"]==nil?[NSString stringWithFormat:@"酒吧%@",linkid]:[dic objectForKey:@"title"];
+        CHDetailVC.barid=(int)linkid;
+        CHDetailVC.barName=bannerModel.title==nil?[NSString stringWithFormat:@"酒吧%ld",linkid]:bannerModel.title;
         [self.navigationController pushViewController:CHDetailVC animated:YES];
-        NSString *str = [NSString stringWithFormat:@"首页滑动视图吃喝专场ID%@",linkid];
+        NSString *str = [NSString stringWithFormat:@"首页滑动视图吃喝专场ID%ld",linkid];
         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:str]];
-    }else if (ad_type.intValue ==8){//组局
+    }else if (ad_type ==8){//组局
         ZujuViewController *zujuVC = [[ZujuViewController alloc]initWithNibName:@"ZujuViewController" bundle:nil];
         zujuVC.title = @"组局";
-        zujuVC.barid = linkid.intValue;
+        zujuVC.barid = (int)linkid;
         [self.navigationController pushViewController:zujuVC animated:YES];
-        NSString *str = [NSString stringWithFormat:@"首页滑动视图组局ID%@",linkid];
+        NSString *str = [NSString stringWithFormat:@"首页滑动视图组局ID%ld",linkid];
         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:str]];
     }
 }

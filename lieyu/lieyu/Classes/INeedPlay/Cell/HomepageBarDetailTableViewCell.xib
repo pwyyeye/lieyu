@@ -169,7 +169,7 @@
                 <outlet property="commentButton" destination="6JO-AP-Z3s" id="dJV-eO-5MU"/>
                 <outlet property="communicateButton" destination="qse-Xj-6nA" id="whk-bf-Xhk"/>
             </connections>
-            <point key="canvasLocation" x="420" y="274.5"/>
+            <point key="canvasLocation" x="367" y="201.5"/>
         </tableViewCell>
     </objects>
     <resources>

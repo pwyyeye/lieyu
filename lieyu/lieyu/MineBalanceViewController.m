@@ -9,6 +9,7 @@
 #import "MineBalanceViewController.h"
 #import "LYWithdrawTypeViewController.h"
 #import "ChoosePayController.h"
+#import "LYUserHttpTool.h"
 
 @interface MineBalanceViewController ()<UIAlertViewDelegate>
 
@@ -23,6 +24,7 @@
     [_rechargeButton addTarget:self action:@selector(rechargeButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     _withdrawButton.layer.cornerRadius = 19;
     [_withdrawButton addTarget:self action:@selector(withdrawButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [_balanceLabel setText:[NSString stringWithFormat:@"¥%@",_balance.balances]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,21 +46,19 @@
 }
 
 - (void)withdrawButtonClick:(UIButton *)sender{
-    //提现
-    //    UIAlertView *withdrawAlertView = [[UIAlertView alloc]initWithTitle:@"请输入提现金额" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-    //    withdrawAlertView.tag = 2;
-    //    [withdrawAlertView setAlertViewStyle:UIAlertViewStylePlainTextInput];
-    //    UITextField *withdrawField = [withdrawAlertView textFieldAtIndex:0];
-    //    withdrawField.textAlignment = NSTextAlignmentCenter;
-    //    withdrawField.keyboardType = UIKeyboardTypeNumberPad;
-    //    withdrawField.text = @"500";
-    //    [withdrawAlertView show];
-    LYWithdrawTypeViewController *lyWithdrawTypeVC = [[LYWithdrawTypeViewController alloc]initWithNibName:@"LYWithdrawTypeViewController" bundle:[NSBundle mainBundle]];
+    
     //需要参数
-    lyWithdrawTypeVC.type = @"1";
-    lyWithdrawTypeVC.account = @"we";
-    lyWithdrawTypeVC.balance = @"500";
-    [self.navigationController pushViewController:lyWithdrawTypeVC animated:YES];
+//    if ([_balance.balances doubleValue] <= 0){
+//        [MyUtil showPlaceMessage:@"余额不足，无法提现！"];
+//    }else if ([MyUtil isEmptyString:_balance.accountName] || [MyUtil isEmptyString:_balance.accountType]) {
+//        [MyUtil showPlaceMessage:@"还未设置账户！"];//还没设置账户，
+//    }else{
+        LYWithdrawTypeViewController *lyWithdrawTypeVC = [[LYWithdrawTypeViewController alloc]initWithNibName:@"LYWithdrawTypeViewController" bundle:[NSBundle mainBundle]];
+        lyWithdrawTypeVC.type = _balance.accountType;
+        lyWithdrawTypeVC.account = _balance.accountName;
+        lyWithdrawTypeVC.balance = _balance.balances;
+        [self.navigationController pushViewController:lyWithdrawTypeVC animated:YES];
+//    }
 }
 
 #pragma mark - alertview的代理事件
@@ -67,22 +67,17 @@
     if (alertView.tag == 1) {
         //充值
         if (buttonIndex == 1) {
-            //            NSLog(@"充值：%@",textField.text);
-            ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
-            //            detailViewController.orderNo=result;
-            detailViewController.payAmount=[textField.text doubleValue];
-            detailViewController.productName=@"钱包余额充值";
-            detailViewController.productDescription=@"暂无";
-            [self.navigationController pushViewController:detailViewController animated:YES];
+            NSDictionary *dict = @{@"amount":textField.text};
+            [LYUserHttpTool rechargeMoneyBagWithParams:dict complete:^(NSString *result) {
+                ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
+                detailViewController.orderNo=result;
+                detailViewController.payAmount=[textField.text doubleValue];
+                detailViewController.productName=@"钱包余额充值";
+                detailViewController.productDescription=@"暂无";
+                [self.navigationController pushViewController:detailViewController animated:YES];
+            }];
         }else{
-            NSLog(@"cancle recharge");
-        }
-    }else if (alertView.tag == 2){
-        //提现
-        if (buttonIndex == 1){
-            NSLog(@"提现：%@",textField.text);
-        }else{
-            NSLog(@"cancle withdraw");
+            //cancel
         }
     }
 }

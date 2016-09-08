@@ -14,10 +14,13 @@
 #import "CustomerModel.h"
 #import "CustomerCell.h"
 #import "LYMyFriendDetailViewController.h"
+#import "YuKeGroupModel.h"
 
 @interface MineGroupViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,UITextFieldDelegate>
 
 @property (nonatomic, strong) NSMutableArray *dataList;
+@property (nonatomic, strong) YuKeGroupModel *groupModel;
+
 @property (nonatomic, strong) NSMutableArray *filterList;
 @property (nonatomic, assign) BOOL isFiltered;
 
@@ -62,13 +65,17 @@
 - (void)getdata{
     _dataList = [[NSMutableArray alloc]init];
     __weak __typeof(self) weakSelf = self;
-    NSDictionary *dict = @{@"userid":[NSString stringWithFormat:@"%d",self.userModel.userid]};
-    [[LYUserHttpTool shareInstance]getFriendsList:dict block:^(NSMutableArray *result) {
+    NSDictionary *dict = @{@"SEM_LOGIN_TOKEN":self.userModel.token};
+    [LYUserHttpTool lyGetYukebangDataWithParams:dict complete:^(NSDictionary *result) {
+        NSArray *userArray = [result objectForKey:@"groupList"];
+        _groupModel = [result objectForKey:@"yukegroup"];
+        [_groupNumberLabel setText:[NSString stringWithFormat:@"娱客帮成员：%ld",userArray.count]];
+        [_groupBriefLabel setText:[NSString stringWithFormat:@"总收益：%@",_groupModel.amount]];
         NSMutableArray *addressBookTemp = [[NSMutableArray alloc]init];
-        [addressBookTemp addObjectsFromArray:result];
+        [addressBookTemp addObjectsFromArray:userArray];
         UILocalizedIndexedCollation *theCollation = [UILocalizedIndexedCollation currentCollation];
         for (CustomerModel *addressBook in addressBookTemp) {
-            NSInteger sect = [theCollation sectionForObject:addressBook collationStringSelector:@selector(friendName)];
+            NSInteger sect = [theCollation sectionForObject:addressBook collationStringSelector:@selector(usernick)];
             addressBook.sectionNumber = sect;
         }
         NSInteger highSection = [[theCollation sectionTitles] count];
@@ -81,7 +88,7 @@
             [((NSMutableArray *)[sectionArrays objectAtIndex:addressBook.sectionNumber]) addObject:addressBook];
         }
         for (NSMutableArray *sectionArray in sectionArrays) {
-            NSArray *sortedSection = [theCollation sortedArrayFromArray:sectionArray collationStringSelector:@selector(friendName)];
+            NSArray *sortedSection = [theCollation sortedArrayFromArray:sectionArray collationStringSelector:@selector(usernick)];
             [_dataList addObject:sortedSection];
         }
         if (_dataList.count <= 0) {

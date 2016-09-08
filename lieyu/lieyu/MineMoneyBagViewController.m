@@ -12,15 +12,16 @@
 #import "MineBalanceViewController.h"
 #import "MineWithdrawListViewController.h"
 #import "ZSTiXianRecordViewController.h"
-
+#import "LYUserHttpTool.h"
+#import "ZSBalance.h"
 
 #define IDENTIFIER @"MineMoneyBagCollectionViewCell"
 
-@interface MineMoneyBagViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface MineMoneyBagViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,MineYubiDelegate>
 {
     NSArray *_dataArray;
 }
-
+@property (nonatomic, strong) ZSBalance *balanceModel;
 @end
 
 @implementation MineMoneyBagViewController
@@ -34,10 +35,20 @@
     [_collectionView registerNib:[UINib nibWithNibName:@"MineMoneyBagCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"MineMoneyBagCollectionViewCell"];
 }
 
+- (void)getData{
+    [LYUserHttpTool getMyMoneyBagBalanceAndCoinWithParams:nil complete:^(ZSBalance *balance) {
+        _balanceModel = balance;
+        [_balanceLabel setText:[NSString stringWithFormat:@"¥%@",_balanceModel.balances]];
+        [_yubiLabel setText:[NSString stringWithFormat:@"%@娱币",_balanceModel.coin]];
+    }];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的钱包";
     [self initRightItem];
+    
+    [self getData];
 }
 
 - (void)initRightItem{
@@ -115,13 +126,22 @@
     // Pass the selected object to the new view controller.
 }
 */
-
-- (IBAction)balanceClick:(UIButton *)sender {MineBalanceViewController *mineBalanceVC = [[MineBalanceViewController alloc]initWithNibName:@"MineBalanceViewController" bundle:[NSBundle mainBundle]];
+#pragma mark - 按钮事件
+- (IBAction)balanceClick:(UIButton *)sender {
+    MineBalanceViewController *mineBalanceVC = [[MineBalanceViewController alloc]initWithNibName:@"MineBalanceViewController" bundle:[NSBundle mainBundle]];
+    mineBalanceVC.balance = _balanceModel;
     [self.navigationController pushViewController:mineBalanceVC animated:YES];
 }
 
 - (IBAction)yubiClick:(UIButton *)sender {
     MineYubiViewController *mineYubiVC = [[MineYubiViewController alloc]initWithNibName:@"MineYubiViewController" bundle:nil];
+    mineYubiVC.coinAmount = _balanceModel.coin;
+    mineYubiVC.delegate = self;
     [self.navigationController pushViewController:mineYubiVC animated:YES];
 }
+
+- (void)MineYubiWithdrawDelegate:(double)amount{
+    [self getData];
+}
+
 @end

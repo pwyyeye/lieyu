@@ -8,6 +8,12 @@
 
 #import "LYBaseViewController.h"
 
+@protocol StrategyCommentSendDelegate <NSObject>
+
+- (void)StrategySendCommentSuccess;
+
+@end
+
 @interface StrategyCommentListViewController : LYBaseViewController
 
 @property (nonatomic, strong) NSString *strategyId;
@@ -15,5 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIView *textView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
+
+@property (nonatomic, assign) id<StrategyCommentSendDelegate> delegate;
 
 @end

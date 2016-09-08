@@ -140,4 +140,6 @@
 + (void)addStrategyCommentWithParam:(NSDictionary *)param complete:(void(^)(BOOL))complete;
 #pragma mark - 攻略删除评论
 + (void)deleteStrategyCommentWithParam:(NSDictionary *)param complete:(void(^)(BOOL))complete;
+#pragma mark - 获取活动列表
++ (void)getNewActivityListWithParam:(NSDictionary *)param complete:(void(^)(NSDictionary *))complete;
 @end
