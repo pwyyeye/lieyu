@@ -107,9 +107,9 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
     _timer=[NSTimer scheduledTimerWithTimeInterval:60*5 target:self selector:@selector(doHeart) userInfo:nil repeats:YES];
     [_timer setFireDate:[NSDate distantFuture]];//暂停
     
-    [USER_DEFAULT setObject:@"上海" forKey:@"ChooseCityLastTime"];
-    [USER_DEFAULT setObject:@"1" forKey:@"LastCityHasBar"];
-    [USER_DEFAULT setObject:@"1" forKey:@"LastCityHasNightClub"];
+    [USER_DEFAULT setObject:@"北京" forKey:@"ChooseCityLastTime"];
+    [USER_DEFAULT setObject:@"0" forKey:@"LastCityHasBar"];
+    [USER_DEFAULT setObject:@"0" forKey:@"LastCityHasNightClub"];
     [USER_DEFAULT setObject:@"2015-03-21" forKey:@"LocationTodayPosition"];
     
     
@@ -385,28 +385,27 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
                     if (_citystr && !_locationCertain) {
                         //                        NSDictionary *dict = @{@"city":@"南宁市"};
                         NSDictionary *dict = @{@"city":_citystr};
-                        _locationCertain = YES;
+//                        _locationCertain = YES;
                         [LYUserHttpTool lyLocationCityGetStatusWithParams:dict complete:^(NSDictionary *dict) {
-                            if (dict) {
-                                //                        NSDictionary *dict = @{@"city":@"北为",
-                                //                                               @"hasBar":@"0",
-                                //                                               @"hasNightclub":@"1",
-                                //                                               @"cityIsExist":@"1"};
-                                if ([[dict objectForKey:@"cityIsExist"] isEqualToString:@"1"]) {
-                                    [USER_DEFAULT setObject:[dict objectForKey:@"city"] forKey:@"LocationCityThisTime"];
-                                    [USER_DEFAULT setObject:[dict objectForKey:@"hasBar"] forKey:@"ThisTimeHasBar"];
-                                    [USER_DEFAULT setObject:[dict objectForKey:@"hasNightclub"] forKey:@"ThisTimeHasNightClub"];
-                                }else{
-                                    [USER_DEFAULT setObject:@"" forKey:@"LocationCityThisTime"];
+                            if (!_locationCertain) {
+                                if (dict) {
+                                    if ([[dict objectForKey:@"cityIsExist"] isEqualToString:@"1"]) {
+                                        [USER_DEFAULT setObject:[dict objectForKey:@"city"] forKey:@"LocationCityThisTime"];
+                                        [USER_DEFAULT setObject:[dict objectForKey:@"hasBar"] forKey:@"ThisTimeHasBar"];
+                                        [USER_DEFAULT setObject:[dict objectForKey:@"hasNightclub"] forKey:@"ThisTimeHasNightClub"];
+                                    }else{
+                                        [USER_DEFAULT setObject:@"" forKey:@"LocationCityThisTime"];
+                                    }
                                 }
+                                
+                                NSDate *date = [NSDate date];
+                                NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+                                [formatter setDateFormat:@"yyyy-MM-dd"];
+                                NSString *dateString = [formatter stringFromDate:date];
+                                [USER_DEFAULT setObject:dateString forKey:@"LocationTodayPosition"];
+                                [[NSNotificationCenter defaultCenter]postNotificationName:@"locationCityThisTime" object:nil];
+                                _locationCertain = YES;
                             }
-                            
-                            NSDate *date = [NSDate date];
-                            NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-                            [formatter setDateFormat:@"yyyy-MM-dd"];
-                            NSString *dateString = [formatter stringFromDate:date];
-                            [USER_DEFAULT setObject:dateString forKey:@"LocationTodayPosition"];
-                            [[NSNotificationCenter defaultCenter]postNotificationName:@"locationCityThisTime" object:nil];
                         }];
                         break;
                     }

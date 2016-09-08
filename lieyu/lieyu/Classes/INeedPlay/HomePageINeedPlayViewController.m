@@ -191,19 +191,21 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 #pragma mark - 是否改变城市
 - (void)changeLocationCity{
+    __weak __typeof(self)weakSelf = self;
     if (![MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"LocationCityThisTime"]] &&
         ![[USER_DEFAULT objectForKey:@"LocationCityThisTime"] isEqualToString:[USER_DEFAULT objectForKey:@"ChooseCityLastTime"]]) {
         //这次定位到的城市不为空并且和上次选择的城市不一样,让选择是否跳转
         [[[AlertBlock alloc]initWithTitle:nil message:[NSString stringWithFormat:@"系统定位到您在%@,需要切换到%@吗？",[USER_DEFAULT objectForKey:@"LocationCityThisTime"],[USER_DEFAULT objectForKey:@"LocationCityThisTime"]] cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex) {
             if(buttonIndex == 0){
                 //不跳转，以上次选择城市获取数据与排界面
-                [self createUI];
+                [weakSelf createUI];
             }else if (buttonIndex == 1){
                 [USER_DEFAULT setObject:[USER_DEFAULT objectForKey:@"LocationCityThisTime"] forKey:@"ChooseCityLastTime"];
                 [USER_DEFAULT setObject:[USER_DEFAULT objectForKey:@"ThisTimeHasBar"] forKey:@"LastCityHasBar"];
                 [USER_DEFAULT setObject:[USER_DEFAULT objectForKey:@"ThisTimeHasNightClub"] forKey:@"LastCityHasNightClub"];
                 //跳转。获取数据&&排布页面根据当前页面
-                [self createUI];
+                [weakSelf emptyUserDefault];
+                [weakSelf createUI];
             }
         }]show];
     }else if ([MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"LocationCityThisTime"]]){
@@ -213,8 +215,12 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         //不为空，但要重新更新数据。
         [USER_DEFAULT setObject:[USER_DEFAULT objectForKey:@"ThisTimeHasBar"] forKey:@"LastCityHasBar"];
         [USER_DEFAULT setObject:[USER_DEFAULT objectForKey:@"ThisTimeHasNightClub"] forKey:@"LastCityHasNightClub"];
+        [self emptyUserDefault];
         [self createUI];
     }
+}
+
+- (void)emptyUserDefault{
     [USER_DEFAULT setObject:@"" forKey:@"LocationCityThisTime"];
     [USER_DEFAULT setObject:@"" forKey:@"ThisTimeHasBar"];
     [USER_DEFAULT setObject:@"" forKey:@"ThisTimeHasNightClub"];
