@@ -191,7 +191,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"loginAndLoadData" object:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"loadMyCollectedAndLikeBar" object:nil];
         
-        [weakSelf startLocation];
+        [app startLocation];
     }];
 }
 
@@ -257,7 +257,7 @@
 //                if ([MyUtil isEmptyString:app.desKey] ) {
                     [app getDESKey];
 //                }
-                [weakSelf startLocation];
+                [app startLocation];
                 NSString * hasAddAlias=[USER_DEFAULT objectForKey:@"hasAddAlias"];
                 if ([MyUtil isEmptyString:hasAddAlias]) {
                     [UMessage addAlias:[NSString stringWithFormat:@"%d",userM.userid] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
@@ -302,8 +302,7 @@
 //        [self addUmengAlias:[NSString stringWithFormat:@"%d",result.userid]];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"OPENIDSTR"];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
-        [weakSelf startLocation];
-
+        [app startLocation];
     }];
 }
 
@@ -350,12 +349,13 @@
 }
 
 - (void)tencentDidLogin{
+    AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);
     if (_tencentOAuth.accessToken && 0 != [_tencentOAuth.accessToken length])
     {
         //  记录登录用户的OpenID、Token以及过期时间
         NSLog(@"---->%@", _tencentOAuth.accessToken);
         [_tencentOAuth getUserInfo];
-        [self startLocation];
+        [app startLocation];
     }
     else
     {
@@ -482,7 +482,7 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"loadMyCollectedAndLikeBar" object:nil];
             [weakSelf.navigationController popToRootViewControllerAnimated:YES];
             
-            [weakSelf startLocation];
+            [app startLocation];
         }else{//去绑定手机好
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"OPENIDSTR"];
             LYRegistrationViewController *registVC = [[LYRegistrationViewController alloc]init];

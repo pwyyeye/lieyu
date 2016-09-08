@@ -54,6 +54,7 @@
 -(void)connectWithToken;
 -(void)getDESKey;
 -(void)getTTL;
+-(void)startLocation;
 
 @end
 
