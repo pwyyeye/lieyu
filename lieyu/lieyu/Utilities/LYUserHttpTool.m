@@ -18,6 +18,7 @@
 #import "LPFriendBriefInfo.h"
 #import "TopicModel.h"
 #import "LYFreeOrderModel.h"
+#import "YuKeGroupModel.h"
 
 @implementation LYUserHttpTool
 
@@ -1608,6 +1609,94 @@
     }];
 }
 
+#pragma mark - 获取钱包里数据
++ (void)getMyMoneyBagBalanceAndCoinWithParams:(NSDictionary *)dict complete:(void(^)(ZSBalance *balance))complete{
+    AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_GETBALANCE_COIN baseURL:LY_SERVER params:dict success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            //获取列表成功
+            if ([MyUtil isEmptyString:app.desKey]) {
+                [app getDESKey];
+                [MyUtil showPlaceMessage:@"数据获取失败，请稍后重试！"];
+            }else{
+                NSString *balanceStrEncry = [[response objectForKey:@"data"] objectForKey:@"balances"];
+                NSString *balanceStr = [MyUtil decryptUseDES:balanceStrEncry withKey:app.desKey];
+                
+                NSString *coinStrEncry = [[response objectForKey:@"data"] objectForKey:@"coin"];
+                NSString *coinStr = [MyUtil decryptUseDES:coinStrEncry withKey:app.desKey];
+                
+                ZSBalance *balance = [ZSBalance mj_objectWithKeyValues:[response objectForKey:@"data"]];
+                balance.balances = ![MyUtil isEmptyString:balanceStr] ? balanceStr : @"0";
+                balance.coin = ![MyUtil isEmptyString:coinStr] ? coinStr : @"0";
+                
+                complete(balance);
+            }
+        }else{
+            [MyUtil showPlaceMessage:@"数据获取失败，请稍后重试！"];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+}
+
+#pragma mark - 钱包里面的充值
++ (void)rechargeMoneyBagWithParams:(NSDictionary *)dict complete:(void(^)(NSString *result))complete{
+    AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_RECHARGE_MONEYBAG baseURL:LY_SERVER params:dict success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            complete([response objectForKey:@"data"]);
+        }else{
+            [MyUtil showPlaceMessage:@"数据获取失败，请稍后重试！"];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+}
+
+#pragma mark - 娱币兑换余额
++ (void)coinChangeToMoneyWithParams:(NSDictionary *)dict complete:(void(^)(BOOL result))complete{
+    AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_COINCHANGE_BALANCE baseURL:LY_SERVER params:dict success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            complete(YES);
+        }else{
+            [MyUtil showPlaceMessage:[response objectForKey:@"message"]];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+}
+
+#pragma mark - 获取娱客帮数据
++ (void)lyGetYukebangDataWithParams:(NSDictionary *)dict complete:(void (^)(NSDictionary *result))complete{
+    AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);
+    [app startLoading];
+    NSString *ss = [NSString stringWithFormat:@"%@?userId=%@",LY_GET_YUKEBANG,[dict objectForKey:@"SEM_LOGIN_TOKEN"]];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:ss baseURL:RUIQIU_SERVER params:dict success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"success"]) {
+            NSArray *yuUser = [CustomerModel mj_objectArrayWithKeyValuesArray:[[response objectForKey:@"data"] objectForKey:@"groupList"]];
+            YuKeGroupModel *model = [YuKeGroupModel mj_objectWithKeyValues:[[response objectForKey:@"data"] objectForKey:@"yukegroup"]];
+            NSDictionary *dict = @{@"groupList":yuUser,
+                                   @"yukegroup":model};
+            complete(dict);
+        }else{
+            [MyUtil showPlaceMessage:@"获取数据失败，请稍后重试！"];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+}
 
 
 @end

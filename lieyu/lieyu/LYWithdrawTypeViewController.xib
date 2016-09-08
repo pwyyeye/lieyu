@@ -201,6 +201,7 @@
                 <constraint firstItem="cMn-k7-BeP" firstAttribute="leading" secondItem="mIE-X3-PR6" secondAttribute="trailing" constant="24" id="x9V-Ew-gtC"/>
                 <constraint firstAttribute="trailing" secondItem="XaV-kn-h5I" secondAttribute="trailing" constant="22" id="zfx-yq-eRK"/>
             </constraints>
+            <point key="canvasLocation" x="271" y="246"/>
         </view>
     </objects>
     <resources>

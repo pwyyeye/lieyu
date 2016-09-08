@@ -55,10 +55,10 @@
     }else{
         _liveTypeLabel.text = @"回放";
     }
-    if (((roomHostUser *)listModel.roomHostUser).userid.integerValue == 1) {//隐藏顾问tag
+    if (((roomHostUser *)listModel.roomHostUser).usertype.integerValue == 1) {//隐藏顾问tag
         _guWenLabel.hidden = YES;
     }
-    if (((roomHostUser *)listModel.roomHostUser).userTag) {
+    if (((roomHostUser *)listModel.roomHostUser).userTag.count) {
         _firstTaglabel.text = [NSString stringWithFormat:@"%@",((roomHostUser *)listModel.roomHostUser).userTag[0]];
         if (((roomHostUser *)listModel.roomHostUser).userTag.count >= 2) {
             _secondTagLabel.text = [NSString stringWithFormat:@"%@",((roomHostUser *)listModel.roomHostUser).userTag[1]];

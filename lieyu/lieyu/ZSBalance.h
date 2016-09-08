@@ -15,6 +15,7 @@
 @property (nonatomic,copy) NSString *activeAmount;
 @property (nonatomic,copy) NSString *balances;
 @property (nonatomic,copy) NSString *check_date;
+@property (nonatomic, strong) NSString *coin;
 @property (nonatomic,copy) NSString *id;
 @property (nonatomic,copy) NSString *userid;
 @property (nonatomic,copy) NSString *withdrawalsSum;

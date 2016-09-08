@@ -24,4 +24,6 @@
 @property (nonatomic,copy) NSString *name;
 @property (nonatomic,copy) NSString *smInfo;
 @property (nonatomic,strong) BarTopicInfo *topicInfo;
+@property (nonatomic, strong) NSString *price;
+@property (nonatomic, strong) NSString *activityType;
 @end

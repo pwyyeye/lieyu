@@ -9,6 +9,7 @@
 #import "MineYubiViewController.h"
 #import "MineYubiRechargeTableViewCell.h"
 #import "ChoosePayController.h"
+#import "LYUserHttpTool.h"
 
 @interface MineYubiViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -17,7 +18,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *rechargeButton;
 @property (weak, nonatomic) IBOutlet UIButton *withdrawButton;
 
-@property (nonatomic, assign) CGFloat yubiAmount;
 
 @end
 
@@ -27,7 +27,7 @@
     [super viewDidLoad];
     self.title = @"娱币充值";
     [self initItems];
-    _yubiAmount = 500;
+    [_yubiAmountLabel setText:_coinAmount];
 }
 
 - (void)initItems{
@@ -97,13 +97,20 @@
 }
 
 - (void)rechargeWithAmount:(NSString *)money{
-    NSLog(@"充值：%@",money);
-    ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
-    //            detailViewController.orderNo=result;
-    detailViewController.payAmount=[money doubleValue];
-    detailViewController.productName=@"钱包娱币充值";
-    detailViewController.productDescription=@"暂无";
-    [self.navigationController pushViewController:detailViewController animated:YES];
+    NSDictionary *dict = @{@"amount":money};
+    [LYUserHttpTool rechargeMoneyBagWithParams:dict complete:^(NSString *result) {
+            ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
+            detailViewController.orderNo=result;
+            detailViewController.payAmount=[money doubleValue];
+            detailViewController.productName=@"钱包娱币充值";
+            detailViewController.productDescription=@"暂无";
+//        UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:weakSelf action:nil];
+//        weakSelf.navigationItem.backBarButtonItem = left;
+//        [weakSelf.navigationController pushViewController:detailViewController animated:YES];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
+            [self.navigationController pushViewController:detailViewController animated:YES];
+    }];
+    
 }
 
 - (void)withdrawClick{
@@ -113,7 +120,7 @@
     UITextField *withdrawField = [withdrawAlertView textFieldAtIndex:0];
     withdrawField.textAlignment = NSTextAlignmentCenter;
     withdrawField.keyboardType = UIKeyboardTypeNumberPad;
-    withdrawField.text = [NSString stringWithFormat:@"%g",_yubiAmount];
+    withdrawField.text = _coinAmount;
     [withdrawAlertView show];
 }
 
@@ -126,12 +133,22 @@
         }
     }else if (alertView.tag == 2){
         if (buttonIndex == 1) {
-            if ([textField.text doubleValue] > _yubiAmount) {
+            if ([textField.text doubleValue] > [_coinAmount doubleValue]) {
                 [MyUtil showPlaceMessage:@"娱币不足，请重新输入！"];
             }else{
-                [MyUtil showPlaceMessage:[NSString stringWithFormat:@"恭喜您，成功兑换%@娱币！",textField.text]];
+                NSDictionary *dict = @{@"subamount":textField.text};
+                __weak __typeof(self) weakSelf = self;
+                [LYUserHttpTool coinChangeToMoneyWithParams:dict complete:^(BOOL result) {
+                    if (result) {
+                        [MyUtil showPlaceMessage:[NSString stringWithFormat:@"恭喜您，成功兑换%@娱币！",textField.text]];
+                        double amount = [_coinAmount doubleValue] - [textField.text doubleValue];
+                        [_yubiAmountLabel setText:[NSString stringWithFormat:@"%g",amount]];
+                        if ([weakSelf.delegate respondsToSelector:@selector(MineYubiWithdrawDelegate:)]) {
+                            [weakSelf.delegate MineYubiWithdrawDelegate:amount];
+                        }
+                    }
+                }];
             }
-            NSLog(@"兑现%@",textField.text);
         }
     }
 }

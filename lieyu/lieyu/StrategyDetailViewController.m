@@ -15,7 +15,7 @@
 #import "UMSocial.h"
 #import "StrategyCommentListViewController.h"
 
-@interface StrategyDetailViewController ()<UITableViewDelegate,UITableViewDataSource,UIWebViewDelegate>
+@interface StrategyDetailViewController ()<UITableViewDelegate,UITableViewDataSource,UIWebViewDelegate,StrategyCommentSendDelegate>
 {
     LYHeaderTableViewCell *_headerCell;//表的第一个cell图片
     StrategyDetailInfoTableViewCell *_infoCell;
@@ -84,7 +84,17 @@
 - (void)setupBottomView{
     [_likeNumber setText:_strategyModel.likeNum];
     [_collectNumber setText:_strategyModel.favNum];
-//    _commentNumber setText:_strategyModel.co
+    if ([_strategyModel.isLiked isEqualToString:@"1"]) {
+        [_likeImage setImage:[UIImage imageNamed:@"strategyLiked"]];
+    }else{
+        [_likeImage setImage:[UIImage imageNamed:@"strategyUnLike"]];
+    }
+    if ([_strategyModel.isCollected isEqualToString:@"1"]) {
+        [_collectImage setImage:[UIImage imageNamed:@"strategyColled"]];
+    }else{
+        [_collectImage setImage:[UIImage imageNamed:@"strategyUnColl"]];
+    }
+    [_commentNumber setText:_strategyModel.commentNum];
 }
 
 - (void)loadWebView{
@@ -207,15 +217,67 @@
 
 #pragma mark - 按钮点击事件
 - (IBAction)likeButtonClick:(UIButton *)sender {
+    NSDictionary *dict = @{@"strategyId":_strategyID};
+    if ([_strategyModel.isLiked isEqualToString:@"1"]) {
+        //已经喜欢过
+        [LYHomePageHttpTool cancelLikeStrategyWith:dict complete:^(BOOL result) {
+            if (result) {
+                int likeNum = [_strategyModel.likeNum intValue] - 1;
+                _strategyModel.likeNum = [NSString stringWithFormat:@"%d",likeNum];
+                _strategyModel.isLiked = @"0";
+                [_likeNumber setText:_strategyModel.likeNum];
+                [_likeImage setImage:[UIImage imageNamed:@"strategyUnLike"]];
+            }
+        }];
+    }else{
+        [LYHomePageHttpTool addLikeStrategyWith:dict complete:^(BOOL result) {
+            if (result) {
+                int likeNum = [_strategyModel.likeNum intValue] + 1;
+                _strategyModel.likeNum = [NSString stringWithFormat:@"%d",likeNum];
+                _strategyModel.isLiked = @"1";
+                [_likeNumber setText:_strategyModel.likeNum];
+                [_likeImage setImage:[UIImage imageNamed:@"strategyLiked"]];
+            }
+        }];
+    }
 }
 
 - (IBAction)commentButtonClick:(UIButton *)sender {
     StrategyCommentListViewController *strategyCommentVC = [[StrategyCommentListViewController alloc]initWithNibName:@"StrategyCommentListViewController" bundle:nil];
     strategyCommentVC.strategyId = _strategyModel.id;
+    strategyCommentVC.delegate = self;
     [self.navigationController pushViewController:strategyCommentVC animated:YES];
 }
 
+- (void)StrategySendCommentSuccess{
+    int commentNum = [_strategyModel.commentNum intValue];
+    _strategyModel.commentNum = [NSString stringWithFormat:@"%d",commentNum + 1];
+    [_commentNumber setText:_strategyModel.commentNum];
+}
+
 - (IBAction)collectButtonClick:(UIButton *)sender {
+    NSDictionary *dict = @{@"strategyId":_strategyID};
+    if ([_strategyModel.isCollected isEqualToString:@"1"]) {
+        [LYHomePageHttpTool cancelCollectStrategyWith:dict complete:^(BOOL result) {
+            if (result) {
+                int collectNum = [_strategyModel.favNum intValue] - 1;
+                _strategyModel.favNum = [NSString stringWithFormat:@"%d",collectNum];
+                _strategyModel.isCollected = @"0";
+                [_collectNumber setText:_strategyModel.favNum];
+                [_collectImage setImage:[UIImage imageNamed:@"strategyUnColl"]];
+            }
+        }];
+    }else{
+        [LYHomePageHttpTool addCollectStrategyWith:dict complete:^(BOOL result) {
+            if (result) {
+                int collectNum = [_strategyModel.favNum intValue] + 1;
+                _strategyModel.favNum = [NSString stringWithFormat:@"%d",collectNum];
+                _strategyModel.isCollected = @"1";
+                [_collectNumber setText:_strategyModel.favNum];
+                [_collectImage setImage:[UIImage imageNamed:@"strategyColled"]];
+            }
+        }];
+    }
 }
 
 - (IBAction)backButtonClick:(UIButton *)sender {
@@ -230,4 +292,6 @@
     [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:_headerCell.imageView.image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"分享" pageName:@"攻略详情" titleName:_strategyModel.title]];
 }
+
+
 @end

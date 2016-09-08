@@ -16,8 +16,9 @@
 #import "OrderInfoModel.h"
 #import "ZSApplyStatusModel.h"
 #import "unPassesModel.h"
-
 #import "find_userInfoModel.h"
+#import "ZSBalance.h"
+
 @interface LYUserHttpTool : NSObject
 + (LYUserHttpTool *)shareInstance;
 // 登录
@@ -230,5 +231,14 @@
 
 //获取定位城市的相关信息
 + (void)lyLocationCityGetStatusWithParams:(NSDictionary *)dict complete:(void(^)(NSDictionary *dict))complete;
+
+//获取钱包里数据
++ (void)getMyMoneyBagBalanceAndCoinWithParams:(NSDictionary *)dict complete:(void(^)(ZSBalance *balance))complete;
+//钱包里面的充值
++ (void)rechargeMoneyBagWithParams:(NSDictionary *)dict complete:(void(^)(NSString *result))complete;
+//娱币兑换余额
++ (void)coinChangeToMoneyWithParams:(NSDictionary *)dict complete:(void(^)(BOOL result))complete;
+//获取娱客帮数据
++ (void)lyGetYukebangDataWithParams:(NSDictionary *)dict complete:(void(^)(NSDictionary *result))complete;
 
 @end

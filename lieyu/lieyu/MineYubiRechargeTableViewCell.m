@@ -8,7 +8,7 @@
 
 #import "MineYubiRechargeTableViewCell.h"
 
-#define yubiArray @{@[@"yubi":@"80",@"money":@"8"],@[@"yubi":@"380",@"money":@"38"],@[@"yubi":@"880",@"money":@"88"]}
+#define yubiArray @{@[@"yubi":@"800",@"money":@"8"],@[@"yubi":@"3800",@"money":@"38"],@[@"yubi":@"8800",@"money":@"88"]}
 
 @implementation MineYubiRechargeTableViewCell
 
@@ -29,13 +29,13 @@
     NSString *yubi;
     NSString *money;
     if (index == 0) {
-        yubi = @"80";
+        yubi = @"800";
         money = @"¥ 8";
     }else if (index == 1){
-        yubi = @"380";
+        yubi = @"3800";
         money = @"¥ 38";
     }else if (index == 2){
-        yubi = @"880";
+        yubi = @"8800";
         money = @"¥ 88";
     }
     [_yubiLabel setText:yubi];

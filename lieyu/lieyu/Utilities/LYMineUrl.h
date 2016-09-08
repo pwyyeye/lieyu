@@ -132,7 +132,14 @@
 
 //获取定位城市的相关信息
 #define LY_LOCATION_GETSTATUS @"lieAction.do?action=custom"
-
+//获取钱包里数据
+#define LY_GETBALANCE_COIN @"managerAccountAction.do?action=expand"
+//钱包里面的充值
+#define LY_RECHARGE_MONEYBAG @"lyRechargeAction.do?action=add"
+//娱币兑换余额
+#define LY_COINCHANGE_BALANCE @"dailyCoinAction.do?action=save"
+//娱客帮数据获取
+#define LY_GET_YUKEBANG @"app/api/yukegroup/groupList"
 
 
 #endif

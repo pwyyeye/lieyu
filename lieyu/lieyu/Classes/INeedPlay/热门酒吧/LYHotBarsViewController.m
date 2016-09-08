@@ -48,7 +48,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _btnTitleArray = @[@"热门",@"附近",@"价格",@"返利"];
+    _btnTitleArray = @[@"热门",@"附近",];
     if(_isGuWenListVC) _btnTitleArray = @[@"人气",@"附近",@"推荐"];
     if (_isVideoListVC) {
         _btnTitleArray = @[@"直播"];

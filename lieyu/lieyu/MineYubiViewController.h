@@ -8,6 +8,15 @@
 
 #import "LYBaseViewController.h"
 
+@protocol MineYubiDelegate <NSObject>
+
+- (void)MineYubiWithdrawDelegate:(double)amount;
+
+@end
+
 @interface MineYubiViewController : LYBaseViewController
+
+@property (nonatomic, strong) NSString *coinAmount;
+@property (nonatomic, assign) id<MineYubiDelegate> delegate;
 
 @end
