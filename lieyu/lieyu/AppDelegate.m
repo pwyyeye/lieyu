@@ -107,10 +107,10 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
     _timer=[NSTimer scheduledTimerWithTimeInterval:60*5 target:self selector:@selector(doHeart) userInfo:nil repeats:YES];
     [_timer setFireDate:[NSDate distantFuture]];//暂停
     
-    [USER_DEFAULT setObject:@"北京" forKey:@"ChooseCityLastTime"];
-    [USER_DEFAULT setObject:@"0" forKey:@"LastCityHasBar"];
-    [USER_DEFAULT setObject:@"0" forKey:@"LastCityHasNightClub"];
-    [USER_DEFAULT setObject:@"2015-03-21" forKey:@"LocationTodayPosition"];
+//    [USER_DEFAULT setObject:@"北京" forKey:@"ChooseCityLastTime"];
+//    [USER_DEFAULT setObject:@"0" forKey:@"LastCityHasBar"];
+//    [USER_DEFAULT setObject:@"0" forKey:@"LastCityHasNightClub"];
+//    [USER_DEFAULT setObject:@"2015-03-21" forKey:@"LocationTodayPosition"];
     
     
      //引导页启动
@@ -318,46 +318,52 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
 
 //开始定位
 -(void)startLocation{
-    _locationCertain = NO;
-    if (![USER_DEFAULT objectForKey:@"ChooseCityLastTime"]) {
-        [USER_DEFAULT setObject:@"上海" forKey:@"ChooseCityLastTime"];
-        [USER_DEFAULT setObject:@"1" forKey:@"LastCityHasBar"];
-        [USER_DEFAULT setObject:@"1" forKey:@"LastCityHasNightClub"];
-    }//上次默认不为空，则不进行改变
-    if (![CLLocationManager locationServicesEnabled])
-    {
-        [MyUtil showMessage:@"请开启定位服务!"];
-        //提示开启定位服务
-        [USER_DEFAULT setObject:@"" forKey:@"LocationCityThisTime"];
-        return ;
-    }
-    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined
-        && [[[UIDevice currentDevice] systemVersion] floatValue] > 8.0)
-    {
+    NSDate *date = [NSDate date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *dateString = [formatter stringFromDate:date];
+    if (![USER_DEFAULT objectForKey:@"LocationTodayPosition"] || ![[USER_DEFAULT objectForKey:@"LocationTodayPosition"] isEqualToString:dateString]) {
+        _locationCertain = NO;
+        if (![USER_DEFAULT objectForKey:@"ChooseCityLastTime"]) {
+            [USER_DEFAULT setObject:@"上海" forKey:@"ChooseCityLastTime"];
+            [USER_DEFAULT setObject:@"1" forKey:@"LastCityHasBar"];
+            [USER_DEFAULT setObject:@"1" forKey:@"LastCityHasNightClub"];
+        }//上次默认不为空，则不进行改变
+        if (![CLLocationManager locationServicesEnabled])
+        {
+            [MyUtil showMessage:@"请开启定位服务!"];
+            //提示开启定位服务
+            [USER_DEFAULT setObject:@"" forKey:@"LocationCityThisTime"];
+            return ;
+        }
+        if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined
+            && [[[UIDevice currentDevice] systemVersion] floatValue] > 8.0)
+        {
+            if (!locationManager)
+            {
+                locationManager = [[CLLocationManager alloc] init];
+            }
+            if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])
+            {
+                [locationManager performSelector:@selector(requestWhenInUseAuthorization)];//用这个方法，plist里要加字段NSLocationWhenInUseUsageDescription
+            }
+        }
+        else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied)
+        {
+            //提示开启当前应用定位服务
+            [MyUtil showMessage:@"请开启定位服务!"];
+            [USER_DEFAULT setObject:@"" forKey:@"LocationCityThisTime"];
+            return ;
+        }
         if (!locationManager)
         {
             locationManager = [[CLLocationManager alloc] init];
         }
-        if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])
-        {
-            [locationManager performSelector:@selector(requestWhenInUseAuthorization)];//用这个方法，plist里要加字段NSLocationWhenInUseUsageDescription
-        }
+        locationManager.delegate = self;
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        locationManager.distanceFilter = 100.0f;
+        [locationManager startUpdatingLocation];
     }
-    else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied)
-    {
-        //提示开启当前应用定位服务
-        [MyUtil showMessage:@"请开启定位服务!"];
-        [USER_DEFAULT setObject:@"" forKey:@"LocationCityThisTime"];
-        return ;
-    }
-    if (!locationManager)
-    {
-        locationManager = [[CLLocationManager alloc] init];
-    }
-    locationManager.delegate = self;
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    locationManager.distanceFilter = 100.0f;
-    [locationManager startUpdatingLocation];
 }
 
 - (void)locationManager:(CLLocationManager *)manager
