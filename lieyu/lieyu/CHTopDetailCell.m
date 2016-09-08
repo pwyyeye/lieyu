@@ -34,17 +34,14 @@
      NSString *flTem=[NSString stringWithFormat:@"返利%.f%%",model.rebate*100];
     _fanliLbl.text=flTem;
     _saleLbl.text = [NSString stringWithFormat:@"已售%@人",model.sales];
-    _saleLbl.layer.borderColor = (__bridge CGColorRef _Nullable)([UIColor whiteColor]);
+    _saleLbl.layer.borderColor = [[UIColor whiteColor] CGColor];
     _saleLbl.layer.borderWidth = 0.5;
     _saleLbl.layer.masksToBounds = YES;
     //banner
     NSMutableArray *bigArr=[[NSMutableArray alloc]init];
     
     for (NSString *iconStr in model.goodsList) {
-        NSMutableDictionary *dicTemp=[[NSMutableDictionary alloc]init];
-        [dicTemp setObject:iconStr forKey:@"ititle"];
-        [dicTemp setObject:@"" forKey:@"mainHeading"];
-        [bigArr addObject:dicTemp];
+        [bigArr addObject:iconStr];
     }
     scroller = [[EScrollerView alloc]initWithFrameRect:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH) scrolArray:[NSArray arrayWithArray:bigArr] needTitile:YES];
     

@@ -61,33 +61,22 @@
     self.navigationController.navigationBarHidden = YES;
 }
 
-- (void)viewWillLayoutSubviews{
-    [super viewWillLayoutSubviews];
-    self.navigationController.navigationBarHidden = YES;
-}
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
-    self.navigationController.navigationBarHidden = YES;
-}
-
-
--(void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault] ;
 }
 
 - (void)createButton{
     backBtn = [[UIButton alloc]initWithFrame:CGRectMake(10, 26, 32, 32)];
 //    [backBtn setBackgroundImage:[UIImage imageNamed:@"return"] forState:UIControlStateNormal];
-    [backBtn setImage:[UIImage imageNamed:@"return"] forState:UIControlStateNormal];
+    [backBtn setImage:[UIImage imageNamed:@"backBtn"] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:backBtn];
     
@@ -99,7 +88,7 @@
     [self.view addSubview:collectBtn];
     
     shareBtn = [[UIButton alloc]initWithFrame:CGRectMake( SCREEN_WIDTH - 8 - collectBtnWidth, 26, collectBtnWidth, collectBtnWidth)];
-    [shareBtn setBackgroundImage:[UIImage imageNamed:@"icon_share2"] forState:UIControlStateNormal];
+    [shareBtn setBackgroundImage:[UIImage imageNamed:@"share_black"] forState:UIControlStateNormal];
 //    [shareBtn setImage:[UIImage imageNamed:@"icon_share2"] forState:UIControlStateNormal];
     [shareBtn addTarget:self action:@selector(shareClick) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:shareBtn];
