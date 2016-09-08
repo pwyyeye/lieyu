@@ -13,6 +13,7 @@
 #define LY_SERVER @"http://121.40.229.133:80/lieyu/"
 #define QINIU_SERVER @"http://121.40.229.133:80/portal/"
 #define RUIQIU_SERVER @"http://10.17.114.61/lieyu/"
+
 ///
 //#define LY_SERVER @"http://www.lie98.com/lieyu/"
 //#define QINIU_SERVER @"http://www.lie98.com/portal/"

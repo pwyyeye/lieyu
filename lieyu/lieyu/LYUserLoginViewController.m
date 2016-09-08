@@ -303,7 +303,6 @@
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"OPENIDSTR"];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
         [app startLocation];
-
     }];
 }
 
