@@ -72,6 +72,10 @@
 
 //获取直播状态
 +(void) getLiveStatusWithParms:(NSDictionary *) parms complete: (void(^)(NSDictionary *dict))complete;
+#pragma mark --- 最新玩友列表和粉丝
++(void) getfFriensGroupWithPrams: (NSDictionary *)prams complete: (void(^)(NSDictionary *dict)) complete;
+
++(void) getNewFansListWithParms: (NSDictionary *) parms complete: (void(^)(NSArray *Arr)) complete;
 
 #pragma mark --- 最新关注-取消关注
 +(void) followFriendWithParms:(NSDictionary *) parms complete: (void(^)(NSDictionary *dict))complete;

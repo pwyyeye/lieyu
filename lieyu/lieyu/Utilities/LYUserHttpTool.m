@@ -776,6 +776,7 @@
         [app stopLoading];
     }];
 }
+
 #pragma mark加好友
 -(void) addFriends:(NSDictionary*)params
           complete:(void (^)(BOOL result))result{
@@ -1461,7 +1462,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 result(tempArr);
             });
-        }else{
+        } else {
             [MyUtil showLikePlaceMessage:[response valueForKey:@"message"]];
         }
         [app stopLoading];

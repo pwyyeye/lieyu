@@ -178,7 +178,8 @@
             [_userTablewView.mj_footer endRefreshing];
         }else{
             if(pageStartCount == 0){//下啦刷新时
-                [_dataArray replaceObjectAtIndex:tableView.tag withObject:dataArray];
+                [_dataArray removeAllObjects];
+                [_dataArray addObjectsFromArray:dataArray];
             }else {//上拉加载时
                 NSMutableArray *muArr = _dataArray[tableView.tag];
                 [muArr addObjectsFromArray:dataArray];

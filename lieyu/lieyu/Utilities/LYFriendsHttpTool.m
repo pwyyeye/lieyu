@@ -16,6 +16,9 @@
 #import "FriendsUserInfoModel.h"
 #import "LYLiveShowListModel.h"
 #import "ChatUseres.h"
+#import "FriendsListModel.h"
+#import "FansModel.h"
+
 
 #import "AFNetworking.h"//主要用于网络请求方法
 #import "UIKit+AFNetworking.h"//里面有异步加载图片的方法
@@ -383,12 +386,67 @@
         
     }];
 }
+#pragma mark --- 最新玩友列表和粉丝
++(void) getfFriensGroupWithPrams: (NSDictionary *)prams complete: (void(^)(NSDictionary *dict)) complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_friendsGroup baseURL:LY_LIVE_SERVER params:prams success:^(id response) {
+        if ([response[@"errorcode"] isEqualToString:@"success"]) {
+            NSDictionary *tempDic = response[@"data"];
+            if ([tempDic valueForKey:@"friendsList"]) {
+                return;
+            }
+            NSArray *tempsArr = tempDic[@"friendsList"];
+            NSMutableArray *friendsListArr = [NSMutableArray array];
+                for (int i = 0; i<tempsArr.count; i++) {
+                    FriendsListModel *model = [FriendsListModel new];
+                    [model setValue:tempsArr[i][@"usernick"] forKey:@"userFriendName"];
+                    [model setValue:tempsArr[i][@"username"] forKey:@"username"];
+                    [model setValue:tempsArr[i][@"id"] forKey:@"id"];
+                    if ([tempsArr valueForKey:@"mobile"]) {
+                        [model setValue:tempsArr[i][@"mobile"] forKey:@"mobile"];
+                    }
+                    if ([tempsArr valueForKey:@"birthday"]) {
+                        [model setValue:tempsArr[i][@"birthday"] forKey:@"birthday"];
+                    }
+                    if ([tempsArr valueForKey:@"avatar_img"]) {
+                        [model setValue:tempsArr[i][@"avatar_img"] forKey:@"avatar_img"];
+                    }
+                    if ([tempsArr[i] valueForKey:@"sex"]) {
+                        [model setValue:tempsArr[i][@"sex"] forKey:@"sex"];
+                    }
+                    [friendsListArr addObject:model];
+                }
 
+            
+            NSDictionary *resultsDic = @{@"friendsList":friendsListArr,@"newFansListSize":tempDic[@"newFansListSize"]};
+            complete(resultsDic);
+        } else {
+            [MyUtil showMessage:@"获取列表失败"];
+        }
+    } failure:^(NSError *err) {
+        
+    }];
+}
+
++(void) getNewFansListWithParms: (NSDictionary *) parms complete: (void(^)(NSArray *Arr)) complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_newFriendsList baseURL:LY_LIVE_SERVER params:parms success:^(id response) {
+        if ([response[@"errorcode"] isEqualToString:@"success"]) {
+            NSDictionary *tempDic = response[@"data"];
+            NSArray *newFriendsList = [FansModel mj_objectArrayWithKeyValuesArray:tempDic[@"newFansList"]];
+            complete(newFriendsList);
+        } else {
+            [MyUtil showMessage:@"获取粉丝失败"];
+        }
+    } failure:^(NSError *err) {
+        
+    }];
+    
+}
 #pragma mark --- 最新关注-取消关注
 +(void) followFriendWithParms:(NSDictionary *) parms complete: (void(^)(NSDictionary *dict))complete{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_follow baseURL:LY_LIVE_SERVER params:parms success:^(id response) {
         if ([response[@"errorcode"] isEqualToString:@"success"]) {
             NSDictionary *dic = response[@"data"];
+            [MyUtil showMessage:@"关注成功"];
             complete(dic);
         } else {
             [MyUtil showMessage:@"关注失败"];
@@ -402,6 +460,7 @@
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Frienfs_Unfollow baseURL:LY_LIVE_SERVER params:parms success:^(id response) {
         if ([response[@"errorcode"] isEqualToString:@"success"]) {
             NSDictionary *dic = response[@"data"];
+            [MyUtil showMessage:@"取消关注成功"];
             complete(dic);
         } else {
             [MyUtil showMessage:@"取消关注失败"];

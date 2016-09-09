@@ -1419,6 +1419,7 @@
 		858B3A331C7A0687000C6589 /* BarIconYUD@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 858B3A311C7A0687000C6589 /* BarIconYUD@3x.png */; };
 		858B3A361C7A06BC000C6589 /* priceBlack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 858B3A341C7A06BC000C6589 /* priceBlack@2x.png */; };
 		858B3A371C7A06BC000C6589 /* priceBlack@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 858B3A351C7A06BC000C6589 /* priceBlack@3x.png */; };
+		859AD6C51D812E3E00295338 /* FriendsListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 859AD6C41D812E3D00295338 /* FriendsListModel.m */; };
 		85A638971D73DEC8000816FD /* ZSBirthdayManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A638951D73DEC8000816FD /* ZSBirthdayManagerViewController.m */; };
 		85A638981D73DEC8000816FD /* ZSBirthdayManagerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85A638961D73DEC8000816FD /* ZSBirthdayManagerViewController.xib */; };
 		85A6389B1D73DF27000816FD /* ZSManageCustomerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A6389A1D73DF27000816FD /* ZSManageCustomerViewController.m */; };
@@ -4056,6 +4057,8 @@
 		858B3A311C7A0687000C6589 /* BarIconYUD@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BarIconYUD@3x.png"; sourceTree = "<group>"; };
 		858B3A341C7A06BC000C6589 /* priceBlack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "priceBlack@2x.png"; sourceTree = "<group>"; };
 		858B3A351C7A06BC000C6589 /* priceBlack@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "priceBlack@3x.png"; sourceTree = "<group>"; };
+		859AD6C31D812E3D00295338 /* FriendsListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsListModel.h; sourceTree = "<group>"; };
+		859AD6C41D812E3D00295338 /* FriendsListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsListModel.m; sourceTree = "<group>"; };
 		85A638941D73DEC8000816FD /* ZSBirthdayManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSBirthdayManagerViewController.h; sourceTree = "<group>"; };
 		85A638951D73DEC8000816FD /* ZSBirthdayManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSBirthdayManagerViewController.m; sourceTree = "<group>"; };
 		85A638961D73DEC8000816FD /* ZSBirthdayManagerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZSBirthdayManagerViewController.xib; sourceTree = "<group>"; };
@@ -6907,6 +6910,8 @@
 			children = (
 				38B11C341C98FB6200AD3EB8 /* LPFriendBriefInfo.h */,
 				38B11C351C98FB6200AD3EB8 /* LPFriendBriefInfo.m */,
+				859AD6C31D812E3D00295338 /* FriendsListModel.h */,
+				859AD6C41D812E3D00295338 /* FriendsListModel.m */,
 				85FE55501D7ADA8100B262EA /* FansModel.h */,
 				85FE55511D7ADA8100B262EA /* FansModel.m */,
 			);
@@ -12820,6 +12825,7 @@
 				A20100E01BA94404009283D1 /* WQCalendarDay.m in Sources */,
 				ADF88E9D1C1197C400CF5DED /* MJRefreshAutoFooter.m in Sources */,
 				3879F26A1C0D363500B72629 /* LPPlayTogetherViewController.m in Sources */,
+				859AD6C51D812E3E00295338 /* FriendsListModel.m in Sources */,
 				85FE54D71D7AA6F200B262EA /* StrategyCommentTableViewCell.m in Sources */,
 				15B866981BE0C183002E2BB6 /* MessageCell.m in Sources */,
 				38EDED5C1C5E254800694758 /* HDDetailViewController.m in Sources */,
@@ -13292,6 +13298,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREFIX_HEADER = lieyu/lieyu.pch;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -13330,6 +13337,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/lieyu/lieyu.pch";
 				HEADER_SEARCH_PATHS = (
@@ -13459,6 +13467,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/lieyu/lieyu.pch";
 				HEADER_SEARCH_PATHS = (
