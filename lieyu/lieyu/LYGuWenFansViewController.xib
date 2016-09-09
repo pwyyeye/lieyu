@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LYGuWenFansViewController">
             <connections>
+                <outlet property="kongLabel" destination="VDm-dt-3B8" id="OAY-O3-p2r"/>
                 <outlet property="tableView" destination="abZ-ld-xnr" id="1Jw-nf-jZz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -16,6 +17,12 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您还没有关注任何人哦～" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDm-dt-3B8">
+                    <rect key="frame" x="83" y="231.5" width="154" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.6705882353" green="0.0" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="abZ-ld-xnr">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -23,9 +30,11 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="VDm-dt-3B8" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="CrS-KU-2Ie"/>
                 <constraint firstItem="abZ-ld-xnr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Wet-R0-RY9"/>
                 <constraint firstAttribute="bottom" secondItem="abZ-ld-xnr" secondAttribute="bottom" id="bP8-Lw-KNR"/>
                 <constraint firstAttribute="trailing" secondItem="abZ-ld-xnr" secondAttribute="trailing" id="nLI-12-iZw"/>
+                <constraint firstItem="VDm-dt-3B8" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="p0y-ic-zT6"/>
                 <constraint firstItem="abZ-ld-xnr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="wXv-XC-X2a"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>

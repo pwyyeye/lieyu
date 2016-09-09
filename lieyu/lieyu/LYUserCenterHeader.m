@@ -25,6 +25,7 @@
 #import "wechatCheckAccountViewController.h"
 #import "LYZSApplicationViewController.h"
 #import "checkUnpassedViewController.h"
+#import "LYFriendsHttpTool.h"
 
 @implementation LYUserCenterHeader{
     UIVisualEffectView *_effctView ;

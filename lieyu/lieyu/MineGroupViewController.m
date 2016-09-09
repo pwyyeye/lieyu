@@ -69,31 +69,36 @@
     [LYUserHttpTool lyGetYukebangDataWithParams:dict complete:^(NSDictionary *result) {
         NSArray *userArray = [result objectForKey:@"groupList"];
         _groupModel = [result objectForKey:@"yukegroup"];
-        [_groupNumberLabel setText:[NSString stringWithFormat:@"娱客帮成员：%ld",userArray.count]];
-        [_groupBriefLabel setText:[NSString stringWithFormat:@"总收益：%@",_groupModel.amount]];
-        NSMutableArray *addressBookTemp = [[NSMutableArray alloc]init];
-        [addressBookTemp addObjectsFromArray:userArray];
-        UILocalizedIndexedCollation *theCollation = [UILocalizedIndexedCollation currentCollation];
-        for (CustomerModel *addressBook in addressBookTemp) {
-            NSInteger sect = [theCollation sectionForObject:addressBook collationStringSelector:@selector(usernick)];
-            addressBook.sectionNumber = sect;
+        if (_groupModel) {
+            [_groupNumberLabel setText:[NSString stringWithFormat:@"娱客帮成员：%ld",userArray.count]];
+            [_groupBriefLabel setText:[NSString stringWithFormat:@"总收益：%@",_groupModel.amount]];
+        }else{
+            [_groupNumberLabel setText:[NSString stringWithFormat:@"娱客帮成员：0"]];
+            [_groupBriefLabel setText:[NSString stringWithFormat:@"总收益：0"]];
         }
-        NSInteger highSection = [[theCollation sectionTitles] count];
-        NSMutableArray *sectionArrays = [NSMutableArray arrayWithCapacity:highSection];
-        for (int i = 0 ; i <= highSection; i ++) {
-            NSMutableArray *sectionArray = [NSMutableArray arrayWithCapacity:1];
-            [sectionArrays addObject:sectionArray];
-        }
-        for (CustomerModel *addressBook in addressBookTemp) {
-            [((NSMutableArray *)[sectionArrays objectAtIndex:addressBook.sectionNumber]) addObject:addressBook];
-        }
-        for (NSMutableArray *sectionArray in sectionArrays) {
-            NSArray *sortedSection = [theCollation sortedArrayFromArray:sectionArray collationStringSelector:@selector(usernick)];
-            [_dataList addObject:sortedSection];
-        }
-        if (_dataList.count <= 0) {
+        if (userArray.count <= 0) {
             weakSelf.tableView.hidden = YES;
         }else{
+            NSMutableArray *addressBookTemp = [[NSMutableArray alloc]init];
+            [addressBookTemp addObjectsFromArray:userArray];
+            UILocalizedIndexedCollation *theCollation = [UILocalizedIndexedCollation currentCollation];
+            for (CustomerModel *addressBook in addressBookTemp) {
+                NSInteger sect = [theCollation sectionForObject:addressBook collationStringSelector:@selector(usernick)];
+                addressBook.sectionNumber = sect;
+            }
+            NSInteger highSection = [[theCollation sectionTitles] count];
+            NSMutableArray *sectionArrays = [NSMutableArray arrayWithCapacity:highSection];
+            for (int i = 0 ; i <= highSection; i ++) {
+                NSMutableArray *sectionArray = [NSMutableArray arrayWithCapacity:1];
+                [sectionArrays addObject:sectionArray];
+            }
+            for (CustomerModel *addressBook in addressBookTemp) {
+                [((NSMutableArray *)[sectionArrays objectAtIndex:addressBook.sectionNumber]) addObject:addressBook];
+            }
+            for (NSMutableArray *sectionArray in sectionArrays) {
+                NSArray *sortedSection = [theCollation sortedArrayFromArray:sectionArray collationStringSelector:@selector(usernick)];
+                [_dataList addObject:sortedSection];
+            }
             weakSelf.tableView.hidden = NO;
             [weakSelf.tableView reloadData];
         }

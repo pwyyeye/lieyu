@@ -35,7 +35,8 @@
         _nameLal.text = @"暂无昵称";
     }
     [_smallImageView setHidden:YES];
-    [_cusImageView sd_setImageWithURL:[NSURL URLWithString:_infoModel.avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+    NSString *imageUrl = [MyUtil getQiniuUrl:infoModel.avatar_img width:0 andHeight:0];
+    [_cusImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
 }
 
 - (void)setMemberModel:(CustomerModel *)memberModel{

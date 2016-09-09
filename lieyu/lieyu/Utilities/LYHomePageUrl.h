@@ -54,7 +54,7 @@
 //获取某个酒吧下的专属经理列表
 #define LY_BAR_VIPLIST @"toPlayGetVipAction.do?action=list"
 //收藏专属经理
-#define LY_SC_VIPLIST @"lyUsersVipStoreAction.do?action=add"
+#define LY_SC_VIPLIST @"/lieyu//app/api/sns/follow?1=1"
 
 
 #define LY_BAR_ACTIVITYLIST @"activitiesOutAction.do?action=list"

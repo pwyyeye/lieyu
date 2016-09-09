@@ -67,6 +67,7 @@
 #import "BarGroupChatViewController.h"
 #import "IQKeyboardManager.h"
 #import "ActivityMainViewController.h"
+#import "TopicModel.h"
 
 #define PAGESIZE 20
 #define HOMEPAGE_MTA @"HOMEPAGE"
@@ -1545,17 +1546,24 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         }else if (tableView.tag == 1){
             model = [((NSMutableArray *)[_barDict objectForKey:@"barList"]) objectAtIndex:_clickedButton.tag];
         }
-        
-        if(model.topicTypeId.length){
-            LYFriendsTopicsViewController *friendTopicVC = [[LYFriendsTopicsViewController alloc]init];
-            friendTopicVC.topicTypeId = model.topicTypeId;
-            friendTopicVC.topicName = model.topicTypeName;
-            friendTopicVC.commentDelegate = self;
-            friendTopicVC.isFriendsTopic = NO;
-            friendTopicVC.isFriendToUserMessage = YES;
-            friendTopicVC.isTopic = YES;
-            [self.navigationController pushViewController:friendTopicVC animated:YES];
-        }
+        NSDictionary *dict = @{@"type":@"1",
+                               @"barid":[NSString stringWithFormat:@"%d",model.barid]};
+        __weak __typeof(self)weakSelf = self;
+        [LYUserHttpTool getTopicList:dict complete:^(NSArray *dataList) {
+            if (dataList.count) {
+                TopicModel *topicModel = [dataList objectAtIndex:0];
+                if (topicModel.id.length) {
+                    LYFriendsTopicsViewController *friendTopicVC = [[LYFriendsTopicsViewController alloc]init];
+                    friendTopicVC.topicTypeId = topicModel.id;
+                    friendTopicVC.topicName = topicModel.name;
+                    friendTopicVC.commentDelegate = weakSelf;
+                    friendTopicVC.isFriendsTopic = NO;
+                    friendTopicVC.isFriendToUserMessage = YES;
+                    friendTopicVC.isTopic = YES;
+                    [weakSelf.navigationController pushViewController:friendTopicVC animated:YES];
+                }
+            }
+        }];
     }
 }
 

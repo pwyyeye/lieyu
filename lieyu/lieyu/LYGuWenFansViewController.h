@@ -11,6 +11,7 @@
 @interface LYGuWenFansViewController : LYBaseViewController
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UILabel *kongLabel;
 
 @property (nonatomic, assign) int type;//0表示粉丝，1表示关注
 @property (nonatomic, strong) NSString *userID;//普通用户或者专属经理的ID

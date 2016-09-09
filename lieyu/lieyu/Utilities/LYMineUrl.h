@@ -140,6 +140,8 @@
 #define LY_COINCHANGE_BALANCE @"dailyCoinAction.do?action=save"
 //娱客帮数据获取
 #define LY_GET_YUKEBANG @"app/api/yukegroup/groupList"
+//娱客帮获取二维码字符串
+#define LY_GET_YUKEBANGQRCODE @"/lieyu//app/api/yukegroup/getShareUrl?1=1"
 
 
 #endif

@@ -59,6 +59,8 @@
         }else{
             [_commentButton setTitle:[NSString stringWithFormat:@"%dk+",barModel.commentNum / 1000] forState:UIControlStateNormal];
         }
+    }else{
+        [_commentButton setTitle:@"0" forState:UIControlStateNormal];
     }
 }
 

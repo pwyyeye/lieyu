@@ -301,10 +301,10 @@
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
     
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_MY_ZSJL_DEL baseURL:LY_SERVER params:params success:^(id response) {
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_MY_ZSJL_DEL baseURL:RUIQIU_SERVER params:params success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
-        if ([code isEqualToString:@"1"]) {
+        if ([code isEqualToString:@"success"]) {
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 result(YES);
             });
@@ -1687,8 +1687,13 @@
         if ([errorCode isEqualToString:@"success"]) {
             NSArray *yuUser = [CustomerModel mj_objectArrayWithKeyValuesArray:[[response objectForKey:@"data"] objectForKey:@"groupList"]];
             YuKeGroupModel *model = [YuKeGroupModel mj_objectWithKeyValues:[[response objectForKey:@"data"] objectForKey:@"yukegroup"]];
-            NSDictionary *dict = @{@"groupList":yuUser,
-                                   @"yukegroup":model};
+            NSDictionary *dict;
+            if (model){
+                dict = @{@"groupList":yuUser,
+                         @"yukegroup":model};
+            }else{
+                dict = @{@"groupList":yuUser};
+            }
             complete(dict);
         }else{
             [MyUtil showPlaceMessage:@"获取数据失败，请稍后重试！"];
@@ -1698,6 +1703,24 @@
         [app stopLoading];
     }];
 }
+
+#pragma mark - 获取娱客帮的二维码
++ (void)lyGetYukebangQRCodeWithParams:(NSDictionary *)dict complete:(void (^)(NSString *))complete{
+    AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_GET_YUKEBANGQRCODE baseURL:RUIQIU_SERVER params:dict success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"success"]) {
+            complete([[response objectForKey:@"data"] objectForKey:@"shareUrl"]);
+        }else{
+            [MyUtil showPlaceMessage:[response objectForKey:@"message"]];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+}
+
 
 
 @end

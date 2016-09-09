@@ -11,10 +11,13 @@
 
 #define LY_ADVISER_GETMANAGERINFO @"lyUsersVipApplyAction.do?action=login"
 #define LY_ADVISER_FREEBOOK @"lyOrderFreeAction.do?action=add"
-#define LY_ADVISER_ADDCARE @"lyUsersVipStoreAction.do?action=add"
-#define LY_ADVISER_DELCARE @"lyUsersVipStoreAction.do?action=delete"
+#define LY_ADVISER_ADDCARE @"/lieyu//app/api/sns/follow?1=1"
+#define LY_ADVISER_DELCARE @"/lieyu//app/api/sns/removefollow?1=1"
 #define LY_ADVISER_CHECKFANS @"lyUsersVipStoreAction.do?action=list"
 #define LY_ADVISER_GETMANAGERS @"lyUsersVipApplyOutAction.do?action=logout"
 #define LY_ADVISER_GETVIDEOS @"lyMomentsAction.do?action=logout"
+
+#define LY_NEWGET_FANSLIST @"/lieyu//app/api/sns/fansList?1=1"
+#define LY_NEWGET_FOLLOWLIST @"/lieyu//app/api/sns/followlist?1=1"
 
 #endif /* LYAdviserUrl_h */

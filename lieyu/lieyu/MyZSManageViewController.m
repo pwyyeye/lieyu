@@ -165,7 +165,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         __weak __typeof(self)weakSelf = self;
         ZSDetailModel * detailModel=zsList[indexPath.row];
-        NSDictionary *dic=@{@"userid":[NSNumber numberWithInt:self.userModel.userid],@"vipUserid":[NSNumber numberWithInt:detailModel.userid]};
+        NSDictionary *dic=@{@"followid":[NSNumber numberWithInt:detailModel.userid]};
         [[LYUserHttpTool shareInstance] delMyVipStore:dic complete:^(BOOL result) {
             if (result) {
                 [MyUtil showMessage:@"修改成功！"];
@@ -253,7 +253,7 @@
     NSDictionary *dict = @{@"actionName":@"选择",@"pageName":@"专属经理",@"titleName":@"收藏",@"value":detailModel.username};
     [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
     
-    NSDictionary *dic=@{@"vipUserid":[NSNumber numberWithInt:detailModel.userid],@"userid":[NSNumber numberWithInt:self.userModel.userid]};
+    NSDictionary *dic=@{@"followid":[NSNumber numberWithInt:detailModel.userid]};
     [[LYHomePageHttpTool shareInstance] scVipWithParams:dic complete:^(BOOL result) {
         if(result){
             [MyUtil showMessage:@"收藏成功"];
