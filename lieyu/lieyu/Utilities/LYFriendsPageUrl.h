@@ -62,6 +62,12 @@
 //玩友--取消关注
 #define LY_Frienfs_Unfollow @"/lieyu//app/api/sns/removefollow?1=1"
 
+//玩友列表
+#define LY_Friends_friendsGroup @"/lieyu//app/api/sns/friendsGroup?1=1"
+
+//新粉丝列表
+#define LY_Friends_newFriendsList @"/lieyu//app/api/sns/newFansList?1=1"
+
 #pragma mark -- 直播接口
 //获取stream
 #define LY_Live_getstream @"/lieyu//app/api/liveroom/createTempStream?1=1"

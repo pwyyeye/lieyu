@@ -251,7 +251,7 @@
 
 #pragma marks --- 直接搭讪
 -(void)chatParvite: (UIButton *)sender{
-    LYGroupPeopleTableViewCell *cell=[(LYGroupPeopleTableViewCell *)[sender superview] superview];
+    LYGroupPeopleTableViewCell *cell=(LYGroupPeopleTableViewCell *)[[sender superview] superview];
     NSIndexPath *index=[_myTableView indexPathForCell:cell];
     UserModel *userM = [[UserModel alloc] init];
     if (!index.section) {//管理员

@@ -208,7 +208,6 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     [self.emitterLayer setHidden:NO];
     [self initPLplayer];
     [self initUI];
-    [self timerUpdataAction];//回放的界面单独一次
     if (_chatRoomId != nil) {
         [self joinChatRoom];
         _timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timerUpdataAction) userInfo:nil repeats:YES];

@@ -18,6 +18,11 @@
 #import "AddressBookModel.h"
 #import "FansCell.h"
 
+#import "LYFriendsHttpTool.h"
+#import "FriendsListModel.h"
+#import "FansModel.h"
+
+
 static NSString *fansCellID = @"fansCellID";
 static NSString *CellIdentifier = @"CustomerCell";
 @interface LYMyFriendViewController ()
@@ -51,26 +56,33 @@ static NSString *CellIdentifier = @"CustomerCell";
     self.title=@"好友列表";
     _listContent = [NSMutableArray new];
     _filteredListContent = [NSMutableArray new];
+    _fansListArray = [NSMutableArray new];
     self.tableView.tableFooterView=[[UIView alloc]init];//去掉多余的分割线
      _searchBar.barTintColor=[UIColor whiteColor];
     [self getMyCustomerslist];
     // Do any additional setup after loading the view from its nib.
 }
 
+
 -(void)getMyCustomerslist{
     [_listContent removeAllObjects];
     __weak __typeof(self)weakSelf = self;
-    NSDictionary *dic=@{@"userid":[NSString stringWithFormat:@"%d",self.userModel.userid]};
-    [[LYUserHttpTool shareInstance] getFriendsList:dic block:^(NSMutableArray *result) {
-        NSMutableArray *addressBookTemp = [[NSMutableArray array]init];
-        [addressBookTemp addObjectsFromArray:result];
+    [LYFriendsHttpTool getfFriensGroupWithPrams:nil complete:^(NSDictionary *dict) {
         
+        NSMutableArray *addressBookTemp = [[NSMutableArray array]init];
+        [addressBookTemp addObjectsFromArray:dict[@"friendsList"]];
+        _newFansListSize = [dict[@"newFansListSize"] integerValue];
         UILocalizedIndexedCollation *theCollation = [UILocalizedIndexedCollation currentCollation];
-        for (CustomerModel *addressBook in addressBookTemp) {
-            NSInteger sect = [theCollation sectionForObject:addressBook
-                                    collationStringSelector:@selector(friendName)];
+//        for (int i = 0; i < addressBookTemp.count; i++) {
+//            FriendsListModel *addressBook = [[FriendsListModel alloc] init];
+//            addressBook = addressBookTemp[i];
+//            CustomerModel *tempModel = [[CustomerModel alloc] init];
+//            NSInteger sect = [theCollation sectionForObject:tempModel collationStringSelector:@selector(friendName)];
+//            [addressBook setValue:sect forKey:@"sectionNumber"];
+//        }
+        for (FriendsListModel *addressBook in addressBookTemp) {
+            NSInteger sect = [theCollation sectionForObject:addressBook collationStringSelector:@selector(userFriendName)];
             addressBook.sectionNumber = sect;
-            
         }
         NSInteger highSection = [[theCollation sectionTitles] count];
         NSMutableArray *sectionArrays = [NSMutableArray arrayWithCapacity:highSection];
@@ -79,21 +91,57 @@ static NSString *CellIdentifier = @"CustomerCell";
             [sectionArrays addObject:sectionArray];
         }
         
-        for (CustomerModel *addressBook in addressBookTemp) {
+        for (FriendsListModel *addressBook in addressBookTemp) {
             [(NSMutableArray *)[sectionArrays objectAtIndex:addressBook.sectionNumber] addObject:addressBook];
         }
         
         for (NSMutableArray *sectionArray in sectionArrays) {
-            NSArray *sortedSection = [theCollation sortedArrayFromArray:sectionArray collationStringSelector:@selector(friendName)];
-            [_listContent addObject:sortedSection];
             
+            NSArray *sortedSection = [theCollation sortedArrayFromArray:sectionArray collationStringSelector:@selector(userFriendName)];
+            [_listContent addObject:sortedSection];
         }
         
-        
         [weakSelf.tableView reloadData];
+
+        
+    }];
+    
+//    NSDictionary *dic=@{@"userid":[NSString stringWithFormat:@"%d",self.userModel.userid]};
+//    [[LYUserHttpTool shareInstance] getFriendsList:dic block:^(NSMutableArray *result) {
+//        NSMutableArray *addressBookTemp = [[NSMutableArray array]init];
+//        [addressBookTemp addObjectsFromArray:result];
+//        
+//        UILocalizedIndexedCollation *theCollation = [UILocalizedIndexedCollation currentCollation];
+//        for (CustomerModel *addressBook in addressBookTemp) {
+//            NSInteger sect = [theCollation sectionForObject:addressBook collationStringSelector:@selector(friendName)];
+//            addressBook.sectionNumber = sect;
+//            
+//        }
+//        NSInteger highSection = [[theCollation sectionTitles] count];
+//        NSMutableArray *sectionArrays = [NSMutableArray arrayWithCapacity:highSection];
+//        for (int i=0; i<=highSection; i++) {
+//            NSMutableArray *sectionArray = [NSMutableArray arrayWithCapacity:1];
+//            [sectionArrays addObject:sectionArray];
+//        }
+//        
+//        for (CustomerModel *addressBook in addressBookTemp) {
+//            [(NSMutableArray *)[sectionArrays objectAtIndex:addressBook.sectionNumber] addObject:addressBook];
+//        }
+//        
+//        for (NSMutableArray *sectionArray in sectionArrays) {
+//            NSArray *sortedSection = [theCollation sortedArrayFromArray:sectionArray collationStringSelector:@selector(friendName)];
+//            [_listContent addObject:sortedSection];
+//        }
+//        
+//        [weakSelf.tableView reloadData];
+//    }];
+    NSDictionary *dict = @{@"newFansSize":[NSString stringWithFormat:@"%d",3]};
+    [LYFriendsHttpTool getNewFansListWithParms:dict complete:^(NSArray *Arr) {
+        [_fansListArray addObjectsFromArray:Arr];
     }];
     
 }
+
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
     if (tableView == self.searchDisplayController.searchResultsTableView) {
@@ -218,7 +266,7 @@ static NSString *CellIdentifier = @"CustomerCell";
     } else {
         if (section == 0) {
             if (_isOpen) {
-                return _tipNum + 1;
+                return _fansListArray.count + 1;
             } else {
                 return 1;
             }
@@ -226,7 +274,7 @@ static NSString *CellIdentifier = @"CustomerCell";
             return 1;
         } else if(section == 2){
             return 0;
-        }else {
+        } else {
             return [[_listContent objectAtIndex:section-3] count];
         }
     }
@@ -235,7 +283,6 @@ static NSString *CellIdentifier = @"CustomerCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    
     CustomerCell *cell = (CustomerCell *)[_tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         NSArray *nibArray = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
@@ -243,10 +290,10 @@ static NSString *CellIdentifier = @"CustomerCell";
         cell.backgroundColor=[UIColor whiteColor];
     }
     cell.nameLal.font = [UIFont systemFontOfSize:15];
-    CustomerModel *addressBook = nil;
+    FriendsListModel *addressBook = nil;
     if (tableView == self.searchDisplayController.searchResultsTableView){
         if (indexPath.section >= 3) {
-           addressBook = (CustomerModel *)[_filteredListContent objectAtIndex:indexPath.row];
+           addressBook = (FriendsListModel *)[_filteredListContent objectAtIndex:indexPath.row];
         }
     } else {
         if (indexPath.section == 0) {
@@ -264,7 +311,7 @@ static NSString *CellIdentifier = @"CustomerCell";
                 if (_tipNum != 0) {
                     _redTip = [[UILabel alloc] initWithFrame:(CGRectMake(CGRectGetMaxX(cell.cusImageView.frame) - 10 , CGRectGetMinY(cell.cusImageView.frame), 10, 10))];
                     _redTip.backgroundColor = [UIColor redColor];
-                    _redTip.text = @"12";
+                    _redTip.text = [NSString stringWithFormat:@"%d",_tipNum];
                     _redTip.textAlignment = NSTextAlignmentCenter;
                     _redTip.font = [UIFont systemFontOfSize:8];
                     _redTip.layer.cornerRadius = _redTip.frame.size.height / 2;
@@ -278,6 +325,8 @@ static NSString *CellIdentifier = @"CustomerCell";
                     NSArray *nibArray = [[NSBundle mainBundle] loadNibNamed:@"FansCell" owner:self options:nil];
                     fansCell = (FansCell *)[nibArray objectAtIndex:0];
                 }
+                fansCell.fansModel = _fansListArray[indexPath.row - 1];
+                [fansCell.focusButton addTarget:self action:@selector(fansFocusButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
                 return fansCell;
             }
             
@@ -287,17 +336,18 @@ static NSString *CellIdentifier = @"CustomerCell";
             cell.smallImageView.image = [UIImage imageNamed:@"arrowRitht"];
             return cell;
         } else {
-             addressBook = (CustomerModel *)[[_listContent objectAtIndex:indexPath.section - 3] objectAtIndex:indexPath.row];
+             addressBook = (FriendsListModel *)[[_listContent objectAtIndex:indexPath.section - 3] objectAtIndex:indexPath.row];
         }
     }
-    if ([[addressBook.friendName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] > 0) {
-        cell.nameLal.text = addressBook.friendName;
+    if ([[addressBook.userFriendName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] > 0) {
+        cell.nameLal.text = addressBook.userFriendName;
         
     } else {
         cell.nameLal.text = @"No Name";
     }
     [cell.smallImageView setHidden:YES];
-    [cell.cusImageView setImageWithURL:[NSURL URLWithString:addressBook.icon]];
+   NSString *imgStr = [MyUtil getQiniuUrl:addressBook.avatar_img width:0 andHeight:0];
+    [cell.cusImageView setImageWithURL:[NSURL URLWithString:imgStr]];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     //    cell.backgroundColor=[UIColor clearColor];
     
@@ -306,9 +356,9 @@ static NSString *CellIdentifier = @"CustomerCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CustomerModel *addressBook = nil;
+    FriendsListModel *addressBook = nil;
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        addressBook = (CustomerModel*)[_filteredListContent objectAtIndex:indexPath.row];
+        addressBook = (FriendsListModel*)[_filteredListContent objectAtIndex:indexPath.row];
         [self.searchDisplayController.searchResultsTableView deselectRowAtIndexPath:indexPath animated:YES];
     } else {
         if (indexPath.section == 0) {
@@ -325,7 +375,7 @@ static NSString *CellIdentifier = @"CustomerCell";
 //            [self addressBook];
             return;
         } else {
-            addressBook = (CustomerModel*)[[_listContent objectAtIndex:indexPath.section - 3] objectAtIndex:indexPath.row];
+            addressBook = (FriendsListModel*)[[_listContent objectAtIndex:indexPath.section - 3] objectAtIndex:indexPath.row];
             
             [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
         }
@@ -333,8 +383,8 @@ static NSString *CellIdentifier = @"CustomerCell";
     LYMyFriendDetailViewController *friendDetailViewController=[[LYMyFriendDetailViewController alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
     friendDetailViewController.title=@"详细信息";
     friendDetailViewController.type=@"0";
-    friendDetailViewController.customerModel=addressBook;
-    friendDetailViewController.userID = [NSString stringWithFormat:@"%d",addressBook.friend];
+//    friendDetailViewController.customerModel=addressBook;
+    friendDetailViewController.userID = [NSString stringWithFormat:@"%d",addressBook.id];
     [self.navigationController pushViewController:friendDetailViewController animated:YES];
 }
 
@@ -361,11 +411,11 @@ static NSString *CellIdentifier = @"CustomerCell";
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         __weak __typeof(self)weakSelf = self;
-        CustomerModel *addressBook = nil;
+        FriendsListModel *addressBook = nil;
         if (tableView == self.searchDisplayController.searchResultsTableView)
-            addressBook = (CustomerModel *)[_filteredListContent objectAtIndex:indexPath.row];
+            addressBook = (FriendsListModel *)[_filteredListContent objectAtIndex:indexPath.row];
         else
-            addressBook = (CustomerModel *)[[_listContent objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+            addressBook = (FriendsListModel *)[[_listContent objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
         NSDictionary *dic=@{@"id":[NSNumber numberWithInt:addressBook.id]};
         [[LYUserHttpTool shareInstance] delMyFriends:dic complete:^(BOOL result) {
             if(result){
@@ -377,14 +427,33 @@ static NSString *CellIdentifier = @"CustomerCell";
                 [weakSelf getMyCustomerslist];
             }
         }];
-        
     }
-    
 }
 
-#pragma mark -
-#pragma mark UISearchBarDelegate
+#pragma mark - 关注按钮
+-(void)fansFocusButtonAction:(UIButton *) sender{
+    FansCell *cell = (FansCell *)[[sender superview] superview];
+    NSIndexPath *index=[_tableView indexPathForCell:cell];
+    FansModel *model = _fansListArray[index.row];
+    if ([model.friendStatus isEqualToString:@"2"]) {
+        NSDictionary *dict = @{@"followid":[NSString stringWithFormat:@"%d",model.id]};
+        [LYFriendsHttpTool unFollowFriendWithParms:dict complete:^(NSDictionary *dict) {
+            sender.titleLabel.text = @"关注";
+        }];
+    } else if([model.friendStatus isEqualToString:@"3"]) {//不是改为关注
+        NSDictionary *dict = @{@"followid":[NSString stringWithFormat:@"%d",model.id]};
+        [LYFriendsHttpTool followFriendWithParms:dict complete:^(NSDictionary *dict) {
+//        [_fansListArray removeObject:model];
+//        [_tableView deleteRowsAtIndexPaths:[NSMutableArray arrayWithObject:index] withRowAnimation:UITableViewRowAnimationAutomatic];
+            sender.titleLabel.text = @"取消关注";
+        }];
+    }
+//    --_tipNum;
+//    [_tableView deleteRowsAtIndexPaths:[NSMutableArray arrayWithObject:index] withRowAnimation:UITableViewRowAnimationAutomatic];
+//    [_tableView reloadData];
+}
 
+#pragma mark UISearchBarDelegate
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
 {
     //[self.searchDisplayController.searchBar setShowsCancelButton:NO];
@@ -415,9 +484,9 @@ static NSString *CellIdentifier = @"CustomerCell";
 - (void)filterContentForSearchText:(NSString *)searchText{
     _filteredListContent = [[NSMutableArray alloc]init];
     for (NSArray *section in _listContent) {
-        for (CustomerModel *addressBook in section) {
-            if (addressBook.friendName.length >= searchText.length && searchText != nil) {
-                NSComparisonResult result = [addressBook.friendName compare:searchText options:NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch range:NSMakeRange(0, [searchText length])];
+        for (FriendsListModel *addressBook in section) {
+            if (addressBook.userFriendName.length >= searchText.length && searchText != nil) {
+                NSComparisonResult result = [addressBook.userFriendName compare:searchText options:NSCaseInsensitiveSearch | NSDiacriticInsensitiveSearch range:NSMakeRange(0, [searchText length])];
                 if (result == NSOrderedSame) {
                     [_filteredListContent addObject:addressBook];
                 }

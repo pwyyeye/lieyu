@@ -47,6 +47,9 @@ static NSString *wantanCellID = @"wantanCellID";
     //    [super setCustomTitle:@""];
     [_myTitle removeFromSuperview];
     
+    [_timers invalidate];
+    _timers = nil;
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];

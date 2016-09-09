@@ -23,12 +23,23 @@
 
 -(void)setFansModel:(FansModel *)fansModel
 {
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:fansModel.avatar_img]];
+    if (!_fansModel) {
+        _fansModel = fansModel;
+    }
+    NSString *imgurl = [MyUtil getQiniuUrl:fansModel.avatar_img width:0 andHeight:0];
+    
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:imgurl]];
     self.nameLabel.text = fansModel.usernick;
     self.firstLabel.text = @"狮子座";
     self.secondLabel.text = @"互联网";
-    
+    if ([fansModel.friendStatus isEqualToString:@"3"]) {//好友
+        self.focusButton.titleLabel.text = @"取消关注";
+    } else if([fansModel.friendStatus isEqualToString:@"2"]){//粉丝
+        self.focusButton.titleLabel.text = @"关注";
+    }
 }
+
+
 
 -(void)layoutSubviews
 {

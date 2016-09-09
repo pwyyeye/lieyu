@@ -16,6 +16,8 @@
     UIView  *_bgView;
     LYZSeditView *seditView;
     UIBarButtonItem *rightBtn;
+    NSInteger _newFansListSize;//粉丝数；
+    NSMutableArray *_fansListArray;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView *tableView;
