@@ -157,7 +157,7 @@
                     <constraint firstItem="yAj-bc-uTw" firstAttribute="bottom" secondItem="Pup-Pm-cew" secondAttribute="bottom" id="uRK-9b-czK"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="barAddressShortLabel" destination="2Yc-CE-gY4" id="3kO-yT-Vjh"/>
                 <outlet property="barDescLabel" destination="bqQ-ML-MiU" id="NQH-h5-aOx"/>
@@ -169,7 +169,7 @@
                 <outlet property="commentButton" destination="6JO-AP-Z3s" id="dJV-eO-5MU"/>
                 <outlet property="communicateButton" destination="qse-Xj-6nA" id="whk-bf-Xhk"/>
             </connections>
-            <point key="canvasLocation" x="367" y="201.5"/>
+            <point key="canvasLocation" x="400" y="36.5"/>
         </tableViewCell>
     </objects>
     <resources>

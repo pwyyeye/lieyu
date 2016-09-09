@@ -23,6 +23,7 @@
     
     _collectViewInside.dataSource = self;
     _collectViewInside.delegate = self;
+    [_collectViewInside setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
     [_collectViewInside registerNib:[UINib nibWithNibName:@"HomeBarCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeBarCollectionViewCell"];
     _collectViewInside.contentInset = UIEdgeInsetsMake(90, 0, 0, 0);
     
@@ -45,19 +46,19 @@
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-    return 3;
+    return 0;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    return 3;
+    return 0;
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    return UIEdgeInsetsMake(3, 3, 3, 3);
+    return UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake(SCREEN_WIDTH - 6, (SCREEN_WIDTH - 6) * 9 /16);
+    return CGSizeMake(SCREEN_WIDTH, SCREEN_WIDTH * 9 /16 + 57);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -73,9 +74,6 @@
     HomeBarCollectionViewCell *cell2=(HomeBarCollectionViewCell *)cell;
             JiuBaModel *jiubaM = _jiubaArray[indexPath.item];
             cell2.jiuBaM = jiubaM;
-
-
-
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{

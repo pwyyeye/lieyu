@@ -285,17 +285,17 @@
         if (!linkid) {
             return;
         }
-        ActionPage *actionPage=[[ActionPage alloc] initWithNibName:@"ActionPage" bundle:nil];
-        actionPage.topicid=[NSString stringWithFormat:@"%ld",linkid];
-        [self.navigationController pushViewController:actionPage animated:YES];
+        //进入本页面
+//        ActionPage *actionPage=[[ActionPage alloc] initWithNibName:@"ActionPage" bundle:nil];
+//        actionPage.topicid=[NSString stringWithFormat:@"%ld",linkid];
+//        [self.navigationController pushViewController:actionPage animated:YES];
     }else if (ad_type ==6){//专题活动
         if (!linkid) {
             return;
         }
-        ActionDetailViewController *actionDetailVC = [[ActionDetailViewController alloc]init];
-        //        actionDetailVC.barActivity = aBarList;
-        actionDetailVC.actionID=[NSString stringWithFormat:@"%ld",linkid];
-        [self.navigationController pushViewController:actionDetailVC animated:YES];
+        ActionDetailViewController *activityDetailVC = [[ActionDetailViewController alloc]initWithNibName:@"ActionDetailViewController" bundle:nil];
+        activityDetailVC.actionID = [NSString stringWithFormat:@"%ld",linkid];
+        [self.navigationController pushViewController:activityDetailVC animated:YES];
     }else if (ad_type ==7){//单品
         ChiHeViewController *CHDetailVC = [[ChiHeViewController alloc]initWithNibName:@"ChiHeViewController" bundle:[NSBundle mainBundle]];
         CHDetailVC.title=@"吃喝专场";

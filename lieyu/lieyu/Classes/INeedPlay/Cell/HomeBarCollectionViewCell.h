@@ -12,15 +12,25 @@
 @interface HomeBarCollectionViewCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UIView *view_line_distance;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *label_disstance_left_cons;
+
 @property (weak, nonatomic) IBOutlet UIImageView *imgView_bg;
 @property (weak, nonatomic) IBOutlet UILabel *label_barDescr;
 @property (weak, nonatomic) IBOutlet UILabel *label_address;
 @property (weak, nonatomic) IBOutlet UILabel *label_barName;
+@property (weak, nonatomic) IBOutlet UILabel *label_distance;
+
+@property (weak, nonatomic) IBOutlet UIButton *collectButton;
+@property (weak, nonatomic) IBOutlet UIButton *commentButton;
+@property (weak, nonatomic) IBOutlet UIButton *communicateButton;
+@property (weak, nonatomic) IBOutlet UIView *bottomView;
+
+
+
+
 @property (weak, nonatomic) IBOutlet UILabel *label_price;
 @property (weak, nonatomic) IBOutlet UILabel *label_fanli;
 @property (weak, nonatomic) IBOutlet UILabel *label_collect;
 
-@property (weak, nonatomic) IBOutlet UILabel *label_distance;
 @property (weak, nonatomic) IBOutlet UILabel *label_zang;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *view_cont_one_width;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *view_cons_width;

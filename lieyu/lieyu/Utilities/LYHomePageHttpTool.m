@@ -862,13 +862,15 @@
         }else{
             
         }
-        [app stopLoading];
+//        [app stopLoading];
     } failure:^(NSError *err) {
-        [app stopLoading];
+//        [app stopLoading];
     }];
 }
 
 + (void)getHomepageListDataWith:(NSDictionary *)param complete:(void (^)(NSDictionary *))complete{
+    AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);
+//    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_HOME_LIST baseURL:LY_SERVER params:param success:^(id response) {
         NSString *errorCode = [response objectForKey:@"errorcode"];
         if ([errorCode isEqualToString:@"1"]) {
@@ -880,8 +882,9 @@
         }else{
             
         }
+        [app stopLoading];
     } failure:^(NSError *err) {
-        
+        [app stopLoading];
     }];
 }
 

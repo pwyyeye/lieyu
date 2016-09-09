@@ -491,6 +491,18 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     if (scrollView == _bgScrollView) {
         _index = (scrollView.contentOffset.x + (scrollView.frame.size.width / 2))/ scrollView.frame.size.width;
         [self lineViewAnimation];
+    }else{
+        UITableView *tableView = [_tableViewArray objectAtIndex:_index];
+        if (scrollView == tableView) {
+            if (scrollView.contentOffset.y < -100) {
+                if ([[_refreshingArray objectAtIndex:tableView.tag] isEqualToString:@"0"]) {
+                    [_refreshingArray replaceObjectAtIndex:tableView.tag withObject:@"1"];
+                    [_refreshView startAnimating];
+                    [_currentPageArray replaceObjectAtIndex:tableView.tag withObject:@(1)];
+                    [self getDataWith];
+                }
+            }
+        }
     }
 }
 
@@ -511,6 +523,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         if (scrollView == tableView) {
             EScrollerView *eScrollView = [_scrollViewArray objectAtIndex:_index];
             eScrollView.isDragVertical = NO;
+            NSLog(@"scrollViewDidEndDecelerating:%f",scrollView.contentOffset.y);
         }
     }
 }
@@ -534,14 +547,14 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 eScrollView.isDragVertical = YES;
                 [eScrollView setScrollViewFrame:CGRectMake((imageWidth - imageWidth * bili) / 2, imageOffsetY, SCREEN_WIDTH * bili, totalOffset)];
             }
-            if (imageOffsetY < -50) {
-                if ([[_refreshingArray objectAtIndex:tableView.tag] isEqualToString:@"0"]) {
-                    [_refreshingArray replaceObjectAtIndex:tableView.tag withObject:@"1"];
-                    [_refreshView startAnimating];
-                    [_currentPageArray replaceObjectAtIndex:tableView.tag withObject:@(1)];
-                    [self getDataWith];
-                }
-            }
+//            if (imageOffsetY < -50) {
+//                if ([[_refreshingArray objectAtIndex:tableView.tag] isEqualToString:@"0"]) {
+//                    [_refreshingArray replaceObjectAtIndex:tableView.tag withObject:@"1"];
+//                    [_refreshView startAnimating];
+//                    [_currentPageArray replaceObjectAtIndex:tableView.tag withObject:@(1)];
+//                    [self getDataWith];
+//                }
+//            }
         }
     }
 }
@@ -1352,17 +1365,15 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         if (!linkid) {
             return;
         }
-        ActionPage *actionPage=[[ActionPage alloc] initWithNibName:@"ActionPage" bundle:nil];
-        actionPage.topicid=[NSString stringWithFormat:@"%ld",linkid];
-        [self.navigationController pushViewController:actionPage animated:YES];
+        ActivityMainViewController *activityMainVC = [[ActivityMainViewController alloc]init];
+        [self.navigationController pushViewController:activityMainVC animated:YES];
     }else if (ad_type ==6){//专题活动
         if (!linkid) {
             return;
         }
-        ActionDetailViewController *actionDetailVC = [[ActionDetailViewController alloc]init];
-        //        actionDetailVC.barActivity = aBarList;
-        actionDetailVC.actionID=[NSString stringWithFormat:@"%ld",linkid];
-        [self.navigationController pushViewController:actionDetailVC animated:YES];
+        ActionDetailViewController *activityDetailVC = [[ActionDetailViewController alloc]initWithNibName:@"ActionDetailViewController" bundle:nil];
+        activityDetailVC.actionID = [NSString stringWithFormat:@"%ld",linkid];
+        [self.navigationController pushViewController:activityDetailVC animated:YES];
     }else if (ad_type ==7){//单品
         ChiHeViewController *CHDetailVC = [[ChiHeViewController alloc]initWithNibName:@"ChiHeViewController" bundle:[NSBundle mainBundle]];
         CHDetailVC.title=@"吃喝专场";
@@ -1594,7 +1605,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 [IQKeyboardManager sharedManager].enable = NO;
                 [IQKeyboardManager sharedManager].isAdd = YES;
                 
-                barChatVC.navigationItem.leftBarButtonItem = [self getItem];
+                barChatVC.navigationItem.leftBarButtonItem = [weakSelf getItem];
             }];
         } else {//加入群组
             NSMutableDictionary *paraDic = [[NSMutableDictionary alloc] init];
@@ -1613,7 +1624,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 [IQKeyboardManager sharedManager].enable = NO;
                 [IQKeyboardManager sharedManager].isAdd = YES;
                 
-                barChatVC.navigationItem.leftBarButtonItem = [self getItem];
+                barChatVC.navigationItem.leftBarButtonItem = [weakSelf getItem];
                 
             }];
             

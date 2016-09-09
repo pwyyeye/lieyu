@@ -34,9 +34,32 @@
     [_barNameLabel setText:barModel.barname];
     [_barDescLabel setText:barModel.subtitle];
     [_barAddressShortLabel setText:barModel.addressabb];
-    [_barDistanceLabel setText:[NSString stringWithFormat:@"%@km",barModel.distance]];
-    [_collectButton setTitle:[NSString stringWithFormat:@"%d",barModel.like_num] forState:UIControlStateNormal];
-    [_commentButton setTitle:[NSString stringWithFormat:@"%d",barModel.commentNum] forState:UIControlStateNormal];
+    if(![MyUtil isEmptyString:barModel.distance] && barModel.distance.floatValue != 0.f){
+        CGFloat distanceStr = barModel.distance.floatValue * 1000;
+        if (distanceStr > 1000) {
+            [_barDistanceLabel setText:[NSString stringWithFormat:@"%.0fkm",distanceStr/1000]];
+        }else{
+            [_barDistanceLabel setText:[NSString stringWithFormat:@"%.0fm",distanceStr]];
+        }
+    }
+    if (barModel.like_num) {
+        int num = barModel.like_num;
+        if(num < 1000){
+            [_collectButton setTitle:[NSString stringWithFormat:@"%d",barModel.like_num] forState:UIControlStateNormal];
+        }else{
+            [_collectButton setTitle:[NSString stringWithFormat:@"%dk+",barModel.like_num / 1000] forState:UIControlStateNormal];
+        }
+    }else{
+        [_collectButton setTitle:@"0" forState:UIControlStateNormal];
+    }
+    if (barModel.commentNum) {
+        int num = barModel.commentNum;
+        if (num < 1000) {
+            [_commentButton setTitle:[NSString stringWithFormat:@"%d",barModel.commentNum] forState:UIControlStateNormal];
+        }else{
+            [_commentButton setTitle:[NSString stringWithFormat:@"%dk+",barModel.commentNum / 1000] forState:UIControlStateNormal];
+        }
+    }
 }
 
 @end

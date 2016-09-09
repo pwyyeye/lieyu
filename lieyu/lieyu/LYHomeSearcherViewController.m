@@ -396,7 +396,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     if (_isSearchBar) {
-        return CGSizeMake(SCREEN_WIDTH - 6, (SCREEN_WIDTH - 6) * 9 /16);
+        return CGSizeMake(SCREEN_WIDTH, SCREEN_WIDTH * 9 /16 + 57);
     }else{
         return CGSizeMake(SCREEN_WIDTH - 6, 122);
     }
