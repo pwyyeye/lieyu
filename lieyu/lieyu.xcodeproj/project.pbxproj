@@ -403,6 +403,8 @@
 		385665151C76A566000DCFA5 /* HDDetailFootCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 385665131C76A566000DCFA5 /* HDDetailFootCell.m */; };
 		385665161C76A566000DCFA5 /* HDDetailFootCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 385665141C76A566000DCFA5 /* HDDetailFootCell.xib */; };
 		385665591C773C10000DCFA5 /* LPImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 385665581C773C10000DCFA5 /* LPImageView.m */; };
+		38679E4F1D817520003C868A /* MineBoundAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38679E4D1D817520003C868A /* MineBoundAccountViewController.m */; };
+		38679E501D817520003C868A /* MineBoundAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38679E4E1D817520003C868A /* MineBoundAccountViewController.xib */; };
 		386AE39B1C5B61B70062105F /* TAAbstractDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 386AE38E1C5B61B70062105F /* TAAbstractDotView.m */; };
 		386AE39C1C5B61B70062105F /* TAAnimatedDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 386AE3901C5B61B70062105F /* TAAnimatedDotView.m */; };
 		386AE39D1C5B61B70062105F /* TADotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 386AE3921C5B61B70062105F /* TADotView.m */; };
@@ -2775,6 +2777,9 @@
 		385665141C76A566000DCFA5 /* HDDetailFootCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HDDetailFootCell.xib; sourceTree = "<group>"; };
 		385665571C773C10000DCFA5 /* LPImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPImageView.h; sourceTree = "<group>"; };
 		385665581C773C10000DCFA5 /* LPImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPImageView.m; sourceTree = "<group>"; };
+		38679E4C1D817520003C868A /* MineBoundAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineBoundAccountViewController.h; sourceTree = "<group>"; };
+		38679E4D1D817520003C868A /* MineBoundAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineBoundAccountViewController.m; sourceTree = "<group>"; };
+		38679E4E1D817520003C868A /* MineBoundAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineBoundAccountViewController.xib; sourceTree = "<group>"; };
 		386AE38D1C5B61B70062105F /* TAAbstractDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAbstractDotView.h; sourceTree = "<group>"; };
 		386AE38E1C5B61B70062105F /* TAAbstractDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAbstractDotView.m; sourceTree = "<group>"; };
 		386AE38F1C5B61B70062105F /* TAAnimatedDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAnimatedDotView.h; sourceTree = "<group>"; };
@@ -6843,6 +6848,9 @@
 				38AD5B0D1D643DC900521150 /* MineBalanceViewController.h */,
 				38AD5B0E1D643DC900521150 /* MineBalanceViewController.m */,
 				38AD5B0F1D643DC900521150 /* MineBalanceViewController.xib */,
+				38679E4C1D817520003C868A /* MineBoundAccountViewController.h */,
+				38679E4D1D817520003C868A /* MineBoundAccountViewController.m */,
+				38679E4E1D817520003C868A /* MineBoundAccountViewController.xib */,
 			);
 			name = "余额";
 			sourceTree = "<group>";
@@ -11185,6 +11193,7 @@
 				85F66E511C525E51005D1CD8 /* xitongtongzhi@2x.png in Resources */,
 				AD399ECC1C940D4D00028F23 /* logo77@2x.jpg in Resources */,
 				854CF48F1CA3BF1900F7F95B /* beerBarPoint@2x.png in Resources */,
+				38679E501D817520003C868A /* MineBoundAccountViewController.xib in Resources */,
 				ADD2649A1C93EA7A002894AC /* 4@2x.jpg in Resources */,
 				384A54901CF5A8B6008825ED /* LYChooseBarViewController.xib in Resources */,
 				3838944D1D15369B0014C8E9 /* free_order_icon@2x.png in Resources */,
@@ -12599,6 +12608,7 @@
 				D748BC7B1BA1CB0E005AA996 /* User+Utils.m in Sources */,
 				A20100881BA7AFDD009283D1 /* LYProductsTagViewController.m in Sources */,
 				ADF88EAD1C1197C400CF5DED /* UIScrollView+MJExtension.m in Sources */,
+				38679E4F1D817520003C868A /* MineBoundAccountViewController.m in Sources */,
 				385665151C76A566000DCFA5 /* HDDetailFootCell.m in Sources */,
 				857968191CFBEA1F00284555 /* AdvisorBookIngoTableViewCell.m in Sources */,
 				85F6259C1C0C382A002858C8 /* LYTaoCanHeaderTableViewCell.m in Sources */,
