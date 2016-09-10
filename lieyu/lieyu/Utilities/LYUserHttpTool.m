@@ -1677,6 +1677,23 @@
     }];
 }
 
+#pragma mark - 娱币充值［余额兑换娱币］
++ (void)rechargeCoinWithParams:(NSDictionary *)dict complete:(void (^)(BOOL))complete{
+    AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_RECHARGE_COIN baseURL:LY_SERVER params:dict success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            complete(YES);
+        }else{
+            [MyUtil showPlaceMessage:[response objectForKey:@"message"]];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+}
+
 #pragma mark - 获取娱客帮数据
 + (void)lyGetYukebangDataWithParams:(NSDictionary *)dict complete:(void (^)(NSDictionary *result))complete{
     AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);

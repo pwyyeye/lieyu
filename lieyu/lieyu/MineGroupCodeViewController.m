@@ -60,7 +60,7 @@
     //create context
     CGBitmapInfo bitmapinfo = (CGBitmapInfo)kCGImageAlphaPremultipliedLast;
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGContextRef ctx = CGBitmapContextCreate(0, size, size, 8, size * 4, colorSpace, bitmapinfo);
+    CGContextRef ctx = CGBitmapContextCreate(0, size, size, 8, 0, colorSpace, bitmapinfo);
     CGAffineTransform translateTransform = CGAffineTransformMakeTranslation(0, -size);
     CGAffineTransform scaleTransform = CGAffineTransformMakeScale(1, -1);
     CGContextConcatCTM(ctx, CGAffineTransformConcat(translateTransform, scaleTransform));

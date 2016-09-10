@@ -24,6 +24,9 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="QRCodebg.png" translatesAutoresizingMaskIntoConstraints="NO" id="Prj-fF-wjH">
+                    <rect key="frame" x="30" y="39" width="540" height="522"/>
+                </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="QRCodeHeaderbg.png" translatesAutoresizingMaskIntoConstraints="NO" id="Oyl-lY-YQH">
                     <rect key="frame" x="264" y="64" width="72" height="72"/>
                     <constraints>
@@ -75,9 +78,6 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="QRCodebg.png" translatesAutoresizingMaskIntoConstraints="NO" id="Prj-fF-wjH">
-                    <rect key="frame" x="30" y="39" width="540" height="522"/>
-                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -98,7 +98,7 @@
                 <constraint firstItem="jCD-CN-Cav" firstAttribute="top" secondItem="Oyl-lY-YQH" secondAttribute="bottom" constant="16" id="tch-IM-LDk"/>
                 <constraint firstItem="gzh-q1-N0C" firstAttribute="centerX" secondItem="SeO-mk-dbd" secondAttribute="centerX" id="x2c-vQ-2bR"/>
             </constraints>
-            <point key="canvasLocation" x="199" y="393"/>
+            <point key="canvasLocation" x="309" y="374"/>
         </view>
     </objects>
     <resources>

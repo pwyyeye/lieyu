@@ -136,6 +136,7 @@
 - (IBAction)yubiClick:(UIButton *)sender {
     MineYubiViewController *mineYubiVC = [[MineYubiViewController alloc]initWithNibName:@"MineYubiViewController" bundle:nil];
     mineYubiVC.coinAmount = _balanceModel.coin;
+    mineYubiVC.balance = _balanceModel.balances; 
     mineYubiVC.delegate = self;
     [self.navigationController pushViewController:mineYubiVC animated:YES];
 }

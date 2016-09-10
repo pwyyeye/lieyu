@@ -138,6 +138,8 @@
 #define LY_RECHARGE_MONEYBAG @"lyRechargeAction.do?action=add"
 //娱币兑换余额
 #define LY_COINCHANGE_BALANCE @"dailyCoinAction.do?action=save"
+//余额兑换娱币（娱币充值）
+#define LY_RECHARGE_COIN @"dailyCoinAction.do?action=add"
 //娱客帮数据获取
 #define LY_GET_YUKEBANG @"app/api/yukegroup/groupList"
 //娱客帮获取二维码字符串

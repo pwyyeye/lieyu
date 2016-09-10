@@ -97,20 +97,41 @@
 }
 
 - (void)rechargeWithAmount:(NSString *)money{
-    NSDictionary *dict = @{@"amount":money};
-    [LYUserHttpTool rechargeMoneyBagWithParams:dict complete:^(NSString *result) {
-            ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
-            detailViewController.orderNo=result;
-            detailViewController.payAmount=[money doubleValue];
-            detailViewController.productName=@"钱包娱币充值";
-            detailViewController.productDescription=@"暂无";
-//        UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:weakSelf action:nil];
-//        weakSelf.navigationItem.backBarButtonItem = left;
-//        [weakSelf.navigationController pushViewController:detailViewController animated:YES];
-//        [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
-            [self.navigationController pushViewController:detailViewController animated:YES];
-    }];
+    if ([money doubleValue] > [_balance doubleValue]) {
+        [MyUtil showPlaceMessage:@"余额不足！"];
+        return;
+    }
     
+    __weak __typeof(self) weakSelf = self;
+    NSDictionary *dict = @{@"offBalances":money};
+    [LYUserHttpTool rechargeCoinWithParams:dict complete:^(BOOL result) {
+        if (result) {
+            [MyUtil showPlaceMessage:@"娱币充值成功！"];
+            double amount = [_yubiAmountLabel.text doubleValue] + [money doubleValue] * 100;
+//            double balance = [_balance doubleValue] - [money doubleValue];
+//            _balance = [NSString stringWithFormat:@"%g",balance];
+            [_yubiAmountLabel setText:[NSString stringWithFormat:@"%g",amount]];
+//            if ([weakSelf.delegate respondsToSelector:@selector(MineYubiRechargeDelegate:balance:)]) {
+//                [weakSelf.delegate MineYubiRechargeDelegate:amount balance:balance];
+//            }
+            if ([weakSelf.delegate respondsToSelector:@selector(MineYubiWithdrawDelegate:)]) {
+                [weakSelf.delegate MineYubiWithdrawDelegate:amount];
+            }
+        }
+    }];
+//    [LYUserHttpTool rechargeMoneyBagWithParams:dict complete:^(NSString *result) {
+//            ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
+//            detailViewController.orderNo=result;
+//            detailViewController.payAmount=[money doubleValue];
+//            detailViewController.productName=@"钱包娱币充值";
+//            detailViewController.productDescription=@"暂无";
+////        UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:weakSelf action:nil];
+////        weakSelf.navigationItem.backBarButtonItem = left;
+////        [weakSelf.navigationController pushViewController:detailViewController animated:YES];
+////        [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
+//            [self.navigationController pushViewController:detailViewController animated:YES];
+//    }];
+//    
 }
 
 - (void)withdrawClick{
