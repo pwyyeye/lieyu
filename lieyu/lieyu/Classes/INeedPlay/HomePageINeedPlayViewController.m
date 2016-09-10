@@ -172,7 +172,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [self setupData];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeLocationCity) name:@"locationCityThisTime" object:nil];
     //初始化
-    [self changeLocationCity];
+//    [self changeLocationCity];
+    [self createUI];
+    [self removeNavButtonAndImageView];
 }
 
 - (void)setupData{
@@ -192,6 +194,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 #pragma mark - 是否改变城市
 - (void)changeLocationCity{
+    [self setupData];
     __weak __typeof(self)weakSelf = self;
     if (![MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"LocationCityThisTime"]] &&
         ![[USER_DEFAULT objectForKey:@"LocationCityThisTime"] isEqualToString:[USER_DEFAULT objectForKey:@"ChooseCityLastTime"]]) {
@@ -199,6 +202,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         [[[AlertBlock alloc]initWithTitle:nil message:[NSString stringWithFormat:@"系统定位到您在%@,需要切换到%@吗？",[USER_DEFAULT objectForKey:@"LocationCityThisTime"],[USER_DEFAULT objectForKey:@"LocationCityThisTime"]] cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex) {
             if(buttonIndex == 0){
                 //不跳转，以上次选择城市获取数据与排界面
+                [weakSelf emptyUserDefault];
                 [weakSelf createUI];
             }else if (buttonIndex == 1){
                 [USER_DEFAULT setObject:[USER_DEFAULT objectForKey:@"LocationCityThisTime"] forKey:@"ChooseCityLastTime"];
