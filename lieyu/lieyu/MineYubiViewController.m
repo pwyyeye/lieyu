@@ -85,7 +85,7 @@
 }
 
 - (void)rechargeCustomClick{
-    UIAlertView *rechargeAlertview = [[UIAlertView alloc]initWithTitle:nil message:@"充值越多赠送越多" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    UIAlertView *rechargeAlertview = [[UIAlertView alloc]initWithTitle:nil message:@"充值越多赠送越多" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"余额充值",@"在线充值", nil];
     rechargeAlertview.tag = 1;
     [rechargeAlertview setAlertViewStyle:UIAlertViewStylePlainTextInput];
     UITextField *rechargeField = [rechargeAlertview textFieldAtIndex:0];
@@ -119,19 +119,6 @@
             }
         }
     }];
-//    [LYUserHttpTool rechargeMoneyBagWithParams:dict complete:^(NSString *result) {
-//            ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
-//            detailViewController.orderNo=result;
-//            detailViewController.payAmount=[money doubleValue];
-//            detailViewController.productName=@"钱包娱币充值";
-//            detailViewController.productDescription=@"暂无";
-////        UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:weakSelf action:nil];
-////        weakSelf.navigationItem.backBarButtonItem = left;
-////        [weakSelf.navigationController pushViewController:detailViewController animated:YES];
-////        [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
-//            [self.navigationController pushViewController:detailViewController animated:YES];
-//    }];
-//    
 }
 
 - (void)withdrawClick{

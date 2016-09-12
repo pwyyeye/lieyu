@@ -137,7 +137,7 @@
     _titelLabel.frame = CGRectMake(0, 30, SCREEN_WIDTH, 30);
     _titelLabel.textAlignment = NSTextAlignmentCenter;
     _titelLabel.text = _titleText;
-    _titelLabel.font = [UIFont boldSystemFontOfSize:16];
+    _titelLabel.font = [UIFont systemFontOfSize:16];
     _titelLabel.textColor = [UIColor blackColor];
     [_menuView addSubview:_titelLabel];
     
@@ -177,7 +177,6 @@
     self.navigationController.navigationBar.hidden = NO;
     [self.navigationController setNavigationBarHidden:NO];
 }
-
 
 - (void)createLineForMenuView{
     UIButton *hotBtn = _menuBtnArray[0];

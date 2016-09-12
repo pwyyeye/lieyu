@@ -17,6 +17,9 @@
 #import "LYwoYaoDinWeiMainViewController.h"
 #import "PTjoinInViewController.h"
 #import "LPMyOrdersViewController.h"
+#import "MineBalanceViewController.h"
+#import "MineYubiViewController.h"
+
 @interface ChoosePayController ()
 {
     UITableViewCell *_payCell;
@@ -149,24 +152,6 @@
 //}
 
 -(void)gotoBack{
-    
-//    for (UIViewController *controller in self.navigationController.viewControllers) {
-//        if ([controller isKindOfClass:[TariffViewController class]]) {
-//            [self.navigationController popToViewController:controller animated:YES];
-//            return;
-//        }
-//    }
-    
-//    AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
-    
-//    UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn_back.png"] style:UIBarButtonItemStylePlain target:nil action:nil];
-//    delegate.navigationController.navigationItem.backBarButtonItem=item;
-    
-    
-    //    UIViewController *detailViewController;
-    //
-    //    detailViewController  = [[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
-//    [self.navigationController pushViewController:detailViewController animated:YES];
     NSLog(@"%@",self.navigationController.viewControllers);
     for (UIViewController *controller in self.navigationController.viewControllers) {
         if([controller isKindOfClass:[HDDetailViewController class]] || [controller isKindOfClass:[CHDoOrderViewController class]] || [controller isKindOfClass:[ZujuViewController class]] || [controller isKindOfClass:[LYwoYaoDinWeiMainViewController class]]||[controller isKindOfClass:[PTjoinInViewController class]]){
@@ -390,7 +375,12 @@
             zujuVC.sn=_orderNo;
             [self.navigationController pushViewController:zujuVC animated:YES];
         }else{
-//            LYMyOrderManageViewController *detailViewController =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
+            for (UIViewController *controller in self.navigationController.viewControllers) {
+                if([controller isKindOfClass:[MineBalanceViewController class]] || [controller isKindOfClass:[MineYubiViewController class]]){
+//                    [self.navigationController popViewControllerAnimated:YES];
+                    return;
+                }
+            }
             LPMyOrdersViewController *detailViewController = [[LPMyOrdersViewController alloc]init];
             UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
             self.navigationItem.leftBarButtonItem = left;
@@ -399,23 +389,18 @@
         }
         
     }else if([[resultDic objectForKey:@"resultStatus"] longLongValue]==6001){
+        for (UIViewController *controller in self.navigationController.viewControllers) {
+            if([controller isKindOfClass:[MineBalanceViewController class]] || [controller isKindOfClass:[MineYubiViewController class]]){
+//                [self.navigationController popViewControllerAnimated:YES];
+                return;
+            }
+        }
         UIViewController *detailViewController;
-        
-      
-//            detailViewController  =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
         detailViewController = [[LPMyOrdersViewController alloc]init];
-        
-        
         AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;
-        
         UIBarButtonItem *item=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:nil action:nil];
         delegate.navigationController.navigationItem.backBarButtonItem=item;
         [delegate.navigationController pushViewController:detailViewController animated:YES];
-        
-        
-        
     }
-    
-    
 }
 @end

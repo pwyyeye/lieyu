@@ -380,15 +380,24 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [_cityChooseBtn setTitleColor:RGBA(1, 1, 1, 1) forState:UIControlStateNormal];
     _cityChooseBtn.titleLabel.font = [UIFont systemFontOfSize:12 weight:UIFontWeightLight];
     [_cityChooseBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -20, 0, 0)];
-    [_cityChooseBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 40, 0, 0)];
+    [_cityChooseBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 30, 0, 0)];
     [_cityChooseBtn addTarget:self action:@selector(cityChangeClick:) forControlEvents:UIControlEventTouchUpInside];
     [_menuView addSubview:_cityChooseBtn];
     
     //搜索按钮
-    CGFloat searchBtnWidth = 24;
-    _searchBtn = [[UIButton alloc]initWithFrame:CGRectMake(65, 20 , SCREEN_WIDTH - 130, searchBtnWidth + 20)];
-    [_searchBtn setImage:[UIImage imageNamed:@"HomepageSearch"] forState:UIControlStateNormal];
+//    CGFloat searchBtnWidth = 24;
+    _searchBtn = [[UIButton alloc]initWithFrame:CGRectMake(65, 26 , SCREEN_WIDTH - 130, 30)];
+    [_searchBtn setTitle:@"搜索" forState:UIControlStateNormal];
+    [_searchBtn.titleLabel setFont:[UIFont systemFontOfSize:12 weight:UIFontWeightLight]];
+    [_searchBtn setTitleColor:RGBA(51, 51, 51, 1) forState:UIControlStateNormal];
+    [_searchBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 20, 0, 0)];
+    [_searchBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 40, 0, 0)];
+    [_searchBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+    [_searchBtn setImage:[UIImage imageNamed:@"HomepageSearchIcon"] forState:UIControlStateNormal];
     [_searchBtn addTarget:self action:@selector(searchClick:) forControlEvents:UIControlEventTouchUpInside];
+    _searchBtn.layer.borderColor = [RGBA(0, 0, 0, 0.4) CGColor];
+    _searchBtn.layer.borderWidth = 0.5;
+    _searchBtn.layer.cornerRadius = 15;
     [_menuView addSubview:_searchBtn];
     
     //刷新控件
@@ -837,7 +846,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     }else if (tableView.tag == 1){
         if (((RecommendedTopic *)[_barDict objectForKey:@"recommendedTopic"]).name) {
             if (indexPath.section == 0) {
-                return 160;
+                return SCREEN_WIDTH / 100 * 43;
             }else if (indexPath.section == 1){
                 return 138;
             }else if (indexPath.section == 2){
@@ -861,7 +870,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     }else if (tableView.tag == 0){
         if (((RecommendedTopic *)[_ydDict objectForKey:@"recommendedTopic"]).name) {
             if (indexPath.section == 0) {
-                return 160;
+                return SCREEN_WIDTH / 100 * 43;
             }else if (indexPath.section == 1){
                 return 138;
             }else if (indexPath.section == 2){
@@ -1039,6 +1048,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                     [USER_DEFAULT setObject:@"" forKey:@"LocationCityThisTime"];
                 }
             }
+            _index = 0 ;
             [[NSNotificationCenter defaultCenter]postNotificationName:@"locationCityThisTime" object:nil];
             [weekSelf setupData];
         }];

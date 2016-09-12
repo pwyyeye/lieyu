@@ -492,7 +492,7 @@
 +(NSString *)getAstroWithBirthday:(NSString *)dateString
 {
     if ([MyUtil isEmptyString:dateString]) {
-        return @"";
+        return @"未知";
     }
     if ([dateString isEqualToString:@"1990-04-15"]||[dateString isEqualToString:@"1990-04-15"]) {
         return @"白羊座";
@@ -520,15 +520,15 @@
     NSString *result;
     
     if (month<1 || month>12 || day<1 || day>31){
-        return @"";
+        return @"未知";
     }
     
     if(month==2 && day>29)
     {
-        return @"";
+        return @"未知";
     }else if(month==4 || month==6 || month==9 || month==11) {
         if (day>30) {
-            return @"";
+            return @"未知";
         }
     }
     

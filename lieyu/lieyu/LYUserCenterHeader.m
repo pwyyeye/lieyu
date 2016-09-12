@@ -108,7 +108,11 @@
         //设置头像
         [_img_icon setImageWithURL:[NSURL URLWithString:app.userModel.avatar_img] placeholderImage:[UIImage imageNamed:app.userModel.gender.intValue==0?@"lieyu_default_head":@"lieyu_default_head"]];
         [_img_bg setImageWithURL:[NSURL URLWithString:app.userModel.avatar_img] placeholderImage:[UIImage imageNamed:app.userModel.gender.intValue==0?@"lieyu_default_head":@"lieyu_default_head"]];
-        _label_work.text = app.userModel.tag;
+        if ([MyUtil isEmptyString:app.userModel.tag]) {
+            _label_work.text = @"未知";
+        }else{
+            _label_work.text = app.userModel.tag;
+        }
         _label_constellation.text = [MyUtil getAstroWithBirthday:app.userModel.birthday];
         _label_name.text = app.userModel.usernick;
         if ([app.userModel.gender isEqualToString:@"0"]) {
