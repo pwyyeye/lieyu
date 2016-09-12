@@ -346,7 +346,7 @@
 //        NSLog(@"%f===%f", location.latitude,location.longitude)
         [_mapView setCenterCoordinate:location animated:YES];
     }
-   }
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 0.0000001;

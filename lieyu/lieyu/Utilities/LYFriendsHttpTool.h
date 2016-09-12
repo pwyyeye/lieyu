@@ -49,7 +49,7 @@
 #pragma mark ----  直播方法
 
 //获取stream
-+(void)getStreamWithParms: (NSDictionary *)parms complete:(void(^)(NSDictionary *dict))complete;
++(void)getStreamWithParms: (NSDictionary *)parms complete:(void(^)(NSDictionary *dict))complete failure:(void(^)(NSString *error))err;
 
 
 //开始直播

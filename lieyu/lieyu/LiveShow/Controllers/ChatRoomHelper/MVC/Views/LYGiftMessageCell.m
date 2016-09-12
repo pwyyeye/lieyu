@@ -102,19 +102,7 @@
     self.bubbleBackgroundView.backgroundColor = HEXCOLOR(0x61a1ff);
     [self.messageLabel setTextColor:HEXCOLOR(0xffffff)];
     
-//    if (!_isFullScreenMode) {
-//        self.bubbleBackgroundView.alpha = 1;
-//        self.bubbleBackgroundView.backgroundColor = [UIColor clearColor];
-//        [self.messageLabel setTextColor:[UIColor blackColor]];
-//        if (self.messageDirection == MessageDirection_RECEIVE) {
-//            [self.nicknameLabel setTextColor:HEXCOLOR(0x999999)];
-//        }else{
-//            [self.nicknameLabel setTextColor:HEXCOLOR(0x62e0ff)];
-//        }
-//        
-//    }else{
-//        self.bubbleBackgroundView.alpha = 0.7;
-//        self.bubbleBackgroundView.backgroundColor = HEXCOLOR(0x61a1ff);
+
     self.bubbleBackgroundView.backgroundColor = [UIColor clearColor];
         [self.messageLabel setTextColor:[UIColor whiteColor]];
         if (MessageDirection_RECEIVE == self.messageDirection) {
@@ -123,14 +111,7 @@
             [self.nicknameLabel setTextColor:HEXCOLOR(0x62e0ff)];
         }
         
-//    }
-    
-//    self.giftImageView.frame = CGRectMake(self.messageLabel.frame.size.width - 4,20, 20, 20);
-//    if ([_likeMessage.type isEqualToString:@"0"]) {
-//        self.giftImageView.image = [UIImage imageNamed:@"flower"];
-//    }else{
-//        self.giftImageView.image = [UIImage imageNamed:@"clap"];
-//    }
+
     self.bubbleBackgroundView.layer.cornerRadius = 4;
 }
 

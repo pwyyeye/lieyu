@@ -9,11 +9,9 @@
 #import "LYGiftMessage.h"
 
 @implementation LYGiftMessage
-/*
- * 对于聊天室中发送频繁的消息比如点赞 鲜花 之类的消息一定要设置成状态消息
- */
+
 + (RCMessagePersistent)persistentFlag {
-    return MessagePersistent_STATUS;
+    return MessagePersistent_ISCOUNTED;
 }
 
 - (void)decodeWithData:(NSData *)data {
@@ -21,6 +19,7 @@
     if (!data) {
         return;
     }
+    
     NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&__error];
     NSDictionary *dict = [[NSDictionary alloc] initWithDictionary:dictionary];
     if (!__error && dict) {

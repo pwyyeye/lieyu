@@ -40,6 +40,7 @@ UIScrollViewDelegate, UINavigationControllerDelegate,RCInputBarControlDelegate,R
 /*!
  是否全屏模式
  */
+
 @property(nonatomic, assign) BOOL isFullScreen;
 
 /*!

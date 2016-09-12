@@ -37,7 +37,6 @@
         {
             UIButton *btn_imgOne = [[UIButton alloc]initWithFrame:CGRectMake(60, self.bounds.origin.y, self.bounds.size.width - 70, self.bounds.size.width - 70 )];
             btn_imgOne.adjustsImageWhenHighlighted = NO;
-            NSLog(@"--->%@",[MyUtil getQiniuUrl:urlArray[0] width:0 andHeight:0]);
             [btn_imgOne sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:urlArray[0] width:0 andHeight:0]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage300"]];
             btn_imgOne.imageView.contentMode = UIViewContentModeScaleAspectFill;
             [self addSubview:btn_imgOne];

@@ -261,24 +261,24 @@
 //    NSString *time13 = [NSString stringWithFormat:@"%f",a];
 //    NSString *times = [time13 substringToIndex:13];
 //    _roomId =  [NSString stringWithFormat:@"%d%@", app.userModel.userid,times];
-    NSString *liveStr = [NSString stringWithFormat:@"下载猎娱App猎寻更多特色酒吧。http://10.17.30.44:8080/liveroom/live?liveChatId=%@",_roomId];
+    NSString *liveStr = [NSString stringWithFormat:@"http://10.17.30.44:8080/liveroom/live?liveChatId=%@",_roomId];
      UMSocialUrlResource *urlResource = [[UMSocialUrlResource alloc] initWithSnsResourceType:UMSocialUrlResourceTypeMusic url:liveStr];
      switch (_shareType) {
      case 0://分享微信好友
-         {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatSession] content:@"测试一下" image:_LiveImageView.image location:location urlResource:urlResource presentedController:selfVC completion:^(UMSocialResponseEntity *response){
+         {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatSession] content:@"猎娱直播间" image:_LiveImageView.image location:location urlResource:urlResource presentedController:selfVC completion:^(UMSocialResponseEntity *response){
          }];
              [self openLiveShowRoom];
              
          }
      break;
      case 1://分享到QQ
-         {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToQQ] content:@"测试一下" image:_LiveImageView.image location:location urlResource:urlResource presentedController:selfVC completion:^(UMSocialResponseEntity *response){
+         {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToQQ] content:@"猎娱直播间" image:_LiveImageView.image location:location urlResource:urlResource presentedController:selfVC completion:^(UMSocialResponseEntity *response){
      }];
              [self openLiveShowRoom];
          }
      break;
      case 2://分享到微博
-         {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToSina] content:@"测试一下" image:_LiveImageView.image location:location urlResource:urlResource presentedController:selfVC completion:^(UMSocialResponseEntity *response){
+         {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToSina] content:@"猎娱直播间" image:_LiveImageView.image location:location urlResource:urlResource presentedController:selfVC completion:^(UMSocialResponseEntity *response){
      if (response.responseCode == UMSResponseCodeSuccess) {
      NSLog(@"分享成功！");
      }
@@ -287,7 +287,7 @@
          }
      break;
      case 3://分享到微信朋友圈
-         {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatTimeline] content:@"测试一下" image:_LiveImageView.image location:location urlResource:urlResource presentedController:selfVC completion:^(UMSocialResponseEntity *response){
+         {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatTimeline] content:@"猎娱直播间" image:_LiveImageView.image location:location urlResource:urlResource presentedController:selfVC completion:^(UMSocialResponseEntity *response){
      if (response.responseCode == UMSResponseCodeSuccess) {
      NSLog(@"分享成功！");
      }

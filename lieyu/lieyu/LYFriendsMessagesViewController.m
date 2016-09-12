@@ -398,15 +398,12 @@
             [obj registerClass:[LYFriendsImgTableViewCell class] forCellReuseIdentifier:LYFriendsImgCellID];
         }];
     }
-    
     //表设置代理
     [_tableViewArray enumerateObjectsUsingBlock:^(UITableView *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         obj.dataSource = self;
         obj.delegate = self;
     }];
-    
     [self startGetData];//开始获取数据
-    
 }
 
 #pragma mark - 获取数据
