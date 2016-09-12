@@ -41,6 +41,7 @@
     NSArray *_topicArray;//话题数组
     NSString *jubaoMomentID;//要删除的动态ID
     UIView *_bigView;//评论的背景view
+    BOOL _isShow;//是否显示操作按钮
     DaShangView *_daShangView;//打赏View
     NSString *jubaoUserID;//被举报人的ID
     ISEmojiView *_emojiView;//表情键盘
@@ -880,6 +881,8 @@
     _giftValue = [notification.userInfo[@"value"] integerValue];
     _giftNumber = [notification.userInfo[@"number"] integerValue];
 }
+
+
 
 #pragma mark - 表白action
 - (void)likeFriendsClick:(UIButton *)button{

@@ -75,14 +75,13 @@ static NSString *daShangCellID = @"dashangCellID";
     _giftButton.backgroundColor = [UIColor clearColor];
     _giftButton.tag = [giftDic[@"giftValue"] integerValue];
     [_giftButton addTarget:self action:@selector(giftButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
-    
+    [_giftButton addTarget:self action:@selector(hiddenChoseCtion:) forControlEvents:(UIControlEventTouchUpOutside)];
     [cell addSubview:_giftButton];
     return cell;
     
 }
 
 -(void)giftButtonAction:(UIButton *)sender{
-    NSLog(@"%ld",sender.tag);
     DaShangViewCell *cellNew = (DaShangViewCell *)[sender superview];
     if (cellNew.DSChooseImage.hidden) {
         cellNew.DSChooseImage.hidden = NO;
@@ -102,6 +101,10 @@ static NSString *daShangCellID = @"dashangCellID";
     
 }
 
+-(void)hiddenChoseCtion:(UIButton *)sender{
+    DaShangViewCell *cellNew = (DaShangViewCell *)[sender superview];
+    cellNew.DSChooseImage.hidden = YES;
+}
 
 - (BOOL) collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {

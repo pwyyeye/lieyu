@@ -65,7 +65,6 @@ static NSString *wantanCellID = @"wantanCellID";
 
 - (void)setuptitle{
     _myTitle= [[UILabel alloc] initWithFrame: CGRectMake(0, 0, SCREEN_WIDTH, 44)];
-    
     _myTitle.backgroundColor = [UIColor clearColor];
     _myTitle.textColor=[UIColor blackColor];
     _myTitle.textAlignment = NSTextAlignmentCenter;

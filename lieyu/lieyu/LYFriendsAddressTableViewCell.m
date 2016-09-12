@@ -18,19 +18,16 @@
 
 -(void)layoutSubviews{
     [_dianpingButton addTarget:self action:@selector(isShowMoreButton) forControlEvents:(UIControlEventTouchUpInside)];
-    _isShow = NO;
     _moreView.alpha = 0.f;
     _moreView.layer.cornerRadius = 5.f;
     _moreView.layer.masksToBounds = YES;
 }
 
 -(void)isShowMoreButton{
-    if (_isShow) {
+    if (_moreView.alpha == 1.f) {
         _moreView.alpha = 0.f;
-        _isShow = NO;
     } else {
         _moreView.alpha = 1.f;
-        _isShow = YES;
     }
 }
 

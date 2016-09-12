@@ -30,7 +30,7 @@
     UILabel *_nameLabel;//姓名
     UIButton *_messageButton;//消息按钮
     NSTimer *_timers;//定时获取我的新消息
-
+    UILabel *_myTitle;
 }
 
 @end
@@ -53,9 +53,16 @@
     [super viewDidLoad];
     self.title = @"玩友圈";
     self.pageNum = 1;
-    
     [self addTableViewHeader];
-    
+}
+
+- (void)setuptitle{
+    _myTitle= [[UILabel alloc] initWithFrame: CGRectMake(0, 0, SCREEN_WIDTH, 44)];
+    _myTitle.backgroundColor = [UIColor clearColor];
+    _myTitle.textColor=[UIColor blackColor];
+    _myTitle.textAlignment = NSTextAlignmentCenter;
+    [_myTitle setFont:[UIFont systemFontOfSize:16]];
+    [_myTitle setText:@"玩探"];
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
@@ -136,7 +143,7 @@
     }else{
         [_messageButton removeFromSuperview];
         _messageButton = nil;
-        headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 187 / 375);
+        headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 187 / 375 + 50);
     }
     //背景图
     bgIamge = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, headerHeight)];

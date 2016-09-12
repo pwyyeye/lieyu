@@ -85,7 +85,9 @@
     NSTimer *_burstTimer;//延时
     NSInteger _giftNumber;//礼物数量
     NSInteger _giftValue;//礼物价值
+    
 }
+@property (nonatomic, strong) NSMutableArray *giftValueArray;
 
 @property (nonatomic, strong) PLPlayer  *player;
 
@@ -216,6 +218,10 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     }
     [IQKeyboardManager sharedManager].enable = NO;
     [IQKeyboardManager sharedManager].isAdd = YES;
+    //获取通知中心单例对象
+    NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self selector:@selector(notice:) name:@"sendGift" object:nil];
+    _giftValueArray = [NSMutableArray arrayWithCapacity:1];
 }
 
 #pragma mark -- 定时获取直播室人员和点赞数
@@ -330,9 +336,6 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     [_daShangView.closeButton addTarget:self action:@selector(dashangCloseViewAction:) forControlEvents:(UIControlEventTouchUpInside)];
     [_daShangView.sendGiftButton addTarget:self action:@selector(sendGiftButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
 //    [_daShangView.giftButton addTarget:self action:@selector(giftAction:) forControlEvents:(UIControlEventTouchUpInside)];
-    //获取通知中心单例对象
-    NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
-    [center addObserver:self selector:@selector(notice:) name:@"sendGift" object:nil];
     
 }
 -(void)sendGiftButtonAction:(UIButton *)sender{
@@ -341,7 +344,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
             
             break;
         case 1://单个送
-            [MyUtil showMessage:[NSString stringWithFormat:@"%ld",_giftValue]];
+            [MyUtil showMessage:[NSString stringWithFormat:@"%@",_giftValueArray.firstObject]];
             break;
             
         default:
@@ -349,12 +352,27 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
             return;
             break;
     }
+    [_giftValueArray removeAllObjects];
     [_daShangView removeFromSuperview];
     _daShangView = nil;
 }
 
 -(void)notice:(NSNotification *)notification{
-    _giftValue = [notification.userInfo[@"value"] integerValue];
+
+    NSString *values = notification.userInfo[@"value"];
+    if (_giftValueArray.count == 0) {//第一次点击直接加入数组
+        [_giftValueArray addObject:values];
+    } else {
+        if (_giftNumber >= 1 ) {
+            if ([_giftValueArray containsObject:values]) {
+                [self.giftValueArray removeObject:values];
+            } else {
+                [self.giftValueArray addObject:values];
+            }
+        } else {//
+            [_giftValueArray removeObject:values];
+        }
+    }
     _giftNumber = [notification.userInfo[@"number"] integerValue];
 }
 -(void)giftAction:(UIButton *) sender{
@@ -362,6 +380,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 }
 
 -(void)dashangCloseViewAction:(UIButton *) sender{
+    [_giftValueArray removeAllObjects];
     [_daShangView removeFromSuperview];
     _daShangView = nil;
 }
