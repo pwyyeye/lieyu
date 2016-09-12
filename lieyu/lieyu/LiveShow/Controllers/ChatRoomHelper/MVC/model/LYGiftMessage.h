@@ -10,7 +10,7 @@
 #import <RongIMLib/RongIMLib.h>
 #import "GiftContent.h"
 
-#define RCGiftMessageIdentifier @"RC:GiftMsg"
+#define RCGiftMessageIdentifier @"LY:GiftMsg"
 /* 点赞消息
  *
  * 对于聊天室中发送频率较高，不需要存储的消息要使用状态消息，自定义消息继承RCMessageContent
@@ -19,7 +19,7 @@
 @interface LYGiftMessage : RCMessageContent
 
 /*
- * 类型 2 赞，1，礼物
+ * 类型 0 赞，1，礼物
  */
 @property(nonatomic, strong) NSString *type;
 

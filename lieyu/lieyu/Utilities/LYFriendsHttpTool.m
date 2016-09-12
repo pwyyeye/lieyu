@@ -59,7 +59,6 @@
 //获取指定用户的玩友圈动态
 + (void)friendsGetUserInfoWithParams:(NSDictionary *)params needLoading:(BOOL)need compelte:(void (^)(FriendsUserInfoModel*, NSMutableArray *))compelte{
         AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-     if(need) [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_User baseURL:LY_SERVER params:params success:^(id response) {
         if ([response[@"message"] isEqualToString:@"获取失败错误"]) {
 //            [MyUtil showMessage:@"获取失败"];
@@ -68,7 +67,6 @@
             NSMutableArray *array = [[NSMutableArray alloc] initWithArray:[FriendsRecentModel mj_objectArrayWithKeyValuesArray:dictionary[@"moments"]]];
             FriendsUserInfoModel *userInfo = [FriendsUserInfoModel mj_objectWithKeyValues:dictionary];
             compelte(userInfo, array);
-            [app stopLoading];
         }
        
     }failure:^(NSError *err) {
@@ -283,14 +281,14 @@
 
 #pragma mark ----  直播
 //获取stream
-+(void)getStreamWithParms: (NSDictionary *)parms complete:(void(^)(NSDictionary *dict))complete{
++(void)getStreamWithParms: (NSDictionary *)parms complete:(void(^)(NSDictionary *dict))complete failure:(void(^)(NSString *error))err{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Live_getstream baseURL:LY_LIVE_SERVER params:parms success:^(id response) {
         if ([response[@"message"] isEqualToString:@"0"]) {
             complete(response[@"data"]);
         } else {
-            [MyUtil showMessage:[NSString stringWithFormat:@"%@",response[@"errorcode"]]];
+            [MyUtil showMessage:[NSString stringWithFormat:@"%@",response[@"message"]]];
+            err([NSString stringWithFormat:@"%@",response[@"errorcode"]]);
         }
-        
     } failure:^(NSError *err) {
         
     }];

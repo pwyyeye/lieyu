@@ -11,6 +11,7 @@
 #import <PLPlayerKit/PLPlayerKit.h>
 #import "AppDelegate.h"
 #import "Reachability.h"
+#import "IQKeyboardManager.h"
 #import <asl.h>
 #import "UMSocial.h"
 #import "ISEmojiView.h"
@@ -74,7 +75,7 @@
 {
     NSTimer *_timer;//定时器
     int _takeNum;//聊天数
-    int _likeNum;//点赞数
+    long _likeNum;//点赞数
     LYFriendsCommentView *_commentView;//弹出的评论框
     NSString *defaultComment;//残留评论
     ISEmojiView *_emojiView;//表情键盘
@@ -213,6 +214,8 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
         _timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timerUpdataAction) userInfo:nil repeats:YES];
         [_timer fire];
     }
+    [IQKeyboardManager sharedManager].enable = NO;
+    [IQKeyboardManager sharedManager].isAdd = YES;
 }
 
 #pragma mark -- 定时获取直播室人员和点赞数
@@ -220,8 +223,8 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     NSDictionary *dictionary = @{@"chatNum":[NSString stringWithFormat:@"%d",_takeNum],@"liveChatId":_chatRoomId};
     [self.dataArray removeAllObjects];
     [LYFriendsHttpTool requestListWithParms:dictionary complete:^(NSDictionary *dict) {
-        _likeNum = [dict[@"likeNum"] integerValue];
-        _userView.numberLabel.text = [NSString stringWithFormat:@"%d",_likeNum];
+        _likeNum = (long)dict[@"likeNum"];
+        _userView.numberLabel.text = [NSString stringWithFormat:@"%ld",_likeNum];
         self.dataArray = dict[@"users"];
         [_audienceCollectionView reloadData];
     }];
@@ -238,25 +241,37 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     _backButton = [UIButton buttonWithType:(UIButtonTypeSystem)];
     _backButton.frame = CGRectMake(SCREEN_WIDTH - (SCREEN_WIDTH / 7) - 10, 30, SCREEN_WIDTH / 7, SCREEN_HEIGHT / 12);
     [_backButton setImage:[UIImage imageNamed:@"live_close.png"] forState:(UIControlStateNormal)];
-    [_backButton addTarget:self action:@selector(watchBackButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
+    [_backButton addTarget:self action:@selector(closebackButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
     [_CAEmitterView addSubview:_backButton];
     
     //顶部用户信息
     NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"UserHeader" owner:self options:nil];
     //得到第一个UIView
     _userView = [nib objectAtIndex:0];
-    _userView.frame = CGRectMake(20, 30, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 15);
+    _userView.frame = CGRectMake(20, 30, SCREEN_WIDTH / 2, 40);
     _userView.layer.cornerRadius = SCREEN_HEIGHT / 30;
     _userView.layer.masksToBounds = YES;
     _userView.backgroundColor = RGBA(33, 33, 33, 0.5);
-    [_userView.iconIamgeView sd_setImageWithURL:[NSURL URLWithString:_hostUser[@"avatar_img"]]];
-    _userView.numberLabel.text = _hostUser[@"usernick"];
+    NSString *imgUrl = [MyUtil getQiniuUrl:_hostUser[@"avatar_img"] width:0 andHeight:0];
+    [_userView.iconIamgeView sd_setImageWithURL:[NSURL URLWithString:imgUrl]];
+    _userView.userNameLabel.text = _hostUser[@"usernick"];
     _userView.iconIamgeView.layer.cornerRadius = _userView.iconIamgeView.frame.size.height/2;
     _userView.iconIamgeView.layer.masksToBounds = YES;
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(anchorDetail)];
-    [_userView addGestureRecognizer:tapGes];
+    _userView.iconIamgeView.userInteractionEnabled  = YES;
+    [_userView.iconIamgeView addGestureRecognizer:tapGes];
     
     [_userView.isFoucsButton addTarget:self action:@selector(foucsButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
+    NSInteger status = [_hostUser[@"friendStatus"] integerValue];
+    if (status == 2) {//0 没有关系   1 关注   2 粉丝   3 好友
+        _userView.isFoucsButton.tag = 2;
+        _userView.isFoucsButton.hidden = YES;
+        _userView.frame = CGRectMake(20, 30, SCREEN_WIDTH / 2 - 40, 40);
+    } else if (status == 1 || status == 3) {
+        _userView.isFoucsButton.titleLabel.text = @"取消关注";
+        _userView.isFoucsButton.tag = 1;
+    }
+
     [_CAEmitterView addSubview:_userView];
     
     if (_chatRoomId) {//有chatroomid就是直播间否则为回放
@@ -461,6 +476,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 }
 
 -(void)closebackButtonAction{
+    [self.player stop];//关闭播放器
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
@@ -471,6 +487,18 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 #pragma mark -- 关注
 -(void)foucsButtonAction: (UIButton *) sender{
     NSLog(@"我关注了");
+    NSInteger userid = [_hostUser[@"id"] integerValue];
+    NSDictionary *dict = @{@"followid":[NSString stringWithFormat:@"%ld",userid]};
+    if (sender.tag == 1) {
+        [LYFriendsHttpTool unFollowFriendWithParms:dict complete:^(NSDictionary *dict) {
+            sender.titleLabel.text = @"关注";
+        }];
+    } else {
+        [LYFriendsHttpTool followFriendWithParms:dict complete:^(NSDictionary *dict) {
+            sender.titleLabel.text = @"取消关注";
+        }];
+    }
+    
 }
 
 #pragma mark -- 点击头像事件
@@ -724,7 +752,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     RCUserInfo *user = [[RCUserInfo alloc]init];
     user.userId = app.userModel.imuserId;
-    user.name = app.userModel.username;
+    user.name = app.userModel.usernick;
     [RCIM sharedRCIM].currentUserInfo = user;
     
     //初始化UI
@@ -1138,9 +1166,9 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
             return NO;
         }
     }
-    if (!model.content) {
-        return NO;
-    }
+//    if (!model.content) {
+//        return NO;
+//    }
     //这里可以根据消息类型来决定是否显示，如果不希望显示直接return NO
     
     //数量不可能无限制的大，这里限制收到消息过多时，就对显示消息数量进行限制。

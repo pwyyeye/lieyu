@@ -87,6 +87,7 @@
     if(app.userModel) _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
     //    [self setupAllProperty];//配置初始化
     self.pagesCount = 4;
+    _dataArray = [NSMutableArray new];
     _notificationDict = [[NSMutableDictionary alloc]init];
     [self setupTableView];//配置表
     _pageCount = 10;
@@ -115,9 +116,11 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [IQKeyboardManager sharedManager].enable = NO;
     [IQKeyboardManager sharedManager].isAdd = YES;
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
+    
     [IQKeyboardManager sharedManager].enable = YES;
     [IQKeyboardManager sharedManager].isAdd = NO;
     
@@ -125,6 +128,7 @@
         isExidtEffectView = NO;
         [emojisView hideEmojiEffectView];
     }
+    
     [_liveShow removeFromSuperview];
     _liveShow = nil;
     
@@ -181,7 +185,7 @@
                 [_dataArray removeAllObjects];
                 [_dataArray addObjectsFromArray:dataArray];
             }else {//上拉加载时
-                NSMutableArray *muArr = _dataArray[tableView.tag];
+                NSMutableArray *muArr = [NSMutableArray arrayWithArray:_dataArray].mutableCopy;
                 [muArr addObjectsFromArray:dataArray];
             }
             _pageStartCount ++;
@@ -436,14 +440,11 @@
 
 #pragma mark - UITableViewDelegate&UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    NSArray *array = ((NSArray *)_dataArray[tableView.tag]);
-    [self getDataWithType:1 needLoad:YES];
-    return array.count;
+    return _dataArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSArray *array = (NSArray *)_dataArray[tableView.tag];
-    FriendsRecentModel *recentM = array[section];
+    FriendsRecentModel *recentM = _dataArray[section];
     if (recentM.commentNum.integerValue >= 1) {
         return 5  + recentM.commentList.count;
     }else{
@@ -454,9 +455,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSArray *dataArr = _dataArray[tableView.tag];
     
-    FriendsRecentModel *recentM = dataArr[indexPath.section];
+    FriendsRecentModel *recentM = _dataArray[indexPath.section];
     switch (indexPath.row) {
         case 0://昵称 头像 动态文本的cell
         {
@@ -481,7 +481,7 @@
             }else{
                 [nameCell.btn_delete setTitle:@"删除" forState:UIControlStateNormal];
                 [nameCell.btn_delete setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
-                [nameCell.btn_delete addTarget:self action:@selector(deleteClick:) forControlEvents:UIControlEventTouchUpInside];
+                [nameCell.btn_delete addTarget:self action:@selector(deleteMonmentClick:) forControlEvents:UIControlEventTouchUpInside];
                 nameCell.btn_delete.hidden = NO;
                 nameCell.btn_delete.enabled = YES;
             }
@@ -588,10 +588,8 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSArray *arr = _dataArray[tableView.tag];
-    //    NSLog(@"--->%ld",indexPath.section);
     
-    FriendsRecentModel *recentM = arr[indexPath.section];
+    FriendsRecentModel *recentM = _dataArray[indexPath.section];
     switch (indexPath.row) {
         case 0://头像和动态
         {
@@ -704,7 +702,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (isExidtEffectView) [emojisView hideEmojiEffectView];
     _section = indexPath.section;
-    FriendsRecentModel *recentM = _dataArray[_index][indexPath.section];
+    FriendsRecentModel *recentM = _dataArray[indexPath.section];
     if(indexPath.row == 0){//进去详情
         if([MyUtil isEmptyString:recentM.id]) return;
         [self pushFriendsMessageDetailVCWithIndex:indexPath.section];
@@ -743,7 +741,7 @@
 
 #pragma mark - 点击动态中话题文字
 - (void)topicNameClick:(UIButton *)button{
-    FriendsRecentModel *friendRecentM = _dataArray[_index][button.tag];
+    FriendsRecentModel *friendRecentM = _dataArray[button.tag];
     if ([friendRecentM.isBarTopicType isEqualToString:@"0"]) {
         if (friendRecentM.topicTypeName.length && friendRecentM.topicTypeId.length) {
             LYFriendsTopicsViewController *friendsTopicVC = [[LYFriendsTopicsViewController alloc]init];
@@ -771,6 +769,7 @@
 
 #pragma mark - 举报弹框
 - (void)jubaoDT{
+    
     //    if(!_index){
     //        NSArray *dataArr = _dataArray[_index];
     //        FriendsRecentModel *recentM = dataArr[button.tag];
@@ -784,8 +783,7 @@
 
 - (void)warningSheet:(UIButton *)button{
     if(!_index){
-        NSArray *dataArr = _dataArray[_index];
-        FriendsRecentModel *recentM = dataArr[button.tag];
+        FriendsRecentModel *recentM = _dataArray[button.tag];
         jubaoMomentID = recentM.id;
         jubaoUserID = recentM.userId;
         UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"屏蔽此人",@"举报内容", nil];
@@ -796,7 +794,7 @@
 
 #pragma mark - 点击头像跳转到指定用户界面
 - (void)pushUserMessagePage:(UIButton *)button{
-    FriendsRecentModel *recentM = _dataArray[_index][button.tag];
+    FriendsRecentModel *recentM = _dataArray[button.tag];
     //    if([recentM.userId isEqualToString:_useridStr]) return;
     if([recentM.userId isEqualToString:_useridStr] || [MyUtil isEmptyString:recentM.userId]) {
         return;
@@ -808,20 +806,18 @@
 }
 
 #pragma mark － 删除我的动态
-- (void)deleteClick:(UIButton *)button{
+- (void)deleteMonmentClick:(UIButton *)button{
     if (isExidtEffectView) [emojisView hideEmojiEffectView];
-    if(_index){
+    
         UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"确定删除这条动态" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         [alertView show];
         _deleteMessageTag = button.tag;
-    }
 }
 
 #pragma mark - UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex) {//删除我的动态
-        NSMutableArray *array = _dataArray[_index];
-        FriendsRecentModel *recentM = array[_deleteMessageTag];
+        FriendsRecentModel *recentM = _dataArray[_deleteMessageTag];
         if(![MyUtil isUserLogin]){
             [MyUtil showCleanMessage:@"请先登录！"];
             [MyUtil gotoLogin];
@@ -830,7 +826,7 @@
         NSDictionary *paraDic = @{@"userId":_useridStr,@"messageId":recentM.id};
         [LYFriendsHttpTool friendsDeleteMyMessageWithParams:paraDic compelte:^(bool result) {
             if (result) {
-                [array removeObjectAtIndex:_deleteMessageTag];
+                [_dataArray removeObjectAtIndex:_deleteMessageTag];
                 //                [tableView reloadData];
                 
                 [_userTablewView deleteSections:[NSIndexSet indexSetWithIndex:_deleteMessageTag] withRowAnimation:UITableViewRowAnimationTop];
@@ -896,7 +892,7 @@
     LYFriendsAddressTableViewCell *cell = (LYFriendsAddressTableViewCell *)[_userTablewView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:button.tag]];
     cell.btn_like.enabled = NO;
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    FriendsRecentModel *recentModel = _dataArray[_index][button.tag];
+    FriendsRecentModel *recentModel = _dataArray[button.tag];
     NSString *likeStr = nil;
     if ([[NSString stringWithFormat:@"%@",recentModel.liked] isEqual:@"0"]) {//未表白过
         likeStr = @"1";
@@ -1022,7 +1018,7 @@
     }
     LYFriendsAddressTableViewCell *cell = (LYFriendsAddressTableViewCell *)[_userTablewView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:gestureViewTag]];
     cell.btn_like.enabled = NO;
-    FriendsRecentModel *recentM = _dataArray[_index][gestureViewTag];
+    FriendsRecentModel *recentM = _dataArray[gestureViewTag];
     NSDictionary *paraDic = @{@"userId":_useridStr,
                               @"messageId":recentM.id,
                               @"type":@"1",
@@ -1067,7 +1063,7 @@
 
 #pragma mark － 跳转消息详情页面
 - (void)pushFriendsMessageDetailVCWithIndex:(NSInteger)index{
-    FriendsRecentModel *recentM = _dataArray[_index][index];
+    FriendsRecentModel *recentM = _dataArray[index];
     LYFriendsAMessageDetailViewController *messageDetailVC = [[LYFriendsAMessageDetailViewController alloc]init];
     //    messageDetailVC.recentM = recentM;
     messageDetailVC.recentM = recentM;
@@ -1082,7 +1078,7 @@
     NSInteger i = button.tag % 7;
     NSInteger section = button.tag / 7 ;
     if(section >=0 && i>=0){
-        FriendsRecentModel *recentM = _dataArray[_index][section];
+        FriendsRecentModel *recentM = _dataArray[section];
         if(i >= recentM.likeList.count) return;
         
         FriendsLikeModel *likeM = recentM.likeList[i];
@@ -1099,7 +1095,7 @@
 
 #pragma mark － 评论点击头像跳转到指定用户界面
 - (void)pushUserPage:(LYFriendsCommentButton *)button{
-    FriendsRecentModel *recentM = _dataArray[_index][button.tag];
+    FriendsRecentModel *recentM = _dataArray[button.tag];
     if(button.indexTag - 4 >= recentM.commentList.count) return;
     FriendsCommentModel *commentModel = recentM.commentList[button.indexTag - 4];
     
@@ -1120,8 +1116,7 @@
 #pragma mark - 视频播放
 - (void)playVideo:(UIButton *)button{
     playerSection = button.tag;
-    NSArray *array = _dataArray[_index];
-    FriendsRecentModel *recentM = (FriendsRecentModel *)array[button.tag];
+    FriendsRecentModel *recentM = (FriendsRecentModel *)_dataArray[button.tag];
     FriendsPicAndVideoModel *pvM = (FriendsPicAndVideoModel *)recentM.lyMomentsAttachList[0];
     
     QiNiuUploadTpye quType = [MyUtil configureNetworkConnect] == 1 ? QiNiuUploadTpyeSmallMedia : QiNiuUploadTpyeMedia;
@@ -1205,12 +1200,7 @@
     _saveImageAndVideoIndex ++;
     recentM.lyMomentsAttachList = @[pvModel];
     
-    NSMutableArray *arr1 = _dataArray[0];
-    [arr1 insertObject:recentM atIndex:0];
-    if(_dataArray.count == 2){
-        NSMutableArray *arr2 = _dataArray[1];
-        if(arr2.count) [arr2 insertObject:recentM atIndex:0];
-    }
+    if(_dataArray.count) [_dataArray insertObject:recentM atIndex:0];
     [_userTablewView reloadData];
 }
 
@@ -1242,13 +1232,8 @@
     pvModel.imageLink = imageLink;
     recentM.lyMomentsAttachList = @[pvModel];
     
+    if(_dataArray.count) [_dataArray insertObject:recentM atIndex:0];
     
-    NSMutableArray *arr1 = _dataArray[0];
-    [arr1 insertObject:recentM atIndex:0];
-    if(_dataArray.count == 2){
-        NSMutableArray *arr2 = _dataArray[1];
-        if(arr2.count) [arr2 insertObject:recentM atIndex:0];
-    }
     [_userTablewView reloadData];
     
 }
@@ -1289,13 +1274,11 @@
 
 #pragma mark - sendSuccess
 - (void)sendSucceed:(NSString *)messageId{//发布成功件欧重新刷新表
-    for (int i = 0; i < _dataArray.count; i ++) {
-        NSMutableArray *arr = _dataArray[i];
-        if(arr.count){
-            FriendsRecentModel *recentM = arr[0];
+    
+        if(_dataArray.count){
+            FriendsRecentModel *recentM = _dataArray[0];
             recentM.id = [NSString stringWithFormat:@"%@",messageId];
         }
-    }
         [_userTablewView reloadData];
 }
 
@@ -1378,7 +1361,7 @@
     }else if(actionSheet.tag == 300){
         if (!buttonIndex) {//删除我的评论
             
-            FriendsRecentModel *recetnM = _dataArray[_index][_section];
+            FriendsRecentModel *recetnM = _dataArray[_section];
             FriendsCommentModel *commentM = recetnM.commentList[_indexRow - 4];
             if(![MyUtil isUserLogin]){
                 [MyUtil showCleanMessage:@"请先登录！"];
@@ -1388,7 +1371,7 @@
             NSDictionary *paraDic = @{@"userId":_useridStr,@"commentId":commentM.commentId};
             [LYFriendsHttpTool friendsDeleteMyCommentWithParams:paraDic compelte:^(bool result) {
                 if(result){
-                    NSMutableArray *commentArr = ((FriendsRecentModel *)_dataArray[_index][_section]).commentList;
+                    NSMutableArray *commentArr = ((FriendsRecentModel *)_dataArray[_section]).commentList;
                     [commentArr removeObjectAtIndex:_indexRow - 4];
                     recetnM.commentNum = [NSString stringWithFormat:@"%d",recetnM.commentNum.intValue - 1];
                     [_userTablewView reloadData];
@@ -1567,7 +1550,7 @@
     
     [_commentView.btn_emotion addTarget:self action:@selector(emotionClick:) forControlEvents:UIControlEventTouchUpInside];
     if(_isCommentToUser){
-        FriendsRecentModel *recentM = (FriendsRecentModel *)_dataArray[_index][_section];
+        FriendsRecentModel *recentM = (FriendsRecentModel *)_dataArray[_section];
         if(!recentM.commentList.count) return;
         FriendsCommentModel *commentM = recentM.commentList[_indexRow - 4];
         _commentView.textField.placeholder = [NSString stringWithFormat:@"回复%@",commentM.nickName];
@@ -1688,12 +1671,12 @@
     NSString *toUserId = nil;
     NSString *toUserNickName = nil;
     if (_isCommentToUser) {//对其他人回复
-        recentM = _dataArray[_index][_section];
+        recentM = _dataArray[_section];
         FriendsCommentModel *commentModel = recentM.commentList[_indexRow - 4];
         toUserId = commentModel.userId;
         toUserNickName = commentModel.nickName;
     }else{//自己对动态评论
-        recentM = _dataArray[_index][_commentBtnTag];
+        recentM = _dataArray[_commentBtnTag];
         toUserId = @"";
         toUserNickName = @"";
     }
@@ -1760,7 +1743,7 @@
     //            index = 3;
     //        }
     
-    NSArray *urlArray = [((FriendsPicAndVideoModel *)((FriendsRecentModel *)_dataArray[_index][section]).lyMomentsAttachList[0]).imageLink componentsSeparatedByString:@","];
+    NSArray *urlArray = [((FriendsPicAndVideoModel *)((FriendsRecentModel *)_dataArray[section]).lyMomentsAttachList[0]).imageLink componentsSeparatedByString:@","];
     LYFriendsImgTableViewCell *imgCell = (LYFriendsImgTableViewCell *)[_userTablewView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:section]];
     for (UIButton *btn in imgCell.btnArray) {
         CGRect rect = [imgCell convertRect:btn.frame toView:app.window];

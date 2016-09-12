@@ -89,7 +89,7 @@ PLStreamingSendingBufferDelegate,UICollectionViewDataSource, UICollectionViewDel
     UISlider *_beaSlider;
     NSTimer *_timer;//定时器
     int _takeNum;//聊天数
-    int _likeNum;//点赞数
+    long _likeNum;//点赞数
     UIImage *_begainImage;
     NSInteger _commentBtnTag;
     LYFriendsCommentView *_commentView;//弹出的评论框
@@ -214,13 +214,13 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.dataArray = [NSMutableArray array];
-    __weak typeof(self) weakSelf = self;
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSDate* dat = [NSDate date];
     NSTimeInterval a=[dat timeIntervalSince1970]*1000;
     NSString *time13 = [NSString stringWithFormat:@"%f",a];
     NSString *times = [time13 substringToIndex:13];
     _roomid =  [NSString stringWithFormat:@"%d%@", app.userModel.userid,times];
+    __weak typeof(self) weakSelf = self;
     NSDictionary *roomDict = @{@"liveChatId":_roomid,@"1":@"1"};
     //获取直播的stream配置摄像头,请求stream之后将创建开始界面，所以必须传递roomid,此处已经开始配置好了音频和视频，当点击开始直播请求结束后，收到通知才开始推流。
     [LYFriendsHttpTool getStreamWithParms:roomDict complete:^(NSDictionary *dict) {
@@ -245,8 +245,21 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
         [_registerView setBegainImage:^(UIImage *img) {
             _begainImage = img;
         }];
+    } failure:^(NSString *error) {
+        [self dismissViewControllerAnimated:YES completion:NULL];
     }];
-    
+//    [self initPLplayer];//初始化摄像头
+//    _registerView = [[[NSBundle mainBundle] loadNibNamed:@"RegisterLiveShowView" owner:self options:nil] lastObject];
+//    _registerView.frame = self.view.bounds;
+//    _registerView.alpha = 0.5f;
+//    _registerView.backgroundColor = [UIColor blackColor];
+//    [self.view addSubview:_registerView];
+//    [self.view bringSubviewToFront:_registerView];
+//    [_registerView.backButton addTarget:self action:@selector(registerbackButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
+//    [_registerView setBegainImage:^(UIImage *img) {
+//        _begainImage = img;
+//    }];
+
     [self.session setBeautifyModeOn:YES];
 //    [self beginLiveShow];
     //获取通知中心单例对象
@@ -261,6 +274,19 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 -(void)notice:(NSNotification *)sender{
 //    __weak typeof(self) weakSelf = self;
     _stream = sender.userInfo[@"stream"];
+    
+//    NSString *jsonString = _stream;
+//    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+//    NSError *err;
+//    NSDictionary *streamJSON = [NSJSONSerialization JSONObjectWithData:jsonData
+//                                                               options:NSJSONReadingMutableContainers
+//                                                                 error:&err];
+//    NSDictionary *hosts = streamJSON[@"hosts"];
+//    NSString *rtmp = [NSString stringWithFormat:@"%@",hosts[@"publish"][@"rtmp"]];
+//    NSString *hub = streamJSON[@"hub"];
+//    NSString *idStr = streamJSON[@"title"];
+//    NSString *key = streamJSON[@"publishKey"];
+//    _contentURL = [NSString stringWithFormat:@"rtmp://%@/%@/%@?key=%@",rtmp,hub,idStr,key];
     _chatRoomId = sender.userInfo[@"chatroomid"];
     _roomid = sender.userInfo[@"roomid"];
 //    [self initPLplayer];//初始化摄像头
@@ -278,8 +304,8 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     NSDictionary *dictionary = @{@"chatNum":[NSString stringWithFormat:@"%d",_takeNum],@"liveChatId":_chatRoomId};
     [self.dataArray removeAllObjects];
     [LYFriendsHttpTool requestListWithParms:dictionary complete:^(NSDictionary *dict) {
-        _likeNum = [dict[@"likeNum"] integerValue];
-        _userView.numberLabel.text = [NSString stringWithFormat:@"%d",_likeNum];
+        _likeNum = (long)dict[@"likeNum"];
+        _userView.numberLabel.text = [NSString stringWithFormat:@"%ld",_likeNum];
         self.dataArray = dict[@"users"];
         [_audienceCollectionView reloadData];
     }];
@@ -287,7 +313,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 
 #pragma mark --- 初始化页面
 -(void)initUI {
-    
+    _userView.numberLabel.text = @"0";
     //粒子动画
     UIView *CAEmitterView = [[UIView alloc] initWithFrame:self.view.bounds];
     CAEmitterView.backgroundColor = [UIColor clearColor];
@@ -305,7 +331,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"UserHeader" owner:self options:nil];
     //得到第一个UIView
     _userView = [nib objectAtIndex:0];
-    _userView.frame = CGRectMake(20, 30, 140, SCREEN_HEIGHT / 15);
+    _userView.frame = CGRectMake(20, 30, 140, 40);
     _userView.layer.cornerRadius = SCREEN_HEIGHT / 30;
     _userView.layer.masksToBounds = YES;
     _userView.backgroundColor = RGBA(33, 33, 33, 0.5);
@@ -375,12 +401,12 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 }
 
 -(void)shareButtonAction{
-    NSString *string= [NSString stringWithFormat:@"下载猎娱App猎寻更多特色酒吧。http://10.17.30.44:8080/liveroom/live?liveChatId=%@",self.chatRoomId];
+    NSString *string= [NSString stringWithFormat:@"下载猎娱App猎寻更多特色酒吧"];
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
-    [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"http://10.17.30.44:8080/liveroom/live?liveChatId=%@",self.chatRoomId];
-    [[UMSocialData defaultData].extConfig.wechatSessionData.urlResource setResourceType:(UMSocialUrlResourceTypeMusic) url:[NSString stringWithFormat:@"http://10.17.30.44:8080/liveroom/live?liveChatId=%@",self.chatRoomId]];
-//    [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"http://10.17.30.44:8080/liveroom/live?liveChatId=%@",self.chatRoomId];
-    [UMSocialData defaultData].extConfig.qqData.url = [NSString stringWithFormat:@"http://10.17.30.44:8080/liveroom/live?liveChatId=%@",self.chatRoomId];
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"http://10.17.114.61/lieyu/liveroom/live?liveChatId=%@",self.chatRoomId];
+//    [[UMSocialData defaultData].extConfig.wechatSessionData.urlResource setResourceType:(UMSocialUrlResourceTypeMusic) url:[NSString stringWithFormat:@"http://10.17.114.61/lieyu/liveroom/live?liveChatId=%@",self.chatRoomId]];
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"http://10.17.114.61/lieyu/liveroom/live?liveChatId=%@",self.chatRoomId];
+    [UMSocialData defaultData].extConfig.qqData.url = [NSString stringWithFormat:@"http://10.17.114.61/lieyu/liveroom/live?liveChatId=%@",self.chatRoomId];
     [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:nil shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,nil] delegate:nil];
 }
 
@@ -483,15 +509,6 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 //                        [self.session setBeautify:_beautify];
                     }
                     
-//                    if (![_stream isEqualToString:@"ceshi"]) {//正确stream的推流画面覆盖之前的
-//                        previewView.alpha = 0;
-//                        [previewView removeFromSuperview];
-//                        previewView = nil;
-//                       UIView *previewViewNew = self.session.previewView;
-//                        previewViewNew.autoresizingMask = UIViewAutoresizingFlexibleHeight| UIViewAutoresizingFlexibleWidth;
-//                        [self.view insertSubview:previewViewNew atIndex:1];
-//                        [self.session setBeautify:_beautify];
-//                    }
                 });
             });
         };
@@ -517,7 +534,6 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
                 noAccessBlock();
                 break;
         }
-    
 }
 #pragma mark - Notification Handler
 
@@ -587,7 +603,6 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     if (!self.keyTime) {
         self.keyTime = now;
     }
-    
     double expectedVideoFPS = (double)self.session.videoConfiguration.videoFrameRate;
     double realtimeVideoFPS = status.videoFPS;
     if (realtimeVideoFPS < expectedVideoFPS * (1 - kMaxVideoFPSPercent)) {
@@ -649,6 +664,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 
 - (void)startSession {
     self.keyTime = nil;
+    
     dispatch_async(self.sessionQueue, ^{
         [self.session startWithCompleted:^(BOOL success) {
             if (success) {
@@ -658,6 +674,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
             }
         }];
     });
+    
 }
 
 #pragma mark --- 展示用户详情以及交互
@@ -680,7 +697,6 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 -(void)focusButtonAction:(UIButton *) sender{
     NSDictionary *dict = @{@"followid":[NSString stringWithFormat:@"%ld",_chatuserid]};
    [LYFriendsHttpTool followFriendWithParms:dic complete:^(NSDictionary *dict) {
-       [MyUtil showMessage:@"关注成功"];
        sender.titleLabel.text = @"已关注";
        sender.userInteractionEnabled = NO;
    }];
@@ -980,7 +996,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     RCUserInfo *user = [[RCUserInfo alloc]init];
     user.userId = app.userModel.imuserId;
-    user.name = app.userModel.username;
+    user.name = app.userModel.usernick;
     [RCIM sharedRCIM].currentUserInfo = user;
     
     //初始化UI
@@ -1251,7 +1267,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 //    self.inputBar.layer.masksToBounds = YES;
 //    self.inputBar.backgroundColor = [UIColor redColor];
 //    [self.inputBar changeInputBarFrame:CGRectMake(inputBarOriginX, inputBarOriginY,inputBarSizeWidth,inputBarSizeHeight)];
-    self.inputTextFieldView = [[InputTextFieldView alloc] initWithFrame:(CGRectMake(SCREEN_WIDTH / 6, distanceOfBottom - SCREEN_WIDTH / 8, SCREEN_WIDTH / 3 * 2, MinHeight_InputView))];
+    self.inputTextFieldView = [[InputTextFieldView alloc] initWithFrame:(CGRectMake(SCREEN_WIDTH / 6 - 5, distanceOfBottom - SCREEN_WIDTH / 8, SCREEN_WIDTH / 3 * 2, MinHeight_InputView))];
     self.inputTextFieldView.backgroundColor = [UIColor grayColor];
     self.inputTextFieldView.alpha = .5f;
     [self.conversationMessageCollectionView reloadData];
@@ -1413,7 +1429,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
         }
     }
     if (!model.content) {
-        return NO;
+        return YES;
     }
     //这里可以根据消息类型来决定是否显示，如果不希望显示直接return NO
     
@@ -1499,17 +1515,17 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 - (void)sendMessage:(RCMessageContent *)messageContent
         pushContent:(NSString *)pushContent {
     
-//    if(self.currentConnectionStatus != ConnectionStatus_Connected){
-//        [NSTimer scheduledTimerWithTimeInterval:1.0f
-//                                         target:self
-//                                       selector:@selector(timerForHideHUD:)
-//                                       userInfo:nil
-//                                        repeats:YES];
-//        MBProgressHUD* hud = [MBProgressHUD showHUDAddedTo:self.view animated:NO];
-//        hud.mode = MBProgressHUDModeText;
-//        hud.labelText = @"与服务器断开，请检查网络";
-//        return;
-//    }
+    if(self.currentConnectionStatus != ConnectionStatus_Connected){
+        [NSTimer scheduledTimerWithTimeInterval:1.0f
+                                         target:self
+                                       selector:@selector(timerForHideHUD:)
+                                       userInfo:nil
+                                        repeats:YES];
+        MBProgressHUD* hud = [MBProgressHUD showHUDAddedTo:self.view animated:NO];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"与服务器断开，请检查网络";
+        return;
+    }
     messageContent.senderUserInfo = [RCIM sharedRCIM].currentUserInfo;
     if (messageContent == nil) {
         return;
@@ -1568,6 +1584,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
         });
     }
 }
+
 /**
  *  更新底部新消息提示显示状态
  */

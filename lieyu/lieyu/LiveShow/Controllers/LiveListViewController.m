@@ -499,7 +499,7 @@ static NSString *liveShowListID = @"liveShowListID";
             [UIView animateWithDuration:0.1 animations:^{
                 _lineView.center = CGPointMake(_newBtn.center.x, _lineView.center.y);
             }];
-            [self getDataWithType:@"recent" AndPage:@"1"];
+//            [self getDataWithType:@"recent" AndPage:@"1"];
         }else{
             _newBtn.isLiveListMenuSelected = NO;
             _hotBtn.isLiveListMenuSelected = YES;
@@ -636,7 +636,6 @@ static NSString *liveShowListID = @"liveShowListID";
             }
         }];
     }];
-
 }
 
 #pragma mark -- 点击开始直播按钮
