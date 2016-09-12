@@ -107,10 +107,10 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
     _timer=[NSTimer scheduledTimerWithTimeInterval:60*5 target:self selector:@selector(doHeart) userInfo:nil repeats:YES];
     [_timer setFireDate:[NSDate distantFuture]];//暂停
     
-    [USER_DEFAULT setObject:@"北京" forKey:@"ChooseCityLastTime"];
-    [USER_DEFAULT setObject:@"0" forKey:@"LastCityHasBar"];
-    [USER_DEFAULT setObject:@"0" forKey:@"LastCityHasNightClub"];
-    [USER_DEFAULT setObject:@"2015-03-21" forKey:@"LocationTodayPosition"];
+//    [USER_DEFAULT setObject:@"北京" forKey:@"ChooseCityLastTime"];
+//    [USER_DEFAULT setObject:@"0" forKey:@"LastCityHasBar"];
+//    [USER_DEFAULT setObject:@"0" forKey:@"LastCityHasNightClub"];
+//    [USER_DEFAULT setObject:@"2015-03-21" forKey:@"LocationTodayPosition"];
     
     
      //引导页启动

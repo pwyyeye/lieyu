@@ -117,7 +117,15 @@
 
 #pragma mark - 下载图片
 - (IBAction)downloadQRCode:(UIButton *)sender {
-    CGFloat width = _imageWidth * sender.tag;
+    CGFloat width ;
+    if(sender.tag == 1){
+        width = 340;
+    }else if (sender.tag == 2){
+        width = 425;
+    }else if (sender.tag == 3){
+        width = 850;
+    }
+//    = _imageWidth * sender.tag;
     UIImage *QRCode = [self qrImageForString:_codeString imageSize:width];
     UIImageWriteToSavedPhotosAlbum(QRCode, self, @selector(imageSavedToPhotosAlbum:didFinishSavingWithError:contextInfo:), nil);
 }

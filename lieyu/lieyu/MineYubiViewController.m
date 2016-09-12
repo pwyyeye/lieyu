@@ -85,7 +85,7 @@
 }
 
 - (void)rechargeCustomClick{
-    UIAlertView *rechargeAlertview = [[UIAlertView alloc]initWithTitle:nil message:@"充值越多赠送越多" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    UIAlertView *rechargeAlertview = [[UIAlertView alloc]initWithTitle:nil message:@"充值越多赠送越多" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"余额充值",@"在线充值", nil];
     rechargeAlertview.tag = 1;
     [rechargeAlertview setAlertViewStyle:UIAlertViewStylePlainTextInput];
     UITextField *rechargeField = [rechargeAlertview textFieldAtIndex:0];

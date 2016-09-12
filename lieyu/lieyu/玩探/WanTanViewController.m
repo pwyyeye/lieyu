@@ -34,7 +34,7 @@ static NSString *wantanCellID = @"wantanCellID";
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar addSubview:_myTitle];
+//    [self.navigationController.navigationBar addSubview:_myTitle];
     if (self.navigationController.navigationBarHidden != NO) {
         [self.navigationController setNavigationBarHidden:NO];
     }
@@ -53,9 +53,9 @@ static NSString *wantanCellID = @"wantanCellID";
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.title = @"玩探";
     [self.tableView registerNib:[UINib nibWithNibName:@"WanTanCell" bundle:nil] forCellReuseIdentifier:wantanCellID];
-    [self setuptitle];
+//    [self setuptitle];
     self.tableView.showsHorizontalScrollIndicator=NO;
     self.tableView.showsVerticalScrollIndicator=NO;
     self.tableView.separatorColor=[UIColor clearColor];

@@ -34,6 +34,11 @@
     [_barNameLabel setText:barModel.barname];
     [_barDescLabel setText:barModel.subtitle];
     [_barAddressShortLabel setText:barModel.addressabb];
+    if([MyUtil isEmptyString:barModel.addressabb]){
+        _seperateView.hidden = YES;
+    }else{
+        _seperateView.hidden = NO;
+    }
     if(![MyUtil isEmptyString:barModel.distance] && barModel.distance.floatValue != 0.f){
         CGFloat distanceStr = barModel.distance.floatValue * 1000;
         if (distanceStr > 1000) {

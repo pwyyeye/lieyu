@@ -25,7 +25,7 @@
                         <constraint firstAttribute="height" constant="37" id="hsF-A6-l07"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <state key="normal" title="登 陆" backgroundImage="LoginNew.png">
+                    <state key="normal" title="登 录" backgroundImage="LoginNew.png">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>

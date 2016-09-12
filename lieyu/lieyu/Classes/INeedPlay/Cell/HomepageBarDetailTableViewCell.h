@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *barDescLabel;
 @property (weak, nonatomic) IBOutlet UILabel *barAddressShortLabel;
 @property (weak, nonatomic) IBOutlet UILabel *barDistanceLabel;
+@property (weak, nonatomic) IBOutlet UIView *seperateView;
 
 @property (weak, nonatomic) IBOutlet UIButton *collectButton;
 @property (weak, nonatomic) IBOutlet UIButton *commentButton;
