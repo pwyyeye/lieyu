@@ -47,33 +47,57 @@
     [self getData];
 }
 
+- (void)initDataListWithArray:(NSArray *)dataList{
+    NSMutableArray *addressBookTemp = [[NSMutableArray alloc]init];
+    [addressBookTemp addObjectsFromArray:dataList];
+    UILocalizedIndexedCollation *theCollation = [UILocalizedIndexedCollation currentCollation];
+    for (LYAdviserManagerBriefInfo *infoModel in addressBookTemp) {
+        NSInteger sect = [theCollation sectionForObject:infoModel collationStringSelector:@selector(usernick)];
+        infoModel.sectionNumber = sect;
+    }
+    NSInteger highSection = [[theCollation sectionTitles]count];
+    NSMutableArray *sectionArrays = [NSMutableArray arrayWithCapacity:highSection];
+    for (int i = 0 ; i <= highSection; i ++) {
+        NSMutableArray *sectionArray = [NSMutableArray arrayWithCapacity:1];
+        [sectionArrays addObject:sectionArray];
+    }
+    for (LYAdviserManagerBriefInfo *infoModel in addressBookTemp) {
+        [(NSMutableArray *)[sectionArrays objectAtIndex:infoModel.sectionNumber] addObject:infoModel];
+    }
+    for (NSMutableArray *sectionArray in sectionArrays) {
+        NSArray *sortedSection = [theCollation sortedArrayFromArray:sectionArray collationStringSelector:@selector(usernick)];
+        [_dataArray addObject:sortedSection];
+    }
+}
+
 #pragma mark - getdata
 - (void)getData{
     __weak __typeof(self)weakSelf = self;
-    NSDictionary *dict = @{_keyForData:_userID};
-        [LYAdviserHttpTool lyCheckFansWithParams:dict complete:^(NSArray *dataList) {
-            NSMutableArray *addressBookTemp = [[NSMutableArray alloc]init];
-            [addressBookTemp addObjectsFromArray:dataList];
-            UILocalizedIndexedCollation *theCollation = [UILocalizedIndexedCollation currentCollation];
-            for (LYAdviserManagerBriefInfo *infoModel in addressBookTemp) {
-                NSInteger sect = [theCollation sectionForObject:infoModel collationStringSelector:@selector(usernick)];
-                infoModel.sectionNumber = sect;
+    if (_type == 0) {
+        //获取粉丝
+        [LYAdviserHttpTool lyGetNewFansListWithParams:nil complete:^(NSArray *dataList) {
+            if (dataList.count <= 0) {
+                [_kongLabel setText:@"您还没有粉丝哦～赶紧去直播吧！"];
+                _tableView.hidden = YES;
+            }else{
+                _tableView.hidden = NO;
+                [weakSelf initDataListWithArray:dataList];
+                [weakSelf.tableView reloadData];
             }
-            NSInteger highSection = [[theCollation sectionTitles]count];
-            NSMutableArray *sectionArrays = [NSMutableArray arrayWithCapacity:highSection];
-            for (int i = 0 ; i <= highSection; i ++) {
-                NSMutableArray *sectionArray = [NSMutableArray arrayWithCapacity:1];
-                [sectionArrays addObject:sectionArray];
-            }
-            for (LYAdviserManagerBriefInfo *infoModel in addressBookTemp) {
-                [(NSMutableArray *)[sectionArrays objectAtIndex:infoModel.sectionNumber] addObject:infoModel];
-            }
-            for (NSMutableArray *sectionArray in sectionArrays) {
-                NSArray *sortedSection = [theCollation sortedArrayFromArray:sectionArray collationStringSelector:@selector(usernick)];
-                [_dataArray addObject:sortedSection];
-            }
-            [weakSelf.tableView reloadData];
         }];
+    }else if (_type == 1){
+        //获取关注
+        [LYAdviserHttpTool lyGetNewFollowsListWithParams:nil complete:^(NSArray *dataList) {
+            if (dataList.count <= 0) {
+                [_kongLabel setText:@"您还没有关注任何人哦～"];
+                _tableView.hidden = YES;
+            }else{
+                _tableView.hidden = NO;
+                [weakSelf initDataListWithArray:dataList];
+                [weakSelf.tableView reloadData];
+            }
+        }];
+    }
 }
 
 #pragma mark - 右侧序列

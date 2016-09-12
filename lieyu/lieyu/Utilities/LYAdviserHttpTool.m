@@ -54,10 +54,10 @@
 + (void)lyAddCollectWithParams:(NSDictionary *)params complete:(void (^)(BOOL))complete{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [app startLoading];
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_ADVISER_ADDCARE baseURL:LY_SERVER params:params success:^(id response) {
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_ADVISER_ADDCARE baseURL:RUIQIU_SERVER params:params success:^(id response) {
         NSString *errorCode = [response objectForKey:@"errorcode"];
         BOOL result;
-        if ([errorCode isEqualToString:@"1"]) {
+        if ([errorCode isEqualToString:@"success"]) {
             result = YES;
             complete(result);
         }else{
@@ -74,10 +74,10 @@
 + (void)lyDeleteCollectWithParams:(NSDictionary *)params complete:(void (^)(BOOL))complete{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [app startLoading];
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_ADVISER_DELCARE baseURL:LY_SERVER params:params success:^(id response) {
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_ADVISER_DELCARE baseURL:RUIQIU_SERVER params:params success:^(id response) {
         NSString *errorCode = [response objectForKey:@"errorcode"];
         BOOL result;
-        if ([errorCode isEqualToString:@"1"]) {
+        if ([errorCode isEqualToString:@"success"]) {
             result = YES;
             complete(result);
         }else{
@@ -101,6 +101,42 @@
             complete(dataList);
         }else{
             [MyUtil showCleanMessage:@"获取数据失败！"];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+}
+
+#pragma mark - 新的获取粉丝列表
++ (void)lyGetNewFansListWithParams:(NSDictionary *)params complete:(void (^)(NSArray *))complete{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_NEWGET_FANSLIST baseURL:RUIQIU_SERVER params:params success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"success"]) {
+            NSArray *dataList = [LYAdviserManagerBriefInfo mj_objectArrayWithKeyValuesArray:[[response objectForKey:@"data"] objectForKey:@"fansList"]];
+            complete(dataList);
+        }else{
+            [MyUtil showPlaceMessage:[response objectForKey:@"message"]];
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        [app stopLoading];
+    }];
+}
+
+#pragma mark - 新的获取关注列表
++ (void)lyGetNewFollowsListWithParams:(NSDictionary *)params complete:(void (^)(NSArray *))complete{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_NEWGET_FOLLOWLIST baseURL:RUIQIU_SERVER params:params success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"success"]) {
+            NSArray *dataList = [LYAdviserManagerBriefInfo mj_objectArrayWithKeyValuesArray:[[response objectForKey:@"data"] objectForKey:@"followlist"]];
+            complete(dataList);
+        }else{
+            [MyUtil showPlaceMessage:[response objectForKey:@"message"]];
         }
         [app stopLoading];
     } failure:^(NSError *err) {

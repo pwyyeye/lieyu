@@ -53,6 +53,9 @@
                 case 3:
                     _label_type.text =  @"提现成功，本次使用微信提现";
                     break;
+                case 4:
+                    _label_type.text = @"操作成功，本次为娱币充值";
+                    break;
             }
             break;
             
@@ -67,6 +70,9 @@
                     break;
                 case 3:
                     _label_type.text =  @"提现中，本次使用微信提现";
+                    break;
+                case 4:
+                    _label_type.text = @"操作中，本次为娱币充值";
                     break;
             }
             break;

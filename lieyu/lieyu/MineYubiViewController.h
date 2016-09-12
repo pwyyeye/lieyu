@@ -11,12 +11,14 @@
 @protocol MineYubiDelegate <NSObject>
 
 - (void)MineYubiWithdrawDelegate:(double)amount;
+- (void)MineYubiRechargeDelegate:(double)yubi balance:(double)balance;
 
 @end
 
 @interface MineYubiViewController : LYBaseViewController
 
 @property (nonatomic, strong) NSString *coinAmount;
+@property (nonatomic, strong) NSString *balance;
 @property (nonatomic, assign) id<MineYubiDelegate> delegate;
 
 @end

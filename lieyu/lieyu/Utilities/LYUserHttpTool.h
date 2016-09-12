@@ -238,7 +238,10 @@
 + (void)rechargeMoneyBagWithParams:(NSDictionary *)dict complete:(void(^)(NSString *result))complete;
 //娱币兑换余额
 + (void)coinChangeToMoneyWithParams:(NSDictionary *)dict complete:(void(^)(BOOL result))complete;
+#pragma mark - 娱币充值［余额兑换娱币］
++ (void)rechargeCoinWithParams:(NSDictionary *)dict complete:(void(^)(BOOL result))complete;
 //获取娱客帮数据
 + (void)lyGetYukebangDataWithParams:(NSDictionary *)dict complete:(void(^)(NSDictionary *result))complete;
-
+#pragma mark - 获取娱客帮的二维码
++ (void)lyGetYukebangQRCodeWithParams:(NSDictionary *)dict complete:(void(^)(NSString *result))complete;
 @end

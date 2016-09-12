@@ -110,7 +110,7 @@
     _scanLayer.frame = CGRectMake(17, 0, SCREEN_WIDTH - 164, 4);
     _scanLayer.cornerRadius = 1;
     _scanLayer.masksToBounds = YES;
-    _scanLayer.backgroundColor = [RGBA(105, 255, 45, 0.7) CGColor];
+    _scanLayer.backgroundColor = [RGBA(184, 40, 227, 0.7) CGColor];
     [_viewPreview.layer addSublayer:_scanLayer];
     _timer = [NSTimer scheduledTimerWithTimeInterval:0.04f target:self selector:@selector(moveScanLayer:) userInfo:nil repeats:YES];
     [_timer fire];

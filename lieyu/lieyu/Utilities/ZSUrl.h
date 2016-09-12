@@ -71,7 +71,7 @@
 //我的专属经理
 #define LY_MY_ZSJL @"lyUsersVipStoreAction.do?action=list"
 //删除收藏的专属经理
-#define LY_MY_ZSJL_DEL @"lyUsersVipStoreAction.do?action=delete"
+#define LY_MY_ZSJL_DEL @"/lieyu//app/api/sns/removefollow?1=1"
 //申请专属经理
 #define LY_APPLY_MANAGER @"lyUsersVipApplyAction.do?action=add"
 //申请专属经理更新

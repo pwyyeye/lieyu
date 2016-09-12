@@ -239,7 +239,7 @@
         [_fansOrCaresLabel setText:@"粉丝"];
         [_fansOrCaresNumLabel setText:[NSString stringWithFormat:@"%d",_result.beCollectNum]];
         [_careNumberImage setImage:[UIImage imageNamed:@"CareNumber"]];
-        if ([_result.liked isEqualToString:@"1"]) {
+        if ([_result.liked isEqualToString:@"1"] || [_result.liked isEqualToString:@"3"]) {
             [_collectButton setImage:[UIImage imageNamed:@"CareNumber"] forState:UIControlStateNormal];
             _collectButton.tag = 189;
         }else{
@@ -484,8 +484,7 @@
 }
 
 - (IBAction)addCareof:(UIButton *)sender {
-    NSDictionary *dict = @{@"userid":[NSNumber numberWithInt:self.userModel.userid],
-                           @"vipUserid":[NSNumber numberWithInt:_result.userid]};
+    NSDictionary *dict = @{@"followid":[NSNumber numberWithInt:_result.userid]};
     if (sender.tag == 589) {
         [LYAdviserHttpTool lyAddCollectWithParams:dict complete:^(BOOL result) {
             if (result) {

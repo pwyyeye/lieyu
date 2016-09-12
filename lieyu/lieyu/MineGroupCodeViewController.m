@@ -8,6 +8,7 @@
 
 #import "MineGroupCodeViewController.h"
 #import "qrencode.h"
+#import "LYUserHttpTool.h"
 
 @interface MineGroupCodeViewController ()
 
@@ -27,14 +28,20 @@
 
 - (void)getData{
     //获取完字符串之后操作
-    _imageWidth = SCREEN_HEIGHT / 2 - 150;
-    _codeString = @"fdhjsakhfjkhdsajklfhdjklashfjdkslaf";
-    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, _imageWidth, _imageWidth)];
-    imageView.layer.cornerRadius = 6;
-    imageView.layer.masksToBounds = YES;
-    imageView.backgroundColor = RGBA(242, 242, 242, 1);
-    imageView.image = [self qrImageForString:_codeString imageSize:_imageWidth];
-    [self.codeView addSubview:imageView];
+    [LYUserHttpTool lyGetYukebangQRCodeWithParams:nil complete:^(NSString *result) {
+        if (![MyUtil isEmptyString:result]) {
+            _imageWidth = SCREEN_HEIGHT / 2 - 150;
+            _codeString = result;
+            UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, _imageWidth, _imageWidth)];
+            imageView.layer.cornerRadius = 6;
+            imageView.layer.masksToBounds = YES;
+            imageView.backgroundColor = RGBA(242, 242, 242, 1);
+            imageView.image = [self qrImageForString:_codeString imageSize:_imageWidth];
+            [self.codeView addSubview:imageView];
+        }else{
+            [MyUtil showPlaceMessage:@"二维码为空，请稍后重试！"];
+        }
+    }];
 }
 
 - (UIImage *)qrImageForString:(NSString *)string imageSize:(CGFloat)size {
@@ -53,7 +60,7 @@
     //create context
     CGBitmapInfo bitmapinfo = (CGBitmapInfo)kCGImageAlphaPremultipliedLast;
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGContextRef ctx = CGBitmapContextCreate(0, size, size, 8, size * 4, colorSpace, bitmapinfo);
+    CGContextRef ctx = CGBitmapContextCreate(0, size, size, 8, 0, colorSpace, bitmapinfo);
     CGAffineTransform translateTransform = CGAffineTransformMakeTranslation(0, -size);
     CGAffineTransform scaleTransform = CGAffineTransformMakeScale(1, -1);
     CGContextConcatCTM(ctx, CGAffineTransformConcat(translateTransform, scaleTransform));

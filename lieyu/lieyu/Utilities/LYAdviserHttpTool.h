@@ -25,7 +25,8 @@
 + (void)lyGetAdviserListWithParams:(NSDictionary *)params complete:(void(^)(HomePageModel *model))complete;
 //获取专属经理直播列表
 + (void)lyGetAdviserVideoWithParams:(NSDictionary *)params complete:(void(^)(NSArray *dataList))complete;
-//
-//
-//
+#pragma mark - 新的获取粉丝列表
++ (void)lyGetNewFansListWithParams:(NSDictionary *)params complete:(void(^)(NSArray *dataList))complete;
+#pragma mark - 新的获取关注列表
++ (void)lyGetNewFollowsListWithParams:(NSDictionary *)params complete:(void(^)(NSArray *dataList))complete;
 @end
