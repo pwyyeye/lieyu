@@ -178,7 +178,6 @@
     [self.navigationController setNavigationBarHidden:NO];
 }
 
-
 - (void)createLineForMenuView{
     UIButton *hotBtn = _menuBtnArray[0];
     _purpleLineView = [[UIView alloc]init];
