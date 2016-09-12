@@ -49,8 +49,8 @@ static NSString *wantanCellID = @"wantanCellID";
     
     [_timers invalidate];
     _timers = nil;
-    
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
