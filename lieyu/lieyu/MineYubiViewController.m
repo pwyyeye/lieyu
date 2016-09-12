@@ -119,19 +119,6 @@
             }
         }
     }];
-//    [LYUserHttpTool rechargeMoneyBagWithParams:dict complete:^(NSString *result) {
-//            ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
-//            detailViewController.orderNo=result;
-//            detailViewController.payAmount=[money doubleValue];
-//            detailViewController.productName=@"钱包娱币充值";
-//            detailViewController.productDescription=@"暂无";
-////        UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:weakSelf action:nil];
-////        weakSelf.navigationItem.backBarButtonItem = left;
-////        [weakSelf.navigationController pushViewController:detailViewController animated:YES];
-////        [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
-//            [self.navigationController pushViewController:detailViewController animated:YES];
-//    }];
-//    
 }
 
 - (void)withdrawClick{
