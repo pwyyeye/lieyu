@@ -16,12 +16,17 @@
 
 @implementation ZSCustomerDetailViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    self.title=@"客户详情";
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.title=@"客户详情";
     self.customerImageView.layer.masksToBounds =YES;
     
     self.customerImageView.layer.cornerRadius =self.customerImageView.frame.size.width/2;

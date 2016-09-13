@@ -26,9 +26,13 @@
 
 @implementation ZSTiXianRecordViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.title = @"提现记录";
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"提现记录";
     _beforeDataArray = [[NSMutableArray alloc]init];
     _pageSize = 20;
     _pageStart = 0;

@@ -39,8 +39,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = _subTitle;
-    
      _tableView.frame = CGRectMake(0,0, SCREEN_WIDTH, SCREEN_HEIGHT);
     
     _tableView.showsHorizontalScrollIndicator=NO;
@@ -68,6 +66,8 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
+    
+    self.title = _subTitle;
 }
 
 -(void)viewDidDisappear:(BOOL)animated{

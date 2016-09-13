@@ -38,6 +38,11 @@
 @end
 @implementation ZSOrderViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.title=@"订单管理";
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
@@ -59,7 +64,6 @@
     NSString *dateStr= [dateFormatter stringFromDate:[NSDate new]];
     self.timeLal.text=dateStr;
     nowDate=[NSDate new];
-    self.title=@"订单管理";
     self.calendarLogic = [[WQCalendarLogic alloc] init];
     
     pageCount=1;

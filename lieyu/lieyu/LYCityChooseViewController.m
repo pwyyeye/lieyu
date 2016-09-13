@@ -34,7 +34,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.navigationItem.title = @"城市选择";
     _dataArray = [[NSMutableArray alloc] init];
     
     
@@ -60,11 +59,12 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title = @"城市选择";
 }
 
-- (void)gotoBack{
-    [self.navigationController popViewControllerAnimated:YES];
-}
+//- (void)gotoBack{
+//    [self.navigationController popViewControllerAnimated:YES];
+//}
 
 //- (IBAction)cityClick:(id)sender {
 //    [self.navigationController popViewControllerAnimated:YES];

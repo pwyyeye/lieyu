@@ -27,18 +27,18 @@
 @implementation LYCarListViewController
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden = NO;
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title=@"购物车";
     [self getData];
 }
 
-- (void)viewWillLayoutSubviews{
-    [super viewWillLayoutSubviews];
-    self.navigationController.navigationBarHidden = NO;
-}
+//- (void)viewWillLayoutSubviews{
+//    [super viewWillLayoutSubviews];
+//    self.navigationController.navigationBarHidden = NO;
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title=@"购物车";
     dataList=[[NSMutableArray alloc]init];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 //    [self getData];

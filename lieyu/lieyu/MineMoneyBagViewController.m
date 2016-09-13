@@ -28,6 +28,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title = @"我的钱包";
     _dataArray = @[@{@"title":@"娱币商城",@"image":@"shopIcon"},
                    @{@"title":@"猎娱VIP",@"image":@"VIPIcon"}];
     _collectionView.delegate = self;
@@ -45,7 +46,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"我的钱包";
     [self initRightItem];
     
     [self getData];

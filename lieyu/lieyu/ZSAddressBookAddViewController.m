@@ -34,9 +34,13 @@
 
 @implementation ZSAddressBookAddViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.title = @"生日添加";
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"生日添加";
     _addressArray = [[NSMutableArray alloc]init];
     _selectedArray = [[NSMutableArray alloc]init];
     LYAddressBook *addressBook = [[LYAddressBook alloc]init];

@@ -40,6 +40,7 @@
 
 @implementation LYZSApplicationViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.nextButton.layer.cornerRadius = 21;
@@ -77,6 +78,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title = _subTitle;
 }
 
 - (void)viewDidAppear:(BOOL)animated{

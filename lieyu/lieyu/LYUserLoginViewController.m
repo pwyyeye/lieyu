@@ -47,7 +47,6 @@
     [super viewDidLoad];
     
     self.automaticallyAdjustsScrollViewInsets=NO;
-    self.navigationItem.title = @"登录";
     // Do any additional setup after loading the view from its nib.
     
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
@@ -109,6 +108,7 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
     
+    self.title = @"登录";
 }
 
 - (void)viewWillLayoutSubviews

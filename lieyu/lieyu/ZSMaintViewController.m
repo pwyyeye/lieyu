@@ -41,7 +41,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"商户中心";
     self.navigationItem.leftBarButtonItem = nil;
     self.navigationItem.hidesBackButton = YES;
     [self initRightItem];
@@ -65,7 +64,8 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title = @"商户中心";
     //    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if (![MyUtil isEmptyString:app.s_app_id]) {

@@ -20,13 +20,17 @@
 
 @implementation LYPrivateViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.title = @"隐私设置";
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStyleGrouped];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     [self.view addSubview:_tableView];
-    self.title = @"隐私设置";
     [self getData];
 }
 

@@ -17,17 +17,13 @@
 @implementation LYWithdrawViewController
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title = @"选择提现方式";
 }
 
-- (void)viewWillLayoutSubviews{
-    [super viewWillLayoutSubviews];
-    [self.navigationController setNavigationBarHidden:NO];
-}
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    self.title = @"选择提现方式";
     self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStyleGrouped];
     self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.tableView.delegate = self;

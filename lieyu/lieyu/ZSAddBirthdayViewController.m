@@ -25,13 +25,17 @@
 
 @implementation ZSAddBirthdayViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.title = @"编辑生日";
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initMainView];
 }
 
 - (void)initMainView{
-    self.title = @"编辑生日";
     
     [_changeAvatarButton addTarget:self action:@selector(changeAvatarImage) forControlEvents:UIControlEventTouchUpInside];
     _avatarImage.layer.cornerRadius = 35;

@@ -17,6 +17,12 @@
 
 @implementation MineBoundAccountViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    self.title = @"绑定账户";
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     _finishButton.layer.cornerRadius = 19;

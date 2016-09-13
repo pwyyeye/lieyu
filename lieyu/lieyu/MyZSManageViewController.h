@@ -18,4 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (assign, nonatomic) BOOL isBarVip;
 @property (assign, nonatomic) int barid;
+
+@property (nonatomic, strong) NSString *subTitle;
+
 @end

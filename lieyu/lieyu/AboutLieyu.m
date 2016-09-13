@@ -14,10 +14,15 @@
 
 @implementation AboutLieyu
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    self.title=@"关于猎娱";
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title=@"关于猎娱";
     _version.text=[NSString stringWithFormat:@"版本号 V%@",[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]];
     if([[MyUtil deviceString] isEqualToString:@"iPhone 6 Plus"]){
         self.commonIconHead.constant = 80;

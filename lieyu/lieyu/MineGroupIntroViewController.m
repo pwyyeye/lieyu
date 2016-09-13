@@ -14,9 +14,13 @@
 
 @implementation MineGroupIntroViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.title = @"帮派说明";
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"帮派说明";
 }
 
 - (void)didReceiveMemoryWarning {

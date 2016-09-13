@@ -14,11 +14,15 @@
 
 @implementation ZSNoticeCenterViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    self.title=@"通知中心";
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO];
-    
-    self.title=@"通知中心";
     listArr =[[NSMutableArray alloc]init];
     
     [self setupView];

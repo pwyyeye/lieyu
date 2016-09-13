@@ -31,12 +31,12 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title = @"我的娱客帮";
     [self initRightItemsButton];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"我的娱客帮";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.searchBar.delegate = self;

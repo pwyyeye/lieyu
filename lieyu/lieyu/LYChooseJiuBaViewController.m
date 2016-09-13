@@ -17,12 +17,16 @@
 
 @implementation LYChooseJiuBaViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.title = @"关联酒吧";
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     _listContent = [NSMutableArray new];
     _filteredListContent = [NSMutableArray new];
     [self getJiuBalist];
-    self.title = @"关联酒吧";
     [self initRightButton];
     // Do any additional setup after loading the view from its nib.
 }

@@ -13,4 +13,6 @@
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (nonatomic, strong) NSString *subTitle;
+
 @end

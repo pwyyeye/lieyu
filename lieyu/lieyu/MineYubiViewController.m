@@ -23,9 +23,13 @@
 
 @implementation MineYubiViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.title = @"娱币充值";
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"娱币充值";
     [self initItems];
     [_yubiAmountLabel setText:_coinAmount];
 }

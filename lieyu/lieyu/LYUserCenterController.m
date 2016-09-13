@@ -58,7 +58,6 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     self.automaticallyAdjustsScrollViewInsets = YES;
     
     self.edgesForExtendedLayout=UIRectEdgeNone;
-    self.title=@"我";
     
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -137,6 +136,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
+    self.title=@"我";
     [self loadHeaderViewBadge];
     [self getGoodsNum];
 }
@@ -326,7 +326,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
             
             MyCollectionViewController *maintViewController=[[MyCollectionViewController alloc]initWithNibName:@"MyCollectionViewController" bundle:nil];
-            maintViewController.title=@"我的收藏";
+            maintViewController.subTitle=@"我的收藏";
             [self.navigationController pushViewController:maintViewController animated:YES];
         }
     }else if (indexPath.section == 2){

@@ -19,9 +19,13 @@
 
 @implementation ZSManageCustomerViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.title = @"客户管理";
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"客户管理";
     [self initMainView];}
 
 - (void)initMainView{

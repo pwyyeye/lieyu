@@ -23,6 +23,12 @@
     NSArray *data;
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title=@"个人信息";
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -31,7 +37,6 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;//无分割线
     
     self.tableView.tableFooterView=[[UIView alloc]init];//去掉多余的分割线
-    self.title=@"个人信息";
 //    data=@[@"头像",@"昵称",@"性别",@"生日",@"标签",@"我的二维码"];
         data=@[@"头像",@"昵称",@"性别",@"生日",@"标签"];
     _datePicker=[[UIDatePicker alloc] init];
@@ -41,11 +46,6 @@
     _datePicker.locale=local;
     [_datePicker setMaximumDate:[NSDate date]];
     
-}
-
-- (void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
-    [self.navigationController setNavigationBarHidden:NO];
 }
 
 - (void)didReceiveMemoryWarning {

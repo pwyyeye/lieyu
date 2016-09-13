@@ -18,6 +18,7 @@
 
 @implementation MyCollectionViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     collectionList =[[NSMutableArray alloc]init];
@@ -40,6 +41,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title = _subTitle;
     [self getData];
 }
 

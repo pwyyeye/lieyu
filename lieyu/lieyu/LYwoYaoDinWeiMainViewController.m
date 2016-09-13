@@ -65,7 +65,6 @@
     [self initManagerView];
     // Do any additional setup after loading the view from its nib.
     [self.tableView registerNib:[UINib nibWithNibName:@"LYDinWeiTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYDinWeiTableViewCell"];
-    self.navigationItem.title = @"预定";
     
 
     UIButton *recentBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 64, 20)];
@@ -270,9 +269,9 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(0, 0);
     self.navigationController.navigationBar.layer.borderWidth = 0;
-//    [[UINavigationBar appearance]setBackgroundImage:nil forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
-    [self.navigationController setNavigationBarHidden:NO];
-
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    
+    self.navigationItem.title = @"预定";
 }
 
 -(void)viewDidAppear:(BOOL)animated{
