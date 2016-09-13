@@ -6,10 +6,10 @@
 //  Copyright © 2015年 狼族（上海）网络科技有限公司. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "LYBaseViewController.h"
 @class UserModel;
 
-@interface LYUserDetailInfoViewController : UIViewController
+@interface LYUserDetailInfoViewController : LYBaseViewController
 @property (nonatomic,unsafe_unretained) BOOL isAutoLogin;
 @property (nonatomic,strong) UserModel *userM;
 @property (nonatomic,copy) NSString *thirdLoginType;

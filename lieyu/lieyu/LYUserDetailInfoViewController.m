@@ -74,7 +74,7 @@
         [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     }
     
-    if ([self.tableView     respondsToSelector:@selector(setLayoutMargins:)]) {
+    if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
         [self.tableView setLayoutMargins:UIEdgeInsetsZero];
     }
     self.tableView.tableFooterView = [[UIView alloc]init];
