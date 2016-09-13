@@ -46,7 +46,7 @@
     if (_isSearchBar) {
         self.title = @"搜索酒吧";
     }else{
-        self.title = @"搜索娱乐顾问";
+        self.title = @"搜索用户";
     }
 }
 

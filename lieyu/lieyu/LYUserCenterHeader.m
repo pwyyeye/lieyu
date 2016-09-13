@@ -26,6 +26,7 @@
 #import "LYZSApplicationViewController.h"
 #import "checkUnpassedViewController.h"
 #import "LYFriendsHttpTool.h"
+#import "LYAccountManager.h"
 
 @implementation LYUserCenterHeader{
     UIVisualEffectView *_effctView ;
@@ -108,11 +109,7 @@
         //设置头像
         [_img_icon setImageWithURL:[NSURL URLWithString:app.userModel.avatar_img] placeholderImage:[UIImage imageNamed:app.userModel.gender.intValue==0?@"lieyu_default_head":@"lieyu_default_head"]];
         [_img_bg setImageWithURL:[NSURL URLWithString:app.userModel.avatar_img] placeholderImage:[UIImage imageNamed:app.userModel.gender.intValue==0?@"lieyu_default_head":@"lieyu_default_head"]];
-        if ([MyUtil isEmptyString:app.userModel.tag]) {
-            _label_work.text = @"未知";
-        }else{
-            _label_work.text = app.userModel.tag;
-        }
+        
         _label_constellation.text = [MyUtil getAstroWithBirthday:app.userModel.birthday];
         _label_name.text = app.userModel.usernick;
         if ([app.userModel.gender isEqualToString:@"0"]) {
@@ -168,14 +165,15 @@
                     [mytags appendString:@","];
                 }
             }
-            
-            
-            
         }
         CGSize size = [mytags boundingRectWithSize:CGSizeMake(MAXFLOAT, 15) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:nil].size;
         self._tagConstrant.constant = size.width + 10;
         [_tags setTitle:mytags forState:UIControlStateNormal];
-        _label_work.text = mytags;
+        if ([MyUtil isEmptyString:mytags]) {
+            _label_work.text = @"首富";
+        }else{
+            _label_work.text = mytags;
+        }
         _userNick.text=app.userModel.usernick;
         if([app.userModel.usertype isEqualToString:@"2"] || [app.userModel.usertype isEqualToString:@"3"]){
             _businessButton.hidden = NO;
@@ -456,14 +454,15 @@
     return self;
 }
 
+#pragma mark - 按钮事件
 - (IBAction)gotoSetting:(id)sender {
     //统计我的页面的选择
-    NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"设置"};
+    NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"账户管理"};
     [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
     
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    Setting *setting =[[Setting alloc] init];
-    [app.navigationController pushViewController:setting animated:YES];
+    LYAccountManager *detailViewController=[[LYAccountManager alloc] init];
+    [app.navigationController pushViewController:detailViewController animated:YES];
     //    LYWithdrawTypeViewController *WithdrawTypeVC = [[LYWithdrawTypeViewController alloc]initWithNibName:@"LYWithdrawTypeViewController" bundle:nil];
     //    [app.navigationController pushViewController:WithdrawTypeVC animated:YES];
     
