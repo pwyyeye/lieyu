@@ -232,7 +232,7 @@
     CGFloat friendsBtn_Width = 42;
     //导航菜单
     UIView *navMenuView = [[UIView alloc]initWithFrame:CGRectMake( (SCREEN_WIDTH - friendsBtn_Width * 2 - 16)/2.f, 0, friendsBtn_Width * 2 + 16, 44)];
-    [self.navigationController.navigationBar addSubview:navMenuView];
+//    [self.navigationController.navigationBar addSubview:navMenuView];
     
     //    朋友圈按钮
     _friendsBtn = [[HotMenuButton alloc]initWithFrame:CGRectMake(0, 12, friendsBtn_Width, 20)];
@@ -282,7 +282,7 @@
     [_liveShow setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [_liveShow.titleLabel setFont:[UIFont systemFontOfSize:16]];
     [_liveShow addTarget:self action:@selector(recentConnect) forControlEvents:UIControlEventTouchUpInside];
-    [self.navigationController.navigationBar addSubview:_liveShow];
+//    [self.navigationController.navigationBar addSubview:_liveShow];
     
 }
 

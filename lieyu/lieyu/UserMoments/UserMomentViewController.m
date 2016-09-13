@@ -93,12 +93,12 @@
     [self setupTableView];//配置表
     _pageCount = 10;
     _pageStartCount = 0;
-    self.title = @"我的玩友圈";
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
+    self.title = @"我的玩友圈";
+
 //    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
 //    if(app.userModel.userid != _useridStr.intValue){
 //        _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
@@ -206,7 +206,7 @@
 - (void)setupTableForHeaderForUserMomentPage{
     UIView *headerView = [[UIView alloc] init];
     headerView.backgroundColor = [UIColor whiteColor];
-    headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 187 / 375);
+    headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 187 / 375 + 50);
     //背景图
     bgIamge = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, headerHeight)];
     [bgIamge setImage:[UIImage imageNamed:@"empyImage16_9"]];

@@ -234,7 +234,7 @@
     CGSize textSize = CGSizeZero;
     float maxWidth = width-(10+[RCIM sharedRCIM].globalMessagePortraitSize.width+8)*2-28;
     textSize = [LYTextMessageCell getContentSize:content withFrontSize:Text_Message_Font_Size withWidth:maxWidth];
-    textSize.height = textSize.height + 17;
+    textSize.height = textSize.height + 5;
     return textSize;
 }
 

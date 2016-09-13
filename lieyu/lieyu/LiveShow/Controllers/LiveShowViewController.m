@@ -124,6 +124,7 @@ PLStreamingSendingBufferDelegate,UICollectionViewDataSource, UICollectionViewDel
 
 @property (nonatomic, strong) InputTextFieldView *inputTextFieldView;
 @property (nonatomic, strong) LiveSetView *livesetView;
+@property (nonatomic, strong) UIView *backgroudView;
 //退出
 @property (nonatomic, strong) UIButton *backButton;
 
@@ -295,18 +296,19 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     [self initUI];
     [self beginLiveShow];
     [self joinChatRoom];
-    _timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timerUpdataAction) userInfo:nil repeats:YES];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(livetimerUpdataAction) userInfo:nil repeats:YES];
     [_timer fire];
 }
 
 #pragma mark -- 定时获取直播室人员和点赞数
--(void)timerUpdataAction{
-    NSDictionary *dictionary = @{@"chatNum":[NSString stringWithFormat:@"%d",_takeNum],@"liveChatId":_chatRoomId};
+-(void)livetimerUpdataAction{
+    NSDictionary *dictionary = @{@"chatNum":[NSString stringWithFormat:@"%d",10],@"liveChatId":_chatRoomId};
     [self.dataArray removeAllObjects];
     [LYFriendsHttpTool requestListWithParms:dictionary complete:^(NSDictionary *dict) {
-        _likeNum = (long)dict[@"likeNum"];
-        _userView.numberLabel.text = [NSString stringWithFormat:@"%ld",_likeNum];
-        self.dataArray = dict[@"users"];
+        _userView.numberLabel.text = [NSString stringWithFormat:@"%@",dict[@"likeNum"]];
+        if ([dict valueForKey:@"users"]) {
+            self.dataArray = dict[@"users"];
+        }
         [_audienceCollectionView reloadData];
     }];
 }
@@ -322,7 +324,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 
     //返回按钮
     _backButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    _backButton.frame = CGRectMake(SCREEN_WIDTH - (SCREEN_WIDTH / 7) - 10, 30, SCREEN_WIDTH / 7, SCREEN_HEIGHT / 12);
+    _backButton.frame = CGRectMake(SCREEN_WIDTH - (SCREEN_WIDTH / 7) - 10, 30, 40, 40);
     [_backButton setImage:[UIImage imageNamed:@"live_close.png"] forState:(UIControlStateNormal)];
     [_backButton addTarget:self action:@selector(closeButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
     [CAEmitterView addSubview:_backButton];
@@ -332,9 +334,9 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     //得到第一个UIView
     _userView = [nib objectAtIndex:0];
     _userView.frame = CGRectMake(20, 30, 140, 40);
-    _userView.layer.cornerRadius = SCREEN_HEIGHT / 30;
+    _userView.layer.cornerRadius = 20;
     _userView.layer.masksToBounds = YES;
-    _userView.backgroundColor = RGBA(33, 33, 33, 0.5);
+    _userView.backgroundColor = RGBA(68, 64, 67, 0.5);
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [_userView.iconIamgeView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",app.userModel.avatar_img]]];
     _userView.iconIamgeView.layer.cornerRadius = _userView.iconIamgeView.frame.size.height/2;
@@ -353,9 +355,9 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     [_audienceCollectionView registerClass :[ AudienceCell class ] forCellWithReuseIdentifier : _CELL ];
     _audienceCollectionView.tag = 199;
     _audienceCollectionView.showsHorizontalScrollIndicator = NO;
-    _audienceCollectionView. backgroundColor =[UIColor clearColor];
-    _audienceCollectionView. delegate = self ;
-    _audienceCollectionView. dataSource = self ;
+    _audienceCollectionView.backgroundColor =[UIColor clearColor];
+    _audienceCollectionView.delegate = self;
+    _audienceCollectionView.dataSource = self;
     [CAEmitterView addSubview:_audienceCollectionView];
     
     //设置按钮
@@ -373,32 +375,46 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     _livesetView.alpha = 0.9f;
     _livesetView.layer.cornerRadius = 5.f;
     _livesetView.layer.masksToBounds = YES;
-    _livesetView.hidden = YES;
-    [self.view addSubview: _livesetView];
+    _backgroudView = [[UIView alloc]init];
+    _backgroudView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.1f];
+    _backgroudView.frame = self.setButton.frame;
+    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(backgroudViewGes)];
+    [_backgroudView addGestureRecognizer:tapGes];
+    [self.view addSubview:_backgroudView];
+    [_backgroudView addSubview:_livesetView];
+    _backgroudView.hidden = YES;
     
     [_livesetView.shareButton addTarget:self action:@selector(shareButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
     [_livesetView.shiftButton addTarget:self action:@selector(shiftButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
     [_livesetView.beautifulButton addTarget:self action:@selector(beautifulButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
     
-    _beaSlider = [[UISlider alloc] initWithFrame:(CGRectMake(SCREEN_WIDTH / 8 , SCREEN_HEIGHT / 3 , SCREEN_WIDTH / 4 * 3, 40))];
+    _beaSlider = [[UISlider alloc] initWithFrame:(CGRectMake(SCREEN_WIDTH / 8 , distanceOfBottom  - 140 - 40 - SCREEN_HEIGHT / 8, SCREEN_WIDTH / 4 * 3, 40))];
     _beaSlider.value = self.registerView.beautifySlider.value;
     _beaSlider.minimumTrackTintColor = self.registerView.beautifySlider.minimumTrackTintColor;
     _beaSlider.maximumTrackTintColor = self.registerView.beautifySlider.maximumTrackTintColor;
     _beaSlider.thumbTintColor = self.registerView.beautifySlider.thumbTintColor;
     _beaSlider.hidden = YES;
     [_beaSlider addTarget:self action:@selector(beattifyValueChangeAction:) forControlEvents:(UIControlEventValueChanged)];
-    [self.view addSubview:_beaSlider];
-    
+    [_backgroudView addSubview:_beaSlider];
 }
 
 #pragma mark --- 设置等事件
 -(void)setButtonAction{
-    if (_livesetView.hidden) {
-        _livesetView.hidden = NO;
+    if (_backgroudView.hidden) {
+        _backgroudView.hidden = NO;
+        _backgroudView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        [self.view insertSubview:_backgroudView aboveSubview:_conversationMessageCollectionView];
     } else {
-        _livesetView.hidden = YES;
+        _backgroudView.hidden = YES;
+        _backgroudView.frame = self.setButton.frame;
     }
 }
+
+-(void)backgroudViewGes{
+    _backgroudView.hidden = YES;
+    _backgroudView.frame = self.setButton.frame;
+}
+
 
 -(void)shareButtonAction{
     NSString *string= [NSString stringWithFormat:@"下载猎娱App猎寻更多特色酒吧"];
@@ -920,7 +936,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     if (collectionView.tag == 199) {
         return UIEdgeInsetsMake(15, 5, 15, 5);//上 左 下 右
     }else{
-        return UIEdgeInsetsMake(5, 5, 5, 5);
+        return UIEdgeInsetsMake(0, 5, 0, 5);
     }
 }
 
@@ -1106,16 +1122,21 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 //    textField.delegate = self;
 //    [self.view addSubview:textField];
     _commentView = [[[NSBundle mainBundle]loadNibNamed:@"LYFriendsCommentView" owner:nil options:nil] firstObject];
-    _commentView.frame = CGRectMake(SCREEN_WIDTH / 6, distanceOfBottom - SCREEN_WIDTH / 8,SCREEN_WIDTH / 3 * 2 , MinHeight_InputView);
-    _commentView.bgView.backgroundColor = [UIColor grayColor];
-    _commentView.bgView.layer.borderColor = RGBA(200,200,200, .2).CGColor;
+    _commentView.frame = CGRectMake(SCREEN_WIDTH / 50, distanceOfBottom - SCREEN_WIDTH / 8,SCREEN_WIDTH - MinHeight_InputView - 40, MinHeight_InputView);
+    _commentView.bgView.backgroundColor = RGB(68, 64, 67);
+    _commentView.bgView.layer.borderColor = RGBA(68,64,67, .2).CGColor;
     _commentView.bgView.layer.borderWidth = 0.5;
     _commentView.layer.cornerRadius = _commentView.frame.size.height / 2;
     _commentView.layer.masksToBounds = YES;
     _commentView.textField.placeholder = @"说点什么吧";
+    _commentView.textField.backgroundColor = RGB(68, 64, 67);
+    _commentView.textField.layer.borderColor = RGB(68, 64, 67).CGColor;
     [self.view addSubview:_commentView];
     _commentView.textField.delegate = self;
     [_commentView.btn_emotion addTarget:self action:@selector(emotionClick:) forControlEvents:UIControlEventTouchUpInside];
+    _commentView.btn_emotion.hidden = YES;
+    _commentView.textField.center = _commentView.center;
+    [_commentView layoutIfNeeded];
     _bigView = [[UIView alloc]init];
     _bigView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(bigViewGes)];
@@ -1153,7 +1174,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
         textField.text = @"";
     }
     [textField endEditing:YES];
-    _commentView.frame = CGRectMake(SCREEN_WIDTH / 6, distanceOfBottom - SCREEN_WIDTH / 8,SCREEN_WIDTH / 3 * 2 , MinHeight_InputView);
+    _commentView.frame = CGRectMake(SCREEN_WIDTH / 50, distanceOfBottom - SCREEN_WIDTH / 8,SCREEN_WIDTH - MinHeight_InputView - 40, MinHeight_InputView);
     _bigView.hidden = YES;
 
     return YES;
@@ -1188,7 +1209,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     defaultComment = _commentView.textField.text;
     //    }
     [_commentView.textField endEditing:YES];
-    _commentView.frame = CGRectMake(SCREEN_WIDTH / 6, distanceOfBottom - SCREEN_WIDTH / 8,SCREEN_WIDTH / 3 * 2 , MinHeight_InputView);
+    _commentView.frame = CGRectMake(SCREEN_WIDTH / 50, distanceOfBottom - SCREEN_WIDTH / 8,SCREEN_WIDTH - MinHeight_InputView - 40, MinHeight_InputView);
     _bigView.hidden = YES;
 }
 - (void)emotionClick:(UIButton *)button{

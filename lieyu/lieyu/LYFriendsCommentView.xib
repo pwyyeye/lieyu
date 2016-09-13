@@ -28,7 +28,7 @@
                             </state>
                         </button>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="  评论(200字以内)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fDJ-i7-gbH">
-                            <rect key="frame" x="10" y="15" width="260" height="30"/>
+                            <rect key="frame" x="20" y="15" width="250" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="nYO-jy-I21"/>
                             </constraints>
@@ -40,7 +40,7 @@
                     <constraints>
                         <constraint firstItem="VcN-zi-6PG" firstAttribute="centerY" secondItem="fDJ-i7-gbH" secondAttribute="centerY" id="5MU-zW-QuN"/>
                         <constraint firstItem="VcN-zi-6PG" firstAttribute="centerY" secondItem="DPd-nu-1fz" secondAttribute="centerY" id="H0H-Go-NUY"/>
-                        <constraint firstItem="fDJ-i7-gbH" firstAttribute="leading" secondItem="DPd-nu-1fz" secondAttribute="leading" constant="10" id="WK6-da-95a"/>
+                        <constraint firstItem="fDJ-i7-gbH" firstAttribute="leading" secondItem="DPd-nu-1fz" secondAttribute="leading" constant="20" id="WK6-da-95a"/>
                         <constraint firstItem="VcN-zi-6PG" firstAttribute="top" secondItem="DPd-nu-1fz" secondAttribute="top" constant="10" id="YAU-g8-Gxq"/>
                         <constraint firstAttribute="trailing" secondItem="VcN-zi-6PG" secondAttribute="trailing" constant="10" id="s3L-Ar-IrS"/>
                         <constraint firstItem="VcN-zi-6PG" firstAttribute="top" secondItem="DPd-nu-1fz" secondAttribute="top" constant="10" id="tO7-LC-Hms"/>

@@ -39,6 +39,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    self.title = @"玩友圈";
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 
@@ -51,21 +52,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"玩友圈";
     self.pageNum = 1;
     [self addTableViewHeader];
 }
 
-- (void)setuptitle{
-    _myTitle= [[UILabel alloc] initWithFrame: CGRectMake(0, 0, SCREEN_WIDTH, 44)];
-    _myTitle.backgroundColor = [UIColor clearColor];
-    _myTitle.textColor=[UIColor blackColor];
-    _myTitle.textAlignment = NSTextAlignmentCenter;
-    [_myTitle setFont:[UIFont systemFontOfSize:16]];
-    [_myTitle setText:@"玩探"];
-}
 -(void)viewWillDisappear:(BOOL)animated
 {
+    
     [super viewWillDisappear:animated];
     [_liveShow removeFromSuperview];
     _liveShow = nil;

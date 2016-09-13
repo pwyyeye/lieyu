@@ -230,8 +230,10 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     [self.dataArray removeAllObjects];
     [LYFriendsHttpTool requestListWithParms:dictionary complete:^(NSDictionary *dict) {
         _likeNum = (long)dict[@"likeNum"];
-        _userView.numberLabel.text = [NSString stringWithFormat:@"%ld",_likeNum];
-        self.dataArray = dict[@"users"];
+        _userView.numberLabel.text = [NSString stringWithFormat:@"%@",dict[@"likeNum"]];
+        if ([dict valueForKey:@"users"]) {
+            self.dataArray = dict[@"users"];
+        }
         [_audienceCollectionView reloadData];
     }];
 }
@@ -245,19 +247,18 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     _heartSize = 36;
     //返回按钮
     _backButton = [UIButton buttonWithType:(UIButtonTypeSystem)];
-    _backButton.frame = CGRectMake(SCREEN_WIDTH - (SCREEN_WIDTH / 7) - 10, 30, SCREEN_WIDTH / 7, SCREEN_HEIGHT / 12);
+    _backButton.frame = CGRectMake(SCREEN_WIDTH - (SCREEN_WIDTH / 7) - 10, 30, 40, 40);
     [_backButton setImage:[UIImage imageNamed:@"live_close.png"] forState:(UIControlStateNormal)];
     [_backButton addTarget:self action:@selector(closebackButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
     [_CAEmitterView addSubview:_backButton];
     
     //顶部用户信息
     NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"UserHeader" owner:self options:nil];
-    //得到第一个UIView
     _userView = [nib objectAtIndex:0];
-    _userView.frame = CGRectMake(20, 30, SCREEN_WIDTH / 2, 40);
-    _userView.layer.cornerRadius = SCREEN_HEIGHT / 30;
+    _userView.frame = CGRectMake(20, 30, 150, 40);
+    _userView.layer.cornerRadius = 20;
     _userView.layer.masksToBounds = YES;
-    _userView.backgroundColor = RGBA(33, 33, 33, 0.5);
+    _userView.backgroundColor = RGBA(68, 64, 67, 0.5);
     NSString *imgUrl = [MyUtil getQiniuUrl:_hostUser[@"avatar_img"] width:0 andHeight:0];
     [_userView.iconIamgeView sd_setImageWithURL:[NSURL URLWithString:imgUrl]];
     _userView.userNameLabel.text = _hostUser[@"usernick"];
@@ -274,8 +275,8 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
         _userView.isFoucsButton.hidden = YES;
         _userView.frame = CGRectMake(20, 30, SCREEN_WIDTH / 2 - 40, 40);
     } else if (status == 1 || status == 3) {
-        _userView.isFoucsButton.titleLabel.text = @"取消关注";
-        _userView.isFoucsButton.tag = 1;
+        _userView.isFoucsButton.titleLabel.text = @"已关注";
+        _userView.isFoucsButton.userInteractionEnabled = NO;
     }
 
     [_CAEmitterView addSubview:_userView];
@@ -300,7 +301,6 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
         [giftButton addTarget:self action:@selector(giftButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
         _giftButton = giftButton;
         [self.view addSubview:_giftButton];
-        
         //点赞按钮
         UIButton *likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         likeButton.size = CGSizeMake(SCREEN_WIDTH / 8,  SCREEN_WIDTH /8);
@@ -414,7 +414,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     PLPlayerOption *option = [PLPlayerOption defaultOption];
     [option setOptionValue:@15 forKey:PLPlayerOptionKeyTimeoutIntervalForMediaPackets];
 //    NSURL *url = [NSURL URLWithString:@"rtmp://pili-live-rtmp.zhibo.lie98.com/lei98/test78"];
-    if ([_contentURL isEqualToString:@"<null>"] || _contentURL == nil) {
+    if ([_contentURL isEqualToString:@"<null>"] || _contentURL == [NSNull class] || _contentURL == nil) {
         [MyUtil showMessage:@"没有获取到播放地址"];
     } else {
         NSURL *url = [NSURL URLWithString:_contentURL];
@@ -514,10 +514,10 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
         }];
     } else {
         [LYFriendsHttpTool followFriendWithParms:dict complete:^(NSDictionary *dict) {
-            sender.titleLabel.text = @"取消关注";
+            sender.titleLabel.text = @"已关注";
+            sender.userInteractionEnabled = NO;
         }];
     }
-    
 }
 
 #pragma mark -- 点击头像事件
@@ -864,14 +864,19 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 //    }
     _commentView = [[[NSBundle mainBundle]loadNibNamed:@"LYFriendsCommentView" owner:nil options:nil] firstObject];
     _commentView.frame = CGRectMake(SCREEN_WIDTH / 6, distanceOfBottom - SCREEN_WIDTH / 8,SCREEN_WIDTH / 3 * 2 , MinHeight_InputView);
-    _commentView.bgView.backgroundColor = [UIColor grayColor];
-    _commentView.bgView.layer.borderColor = RGBA(200,200,200, .2).CGColor;
+    _commentView.bgView.backgroundColor = RGB(68, 64, 67);
+    _commentView.bgView.layer.borderColor = RGBA(68,64,67, .2).CGColor;
     _commentView.bgView.layer.borderWidth = 0.5;
     _commentView.layer.cornerRadius = _commentView.frame.size.height / 2;
     _commentView.layer.masksToBounds = YES;
     _commentView.textField.placeholder = @"说点什么吧";
+    _commentView.textField.backgroundColor = RGB(68, 64, 67);
+    _commentView.textField.layer.borderColor = RGB(68, 64, 67).CGColor;
     [self.view addSubview:_commentView];
     _commentView.textField.delegate = self;
+    _commentView.btn_emotion.hidden = YES;
+    _commentView.textField.center = _commentView.center;
+    [_commentView layoutIfNeeded];
     [_commentView.btn_emotion addTarget:self action:@selector(emotionClick:) forControlEvents:UIControlEventTouchUpInside];
     _bigView = [[UIView alloc]init];
     _bigView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);

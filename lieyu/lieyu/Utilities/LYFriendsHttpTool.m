@@ -350,7 +350,6 @@
     } failure:^(NSError *err) {
         
     }];
-    
 }
 
 //请求人员列表
@@ -358,11 +357,16 @@
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Live_requestlist baseURL:LY_LIVE_SERVER params:parms success:^(id response) {
         if ([response[@"errorcode"] isEqualToString:@"success"]) {
             NSDictionary *dic = response[@"data"];
-            NSArray *users = [ChatUseres mj_objectArrayWithKeyValuesArray:dic[@"roomUserList"][@"users"]];
-            NSDictionary *results = @{@"users":users,@"likeNum":dic[@"likeNum"]};
-            complete(results);
+            if ([dic[@"roomUserList"] objectForKey:@"users"]) {
+                NSArray *users = [ChatUseres mj_objectArrayWithKeyValuesArray:dic[@"roomUserList"][@"users"]];
+                NSDictionary *results = @{@"users":users,@"likeNum":dic[@"likeNum"]};
+                complete(results);
+            } else {
+                NSDictionary *results  = @{@"likeNum":dic[@"likeNum"]};
+                complete(results);
+            }
         } else {
-            [MyUtil showMessage:@"获取观众失败"];
+//            [MyUtil showMessage:@"获取观众失败"];
         }
     } failure:^(NSError *err) {
         
