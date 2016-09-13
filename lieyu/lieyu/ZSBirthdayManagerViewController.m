@@ -38,7 +38,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"生日管家";
     [self initRightItemsButton];
     [self initRefresh];
     _tableView.delegate = self;
@@ -54,6 +53,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title = @"生日管家";
     _page = 1 ;
     [self getData];
 }

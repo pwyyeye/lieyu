@@ -39,4 +39,6 @@
 
 @property (nonatomic, strong) unPassesModel *checkModel;
 
+@property (nonatomic, strong) NSString *subTitle;
+
 @end

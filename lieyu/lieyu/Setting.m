@@ -50,7 +50,6 @@
 //    _data=@[@"编辑个人资料",@"清除缓存",@"通知",@"账户管理",@"猎娱APP分享",@"申请专属经理",@"关于猎娱"];
     _data = @[@"账户管理",@"通知设置",@"隐私设置",@"清除缓存",@"分享猎娱",@"帮助与反馈",@"关于猎娱"];
     
-    self.title=@"个人设置";
     
     self.tableView.backgroundColor=RGB(237, 237, 237);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;//无分割线
@@ -66,6 +65,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title=@"个人设置";
 }
 
 - (void)backClick{

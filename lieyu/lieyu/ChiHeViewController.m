@@ -61,8 +61,6 @@ static NSString * CellIdentifier = @"chiheCell";
     [super viewDidLoad];
     _moreShow = NO;
     
-    self.title = _subTitle;
-    
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getNumLess) name:@"lessGood" object:nil];
     
     if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||
@@ -142,15 +140,10 @@ static NSString * CellIdentifier = @"chiheCell";
     if(((AppDelegate*)[[UIApplication sharedApplication] delegate]).userModel){
         [self getGoodsNum];
     }
-    [self.navigationController.navigationBar setHidden:NO];
-    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title = _subTitle;
 }
 
-- (void)viewWillLayoutSubviews{
-    [super viewWillLayoutSubviews];
-    [self.navigationController.navigationBar setHidden:NO];
-    [self.navigationController setNavigationBarHidden:NO];
-}
 
 #pragma mark viewDidAppear
 - (void)viewDidAppear:(BOOL)animated{

@@ -33,6 +33,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:NO];
+    self.title = @"订单详情";
 }
 
 

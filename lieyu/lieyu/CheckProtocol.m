@@ -12,10 +12,15 @@
 @end
 
 @implementation CheckProtocol
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.title = @"猎娱用户协议";
+}
+
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"猎娱用户协议";
     _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64)];
 //    [_webView setScalesPageToFit:YES];
     _webView.delegate = self;

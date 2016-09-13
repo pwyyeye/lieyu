@@ -22,6 +22,11 @@
 
 @implementation LYWithdrawTypeViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.title = @"提现操作";
+}
+
 - (void)viewDidLoad{
     [super viewDidLoad];
     [self initAllPropertites];
@@ -32,7 +37,6 @@
 
 #pragma mark - 初始化界面
 - (void)initAllPropertites{
-    self.title = @"提现操作";
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     if (!_type.length || !_account.length) {
         [self.accountLbl setText:@"请先去绑定账号！"];

@@ -55,7 +55,6 @@
 //    self.navigationItem.leftBarButtonItem = customBarItem;
 //    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:nil];
 //    self.navigationItem.backBarButtonItem = left;
-    self.title=@"我的订单";
     pageCount=1;
     perCount=10;
     [self.tableView setHidden:YES];
@@ -137,7 +136,8 @@
     [super viewWillAppear:animated];
 //    if (self.navigationController.navigationBar.hidden) {
     
-        [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title=@"我的订单";
 //    }
 
 }

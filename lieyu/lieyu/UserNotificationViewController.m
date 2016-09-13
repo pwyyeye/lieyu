@@ -20,9 +20,14 @@
 
 @implementation UserNotificationViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    self.navigationItem.title = @"消息通知";
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"消息通知";
     [self getData];
     // Do any additional setup after loading the view from its nib.
     

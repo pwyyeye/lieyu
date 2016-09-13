@@ -243,7 +243,7 @@
             case 2:// 收藏
             {
                 MyCollectionViewController *maintViewController=[[MyCollectionViewController alloc]initWithNibName:@"MyCollectionViewController" bundle:nil];
-                maintViewController.title=@"我的收藏";
+                maintViewController.subTitle=@"我的收藏";
                 [self.navigationController pushViewController:maintViewController animated:YES];
                 break;
             }
@@ -251,7 +251,7 @@
             case 3:// 专属经理
             {
                 MyZSManageViewController *myZSManageViewController=[[MyZSManageViewController alloc]initWithNibName:@"MyZSManageViewController" bundle:nil];
-                myZSManageViewController.title=@"我的专属经理";
+                myZSManageViewController.subTitle=@"我的专属经理";
                 myZSManageViewController.isBarVip=false;
                 [self.navigationController pushViewController:myZSManageViewController animated:YES];
                 
@@ -306,7 +306,7 @@
             case 2:// 收藏
             {
                 MyCollectionViewController *maintViewController=[[MyCollectionViewController alloc]initWithNibName:@"MyCollectionViewController" bundle:nil];
-                maintViewController.title=@"我的收藏";
+                maintViewController.subTitle=@"我的收藏";
                 [self.navigationController pushViewController:maintViewController animated:YES];
                 break;
             }
@@ -314,7 +314,7 @@
             case 3:// 专属经理
             {
                 MyZSManageViewController *myZSManageViewController=[[MyZSManageViewController alloc]initWithNibName:@"MyZSManageViewController" bundle:nil];
-                myZSManageViewController.title=@"我的专属经理";
+                myZSManageViewController.subTitle=@"我的专属经理";
                 myZSManageViewController.isBarVip=false;
                 [self.navigationController pushViewController:myZSManageViewController animated:YES];
                 
@@ -365,7 +365,7 @@
             case 1:// 收藏
             {
                 MyCollectionViewController *maintViewController=[[MyCollectionViewController alloc]initWithNibName:@"MyCollectionViewController" bundle:nil];
-                maintViewController.title=@"我的收藏";
+                maintViewController.subTitle=@"我的收藏";
                 [self.navigationController pushViewController:maintViewController animated:YES];
                 break;
             }
@@ -373,7 +373,7 @@
             case 2:// 专属经理
             {
                 MyZSManageViewController *myZSManageViewController=[[MyZSManageViewController alloc]initWithNibName:@"MyZSManageViewController" bundle:nil];
-                myZSManageViewController.title=@"我的专属经理";
+                myZSManageViewController.subTitle=@"我的专属经理";
                 myZSManageViewController.isBarVip=false;
                 [self.navigationController pushViewController:myZSManageViewController animated:YES];
                 

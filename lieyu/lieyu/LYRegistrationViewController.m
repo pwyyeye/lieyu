@@ -46,7 +46,6 @@ static LYRegistrationViewController *_registe;
     
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
 
-    self.title=@"注册";
     // Do any additional setup after loading the view from its nib.
     
     if(_isTheThirdLogin){
@@ -70,6 +69,7 @@ static LYRegistrationViewController *_registe;
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
+    self.title=@"注册";
 
 }
       

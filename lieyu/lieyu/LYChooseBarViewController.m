@@ -32,6 +32,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    self.title = @"选择酒吧";
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [app startLoading];
 }
@@ -64,7 +65,6 @@
     _annoViewArray = [[NSMutableArray alloc]init];
     //配置用户key
     [AMapSearchServices sharedServices].apiKey = @"1a62cee8b0fd0ae60c23fc8f83767d3a";
-    self.title = @"选择酒吧";
     
     _oldSelectedSection = -1;
 //    self.tableView.delegate = self;

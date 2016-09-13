@@ -14,6 +14,11 @@
 
 @implementation TuiJianShangJiaViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.title = @"推荐商家";
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.scrollView setContentSize:CGSizeMake(self.view.width, 600)];

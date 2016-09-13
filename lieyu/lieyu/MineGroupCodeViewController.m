@@ -19,9 +19,13 @@
 
 @implementation MineGroupCodeViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.title = @"分享二维码";
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"分享二维码";
     
     [self getData];
 }

@@ -19,9 +19,14 @@
 
 @implementation LYBlackListViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    self.title = @"黑名单";
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"黑名单";
     _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64) style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;

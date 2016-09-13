@@ -16,9 +16,13 @@
 
 @implementation LYAccountManager
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.title=@"账户管理";
+}
+
 -(void)viewDidLoad{
     [super viewDidLoad];
-    self.title=@"账户管理"; 
 //    _data=@[@"修改密码",@"绑定微信",@"绑定QQ",@"绑定微博"];
     _data=@[@"编辑个人资料",@"修改密码",@"绑定微信",@"绑定QQ",@"绑定微博"];
     self.tableView.backgroundColor=RGB(237, 237, 237);

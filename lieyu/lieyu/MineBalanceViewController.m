@@ -18,9 +18,13 @@
 
 @implementation MineBalanceViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.title = @"余额";
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"余额";
     _rechargeButton.layer.cornerRadius = 19;
     [_rechargeButton addTarget:self action:@selector(rechargeButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     _withdrawButton.layer.cornerRadius = 19;

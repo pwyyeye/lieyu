@@ -20,7 +20,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"我的二维码";
 //    if ([[MyUtil deviceString] isEqualToString:@"iPhone 4"] || [[MyUtil deviceString] isEqualToString:@"iPhone 4S"]) {
     if (SCREEN_WIDTH == 320) {
         _QRCodeViewBottom.constant = 40;
@@ -53,13 +52,10 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title = @"我的二维码";
 }
 
--(void)viewWillLayoutSubviews{
-    [super viewWillLayoutSubviews];
-    [self.navigationController setNavigationBarHidden:NO];
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

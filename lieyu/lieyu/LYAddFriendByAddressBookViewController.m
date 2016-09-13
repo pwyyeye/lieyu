@@ -22,12 +22,16 @@
 
 @implementation LYAddFriendByAddressBookViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.title = @"手机通讯录";
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _searchBar.delegate = self;
-    self.title = @"手机通讯录";
     [_tableView registerNib:[UINib nibWithNibName:@"LYAddFriendTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"LYAddFriendTableViewCell"];
     if (!_isBirthday) {
         //如果不是从生日导出列表进来，则需要自己导入通讯录

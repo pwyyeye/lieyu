@@ -23,11 +23,15 @@
 
 @implementation ZSMyClientsViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.title=@"我的客户";
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO];
     
-    self.title=@"我的客户";
     
     _listContent = [NSMutableArray new];
     _filteredListContent = [NSMutableArray new];

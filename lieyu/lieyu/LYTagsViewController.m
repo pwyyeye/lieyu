@@ -23,6 +23,12 @@
 static NSString *cellIdentifier = @"cell";
 @implementation LYTagsViewController
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    self.title = @"我的标签";
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -38,7 +44,6 @@ static NSString *cellIdentifier = @"cell";
 //    UIBarButtonItem *rightItem=[[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIBarButtonItemStylePlain target:self action:@selector(makeSure)];
     [self.navigationItem setRightBarButtonItem:item];
     [self getData];
-    self.title = @"我的标签";
 }
 
 - (void)getData{

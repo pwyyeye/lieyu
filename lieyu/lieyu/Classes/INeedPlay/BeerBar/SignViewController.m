@@ -31,7 +31,6 @@
     [super viewDidLoad];
     _currentPage = 0;
     PAGESIZE = 40;
-    self.title = @"所有签到";
     
    
     self.navigationController.title = @"所有签到";
@@ -51,7 +50,8 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title = @"所有签到";
 }
 
 - (void)getData{

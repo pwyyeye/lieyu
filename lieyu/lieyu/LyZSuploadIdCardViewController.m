@@ -15,6 +15,11 @@
 
 @implementation LyZSuploadIdCardViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.title = @"上传身份证";
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     _nextStepBtn.layer.cornerRadius = 21;

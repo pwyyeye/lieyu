@@ -26,7 +26,6 @@ static LYResetPasswordViewController *_reset;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title=@"重置密码";
     _step=60;
     _timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(captchaWait) userInfo:nil repeats:YES];
     [_timer setFireDate:[NSDate distantFuture]];
@@ -55,6 +54,7 @@ static LYResetPasswordViewController *_reset;
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = NO;
     [self.navigationController setNavigationBarHidden:NO];
+    self.title=@"重置密码";
 }
 
 - (void)viewWillLayoutSubviews{

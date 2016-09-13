@@ -28,6 +28,11 @@
 
 @implementation MyZSManageViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.title = _subTitle;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     zsList=[[NSMutableArray alloc]init];
@@ -217,7 +222,7 @@
 #pragma mark - 申请专属经理
 -(void)shenqingAct:(id)sender{
     LYZSApplicationViewController *applicationViewController=[[LYZSApplicationViewController alloc]initWithNibName:@"LYZSApplicationViewController" bundle:nil];
-    applicationViewController.title=@"申请专属经理";
+    applicationViewController.subTitle=@"申请专属经理";
     [self.navigationController pushViewController:applicationViewController animated:YES];
     [self SetViewDisappear:nil];
 }
