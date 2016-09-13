@@ -59,7 +59,7 @@ static NSString *liveShowListID = @"liveShowListID";
     [self initMJFooterAndHeader];
     [self setMenuView];
     [self initReleaseWishButton];
-    
+    self.title = @"";
 }
 
 - (void)viewDidLoad {
@@ -531,13 +531,11 @@ static NSString *liveShowListID = @"liveShowListID";
         cell = [[LiveShowListCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:liveShowListID];
     }
     LYLiveShowListModel *model = [LYLiveShowListModel new];
-
     if (tableView == (UITableView *)_tableViewArray[0]) {//热门
         model = _hotDataArray[indexPath.row];
     } else {
         model = _rencentDataArray[indexPath.row];
     }
-    
     NSString *url1 = model.roomImg;
     [cell.backImageView sd_setImageWithURL:[NSURL URLWithString:url1]];
     [cell sendSubviewToBack:cell.backImageView];
@@ -564,7 +562,6 @@ static NSString *liveShowListID = @"liveShowListID";
         cell.firstTaglabel.hidden = YES;
         cell.secondTagLabel.hidden = YES;
     }
-    
     cell.titleLabel.text = [NSString stringWithFormat:@"%@", model.roomName];
     cell.likeNum.text = [NSString stringWithFormat:@"%d",model.likeNum];
     [cell sendSubviewToBack:cell.backImageView];
@@ -573,7 +570,7 @@ static NSString *liveShowListID = @"liveShowListID";
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 190;
+    return SCREEN_HEIGHT / 5 * 2;
 }
 #pragma mark ---- TableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

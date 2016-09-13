@@ -46,11 +46,15 @@
     NSString *jubaoMomentID;//要删除的动态ID
     UIView *_bigView;//评论的背景view
     DaShangView *_daShangView;//打赏View
+    NSInteger _giftNumber;//礼物数量
+    NSInteger _giftValue;//礼物价值
+    UIView *_backgroudView;//背景
     NSString *jubaoUserID;//被举报人的ID
     ISEmojiView *_emojiView;//表情键盘
     NSInteger _deleteMessageTag;//删除动态的btn的tag
     NSInteger _commentBtnTag;
     LYFriendsCommentView *_commentView;//弹出的评论框
+    BOOL _isShow;//是否显示操作按钮
     NSString *defaultComment;//残留评论
     UIVisualEffectView *emojiEffectView;
     UIButton *emoji_angry;
@@ -69,6 +73,9 @@
     
     NSTimer *_timer;//定时获取我的新消息
 }
+
+@property (nonatomic, strong) NSMutableArray *giftValueArray;
+
 @property (nonatomic, assign) int pagesCount;
 @property (nonatomic, strong) NSString *typeOfImagePicker;
 @property (nonatomic, strong) UIImagePickerController *imagePicker;
@@ -87,6 +94,10 @@
     _notificationDict = [[NSMutableDictionary alloc]init];
     if(!_isFriendToUserMessage) self.pageNum = 2;
     //    [self addTableViewHeaderViewForTopic];
+    //获取通知中心单例对象
+    NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self selector:@selector(notice:) name:@"sendGift" object:nil];
+    _giftValueArray = [NSMutableArray arrayWithCapacity:1];
     
 }
 
@@ -221,7 +232,7 @@
     CGFloat friendsBtn_Width = 42;
     //导航菜单
     UIView *navMenuView = [[UIView alloc]initWithFrame:CGRectMake( (SCREEN_WIDTH - friendsBtn_Width * 2 - 16)/2.f, 0, friendsBtn_Width * 2 + 16, 44)];
-    [self.navigationController.navigationBar addSubview:navMenuView];
+//    [self.navigationController.navigationBar addSubview:navMenuView];
     
     //    朋友圈按钮
     _friendsBtn = [[HotMenuButton alloc]initWithFrame:CGRectMake(0, 12, friendsBtn_Width, 20)];
@@ -271,7 +282,7 @@
     [_liveShow setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [_liveShow.titleLabel setFont:[UIFont systemFontOfSize:16]];
     [_liveShow addTarget:self action:@selector(recentConnect) forControlEvents:UIControlEventTouchUpInside];
-    [self.navigationController.navigationBar addSubview:_liveShow];
+//    [self.navigationController.navigationBar addSubview:_liveShow];
     
 }
 
@@ -775,7 +786,8 @@
             addressCell.recentM = recentM;
             addressCell.btn_like.tag = indexPath.section;
             addressCell.btn_comment.tag = indexPath.section;
-            [addressCell.btn_like addTarget:self action:@selector(likeFriendsClick:) forControlEvents:UIControlEventTouchUpInside];
+            
+            [addressCell.btn_like addTarget:self action:@selector(likeFriendsButtonClick:) forControlEvents:UIControlEventTouchUpInside];
             
             UILongPressGestureRecognizer *likeLongPress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(likeLongPressClick:)];
             [addressCell.btn_like addGestureRecognizer:likeLongPress];
@@ -783,7 +795,7 @@
             [addressCell.btn_comment addTarget:self action:@selector(commentClick:) forControlEvents:UIControlEventTouchUpInside];
             
             //打赏
-            [addressCell.btn_dashang addTarget:self action:@selector(dashangAction) forControlEvents:(UIControlEventTouchUpInside)];
+            [addressCell.btn_dashang addTarget:self action:@selector(dashangAction:) forControlEvents:(UIControlEventTouchUpInside)];
             
             return addressCell;
         }
@@ -1096,32 +1108,81 @@
 }
 
 #pragma mark - 打赏
--(void)dashangAction{
+-(void)dashangAction:(UIButton *) sender{
+    
+    UIView *moreView = [sender superview];
+    moreView.alpha = 0.f;
+    
+    _backgroudView = [[UIView alloc] initWithFrame:self.view.bounds];
+    _backgroudView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.4f];
+    [self.view addSubview:_backgroudView];
+    [self.view bringSubviewToFront:_backgroudView];
+    
     _daShangView = [[[NSBundle mainBundle] loadNibNamed:@"DaShangView" owner:self options:nil] lastObject];
-    _daShangView.frame = CGRectMake(10, 200, SCREEN_WIDTH - 20, 300);
+    _daShangView.frame = CGRectMake(10, SCREEN_HEIGHT / 5, SCREEN_WIDTH - 20, 300);
+//    _daShangView.center = self.view.center;
+//    _daShangView.size = CGSizeMake(SCREEN_WIDTH - 20, 300);
     _daShangView.backgroundColor = [UIColor whiteColor];
+    _daShangView.alpha = 1.f;
     _daShangView.layer.cornerRadius = 3.f;
     _daShangView.layer.masksToBounds = YES;
     //    _daShangView.giftCollectionView.delegate = self;
     _daShangView.giftCollectionView.tag = 888;
-    [self.view addSubview:_daShangView];
-    [self.view bringSubviewToFront:_daShangView];
-    [_daShangView.closeButton addTarget:self action:@selector(dashangCloseViewAction:) forControlEvents:(UIControlEventTouchUpInside)];
-    [_daShangView.sendGiftButton addTarget:self action:@selector(sendGiftButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
+    [_backgroudView addSubview:_daShangView];
+    [_daShangView.closeButton addTarget:self action:@selector(dashangMomentCloseViewAction:) forControlEvents:(UIControlEventTouchUpInside)];
+    [_daShangView.sendGiftButton addTarget:self action:@selector(sendGiftMomentButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
 }
 
--(void)dashangCloseViewAction:(UIButton *)sender{
-    [_daShangView removeFromSuperview];
-    _daShangView = nil;
+-(void)notice:(NSNotification *)notification{
+    NSString *values = notification.userInfo[@"value"];
+    if (_giftValueArray.count == 0) {//第一次点击直接加入数组
+        [_giftValueArray addObject:values];
+    } else {
+        if (_giftNumber >= 1 ) {
+            if ([_giftValueArray containsObject:values]) {
+                [self.giftValueArray removeObject:values];
+            } else {
+                [self.giftValueArray addObject:values];
+            }
+        } else {//
+        [_giftValueArray removeObject:values];
+        }
+    }
+    _giftNumber = [notification.userInfo[@"number"] integerValue];
 }
 
--(void)sendGiftButtonAction:(UIButton *)sender{
-    [_daShangView removeFromSuperview];
-    _daShangView = nil;
+-(void)dashangMomentCloseViewAction:(UIButton *)sender{
+    [_giftValueArray removeAllObjects];
+    [_backgroudView removeFromSuperview];
+    _backgroudView = nil;
 }
+
+-(void)sendGiftMomentButtonAction:(UIButton *)sender{
+    switch (_giftNumber) {
+        case 0:
+            
+            break;
+        case 1://单个送
+            [MyUtil showMessage:[NSString stringWithFormat:@"%@",_giftValueArray.firstObject]];
+            break;
+            
+        default:
+            [MyUtil showMessage:@"壕！一次送一个呦"];
+            return;
+            break;
+    }
+    [_giftValueArray removeAllObjects];
+    [_backgroudView removeFromSuperview];
+    _backgroudView = nil;
+}
+
+
 
 #pragma mark - 表白action
-- (void)likeFriendsClick:(UIButton *)button{
+- (void)likeFriendsButtonClick:(UIButton *)button{
+    UIView *moreView = [button superview];
+    moreView.alpha = 0.f;
+    
     if(![MyUtil isUserLogin]){
         [MyUtil showCleanMessage:@"请先登录！"];
         [MyUtil gotoLogin];
@@ -1874,6 +1935,8 @@
 }
 #pragma mark - 评论action
 - (void)commentClick:(UIButton *)button{
+    UIView *moreView = [button superview];
+    moreView.alpha = 0.f;
     _commentBtnTag = button.tag;
     _isCommentToUser = NO;//不对他人评论
     if (isExidtEffectView) [emojisView hideEmojiEffectView];

@@ -120,7 +120,7 @@
     float maxWidth = width-(10+[RCIM sharedRCIM].globalMessagePortraitSize.width+8)*2-28;
     textSize = [LYGiftMessageCell getContentSize:content withFrontSize:16 withWidth:maxWidth];
     textSize.width = textSize.width + 24 ;//加上礼物的宽度
-    textSize.height = textSize.height + 17;
+    textSize.height = textSize.height + 5;
     return textSize;
 }
 

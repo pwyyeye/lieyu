@@ -59,11 +59,11 @@
     _isLiveListMenuSelected = isLiveListMenuSelected;
     if (_isLiveListMenuSelected) {
         [self setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal];
-        self.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:19];
+        self.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:18];
         //        self.titleLabel.font = [UIFont boldSystemFontOfSize:13];
     }else{
         [self setTitleColor:RGBA(0, 0, 0, 1) forState:UIControlStateNormal];
-        self.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:19];
+        self.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Light" size:18];
         //        self.titleLabel.font = [UIFont systemFontOfSize:13];
     }
 }

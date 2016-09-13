@@ -57,7 +57,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="猎" id="49I-6a-yzM">
+                    <tabBarItem key="tabBarItem" title="猎娱" id="49I-6a-yzM">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                 </viewController>
@@ -469,7 +469,7 @@
                             <outlet property="delegate" destination="yPs-RX-H79" id="CfF-qc-nS4"/>
                         </connections>
                     </collectionView>
-                    <tabBarItem key="tabBarItem" title="我" id="kpV-LJ-B4R">
+                    <tabBarItem key="tabBarItem" title="我的" id="kpV-LJ-B4R">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                 </collectionViewController>

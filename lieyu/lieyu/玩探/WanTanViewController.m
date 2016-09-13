@@ -33,6 +33,7 @@ static NSString *wantanCellID = @"wantanCellID";
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    self.title = @"玩探";
     [super viewWillAppear:animated];
 //    [self.navigationController.navigationBar addSubview:_myTitle];
     if (self.navigationController.navigationBarHidden != NO) {
@@ -49,23 +50,22 @@ static NSString *wantanCellID = @"wantanCellID";
     
     [_timers invalidate];
     _timers = nil;
-    
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"玩探";
     [self.tableView registerNib:[UINib nibWithNibName:@"WanTanCell" bundle:nil] forCellReuseIdentifier:wantanCellID];
 //    [self setuptitle];
     self.tableView.showsHorizontalScrollIndicator=NO;
     self.tableView.showsVerticalScrollIndicator=NO;
-    self.tableView.separatorColor=[UIColor clearColor];
+    self.tableView.separatorColor= RGB(241, 241, 241);
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.contentInset = UIEdgeInsetsMake(70, 0, 0, 0);
     [self.view setBackgroundColor:RGB(241, 241, 241)];
 }
 
 - (void)setuptitle{
     _myTitle= [[UILabel alloc] initWithFrame: CGRectMake(0, 0, SCREEN_WIDTH, 44)];
-    
     _myTitle.backgroundColor = [UIColor clearColor];
     _myTitle.textColor=[UIColor blackColor];
     _myTitle.textAlignment = NSTextAlignmentCenter;
@@ -115,9 +115,7 @@ static NSString *wantanCellID = @"wantanCellID";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     WanTanCell *cell = [tableView dequeueReusableCellWithIdentifier:wantanCellID forIndexPath:indexPath];
-    
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-
     if (indexPath.section == 0) {
         cell.redTiPot.hidden = YES;
         [cell setIamge:[UIImage imageNamed:@"wanyouquan.png"] andLabel:@"玩友圈"];
@@ -156,9 +154,8 @@ static NSString *wantanCellID = @"wantanCellID";
     } else {
         cell.redTiPot.hidden = YES;
         [cell setIamge:[UIImage imageNamed:@"baodian.png"] andLabel:@"娱乐宝典"];
-        cell.tagIamgeView.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y,cell.frame.size.width, cell.frame.size.height + 10);
+        cell.tagIamgeView.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y,cell.frame.size.width - 10, cell.frame.size.height + 15);
     }
-    
     return cell;
 }
 

@@ -21,19 +21,20 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="18.5"/>
                     </userDefinedRuntimeAttributes>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="科比布拉恩特" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UbF-Vu-5da">
-                    <rect key="frame" x="40" y="3" width="66" height="14"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="科比布拉恩特" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UbF-Vu-5da">
+                    <rect key="frame" x="44" y="3" width="78" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mmx-WE-fqn">
-                    <rect key="frame" x="167" y="22" width="46" height="24"/>
+                    <rect key="frame" x="163" y="22" width="50" height="24"/>
                     <color key="backgroundColor" red="0.69803921570000005" green="0.14901960780000001" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="46" id="4lg-Lu-zhX"/>
+                        <constraint firstAttribute="width" constant="50" id="4lg-Lu-zhX"/>
                         <constraint firstAttribute="height" constant="24" id="BoR-gC-6U2"/>
                     </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <state key="normal" title="关注">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
@@ -41,8 +42,8 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="12"/>
                     </userDefinedRuntimeAttributes>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9174598145" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NGE-YD-aOG">
-                    <rect key="frame" x="40" y="54" width="66" height="11"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NGE-YD-aOG">
+                    <rect key="frame" x="44" y="40" width="78" height="11"/>
                     <fontDescription key="fontDescription" type="system" pointSize="9"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -51,16 +52,22 @@
             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="NGE-YD-aOG" firstAttribute="leading" secondItem="UbF-Vu-5da" secondAttribute="leading" id="0Xh-sj-mFn"/>
+                <constraint firstItem="NGE-YD-aOG" firstAttribute="bottom" secondItem="xls-l2-pEe" secondAttribute="bottom" id="Dbg-jv-dMB"/>
                 <constraint firstItem="xls-l2-pEe" firstAttribute="leading" secondItem="TCZ-80-VHF" secondAttribute="leading" constant="2" id="Fcd-4G-64O"/>
-                <constraint firstItem="UbF-Vu-5da" firstAttribute="leading" secondItem="xls-l2-pEe" secondAttribute="trailing" constant="3" id="Hfz-hR-DVS"/>
+                <constraint firstItem="UbF-Vu-5da" firstAttribute="leading" secondItem="xls-l2-pEe" secondAttribute="trailing" constant="7" id="Hfz-hR-DVS"/>
                 <constraint firstItem="NGE-YD-aOG" firstAttribute="centerX" secondItem="UbF-Vu-5da" secondAttribute="centerX" id="Hzq-fV-HUb"/>
                 <constraint firstItem="UbF-Vu-5da" firstAttribute="top" secondItem="TCZ-80-VHF" secondAttribute="top" constant="3" id="JHb-Zs-0mP"/>
-                <constraint firstAttribute="bottom" secondItem="NGE-YD-aOG" secondAttribute="bottom" constant="3" id="KTL-Kd-O7a"/>
+                <constraint firstAttribute="bottom" secondItem="NGE-YD-aOG" secondAttribute="bottom" constant="7" id="KTL-Kd-O7a"/>
                 <constraint firstAttribute="trailing" secondItem="Mmx-WE-fqn" secondAttribute="trailing" constant="10" id="Z1G-Gr-08u"/>
                 <constraint firstItem="xls-l2-pEe" firstAttribute="centerY" secondItem="TCZ-80-VHF" secondAttribute="centerY" id="j78-BK-sGI"/>
                 <constraint firstItem="Mmx-WE-fqn" firstAttribute="centerY" secondItem="xls-l2-pEe" secondAttribute="centerY" id="zTz-ZE-F7g"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="KTL-Kd-O7a"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="iconIamgeView" destination="xls-l2-pEe" id="WXb-r9-i7P"/>
                 <outlet property="isFoucsButton" destination="Mmx-WE-fqn" id="Zh9-Mh-Vqy"/>

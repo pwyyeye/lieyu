@@ -30,7 +30,7 @@
     UILabel *_nameLabel;//姓名
     UIButton *_messageButton;//消息按钮
     NSTimer *_timers;//定时获取我的新消息
-
+    UILabel *_myTitle;
 }
 
 @end
@@ -39,6 +39,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    self.title = @"玩友圈";
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 
@@ -51,14 +52,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"玩友圈";
     self.pageNum = 1;
-    
     [self addTableViewHeader];
-    
 }
+
 -(void)viewWillDisappear:(BOOL)animated
 {
+    
     [super viewWillDisappear:animated];
     [_liveShow removeFromSuperview];
     _liveShow = nil;
@@ -136,7 +136,7 @@
     }else{
         [_messageButton removeFromSuperview];
         _messageButton = nil;
-        headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 187 / 375);
+        headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 187 / 375 + 50);
     }
     //背景图
     bgIamge = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, headerHeight)];

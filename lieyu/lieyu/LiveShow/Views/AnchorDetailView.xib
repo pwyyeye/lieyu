@@ -15,14 +15,14 @@
                     <rect key="frame" x="0.0" y="0.0" width="289" height="257"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m1h-DD-xEE">
-                            <rect key="frame" x="120" y="18" width="50" height="50"/>
+                            <rect key="frame" x="115" y="30" width="60" height="60"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="50" id="Ch7-1J-gYw"/>
-                                <constraint firstAttribute="width" constant="50" id="Vde-74-hul"/>
+                                <constraint firstAttribute="height" constant="60" id="Ch7-1J-gYw"/>
+                                <constraint firstAttribute="width" constant="60" id="Vde-74-hul"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="科比布莱恩特" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UVr-xa-YXp">
-                            <rect key="frame" x="75" y="82" width="100" height="17"/>
+                            <rect key="frame" x="75" y="96" width="100" height="17"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="100" id="avg-py-S67"/>
                             </constraints>
@@ -31,26 +31,29 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="manIcon" translatesAutoresizingMaskIntoConstraints="NO" id="84V-Ok-dtL">
-                            <rect key="frame" x="183" y="81" width="20" height="20"/>
+                            <rect key="frame" x="183" y="95" width="20" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="20" id="J4T-60-URk"/>
                                 <constraint firstAttribute="height" constant="20" id="tmS-bg-ezb"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="狮子座" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zlz-Bw-5zQ">
-                            <rect key="frame" x="80" y="119" width="60" height="16"/>
+                            <rect key="frame" x="83" y="133" width="53" height="15"/>
                             <color key="backgroundColor" red="0.69803921570000005" green="0.14901960780000001" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="60" id="z9j-Va-W8V"/>
+                                <constraint firstAttribute="width" constant="53" id="z9j-Va-W8V"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="互联网" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6i-ES-qfU">
-                            <rect key="frame" x="150" y="119" width="60" height="16"/>
+                            <rect key="frame" x="153" y="133" width="53" height="15"/>
                             <color key="backgroundColor" red="0.69803921570000005" green="0.14901960780000001" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="15" id="OIk-6F-1Qr"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -78,7 +81,7 @@
                                 <constraint firstAttribute="width" constant="30" id="OZi-V7-gq0"/>
                                 <constraint firstAttribute="height" constant="30" id="bVO-Q7-tqu"/>
                             </constraints>
-                            <state key="normal" image="DaShangClose.png"/>
+                            <state key="normal" image="anchorClose.png"/>
                             <connections>
                                 <action selector="closeButtonAction:" destination="Sl9-2r-SwT" eventType="touchUpInside" id="aMb-21-hJf"/>
                             </connections>
@@ -109,8 +112,8 @@
                         <constraint firstItem="84V-Ok-dtL" firstAttribute="centerY" secondItem="UVr-xa-YXp" secondAttribute="centerY" id="Oee-aZ-tdw"/>
                         <constraint firstItem="V6i-ES-qfU" firstAttribute="height" secondItem="Zlz-Bw-5zQ" secondAttribute="height" id="R3s-TP-eBX"/>
                         <constraint firstItem="8S5-EZ-lQg" firstAttribute="leading" secondItem="ek7-cA-lj9" secondAttribute="trailing" constant="17" id="Scd-V7-XpS"/>
-                        <constraint firstItem="m1h-DD-xEE" firstAttribute="top" secondItem="NL0-Bd-Da1" secondAttribute="top" constant="18" id="bGu-cJ-hc7"/>
-                        <constraint firstItem="UVr-xa-YXp" firstAttribute="top" secondItem="m1h-DD-xEE" secondAttribute="bottom" constant="14" id="dAj-Be-4aA"/>
+                        <constraint firstItem="m1h-DD-xEE" firstAttribute="top" secondItem="NL0-Bd-Da1" secondAttribute="top" constant="30" id="bGu-cJ-hc7"/>
+                        <constraint firstItem="UVr-xa-YXp" firstAttribute="top" secondItem="m1h-DD-xEE" secondAttribute="bottom" constant="6" id="dAj-Be-4aA"/>
                         <constraint firstItem="qxv-pP-YCB" firstAttribute="centerY" secondItem="ek7-cA-lj9" secondAttribute="centerY" id="fT0-cF-Z5x"/>
                         <constraint firstItem="qxv-pP-YCB" firstAttribute="leading" secondItem="8S5-EZ-lQg" secondAttribute="trailing" constant="17" id="ldx-VJ-a7A"/>
                         <constraint firstAttribute="bottom" secondItem="8S5-EZ-lQg" secondAttribute="bottom" constant="8" id="n94-C0-ExY"/>
@@ -140,7 +143,7 @@
         </view>
     </objects>
     <resources>
-        <image name="DaShangClose.png" width="16" height="16"/>
+        <image name="anchorClose.png" width="15" height="15"/>
         <image name="manIcon" width="16" height="16"/>
     </resources>
 </document>

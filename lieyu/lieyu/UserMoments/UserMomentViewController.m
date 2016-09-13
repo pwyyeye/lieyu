@@ -41,6 +41,7 @@
     NSArray *_topicArray;//话题数组
     NSString *jubaoMomentID;//要删除的动态ID
     UIView *_bigView;//评论的背景view
+    BOOL _isShow;//是否显示操作按钮
     DaShangView *_daShangView;//打赏View
     NSString *jubaoUserID;//被举报人的ID
     ISEmojiView *_emojiView;//表情键盘
@@ -92,12 +93,12 @@
     [self setupTableView];//配置表
     _pageCount = 10;
     _pageStartCount = 0;
-    self.title = @"我的玩友圈";
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
+    self.title = @"我的玩友圈";
+
 //    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
 //    if(app.userModel.userid != _useridStr.intValue){
 //        _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
@@ -205,7 +206,7 @@
 - (void)setupTableForHeaderForUserMomentPage{
     UIView *headerView = [[UIView alloc] init];
     headerView.backgroundColor = [UIColor whiteColor];
-    headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 187 / 375);
+    headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 187 / 375 + 50);
     //背景图
     bgIamge = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, headerHeight)];
     [bgIamge setImage:[UIImage imageNamed:@"empyImage16_9"]];
@@ -880,6 +881,8 @@
     _giftValue = [notification.userInfo[@"value"] integerValue];
     _giftNumber = [notification.userInfo[@"number"] integerValue];
 }
+
+
 
 #pragma mark - 表白action
 - (void)likeFriendsClick:(UIButton *)button{

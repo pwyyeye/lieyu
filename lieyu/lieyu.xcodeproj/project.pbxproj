@@ -949,6 +949,8 @@
 		8504B9351C702263008E5C6B /* LYHotsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8504B9331C702263008E5C6B /* LYHotsCollectionViewCell.xib */; };
 		8504B9391C71C36B008E5C6B /* LYHomeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8504B9371C71C36B008E5C6B /* LYHomeCollectionViewCell.m */; };
 		8504B93A1C71C36B008E5C6B /* LYHomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8504B9381C71C36B008E5C6B /* LYHomeCollectionViewCell.xib */; };
+		8505AAA71D86CC5A002871A7 /* anchorClose@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8505AAA51D86CC5A002871A7 /* anchorClose@3x.png */; };
+		8505AAA81D86CC5A002871A7 /* anchorClose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8505AAA61D86CC5A002871A7 /* anchorClose@2x.png */; };
 		850918881C982D23007981C0 /* LYFindConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 850918871C982D23007981C0 /* LYFindConversationViewController.m */; };
 		850AC96F1CCDF0AD009F110C /* LYYUChooseLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 850AC96E1CCDF0AD009F110C /* LYYUChooseLocationViewController.m */; };
 		850B32B61D2DFD230080CA6D /* BarGroupChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 850B32B51D2DFD230080CA6D /* BarGroupChatViewController.m */; };
@@ -3432,6 +3434,8 @@
 		8504B9361C71C36B008E5C6B /* LYHomeCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHomeCollectionViewCell.h; sourceTree = "<group>"; };
 		8504B9371C71C36B008E5C6B /* LYHomeCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHomeCollectionViewCell.m; sourceTree = "<group>"; };
 		8504B9381C71C36B008E5C6B /* LYHomeCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHomeCollectionViewCell.xib; sourceTree = "<group>"; };
+		8505AAA51D86CC5A002871A7 /* anchorClose@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "anchorClose@3x.png"; sourceTree = "<group>"; };
+		8505AAA61D86CC5A002871A7 /* anchorClose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "anchorClose@2x.png"; sourceTree = "<group>"; };
 		850918861C982D23007981C0 /* LYFindConversationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYFindConversationViewController.h; sourceTree = "<group>"; };
 		850918871C982D23007981C0 /* LYFindConversationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYFindConversationViewController.m; sourceTree = "<group>"; };
 		850AC96D1CCDF0AD009F110C /* LYYUChooseLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYYUChooseLocationViewController.h; sourceTree = "<group>"; };
@@ -7739,6 +7743,8 @@
 				85FE54761D791AFF00B262EA /* GiftImage */,
 				854106FA1D7D05A40083AF04 /* sayHello@2x.png */,
 				854106FB1D7D05A40083AF04 /* sayHello@3x.png */,
+				8505AAA51D86CC5A002871A7 /* anchorClose@3x.png */,
+				8505AAA61D86CC5A002871A7 /* anchorClose@2x.png */,
 				85FE554C1D7ACC4600B262EA /* dashangClose@3x.png */,
 				85FE554D1D7ACC4600B262EA /* dashangClose@2x.png */,
 				85FE54721D79151D00B262EA /* DaShangChoose@3x.png */,
@@ -11222,6 +11228,7 @@
 				ADD2649A1C93EA7A002894AC /* 4@2x.jpg in Resources */,
 				384A54901CF5A8B6008825ED /* LYChooseBarViewController.xib in Resources */,
 				3838944D1D15369B0014C8E9 /* free_order_icon@2x.png in Resources */,
+				8505AAA81D86CC5A002871A7 /* anchorClose@2x.png in Resources */,
 				380659C11C54AB5B003094C9 /* icon_like_2@3x.png in Resources */,
 				85251A191D6C202B005CE01D /* live_B_sina@3x.png in Resources */,
 				38EE9CE61CB3703900201734 /* bardetail_mask@3x.png in Resources */,
@@ -11723,6 +11730,7 @@
 				852519F11D6BFAEC005CE01D /* live_close@2x.png in Resources */,
 				380659A11C53522A003094C9 /* image_Selected@2x.png in Resources */,
 				85F5453B1C1408040013B92B /* circleWhite.png in Resources */,
+				8505AAA71D86CC5A002871A7 /* anchorClose@3x.png in Resources */,
 				85416E0E1C9258FA0016BF0B /* QRCodeHeaderbg@3x.png in Resources */,
 				AD8899CD1B9AFE61007BCC7C /* LaunchScreen.xib in Resources */,
 				AD399E9D1C940D4D00028F23 /* logo30@2x.jpg in Resources */,

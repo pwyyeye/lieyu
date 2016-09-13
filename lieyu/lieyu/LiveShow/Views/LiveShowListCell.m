@@ -17,8 +17,7 @@
 }
 
 -(void)layoutSubviews{
-    self.liveTypeView.layer.borderWidth = 1.f;
-    self.liveTypeView.layer.borderColor = [UIColor whiteColor].CGColor;
+    
     self.liveTypeView.backgroundColor = [UIColor clearColor];
     
     [self setCornerRadiusView:self.firstView With:self.firstView.frame.size.height / 2 and:YES];
