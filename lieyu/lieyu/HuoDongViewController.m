@@ -14,10 +14,15 @@
 
 @implementation HuoDongViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title=_subTitle;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    self.title=@"活动详情";
     self.webView=[[UIWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
 ;
     self.scrollView=[[UIScrollView alloc] initWithFrame:CGRectZero];
@@ -74,20 +79,9 @@
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-
-    self.navigationController.navigationBarHidden=YES;
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
--(void)viewWillLayoutSubviews{
-    [super  viewWillLayoutSubviews];
-    self.navigationController.navigationBarHidden=NO;
-    
-}
-
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden=NO;
-}
 
 -(void)loadData{
     NSString *webStr = [NSString stringWithFormat:@"<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no\" charset=\"utf-8\"/></head><body><div id=\"webview_content_wrapper\">%@</div><script type=\"text/javascript\">var imgs = document.getElementsByTagName('img');for(var i = 0; i<imgs.length; i++){imgs[i].style.width = '%f';imgs[i].style.height = 'auto';}</script></body>",self.content,SCREEN_WIDTH-17];

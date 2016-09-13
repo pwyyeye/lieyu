@@ -38,7 +38,6 @@
     self.tableView.delegate = self;
     self.tableView.layer.cornerRadius = 2;
     self.tableView.layer.masksToBounds = YES;
-    self.title = @"活动详情";
 //    DetailFootCell.webView.delegate = self;
     self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
@@ -57,6 +56,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
+    self.title = @"活动详情";
 }
 
 -(void)viewWillLayoutSubviews{

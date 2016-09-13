@@ -11,6 +11,7 @@
 @interface HuoDongLinkViewController : LYBaseViewController<UIWebViewDelegate>
 @property(strong,nonatomic) UIWebView *webView;
 @property(strong,nonatomic) NSString *linkUrl;
+@property(nonatomic, strong) NSString *subTitle ;
 
 // 两个参数
 -(void)getParam1:(NSString*)str1 withParam2:(NSString*)str2;

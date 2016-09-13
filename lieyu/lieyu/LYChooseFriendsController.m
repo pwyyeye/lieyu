@@ -29,8 +29,6 @@
     [rightBtn setTintColor:[UIColor blackColor]];
 //    UIBarButtonItem *rightBtn=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"add5"] style:UIBarButtonItemStylePlain target:self action:@selector(sureAct:)];
     [self.navigationItem setRightBarButtonItem:rightBtn];
-    
-    self.title=@"好友列表";
 
     _firendsArray=[NSMutableArray new];
     _listContent=[NSMutableArray new];
@@ -41,13 +39,9 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title=@"好友列表";
 
-}
-
--(void)viewWillLayoutSubviews{
-    [super viewWillLayoutSubviews];
-    [self.navigationController setNavigationBarHidden:NO];
 }
 
 -(void)getMyCustomerslist{

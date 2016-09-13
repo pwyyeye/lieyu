@@ -32,11 +32,11 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:NO];
+    self.title = @"娱乐攻略";
 }
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    self.title = @"娱乐攻略";
     _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64) style:UITableViewStylePlain];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [_tableView registerNib:[UINib nibWithNibName:@"StrategryTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"StrategryTableViewCell"];

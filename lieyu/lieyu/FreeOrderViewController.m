@@ -38,6 +38,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title = @"预订";
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
@@ -47,7 +48,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"预订";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self registerCells];

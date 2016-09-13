@@ -13,4 +13,7 @@
 @property(nonatomic,retain)PinKeModel * pinKeModel;
 @property(nonatomic,assign)int smid;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (nonatomic, strong) NSString *subTitle;
+
 @end

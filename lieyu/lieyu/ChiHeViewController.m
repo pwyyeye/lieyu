@@ -61,6 +61,8 @@ static NSString * CellIdentifier = @"chiheCell";
     [super viewDidLoad];
     _moreShow = NO;
     
+    self.title = _subTitle;
+    
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getNumLess) name:@"lessGood" object:nil];
     
     if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||

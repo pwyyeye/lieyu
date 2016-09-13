@@ -23,12 +23,12 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title = @"评论";
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"评论";
     
     _textField.delegate = self;
     _textField.placeholder = @"你也说点什么吧…";

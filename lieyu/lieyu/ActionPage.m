@@ -38,7 +38,6 @@
     page = 1;
 //    _topicid = @"0";
     actionList = [NSMutableArray array];
-    self.title = @"活动专题";
     self.tableView.bounces = YES;
     _tableView.dataSource = self;
     _tableView.delegate = self;
@@ -56,6 +55,7 @@
     [super viewWillAppear:animated];
 
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title = @"活动专题";
     [self initAllPropertites];
     [self getData];
 

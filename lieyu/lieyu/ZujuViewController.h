@@ -33,4 +33,8 @@
 @property (nonatomic, assign) int barid;
 @property (nonatomic, strong) NSString *startTime;
 @property (nonatomic, strong) NSString *endTime;
+
+
+@property (nonatomic, strong) NSString *subTitle;
+
 @end

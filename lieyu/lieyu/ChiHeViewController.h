@@ -30,4 +30,6 @@
 - (IBAction)sxBtnClick:(ShaiXuanBtn *)sender;
 
 
+@property (nonatomic, strong) NSString *subTitle;
+
 @end

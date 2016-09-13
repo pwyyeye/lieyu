@@ -28,13 +28,13 @@
     _tableView.showsHorizontalScrollIndicator = NO;
     _tableView.showsVerticalScrollIndicator = NO;
     dataList = [NSMutableArray array];
-    self.title = @"所有专题";
     [self registerTableViewCell];
     [self addRefreshAction];
     [self getData];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.title = @"所有专题";
     [self.navigationController setNavigationBarHidden:NO];
 }
 

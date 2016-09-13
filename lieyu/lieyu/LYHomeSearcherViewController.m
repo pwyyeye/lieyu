@@ -40,6 +40,16 @@
 
 @implementation LYHomeSearcherViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    if (_isSearchBar) {
+        self.title = @"搜索酒吧";
+    }else{
+        self.title = @"搜索娱乐顾问";
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -48,11 +58,6 @@
     _searchBar.delegate = self;
     _searchBar.placeholder = @"搜索";
     [_searchBar becomeFirstResponder];
-    if (_isSearchBar) {
-        self.navigationItem.title = @"搜索酒吧";
-    }else{
-        self.navigationItem.title = @"搜索娱乐顾问";
-    }
     //    [_tableView setContentInset:UIEdgeInsetsMake(64, 0, 0, 0)];
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
     if(_isSearchBar){
@@ -99,13 +104,9 @@
     
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-}
-- (void)gotoBack{
-    [self.navigationController popViewControllerAnimated:YES];
-}
+//- (void)gotoBack{
+//    [self.navigationController popViewControllerAnimated:YES];
+//}
 
 #pragma mark 获取历史搜索数据
 -(void)loadHisData{

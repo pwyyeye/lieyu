@@ -25,4 +25,7 @@
 @property (copy, nonatomic) NSString *dateStr;
 @property (nonatomic,copy) NSString *weekStr;
 @property (nonatomic,strong) JiuBaModel *jiubaModel;
+
+@property (nonatomic, strong) NSString *subTitle;
+
 @end

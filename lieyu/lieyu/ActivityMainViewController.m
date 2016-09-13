@@ -49,12 +49,12 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    
+    self.title = @"活动派对";
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.title = @"活动派对";
     
     _filterType = 1;
     
@@ -195,10 +195,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section > 0 && indexPath.section <= _dataList.count) {
-        BarActivityList *barActivity = [_dataList objectAtIndex:indexPath.section - 1];
-        ActivityDetailViewController *activityDetailVC = [[ActivityDetailViewController alloc]initWithNibName:@"ActivityDetailViewController" bundle:nil];
-        activityDetailVC.activityID = barActivity.id;
-        [self.navigationController pushViewController:activityDetailVC animated:YES];
+        if (_filterType == 1) {
+            BarActivityList *barActivity = [_dataList objectAtIndex:indexPath.section - 1];
+            ActivityDetailViewController *activityDetailVC = [[ActivityDetailViewController alloc]initWithNibName:@"ActivityDetailViewController" bundle:nil];
+            activityDetailVC.activityID = barActivity.id;
+            [self.navigationController pushViewController:activityDetailVC animated:YES];
+        }else{
+            BarActivityList *barActivity = [_dataList objectAtIndex:indexPath.section - 1];
+            ActionDetailViewController *activityDetailVC = [[ActionDetailViewController alloc]initWithNibName:@"ActionDetailViewController" bundle:nil];
+            activityDetailVC.actionID = barActivity.id;
+            [self.navigationController pushViewController:activityDetailVC animated:YES];
+        }
     }
 }
 

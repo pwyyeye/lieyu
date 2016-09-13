@@ -68,6 +68,7 @@
 #import "IQKeyboardManager.h"
 #import "ActivityMainViewController.h"
 #import "TopicModel.h"
+#import "ActivityDetailViewController.h"
 
 #define PAGESIZE 20
 #define HOMEPAGE_MTA @"HOMEPAGE"
@@ -476,6 +477,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 }
 
 - (void)lineViewAnimation{
+    if (_tableViewArray.count <= _index) {
+        return;
+    }
     UITableView *tableView = [_tableViewArray objectAtIndex:_index];
     //如果这个页面在刷新数据，则显示刷新控件，否则隐藏
     if ([[_refreshingArray objectAtIndex:tableView.tag] isEqualToString:@"1"]) {
@@ -1344,13 +1348,13 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         if(![MyUtil isEmptyString:bannerModel.linkurl]){
             HuoDongLinkViewController *huodong2=[[HuoDongLinkViewController alloc] init];
             huodong2.linkUrl=bannerModel.linkurl;
-            huodong2.title = bannerModel.title == nil ? @"活动详情" : bannerModel.title;
+            huodong2.subTitle = bannerModel.title == nil ? @"活动详情" : bannerModel.title;
             [self.navigationController pushViewController:huodong2 animated:YES];
             
         }else if (bannerModel.content) {
             HuoDongViewController *huodong=[[HuoDongViewController alloc] init];
             huodong.content = bannerModel.content;
-            huodong.title = bannerModel.title == nil ? @"活动详情" : bannerModel.title;
+            huodong.subTitle = bannerModel.title == nil ? @"活动详情" : bannerModel.title;
             [self.navigationController pushViewController:huodong animated:YES];
         }
         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:@"活动"]];
@@ -1361,7 +1365,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         NSString *dateStr=[dateFormatter stringFromDate:[NSDate new]];
         UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
         DWTaoCanXQViewController *taoCanXQViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"DWTaoCanXQViewController"];
-        taoCanXQViewController.title=@"套餐详情";
+        taoCanXQViewController.subTitle=@"套餐详情";
         taoCanXQViewController.smid = linkid ;
         taoCanXQViewController.dateStr = dateStr;
         [self.navigationController pushViewController:taoCanXQViewController animated:YES];
@@ -1371,7 +1375,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         //    4：拼客
         UIStoryboard *stroyBoard=[UIStoryboard storyboardWithName:@"NewMain" bundle:nil];
         LYPlayTogetherMainViewController *playTogetherMainViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"LYPlayTogetherMainViewController"];
-        playTogetherMainViewController.title=@"我要拼客";
+        playTogetherMainViewController.subTitle=@"我要拼客";
         playTogetherMainViewController.smid = (int)linkid;
         [self.navigationController pushViewController:playTogetherMainViewController animated:YES];
         NSString *str = [NSString stringWithFormat:@"首页滑动视图我要拼客ID%ld",linkid];
@@ -1391,7 +1395,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         [self.navigationController pushViewController:activityDetailVC animated:YES];
     }else if (ad_type ==7){//单品
         ChiHeViewController *CHDetailVC = [[ChiHeViewController alloc]initWithNibName:@"ChiHeViewController" bundle:[NSBundle mainBundle]];
-        CHDetailVC.title=@"吃喝专场";
+        CHDetailVC.subTitle=@"吃喝专场";
         CHDetailVC.barid=(int)linkid;
         CHDetailVC.barName=bannerModel.title==nil?[NSString stringWithFormat:@"酒吧%ld",linkid]:bannerModel.title;
         [self.navigationController pushViewController:CHDetailVC animated:YES];
@@ -1399,7 +1403,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:str]];
     }else if (ad_type ==8){//组局
         ZujuViewController *zujuVC = [[ZujuViewController alloc]initWithNibName:@"ZujuViewController" bundle:nil];
-        zujuVC.title = @"组局";
+        zujuVC.subTitle = @"组局";
         zujuVC.barid = (int)linkid;
         [self.navigationController pushViewController:zujuVC animated:YES];
         NSString *str = [NSString stringWithFormat:@"首页滑动视图组局ID%ld",linkid];
@@ -1428,6 +1432,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         [self.navigationController pushViewController:strategyListVC animated:YES];
     }
 }
+
 
 
 - (void)menusClick:(NSInteger) index{

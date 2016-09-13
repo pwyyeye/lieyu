@@ -60,8 +60,15 @@
 
 @implementation ZujuViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.title = _subTitle;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
     _tableView.showsHorizontalScrollIndicator = NO;
     _tableView.showsVerticalScrollIndicator = NO;
     _tableView.separatorColor = [UIColor clearColor];

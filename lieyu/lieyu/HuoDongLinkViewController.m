@@ -22,7 +22,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title=@"活动详情";
     self.webView=[[UIWebView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
     self.webView.delegate=self;
     [self.view addSubview:_webView];
@@ -44,15 +43,11 @@
 //    self.navigationController.navigationBarHidden=YES;
 }
 
--(void)viewWillLayoutSubviews{
-    [super  viewWillLayoutSubviews];
-    self.navigationController.navigationBarHidden=NO;
-    
-}
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden=NO;
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title = _subTitle;
 }
 /*
 #pragma mark - Navigation

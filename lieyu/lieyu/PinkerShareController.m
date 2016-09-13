@@ -19,9 +19,14 @@
 
 @implementation PinkerShareController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title=@"分享";
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title=@"分享";
     // Do any additional setup after loading the view from its nib.
     _chooseView.hidden=YES;
     
@@ -67,17 +72,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self.navigationController.navigationBar setHidden:NO];
-    
-}
-
-- (void)viewWillLayoutSubviews{
-    [super viewWillLayoutSubviews];
-    [self.navigationController.navigationBar setHidden:NO];
-}
 
 -(void)updateViewConstraints{
     [super updateViewConstraints];
