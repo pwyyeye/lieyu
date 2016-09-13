@@ -209,6 +209,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.emitterLayer setHidden:NO];
+    
     [self initPLplayer];
     [self initUI];
     if (_chatRoomId != nil) {
@@ -275,10 +276,11 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
         _userView.isFoucsButton.hidden = YES;
         _userView.frame = CGRectMake(20, 30, SCREEN_WIDTH / 2 - 40, 40);
     } else if (status == 1 || status == 3) {
+        _userView.isFoucsButton.tag = 2;
         _userView.isFoucsButton.titleLabel.text = @"已关注";
         _userView.isFoucsButton.userInteractionEnabled = NO;
     }
-
+    
     [_CAEmitterView addSubview:_userView];
     
     if (_chatRoomId) {//有chatroomid就是直播间否则为回放
@@ -414,16 +416,14 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     PLPlayerOption *option = [PLPlayerOption defaultOption];
     [option setOptionValue:@15 forKey:PLPlayerOptionKeyTimeoutIntervalForMediaPackets];
 //    NSURL *url = [NSURL URLWithString:@"rtmp://pili-live-rtmp.zhibo.lie98.com/lei98/test78"];
-    if ([_contentURL isEqualToString:@"<null>"] || _contentURL == [NSNull class] || _contentURL == nil) {
-        [MyUtil showMessage:@"没有获取到播放地址"];
-    } else {
+   
         NSURL *url = [NSURL URLWithString:_contentURL];
         self.player = [PLPlayer playerWithURL:url option:option];
         self.player.delegate = self;
         [self.view addSubview:self.player.playerView];
         [self.view sendSubviewToBack:self.player.playerView];
         [self.player play];
-    }
+    
 }
 
 #pragma mark ---- 检测播放状态改变
@@ -467,13 +467,13 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
         default:
             break;
     }
-    
 }
 
 - (void)player:(nonnull PLPlayer *)player stoppedWithError:(nullable NSError *)error{
-    [MyUtil showMessage:@"数据请求超时"];
-    NSLog(@"%@", [error localizedDescription]);
-    [self dismissViewControllerAnimated:YES completion:NULL];
+    if (![_contentURL isEqual: [NSNull null]] || _contentURL != nil) {
+        [MyUtil showMessage:@"链接失败！"];
+        [self dismissViewControllerAnimated:YES completion:NULL];
+    }
 }
 
 
@@ -488,9 +488,17 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     _closeView.frame = self.view.bounds;
     [self.view addSubview:_closeView];
     [self.view bringSubviewToFront:_closeView];
+    NSInteger status = [_hostUser[@"friendStatus"] integerValue];
+    if (status == 2) {//0 没有关系   1 关注   2 粉丝   3 好友
+        _userView.isFoucsButton.tag = 2;
+        _userView.isFoucsButton.hidden = YES;
+        _userView.frame = CGRectMake(20, 30, SCREEN_WIDTH / 2 - 40, 40);
+    } else if (status == 1 || status == 3) {
+        _userView.isFoucsButton.titleLabel.text = @"已关注";
+        _userView.isFoucsButton.userInteractionEnabled = NO;
+    }
     [_closeView.backButton addTarget:self action:@selector(closebackButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
     [_closeView.focusButton addTarget:self action:@selector(closeFocusButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
-    
     [self.player stop];//关闭播放器
 }
 
@@ -505,7 +513,6 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 
 #pragma mark -- 关注
 -(void)foucsButtonAction: (UIButton *) sender{
-    NSLog(@"我关注了");
     NSInteger userid = [_hostUser[@"id"] integerValue];
     NSDictionary *dict = @{@"followid":[NSString stringWithFormat:@"%ld",userid]};
     if (sender.tag == 1) {

@@ -561,6 +561,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     if (NotReachable == status) {
         // 对断网情况做处理
         [self stopSession];
+        [MyUtil showMessage:@"无法连接网络,请检查网络设置"];
     }
     
     NSString *log = [NSString stringWithFormat:@"Networkt Status: %s", networkStatus[status]];
@@ -568,7 +569,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 }
 
 - (void)handleInterruption:(NSNotification *)notification {
-    if ([notification.name isEqualToString:AVAudioSessionInterruptionNotification]) {
+    if ([notification.name isEqualToString:AVAudioSessionInterruptionNotification] || [notification.name isEqualToString:AVAudioSessionRouteChangeNotification]) {
         NSLog(@"Interruption notification");
         
         if ([[notification.userInfo valueForKey:AVAudioSessionInterruptionTypeKey] isEqualToNumber:[NSNumber numberWithInt:AVAudioSessionInterruptionTypeBegan]]) {
@@ -599,6 +600,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 - (void)cameraStreamingSession:(PLCameraStreamingSession *)session streamStateDidChange:(PLStreamState)state {
     NSString *log = [NSString stringWithFormat:@"Stream State: %s", stateNames[state]];
     NSLog(@"%@", log);
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
     // 除 PLStreamStateError 外的其余状态会回调在这个方法
     // 这个回调会确保在主线程，所以可以直接对 UI 做操作
 }
