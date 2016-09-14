@@ -280,8 +280,8 @@
         _headHeight.constant=260;
         _buttomHeight.constant=70;
     }
-    
 }
+
 //加载角标
 -(void)loadBadge:(OrderTTL *)orderTTL{
     _badgeNum = (int)(orderTTL.waitPay + orderTTL.waitRebate + orderTTL.waitPayBack + orderTTL.waitEvaluation + orderTTL.waitConsumption);
