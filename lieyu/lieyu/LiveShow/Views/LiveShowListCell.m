@@ -54,11 +54,14 @@
     if (((roomHostUser *)listModel.roomHostUser).usertype.integerValue == 1) {//隐藏顾问tag
         _guWenLabel.hidden = YES;
     }
-    if (((roomHostUser *)listModel.roomHostUser).userTag.count) {
+    if (((roomHostUser *)listModel.roomHostUser).userTag.count >= 1) {
+        _firstTaglabel.hidden = NO;
         _firstTaglabel.text = [NSString stringWithFormat:@"%@",((roomHostUser *)listModel.roomHostUser).userTag[0]];
         if (((roomHostUser *)listModel.roomHostUser).userTag.count >= 2) {
             _secondTagLabel.text = [NSString stringWithFormat:@"%@",((roomHostUser *)listModel.roomHostUser).userTag[1]];
+            _secondTagLabel.hidden = NO;
         } else {
+            _secondTagLabel.backgroundColor= [UIColor whiteColor];
             _secondTagLabel.hidden = YES;
         }
     } else {
