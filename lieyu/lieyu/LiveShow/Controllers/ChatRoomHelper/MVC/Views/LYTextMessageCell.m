@@ -118,25 +118,28 @@
     }
     CGSize __textSize = [LYTextMessageCell getMessageCellSize:_textMessage.content withWidth:self.baseContentView.bounds.size.width];
     
-    if (self.model.content.senderUserInfo) {
-        CGSize __nameSize = [LYTextMessageCell getContentSize:self.model.content.senderUserInfo.name withFrontSize:Text_Message_Font_Size withWidth:self.baseContentView.bounds.size.width];
-        __nameSize.width = __nameSize.width + 5;
-        if (__nameSize.width > __textSize.width) {
-            __textSize.width = __nameSize.width;
-        }
-        CGRect nameLabelRect = self.nicknameLabel.frame;
-        
-        nameLabelRect.size.width = __nameSize.width;
-        nameLabelRect.size.height = __nameSize.height;
-        self.nicknameLabel.frame = nameLabelRect;
-    }
+//    if (self.model.content.senderUserInfo) {
+//        CGSize __nameSize = [LYTextMessageCell getContentSize:self.model.content.senderUserInfo.name withFrontSize:Text_Message_Font_Size withWidth:self.baseContentView.bounds.size.width];
+//        __nameSize.width = __nameSize.width + 5;
+//        if (__nameSize.width > __textSize.width) {
+//            __textSize.width = __nameSize.width;
+//        }
+//        CGRect nameLabelRect = self.nicknameLabel.frame;
+//        
+//        nameLabelRect.size.width = __nameSize.width;
+//        nameLabelRect.size.height = __nameSize.height;
+//        self.nicknameLabel.frame = nameLabelRect;
+//    }
+    //修改输入的文字和名字的位置
+    [self.nicknameLabel  removeFromSuperview];
+    self.nicknameLabel = nil;
     
     CGFloat __textHeight = __textSize.height;
     CGFloat __textWidth = __textSize.width + 20 < 50 ? 50 : (__textSize.width + 20);
     
     CGFloat __bubbleHeight = __textHeight < 35 ? 35: (__textHeight);
     CGFloat __bubbleWidth = __textWidth < 50 ? 50 : (__textWidth);
-    CGSize __bubbleSize = CGSizeMake(__bubbleWidth - 6, __bubbleHeight + 10);
+    CGSize __bubbleSize = CGSizeMake(__bubbleWidth - 6, __bubbleHeight);
     
     
     CGRect messageContentViewRect = self.messageContentView.frame;
@@ -145,33 +148,15 @@
     messageContentViewRect.size.height = __textSize.height;
     self.messageContentView.frame = messageContentViewRect;
     self.bubbleBackgroundView.frame = CGRectMake(6, 0, __bubbleSize.width, __bubbleSize.height);
-    self.textLabel.frame = CGRectMake(6,5, __textSize.width, __textSize.height);
-    self.bubbleBackgroundView.backgroundColor = HEXCOLOR(0x61a1ff);
-    [self.textLabel setTextColor:HEXCOLOR(0xffffff)];
+    self.textLabel.frame = CGRectMake(6,0, __textSize.width, __textSize.height);
     
-//    if (!_isFullScreenMode) {
-//        self.bubbleBackgroundView.alpha = 1;
-//        self.bubbleBackgroundView.backgroundColor = [UIColor clearColor];
-//        [self.textLabel setTextColor:[UIColor blackColor]];
-//        if (self.messageDirection == MessageDirection_RECEIVE) {
-//            [self.nicknameLabel setTextColor:HEXCOLOR(0x999999)];
+    self.bubbleBackgroundView.backgroundColor = [UIColor clearColor];
+    [self.textLabel setTextColor:[UIColor whiteColor]];
+//        if (MessageDirection_RECEIVE == self.messageDirection) {
+//            [self.nicknameLabel setTextColor:HEXCOLOR(0xe2e2e2)];
 //        }else{
 //            [self.nicknameLabel setTextColor:HEXCOLOR(0x62e0ff)];
 //        }
-//        
-//    }else{
-//        self.bubbleBackgroundView.alpha = 0.7;
-//        self.bubbleBackgroundView.backgroundColor = HEXCOLOR(0x61a1ff);
-    self.bubbleBackgroundView.backgroundColor = [UIColor clearColor];
-        [self.textLabel setTextColor:[UIColor whiteColor]];
-        if (MessageDirection_RECEIVE == self.messageDirection) {
-            [self.nicknameLabel setTextColor:HEXCOLOR(0xe2e2e2)];
-        }else{
-            [self.nicknameLabel setTextColor:HEXCOLOR(0x62e0ff)];
-        }
-        
-//    }
-    
     self.bubbleBackgroundView.layer.cornerRadius = 4;
 }
 
@@ -232,9 +217,9 @@
 
 + (CGSize)getMessageCellSize:(NSString *)content withWidth:(CGFloat)width{
     CGSize textSize = CGSizeZero;
-    float maxWidth = width-(10+[RCIM sharedRCIM].globalMessagePortraitSize.width+8)*2-28;
+    float maxWidth = width-(10+[RCIM sharedRCIM].globalMessagePortraitSize.width+8);
     textSize = [LYTextMessageCell getContentSize:content withFrontSize:Text_Message_Font_Size withWidth:maxWidth];
-    textSize.height = textSize.height + 5;
+    textSize.height = textSize.height + 1;
     return textSize;
 }
 

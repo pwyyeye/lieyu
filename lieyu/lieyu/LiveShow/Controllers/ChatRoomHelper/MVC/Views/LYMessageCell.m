@@ -101,7 +101,6 @@
     _isDisplayNickname = model.isDisplayNickname;
     if(model.content.senderUserInfo)
     {
-        
         model.userInfo = model.content.senderUserInfo;
         //        [self.portraitImageView setImageURL:[NSURL URLWithString:model.content.senderUserInfo.portraitUri]];
         [self.nicknameLabel setText:[NSString stringWithFormat:@"%@:" ,model.content.senderUserInfo.name]];

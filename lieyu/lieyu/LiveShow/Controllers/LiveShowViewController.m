@@ -331,13 +331,14 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     
     //顶部用户信息
     NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"UserHeader" owner:self options:nil];
-    //得到第一个UIView
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     _userView = [nib objectAtIndex:0];
-    _userView.frame = CGRectMake(20, 30, 140, 40);
+    CGSize textSize = CGSizeZero;
+    textSize = [LYTextMessageCell getContentSize:app.userModel.usernick withFrontSize:16 withWidth:100];
+    _userView.frame = CGRectMake(20, 30, textSize.width + 60 , 40);
     _userView.layer.cornerRadius = 20;
     _userView.layer.masksToBounds = YES;
     _userView.backgroundColor = RGBA(68, 64, 67, 0.5);
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [_userView.iconIamgeView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",app.userModel.avatar_img]]];
     _userView.iconIamgeView.layer.cornerRadius = _userView.iconIamgeView.frame.size.height/2;
     _userView.iconIamgeView.layer.masksToBounds = YES;
@@ -345,6 +346,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 //    [_userView.iconIamgeView addGestureRecognizer:tapGesture];
     _userView.iconIamgeView.userInteractionEnabled = YES;
     _userView.userNameLabel.text = [NSString stringWithFormat:@"%@",app.userModel.usernick];
+    
     _userView.isFoucsButton.hidden = YES;
     [CAEmitterView addSubview:_userView];
     
@@ -389,10 +391,10 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     [_livesetView.beautifulButton addTarget:self action:@selector(beautifulButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
     
     _beaSlider = [[UISlider alloc] initWithFrame:(CGRectMake(SCREEN_WIDTH / 8 , distanceOfBottom  - 140 - 40 - SCREEN_HEIGHT / 8, SCREEN_WIDTH / 4 * 3, 40))];
-    _beaSlider.value = self.registerView.beautifySlider.value;
-    _beaSlider.minimumTrackTintColor = self.registerView.beautifySlider.minimumTrackTintColor;
-    _beaSlider.maximumTrackTintColor = self.registerView.beautifySlider.maximumTrackTintColor;
-    _beaSlider.thumbTintColor = self.registerView.beautifySlider.thumbTintColor;
+    _beaSlider.value = _beautify;
+    _beaSlider.minimumTrackTintColor = RGB(178, 38, 217);
+    _beaSlider.maximumTrackTintColor = [UIColor whiteColor];
+    _beaSlider.thumbTintColor = RGB(178, 38, 217);
     _beaSlider.hidden = YES;
     [_beaSlider addTarget:self action:@selector(beattifyValueChangeAction:) forControlEvents:(UIControlEventValueChanged)];
     [_backgroudView addSubview:_beaSlider];
@@ -551,6 +553,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
                 break;
         }
 }
+
 #pragma mark - Notification Handler
 
 - (void)reachabilityChanged:(NSNotification *)notif{
@@ -600,7 +603,6 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 - (void)cameraStreamingSession:(PLCameraStreamingSession *)session streamStateDidChange:(PLStreamState)state {
     NSString *log = [NSString stringWithFormat:@"Stream State: %s", stateNames[state]];
     NSLog(@"%@", log);
-    [[AVAudioSession sharedInstance] setActive:YES error:nil];
     // 除 PLStreamStateError 外的其余状态会回调在这个方法
     // 这个回调会确保在主线程，所以可以直接对 UI 做操作
 }
@@ -665,7 +667,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 }
 
 #pragma mark --- 开始直播
--(void) beginLiveShow{
+-(void) beginLiveShow {
     if (PLStreamStateConnected == self.session.streamState) {
         [self stopSession];
     } else {
@@ -938,7 +940,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     if (collectionView.tag == 199) {
         return UIEdgeInsetsMake(15, 5, 15, 5);//上 左 下 右
     }else{
-        return UIEdgeInsetsMake(0, 5, 0, 5);
+        return UIEdgeInsetsMake(0, 0, 0, 0);
     }
 }
 
@@ -1069,60 +1071,29 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 - (void)initializedSubViews {
     //聊天区
     if(self.contentView == nil){
-        CGRect contentViewFrame = CGRectMake(0, SCREEN_HEIGHT / 8 *3,SCREEN_WIDTH - SCREEN_WIDTH / 8 , distanceOfBottom - SCREEN_HEIGHT /8 * 3 - SCREEN_WIDTH / 8);
+        CGRect contentViewFrame = CGRectMake(0, SCREEN_HEIGHT / 8 *5 - 20,SCREEN_WIDTH - SCREEN_WIDTH / 8 , distanceOfBottom - SCREEN_HEIGHT /8 * 5 - SCREEN_WIDTH / 8);
         self.contentView.backgroundColor = RGBCOLOR(235, 235, 235);
         self.contentView = [[UIView alloc]initWithFrame:contentViewFrame];
         [self.view addSubview:self.contentView];
     }
     //聊天消息区
-        UICollectionViewFlowLayout *customFlowLayout = [[UICollectionViewFlowLayout alloc] init];
-        customFlowLayout.minimumLineSpacing = 20;
-        customFlowLayout.sectionInset = UIEdgeInsetsMake(10.0f, 0.0f, 10.0f, 0.0f);
-        customFlowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        CGRect _conversationViewFrame = self.contentView.bounds;
-        _conversationViewFrame.origin.y = 30;
-        _conversationViewFrame.size.height = self.contentView.bounds.size.height - 40;
-//    CGRect _conversationViewFrame = CGRectMake(0, distanceOfBottom - MinHeight_InputView - SCREEN_HEIGHT / 8 * 3, SCREEN_WIDTH, SCREEN_HEIGHT /8 * 3);
-        self.conversationMessageCollectionView =
-        [[UICollectionView alloc] initWithFrame:_conversationViewFrame
-                           collectionViewLayout:customFlowLayout];
-        [self.conversationMessageCollectionView
-         setBackgroundColor:RGBCOLOR(235, 235, 235)];
-        self.conversationMessageCollectionView.showsHorizontalScrollIndicator = NO;
+    UICollectionViewFlowLayout *customFlowLayout = [[UICollectionViewFlowLayout alloc] init];
+    customFlowLayout.minimumLineSpacing = 4;
+    customFlowLayout.sectionInset = UIEdgeInsetsMake(10.0f, 0.0f, 10.0f, 0.0f);
+    customFlowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    CGRect _conversationViewFrame = self.contentView.bounds;
+    _conversationViewFrame.origin.y = 30;
+    _conversationViewFrame.size.height = self.contentView.bounds.size.height - 40;
+    //    CGRect _conversationViewFrame = CGRectMake(0, distanceOfBottom - MinHeight_InputView - SCREEN_HEIGHT / 8 * 3, SCREEN_WIDTH, SCREEN_HEIGHT /8 * 3);
+    self.conversationMessageCollectionView =
+    [[UICollectionView alloc] initWithFrame:_conversationViewFrame
+                       collectionViewLayout:customFlowLayout];
+        [self.conversationMessageCollectionView setBackgroundColor:RGBCOLOR(235, 235, 235)];
+        self.conversationMessageCollectionView.showsVerticalScrollIndicator = NO;
         self.conversationMessageCollectionView.alwaysBounceVertical = YES;
         self.conversationMessageCollectionView.dataSource = self;
         self.conversationMessageCollectionView.delegate = self;
         [self.contentView addSubview:self.conversationMessageCollectionView];
-    //输入区
-//    if(self.inputBar == nil){
-//        float inputBarOriginY = distanceOfBottom - SCREEN_WIDTH / 8;
-//        float inputBarOriginX = SCREEN_WIDTH / 6 ;
-//        float inputBarSizeWidth = SCREEN_WIDTH / 3 *2 ;
-//        float inputBarSizeHeight = MinHeight_InputView;
-//        self.inputBar = [[RCInputBarControl alloc]initWithFrame:CGRectMake(inputBarOriginX, inputBarOriginY,inputBarSizeWidth,inputBarSizeHeight)
-//                                                inViewConroller:self];
-//        self.inputBar.delegate = self;
-//        self.inputBar.backgroundColor = [UIColor clearColor];
-//        [self.view addSubview:self.inputBar];
-//    }
-//    if (self.inputTextFieldView == nil) {
-//        self.inputTextFieldView = [[InputTextFieldView alloc] initWithFrame:(CGRectMake(SCREEN_WIDTH / 6, distanceOfBottom - SCREEN_WIDTH / 8, SCREEN_WIDTH / 3 * 2, MinHeight_InputView))];
-//        self.inputTextFieldView.backgroundColor = [UIColor grayColor];
-//        self.inputTextFieldView.alpha = .5f;
-//        [_inputTextFieldView.inputTextField becomeFirstResponder];
-//        _inputTextFieldView.inputTextField.delegate = self;
-//        [self.view addSubview:self.inputTextFieldView];
-
-//        _inputTextFieldView.inputTextField.keyboardType = UIKeyboardTypeDefault;
-//        //监听键盘出现
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardAppearanceAction:) name:UIKeyboardWillShowNotification object:nil];
-//        //监听键盘隐藏
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHideAction:) name:UIKeyboardWillHideNotification object:nil];
-//        //点击空白回收键盘
-//    }
-//    UITextField * textField = [[UITextField alloc] initWithFrame:(CGRectMake(SCREEN_WIDTH / 6, distanceOfBottom - SCREEN_WIDTH / 8, SCREEN_WIDTH / 3 * 2, MinHeight_InputView))];
-//    textField.delegate = self;
-//    [self.view addSubview:textField];
     _commentView = [[[NSBundle mainBundle]loadNibNamed:@"LYFriendsCommentView" owner:nil options:nil] firstObject];
     _commentView.frame = CGRectMake(SCREEN_WIDTH / 50, distanceOfBottom - SCREEN_WIDTH / 8,SCREEN_WIDTH - MinHeight_InputView - 40, MinHeight_InputView);
     _commentView.bgView.backgroundColor = RGB(68, 64, 67);
@@ -1156,10 +1127,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
                              action:@selector(tap4ResetDefaultBottomBarStatus:)];
     [_resetBottomTapGesture setDelegate:self];
     [self.view addGestureRecognizer:_resetBottomTapGesture];
-    
-
 }
-
 
 #pragma mark --- 键盘监听事件
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
@@ -1169,14 +1137,16 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication ].delegate;
     if (![textField.text isEqualToString:@""]) {
-        NSString *text = [NSString stringWithFormat:@"%@", _commentView.textField.text];
+        NSString *text = [NSString stringWithFormat:@"%@: %@",app.userModel.usernick, _commentView.textField.text];
         RCTextMessage *rcTextMessage = [RCTextMessage messageWithContent:text];
         [self sendMessage:rcTextMessage pushContent:nil];
         textField.text = @"";
     }
     [textField endEditing:YES];
     _commentView.frame = CGRectMake(SCREEN_WIDTH / 50, distanceOfBottom - SCREEN_WIDTH / 8,SCREEN_WIDTH - MinHeight_InputView - 40, MinHeight_InputView);
+    _contentView.frame = CGRectMake(0, SCREEN_HEIGHT / 8 *5 - 20,SCREEN_WIDTH - SCREEN_WIDTH / 8 , distanceOfBottom - SCREEN_HEIGHT /8 * 5 - SCREEN_WIDTH / 8);
     _bigView.hidden = YES;
 
     return YES;
@@ -1202,6 +1172,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     CGRect rect = [note.userInfo[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
     [UIView animateWithDuration:.25 animations:^{
         _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - rect.size.height - 49, SCREEN_WIDTH, 49);
+        _contentView.frame = CGRectMake(0, SCREEN_HEIGHT / 8 *5 - 20 - rect.size.height, SCREEN_WIDTH - SCREEN_WIDTH / 8 ,distanceOfBottom - SCREEN_HEIGHT /8 * 5 - SCREEN_WIDTH / 8);
     }];
 }
 
@@ -1212,6 +1183,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     //    }
     [_commentView.textField endEditing:YES];
     _commentView.frame = CGRectMake(SCREEN_WIDTH / 50, distanceOfBottom - SCREEN_WIDTH / 8,SCREEN_WIDTH - MinHeight_InputView - 40, MinHeight_InputView);
+    _contentView.frame = CGRectMake(0, SCREEN_HEIGHT / 8 *5 - 20,SCREEN_WIDTH - SCREEN_WIDTH / 8 , distanceOfBottom - SCREEN_HEIGHT /8 * 5 - SCREEN_WIDTH / 8);
     _bigView.hidden = YES;
 }
 - (void)emotionClick:(UIButton *)button{
