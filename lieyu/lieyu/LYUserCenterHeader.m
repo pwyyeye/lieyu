@@ -26,7 +26,7 @@
 #import "LYZSApplicationViewController.h"
 #import "checkUnpassedViewController.h"
 #import "LYFriendsHttpTool.h"
-#import "LYAccountManager.h"
+#import "LYUserDetailController.h"
 
 @implementation LYUserCenterHeader{
     UIVisualEffectView *_effctView ;
@@ -461,7 +461,7 @@
     [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
     
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    LYAccountManager *detailViewController=[[LYAccountManager alloc] init];
+    LYUserDetailController *detailViewController = [[LYUserDetailController alloc]init];
     [app.navigationController pushViewController:detailViewController animated:YES];
     //    LYWithdrawTypeViewController *WithdrawTypeVC = [[LYWithdrawTypeViewController alloc]initWithNibName:@"LYWithdrawTypeViewController" bundle:nil];
     //    [app.navigationController pushViewController:WithdrawTypeVC animated:YES];

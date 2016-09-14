@@ -148,7 +148,7 @@
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     
     if (indexPath.row == 0) {
-        LYUserDetailController *detailViewController = [[LYUserDetailController alloc]init];
+//        LYUserDetailController *detailViewController = [[LYUserDetailController alloc]init];
         detailViewController=[[LYUserDetailController alloc] init];
         [self.navigationController pushViewController:detailViewController animated:YES];
     }else if (indexPath.row==1) {
