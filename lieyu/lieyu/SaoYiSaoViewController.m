@@ -81,14 +81,26 @@
     _videoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:_captureSession];
     //7.设置预览图层填充方式
     [_videoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
+//    [_videoPreviewLayer setBackgroundColor:[RGBA(0, 0, 0, 0.3) CGColor]];
     //8.设置图层的frame 115
-//    [_videoPreviewLayer setFrame:CGRectMake(0, 0, SCREEN_WIDTH - 46, SCREEN_HEIGHT - 115 - 64)];
-    [_videoPreviewLayer setFrame:CGRectMake(0, 0, SCREEN_WIDTH - 130, SCREEN_WIDTH - 130)];
-    NSLog(@"%@",NSStringFromCGRect(_videoPreviewLayer.frame));
+    [_videoPreviewLayer setFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+//    [_videoPreviewLayer setFrame:_viewPreview.layer.bounds];
+    //半透明图层
+    CAShapeLayer *cropLayer = [[CAShapeLayer alloc]init];
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGRect cropRect = CGRectMake(65, SCREEN_HEIGHT / 2 - SCREEN_WIDTH / 2 - 17, SCREEN_WIDTH - 130, SCREEN_WIDTH - 130);
+    CGPathAddRect(path, nil, _videoPreviewLayer.bounds);
+    CGPathAddRect(path, nil, cropRect);
+    [cropLayer setFillRule:kCAFillRuleEvenOdd];
+    [cropLayer setPath:path];
+    [cropLayer setFillColor:[RGBA(0, 0, 0, 0.4) CGColor]];
+    
+    [_videoPreviewLayer addSublayer:cropLayer];
+    
         //9.将图层添加到预览view的图层上
     [_viewPreview.layer addSublayer:_videoPreviewLayer];
     //10.设置扫描范围
-    captureMetadataOutput.rectOfInterest = CGRectMake(0, 0, 1, 1);
+    captureMetadataOutput.rectOfInterest = CGRectMake((SCREEN_HEIGHT / 2 - SCREEN_WIDTH / 2 + 5) / SCREEN_HEIGHT, 55 / SCREEN_WIDTH, (SCREEN_WIDTH - 110) / SCREEN_HEIGHT, (SCREEN_WIDTH - 110) / SCREEN_WIDTH);
     
 //    _viewPreview.layer.borderColor = [[UIColor blackColor]CGColor];
 //    _viewPreview.layer.borderWidth = 1;
@@ -107,7 +119,7 @@
 //    [_viewPreview addSubview:_boxView];
     //10.2.扫描线
     _scanLayer = [[CALayer alloc] init];
-    _scanLayer.frame = CGRectMake(17, 0, SCREEN_WIDTH - 164, 4);
+    _scanLayer.frame = CGRectMake(82, SCREEN_HEIGHT / 2 - SCREEN_WIDTH / 2, SCREEN_WIDTH - 164, 4);
     _scanLayer.cornerRadius = 1;
     _scanLayer.masksToBounds = YES;
     _scanLayer.backgroundColor = [RGBA(184, 40, 227, 0.7) CGColor];
@@ -256,8 +268,9 @@
 - (void)moveScanLayer:(NSTimer *)timer
 {
     CGRect frame = _scanLayer.frame;
-    if (_viewPreview.frame.size.height < _scanLayer.frame.origin.y) {
-        frame.origin.y = -40;
+//    NSLog(@"%f     %f",SCREEN_HEIGHT,SCREEN_WIDTH);
+    if (_scanLayer.frame.origin.y > SCREEN_WIDTH / 2 + SCREEN_HEIGHT / 2 - 150) {
+        frame.origin.y = SCREEN_HEIGHT / 2 - SCREEN_WIDTH / 2 - 50;
         _scanLayer.frame = frame;
     }else{
         frame.origin.y += 5;
