@@ -54,6 +54,7 @@
     if (![MyUtil isEmptyString:self.title]) {
         [MTA trackPageViewEnd:self.title];
     }
+    self.title = @"";
 }
 
 -(void)viewWillLayoutSubviews{

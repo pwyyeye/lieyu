@@ -23,6 +23,13 @@
 
 @implementation LYSearchFriendViewController
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.title = @"搜索";
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     _tableView.showsHorizontalScrollIndicator=NO;

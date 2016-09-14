@@ -19,6 +19,7 @@
 @implementation GroupLeaderRegisterViewController
 
 -(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     self.title = @"申请原因";
 }
 

@@ -48,7 +48,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="娱乐顾问" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pro-LG-a2V">
-                        <rect key="frame" x="137" y="107" width="44" height="14"/>
+                        <rect key="frame" x="137" y="111" width="44" height="14"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="44" id="DQZ-cz-jRJ"/>
                             <constraint firstAttribute="height" constant="14" id="aid-9F-Ygi"/>
@@ -123,7 +123,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uej-mp-IUU">
-                        <rect key="frame" x="109" y="126" width="42" height="24"/>
+                        <rect key="frame" x="109" y="130" width="42" height="24"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="狮子座" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SDB-6B-obx">
                                 <rect key="frame" x="0.0" y="0.0" width="42" height="24"/>
@@ -143,7 +143,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ivk-mg-AwX">
-                        <rect key="frame" x="169" y="126" width="42" height="24"/>
+                        <rect key="frame" x="169" y="130" width="42" height="24"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="娱乐顾问" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdI-Oe-jcb">
                                 <rect key="frame" x="0.0" y="0.0" width="42" height="24"/>
@@ -164,7 +164,7 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Pro-LG-a2V" firstAttribute="top" secondItem="LPF-qF-q4k" secondAttribute="bottom" constant="5" id="0Gn-ok-P48"/>
+                    <constraint firstItem="Pro-LG-a2V" firstAttribute="top" secondItem="LPF-qF-q4k" secondAttribute="bottom" constant="9" id="0Gn-ok-P48"/>
                     <constraint firstItem="Uej-mp-IUU" firstAttribute="top" secondItem="Pro-LG-a2V" secondAttribute="bottom" constant="5" id="2hs-hH-cSU"/>
                     <constraint firstItem="KVO-wV-dK7" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="5qr-UT-jfr"/>
                     <constraint firstAttribute="trailing" secondItem="Ggg-e0-hcb" secondAttribute="trailing" id="7Dp-LI-5Vk"/>
