@@ -262,7 +262,6 @@
         keyFrameA.repeatCount = 1;
         [imgV.layer addAnimation:keyFrameA forKey:nil];
     }
-    
 }
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
