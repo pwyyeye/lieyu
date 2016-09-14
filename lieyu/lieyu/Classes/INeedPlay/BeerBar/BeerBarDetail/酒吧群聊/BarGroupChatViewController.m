@@ -48,7 +48,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"rcGiftMessageCellIndenti
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    RCMessageContent *messageContent = [[RCMessageContent alloc] init];
+//    RCMessageContent *messageContent = [[RCMessageContent alloc] init];
     [[RCIMClient sharedRCIMClient] getConversationNotificationStatus:self.conversationType targetId:self.targetId success:^(RCConversationNotificationStatus nStatus) {
         _notificationStatus = nStatus;
     } error:^(RCErrorCode status) {
@@ -60,7 +60,6 @@ static NSString *const rcGiftMessageCellIndentifier = @"rcGiftMessageCellIndenti
     //    }];
     
     self.title = _titleName;
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated

@@ -34,9 +34,6 @@
     maskView.layer.masksToBounds = YES;
 }
 
-
-
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     
@@ -47,7 +44,7 @@
     _listModel = listModel;
     [_backImageView sd_setImageWithURL:[NSURL URLWithString:listModel.roomImg] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
     [_iconImageView sd_setImageWithURL:[NSURL URLWithString:((roomHostUser *)listModel.roomHostUser).avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
-    [_nameLabel setText:((roomHostUser *)listModel.roomHostUser).username];
+    [_nameLabel setText:((roomHostUser *)listModel.roomHostUser).usernick];
     [_lookNumLabel setText:[NSString stringWithFormat:@"%d",listModel.joinNum]];
     if ([listModel.roomType isEqualToString:@"live"]) {//直播
         _liveTypeLabel.text = @"直播";

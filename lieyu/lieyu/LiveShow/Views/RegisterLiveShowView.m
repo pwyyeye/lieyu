@@ -62,6 +62,9 @@
 -(void)initUI{
     [_beginShow addTarget:self action:@selector(registerShow:) forControlEvents:(UIControlEventTouchUpInside)];
     
+//    [_titleTextFiled setValue:[UIColor whiteColor] forKey:@"_placeholderLabel.textColor"];
+    
+    
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imagePakerAvtion)];
     [_LiveImageView addGestureRecognizer:tapGes];
     _LiveImageView.userInteractionEnabled = YES;

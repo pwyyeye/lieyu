@@ -49,8 +49,13 @@
     return _manngerDataArray;
 }
 -(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
     self.title = @"老司机列表";
+}
+
+-(void) viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
 }
 
 - (void)viewDidLoad {

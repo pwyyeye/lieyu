@@ -34,7 +34,7 @@ static NSString *CellIdentifier = @"CustomerCell";
     [super viewWillAppear:animated];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    
+    self.title=@"好友列表";
     _isOpen = NO;
 }
 
@@ -53,7 +53,6 @@ static NSString *CellIdentifier = @"CustomerCell";
 //    rightBtn=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"add5"] style:UIBarButtonItemStylePlain target:self action:@selector(moreAct:)];
 //    [self.navigationItem setRightBarButtonItem:rightBtn];
 
-    self.title=@"好友列表";
     _listContent = [NSMutableArray new];
     _filteredListContent = [NSMutableArray new];
     _fansListArray = [NSMutableArray new];
@@ -68,7 +67,6 @@ static NSString *CellIdentifier = @"CustomerCell";
     [_listContent removeAllObjects];
     __weak __typeof(self)weakSelf = self;
     [LYFriendsHttpTool getfFriensGroupWithPrams:nil complete:^(NSDictionary *dict) {
-        
         NSMutableArray *addressBookTemp = [[NSMutableArray array]init];
         [addressBookTemp addObjectsFromArray:dict[@"friendsList"]];
         _newFansListSize = [dict[@"newFansListSize"] integerValue];
@@ -303,7 +301,7 @@ static NSString *CellIdentifier = @"CustomerCell";
                 cell.tipLabel.text = @"（互相关注后将成为玩友）";
                 if (_isOpen) {
                     cell.smallImageView.image = nil;
-                    [cell.smallImageView setImage:[UIImage imageNamed:@"arrowup"]];
+                    [cell.smallImageView setImage:[UIImage imageNamed:@"arrowdown"]];
                 } else {
                     cell.smallImageView.image = nil;
                     [cell.smallImageView setImage:[UIImage imageNamed:@"arrowRitht"]];
@@ -325,6 +323,7 @@ static NSString *CellIdentifier = @"CustomerCell";
                     NSArray *nibArray = [[NSBundle mainBundle] loadNibNamed:@"FansCell" owner:self options:nil];
                     fansCell = (FansCell *)[nibArray objectAtIndex:0];
                 }
+                fansCell.selectionStyle = UITableViewCellSelectionStyleNone;
                 fansCell.fansModel = _fansListArray[indexPath.row - 1];
                 [fansCell.focusButton addTarget:self action:@selector(fansFocusButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
                 return fansCell;
@@ -372,7 +371,7 @@ static NSString *CellIdentifier = @"CustomerCell";
             }
             return;
         } else if(indexPath.section == 1) {
-//            [self addressBook];
+            [self addressBook];
             return;
         } else {
             addressBook = (FriendsListModel*)[[_listContent objectAtIndex:indexPath.section - 3] objectAtIndex:indexPath.row];
@@ -434,7 +433,7 @@ static NSString *CellIdentifier = @"CustomerCell";
 -(void)fansFocusButtonAction:(UIButton *) sender{
     FansCell *cell = (FansCell *)[[sender superview] superview];
     NSIndexPath *index=[_tableView indexPathForCell:cell];
-    FansModel *model = _fansListArray[index.row];
+    FansModel *model = _fansListArray[index.row - 1];
     if ([model.friendStatus isEqualToString:@"2"]) {
         NSDictionary *dict = @{@"followid":[NSString stringWithFormat:@"%d",model.id]};
         [LYFriendsHttpTool unFollowFriendWithParms:dict complete:^(NSDictionary *dict) {
@@ -623,10 +622,8 @@ static NSString *CellIdentifier = @"CustomerCell";
     
 }
 
-
 -(void)addFriendAct:(id)sender{
     LYSearchFriendViewController *searchFriendViewController=[[LYSearchFriendViewController alloc]initWithNibName:@"LYSearchFriendViewController" bundle:nil];
-    searchFriendViewController.title=@"搜索";
     [self.navigationController pushViewController:searchFriendViewController animated:YES];
     [self SetViewDisappear:nil];
 }

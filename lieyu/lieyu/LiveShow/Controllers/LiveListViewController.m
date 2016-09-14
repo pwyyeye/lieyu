@@ -536,34 +536,9 @@ static NSString *liveShowListID = @"liveShowListID";
     } else {
         model = _rencentDataArray[indexPath.row];
     }
-    NSString *url1 = model.roomImg;
-    [cell.backImageView sd_setImageWithURL:[NSURL URLWithString:url1]];
-    [cell sendSubviewToBack:cell.backImageView];
-    roomHostUser *roomUser = model.roomHostUser;
-    [cell.iconImageView sd_setImageWithURL:[NSURL URLWithString:roomUser.avatar_img]];
-    cell.nameLabel.text = [NSString stringWithFormat:@"%@",roomUser.username];
-    cell.lookNumLabel.text = [NSString stringWithFormat:@"%d", model.joinNum];
-    if ([model.roomType isEqualToString:@"live"]) {//直播
-        cell.liveTypeLabel.text = @"直播";
-    }else{
-        cell.liveTypeLabel.text = @"回放";
-    }
-    if (roomUser.userid.integerValue == 1) {//隐藏顾问tag
-        cell.guWenLabel.hidden = YES;
-    }
-    if (roomUser.userTag) {
-        cell.firstTaglabel.text = [NSString stringWithFormat:@"%@",roomUser.userTag[0]];
-        if (roomUser.userTag.count >= 2 ) {
-            cell.secondTagLabel.text = [NSString stringWithFormat:@"%@",roomUser.userTag[1]];
-        } else {
-            cell.secondTagLabel.hidden = YES;
-        }
-    } else {
-        cell.firstTaglabel.hidden = YES;
-        cell.secondTagLabel.hidden = YES;
-    }
-    cell.titleLabel.text = [NSString stringWithFormat:@"%@", model.roomName];
-    cell.likeNum.text = [NSString stringWithFormat:@"%d",model.likeNum];
+    
+    cell.listModel = model;
+    
     [cell sendSubviewToBack:cell.backImageView];
     return cell;
 }

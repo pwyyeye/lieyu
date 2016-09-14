@@ -19,7 +19,6 @@
 @property (nonatomic, strong) NSString *password;
 @property (nonatomic, strong) NSString *birthday;
 @property (nonatomic, assign) BOOL friends;
-
 @property NSInteger sectionNumber;
 
 @end
