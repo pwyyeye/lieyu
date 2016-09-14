@@ -1053,7 +1053,7 @@
         [LYYUHttpTool yuCreatGroupWith:paraDic complete:^(NSDictionary *data) {
             //            NSString *code = [NSString stringWithFormat:@"%@",data[@"code"]];
             BarGroupChatViewController *barChatVC = [[BarGroupChatViewController alloc] initWithConversationType:ConversationType_GROUP targetId:[NSString stringWithFormat:@"%@",_beerBarId]];
-            barChatVC.title = [NSString stringWithFormat:@"%@",_beerBarDetail.barname];
+            barChatVC.titleName = [NSString stringWithFormat:@"%@",_beerBarDetail.barname];
             barChatVC.groupManage = [_beerBarDetail.groupManage componentsSeparatedByString:@","];
             [weakSelf.navigationController pushViewController:barChatVC animated:YES];
             [IQKeyboardManager sharedManager].enable = NO;
@@ -1072,7 +1072,7 @@
             
             //            NSString *code = data[@"code"];
             BarGroupChatViewController *barChatVC = [[BarGroupChatViewController alloc] initWithConversationType:ConversationType_GROUP targetId:[NSString stringWithFormat:@"%@",_beerBarId]];
-            barChatVC.title = [NSString stringWithFormat:@"%@",_beerBarDetail.barname];
+            barChatVC.titleName = [NSString stringWithFormat:@"%@",_beerBarDetail.barname];
             barChatVC.groupManage = [_beerBarDetail.groupManage componentsSeparatedByString:@","];
             [weakSelf.navigationController pushViewController:barChatVC animated:YES];
             [IQKeyboardManager sharedManager].enable = NO;

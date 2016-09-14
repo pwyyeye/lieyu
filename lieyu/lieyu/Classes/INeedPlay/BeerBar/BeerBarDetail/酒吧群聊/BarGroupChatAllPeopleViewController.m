@@ -50,13 +50,13 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [self.navigationController setNavigationBarHidden:NO];
+    self.title = @"老司机列表";
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     [_myTableView registerNib:[UINib nibWithNibName:@"LYGroupPeopleTableViewCell" bundle:nil] forCellReuseIdentifier:@"LYGroupPeopleTableViewCell"];
-    self.title = @"老司机列表";
     _myTableView.dataSource = self;
     _myTableView.delegate = self;
 //    _myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -115,14 +115,12 @@
 -(void)checkBlockList {
     LYBlackListGroupViewController *blockListVC  = [[LYBlackListGroupViewController alloc] init];
     blockListVC.groupID = _groupID;
-    blockListVC.title = @"黑名单";
     [self.navigationController pushViewController:blockListVC animated:YES];
 }
 
 #pragma mark - 申请机长
 - (void)recentConnect{
     GroupLeaderInfoViewController * leader=[[GroupLeaderInfoViewController alloc]init];
-    leader.title=@"申请机长";
     leader.groupId = _groupID;
     [self.navigationController pushViewController:leader animated:YES];
 }
