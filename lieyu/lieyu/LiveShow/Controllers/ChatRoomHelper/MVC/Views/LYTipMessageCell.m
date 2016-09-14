@@ -50,10 +50,7 @@
 //        self.tipMessageLabel.backgroundColor = HEXCOLOR(0xBBBBBB);
 //        self.tipMessageLabel.alpha = 1;
 //    }
-    
 }
-
-
 
 - (void)attributedLabel:(RCAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url
 {

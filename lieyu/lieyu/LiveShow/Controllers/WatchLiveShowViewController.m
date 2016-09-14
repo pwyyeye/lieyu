@@ -256,7 +256,10 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     //顶部用户信息
     NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"UserHeader" owner:self options:nil];
     _userView = [nib objectAtIndex:0];
-    _userView.frame = CGRectMake(20, 30, 150, 40);
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    CGSize textSize = CGSizeZero;
+    textSize = [LYTextMessageCell getContentSize:app.userModel.usernick withFrontSize:16 withWidth:100];
+    _userView.frame = CGRectMake(20, 30, textSize.width + 110, 40);
     _userView.layer.cornerRadius = 20;
     _userView.layer.masksToBounds = YES;
     _userView.backgroundColor = RGBA(68, 64, 67, 0.5);
@@ -271,12 +274,11 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     
     [_userView.isFoucsButton addTarget:self action:@selector(foucsButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
     NSInteger status = [_hostUser[@"friendStatus"] integerValue];
-    if (status == 2) {//0 没有关系   1 关注   2 粉丝   3 好友
+    if (status == 2 || status == 0) {//0 没有关系   1 关注   2 粉丝   3 好友
         _userView.isFoucsButton.tag = 2;
-        _userView.isFoucsButton.hidden = YES;
-        _userView.frame = CGRectMake(20, 30, SCREEN_WIDTH / 2 - 40, 40);
+        _userView.isFoucsButton.titleLabel.text = @"关注";
     } else if (status == 1 || status == 3) {
-        _userView.isFoucsButton.tag = 2;
+        _userView.isFoucsButton.tag = 1;
         _userView.isFoucsButton.titleLabel.text = @"已关注";
         _userView.isFoucsButton.userInteractionEnabled = NO;
     }
@@ -515,7 +517,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 -(void)foucsButtonAction: (UIButton *) sender{
     NSInteger userid = [_hostUser[@"id"] integerValue];
     NSDictionary *dict = @{@"followid":[NSString stringWithFormat:@"%ld",userid]};
-    if (sender.tag == 1) {
+    if (sender.tag == 1) {//不能取消关注
         [LYFriendsHttpTool unFollowFriendWithParms:dict complete:^(NSDictionary *dict) {
             sender.titleLabel.text = @"关注";
         }];
@@ -833,14 +835,14 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 - (void)initializedSubViews {
     //聊天区
     if(self.contentView == nil){
-        CGRect contentViewFrame = CGRectMake(0, SCREEN_HEIGHT / 8 *3,SCREEN_WIDTH - SCREEN_WIDTH / 8 , distanceOfBottom - SCREEN_HEIGHT /8 * 3 - SCREEN_WIDTH / 8);
+        CGRect contentViewFrame = CGRectMake(0, SCREEN_HEIGHT / 8 *5 - 20,SCREEN_WIDTH - SCREEN_WIDTH / 8 , distanceOfBottom - SCREEN_HEIGHT /8 * 5 - SCREEN_WIDTH / 8);
         self.contentView.backgroundColor = RGBCOLOR(235, 235, 235);
         self.contentView = [[UIView alloc]initWithFrame:contentViewFrame];
         [self.view addSubview:self.contentView];
     }
     //聊天消息区
     UICollectionViewFlowLayout *customFlowLayout = [[UICollectionViewFlowLayout alloc] init];
-    customFlowLayout.minimumLineSpacing = 20;
+    customFlowLayout.minimumLineSpacing = 4;
     customFlowLayout.sectionInset = UIEdgeInsetsMake(10.0f, 0.0f, 10.0f, 0.0f);
     customFlowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
     CGRect _conversationViewFrame = self.contentView.bounds;
@@ -852,7 +854,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
                        collectionViewLayout:customFlowLayout];
     [self.conversationMessageCollectionView
      setBackgroundColor:RGBCOLOR(235, 235, 235)];
-    self.conversationMessageCollectionView.showsHorizontalScrollIndicator = NO;
+    self.conversationMessageCollectionView.showsVerticalScrollIndicator = NO;
     self.conversationMessageCollectionView.alwaysBounceVertical = YES;
     self.conversationMessageCollectionView.dataSource = self;
     self.conversationMessageCollectionView.delegate = self;
@@ -914,14 +916,16 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication ].delegate;
     if (![textField.text isEqualToString:@""]) {
-        NSString *text = [NSString stringWithFormat:@"%@", _commentView.textField.text];
+        NSString *text = [NSString stringWithFormat:@"%@: %@",app.userModel.usernick, _commentView.textField.text];
         RCTextMessage *rcTextMessage = [RCTextMessage messageWithContent:text];
         [self sendMessage:rcTextMessage pushContent:nil];
         textField.text = @"";
     }
     [textField endEditing:YES];
     _commentView.frame = CGRectMake(SCREEN_WIDTH / 6, distanceOfBottom - SCREEN_WIDTH / 8,SCREEN_WIDTH / 3 * 2 , MinHeight_InputView);
+    _contentView.frame = CGRectMake(0, SCREEN_HEIGHT / 8 *5 - 20,SCREEN_WIDTH - SCREEN_WIDTH / 8 , distanceOfBottom - SCREEN_HEIGHT /8 * 5 - SCREEN_WIDTH / 8);
     _bigView.hidden = YES;
     
     return YES;
@@ -947,6 +951,8 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     CGRect rect = [note.userInfo[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
     [UIView animateWithDuration:.25 animations:^{
         _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - rect.size.height - 49, SCREEN_WIDTH, 49);
+        _contentView.frame = CGRectMake(0, SCREEN_HEIGHT / 8 *5 - 20 - rect.size.height, SCREEN_WIDTH - SCREEN_WIDTH / 8 ,distanceOfBottom - SCREEN_HEIGHT /8 * 5 - SCREEN_WIDTH / 8);
+
     }];
 }
 
@@ -957,6 +963,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     //    }
     [_commentView.textField endEditing:YES];
     _commentView.frame = CGRectMake(SCREEN_WIDTH / 6, distanceOfBottom - SCREEN_WIDTH / 8,SCREEN_WIDTH / 3 * 2 , MinHeight_InputView);
+    _contentView.frame = CGRectMake(0, SCREEN_HEIGHT / 8 *5 - 20,SCREEN_WIDTH - SCREEN_WIDTH / 8 , distanceOfBottom - SCREEN_HEIGHT /8 * 5 - SCREEN_WIDTH / 8);
     _bigView.hidden = YES;
 }
 
