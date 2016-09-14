@@ -107,8 +107,6 @@
 //    _viewPreview.backgroundColor = [UIColor redColor];
     
     
-    
-    
     //10.1.扫描框
 //    _boxView = [[UIView alloc] initWithFrame:CGRectMake(_viewPreview.bounds.size.width * 0.2f, _viewPreview.bounds.size.height * 0.2f, _viewPreview.bounds.size.width - _viewPreview.bounds.size.width * 0.4f, _viewPreview.bounds.size.height - _viewPreview.bounds.size.height * 0.4f)];
 ////    _boxView.center = _viewPreview.center;
