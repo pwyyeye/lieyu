@@ -68,8 +68,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MineYubiRechargeTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:@"MineYubiRechargeTableViewCell" forIndexPath:indexPath];
     cell.index = indexPath.row;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     [cell.rechargeButton addTarget:self action:@selector(rechargeButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    UIButton *button = [[UIButton alloc]init];
+    button.tag = indexPath.row;
+    [self rechargeButtonClick:button];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -79,13 +86,23 @@
 
 #pragma mark - 按钮事件
 - (void)rechargeButtonClick:(UIButton *)button{
+    NSString *message;;
     if (button.tag == 0) {
-        [self rechargeWithAmount:@"8"];
+        message = @"8";
+//        [self rechargeWithAmount:@"8"];
     }else if (button.tag == 1){
-        [self rechargeWithAmount:@"38"];
+        message = @"38";
+//        [self rechargeWithAmount:@"38"];
     }else if (button.tag == 2){
-        [self rechargeWithAmount:@"88"];
+        message = @"88";
+//        [self rechargeWithAmount:@"88"];
     }
+    __weak __typeof(self) weakSelf = self;
+    [[[AlertBlock alloc]initWithTitle:@"提示" message:[NSString stringWithFormat:@"确认充值？即将消费%@元",message] cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex) {
+        if (buttonIndex == 1) {
+            [weakSelf rechargeWithAmount:message];
+        }
+    }]show];
 }
 
 - (void)rechargeCustomClick{
