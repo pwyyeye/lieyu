@@ -9,6 +9,9 @@
 #import "LYBaseViewController.h"
 
 @interface MineGroupCodeViewController :LYBaseViewController
+
+@property (nonatomic, strong) NSString *codeString;
+
 @property (weak, nonatomic) IBOutlet UIView *codeView;
 
 - (IBAction)downloadQRCode:(UIButton *)sender;

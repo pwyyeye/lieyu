@@ -7,6 +7,8 @@
 //
 
 #import "HomepageBarDetailTableViewCell.h"
+#import "LYUserLoginViewController.h"
+#import "LYHomePageHttpTool.h"
 
 @implementation HomepageBarDetailTableViewCell
 
@@ -30,6 +32,7 @@
 }
 
 - (void)setBarModel:(JiuBaModel *)barModel{
+    _barModel = barModel;
     [_barImage sd_setImageWithURL:[NSURL URLWithString:barModel.baricon] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
     [_barNameLabel setText:barModel.barname];
     [_barDescLabel setText:barModel.subtitle];
