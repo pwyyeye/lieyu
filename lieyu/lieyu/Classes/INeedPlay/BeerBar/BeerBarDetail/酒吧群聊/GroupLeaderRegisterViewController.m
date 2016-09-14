@@ -18,6 +18,11 @@
 
 @implementation GroupLeaderRegisterViewController
 
+-(void)viewWillAppear:(BOOL)animated{
+    self.title = @"申请原因";
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.

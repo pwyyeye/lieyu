@@ -12,4 +12,6 @@
 
 @property(nonatomic, strong) NSArray *groupManage;//所有的老司机
 
+@property(nonatomic, strong) NSString *titleName;//标题名字
+
 @end

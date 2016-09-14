@@ -73,6 +73,7 @@
         [self.tableView setFrame:(CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT))];
     }
     [self initReleaseWishButton];
+    [self initTitle];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -105,7 +106,6 @@
     
     [self registerCells];
     [self initRightButton];
-    [self initTitle];
     [self initMJFooterAndHeader];
     
     //获取数据

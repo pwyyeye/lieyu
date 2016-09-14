@@ -15,17 +15,19 @@
 
 @implementation GroupLeaderInfoViewController
 
+-(void)viewWillAppear:(BOOL)animated{
+    self.title = @"申请机长";
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [_registerAdminButton addTarget:self action:@selector(registerAdmin) forControlEvents:(UIControlEventTouchUpInside)];
-    
 }
 
 -(void)registerAdmin{
     GroupLeaderRegisterViewController *registerVC = [[GroupLeaderRegisterViewController alloc] init];
     registerVC.navigationItem.leftBarButtonItem = [self getItem];
-    registerVC.title = @"申请原因";
     registerVC.groupId = _groupId;
     [self.navigationController pushViewController:registerVC animated:YES];
 }

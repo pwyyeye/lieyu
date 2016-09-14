@@ -59,7 +59,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"rcGiftMessageCellIndenti
     //
     //    }];
     
-    
+    self.title = _titleName;
     
 }
 
@@ -75,12 +75,12 @@ static NSString *const rcGiftMessageCellIndentifier = @"rcGiftMessageCellIndenti
     
     
     
-    UIImage *back = [UIImage imageNamed:[NSString stringWithFormat:@"backimage.png"]];
-    UIImageView *backimg = [[UIImageView alloc] initWithImage:back];
-    backimg.userInteractionEnabled = YES;
-    backimg.frame = self.view.bounds;
-    [self.view addSubview:backimg];
-    [self.view sendSubviewToBack:backimg];
+//    UIImage *back = [UIImage imageNamed:[NSString stringWithFormat:@"backimage.png"]];
+//    UIImageView *backimg = [[UIImageView alloc] initWithImage:back];
+//    backimg.userInteractionEnabled = YES;
+//    backimg.frame = self.view.bounds;
+//    [self.view addSubview:backimg];
+//    [self.view sendSubviewToBack:backimg];
     
     
     //判断是否老司机

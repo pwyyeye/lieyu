@@ -21,12 +21,16 @@
 
 @implementation LYBlackListGroupViewController
 
+-(void) viewWillAppear:(BOOL)animated
+{
+    self.title = @"黑名单列表";
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
     [_myTableView registerNib:[UINib nibWithNibName:@"BlockListTableViewCell" bundle:nil] forCellReuseIdentifier:@"BlockCellID"];
-    self.title = @"黑名单列表";
     _myTableView.dataSource = self;
     _myTableView.delegate = self;
     [self getData];
