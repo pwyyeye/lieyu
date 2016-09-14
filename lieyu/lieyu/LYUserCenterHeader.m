@@ -264,6 +264,7 @@
     }
     
 }
+
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
     [UIView animateWithDuration:0.2 animations:^{
         _effctView.alpha = 0.f;
