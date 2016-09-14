@@ -32,7 +32,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ScanBackGround.png" translatesAutoresizingMaskIntoConstraints="NO" id="ETA-DX-B07">
-                    <rect key="frame" x="55" y="129" width="210" height="210"/>
+                    <rect key="frame" x="60" y="134" width="200" height="200"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="ETA-DX-B07" secondAttribute="height" multiplier="1:1" id="3xK-hh-WDi"/>
                     </constraints>
@@ -53,7 +53,7 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="XhW-Ua-jyZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="2kR-l9-71W"/>
-                <constraint firstAttribute="trailing" secondItem="ETA-DX-B07" secondAttribute="trailing" constant="55" id="SUr-VU-6hC"/>
+                <constraint firstAttribute="trailing" secondItem="ETA-DX-B07" secondAttribute="trailing" constant="60" id="SUr-VU-6hC"/>
                 <constraint firstItem="rIf-9R-dV7" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="UjF-k6-N19"/>
                 <constraint firstItem="9Lw-Jp-Jyb" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ZGh-KG-sWz"/>
                 <constraint firstItem="9Lw-Jp-Jyb" firstAttribute="top" secondItem="XhW-Ua-jyZ" secondAttribute="bottom" constant="3" id="eHl-ic-WIV"/>
@@ -61,7 +61,7 @@
                 <constraint firstAttribute="trailing" secondItem="rIf-9R-dV7" secondAttribute="trailing" id="fyD-HY-LEc"/>
                 <constraint firstItem="rIf-9R-dV7" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="h8l-Gb-RQu"/>
                 <constraint firstAttribute="bottom" secondItem="rIf-9R-dV7" secondAttribute="bottom" id="h9S-CM-aCf"/>
-                <constraint firstItem="ETA-DX-B07" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="55" id="isR-kp-7kO"/>
+                <constraint firstItem="ETA-DX-B07" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="60" id="isR-kp-7kO"/>
                 <constraint firstAttribute="bottom" secondItem="9Lw-Jp-Jyb" secondAttribute="bottom" constant="17" id="n5v-xM-SeR"/>
                 <constraint firstItem="rIf-9R-dV7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="yZF-bv-C2e"/>
             </constraints>
