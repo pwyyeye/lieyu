@@ -39,8 +39,6 @@
 	return self;
 }
 
-
-
 - (void)setupProperties{
 	self.layers = [NSMutableDictionary dictionary];
 	

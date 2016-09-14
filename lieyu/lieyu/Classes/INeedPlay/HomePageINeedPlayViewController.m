@@ -1627,8 +1627,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         NSDictionary * param = @{@"barid":[NSString stringWithFormat:@"%d",model.barid]};
         if (model.isLiked == 1) {
             [[LYHomePageHttpTool shareInstance] unLikeJiuBa:param compelete:^(bool result) {
-                //收藏过
-                if(result){
+                //取消收藏
+                if(result && model.isLiked == 1){
                     model.isLiked = 0;
                     model.like_num --;
                     [button setTitle:[NSString stringWithFormat:@"%d",model.like_num] forState:UIControlStateNormal];
@@ -1637,7 +1637,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"喜欢" pageName:@"首页酒吧列表" titleName:model.barname]];
         }else{
             [[LYHomePageHttpTool shareInstance] likeJiuBa:param compelete:^(bool result) {
-                if (result) {
+                if (result && model.isLiked == 0) {
+                    //添加收藏
                     model.isLiked = 1;
                     model.like_num ++;
                     [button setTitle:[NSString stringWithFormat:@"%d",model.like_num] forState:UIControlStateNormal];

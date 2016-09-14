@@ -31,7 +31,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.navigationItem.title = @"消息通知";
     MineUserNotification *minUserNotification = [[MineUserNotification alloc]init];
     minUserNotification.typeName = @"系统通知";
     minUserNotification.type = @"0";
@@ -63,6 +62,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.title = @"消息通知";
     //查询数据库有没有缓存，如果有缓存泽先利用缓存赋值
     LYCoreDataUtil *core  = [LYCoreDataUtil shareInstance];
     NSArray *dataArray = [core getCoreData:@"LYCache" andSearchPara:@{@"lyCacheKey":CACHE_SYSTEM_NOTIFICATION}];

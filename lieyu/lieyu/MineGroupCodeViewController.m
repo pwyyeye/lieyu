@@ -13,7 +13,6 @@
 @interface MineGroupCodeViewController ()
 
 @property (nonatomic, assign) CGFloat imageWidth;
-@property (nonatomic, strong) NSString *codeString;
 
 @end
 
@@ -26,26 +25,35 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self getData];
+    if ([MyUtil isEmptyString:_codeString]) {
+        [self getData];
+    }else{
+        [self codeChangeImage];
+    }
 }
 
 - (void)getData{
+    __weak __typeof(self) weakSelf = self;
     //获取完字符串之后操作
     [LYUserHttpTool lyGetYukebangQRCodeWithParams:nil complete:^(NSString *result) {
         if (![MyUtil isEmptyString:result]) {
-            _imageWidth = SCREEN_HEIGHT / 2 - 150;
             _codeString = result;
-            UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, _imageWidth, _imageWidth)];
-            imageView.layer.cornerRadius = 6;
-            imageView.layer.masksToBounds = YES;
-            imageView.backgroundColor = RGBA(242, 242, 242, 1);
-            imageView.image = [self qrImageForString:_codeString imageSize:_imageWidth];
-            [self.codeView addSubview:imageView];
+            [weakSelf codeChangeImage];
         }else{
             [MyUtil showPlaceMessage:@"二维码为空，请稍后重试！"];
         }
     }];
+}
+
+- (void)codeChangeImage{
+    
+    _imageWidth = SCREEN_HEIGHT / 2 - 150;
+    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, _imageWidth, _imageWidth)];
+    imageView.layer.cornerRadius = 6;
+    imageView.layer.masksToBounds = YES;
+    imageView.backgroundColor = RGBA(242, 242, 242, 1);
+    imageView.image = [self qrImageForString:_codeString imageSize:_imageWidth];
+    [self.codeView addSubview:imageView];
 }
 
 - (UIImage *)qrImageForString:(NSString *)string imageSize:(CGFloat)size {

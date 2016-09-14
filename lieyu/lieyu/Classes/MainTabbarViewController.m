@@ -261,17 +261,21 @@
         self.selectedIndex=0;
     }
 }
+
 -(void)layoutSublayersOfLayer:(CALayer *)layer{
     [super layoutSublayersOfLayer:layer];
 }
+
 //跳到猎
 - (void)jumpToFirstView{
 //    self.selectedIndex = 0;
 }
+
 //跳到娱
 - (void)jumpToSecondView{
 //    self.selectedIndex = 1;
 }
+
 //跳到发现
 - (void)jumpToforthPage{
 //    self.selectedIndex = 3;
