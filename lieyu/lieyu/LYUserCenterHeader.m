@@ -457,15 +457,12 @@
 #pragma mark - 按钮事件
 - (IBAction)gotoSetting:(id)sender {
     //统计我的页面的选择
-    NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"账户管理"};
+    NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"修改信息"};
     [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
     
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     LYUserDetailController *detailViewController = [[LYUserDetailController alloc]init];
     [app.navigationController pushViewController:detailViewController animated:YES];
-    //    LYWithdrawTypeViewController *WithdrawTypeVC = [[LYWithdrawTypeViewController alloc]initWithNibName:@"LYWithdrawTypeViewController" bundle:nil];
-    //    [app.navigationController pushViewController:WithdrawTypeVC animated:YES];
-    
 }
 
 - (IBAction)gotoMessageList:(id)sender {
