@@ -69,6 +69,7 @@
 #import "ActivityMainViewController.h"
 #import "TopicModel.h"
 #import "ActivityDetailViewController.h"
+#import "LiveShowViewController.h"
 
 #define PAGESIZE 20
 #define HOMEPAGE_MTA @"HOMEPAGE"
@@ -122,6 +123,10 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     NSMutableArray *_refreshingArray;
     
     UIButton *_clickedButton;//点击进行评论，点赞的按钮
+    
+    UIVisualEffectView *_effectView;//开始直播背景
+    UIButton *_registerLiveButton;//直播按钮
+    int _oldScrollOffectY;//记录旧的偏移量
 }
 @property (nonatomic,strong) UIButton *cityChooseBtn;//定位城市按钮
 @property(nonatomic,strong)NSMutableArray *bannerList;
@@ -503,16 +508,73 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [UIView animateWithDuration:0.1 animations:^{
         _lineView.center = CGPointMake(button.center.x, _lineView.center.y);
     }];
+    
+    if (tableView.tag == 2) {
+        //直播按钮弹出
+        [self LiveButtonShow];
+    }else{
+        //直播按钮收起
+        [self LiveButtonHide];
+    }
 }
 
+#pragma mark - 直播按钮
+- (void)LiveButtonShow{
+    if (!_effectView || !_registerLiveButton) {
+        [self LiveButtonInit];
+    }
+//    _effectView.hidden = NO;
+    [self.view bringSubviewToFront:_effectView];
+    [UIView animateWithDuration:.4 animations:^{
+        _effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 120, 60, 60);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:.2 animations:^{
+            [_effectView setFrame:CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 115, 60, 60)];
+        }];
+    }];
+}
+
+- (void)LiveButtonHide{
+    [UIView animateWithDuration:.2 animations:^{
+        [_effectView setFrame:CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 49, 60, 60)];
+    }];
+//    _effectView.hidden = YES;
+}
+
+//生成直播按钮
+- (void)LiveButtonInit{
+    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+    
+    _effectView = [[UIVisualEffectView alloc]initWithEffect:effect];
+    [_effectView setFrame:CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 49, 60, 60)];
+    _effectView.layer.cornerRadius = 30;
+    _effectView.layer.masksToBounds = YES;
+    [self.view addSubview:_effectView];
+    
+    _registerLiveButton = [[UIButton alloc]initWithFrame:CGRectMake(12, 15, 36, 30)];
+    [_registerLiveButton setBackgroundImage:[UIImage imageNamed:@"daohang_xiangji"] forState:UIControlStateNormal];
+    [_registerLiveButton addTarget:self action:@selector(registerLiveButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    [_effectView addSubview:_registerLiveButton];
+    
+}
+
+- (void)registerLiveButtonAction{
+    LiveShowViewController *registerPushRoomVC = [[LiveShowViewController alloc] init];
+    [self presentViewController:registerPushRoomVC animated:YES completion:NULL];
+}
+
+#pragma mark - scrollview的代理方法
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
     if (scrollView == _bgScrollView) {
-        _index = (scrollView.contentOffset.x + (scrollView.frame.size.width / 2))/ scrollView.frame.size.width;
-        [self lineViewAnimation];
+        int i = (scrollView.contentOffset.x + (scrollView.frame.size.width / 2))/ scrollView.frame.size.width;
+        if (i != _index) {
+            _index = i ;
+            [self lineViewAnimation];
+        }
     }else{
         UITableView *tableView = [_tableViewArray objectAtIndex:_index];
         if (scrollView == tableView) {
-            if (scrollView.contentOffset.y < -100) {
+            if (scrollView.contentOffset.y < -50) {
                 if ([[_refreshingArray objectAtIndex:tableView.tag] isEqualToString:@"0"]) {
                     [_refreshingArray replaceObjectAtIndex:tableView.tag withObject:@"1"];
                     [_refreshView startAnimating];
@@ -526,22 +588,31 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
     if (scrollView == _bgScrollView) {
-        _index = (scrollView.contentOffset.x + (scrollView.frame.size.width / 2))/ scrollView.frame.size.width;
-        [self lineViewAnimation];
+        int i = (scrollView.contentOffset.x + (scrollView.frame.size.width / 2))/ scrollView.frame.size.width;
+        if (i != _index) {
+            _index = i ;
+            [self lineViewAnimation];
+        }
     }
 }
 
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     if (scrollView == _bgScrollView) {
-        _index = (scrollView.contentOffset.x + scrollView.frame.size.width / 2)/ scrollView.frame.size.width;
-        [self lineViewAnimation];
+        int i = (scrollView.contentOffset.x + scrollView.frame.size.width / 2)/ scrollView.frame.size.width;
+        if (i != _index) {
+            _index = i ;
+            [self lineViewAnimation];
+        }
     }else{
         UITableView *tableView = [_tableViewArray objectAtIndex:_index];
         if (scrollView == tableView) {
             EScrollerView *eScrollView = [_scrollViewArray objectAtIndex:_index];
             eScrollView.isDragVertical = NO;
-            NSLog(@"scrollViewDidEndDecelerating:%f",scrollView.contentOffset.y);
+//            NSLog(@"scrollViewDidEndDecelerating:%f",scrollView.contentOffset.y);
+        }
+        if (tableView.tag == 2) {
+            _oldScrollOffectY = scrollView.contentOffset.y;
         }
     }
 }
@@ -573,6 +644,29 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 //                    [self getDataWith];
 //                }
 //            }
+            if (tableView.tag == 2) {
+                if (imageOffsetY > _oldScrollOffectY){
+                    if (imageOffsetY <= 0.f) {
+                        _effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 115, 60, 60);
+                    }else{
+                        [UIView animateWithDuration:0.4 animations:^{
+                            _effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 49, 60, 60);
+                        }];
+                    }
+                }else{
+//                    NSLog(@"CGRectGetMaxY(_effectView.frame):%f",CGRectGetMaxY(_effectView.frame));
+//                    NSLog(@"SCREEN_HEIGHT - 5:%f",SCREEN_HEIGHT - 5);
+                    if (CGRectGetMaxY(_effectView.frame) > SCREEN_HEIGHT - 5) {
+                        [UIView animateWithDuration:.4 animations:^{
+                            _effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 120, 60, 60);
+                        } completion:^(BOOL finished) {
+                            [UIView animateWithDuration:0.2 animations:^{
+                                _effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 115, 60, 60);
+                            }];
+                        }];
+                    }
+                }
+            }
         }
     }
 }
@@ -1078,6 +1172,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [_menuBtnArray removeAllObjects];
     [_lineView removeFromSuperview];
     [_menuView removeFromSuperview];
+//    [_effectView removeFromSuperview];
+    
+//    _effectView = nil;
 }
 
 //筛选，跳转，增加，删除，确认
@@ -1513,7 +1610,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 #pragma mark - cell里的点击按钮事件
 - (void)collectBar:(UIButton *)button{
-    NSLog(@"%ld",button.tag);
+//    NSLog(@"%ld",button.tag);
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if (!app.userModel.userid) {
         LYUserLoginViewController *loginVC = [[LYUserLoginViewController alloc]init];

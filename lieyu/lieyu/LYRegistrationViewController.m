@@ -49,7 +49,7 @@ static LYRegistrationViewController *_registe;
     // Do any additional setup after loading the view from its nib.
     
     if(_isTheThirdLogin){
-        self.title = @"绑定手机号";
+//        self.title = @"绑定手机号";
         _textField_psw.hidden = YES;
         _textField_psw_third.hidden = YES;
         _imgView_icon_four.hidden = YES;
@@ -70,9 +70,11 @@ static LYRegistrationViewController *_registe;
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
     self.title=@"注册";
-
+    if(_isTheThirdLogin){
+        self.title = @"绑定手机号";
+    }
 }
-      
+
 - (void)viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
     self.navigationController.navigationBarHidden = NO;

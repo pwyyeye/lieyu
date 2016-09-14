@@ -69,21 +69,21 @@
 
     //设置微信，QQ，微博登陆按钮
     CGFloat _qqBtnWidth = 44;
-    _qqBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2.f - _qqBtnWidth/2.f, SCREEN_HEIGHT - 30 - _qqBtnWidth, _qqBtnWidth, _qqBtnWidth)];
+    _qqBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2.f - _qqBtnWidth/2.f, SCREEN_HEIGHT - 90 - _qqBtnWidth, _qqBtnWidth, _qqBtnWidth)];
 
     [_qqBtn setImage:[UIImage imageNamed:@"qq_s2"] forState:UIControlStateNormal];
 
     [self.view addSubview:_qqBtn];
     [_qqBtn addTarget:self action:@selector(qqLogin) forControlEvents:UIControlEventTouchUpInside];
     
-    _weixinBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/4.f - _qqBtnWidth/2.f, SCREEN_HEIGHT - 30 - _qqBtnWidth, _qqBtnWidth, _qqBtnWidth)];
+    _weixinBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/4.f - _qqBtnWidth/2.f, SCREEN_HEIGHT - 90 - _qqBtnWidth, _qqBtnWidth, _qqBtnWidth)];
 
     [_weixinBtn setImage:[UIImage imageNamed:@"wechat_s2"] forState:UIControlStateNormal];
 
     [self.view addSubview:_weixinBtn];
     [_weixinBtn addTarget:self action:@selector(weixinLogin) forControlEvents:UIControlEventTouchUpInside];
     
-    _weiboBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/4.f * 3 - _qqBtnWidth/2.f, SCREEN_HEIGHT - 30 - _qqBtnWidth, _qqBtnWidth, _qqBtnWidth)];
+    _weiboBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/4.f * 3 - _qqBtnWidth/2.f, SCREEN_HEIGHT - 90 - _qqBtnWidth, _qqBtnWidth, _qqBtnWidth)];
     [_weiboBtn setImage:[UIImage imageNamed:@"sina_weibo_s2"] forState:UIControlStateNormal];
 
     [self.view addSubview:_weiboBtn];
