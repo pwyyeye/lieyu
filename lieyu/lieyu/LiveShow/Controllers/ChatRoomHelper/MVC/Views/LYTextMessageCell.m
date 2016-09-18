@@ -71,18 +71,18 @@
     //
     //    [self.nicknameLabel setFrame:CGRectMake(10, 3, 100, 20)];
     //    [self.bubbleBackgroundView addSubview:self.nicknameLabel];
-    self.bubbleBackgroundView.userInteractionEnabled = YES;
-    UILongPressGestureRecognizer *longPress =
-    [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressed:)];
-    [self.bubbleBackgroundView addGestureRecognizer:longPress];
+//    self.bubbleBackgroundView.userInteractionEnabled = YES;
+//    UILongPressGestureRecognizer *longPress =
+//    [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressed:)];
+//    [self.bubbleBackgroundView addGestureRecognizer:longPress];
     
     
-    UITapGestureRecognizer *textMessageTap =
-    [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapTextMessage:)];
-    textMessageTap.numberOfTapsRequired = 1;
-    textMessageTap.numberOfTouchesRequired = 1;
-    [self.textLabel addGestureRecognizer:textMessageTap];
-    self.textLabel.userInteractionEnabled = YES;
+//    UITapGestureRecognizer *textMessageTap =
+//    [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapTextMessage:)];
+//    textMessageTap.numberOfTapsRequired = 1;
+//    textMessageTap.numberOfTouchesRequired = 1;
+//    [self.textLabel addGestureRecognizer:textMessageTap];
+//    self.textLabel.userInteractionEnabled = YES;
 }
 - (void)tapTextMessage:(UIGestureRecognizer *)gestureRecognizer {
     
@@ -134,12 +134,12 @@
     [self.nicknameLabel  removeFromSuperview];
     self.nicknameLabel = nil;
     
-    CGFloat __textHeight = __textSize.height;
-    CGFloat __textWidth = __textSize.width + 20 < 50 ? 50 : (__textSize.width + 20);
+//    CGFloat __textHeight = __textSize.height;
+//    CGFloat __textWidth = __textSize.width + 20 < 50 ? 50 : (__textSize.width + 20);
     
-    CGFloat __bubbleHeight = __textHeight < 35 ? 35: (__textHeight);
-    CGFloat __bubbleWidth = __textWidth < 50 ? 50 : (__textWidth);
-    CGSize __bubbleSize = CGSizeMake(__bubbleWidth - 6, __bubbleHeight);
+//    CGFloat __bubbleHeight = __textHeight < 35 ? 35: (__textHeight);
+//    CGFloat __bubbleWidth = __textWidth < 50 ? 50 : (__textWidth);
+//    CGSize __bubbleSize = CGSizeMake(__bubbleWidth - 6, __bubbleHeight);
     
     
     CGRect messageContentViewRect = self.messageContentView.frame;
@@ -147,7 +147,8 @@
     messageContentViewRect.size.width = __textSize.width;
     messageContentViewRect.size.height = __textSize.height;
     self.messageContentView.frame = messageContentViewRect;
-    self.bubbleBackgroundView.frame = CGRectMake(6, 0, __bubbleSize.width, __bubbleSize.height);
+//    self.bubbleBackgroundView.frame = CGRectMake(6, 0, __bubbleSize.width, __bubbleSize.height);
+    self.bubbleBackgroundView.frame = messageContentViewRect;
     self.textLabel.frame = CGRectMake(6,0, __textSize.width, __textSize.height);
     
     self.bubbleBackgroundView.backgroundColor = [UIColor clearColor];

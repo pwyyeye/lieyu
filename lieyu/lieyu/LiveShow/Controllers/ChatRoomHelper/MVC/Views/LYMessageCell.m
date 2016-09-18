@@ -43,19 +43,19 @@
     self.messageContentView = [[RCContentView alloc] initWithFrame:CGRectZero];
     self.statusContentView = [[UIView alloc] initWithFrame:CGRectZero];
     
-    self.nicknameLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-    self.nicknameLabel.backgroundColor = [UIColor clearColor];
-    [self.nicknameLabel setFont:[UIFont systemFontOfSize:16]];
+//    self.nicknameLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+//    self.nicknameLabel.backgroundColor = [UIColor clearColor];
+//    [self.nicknameLabel setFont:[UIFont systemFontOfSize:16]];
     //    [self.nicknameLabel setTextColor:HEXCOLOR(0xe2e2e2)];
     self.bubbleBackgroundView = [[RCContentView alloc] initWithFrame:CGRectZero];
     [self.bubbleBackgroundView addSubview:self.messageContentView];
-    [self.baseContentView addSubview:self.statusContentView];
-    [self.bubbleBackgroundView addSubview:self.nicknameLabel];
+//    [self.baseContentView addSubview:self.statusContentView];
+//    [self.bubbleBackgroundView addSubview:self.nicknameLabel];
     [self.baseContentView addSubview:self.bubbleBackgroundView];
     
-    self.statusContentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
-    _statusContentView.backgroundColor = [UIColor clearColor];
-    [self.baseContentView addSubview:_statusContentView];
+//    self.statusContentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+//    _statusContentView.backgroundColor = [UIColor clearColor];
+//    [self.baseContentView addSubview:_statusContentView];
     
     __weak typeof(&*self) __blockself = self;
     [self.bubbleBackgroundView registerFrameChangedEvent:^(CGRect frame) {
@@ -111,7 +111,7 @@
     
     _messageContentViewWidth = 200;
     // receiver
-    CGFloat messageContentViewY = 8;
+    CGFloat messageContentViewY = 0;
     CGFloat messageContentViewX = 6;
     self.nicknameLabel.frame = CGRectMake(messageContentViewX ,2, 200, 17);
     self.messageContentView.frame = CGRectMake(0,messageContentViewY,0,0);
@@ -165,21 +165,21 @@
 }
 
 #pragma mark private
-- (void)tapUserPortaitEvent:(UIGestureRecognizer *)gestureRecognizer {
-    __weak typeof(&*self) weakSelf = self;
-    if ([self.delegate respondsToSelector:@selector(didTapCellPortrait:)]) {
-        [self.delegate didTapCellPortrait:weakSelf.model.senderUserId];
-    }
-}
-
-- (void)longPressUserPortaitEvent:(UIGestureRecognizer *)gestureRecognizer {
-    __weak typeof(&*self) weakSelf = self;
-    if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
-        if ([self.delegate respondsToSelector:@selector(didLongPressCellPortrait:)]) {
-            [self.delegate didLongPressCellPortrait:weakSelf.model.senderUserId];
-        }
-    }
-}
+//- (void)tapUserPortaitEvent:(UIGestureRecognizer *)gestureRecognizer {
+//    __weak typeof(&*self) weakSelf = self;
+//    if ([self.delegate respondsToSelector:@selector(didTapCellPortrait:)]) {
+//        [self.delegate didTapCellPortrait:weakSelf.model.senderUserId];
+//    }
+//}
+//
+//- (void)longPressUserPortaitEvent:(UIGestureRecognizer *)gestureRecognizer {
+//    __weak typeof(&*self) weakSelf = self;
+//    if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+//        if ([self.delegate respondsToSelector:@selector(didLongPressCellPortrait:)]) {
+//            [self.delegate didLongPressCellPortrait:weakSelf.model.senderUserId];
+//        }
+//    }
+//}
 //-(void)tapBubbleBackgroundViewEvent:(UIGestureRecognizer *)gestureRecognizer
 //{
 //    if ([self.delegate respondsToSelector:@selector(didTapMessageCell:)]) {

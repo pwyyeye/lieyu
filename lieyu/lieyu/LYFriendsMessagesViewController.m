@@ -48,6 +48,8 @@
     DaShangView *_daShangView;//打赏View
     NSInteger _giftNumber;//礼物数量
     NSInteger _giftValue;//礼物价值
+    NSString *_toUserId;//打赏对象id
+    NSString *_businessid;//业务id
     UIView *_backgroudView;//背景
     NSString *jubaoUserID;//被举报人的ID
     ISEmojiView *_emojiView;//表情键盘
@@ -691,7 +693,7 @@
     FriendsRecentModel *recentM = array[section];
     if (recentM.commentNum.integerValue >= 1) {
         return 5  + recentM.commentList.count;
-    }else{
+    } else {
         if(!recentM.commentList.count) return 5;
         return 4 + recentM.commentList.count;
     }
@@ -796,7 +798,7 @@
             
             //打赏
             [addressCell.btn_dashang addTarget:self action:@selector(dashangAction:) forControlEvents:(UIControlEventTouchUpInside)];
-            
+            addressCell.btn_dashang.tag = indexPath.section;
             return addressCell;
         }
             break;
@@ -1109,7 +1111,9 @@
 
 #pragma mark - 打赏
 -(void)dashangAction:(UIButton *) sender{
-    
+    FriendsRecentModel *recentM = _dataArray[_index][sender.tag];
+    _toUserId = recentM.userId;
+    _businessid = recentM.id;
     UIView *moreView = [sender superview];
     moreView.alpha = 0.f;
     
@@ -1131,6 +1135,7 @@
     [_backgroudView addSubview:_daShangView];
     [_daShangView.closeButton addTarget:self action:@selector(dashangMomentCloseViewAction:) forControlEvents:(UIControlEventTouchUpInside)];
     [_daShangView.sendGiftButton addTarget:self action:@selector(sendGiftMomentButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
+    
 }
 
 -(void)notice:(NSNotification *)notification{
@@ -1163,7 +1168,16 @@
             
             break;
         case 1://单个送
-            [MyUtil showMessage:[NSString stringWithFormat:@"%@",_giftValueArray.firstObject]];
+        {
+            NSDictionary *dictGift = @{@"amount":[NSString stringWithFormat:@"%@",_giftValueArray.firstObject],
+                                       @"toUserid":_toUserId,
+                                       @"rid":@"moment",
+                                       @"businessid":_businessid};
+            [LYFriendsHttpTool daShangWithParms:dictGift complete:^(NSDictionary *dic) {
+                [MyUtil showMessage:[NSString stringWithFormat:@"%@",_giftValueArray.firstObject]];
+            }];
+            
+        }
             break;
             
         default:

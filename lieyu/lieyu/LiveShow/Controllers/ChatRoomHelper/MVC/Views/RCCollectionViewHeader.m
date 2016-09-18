@@ -28,6 +28,7 @@
         [self.indicatorView startAnimating];
     }
 }
+
 - (void)stopAnimating {
     if (self.indicatorView.isAnimating == YES) {
         [self.indicatorView stopAnimating];

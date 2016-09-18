@@ -93,4 +93,7 @@
 //获取直播状态
 #define LY_Live_liveStatus @"/lieyu//app/api/liveroom/getLiveStatus?1=1"
 
+#pragma mark --- 打赏
+#define LY_DaShang @"dailyCoinAction.do?action=custom"
+
 #endif /* LYFriendsPageUrl_h */

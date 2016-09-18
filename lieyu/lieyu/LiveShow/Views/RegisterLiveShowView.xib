@@ -25,6 +25,7 @@
                         <constraint firstAttribute="width" constant="200" id="5dk-cl-gYd"/>
                         <constraint firstAttribute="height" constant="50" id="pPJ-SO-06D"/>
                     </constraints>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
@@ -65,7 +66,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ILA-i2-lZX">
-                    <rect key="frame" x="185" y="449" width="230" height="35"/>
+                    <rect key="frame" x="185" y="465" width="230" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="Mei-2n-jgP"/>
                         <constraint firstAttribute="width" constant="230" id="tpo-Cs-Qd5"/>
@@ -80,7 +81,7 @@
                         <constraint firstAttribute="width" constant="167" id="iRy-HU-VOF"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="iDO-C2-dGG">
@@ -129,7 +130,7 @@
                 <constraint firstItem="ebE-JX-il8" firstAttribute="top" secondItem="eJu-ff-0ko" secondAttribute="top" constant="20" id="B82-ci-oAA"/>
                 <constraint firstItem="chy-vq-2tb" firstAttribute="centerX" secondItem="KhN-GU-MT9" secondAttribute="centerX" id="CAz-z8-iu5"/>
                 <constraint firstItem="3p4-aX-xSb" firstAttribute="width" secondItem="dU5-my-FNc" secondAttribute="width" id="DNA-VK-6EQ"/>
-                <constraint firstItem="ILA-i2-lZX" firstAttribute="top" secondItem="iDO-C2-dGG" secondAttribute="bottom" constant="24" id="DR0-Oe-NBK"/>
+                <constraint firstItem="ILA-i2-lZX" firstAttribute="top" secondItem="iDO-C2-dGG" secondAttribute="bottom" constant="40" id="DR0-Oe-NBK"/>
                 <constraint firstItem="1Wt-wu-UjC" firstAttribute="height" secondItem="dU5-my-FNc" secondAttribute="height" id="InZ-rf-9mI"/>
                 <constraint firstItem="iDO-C2-dGG" firstAttribute="top" secondItem="T5D-Ie-9XE" secondAttribute="bottom" constant="23" id="Iwv-dm-bsg"/>
                 <constraint firstItem="3p4-aX-xSb" firstAttribute="leading" secondItem="Qob-lM-F6e" secondAttribute="trailing" constant="40" id="Ut2-VN-vv6"/>

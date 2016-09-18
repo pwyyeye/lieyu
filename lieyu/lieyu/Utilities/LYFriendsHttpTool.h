@@ -82,4 +82,8 @@
 
 +(void) unFollowFriendWithParms:(NSDictionary *) parms complete: (void(^)(NSDictionary *dict))complete;
 
+#pragma mark ---- 打赏
++(void) daShangWithParms:(NSDictionary *) parms complete: (void(^)(NSDictionary *))complete;
+
+
 @end
