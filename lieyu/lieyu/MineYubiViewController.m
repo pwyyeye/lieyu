@@ -89,24 +89,24 @@
     NSString *message;;
     if (button.tag == 0) {
         message = @"8";
-//        [self rechargeWithAmount:@"8"];
+        [self rechargeWithAmount:@"8"];
     }else if (button.tag == 1){
         message = @"38";
-//        [self rechargeWithAmount:@"38"];
+        [self rechargeWithAmount:@"38"];
     }else if (button.tag == 2){
         message = @"88";
-//        [self rechargeWithAmount:@"88"];
+        [self rechargeWithAmount:@"88"];
     }
-    __weak __typeof(self) weakSelf = self;
-    [[[AlertBlock alloc]initWithTitle:@"提示" message:[NSString stringWithFormat:@"确认充值？即将消费%@元",message] cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex) {
-        if (buttonIndex == 1) {
-            [weakSelf rechargeWithAmount:message];
-        }
-    }]show];
+//    __weak __typeof(self) weakSelf = self;
+//    [[[AlertBlock alloc]initWithTitle:@"提示" message:[NSString stringWithFormat:@"确认充值？即将消费%@元",message] cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex) {
+//        if (buttonIndex == 1) {
+//            [weakSelf rechargeWithAmount:message];
+//        }
+//    }]show];
 }
 
 - (void)rechargeCustomClick{
-    UIAlertView *rechargeAlertview = [[UIAlertView alloc]initWithTitle:nil message:@"充值越多赠送越多" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"余额充值",@"在线充值", nil];
+    UIAlertView *rechargeAlertview = [[UIAlertView alloc]initWithTitle:nil message:@"充值越多赠送越多" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     rechargeAlertview.tag = 1;
     [rechargeAlertview setAlertViewStyle:UIAlertViewStylePlainTextInput];
     UITextField *rechargeField = [rechargeAlertview textFieldAtIndex:0];
@@ -118,11 +118,28 @@
 }
 
 - (void)rechargeWithAmount:(NSString *)money{
-    if ([money doubleValue] > [_balance doubleValue]) {
-        [MyUtil showPlaceMessage:@"余额不足！"];
+    BOOL isBalanceEnough = YES;
+    if ([money doubleValue] <= 0.0) {
+        [MyUtil showPlaceMessage:@"充值金额不可为0或更小！"];
         return;
     }
-    
+    if ([money doubleValue] > [_balance doubleValue]) {
+//        [MyUtil showPlaceMessage:@"余额不足！"];
+//        return;
+        isBalanceEnough = NO;
+    }
+    NSDictionary *dict = @{@"amount":money};
+    [LYUserHttpTool rechargeMoneyBagWithParams:dict complete:^(NSString *result) {
+        ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
+        detailViewController.orderNo=result;
+        detailViewController.payAmount=[money doubleValue];
+        detailViewController.productName=@"钱包余额充值";
+        detailViewController.productDescription=@"暂无";
+        detailViewController.isBalanceEnough = isBalanceEnough ;
+        detailViewController.isRechargeCoin = YES;
+        [self.navigationController pushViewController:detailViewController animated:YES];
+    }];
+    /*
     __weak __typeof(self) weakSelf = self;
     NSDictionary *dict = @{@"offBalances":money};
     [LYUserHttpTool rechargeCoinWithParams:dict complete:^(BOOL result) {
@@ -140,6 +157,7 @@
             }
         }
     }];
+     */
 }
 
 - (void)withdrawClick{

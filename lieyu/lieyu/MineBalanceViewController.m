@@ -53,22 +53,26 @@
 - (void)withdrawButtonClick:(UIButton *)sender{
     __weak __typeof(self) weakSelf = self;
     //需要参数
-//    if ([_balance.balances doubleValue] <= 0){
-//        [MyUtil showPlaceMessage:@"余额不足，无法提现！"];
-//    }else if ([MyUtil isEmptyString:_balance.accountName] || [MyUtil isEmptyString:_balance.accountType]) {
+    //
+    if ([_balance.balances doubleValue] <= 0){
+        [MyUtil showPlaceMessage:@"余额不足，无法提现！"];
+    }else if ([MyUtil isEmptyString:_balance.accountName] || [MyUtil isEmptyString:_balance.accountType]) {
+    //
         [[[AlertBlock alloc]initWithTitle:nil message:@"您还未绑定提现账户，请先绑定！" cancelButtonTitle:@"下次吧" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex) {
             if (buttonIndex == 1){
                 MineBoundAccountViewController *mineBoundAccountVC = [[MineBoundAccountViewController alloc]initWithNibName:@"MineBoundAccountViewController" bundle:nil];
                 [weakSelf.navigationController pushViewController:mineBoundAccountVC animated:YES];
             }
         }]show];
-//    }else{
-//        LYWithdrawTypeViewController *lyWithdrawTypeVC = [[LYWithdrawTypeViewController alloc]initWithNibName:@"LYWithdrawTypeViewController" bundle:[NSBundle mainBundle]];
-//        lyWithdrawTypeVC.type = _balance.accountType;
-//        lyWithdrawTypeVC.account = _balance.accountName;
-//        lyWithdrawTypeVC.balance = _balance.balances;
-//        [self.navigationController pushViewController:lyWithdrawTypeVC animated:YES];
-//    }
+        //
+    }else{
+        LYWithdrawTypeViewController *lyWithdrawTypeVC = [[LYWithdrawTypeViewController alloc]initWithNibName:@"LYWithdrawTypeViewController" bundle:[NSBundle mainBundle]];
+        lyWithdrawTypeVC.type = _balance.accountType;
+        lyWithdrawTypeVC.account = _balance.accountName;
+        lyWithdrawTypeVC.balance = _balance.balances;
+        [self.navigationController pushViewController:lyWithdrawTypeVC animated:YES];
+    }
+        //
 }
 
 #pragma mark - alertview的代理事件

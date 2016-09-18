@@ -28,4 +28,9 @@
 @property(strong,nonatomic) NSDate *createDate;
 
 @property(assign,nonatomic) BOOL isFaqi;
+
+@property (assign, nonatomic) BOOL isBalanceEnough;
+
+@property (nonatomic, assign) BOOL isRechargeCoin;
+
 @end
