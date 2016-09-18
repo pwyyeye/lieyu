@@ -151,7 +151,7 @@
     NSLog(@"----pass-pass%@---%d",message,left);
     NSString *needcount =[USER_DEFAULT objectForKey:@"needCountIM"];
     if (![MyUtil isEmptyString:needcount] && needcount.intValue==1) {
-//        [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
     }
     
 //    AVAudioSession *session = [AVAudioSession sharedInstance];

@@ -255,11 +255,10 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     
     //顶部用户信息
     NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"UserHeader" owner:self options:nil];
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     _userView = [nib objectAtIndex:0];
     CGSize textSize = CGSizeZero;
-    textSize = [LYTextMessageCell getContentSize:app.userModel.usernick withFrontSize:16 withWidth:100];
-    _userView.frame = CGRectMake(SCREEN_WIDTH / 50, 30, textSize.width + 160 , 40);
+    textSize = [LYTextMessageCell getContentSize:_hostUser[@"usernick"] withFrontSize:16 withWidth:100];
+    _userView.frame = CGRectMake(SCREEN_WIDTH / 50, 30, textSize.width + 130 , 40);
     _userView.layer.cornerRadius = 20;
     _userView.layer.masksToBounds = YES;
     _userView.backgroundColor = RGBA(68, 64, 67, 0.5);
@@ -347,7 +346,16 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
             
             break;
         case 1://单个送
-            [MyUtil showMessage:[NSString stringWithFormat:@"%@",_giftValueArray.firstObject]];
+        {
+            NSDictionary *dictGift = @{@"amount":[NSString stringWithFormat:@"%@",_giftValueArray.firstObject],
+                                       @"toUserid":_hostUser[@"id"],
+                                       @"rid":@"live",
+                                       @"businessid":_chatRoomId};
+            __weak typeof(self) weakSelf = self;
+            [LYFriendsHttpTool daShangWithParms:dictGift complete:^(NSDictionary *dic) {
+                [weakSelf watchBackButtonAction];
+            }];
+        }
             break;
             
         default:
@@ -537,6 +545,8 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     _anchorDetailView = [[[NSBundle mainBundle] loadNibNamed:@"AnchorDetailView" owner:self options:nil] lastObject];
     _anchorDetailView.frame = CGRectMake(0, 0, SCREEN_WIDTH/5 *4,SCREEN_HEIGHT / 3);
     _anchorDetailView.center = self.view.center;
+    _anchorDetailView.layer.cornerRadius = 8.f;
+    _anchorDetailView.layer.masksToBounds = YES;
     _anchorDetailView.backgroundColor = [UIColor whiteColor];
     _anchorDetailView.nickNameLabel.text = self.hostUser[@"usernick"];
     [_anchorDetailView.anchorIcon sd_setImageWithURL:[NSURL URLWithString:self.hostUser[@"avatar_img"]]];
@@ -548,17 +558,42 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     [self.view addSubview:_anchorDetailView];
     [self.view bringSubviewToFront:_anchorDetailView];
     
-    [_anchorDetailView.focusButton addTarget:self action:@selector(focusButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
+    NSInteger status = [_hostUser[@"friendStatus"] integerValue];
+    if (status == 2 || status == 0) {//0 没有关系   1 关注   2 粉丝   3 好友
+        _anchorDetailView.focusButton.tag = 2;
+        _anchorDetailView.focusButton.titleLabel.text = @"关注";
+    } else if (status == 1 || status == 3) {
+        _anchorDetailView.focusButton.tag = 1;
+        _anchorDetailView.focusButton.titleLabel.text = @"已关注";
+        _anchorDetailView.focusButton.userInteractionEnabled = NO;
+    }
+    [_anchorDetailView.focusButton addTarget:self action:@selector(anchorFocusButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
     [_anchorDetailView.mainViewButton addTarget:self action:@selector(mainViewButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
     _anchorDetailView.mainViewButton.tag = [self.hostUser[@"userid"] integerValue];
 }
 
--(void)focusButtonAction:(UIButton *) sender{
-    
+-(void)anchorFocusButtonAction:(UIButton *) sender{
+    NSInteger userid = [_hostUser[@"id"] integerValue];
+    NSDictionary *dict = @{@"followid":[NSString stringWithFormat:@"%ld",userid]};
+    if (sender.tag == 1) {//不能取消关注
+        [LYFriendsHttpTool unFollowFriendWithParms:dict complete:^(NSDictionary *dict) {
+            sender.titleLabel.text = @"关注";
+        }];
+    } else {
+        [LYFriendsHttpTool followFriendWithParms:dict complete:^(NSDictionary *dict) {
+            sender.titleLabel.text = @"已关注";
+            sender.userInteractionEnabled = NO;
+        }];
+    }
 }
 
 -(void)mainViewButtonAction:(UIButton *) sender{
-    
+    if ([MyUtil isEmptyString:_hostUser[@"id"]]) {
+        return;
+    }
+    LYMyFriendDetailViewController *myFriendVC = [[LYMyFriendDetailViewController  alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
+    myFriendVC.userID = _hostUser[@"id"];
+    [self.navigationController pushViewController:myFriendVC animated:YES];
 }
 
 #pragma mark --UICollectionViewDataSource
@@ -883,18 +918,19 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     _commentView.layer.cornerRadius = _commentView.frame.size.height / 2;
     _commentView.layer.masksToBounds = YES;
     _commentView.textField.placeholder = @"说点什么吧";
-    _commentView.textField.backgroundColor = [[UIColor clearColor] colorWithAlphaComponent:1];
+    _commentView.textField.backgroundColor = [[UIColor clearColor] colorWithAlphaComponent:.1f];
+    _commentView.textField.alpha = .5f;
     _commentView.textField.layer.borderColor = RGB(68, 64, 67).CGColor;
     _commentView.textField.borderStyle = UITextBorderStyleNone;
     [self.view addSubview:_commentView];
     _commentView.textField.delegate = self;
+    [_commentView.btn_emotion addTarget:self action:@selector(emotionClick:) forControlEvents:UIControlEventTouchUpInside];
     _commentView.btn_emotion.hidden = YES;
     _commentView.textField.center = _commentView.center;
     [_commentView layoutIfNeeded];
-    [_commentView.btn_emotion addTarget:self action:@selector(emotionClick:) forControlEvents:UIControlEventTouchUpInside];
     _bigView = [[UIView alloc]init];
     _bigView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(bigViewGes)];
+    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(watchBigViewGes)];
     [_bigView addGestureRecognizer:tapGes];
     [self.view addSubview:_bigView];
     [self.view insertSubview:_bigView belowSubview:_commentView];
@@ -949,26 +985,25 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     }
 }
 
-
 //键盘弹出
 - (void)keyBorderApearce:(NSNotification *)note{
-    
     CGRect rect = [note.userInfo[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
     [UIView animateWithDuration:.25 animations:^{
         _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - rect.size.height - 49, SCREEN_WIDTH, 49);
         _contentView.frame = CGRectMake(0, SCREEN_HEIGHT / 8 *5 - 20 - rect.size.height, SCREEN_WIDTH - SCREEN_WIDTH / 8 ,distanceOfBottom - SCREEN_HEIGHT /8 * 5 - SCREEN_WIDTH / 8);
-
     }];
 }
 
 //评论视图背景view 的手势去除评论view
-- (void)bigViewGes{
+- (void)watchBigViewGes{
     //    if (_commentView.textField.text.length) {
     defaultComment = _commentView.textField.text;
     //    }
     [_commentView.textField endEditing:YES];
-    _commentView.frame = CGRectMake(SCREEN_WIDTH / 6, distanceOfBottom - SCREEN_WIDTH / 8,SCREEN_WIDTH / 3 * 2 , MinHeight_InputView);
-    _contentView.frame = CGRectMake(0, SCREEN_HEIGHT / 8 *5 - 20,SCREEN_WIDTH - SCREEN_WIDTH / 8 , distanceOfBottom - SCREEN_HEIGHT /8 * 5 - SCREEN_WIDTH / 8);
+    [UIView animateWithDuration:.25 animations:^{
+        _commentView.frame = CGRectMake(SCREEN_WIDTH / 6, distanceOfBottom - SCREEN_WIDTH / 8,SCREEN_WIDTH / 3 * 2 , MinHeight_InputView);
+        _contentView.frame = CGRectMake(0, SCREEN_HEIGHT / 8 *5 - 20,SCREEN_WIDTH - SCREEN_WIDTH / 8 , distanceOfBottom - SCREEN_HEIGHT /8 * 5 - SCREEN_WIDTH / 8);
+    }];
     _bigView.hidden = YES;
 }
 

@@ -7647,7 +7647,6 @@
 			children = (
 				851F03A11D645A44006BAA47 /* Controllers */,
 				851F03AA1D645A44006BAA47 /* model */,
-				851F03B21D645A44006BAA47 /* Views */,
 			);
 			path = LiveShow;
 			sourceTree = "<group>";
@@ -7662,6 +7661,7 @@
 				851F03A61D645A44006BAA47 /* LiveShowViewController.m */,
 				851F03A71D645A44006BAA47 /* WatchLiveShowViewController.h */,
 				851F03A81D645A44006BAA47 /* WatchLiveShowViewController.m */,
+				851F03B21D645A44006BAA47 /* Views */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -7734,7 +7734,8 @@
 				851F03E61D645A44006BAA47 /* UserHeader.m */,
 				851F03E71D645A44006BAA47 /* UserHeader.xib */,
 			);
-			path = Views;
+			name = Views;
+			path = ../Views;
 			sourceTree = "<group>";
 		};
 		852519EF1D6BFA61005CE01D /* 玩探最新 */ = {

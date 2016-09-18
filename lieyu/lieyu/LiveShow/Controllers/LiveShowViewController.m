@@ -306,7 +306,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 
 #pragma mark -- 定时获取直播室人员和点赞数
 -(void)livetimerUpdataAction{
-    NSDictionary *dictionary = @{@"chatNum":[NSString stringWithFormat:@"%d",10],@"liveChatId":_chatRoomId};
+    NSDictionary *dictionary = @{@"chatNum":[NSString stringWithFormat:@"%d",_takeNum],@"liveChatId":_chatRoomId};
     [self.dataArray removeAllObjects];
     [LYFriendsHttpTool requestListWithParms:dictionary complete:^(NSDictionary *dict) {
         _userView.numberLabel.text = [NSString stringWithFormat:@"%@",dict[@"likeNum"]];
@@ -1141,7 +1141,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     [_commentView layoutIfNeeded];
     _bigView = [[UIView alloc]init];
     _bigView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(bigViewGes)];
+    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(LiveBigViewGes)];
     [_bigView addGestureRecognizer:tapGes];
     [self.view addSubview:_bigView];
     [self.view insertSubview:_bigView belowSubview:_commentView];
@@ -1197,7 +1197,6 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 
 //键盘弹出
 - (void)keyBorderApearce:(NSNotification *)note{
-
     CGRect rect = [note.userInfo[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
     [UIView animateWithDuration:.25 animations:^{
         _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - rect.size.height - 49, SCREEN_WIDTH, 49);
@@ -1206,13 +1205,15 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 }
 
 //评论视图背景view 的手势去除评论view
-- (void)bigViewGes{
+- (void)LiveBigViewGes{
     //    if (_commentView.textField.text.length) {
     defaultComment = _commentView.textField.text;
     //    }
     [_commentView.textField endEditing:YES];
-    _commentView.frame = CGRectMake(SCREEN_WIDTH / 50, distanceOfBottom - SCREEN_WIDTH / 8,SCREEN_WIDTH - MinHeight_InputView - 40, MinHeight_InputView);
-    _contentView.frame = CGRectMake(0, SCREEN_HEIGHT / 8 *5 - 20,SCREEN_WIDTH - SCREEN_WIDTH / 8 , distanceOfBottom - SCREEN_HEIGHT /8 * 5 - SCREEN_WIDTH / 8);
+    [UIView animateWithDuration:.25 animations:^{
+        _commentView.frame = CGRectMake(SCREEN_WIDTH / 50, distanceOfBottom - SCREEN_WIDTH / 8,SCREEN_WIDTH - MinHeight_InputView - 40, MinHeight_InputView);
+        _contentView.frame = CGRectMake(0, SCREEN_HEIGHT / 8 *5 - 20,SCREEN_WIDTH - SCREEN_WIDTH / 8 , distanceOfBottom - SCREEN_HEIGHT /8 * 5 - SCREEN_WIDTH / 8);
+    }];
     _bigView.hidden = YES;
 }
 - (void)emotionClick:(UIButton *)button{
