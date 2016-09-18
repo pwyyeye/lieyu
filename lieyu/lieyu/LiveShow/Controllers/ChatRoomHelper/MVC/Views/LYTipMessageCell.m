@@ -90,12 +90,12 @@
     }
 }
 
--(void)attributedLabel:(RCAttributedLabel *)label didTapLabel:(NSString *)content
-{
-    if ([self.delegate respondsToSelector:@selector(didTapMessageCell:)]) {
-        [self.delegate didTapMessageCell:self.model];
-    }
-}
+//-(void)attributedLabel:(RCAttributedLabel *)label didTapLabel:(NSString *)content
+//{
+//    if ([self.delegate respondsToSelector:@selector(didTapMessageCell:)]) {
+//        [self.delegate didTapMessageCell:self.model];
+//    }
+//}
 
 + (CGSize)getTipMessageCellSize:(NSString *)content{
     CGFloat maxMessageLabelWidth = [UIScreen mainScreen].bounds.size.width - 30 * 2;

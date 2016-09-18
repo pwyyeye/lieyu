@@ -73,7 +73,6 @@
         [self.tableView setFrame:(CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT))];
     }
     [self initReleaseWishButton];
-    [self initTitle];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -88,7 +87,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self initTitle];
+
     _dataList = [[NSMutableArray alloc]init];
     limit = 10;
     

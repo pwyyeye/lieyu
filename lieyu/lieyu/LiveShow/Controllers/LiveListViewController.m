@@ -31,7 +31,7 @@ static NSString *liveShowListID = @"liveShowListID";
     int _type;
     UIButton *_registerLiveButton;
     int _oldScrollOffectY;
-
+    UILabel *_kongLabel;
     BOOL isDisturb;
     NSInteger _currentHotPage, _currentRencentPage;
     UITableView *_hotTableView, *_newTablwView;
@@ -161,6 +161,21 @@ static NSString *liveShowListID = @"liveShowListID";
     
 }
 
+#pragma mark - 空界面
+- (void)initKongView{
+    _kongLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT / 4 - 45, SCREEN_WIDTH, 20)];
+    [_kongLabel setText:@"抱歉小主，搜索不到！"];
+    [_kongLabel setTextAlignment:NSTextAlignmentCenter];
+    [_kongLabel setFont:[UIFont systemFontOfSize:14]];
+    [_kongLabel setTextColor:RGBA(186, 30, 227, 1)];
+    _kongLabel.layer.zPosition = 3;
+    [self.view addSubview:_kongLabel];
+}
+
+-(void) hideEmptyView{
+    [_kongLabel removeFromSuperview];
+}
+
 #pragma mark -- 上方按钮事件
 -(void)chooseButtonAction{
     if (_chooseView.hidden) {
@@ -249,6 +264,7 @@ static NSString *liveShowListID = @"liveShowListID";
 -(void)setTableView{
     _scrollViewForTableView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     _scrollViewForTableView.contentSize = CGSizeMake(SCREEN_WIDTH * _pageNum, SCREEN_HEIGHT);
+    [self initKongView];
     _scrollViewForTableView.pagingEnabled = YES;
     _scrollViewForTableView.delegate = self;
     _scrollViewForTableView.scrollsToTop = NO;
@@ -275,7 +291,7 @@ static NSString *liveShowListID = @"liveShowListID";
     [_newTablwView registerNib:[UINib nibWithNibName:@"LiveShowListCell" bundle:nil] forCellReuseIdentifier:liveShowListID];
     
     [self refreshData];
-
+    
 }
 
 
@@ -302,7 +318,6 @@ static NSString *liveShowListID = @"liveShowListID";
         [_hotDataArray removeAllObjects];
         _currentHotPage = 1;
         [self getDataWithType:@"hot" AndPage:@"1"];
-    
         [_rencentDataArray removeAllObjects];
         _currentRencentPage = 1;
         [self getDataWithType:@"recent" AndPage:@"1"];
@@ -331,12 +346,12 @@ static NSString *liveShowListID = @"liveShowListID";
                         [self.hotDataArray addObject:model];
                         break;
                     case 1://美女
-                        if (user.gender == 0) {
+                        if (user.sex == 0) {
                         [self.hotDataArray addObject:model];
                         }
                         break;
                     case 2://帅哥
-                        if (user.gender == 1) {
+                        if (user.sex == 1) {
                         [self.hotDataArray addObject:model];
                         }
                         break;
@@ -355,8 +370,10 @@ static NSString *liveShowListID = @"liveShowListID";
                 }
                 
             }
+            [self hideEmptyView];
             if (_hotDataArray.count <= 0) {
                 if (_hotDataArray.count <= 0) {
+                    [self initKongView];
                     [hotTableView.mj_header endRefreshing];
                 }else{
                     if(_currentHotPage == 1){
@@ -381,12 +398,12 @@ static NSString *liveShowListID = @"liveShowListID";
                         [self.rencentDataArray addObject:model];
                         break;
                     case 1://美女
-                        if (user.gender == 0) {
+                        if (user.sex == 0) {
                             [self.rencentDataArray addObject:model];
                         }
                         break;
                     case 2://帅哥
-                        if (user.gender == 1) {
+                        if (user.sex == 1) {
                             [self.rencentDataArray addObject:model];
                         }
                         break;
@@ -404,8 +421,10 @@ static NSString *liveShowListID = @"liveShowListID";
                         break;
                 }
             }
+            [self hideEmptyView];
             if (_rencentDataArray.count <= 0) {
                 if (_rencentDataArray.count <= 0) {
+                    [self initKongView];
                     [newTableView.mj_header endRefreshing];
                 }else{
                     if(_currentRencentPage == 1){
@@ -569,7 +588,7 @@ static NSString *liveShowListID = @"liveShowListID";
             watchLiveVC.chatRoomId = nil;
         }
         watchLiveVC.hostUser = Arr[@"roomHostUser"];
-
+        watchLiveVC.shareIamge = model.roomImg;
         [weakSelf presentViewController:watchLiveVC animated:YES completion:NULL];
     }];
     

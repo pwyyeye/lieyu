@@ -62,7 +62,7 @@
 -(void)initUI{
     [_beginShow addTarget:self action:@selector(registerShow:) forControlEvents:(UIControlEventTouchUpInside)];
     
-//    [_titleTextFiled setValue:[UIColor whiteColor] forKey:@"_placeholderLabel.textColor"];
+    _titleTextFiled.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"#给直播写个标题吧..." attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
     
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imagePakerAvtion)];
@@ -313,10 +313,8 @@
 #pragma mark -- 进入直播间
 -(void)openLiveShowRoom{
     
-//    @"http://www.sinaimg.cn/dy/slidenews/76_img/2016_33/76522_1899053_733117.jpg"
-    
     if (!_imgUrl) {
-        _imgUrl = @"http://www.sinaimg.cn/dy/slidenews/76_img/2016_33/76522_1899053_733117.jpg";
+        _imgUrl = @"http://source.lie98.com/lieyu_ios_20160918110927_HWnD4jLL.jpg";
     }
     if ([_titleTextFiled.text  isEqualToString: @""]) {
         _titleTextFiled.text = @"#凡人皆需侍奉！#";

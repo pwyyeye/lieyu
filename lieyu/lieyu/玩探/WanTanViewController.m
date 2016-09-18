@@ -154,7 +154,8 @@ static NSString *wantanCellID = @"wantanCellID";
     } else {
         cell.redTiPot.hidden = YES;
         [cell setIamge:[UIImage imageNamed:@"baodian.png"] andLabel:@"娱乐宝典"];
-        cell.tagIamgeView.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y,cell.frame.size.width - 10, cell.frame.size.height + 15);
+//        cell.tagIamgeView.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y,cell.frame.size.width - 10, cell.frame.size.height + 15);
+        cell.tagIamgeView.contentMode = UIViewContentModeScaleAspectFit;
     }
     return cell;
 }

@@ -46,6 +46,8 @@
 #import <RongIMToolKit/RCInputBarControl.h>
 #import <RongIMToolKit/RCInputBarTheme.h>
 
+#import <AVFoundation/AVAudioPlayer.h>
+
 const char *stateNames[] = {
     "Unknow",
     "Connecting",
@@ -81,9 +83,10 @@ const char *networkStatus[] = {
 #define distanceOfBottom CGRectGetMaxY(self.view.bounds) - 20
 
 @interface LiveShowViewController () <PLCameraStreamingSessionDelegate,
-PLStreamingSendingBufferDelegate,UICollectionViewDataSource, UICollectionViewDelegate ,UICollectionViewDelegateFlowLayout,UITextFieldDelegate,ISEmojiViewDelegate>
+PLStreamingSendingBufferDelegate,UICollectionViewDataSource, UICollectionViewDelegate ,UICollectionViewDelegateFlowLayout,UITextFieldDelegate,ISEmojiViewDelegate,AVAudioPlayerDelegate>
 
 {
+    AVAudioPlayer *_avAudioPlayer;
     NSDictionary *dic;
     CGFloat _beautify;//美颜值
     UISlider *_beaSlider;
@@ -190,6 +193,9 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
     [self.conversationMessageCollectionView reloadData];
+    
+    [[UIApplication sharedApplication] unregisterForRemoteNotifications];
+    
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -207,7 +213,6 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     
     [_timer invalidate];
     _timer = nil;
-    
     
 }
 
@@ -236,8 +241,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
         [weakSelf initPLplayer];//初始化摄像头
         _registerView = [[[NSBundle mainBundle] loadNibNamed:@"RegisterLiveShowView" owner:weakSelf options:nil] lastObject];
         _registerView.frame = self.view.bounds;
-        _registerView.alpha = 0.5f;
-        _registerView.backgroundColor = [UIColor blackColor];
+        _registerView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.5f];
         [weakSelf.view addSubview:_registerView];
         [weakSelf.view bringSubviewToFront:_registerView];
         _registerView.streamID = _streamId;//将streamid和roomid配置给开始界面
@@ -335,7 +339,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     _userView = [nib objectAtIndex:0];
     CGSize textSize = CGSizeZero;
     textSize = [LYTextMessageCell getContentSize:app.userModel.usernick withFrontSize:16 withWidth:100];
-    _userView.frame = CGRectMake(20, 30, textSize.width + 60 , 40);
+    _userView.frame = CGRectMake(SCREEN_WIDTH / 50, 30, textSize.width + 60 , 40);
     _userView.layer.cornerRadius = 20;
     _userView.layer.masksToBounds = YES;
     _userView.backgroundColor = RGBA(68, 64, 67, 0.5);
@@ -419,7 +423,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 
 
 -(void)shareButtonAction{
-    NSString *string= [NSString stringWithFormat:@"下载猎娱App猎寻更多特色酒吧"];
+    NSString *string= [NSString stringWithFormat:@"猎娱直播间"];
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"http://10.17.114.61/lieyu/liveroom/live?liveChatId=%@",self.chatRoomId];
 //    [[UMSocialData defaultData].extConfig.wechatSessionData.urlResource setResourceType:(UMSocialUrlResourceTypeMusic) url:[NSString stringWithFormat:@"http://10.17.114.61/lieyu/liveroom/live?liveChatId=%@",self.chatRoomId]];
@@ -474,11 +478,15 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     self.internetReachability = [Reachability reachabilityForInternetConnection];
     [self.internetReachability startNotifier];
     
+
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(handleInterruption:)
+                                             selector:@selector(handleLiveShowInterruption:)
                                                  name:AVAudioSessionInterruptionNotification
                                                object:[AVAudioSession sharedInstance]];
-   
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(handleRouteChange:)
+//                                                 name:AVAudioSessionRouteChangeNotification
+//                                               object:[AVAudioSession sharedInstance]];
         NSString *jsonString = _stream;
         NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
         NSError *err;
@@ -571,20 +579,35 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     NSLog(@"%@", log);
 }
 
-- (void)handleInterruption:(NSNotification *)notification {
-    if ([notification.name isEqualToString:AVAudioSessionInterruptionNotification] || [notification.name isEqualToString:AVAudioSessionRouteChangeNotification]) {
+- (void)handleLiveShowInterruption:(NSNotification *)notification {
+    if ([notification.name isEqualToString:AVAudioSessionInterruptionNotification]) {
         NSLog(@"Interruption notification");
-        
         if ([[notification.userInfo valueForKey:AVAudioSessionInterruptionTypeKey] isEqualToNumber:[NSNumber numberWithInt:AVAudioSessionInterruptionTypeBegan]]) {
             NSLog(@"InterruptionTypeBegan");
         } else {
             // the facetime iOS 9 has a bug: 1 does not send interrupt end 2 you can use application become active, and repeat set audio session acitve until success.  ref http://blog.corywiles.com/broken-facetime-audio-interruptions-in-ios-9
             NSLog(@"InterruptionTypeEnded");
             AVAudioSession *session = [AVAudioSession sharedInstance];
+            
             [session setActive:YES error:nil];
         }
     }
 }
+
+-(void)handleRouteChange:(NSNotification *)notification{
+    if ([notification.name isEqualToString:AVAudioSessionRouteChangeNotification]) {
+        NSLog(@"RouteChange notification");
+        if ([[notification.userInfo valueForKey:AVAudioSessionRouteChangeReasonKey] isEqualToNumber:[NSNumber numberWithInt:AVAudioSessionRouteChangeReasonCategoryChange]]) {
+            
+        } else {
+            AVAudioSession *session = [AVAudioSession sharedInstance];
+            [_avAudioPlayer stop];
+            [_avAudioPlayer prepareToPlay];
+            [session setActive:YES error:nil];
+        }
+    }
+}
+
 
 #pragma mark - <PLStreamingSendingBufferDelegate>
 
@@ -618,6 +641,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 - (void)cameraStreamingSession:(PLCameraStreamingSession *)session streamStatusDidUpdate:(PLStreamStatus *)status {
     NSString *log = [NSString stringWithFormat:@"%@", status];
     NSLog(@"%@", log);
+    
 #if kReloadConfigurationEnable
     NSDate *now = [NSDate date];
     if (!self.keyTime) {
@@ -913,7 +937,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     } else if ([messageContent isMemberOfClass:[RCTextMessage class]]) {
         RCTextMessage *_textMessage = (RCTextMessage *)messageContent;
         CGSize _textMessageSize = [LYTextMessageCell getMessageCellSize:_textMessage.content withWidth:__width];
-        __height = _textMessageSize.height ;
+        __height = _textMessageSize.height;
     }else if([messageContent isMemberOfClass:[LYGiftMessage class]]){
         LYGiftMessage *likeMessage = (LYGiftMessage *)messageContent;
         NSString *txt = @"";
@@ -943,6 +967,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
         return UIEdgeInsetsMake(0, 0, 0, 0);
     }
 }
+
 
 #pragma mark --- UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -1019,6 +1044,8 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     user.name = app.userModel.usernick;
     [RCIM sharedRCIM].currentUserInfo = user;
     
+    
+
     //初始化UI
     [self initializedSubViews];
     __weak LiveShowViewController *weakSelf = self;
@@ -1059,7 +1086,6 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
                          [MyUtil showCleanMessage:@"未知错误"];
                      });
                  }
-
              });
          }];
     }
@@ -1096,14 +1122,17 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
         [self.contentView addSubview:self.conversationMessageCollectionView];
     _commentView = [[[NSBundle mainBundle]loadNibNamed:@"LYFriendsCommentView" owner:nil options:nil] firstObject];
     _commentView.frame = CGRectMake(SCREEN_WIDTH / 50, distanceOfBottom - SCREEN_WIDTH / 8,SCREEN_WIDTH - MinHeight_InputView - 40, MinHeight_InputView);
-    _commentView.bgView.backgroundColor = RGB(68, 64, 67);
+    _commentView.backgroundColor = [UIColor clearColor];
+    _commentView.bgView.backgroundColor = [[UIColor darkGrayColor] colorWithAlphaComponent:.5f];
     _commentView.bgView.layer.borderColor = RGBA(68,64,67, .2).CGColor;
     _commentView.bgView.layer.borderWidth = 0.5;
     _commentView.layer.cornerRadius = _commentView.frame.size.height / 2;
     _commentView.layer.masksToBounds = YES;
     _commentView.textField.placeholder = @"说点什么吧";
-    _commentView.textField.backgroundColor = RGB(68, 64, 67);
+    _commentView.textField.backgroundColor = [[UIColor clearColor] colorWithAlphaComponent:.1f];
+    _commentView.textField.alpha = .5f;
     _commentView.textField.layer.borderColor = RGB(68, 64, 67).CGColor;
+    _commentView.textField.borderStyle = UITextBorderStyleNone;
     [self.view addSubview:_commentView];
     _commentView.textField.delegate = self;
     [_commentView.btn_emotion addTarget:self action:@selector(emotionClick:) forControlEvents:UIControlEventTouchUpInside];

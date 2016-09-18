@@ -15,6 +15,9 @@
 #import "LYUserLoginViewController.h"
 #import "LYFriendsHttpTool.h"
 #import "LPUserLoginViewController.h"
+
+#import <AVFoundation/AVAudioSession.h>
+
 @interface MainTabbarViewController ()
 <
     UITabBarControllerDelegate,
@@ -148,10 +151,13 @@
     NSLog(@"----pass-pass%@---%d",message,left);
     NSString *needcount =[USER_DEFAULT objectForKey:@"needCountIM"];
     if (![MyUtil isEmptyString:needcount] && needcount.intValue==1) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
     }
     
-    
+//    AVAudioSession *session = [AVAudioSession sharedInstance];
+//    [session setActive:YES error:nil];
+//    [session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+//    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
 }
 
 

@@ -20,8 +20,8 @@
     
     self.liveTypeView.backgroundColor = [UIColor clearColor];
     
-    [self setCornerRadiusView:self.firstView With:self.firstView.frame.size.height / 2 and:YES];
-    [self setCornerRadiusView:self.secondView With:self.secondView.frame.size.height / 2 and:YES];
+    [self setCornerRadiusView:self.firstTaglabel With:self.firstTaglabel.frame.size.height / 2 and:YES];
+    [self setCornerRadiusView:self.secondTagLabel With:self.secondTagLabel.frame.size.height / 2 and:YES];
     [self setCornerRadiusView:self.liveTypeView With:8.f and:YES];
     [self setCornerRadiusView:self.iconImageView With:self.iconImageView.frame.size.height / 2 and:YES];
     
@@ -54,10 +54,13 @@
     if (((roomHostUser *)listModel.roomHostUser).usertype.integerValue == 1) {//隐藏顾问tag
         _guWenLabel.hidden = YES;
     }
-    if (((roomHostUser *)listModel.roomHostUser).userTag.count) {
+    if (((roomHostUser *)listModel.roomHostUser).userTag.count >= 1) {
+        _firstTaglabel.hidden = NO;
         _firstTaglabel.text = [NSString stringWithFormat:@"%@",((roomHostUser *)listModel.roomHostUser).userTag[0]];
         if (((roomHostUser *)listModel.roomHostUser).userTag.count >= 2) {
             _secondTagLabel.text = [NSString stringWithFormat:@"%@",((roomHostUser *)listModel.roomHostUser).userTag[1]];
+            _firstTaglabel.center = CGPointMake(self.center.x - 30, _secondView.center.y);
+            _secondTagLabel.hidden = NO;
         } else {
             _secondTagLabel.hidden = YES;
         }

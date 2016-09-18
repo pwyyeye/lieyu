@@ -354,7 +354,6 @@
         _kongLabel.layer.zPosition = 3;
     }
         [self.view addSubview:_kongLabel];
-    
 }
 
 - (void)hideKongView{

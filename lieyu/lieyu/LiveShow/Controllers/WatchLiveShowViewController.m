@@ -255,11 +255,11 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     
     //顶部用户信息
     NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"UserHeader" owner:self options:nil];
-    _userView = [nib objectAtIndex:0];
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    _userView = [nib objectAtIndex:0];
     CGSize textSize = CGSizeZero;
     textSize = [LYTextMessageCell getContentSize:app.userModel.usernick withFrontSize:16 withWidth:100];
-    _userView.frame = CGRectMake(20, 30, textSize.width + 110, 40);
+    _userView.frame = CGRectMake(SCREEN_WIDTH / 50, 30, textSize.width + 160 , 40);
     _userView.layer.cornerRadius = 20;
     _userView.layer.masksToBounds = YES;
     _userView.backgroundColor = RGBA(68, 64, 67, 0.5);
@@ -340,7 +340,6 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     [_daShangView.closeButton addTarget:self action:@selector(dashangCloseViewAction:) forControlEvents:(UIControlEventTouchUpInside)];
     [_daShangView.sendGiftButton addTarget:self action:@selector(sendGiftButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
 //    [_daShangView.giftButton addTarget:self action:@selector(giftAction:) forControlEvents:(UIControlEventTouchUpInside)];
-    
 }
 -(void)sendGiftButtonAction:(UIButton *)sender{
     switch (_giftNumber) {
@@ -362,7 +361,6 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 }
 
 -(void)notice:(NSNotification *)notification{
-
     NSString *values = notification.userInfo[@"value"];
     if (_giftValueArray.count == 0) {//第一次点击直接加入数组
         [_giftValueArray addObject:values];
@@ -404,12 +402,14 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 
 #pragma mark -- 分享
 -(void)liveShareButtonAction{
-    NSString *string= [NSString stringWithFormat:@"下载猎娱App猎寻更多特色酒吧。http://10.17.30.44:8080/liveroom/live?liveChatId=%@",self.chatRoomId];
+    NSString *string= [NSString stringWithFormat:@"猎娱直播间"];
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"http://10.17.30.44:8080/liveroom/live?liveChatId=%@",self.chatRoomId];
     [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"http://10.17.30.44:8080/liveroom/live?liveChatId=%@",self.chatRoomId];
     [UMSocialData defaultData].extConfig.qqData.url = [NSString stringWithFormat:@"http://10.17.30.44:8080/liveroom/live?liveChatId=%@",self.chatRoomId];
-    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:nil shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,nil] delegate:nil];
+    NSData *imgData = [_shareIamge dataUsingEncoding:NSUTF8StringEncoding];
+    UIImage *img = [UIImage imageWithData:imgData];
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:img shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,nil] delegate:nil];
 }
 
 
@@ -430,7 +430,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 
 #pragma mark ---- 检测播放状态改变
 - (void)player:(nonnull PLPlayer *)player statusDidChange:(PLPlayerStatus)state{
-//    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     
     switch (state) {
         case PLPlayerStatusUnknow:
@@ -438,17 +438,17 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
             break;
         case PLPlayerStatusPreparing:
             NSLog(@"1");
-//            [app startLoading];
             break;
         case PLPlayerStatusReady:
             NSLog(@"2");
             break;
         case PLPlayerStatusCaching:
+            [app startLoading];
             NSLog(@"3");
             break;
         case PLPlayerStatusPlaying:
             NSLog(@"4");
-//            [app stopLoading];
+            [app stopLoading];
             break;
         case PLPlayerStatusPaused:
             [MyUtil showMessage:@"主播暂停了直播..."];
@@ -472,7 +472,10 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 }
 
 - (void)player:(nonnull PLPlayer *)player stoppedWithError:(nullable NSError *)error{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+
     if (![_contentURL isEqual: [NSNull null]] || _contentURL != nil) {
+        [app stopLoading];
         [MyUtil showMessage:@"链接失败！"];
         [self dismissViewControllerAnimated:YES completion:NULL];
     }
@@ -714,7 +717,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     if (collectionView.tag == 188) {
         return UIEdgeInsetsMake(15, 5, 15, 5);//上 左 下 右
     }else{
-        return UIEdgeInsetsMake(2, 5, 2, 5);
+        return UIEdgeInsetsMake(0, 0, 0, 0);
     }
 }
 
@@ -873,14 +876,16 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 //    }
     _commentView = [[[NSBundle mainBundle]loadNibNamed:@"LYFriendsCommentView" owner:nil options:nil] firstObject];
     _commentView.frame = CGRectMake(SCREEN_WIDTH / 6, distanceOfBottom - SCREEN_WIDTH / 8,SCREEN_WIDTH / 3 * 2 , MinHeight_InputView);
-    _commentView.bgView.backgroundColor = RGB(68, 64, 67);
+    _commentView.backgroundColor = [UIColor clearColor];
+    _commentView.bgView.backgroundColor = [[UIColor darkGrayColor] colorWithAlphaComponent:.5f];
     _commentView.bgView.layer.borderColor = RGBA(68,64,67, .2).CGColor;
     _commentView.bgView.layer.borderWidth = 0.5;
     _commentView.layer.cornerRadius = _commentView.frame.size.height / 2;
     _commentView.layer.masksToBounds = YES;
     _commentView.textField.placeholder = @"说点什么吧";
-    _commentView.textField.backgroundColor = RGB(68, 64, 67);
+    _commentView.textField.backgroundColor = [[UIColor clearColor] colorWithAlphaComponent:1];
     _commentView.textField.layer.borderColor = RGB(68, 64, 67).CGColor;
+    _commentView.textField.borderStyle = UITextBorderStyleNone;
     [self.view addSubview:_commentView];
     _commentView.textField.delegate = self;
     _commentView.btn_emotion.hidden = YES;

@@ -472,5 +472,18 @@
     }];
 }
 
+#pragma mark ---- 打赏
++(void) daShangWithParms:(NSDictionary *) parms complete: (void(^)(NSDictionary *))complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_DaShang baseURL:LY_SERVER params:parms success:^(id response) {
+        if ([response[@"errorcode"] isEqualToString:@"1"]) {
+            complete(response);
+        } else {
+            [MyUtil showMessage:@"打赏失败"];
+        }
+    } failure:^(NSError *err) {
+        
+    }];
+}
+
 
 @end

@@ -42,6 +42,7 @@
 #import "ZSOrderViewController.h"
 #import "LYToPlayRestfulBusiness.h"
 #import "ZSBirthdayManagerViewController.h"
+#import "LYGiftMessage.h"
 
 #import "ZSManageHttpTool.h"
 #import "AddressBookModel.h"
@@ -72,11 +73,13 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
     
     [[RCIM sharedRCIM] initWithAppKey:RONGCLOUD_IM_APPKEY ];
+    //注册自定义消息
+    [[RCIM sharedRCIM] registerMessageType:[LYGiftMessage class]];
+    
     [[RCIM sharedRCIM] setUserInfoDataSource:self];
     [[RCIM sharedRCIM] setGroupInfoDataSource:self];
     [self loadHisData];
     [self setupDataStore];
-    
     
     
     _navigationController= (UINavigationController *)self.window.rootViewController;

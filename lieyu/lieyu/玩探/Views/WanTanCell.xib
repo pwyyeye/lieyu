@@ -16,14 +16,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X8n-Fr-jyx">
-                        <rect key="frame" x="26" y="34" width="30" height="30"/>
+                        <rect key="frame" x="16" y="34" width="30" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="30" id="HJA-DD-2Sj"/>
                             <constraint firstAttribute="height" constant="30" id="t3M-Kh-eZQ"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="off-7t-eF1">
-                        <rect key="frame" x="62" y="36" width="70" height="27"/>
+                        <rect key="frame" x="52" y="36" width="70" height="27"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="27" id="Ajt-nK-man"/>
                             <constraint firstAttribute="width" constant="70" id="bz0-bq-Q4j"/>
@@ -58,7 +58,7 @@
                     <constraint firstAttribute="trailing" secondItem="Fon-tL-130" secondAttribute="trailing" constant="8" id="0Mw-v0-Beq"/>
                     <constraint firstItem="MFb-mw-wez" firstAttribute="centerY" secondItem="Fon-tL-130" secondAttribute="centerY" constant="-14" id="2jn-Vs-oyv"/>
                     <constraint firstItem="off-7t-eF1" firstAttribute="centerY" secondItem="X8n-Fr-jyx" secondAttribute="centerY" id="SDl-ye-Ldx"/>
-                    <constraint firstItem="X8n-Fr-jyx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="18" id="Y1O-qp-Dcz"/>
+                    <constraint firstItem="X8n-Fr-jyx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="Y1O-qp-Dcz"/>
                     <constraint firstItem="bWI-rz-BzT" firstAttribute="centerY" secondItem="X8n-Fr-jyx" secondAttribute="centerY" id="bDN-QN-Fzi"/>
                     <constraint firstItem="Fon-tL-130" firstAttribute="centerY" secondItem="X8n-Fr-jyx" secondAttribute="centerY" id="ebz-RN-XyV"/>
                     <constraint firstAttribute="trailingMargin" secondItem="MFb-mw-wez" secondAttribute="trailing" constant="2" id="he2-rx-Y16"/>
