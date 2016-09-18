@@ -1305,7 +1305,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         }else if (tableView.tag == 1){
             subids = @"1,6,7";
         }
-        NSDictionary *dict = @{@"subids":subids};
+        CLLocation *userPosition = [LYUserLocation instance].currentLocation;
+        NSDictionary *dict = @{@"latitude":@(userPosition.coordinate.latitude).stringValue,
+                               @"longitude":@(userPosition.coordinate.longitude).stringValue,
+                               @"city":[USER_DEFAULT objectForKey:@"ChooseCityLastTime"],
+                               @"subids":subids};
         [LYHomePageHttpTool getHomepageFirstScreenDataWith:dict complete:^(NSDictionary *result) {
             if (tableView.tag == 0) {
                 [_ydDict setObject:[result objectForKey:@"bannerList"] forKey:@"bannerList"];
