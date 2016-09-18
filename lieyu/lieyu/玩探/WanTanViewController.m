@@ -33,9 +33,8 @@ static NSString *wantanCellID = @"wantanCellID";
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    self.title = @"玩探";
     [super viewWillAppear:animated];
-//    [self.navigationController.navigationBar addSubview:_myTitle];
+    [self.navigationController.navigationBar addSubview:_myTitle];
     if (self.navigationController.navigationBarHidden != NO) {
         [self.navigationController setNavigationBarHidden:NO];
     }
@@ -54,8 +53,8 @@ static NSString *wantanCellID = @"wantanCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setuptitle];
     [self.tableView registerNib:[UINib nibWithNibName:@"WanTanCell" bundle:nil] forCellReuseIdentifier:wantanCellID];
-//    [self setuptitle];
     self.tableView.showsHorizontalScrollIndicator=NO;
     self.tableView.showsVerticalScrollIndicator=NO;
     self.tableView.separatorColor= RGB(241, 241, 241);
@@ -177,12 +176,12 @@ static NSString *wantanCellID = @"wantanCellID";
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 3;
+    return SCREEN_HEIGHT / 60;
 }
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 4;
-}
+//-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+//{
+//    return SCREEN_HEIGHT / 62;
+//}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
