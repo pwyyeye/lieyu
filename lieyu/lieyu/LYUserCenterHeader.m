@@ -262,8 +262,8 @@
         keyFrameA.repeatCount = 1;
         [imgV.layer addAnimation:keyFrameA forKey:nil];
     }
-    
 }
+
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
     [UIView animateWithDuration:0.2 animations:^{
         _effctView.alpha = 0.f;
@@ -280,8 +280,8 @@
         _headHeight.constant=260;
         _buttomHeight.constant=70;
     }
-    
 }
+
 //加载角标
 -(void)loadBadge:(OrderTTL *)orderTTL{
     _badgeNum = (int)(orderTTL.waitPay + orderTTL.waitRebate + orderTTL.waitPayBack + orderTTL.waitEvaluation + orderTTL.waitConsumption);
