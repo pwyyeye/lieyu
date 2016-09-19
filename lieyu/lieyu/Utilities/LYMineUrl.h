@@ -144,6 +144,7 @@
 #define LY_GET_YUKEBANG @"app/api/yukegroup/groupList"
 //娱客帮获取二维码字符串
 #define LY_GET_YUKEBANGQRCODE @"/lieyu//app/api/yukegroup/getShareUrl?1=1"
-
+//普通用户绑定提现账户
+#define LY_BOUND_ACCOUNT @"dailyCoinAction.do?action=expand"
 
 #endif

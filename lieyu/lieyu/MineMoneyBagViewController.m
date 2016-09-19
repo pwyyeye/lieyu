@@ -39,14 +39,14 @@
 - (void)getData{
     [LYUserHttpTool getMyMoneyBagBalanceAndCoinWithParams:nil complete:^(ZSBalance *balance) {
         _balanceModel = balance;
-        [_balanceLabel setText:[NSString stringWithFormat:@"¥%@",_balanceModel.balances]];
+        [_balanceLabel setText:[NSString stringWithFormat:@"¥%.2f",[_balanceModel.balances floatValue]]];
         [_yubiLabel setText:[NSString stringWithFormat:@"%@娱币",_balanceModel.coin]];
     }];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initRightItem];
+//    [self initRightItem];
     
     [self getData];
 }

@@ -101,7 +101,7 @@
         return ;
     }
     
-    UIFont * font = [UIFont systemFontOfSize:16 weight:UIFontWeightRegular];
+    UIFont * font = [UIFont systemFontOfSize:18 weight:UIFontWeightRegular];
     UIColor * textColor = navBar.titleTextAttributes[NSForegroundColorAttributeName];
     
     UILabel *labelTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBar.frame.size.width, 44)];
@@ -130,7 +130,7 @@
         return ;
     }
     
-    UIFont * font = navBar.titleTextAttributes[NSFontAttributeName];
+    UIFont * font = [UIFont systemFontOfSize:18 weight:UIFontWeightRegular];
     UIColor * textColor = navBar.titleTextAttributes[NSForegroundColorAttributeName];
     
     UILabel *labelTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBar.frame.size.width, 44)];

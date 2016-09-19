@@ -11,6 +11,13 @@
 #import "SingletonAlipay.h"
 #import "AlipayOrder.h"
 #import "LYBaseTableViewController.h"
+
+@protocol RechargeCoinDelegate <NSObject>
+
+- (void)rechargeCoinDelegate:(double) amount;
+
+@end
+
 @interface ChoosePayController : LYBaseTableViewController<SingletonAlipayProtocol>
 
 @property(strong,nonatomic) NSString *orderNo;
@@ -32,5 +39,7 @@
 @property (assign, nonatomic) BOOL isBalanceEnough;
 
 @property (nonatomic, assign) BOOL isRechargeCoin;
+
+@property (nonatomic, assign) id<RechargeCoinDelegate> delegate;
 
 @end

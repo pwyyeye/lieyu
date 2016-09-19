@@ -145,10 +145,20 @@
                 [MyUtil showMessage:@"无法调起微信支付！"];
             }
         }];
-    }else if (_selectIndex == 0){//App Store内购支付
-        
+    }else if (_selectIndex == 0){//余额支付
+        __weak __typeof(self) weakSelf = self;
+        NSDictionary *dict = @{@"offBalances":[NSString stringWithFormat:@"%f",_payAmount]};
+        [LYUserHttpTool rechargeCoinWithParams:dict complete:^(BOOL result) {
+            if (result) {
+                [weakSelf gotoBack];
+                if ([weakSelf.delegate respondsToSelector:@selector(rechargeCoinDelegate:)]) {
+                    [weakSelf.delegate rechargeCoinDelegate:_payAmount];
+                }
+            }
+        }];
     }
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -167,13 +177,10 @@
 //}
 
 -(void)gotoBack{
-    NSLog(@"%@",self.navigationController.viewControllers);
     for (UIViewController *controller in self.navigationController.viewControllers) {
         if([controller isKindOfClass:[HDDetailViewController class]] || [controller isKindOfClass:[CHDoOrderViewController class]] || [controller isKindOfClass:[ZujuViewController class]] || [controller isKindOfClass:[LYwoYaoDinWeiMainViewController class]]||[controller isKindOfClass:[PTjoinInViewController class]]){
             LPMyOrdersViewController *detailViewController = [[LPMyOrdersViewController alloc]init];
             [self.navigationController pushViewController:detailViewController animated:YES];
-//            LYMyOrderManageViewController *detailViewController =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
-//            [self.navigationController pushViewController:detailViewController animated:YES];
             return;
         }
     }

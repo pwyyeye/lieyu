@@ -1,12 +1,12 @@
 //
-//  ZSTiXianRecordViewController.m
+//  MineYubiRecordViewController.m
 //  lieyu
 //
-//  Created by 狼族 on 16/3/29.
+//  Created by 王婷婷 on 16/9/19.
 //  Copyright © 2016年 狼族（上海）网络科技有限公司. All rights reserved.
 //
 
-#import "ZSTiXianRecordViewController.h"
+#import "MineYubiRecordViewController.h"
 #import "ZSTiXianRecordMonthTableViewCell.h"
 #import "ZSTiXianRecordTableViewCell.h"
 #import "ZSManageHttpTool.h"
@@ -15,24 +15,22 @@
 
 #define ZSTiXianRecordMonthTableViewCellID @"ZSTiXianRecordMonthTableViewCell"
 #define ZSTiXianRecordTableViewCellID @"ZSTiXianRecordTableViewCell"
-@interface ZSTiXianRecordViewController ()<UITableViewDelegate,UITableViewDataSource>{
+@interface MineYubiRecordViewController ()<UITableViewDelegate,UITableViewDataSource>
+{
     NSInteger _pageStart;
     NSInteger _pageSize;
     NSMutableArray *_beforeDataArray,*_dataArray;
 }
-@property (weak, nonatomic) IBOutlet UITableView *tableview;
+
+@property (strong, nonatomic) UITableView *tableview;
 
 @end
 
-@implementation ZSTiXianRecordViewController
+@implementation MineYubiRecordViewController
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    if ([MyUtil isEmptyString:_subTitle]) {
-        self.title = @"提现记录";
-    }else{
-        self.title = _subTitle;
-    }
+    self.title = @"充值记录";
 }
 
 - (void)viewDidLoad {
@@ -44,6 +42,10 @@
     [self getData];
     // Do any additional setup after loading the view from its nib.
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    _tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
+    _tableview.dataSource = self;
+    _tableview.delegate = self;
+    [self.view addSubview:_tableview];
     [_tableview registerNib:[UINib nibWithNibName:ZSTiXianRecordMonthTableViewCellID bundle:nil] forCellReuseIdentifier:ZSTiXianRecordMonthTableViewCellID];
     [_tableview registerNib:[UINib nibWithNibName:ZSTiXianRecordTableViewCellID bundle:nil] forCellReuseIdentifier:ZSTiXianRecordTableViewCellID];
 }
@@ -64,26 +66,17 @@
 }
 
 - (void)getData{
-    NSDictionary *paraDic = @{@"start":[NSString stringWithFormat:@"%d",_pageStart * _pageSize],@"limit":[NSString stringWithFormat:@"%d",_pageSize]};
-     
-    [[ZSManageHttpTool shareInstance] getPersonTiXianRecordWithParams:paraDic complete:^(NSArray *dataArray) {
+    NSDictionary *paraDic = @{@"start":[NSString stringWithFormat:@"%ld",_pageStart * _pageSize],@"limit":[NSString stringWithFormat:@"%ld",_pageSize]};
+    
+    [[ZSManageHttpTool shareInstance] getPersonTiXianRecordWithParams:paraDic complete:^(NSArray *tempArray) {
+        NSMutableArray *dataArray = [[NSMutableArray alloc]init];
+        for (ZSTiXianRecord *model in tempArray) {
+            if ([model.wtype integerValue] == 4) {
+                [dataArray addObject:model];
+            }
+        }
         if(_pageStart == 0) _beforeDataArray = dataArray.mutableCopy;
         else [_beforeDataArray addObjectsFromArray:dataArray];
-        
-        
-//        ZSTiXianRecord *tiXian3 = [[ZSTiXianRecord alloc]init];
-//        tiXian3.amount = @"30";
-//        tiXian3.create_date = @"2016-03-28 21:03:59";
-//        tiXian3.checkMark = @"1";
-//        
-//        ZSTiXianRecord *tiXian2 = [[ZSTiXianRecord alloc]init];
-//        tiXian2.amount = @"20";
-//        tiXian2.checkMark = @"1";
-//        tiXian2.create_date = @"2016-02-28 21:03:59";
-//        
-//        _beforeDataArray = @[tiXian3,tiXian3,tiXian3,tiXian3,tiXian3,tiXian3,tiXian3,tiXian3,tiXian3,tiXian2,tiXian2,tiXian2,tiXian2,tiXian2,tiXian2,tiXian2,tiXian2,tiXian2,tiXian2,tiXian2].mutableCopy;
-        
-        
         NSMutableArray *dateMutablearray = [@[] mutableCopy];
         NSMutableArray *array = [NSMutableArray arrayWithArray:_beforeDataArray];
         for (int i = 0; i < array.count; i ++) {
@@ -124,6 +117,12 @@
     }];
 }
 
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     NSArray *array = _dataArray[section];
     return array.count;
@@ -144,7 +143,7 @@
             if (strArray.count == 2) {
                 cell.label_time.text = [NSString stringWithFormat:@"%@年%@月",strArray.firstObject,strArray[1]];
             }
-            cell.label_tiXianSum.text = [NSString stringWithFormat:@"共提现:¥%@", tiXianRecord.amountSum];
+            cell.label_tiXianSum.text = [NSString stringWithFormat:@"共充值:¥%@", tiXianRecord.amountSum];
             cell.label_receivedSum.text = [NSString stringWithFormat:@"已到账:¥%@",tiXianRecord.receivedAmountSum];
             return cell;
         }
@@ -152,7 +151,7 @@
             
         default:{
             ZSTiXianRecordTableViewCell *cell = [_tableview dequeueReusableCellWithIdentifier:ZSTiXianRecordTableViewCellID forIndexPath:indexPath];
-            cell.tiXianR = tiXianRecord;
+            cell.chongzhiR = tiXianRecord;
             return cell;
         }
             break;
@@ -172,19 +171,5 @@
     }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

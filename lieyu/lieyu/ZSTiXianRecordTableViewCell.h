@@ -15,4 +15,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *label_money;
 @property (weak, nonatomic) IBOutlet UILabel *label_poundage;
 @property (nonatomic,strong) ZSTiXianRecord *tiXianR;
+@property (nonatomic ,strong) ZSTiXianRecord *chongzhiR;
 @end

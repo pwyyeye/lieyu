@@ -14,6 +14,11 @@
     [super awakeFromNib];
     _partyLabel.hidden = YES;
     _barActivityLabel.hidden = YES;
+    
+    _shadowView.layer.shadowColor = [[UIColor blackColor]CGColor];
+    _shadowView.layer.shadowOffset = CGSizeMake(0, 1);
+    _shadowView.layer.shadowOpacity = 0.3;
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

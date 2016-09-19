@@ -268,9 +268,9 @@
     }
 }
 
--(void)layoutSublayersOfLayer:(CALayer *)layer{
-    [super layoutSublayersOfLayer:layer];
-}
+//-(void)layoutSublayersOfLayer:(CALayer *)layer{
+//    [super layoutSublayersOfLayer:layer];
+//}
 
 //跳到猎
 - (void)jumpToFirstView{

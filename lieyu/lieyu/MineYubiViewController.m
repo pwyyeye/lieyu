@@ -10,8 +10,9 @@
 #import "MineYubiRechargeTableViewCell.h"
 #import "ChoosePayController.h"
 #import "LYUserHttpTool.h"
+#import "MineYubiRecordViewController.h"
 
-@interface MineYubiViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
+@interface MineYubiViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate,RechargeCoinDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UILabel *yubiAmountLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -30,8 +31,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self initRightItem];
+    
     [self initItems];
     [_yubiAmountLabel setText:_coinAmount];
+}
+
+- (void)initRightItem{
+    UIButton *listButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 80, 40)];
+    [listButton setTitle:@"充值记录" forState:UIControlStateNormal];
+    [listButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 20, 0, 0)];
+    [listButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
+    [listButton setTitleColor:NAVIGATIONBARTITLECOLOR forState:UIControlStateNormal];
+    [listButton addTarget:self action:@selector(withdrawListClick:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:listButton];
+    self.navigationItem.rightBarButtonItem = rightItem;
 }
 
 - (void)initItems{
@@ -85,6 +100,14 @@
 }
 
 #pragma mark - 按钮事件
+
+- (void)withdrawListClick:(UIButton *)button{
+    //    MineWithdrawListViewController *mineWithdrawListVC = [[MineWithdrawListViewController alloc]init];
+    MineYubiRecordViewController *mineYubiRecordVC = [[MineYubiRecordViewController alloc]init];
+    [self.navigationController pushViewController:mineYubiRecordVC animated:YES];
+}
+
+
 - (void)rechargeButtonClick:(UIButton *)button{
     NSString *message;;
     if (button.tag == 0) {
@@ -124,14 +147,15 @@
         return;
     }
     if ([money doubleValue] > [_balance doubleValue]) {
-//        [MyUtil showPlaceMessage:@"余额不足！"];
-//        return;
         isBalanceEnough = NO;
     }
-    NSDictionary *dict = @{@"amount":money};
+    NSDictionary *dict = @{@"amount":money,
+                           @"isToCoin":@"1"};
+    __weak __typeof(self) weakSelf = self;
     [LYUserHttpTool rechargeMoneyBagWithParams:dict complete:^(NSString *result) {
         ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
         detailViewController.orderNo=result;
+        detailViewController.delegate = weakSelf;
         detailViewController.payAmount=[money doubleValue];
         detailViewController.productName=@"钱包余额充值";
         detailViewController.productDescription=@"暂无";
@@ -139,29 +163,17 @@
         detailViewController.isRechargeCoin = YES;
         [self.navigationController pushViewController:detailViewController animated:YES];
     }];
-    /*
-    __weak __typeof(self) weakSelf = self;
-    NSDictionary *dict = @{@"offBalances":money};
-    [LYUserHttpTool rechargeCoinWithParams:dict complete:^(BOOL result) {
-        if (result) {
-            [MyUtil showPlaceMessage:@"娱币充值成功！"];
-            double amount = [_yubiAmountLabel.text doubleValue] + [money doubleValue] * 100;
-//            double balance = [_balance doubleValue] - [money doubleValue];
-//            _balance = [NSString stringWithFormat:@"%g",balance];
-            [_yubiAmountLabel setText:[NSString stringWithFormat:@"%g",amount]];
-//            if ([weakSelf.delegate respondsToSelector:@selector(MineYubiRechargeDelegate:balance:)]) {
-//                [weakSelf.delegate MineYubiRechargeDelegate:amount balance:balance];
-//            }
-            if ([weakSelf.delegate respondsToSelector:@selector(MineYubiWithdrawDelegate:)]) {
-                [weakSelf.delegate MineYubiWithdrawDelegate:amount];
-            }
-        }
-    }];
-     */
+}
+
+- (void)rechargeCoinDelegate:(double)amount{
+    _yubiAmountLabel.text = [NSString stringWithFormat:@"%g",[_yubiAmountLabel.text doubleValue] + amount * 100];
+    if ([self.delegate respondsToSelector:@selector(MineYubiWithdrawDelegate:)]) {
+        [self.delegate MineYubiWithdrawDelegate:0];
+    }
 }
 
 - (void)withdrawClick{
-    UIAlertView *withdrawAlertView = [[UIAlertView alloc]initWithTitle:@"请输入兑换娱币数目" message:@"平台将收取30%手续费" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"兑现", nil];
+    UIAlertView *withdrawAlertView = [[UIAlertView alloc]initWithTitle:@"请输入兑换娱币数目" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"兑现", nil];
     withdrawAlertView.tag = 2;
     [withdrawAlertView setAlertViewStyle:UIAlertViewStylePlainTextInput];
     UITextField *withdrawField = [withdrawAlertView textFieldAtIndex:0];

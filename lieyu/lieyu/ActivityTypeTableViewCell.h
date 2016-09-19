@@ -16,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *barActivityLabel;
 @property (weak, nonatomic) IBOutlet UILabel *partyText;
 @property (weak, nonatomic) IBOutlet UILabel *barText;
+@property (weak, nonatomic) IBOutlet UIView *shadowView;
 
 @end

@@ -93,7 +93,7 @@
     CGPathAddRect(path, nil, cropRect);
     [cropLayer setFillRule:kCAFillRuleEvenOdd];
     [cropLayer setPath:path];
-    [cropLayer setFillColor:[RGBA(0, 0, 0, 0.4) CGColor]];
+    [cropLayer setFillColor:[RGBA(0, 0, 0, 0.66) CGColor]];
     
     [_videoPreviewLayer addSublayer:cropLayer];
     

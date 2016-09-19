@@ -10,4 +10,6 @@
 
 @interface ZSTiXianRecordViewController : LYBaseViewController
 
+@property (nonatomic, strong) NSString *subTitle;
+
 @end
