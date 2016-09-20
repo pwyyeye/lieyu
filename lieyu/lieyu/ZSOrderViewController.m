@@ -119,12 +119,12 @@
     [effectView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, 90)];
     effectView.layer.shadowColor = [RGBA(0, 0, 0, 1)CGColor];
     effectView.layer.shadowOffset = CGSizeMake(0, 0.5);
-    effectView.layer.shadowOpacity = 0.3;
+//    effectView.layer.shadowOpacity = 0.3;
     effectView.layer.shadowRadius = 1;
     [self.view addSubview:effectView];
     
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(100, 31, SCREEN_WIDTH - 200, 22)];
-    [label setFont:[UIFont systemFontOfSize:16]];
+    [label setFont:[UIFont systemFontOfSize:18]];
     [label setText:@"订单管理"];
     [label setTextAlignment:NSTextAlignmentCenter];
     [label setTextColor:[UIColor blackColor]];

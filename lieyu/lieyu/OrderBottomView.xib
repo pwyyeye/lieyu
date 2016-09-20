@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,12 +13,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tZL-bO-JYq">
-                    <rect key="frame" x="3" y="0.0" width="314" height="86"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5XK-kk-9uV" customClass="OrderHandleButton">
-                    <rect key="frame" x="224" y="48" width="88" height="28"/>
-                    <color key="backgroundColor" red="0.72941176470000002" green="0.15686274510000001" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.74117647060000003" green="0.1960784314" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="28" id="NQY-Zo-zGJ"/>
                         <constraint firstAttribute="width" constant="88" id="TPD-o0-YJ9"/>
@@ -25,7 +24,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <inset key="imageEdgeInsets" minX="45" minY="1" maxX="80" maxY="-2"/>
                     <state key="normal" title="立即兑码">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -35,17 +34,16 @@
                     </userDefinedRuntimeAttributes>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已付款：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hbc-pQ-hxy">
-                    <rect key="frame" x="12" y="8" width="67" height="16"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="16" id="m1A-x7-dBH"/>
                         <constraint firstAttribute="width" constant="67" id="zml-7U-WJ6"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dMM-Jt-dSh">
-                    <rect key="frame" x="121" y="8" width="187" height="16"/>
+                    <frame key="frameInset" minX="121" minY="8" width="187" height="16"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="75" id="9y5-l2-ecx"/>
                         <constraint firstAttribute="height" constant="16" id="A80-4L-wTN"/>
@@ -54,34 +52,31 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="shaperLine.png" translatesAutoresizingMaskIntoConstraints="NO" id="t56-x8-ASw">
-                    <rect key="frame" x="11" y="1" width="298" height="1"/>
+                    <frame key="frameInset" minX="11" minY="1" width="298" height="1"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="2hq-9S-gGb"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="产品数量：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h8g-eK-96B">
-                    <rect key="frame" x="12" y="32" width="67" height="16"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="16" id="Ei4-sn-NhY"/>
                         <constraint firstAttribute="width" constant="67" id="oSP-6C-IcA"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" red="0.72941176470000002" green="0.15686274510000001" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.74117647060000003" green="0.1960784314" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sxx-Pl-PwK">
-                    <rect key="frame" x="233" y="32" width="75" height="16"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="75" id="NBC-9I-rch"/>
                         <constraint firstAttribute="height" constant="16" id="reZ-6o-YCC"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16" id="uPe-3z-8S0"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" red="0.72941176470000002" green="0.15686274510000001" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.74117647060000003" green="0.1960784314" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ncc-K2-Nmw" customClass="OrderHandleButton">
-                    <rect key="frame" x="126" y="48" width="88" height="28"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="28" id="IU7-6d-8W2"/>
                         <constraint firstAttribute="width" constant="88" id="lUs-h0-HBN"/>
@@ -89,7 +84,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <inset key="imageEdgeInsets" minX="45" minY="1" maxX="80" maxY="-2"/>
                     <state key="normal" title="暂无卡座">
-                        <color key="titleColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -99,13 +94,12 @@
                     </userDefinedRuntimeAttributes>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8人组局" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hKA-ey-sQ1">
-                    <rect key="frame" x="12" y="54" width="67" height="16"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="16" id="MeF-hU-YJy"/>
                         <constraint firstAttribute="width" constant="67" id="bJA-s9-E33"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" red="0.72941176470000002" green="0.15686274510000001" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.74117647060000003" green="0.1960784314" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
@@ -152,4 +146,9 @@
     <resources>
         <image name="shaperLine.png" width="351" height="1"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
+    </simulatedMetricsContainer>
 </document>

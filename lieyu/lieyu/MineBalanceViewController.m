@@ -40,7 +40,7 @@
 - (void)initRightItem{
     UIButton *listButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 80, 40)];
     [listButton setTitle:@"明细" forState:UIControlStateNormal];
-    [listButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 20, 0, 0)];
+    [listButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 40, 0, 0)];
     [listButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
     [listButton setTitleColor:NAVIGATIONBARTITLECOLOR forState:UIControlStateNormal];
     [listButton addTarget:self action:@selector(withdrawListClick:) forControlEvents:UIControlEventTouchUpInside];

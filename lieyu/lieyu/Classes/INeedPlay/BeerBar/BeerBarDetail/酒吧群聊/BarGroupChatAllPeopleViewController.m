@@ -151,7 +151,7 @@
 //    [cell.iconImag addTarget:self action:@selector(personDetail:) forControlEvents:(UIControlEventTouchUpInside)];
 //    cell.chatButton.tag = indexPath.row;
     cell.borderView.backgroundColor = [UIColor whiteColor];
-    cell.borderView.layer.borderColor = [RGB(186, 40, 227) CGColor];
+    cell.borderView.layer.borderColor = [COMMON_PURPLE CGColor];
     cell.borderView.layer.borderWidth = 0.5f;
     cell.borderView.layer.cornerRadius = 2;
     cell.borderView.layer.masksToBounds = YES;

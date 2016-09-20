@@ -369,14 +369,13 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 - (void)createNavButton{
     _menuBtnArray = [[NSMutableArray alloc]init];
     
-    UIBlurEffect *effectExtraLight = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
-    _menuView = [[UIVisualEffectView alloc]initWithEffect:effectExtraLight];
+    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+    _menuView = [[UIVisualEffectView alloc]initWithEffect:effect];
     _menuView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 90);
-    _menuView.alpha = 5;
     _menuView.layer.shadowColor = RGBA(0, 0, 0, 1).CGColor;
-    _menuView.layer.shadowOffset = CGSizeMake(0, 0.5);
-    _menuView.layer.shadowOpacity = 0.3;
-    _menuView.layer.shadowRadius = 1;
+    _menuView.layer.shadowOffset = CGSizeMake(0, 1);
+//    _menuView.layer.shadowOpacity = 5;
+    _menuView.layer.shadowRadius = 5;
     [self.view addSubview:_menuView];
     
     //城市搜索

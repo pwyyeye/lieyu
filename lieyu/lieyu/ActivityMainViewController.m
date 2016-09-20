@@ -158,13 +158,13 @@
         if (_activityTypeCell.barActivityButton.tag == _filterType) {
             _activityTypeCell.partyLabel.hidden = YES;
             _activityTypeCell.barActivityLabel.hidden = NO;
-            [_activityTypeCell.barText setTextColor:RGB(186, 40, 227)];
+            [_activityTypeCell.barText setTextColor:COMMON_PURPLE];
             [_activityTypeCell.partyText setTextColor:[UIColor blackColor]];
         }else{
             _activityTypeCell.partyLabel.hidden = NO;
             _activityTypeCell.barActivityLabel.hidden = YES;
             [_activityTypeCell.barText setTextColor:[UIColor blackColor]];
-            [_activityTypeCell.partyText setTextColor:RGB(186, 40, 227)];
+            [_activityTypeCell.partyText setTextColor:COMMON_PURPLE];
         }
         [_activityTypeCell.partyButton addTarget:self action:@selector(filterButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         [_activityTypeCell.barActivityButton addTarget:self action:@selector(filterButtonClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -331,11 +331,11 @@
             _activityTypeCell.barActivityLabel.hidden = YES;
             _activityTypeCell.partyLabel.hidden = NO;
             [_activityTypeCell.barText setTextColor:[UIColor blackColor]];
-            [_activityTypeCell.partyText setTextColor:RGB(186, 40, 227)];
+            [_activityTypeCell.partyText setTextColor:COMMON_PURPLE];
         }else if (button.tag == 2){
             _activityTypeCell.barActivityLabel.hidden = NO;
             _activityTypeCell.partyLabel.hidden = YES;
-            [_activityTypeCell.barText setTextColor:RGB(186, 40, 227)];
+            [_activityTypeCell.barText setTextColor:COMMON_PURPLE];
             [_activityTypeCell.partyText setTextColor:[UIColor blackColor]];
         }
         _filterType = button.tag;

@@ -36,7 +36,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationBar.translucent = YES;
-    
     self.delegate = self;
     //    self.automaticallyAdjustsScrollViewInsets = NO;
 
@@ -76,7 +75,7 @@
     //返回的颜色
     [self.navigationBar setTintColor:[UIColor whiteColor]];
     
-    
+    [self getBackView:self.navigationBar];
     //设置标题颜色
     UIColor * color = [UIColor blackColor];
     
@@ -95,6 +94,20 @@
 //    self.interactivePopGestureRecognizer.delegate = (id)self;
 }
 
+-(void)getBackView:(UIView*)superView
+{
+    if ([superView isKindOfClass:NSClassFromString(@"_UIBackdropView")])
+    {
+        
+        //_UIBackdropEffectView是_UIBackdropView的子视图，这是只需隐藏父视图即可
+        superView.hidden = YES;
+    }
+    
+    for (UIView *view in superView.subviews)
+    {
+        [self getBackView:view];
+    }
+}
 
 /*
 

@@ -1032,7 +1032,6 @@
 		851F04131D645A44006BAA47 /* LiveShowListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 851F03E41D645A44006BAA47 /* LiveShowListCell.xib */; };
 		851F04141D645A44006BAA47 /* UserHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 851F03E61D645A44006BAA47 /* UserHeader.m */; };
 		851F04151D645A44006BAA47 /* UserHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 851F03E71D645A44006BAA47 /* UserHeader.xib */; };
-		851F04171D646E9C006BAA47 /* backLive.png in Resources */ = {isa = PBXBuildFile; fileRef = 851F04161D646E9C006BAA47 /* backLive.png */; };
 		852519F11D6BFAEC005CE01D /* live_close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 852519F01D6BFAEC005CE01D /* live_close@2x.png */; };
 		852519F31D6BFAF0005CE01D /* live_close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 852519F21D6BFAF0005CE01D /* live_close@3x.png */; };
 		852519F51D6BFE8B005CE01D /* live_gift@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 852519F41D6BFE8B005CE01D /* live_gift@2x.png */; };
@@ -1473,7 +1472,6 @@
 		85C4282E1C116ED90028FC21 /* LYHotBarMenuDropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C4282D1C116ED90028FC21 /* LYHotBarMenuDropView.m */; };
 		85C428871C11D25D0028FC21 /* ContentViewTaocan.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C428861C11D25D0028FC21 /* ContentViewTaocan.m */; };
 		85C428891C11D2710028FC21 /* ContentViewTaocan.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85C428881C11D2710028FC21 /* ContentViewTaocan.xib */; };
-		85C4415D1D73D2CE00299C17 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		85C441781D73D67900299C17 /* balanceIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85C441701D73D67900299C17 /* balanceIcon@2x.png */; };
 		85C441791D73D67900299C17 /* balanceIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85C441711D73D67900299C17 /* balanceIcon@3x.png */; };
 		85C4417A1D73D67900299C17 /* shopIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85C441721D73D67900299C17 /* shopIcon@2x.png */; };
@@ -3549,7 +3547,6 @@
 		851F03E51D645A44006BAA47 /* UserHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserHeader.h; sourceTree = "<group>"; };
 		851F03E61D645A44006BAA47 /* UserHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserHeader.m; sourceTree = "<group>"; };
 		851F03E71D645A44006BAA47 /* UserHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserHeader.xib; sourceTree = "<group>"; };
-		851F04161D646E9C006BAA47 /* backLive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backLive.png; sourceTree = "<group>"; };
 		852519F01D6BFAEC005CE01D /* live_close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "live_close@2x.png"; sourceTree = "<group>"; };
 		852519F21D6BFAF0005CE01D /* live_close@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "live_close@3x.png"; sourceTree = "<group>"; };
 		852519F41D6BFE8B005CE01D /* live_gift@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "live_gift@2x.png"; sourceTree = "<group>"; };
@@ -3781,7 +3778,7 @@
 		854106FB1D7D05A40083AF04 /* sayHello@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sayHello@3x.png"; path = "GiftImage/sayHello@3x.png"; sourceTree = "<group>"; };
 		854107001D7D7D2B0083AF04 /* DMHeartFlyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMHeartFlyView.h; sourceTree = "<group>"; };
 		854107011D7D7D2B0083AF04 /* DMHeartFlyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMHeartFlyView.m; sourceTree = "<group>"; };
-		854107031D7E93A70083AF04 /* BackImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BackImage.png; path = MVC/BackImage.png; sourceTree = "<group>"; };
+		854107031D7E93A70083AF04 /* BackImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BackImage.png; path = ../LiveShow/Controllers/ChatRoomHelper/MVC/BackImage.png; sourceTree = "<group>"; };
 		854107051D7E9DBC0083AF04 /* AudienceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudienceCell.h; sourceTree = "<group>"; };
 		854107061D7E9DBC0083AF04 /* AudienceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudienceCell.m; sourceTree = "<group>"; };
 		854107071D7E9DBC0083AF04 /* AudienceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudienceCell.xib; sourceTree = "<group>"; };
@@ -7662,8 +7659,6 @@
 		851F03A21D645A44006BAA47 /* ChatRoomHelper */ = {
 			isa = PBXGroup;
 			children = (
-				854107031D7E93A70083AF04 /* BackImage.png */,
-				851F04161D646E9C006BAA47 /* backLive.png */,
 				85251A331D6D4F07005CE01D /* MVC */,
 			);
 			path = ChatRoomHelper;
@@ -7734,6 +7729,7 @@
 		852519EF1D6BFA61005CE01D /* 玩探最新 */ = {
 			isa = PBXGroup;
 			children = (
+				854107031D7E93A70083AF04 /* BackImage.png */,
 				85FE54761D791AFF00B262EA /* GiftImage */,
 				854106FA1D7D05A40083AF04 /* sayHello@2x.png */,
 				854106FB1D7D05A40083AF04 /* sayHello@3x.png */,
@@ -12030,7 +12026,6 @@
 				855397171C8D7F2F00289D18 /* GamePlayViewController.xib in Resources */,
 				ADFFA68C1C16DFB800D9BD2A /* purpleBtnBG.png in Resources */,
 				AD399ED41C940D4D00028F23 /* logo85@2x.jpg in Resources */,
-				851F04171D646E9C006BAA47 /* backLive.png in Resources */,
 				85A638A51D7407E1000816FD /* wantan_select@3x.png in Resources */,
 				850099C31C61EEE700DDE626 /* hotImg@3x.png in Resources */,
 				8551B4FF1C8EC9FA0057F0E7 /* FindNotificationViewController.xib in Resources */,
@@ -12524,7 +12519,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				85A6389D1D73DFBE000816FD /* LYGiftMessage.m in Sources */,
-				85C4415D1D73D2CE00299C17 /* (null) in Sources */,
 				85589C771C16BB28000E342E /* LYUserDetailTableViewCell.xib in Sources */,
 				85589C311C167E49000E342E /* PayButton.m in Sources */,
 				385665101C75EFFF000DCFA5 /* HDDetailImageCell.m in Sources */,

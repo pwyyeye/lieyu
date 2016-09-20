@@ -135,7 +135,7 @@
     _menuView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 90);
     _menuView.layer.shadowColor = RGBA(0, 0, 0, 1).CGColor;
     _menuView.layer.shadowOffset = CGSizeMake(0, 0.5);
-    _menuView.layer.shadowOpacity = 0.1;
+//    _menuView.layer.shadowOpacity = 0.1;
     _menuView.layer.shadowRadius = 1;
     [self.view addSubview:_menuView];
     
@@ -168,7 +168,7 @@
     _titelLabel.frame = CGRectMake(0, 28, SCREEN_WIDTH, 30);
     _titelLabel.textAlignment = NSTextAlignmentCenter;
     _titelLabel.text = @"娱";
-    _titelLabel.font = [UIFont systemFontOfSize:16];
+    _titelLabel.font = [UIFont systemFontOfSize:18];
     _titelLabel.textColor = [UIColor blackColor];
     [_menuView addSubview:_titelLabel];
     

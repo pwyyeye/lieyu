@@ -81,7 +81,7 @@
     _menuView.alpha = 5;
     _menuView.layer.shadowColor = RGBA(0, 0, 0, 1).CGColor;
     _menuView.layer.shadowOffset = CGSizeMake(0, 0.5);
-    _menuView.layer.shadowOpacity = 0.3;
+//    _menuView.layer.shadowOpacity = 0.3;
     _menuView.layer.shadowRadius = 1;
     [self.view addSubview:_menuView];
     
@@ -89,7 +89,7 @@
     _titelLabel.frame = CGRectMake(0, 30, SCREEN_WIDTH, 30);
     _titelLabel.textAlignment = NSTextAlignmentCenter;
     _titelLabel.text = @"直播";
-    _titelLabel.font = [UIFont boldSystemFontOfSize:16];
+    _titelLabel.font = [UIFont boldSystemFontOfSize:18];
     _titelLabel.textColor = [UIColor blackColor];
     [_menuView addSubview:_titelLabel];
     

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -13,18 +14,17 @@
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="122"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="df8-5S-x7J">
-                        <rect key="frame" x="132" y="40" width="180" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="9d1-FW-ag3"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
-                        <color key="textColor" red="0.69803921570000005" green="0.14901960780000001" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.74117647060000003" green="0.1960784314" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VAR-po-wUO">
-                        <rect key="frame" x="0.0" y="0.0" width="122" height="122"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="VAR-po-wUO" secondAttribute="height" multiplier="1:1" id="iN9-wT-0FJ"/>
                         </constraints>
@@ -35,59 +35,52 @@
                         </variation>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NtR-6U-ljy">
-                        <rect key="frame" x="132" y="68" width="139" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="x7Q-Sk-rpM"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gr8-b5-KR0">
-                        <rect key="frame" x="132" y="10" width="40" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="Yth-Ag-2Dg"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NKw-eQ-oXp">
-                        <rect key="frame" x="279" y="68" width="31" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="2Cv-Pc-V0R"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cWF-Jw-qzt">
-                        <rect key="frame" x="221" y="92" width="24" height="20"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cWF-Jw-qzt">
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="fq2-EY-8fU"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
                         <state key="normal" title="22" image="GuWenHua.png">
-                            <color key="titleColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </state>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hotImg.png" translatesAutoresizingMaskIntoConstraints="NO" id="zg8-0e-ImO">
-                        <rect key="frame" x="0.0" y="0.0" width="26" height="26"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="26" id="cew-4v-w6a"/>
                             <constraint firstAttribute="height" constant="26" id="mYv-C3-xyk"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="85U-K1-Zxs">
-                        <rect key="frame" x="178" y="12" width="16" height="16"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="16" id="c72-sj-Mi8"/>
                             <constraint firstAttribute="height" constant="16" id="dZb-gQ-aZX"/>
                         </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BVL-1V-Uhf">
-                        <rect key="frame" x="270" y="92" width="40" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="S62-Nj-WqB"/>
                             <constraint firstAttribute="width" constant="40" id="ghE-lg-ITd"/>
@@ -95,13 +88,12 @@
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <state key="normal" title="22" image="popularityLevel.png">
-                            <color key="titleColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </state>
                     </button>
                 </subviews>
-                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="NKw-eQ-oXp" firstAttribute="top" secondItem="NtR-6U-ljy" secondAttribute="top" id="1IC-o6-KCB"/>
                 <constraint firstAttribute="trailing" secondItem="BVL-1V-Uhf" secondAttribute="trailing" constant="10" id="5i5-zl-9sw"/>

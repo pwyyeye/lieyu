@@ -118,7 +118,7 @@
     _myTitle.backgroundColor = [UIColor clearColor];
     _myTitle.textColor=[UIColor blackColor];
     _myTitle.textAlignment = NSTextAlignmentCenter;
-    [_myTitle setFont:[UIFont systemFontOfSize:16]];
+    [_myTitle setFont:[UIFont systemFontOfSize:18]];
     if (_type == 0) {
         [_myTitle setText:@"大家想玩"];
     }else if (_type == 1){
