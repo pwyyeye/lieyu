@@ -65,6 +65,7 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"yyyy-MM-dd"];
     NSString *dateString = [formatter stringFromDate:date];
+    [USER_DEFAULT setObject:@"" forKey:@"todayBirthdaySendWish"];
     if (![USER_DEFAULT objectForKey:@"todayBirthdaySendWish"] || ![[USER_DEFAULT objectForKey:@"todayBirthdaySendWish"] isEqualToString:dateString]) {
         //没有出现过送祝福的界面
         [[ZSManageHttpTool shareInstance]zsGetTodayFriendBirthdayWithParams:nil complete:^(NSArray *result) {
@@ -94,7 +95,10 @@
                 
                 UIButton *cancelButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 + 107, SCREEN_HEIGHT / 2 - 170, 40, 40)];
                 cancelButton.layer.cornerRadius = 20;
-                [cancelButton setBackgroundColor:[UIColor redColor]];
+                [cancelButton setBackgroundColor:[UIColor lightGrayColor]];
+                [cancelButton setTitle:@"✕" forState:UIControlStateNormal];
+                [cancelButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                [cancelButton.titleLabel setFont:[UIFont systemFontOfSize:20]];
                 [_backgroundView addSubview:cancelButton];
                 [cancelButton addTarget:self action:@selector(removeBackgroundView) forControlEvents:UIControlEventTouchUpInside];
             }

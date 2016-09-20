@@ -191,20 +191,6 @@
             }];
         }
     }];
-//    AddressBookModel *birthModel = [[AddressBookModel alloc]init];
-//    birthModel.usernick = _usernameTextField.text;
-//    birthModel.avatar_img = @"http://source.lie98.com/lieyu_ios_20160823145919_jkrzFxsP.jpg?imageView2/0/w/80/h/80";
-//    NSString *string = [MyUtil configureDateFromNowWith:[_birthday stringByReplacingOccurrencesOfString:[_birthday substringWithRange:NSMakeRange(0, 4)] withString:@"2016"]];
-//    NSArray *array = [string componentsSeparatedByString:@" "];
-//    if (array.count >= 2) {
-//        birthModel.typeDate = [array objectAtIndex:0];
-//        birthModel.lastDayForBirthday = [array objectAtIndex:1];
-//    }
-//    birthModel.birthday = _birthday;
-//    if ([self.delegate respondsToSelector:@selector(addBirthdayDelegate:)]) {
-//        [self.delegate addBirthdayDelegate:birthModel];
-//        [self.navigationController popViewControllerAnimated:YES];
-//    }
 }
 
 //选择生日

@@ -58,7 +58,7 @@
     
     _filterType = 1;
     
-    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64) style:UITableViewStyleGrouped];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self setUptableViewCells];
     _tableView.delegate = self;
@@ -179,18 +179,21 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        return 75;
+        return 81;
     }else{
         return SCREEN_WIDTH / 25 * 12 ;
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0.0000001;
+    if (section == 0) {
+        return 0.000000001;
+    }
+    return 6;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 6;
+    return 0.0000001;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

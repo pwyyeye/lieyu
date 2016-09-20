@@ -29,6 +29,57 @@
     
 }
 
+- (void)setChongzhiR:(ZSTiXianRecord *)chongzhiR{
+    _chongzhiR = chongzhiR;
+    NSArray *strArray = [chongzhiR.create_date componentsSeparatedByString:@" "];
+    if (strArray.count == 2) {
+        NSArray *strArray1 = [strArray.firstObject componentsSeparatedByString:@"-"];
+        NSArray *strArray2 = [strArray[1] componentsSeparatedByString:@":"];
+        if (strArray1.count > 2 && strArray2.count > 2) {
+            _label_time.text = [NSString stringWithFormat:@"%@月%@日 %@:%@",strArray1[1],strArray1[2],strArray2[0],strArray2[1]];
+        }
+    }
+    switch (chongzhiR.checkMark.integerValue) {
+        case 1:
+            switch (chongzhiR.wtype.integerValue) {
+                case 1:
+                    
+                    _label_type.text =  @"操作成功，本次使用支付宝充值";
+                    break;
+                case 2:
+                    _label_type.text =  @"操作成功，本次使用银联充值";
+                    break;
+                case 3:
+                    _label_type.text =  @"操作成功，本次使用微信充值";
+                    break;
+                case 4:
+                    _label_type.text = @"充值成功";
+                    break;
+            }
+            break;
+            
+        case 0:
+            switch (chongzhiR.wtype.integerValue) {
+                case 1:
+                    
+                    _label_type.text =  @"操作中，本次使用支付宝充值";
+                    break;
+                case 2:
+                    _label_type.text =  @"操作中，本次使用银联充值";
+                    break;
+                case 3:
+                    _label_type.text =  @"操作中，本次使用微信充值";
+                    break;
+                case 4:
+                    _label_type.text = @"操作中";
+                    break;
+            }
+            break;
+    }
+    _label_money.text = [NSString stringWithFormat:@"%.2f",chongzhiR.amount.floatValue];
+    _label_poundage.hidden = YES;
+}
+
 - (void)setTiXianR:(ZSTiXianRecord *)tiXianR{
     _tiXianR = tiXianR;
     NSArray *strArray = [tiXianR.create_date componentsSeparatedByString:@" "];

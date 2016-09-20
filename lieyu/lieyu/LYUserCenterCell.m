@@ -39,7 +39,7 @@
     
     
     _layerShadowBottom=[[CALayer alloc]init];
-    _layerShadowBottom.frame=CGRectMake(17, 39.5,SCREEN_WIDTH - 17,0.5);
+    _layerShadowBottom.frame=CGRectMake(17, 49.5 ,SCREEN_WIDTH - 17,0.5);
     _layerShadowBottom.borderColor=[RGBA(0, 0, 0, 0.1) CGColor];
     _layerShadowBottom.borderWidth=0.5;
     

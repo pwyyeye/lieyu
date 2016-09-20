@@ -564,15 +564,20 @@
 
 #pragma mark -  获取提现记录
 - (void)getPersonTiXianRecordWithParams:(NSDictionary *)params complete:(void (^)(NSArray *))complete{
+    AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);
+    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_GET_TIXIANRECORD baseURL:LY_SERVER params:params success:^(id response) {
         NSLog(@"%@",response);
         NSString *errorcodeStr = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
         if ([errorcodeStr isEqualToString:@"1"]) {
             NSArray *dataArray = [ZSTiXianRecord mj_objectArrayWithKeyValuesArray:[response objectForKey:@"data"]];
             complete(dataArray);
+        }else{
+            [MyUtil showPlaceMessage:@"数据获取失败，请稍后重试！"];
         }
+        [app stopLoading];
     }failure:^(NSError *err) {
-        
+        [app stopLoading];
     }];
 }
 

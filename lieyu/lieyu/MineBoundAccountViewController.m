@@ -8,6 +8,9 @@
 
 #import "MineBoundAccountViewController.h"
 #import "wechatCheckAccountViewController.h"
+#import "LYHomePageHttpTool.h"
+#import "LYUserHttpTool.h"
+#import "WXApi.h"
 
 @interface MineBoundAccountViewController ()
 
@@ -99,27 +102,111 @@
         [MyUtil showPlaceMessage:@"请将信息填写完整"];
         return;
     }
-    NSDictionary *dict ;
-    if (_choosedIndex == 1) {
-        dict = @{@"userid":[NSString stringWithFormat:@"%d",self.userModel.userid],
-                 @"wechatName":_secondTextField.text,
-                 @"wechatId":_firstTextField.text};
-    }else if (_choosedIndex == 2){
-        dict = @{@"userid":[NSString stringWithFormat:@"%d",self.userModel.userid],
-                 @"alipayaccount":_firstTextField.text,
-                 @"alipayAccountName":_secondTextField.text};
-    }else if (_choosedIndex == 3){
-        dict = @{@"userid":[NSString stringWithFormat:@"%d",self.userModel.userid],
-                 @"bankCard":_firstTextField.text,
-                 @"bankCardDeposit":_secondTextField.text,
-                 @"bankCardUsername":_thirdTextField.text};
-    }
-    //进行网络请求
-    if (_choosedIndex == 3) {
-        wechatCheckAccountViewController *wechatCheckAccountVC = [[wechatCheckAccountViewController alloc]initWithNibName:@"wechatCheckAccountViewController" bundle:nil];
-        [self.navigationController pushViewController:wechatCheckAccountVC animated:YES];
+    if(_choosedIndex == 1){
+        //绑定微信
+        [self weixinLogin];
+    }else{
+        [self lyUserBoundAccount];
     }
 }
 
+- (void)lyUserBoundAccount{
+    
+    NSDictionary *dict ;
+    //accountType : 1、支付宝 2、银行卡 3、微信
+    if (_choosedIndex == 1) {
+        dict = @{@"accountType":@"3",
+                 @"accountNo":_secondTextField.text,
+                 @"accountName":_firstTextField.text};
+    }else if (_choosedIndex == 2){
+        dict = @{@"accountType":@"1",
+                 @"accountNo":_firstTextField.text,
+                 @"accountName":_secondTextField.text};
+    }else if (_choosedIndex == 3){
+        dict = @{@"accountType":@"2",
+                 @"accountNo":_firstTextField.text,
+                 @"accountName":_thirdTextField.text};
+    }
+    __weak __typeof(self)weakSelf = self;
+    [LYUserHttpTool lyUserBoundAccountWithParams:dict complete:^(BOOL result) {
+        if (result) {
+            //代理方法，绑定成功
+            [weakSelf goBack];
+        }
+    }];
+}
+
+- (void)goBack{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)weixinLogin{
+    SendAuthReq* req =[[SendAuthReq alloc ] init ];
+    req.scope = @"snsapi_userinfo" ;
+    req.state = @"123" ;
+    //第三方向微信终端发送一个SendAuthReq消息结构
+    if ([WXApi sendReq:req]) NSLog(@"-->success");
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getWeiXinAccessToken) name:@"weixinCode" object:nil];
+}
+
+- (void)getWeiXinAccessToken{
+    NSString *accessTokenStr = [[NSUserDefaults standardUserDefaults] valueForKey:@"weixinGetAccessToken"];
+    NSTimeInterval timeNow = [[NSDate date] timeIntervalSince1970];
+    NSTimeInterval timeWeixin = [[[NSUserDefaults standardUserDefaults] objectForKey:@"weixinDate"] timeIntervalSince1970];
+    __weak __typeof(self)weakSelf = self;
+    NSTimeInterval timeWeixin_re = [[[NSUserDefaults standardUserDefaults] valueForKey:@"weixinReDate"] timeIntervalSince1970];
+    
+    if([MyUtil isEmptyString:accessTokenStr] || timeNow - timeWeixin_re > 60 * 60 * 24 * 30){//refreshToken超过30tian
+        [LYHomePageHttpTool getWeixinAccessTokenWithCode:[[NSUserDefaults standardUserDefaults] valueForKey:@"weixinCode"] compelete:^(NSString *accessToken) {
+            if(![MyUtil isEmptyString:accessToken]){
+                [LYHomePageHttpTool getWeixinUserInfoWithAccessToken:accessToken compelete:^(UserModel *userInfo) {
+                    if(userInfo){
+                        [weakSelf bangding:userInfo.openID and:2];
+                        [weakSelf lyUserBoundAccount];
+                    }
+                }];
+            }
+        }];
+    }else{
+        if(timeNow - timeWeixin > 2 * 60 * 60){
+            [LYHomePageHttpTool getWeixinNewAccessTokenWithRefreshToken:[[NSUserDefaults standardUserDefaults]          objectForKey:@"weixinRefresh_token"] compelete:^(NSString *accessToken) {
+                if(![MyUtil isEmptyString:accessToken]){
+                    [LYHomePageHttpTool getWeixinUserInfoWithAccessToken:accessToken compelete:^(UserModel *userInfo) {
+                        [weakSelf bangding:userInfo.openID and:2];
+                        [weakSelf lyUserBoundAccount];
+                    }];
+                }
+            }];
+        }else{
+            
+            [LYHomePageHttpTool getWeixinUserInfoWithAccessToken:accessTokenStr compelete:^(UserModel *userInfo) {
+                [weakSelf bangding:userInfo.openID and:2];
+                [weakSelf lyUserBoundAccount];
+            }];
+            
+        }
+    }
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"weixinCode" object:nil];
+}
+
+-(void)bangding:(NSString *)openid and:(NSInteger) type{
+    NSString *string= [MyUtil encryptUseDES:openid];
+    NSLog(@"----pass-pass%@---",string);
+    
+    NSString *plantType = nil;
+    if(type==1) plantType = @"qq";
+    else if(type==2) plantType = @"wechat";
+    else plantType = @"weibo";
+    if(plantType == nil) return;
+    AppDelegate *delegate=(AppDelegate *)[[UIApplication sharedApplication] delegate];
+    if (delegate.userModel==nil) {
+        return;
+    }
+    NSDictionary *paraDic = @{@"id": [NSString stringWithFormat:@"%d",delegate.userModel.userid] ,plantType:string};
+    __weak typeof(self) weakself=self;
+    [LYUserHttpTool tieQQWeixinAndSinaWithPara2:paraDic compelte:^(NSInteger flag) {//1 绑定成功 0 绑定失败
+    }];
+    
+}
 
 @end

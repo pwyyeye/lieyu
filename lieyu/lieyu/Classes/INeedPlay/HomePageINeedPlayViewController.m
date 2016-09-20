@@ -381,11 +381,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     
     //城市搜索
     _cityChooseBtn = [[UIButton alloc]initWithFrame:CGRectMake(5, 6 + 20, 60, 30)];
-    [_cityChooseBtn setImage:[UIImage imageNamed:@"选择城市"] forState:UIControlStateNormal];
+    [_cityChooseBtn setImage:[UIImage imageNamed:@"downArrow"] forState:UIControlStateNormal];
     [_cityChooseBtn setTitle:[USER_DEFAULT objectForKey:@"ChooseCityLastTime"] forState:UIControlStateNormal];
     [_cityChooseBtn setTitleColor:RGBA(1, 1, 1, 1) forState:UIControlStateNormal];
     _cityChooseBtn.titleLabel.font = [UIFont systemFontOfSize:12 weight:UIFontWeightLight];
-    [_cityChooseBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -20, 0, 0)];
+    [_cityChooseBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -38, 0, 0)];
     [_cityChooseBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 30, 0, 0)];
     [_cityChooseBtn addTarget:self action:@selector(cityChangeClick:) forControlEvents:UIControlEventTouchUpInside];
     [_menuView addSubview:_cityChooseBtn];
@@ -393,11 +393,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     //搜索按钮
 //    CGFloat searchBtnWidth = 24;
     _searchBtn = [[UIButton alloc]initWithFrame:CGRectMake(65, 26 , SCREEN_WIDTH - 130, 30)];
-    [_searchBtn setTitle:@"搜索" forState:UIControlStateNormal];
+    [_searchBtn setTitle:@"搜索商户名、直播" forState:UIControlStateNormal];
     [_searchBtn.titleLabel setFont:[UIFont systemFontOfSize:12 weight:UIFontWeightLight]];
     [_searchBtn setTitleColor:RGBA(51, 51, 51, 1) forState:UIControlStateNormal];
     [_searchBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 20, 0, 0)];
-    [_searchBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 40, 0, 0)];
+    [_searchBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 31, 0, 0)];
     [_searchBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [_searchBtn setImage:[UIImage imageNamed:@"HomepageSearchIcon"] forState:UIControlStateNormal];
     [_searchBtn addTarget:self action:@selector(searchClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -430,7 +430,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     }
     for (int i = 0; i < btnTitleArray.count; i ++) {
         HotMenuButton *btn = [[HotMenuButton alloc]init];
-        btn.titleLabel.font = [UIFont systemFontOfSize:12];
+        btn.titleLabel.font = [UIFont systemFontOfSize:14];
         btn.tag = i;
         [btn addTarget:self action:@selector(menuClick:) forControlEvents:UIControlEventTouchUpInside];
         if(i == 0) btn.isHomePageMenuViewSelected = YES;
@@ -526,10 +526,10 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 //    _effectView.hidden = NO;
     [self.view bringSubviewToFront:_effectView];
     [UIView animateWithDuration:.4 animations:^{
-        _effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 120, 60, 60);
+        _effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 132, 60, 60);
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:.2 animations:^{
-            [_effectView setFrame:CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 115, 60, 60)];
+            [_effectView setFrame:CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 129, 60, 60)];
         }];
     }];
 }
@@ -647,7 +647,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             if (tableView.tag == 2) {
                 if (imageOffsetY > _oldScrollOffectY){
                     if (imageOffsetY <= 0.f) {
-                        _effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 115, 60, 60);
+                        _effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 129, 60, 60);
                     }else{
                         [UIView animateWithDuration:0.4 animations:^{
                             _effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 49, 60, 60);
@@ -658,10 +658,10 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 //                    NSLog(@"SCREEN_HEIGHT - 5:%f",SCREEN_HEIGHT - 5);
                     if (CGRectGetMaxY(_effectView.frame) > SCREEN_HEIGHT - 5) {
                         [UIView animateWithDuration:.4 animations:^{
-                            _effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 120, 60, 60);
+                            _effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 132, 60, 60);
                         } completion:^(BOOL finished) {
                             [UIView animateWithDuration:0.2 animations:^{
-                                _effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 115, 60, 60);
+                                _effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 129, 60, 60);
                             }];
                         }];
                     }

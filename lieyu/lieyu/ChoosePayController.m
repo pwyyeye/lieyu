@@ -58,12 +58,28 @@
     self.tableView.backgroundColor=RGB(237, 237, 237);
     self.tableView.tableFooterView=[[UIView alloc]init];//去掉多余的分割线
     self.title=@"支付方式";
-    _data=@[
-            @{@"payname":@"支付宝支付",@"paydetail":@"推荐有支付宝帐户的用户使用",@"payicon":@"AlipayIcon"},
-           @{@"payname":@"微信支付",@"paydetail":@"推荐有微信帐户的用户使用",@"payicon":@"TenpayIcon"}
-            ];
+    if (_isRechargeCoin && _isBalanceEnough) {//充值娱币并且余额足够
+        _data=@[
+                @{@"payname":@"余额支付",@"paydetail":@"推荐余额优先支付",@"payicon":@"balanceIcon"},
+                @{@"payname":@"支付宝支付",@"paydetail":@"推荐有支付宝帐户的用户使用",@"payicon":@"AlipayIcon"},
+                @{@"payname":@"微信支付",@"paydetail":@"推荐有微信帐户的用户使用",@"payicon":@"TenpayIcon"}
+                ];
+        _selectIndex = 0;
+    }else if (_isRechargeCoin && !_isBalanceEnough) {//充值娱币并且余额不够
+        _data=@[
+                @{@"payname":@"余额支付",@"paydetail":@"余额不足",@"payicon":@"balanceIcon"},
+                @{@"payname":@"支付宝支付",@"paydetail":@"推荐有支付宝帐户的用户使用",@"payicon":@"AlipayIcon"},
+                @{@"payname":@"微信支付",@"paydetail":@"推荐有微信帐户的用户使用",@"payicon":@"TenpayIcon"}
+                ];
+        _selectIndex = 1;
+    }else{
+        _data=@[
+                @{@"payname":@"支付宝支付",@"paydetail":@"推荐有支付宝帐户的用户使用",@"payicon":@"AlipayIcon"},
+                @{@"payname":@"微信支付",@"paydetail":@"推荐有微信帐户的用户使用",@"payicon":@"TenpayIcon"}
+                ];
+        _selectIndex = 1;
+    }
     _btnArray = [[NSMutableArray alloc]initWithCapacity:0];
-    _selectIndex = 1;
 //    _isFaqi=YES;
     [self createPayButton];//创建支付按钮
 }
@@ -107,9 +123,6 @@
        }
 
     }
-    
-//    NSLog(@"------>%ld",_selectIndex);
-    
     if (_selectIndex == 1l) {//支付宝
         AlipayOrder *order=[[AlipayOrder alloc] init];
         order.tradeNO = _orderNo; //订单ID（由商家自行制定）
@@ -120,7 +133,7 @@
         SingletonAlipay *alipay=[SingletonAlipay singletonAlipay];
         alipay.delegate=self;
         [alipay payOrder:order];
-    }else{//微信
+    }else if (_selectIndex == 2l) {//微信
         SingletonTenpay *tenpay=[SingletonTenpay singletonTenpay];
         tenpay.orderNO=_orderNo;
         tenpay.isFaqi=_isFaqi;
@@ -132,8 +145,20 @@
                 [MyUtil showMessage:@"无法调起微信支付！"];
             }
         }];
+    }else if (_selectIndex == 0){//余额支付
+        __weak __typeof(self) weakSelf = self;
+        NSDictionary *dict = @{@"offBalances":[NSString stringWithFormat:@"%f",_payAmount]};
+        [LYUserHttpTool rechargeCoinWithParams:dict complete:^(BOOL result) {
+            if (result) {
+                [weakSelf gotoBack];
+                if ([weakSelf.delegate respondsToSelector:@selector(rechargeCoinDelegate:)]) {
+                    [weakSelf.delegate rechargeCoinDelegate:_payAmount];
+                }
+            }
+        }];
     }
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -152,13 +177,10 @@
 //}
 
 -(void)gotoBack{
-    NSLog(@"%@",self.navigationController.viewControllers);
     for (UIViewController *controller in self.navigationController.viewControllers) {
         if([controller isKindOfClass:[HDDetailViewController class]] || [controller isKindOfClass:[CHDoOrderViewController class]] || [controller isKindOfClass:[ZujuViewController class]] || [controller isKindOfClass:[LYwoYaoDinWeiMainViewController class]]||[controller isKindOfClass:[PTjoinInViewController class]]){
             LPMyOrdersViewController *detailViewController = [[LPMyOrdersViewController alloc]init];
             [self.navigationController pushViewController:detailViewController animated:YES];
-//            LYMyOrderManageViewController *detailViewController =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
-//            [self.navigationController pushViewController:detailViewController animated:YES];
             return;
         }
     }
@@ -278,12 +300,30 @@
             
             PayButton *selectBtn = [[PayButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 230,0, 230, 80)];
 //            [selectBtn setBackgroundColor:[UIColor redColor]];
-            if (!indexPath.row) {
+            if (!indexPath.row && _isRechargeCoin && _isBalanceEnough) {
+                selectBtn.isSelect = YES;
+            }else if (!indexPath.row && !_isRechargeCoin) {
+                selectBtn.isSelect = YES;
+            }else if (indexPath.row == 1 && _isRechargeCoin && !_isBalanceEnough){
                 selectBtn.isSelect = YES;
             }else{
                 selectBtn.isSelect = NO;
             }
-            selectBtn.tag = indexPath.row + 1;
+            if (!indexPath.row && _isRechargeCoin && !_isBalanceEnough) {
+                selectBtn.enabled = NO;
+            }else{
+                selectBtn.enabled = YES;
+            }
+//            if (!indexPath.row) {
+//                    selectBtn.isSelect = YES;
+//            }else{
+//                selectBtn.isSelect = NO;
+//            }
+            if (_isRechargeCoin) {
+                selectBtn.tag = indexPath.row;
+            }else{
+                selectBtn.tag = indexPath.row + 1;
+            }
 
             [selectBtn addTarget:self action:@selector(selectClick:) forControlEvents:UIControlEventTouchUpInside];
             [_payCell addSubview:selectBtn];
@@ -300,6 +340,7 @@
 }
 
 - (void)selectClick:(PayButton *)button{
+    NSLog(@"selectClick:%ld",button.tag);
     _selectIndex = button.tag;
     for (PayButton *btn in _btnArray) {
         btn.isSelect = NO;
