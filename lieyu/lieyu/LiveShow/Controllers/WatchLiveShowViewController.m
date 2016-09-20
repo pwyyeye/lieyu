@@ -197,11 +197,14 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 {
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
+    [RCIM sharedRCIM].disableMessageAlertSound = YES;//关闭融云的提示音
+
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    [RCIM sharedRCIM].disableMessageAlertSound = NO;//打开提示音
     self.navigationController.navigationBarHidden = NO;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"sendGift" object:nil];
 }
@@ -321,7 +324,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
         [self.view addSubview:_likeButton];
         _likeLabel = [[UILabel alloc] init];
         _likeLabel.size = CGSizeMake(SCREEN_WIDTH / 12, 15);
-        _likeLabel.center = CGPointMake(CGRectGetMidX(_likeButton.bounds), CGRectGetMidY(_likeButton.bounds) + 9);
+        _likeLabel.center = CGPointMake(CGRectGetMidX(_likeButton.bounds), CGRectGetMidY(_likeButton.bounds) + 11);
         _likeLabel.textAlignment = NSTextAlignmentCenter;
         _likeLabel.font = [UIFont systemFontOfSize:11];
         _likeLabel.textColor = [UIColor whiteColor];

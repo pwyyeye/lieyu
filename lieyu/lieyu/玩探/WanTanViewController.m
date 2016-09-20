@@ -34,13 +34,15 @@ static NSString *wantanCellID = @"wantanCellID";
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar addSubview:_myTitle];
+   // [self.navigationController.navigationBar addSubview:_myTitle];
     if (self.navigationController.navigationBarHidden != NO) {
         [self.navigationController setNavigationBarHidden:NO];
     }
-    _timers = [NSTimer scheduledTimerWithTimeInterval:15 target:self selector:@selector(getNewMessage) userInfo:nil repeats:YES];//定时器获取新消息数
+    self.title = @"玩探";
+    _timers = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(getNewMessage) userInfo:nil repeats:YES];//定时器获取新消息数
     [_timers fire];
 }
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -53,7 +55,7 @@ static NSString *wantanCellID = @"wantanCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setuptitle];
+  //  [self setuptitle];
     [self.tableView registerNib:[UINib nibWithNibName:@"WanTanCell" bundle:nil] forCellReuseIdentifier:wantanCellID];
     self.tableView.showsHorizontalScrollIndicator=NO;
     self.tableView.showsVerticalScrollIndicator=NO;
@@ -71,6 +73,7 @@ static NSString *wantanCellID = @"wantanCellID";
     [_myTitle setFont:[UIFont systemFontOfSize:16]];
     [_myTitle setText:@"玩探"];
 }
+
 #pragma mark - 获取我的未读消息数
 - (void)getNewMessage{
     _results = @"";
@@ -185,7 +188,7 @@ static NSString *wantanCellID = @"wantanCellID";
     if (section) {
         return SCREEN_HEIGHT / 60;
     } else {
-        return 0;
+        return 3;
     }
 }
 //-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section

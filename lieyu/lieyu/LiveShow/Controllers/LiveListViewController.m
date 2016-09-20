@@ -357,19 +357,18 @@ static NSString *liveShowListID = @"liveShowListID";
                         }
                         break;
                     case 3://娱乐顾问
-                        if (user.roleid != 1) {
+                        if (![user.usertype isEqualToString:@"1"]) {
                         [self.hotDataArray addObject:model];
                         }
                         break;
                     case 4://玩友
-                        if (user.roleid == 1) {
+                        if ([user.usertype isEqualToString:@"1"]) {
                         [self.hotDataArray addObject:model];
                         }
                         break;
                     default:
                         break;
                 }
-                
             }
             [self hideEmptyView];
             if (_hotDataArray.count <= 0) {
@@ -409,12 +408,12 @@ static NSString *liveShowListID = @"liveShowListID";
                         }
                         break;
                     case 3://娱乐顾问
-                        if (user.roleid != 1) {
+                        if (![user.usertype isEqualToString:@"1"]) {
                             [self.rencentDataArray addObject:model];
                         }
                         break;
                     case 4://玩友
-                        if (user.roleid == 1) {
+                        if ([user.usertype isEqualToString:@"1"]) {
                             [self.rencentDataArray addObject:model];
                         }
                         break;
@@ -551,7 +550,11 @@ static NSString *liveShowListID = @"liveShowListID";
         cell = [[LiveShowListCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:liveShowListID];
     }
     LYLiveShowListModel *model = [LYLiveShowListModel new];
+    if (_hotDataArray.count == 0 || _rencentDataArray.count == 0) {
+        return nil;
+    }
     if (tableView == (UITableView *)_tableViewArray[0]) {//热门
+        
         model = _hotDataArray[indexPath.row];
     } else {
         model = _rencentDataArray[indexPath.row];

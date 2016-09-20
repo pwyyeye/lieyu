@@ -926,7 +926,7 @@ static NSString *daShangCellID = @"dashangCellID";
             break;
         case 2://地址
         {
-            return 40;
+            return 30;
         }
             break;
         case 3:
@@ -936,11 +936,7 @@ static NSString *daShangCellID = @"dashangCellID";
             return count == 0 ? 0 : (SCREEN_WIDTH - 114)/8.f + 20;
         }
             break;
-        case 9:
-        {
-            return 36;
-        }
-            break;
+
             
             break;
         default://评论
@@ -951,7 +947,7 @@ static NSString *daShangCellID = @"dashangCellID";
             FriendsCommentModel *commentM = recentM.commentList[indexPath.row - 4];
             NSString *str = nil;
             if([commentM.toUserId isEqualToString:@"0"]) {
-                str = [NSString stringWithFormat:@"%@：%@",commentM.nickName,commentM.comment];
+                str = [NSString stringWithFormat:@"%@： %@",commentM.nickName,commentM.comment];
             }else{
                 str = [NSString stringWithFormat:@"%@ 回复 %@：%@d",commentM.nickName,commentM.toUserNickName,commentM.comment];
             }
@@ -967,7 +963,7 @@ static NSString *daShangCellID = @"dashangCellID";
             NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:str];
             [attributedStr addAttributes:attributes range:NSMakeRange(0, attributedStr.length)];
             CGSize size = [attributedStr boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 70, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
-            return size.height + 10;
+            return size.height ;
         }
             break;
     }
