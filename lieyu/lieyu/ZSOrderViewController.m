@@ -124,7 +124,7 @@
     [self.view addSubview:effectView];
     
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(100, 31, SCREEN_WIDTH - 200, 22)];
-    [label setFont:[UIFont systemFontOfSize:16]];
+    [label setFont:[UIFont systemFontOfSize:18]];
     [label setText:@"订单管理"];
     [label setTextAlignment:NSTextAlignmentCenter];
     [label setTextColor:[UIColor blackColor]];

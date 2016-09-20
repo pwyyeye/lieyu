@@ -666,7 +666,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 
 - (void)getTodayBirthday{
     __weak __typeof(self) weakSelf = self;
-    [USER_DEFAULT setObject:@"" forKey:@"todayBirthdayGet"];
+//    [USER_DEFAULT setObject:@"" forKey:@"todayBirthdayGet"];
     UserModel *userMode = ((AppDelegate *)[UIApplication sharedApplication].delegate).userModel;
     NSDate *date = [NSDate date];
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];

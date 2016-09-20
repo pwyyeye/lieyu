@@ -89,7 +89,7 @@
     _titelLabel.frame = CGRectMake(0, 30, SCREEN_WIDTH, 30);
     _titelLabel.textAlignment = NSTextAlignmentCenter;
     _titelLabel.text = @"直播";
-    _titelLabel.font = [UIFont boldSystemFontOfSize:16];
+    _titelLabel.font = [UIFont boldSystemFontOfSize:18];
     _titelLabel.textColor = [UIColor blackColor];
     [_menuView addSubview:_titelLabel];
     

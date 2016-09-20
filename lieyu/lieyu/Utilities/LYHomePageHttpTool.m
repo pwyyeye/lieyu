@@ -381,7 +381,7 @@
             });
             
         }else{
-            [MyUtil showMessage:message];
+            [MyUtil showPlaceMessage:message];
         }
         //        [app stopLoading];
     } failure:^(NSError *err) {

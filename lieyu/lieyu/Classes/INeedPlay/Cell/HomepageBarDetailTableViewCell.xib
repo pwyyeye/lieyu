@@ -130,7 +130,7 @@
                     <constraint firstItem="Pup-Pm-cew" firstAttribute="leading" secondItem="2Yc-CE-gY4" secondAttribute="trailing" constant="4" id="bcf-Ae-HDk"/>
                     <constraint firstItem="Puo-Mr-CxI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="cc5-Pz-mxK"/>
                     <constraint firstItem="QBW-Jo-FZl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="dcQ-MP-OPh"/>
-                    <constraint firstItem="6JO-AP-Z3s" firstAttribute="leading" secondItem="J4s-9z-U2k" secondAttribute="trailing" constant="20" id="dgK-sn-QTs"/>
+                    <constraint firstItem="6JO-AP-Z3s" firstAttribute="leading" secondItem="J4s-9z-U2k" secondAttribute="trailing" constant="30" id="dgK-sn-QTs"/>
                     <constraint firstItem="yAj-bc-uTw" firstAttribute="bottom" secondItem="2Yc-CE-gY4" secondAttribute="bottom" id="e1w-Mj-OKm"/>
                     <constraint firstItem="J4s-9z-U2k" firstAttribute="top" secondItem="mpo-jm-np4" secondAttribute="bottom" constant="20" id="esN-0m-T8V"/>
                     <constraint firstItem="J4s-9z-U2k" firstAttribute="top" secondItem="Puo-Mr-CxI" secondAttribute="bottom" id="fyH-8y-xvo"/>
@@ -157,7 +157,7 @@
                 <outlet property="communicateButton" destination="qse-Xj-6nA" id="whk-bf-Xhk"/>
                 <outlet property="seperateView" destination="Pup-Pm-cew" id="r4R-id-FAf"/>
             </connections>
-            <point key="canvasLocation" x="448" y="34.5"/>
+            <point key="canvasLocation" x="398" y="13"/>
         </tableViewCell>
     </objects>
     <resources>
