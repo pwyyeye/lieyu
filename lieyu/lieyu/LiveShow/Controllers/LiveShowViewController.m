@@ -244,7 +244,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
         [weakSelf initPLplayer];//初始化摄像头
         _registerView = [[[NSBundle mainBundle] loadNibNamed:@"RegisterLiveShowView" owner:weakSelf options:nil] lastObject];
         _registerView.frame = self.view.bounds;
-        _registerView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.5f];
+       _registerView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.5f];
         [weakSelf.view addSubview:_registerView];
         [weakSelf.view bringSubviewToFront:_registerView];
         _registerView.streamID = _streamId;//将streamid和roomid配置给开始界面
@@ -600,7 +600,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 }
 
 - (void)handleLiveShowInterruption:(NSNotification *)notification {
-    if ([notification.name isEqualToString:AVAudioSessionInterruptionNotification] || [notification.name isEqualToString:AVAudioSessionRouteChangeNotification]) {
+    if ([notification.name isEqualToString:AVAudioSessionInterruptionNotification] ) {
         NSLog(@"Interruption notification");
         if ([[notification.userInfo valueForKey:AVAudioSessionInterruptionTypeKey] isEqualToNumber:[NSNumber numberWithInt:AVAudioSessionInterruptionTypeBegan]]) {
             NSLog(@"InterruptionTypeBegan");

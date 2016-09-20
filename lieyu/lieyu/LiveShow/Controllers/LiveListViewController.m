@@ -147,7 +147,7 @@ static NSString *liveShowListID = @"liveShowListID";
             butt.titleLabel.font = [UIFont systemFontOfSize:17];
             butt.userInteractionEnabled = NO;
         }else {
-            butt.titleLabel.font = [UIFont systemFontOfSize:14];
+            butt.titleLabel.font = [UIFont systemFontOfSize:13];
             [butt addTarget:self action:@selector(chooseTypeButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
         }
         if (i== 1) {
