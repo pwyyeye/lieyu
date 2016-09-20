@@ -16,15 +16,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="321" height="54"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="addressFriend.png" translatesAutoresizingMaskIntoConstraints="NO" id="vZ1-l2-3kw">
-                        <rect key="frame" x="18" y="16" width="24" height="24"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addressFriend.png" translatesAutoresizingMaskIntoConstraints="NO" id="vZ1-l2-3kw">
+                        <rect key="frame" x="60" y="15" width="24" height="24"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="24" id="eD2-ol-lep"/>
                             <constraint firstAttribute="height" constant="24" id="uHW-9L-Inf"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DFq-hw-xAl">
-                        <rect key="frame" x="60" y="17" width="60" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DFq-hw-xAl">
+                        <rect key="frame" x="92" y="17" width="60" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="IFe-Yf-YtR"/>
                             <constraint firstAttribute="width" constant="60" id="Yzg-nC-gpZ"/>
@@ -41,19 +41,19 @@
                         </constraints>
                         <state key="normal" image="dianping@2x.png"/>
                     </button>
-                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f3j-nk-PcS">
-                        <rect key="frame" x="85" y="9" width="180" height="40"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f3j-nk-PcS">
+                        <rect key="frame" x="108" y="10" width="157" height="36"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v46-BG-Lsl">
-                                <rect key="frame" x="0.0" y="9" width="60" height="22"/>
+                                <rect key="frame" x="0.0" y="7" width="52" height="22"/>
                                 <state key="normal" image="DP_like.png"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tiI-4v-Zr9">
-                                <rect key="frame" x="120" y="9" width="60" height="22"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tiI-4v-Zr9">
+                                <rect key="frame" x="105" y="7" width="52" height="22"/>
                                 <state key="normal" image="DP_dashang.png"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hD0-IZ-Aze">
-                                <rect key="frame" x="60" y="9" width="60" height="22"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hD0-IZ-Aze">
+                                <rect key="frame" x="52" y="7" width="53" height="22"/>
                                 <state key="normal" image="DP_comment.png"/>
                             </button>
                         </subviews>
@@ -61,9 +61,9 @@
                         <constraints>
                             <constraint firstItem="tiI-4v-Zr9" firstAttribute="width" secondItem="hD0-IZ-Aze" secondAttribute="width" id="DhO-KQ-tUs"/>
                             <constraint firstItem="tiI-4v-Zr9" firstAttribute="centerY" secondItem="hD0-IZ-Aze" secondAttribute="centerY" id="F2c-ck-L53"/>
-                            <constraint firstAttribute="height" constant="40" id="OEb-jK-4aF"/>
+                            <constraint firstAttribute="height" constant="36" id="OEb-jK-4aF"/>
                             <constraint firstItem="hD0-IZ-Aze" firstAttribute="centerY" secondItem="v46-BG-Lsl" secondAttribute="centerY" id="RXX-cx-qDF"/>
-                            <constraint firstAttribute="width" constant="180" id="WNV-My-ZdO"/>
+                            <constraint firstAttribute="width" constant="157" id="WNV-My-ZdO"/>
                             <constraint firstItem="tiI-4v-Zr9" firstAttribute="leading" secondItem="hD0-IZ-Aze" secondAttribute="trailing" id="XCb-My-JDv"/>
                             <constraint firstItem="v46-BG-Lsl" firstAttribute="leading" secondItem="f3j-nk-PcS" secondAttribute="leading" id="cgW-at-VWK"/>
                             <constraint firstItem="v46-BG-Lsl" firstAttribute="centerY" secondItem="f3j-nk-PcS" secondAttribute="centerY" id="mJV-gt-phw"/>
@@ -79,9 +79,9 @@
                     <constraint firstAttribute="trailingMargin" secondItem="XXC-df-mSU" secondAttribute="trailing" constant="10" id="4L5-JN-R2r"/>
                     <constraint firstItem="vZ1-l2-3kw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="71i-qe-ddG"/>
                     <constraint firstItem="XXC-df-mSU" firstAttribute="leading" secondItem="f3j-nk-PcS" secondAttribute="trailing" constant="3" id="CdB-j7-xzK"/>
-                    <constraint firstItem="DFq-hw-xAl" firstAttribute="leading" secondItem="vZ1-l2-3kw" secondAttribute="trailing" constant="18" id="DWF-PG-dl9"/>
+                    <constraint firstItem="DFq-hw-xAl" firstAttribute="leading" secondItem="vZ1-l2-3kw" secondAttribute="trailing" constant="8" id="DWF-PG-dl9"/>
                     <constraint firstItem="XXC-df-mSU" firstAttribute="leading" secondItem="f3j-nk-PcS" secondAttribute="trailing" constant="3" id="IZp-a7-IJU"/>
-                    <constraint firstItem="vZ1-l2-3kw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="18" id="LOl-QO-gM9"/>
+                    <constraint firstItem="vZ1-l2-3kw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="60" id="LOl-QO-gM9"/>
                     <constraint firstItem="XXC-df-mSU" firstAttribute="centerY" secondItem="f3j-nk-PcS" secondAttribute="centerY" id="MTU-fc-ODh"/>
                     <constraint firstItem="DFq-hw-xAl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="NVd-X6-W2a"/>
                     <constraint firstItem="DFq-hw-xAl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="6" id="NhX-CR-rFE"/>

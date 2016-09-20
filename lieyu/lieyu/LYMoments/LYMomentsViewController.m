@@ -39,9 +39,9 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    self.title = @"玩友圈";
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title = @"玩友圈";
 
     UITableView *tabView = _tableViewArray[0];
     tabView.frame = CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 64);
@@ -58,7 +58,6 @@
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    
     [super viewWillDisappear:animated];
     [_liveShow removeFromSuperview];
     _liveShow = nil;
@@ -136,7 +135,7 @@
     }else{
         [_messageButton removeFromSuperview];
         _messageButton = nil;
-        headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 187 / 375 + 50);
+        headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 187 / 375 + 30);
     }
     //背景图
     bgIamge = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, headerHeight)];
@@ -151,7 +150,7 @@
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     _iconIamge = [[UIImageView alloc] init];
     [_iconIamge sd_setImageWithURL:[NSURL URLWithString:app.userModel.avatar_img]];
-    _iconIamge.frame = CGRectMake(SCREEN_WIDTH - 10 - iconWidth, headerHeight - 50, iconWidth, iconWidth);
+    _iconIamge.frame = CGRectMake(SCREEN_WIDTH - 10 - iconWidth, headerHeight - iconWidth / 4 * 3, iconWidth, iconWidth);
     _iconIamge.userInteractionEnabled = YES;
     UIGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(iconIamgeAction)];
     [_iconIamge addGestureRecognizer:tapGesture];

@@ -620,7 +620,6 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     //            bgTask=UIBackgroundTaskInvalid;
     //        }
     //    });
-    
     //    [_timer setFireDate:[NSDate distantPast]];//开启
     NSFileManager *manager = [NSFileManager defaultManager];
     NSString *pngDir = [NSHomeDirectory() stringByAppendingString:@"/tmp"];
@@ -632,10 +631,16 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         filename = [NSString stringWithFormat:@"/%@",filename];
         [manager removeItemAtPath:[pngDir stringByAppendingString:filename] error:nil];
     }
+    //通知关闭session
+    NSNotification *stopNotification = [NSNotification notificationWithName:@"stopNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotification:stopNotification];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    //通知打开session
+    NSNotification *startNotification = [NSNotification notificationWithName:@"startNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotification:startNotification];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

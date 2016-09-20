@@ -359,7 +359,7 @@
             NSDictionary *dic = response[@"data"];
             if ([dic[@"roomUserList"] objectForKey:@"users"]) {
                 NSArray *users = [ChatUseres mj_objectArrayWithKeyValuesArray:dic[@"roomUserList"][@"users"]];
-                NSDictionary *results = @{@"users":users,@"likeNum":dic[@"likeNum"]};
+                NSDictionary *results = @{@"users":users,@"likeNum":dic[@"likeNum"],@"total":dic[@"roomUserList"][@"total"]};
                 complete(results);
             } else {
                 NSDictionary *results  = @{@"likeNum":dic[@"likeNum"]};

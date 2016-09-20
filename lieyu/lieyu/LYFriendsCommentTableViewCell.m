@@ -30,11 +30,11 @@
     NSString *strrr = nil;
     if([commentM.toUserId isEqualToString:@"0"]) {
         string = [NSString stringWithFormat:@"%@",commentM.nickName];
-        strrr = [NSString stringWithFormat:@"%@：%@",commentM.nickName,commentM.comment];
+        strrr = [NSString stringWithFormat:@"%@:%@",commentM.nickName,commentM.comment];
         _label_huifu.text = @"";
         [_btn_secondName setTitle:@"" forState:UIControlStateNormal];
         _btn_secondName.enabled = NO;
-    }else {
+    } else {
         _label_huifu.text = @" 回复 ";
         string = [NSString stringWithFormat:@"%@ 回复 %@",commentM.nickName,commentM.toUserNickName];
         strrr = [NSString stringWithFormat:@"%@ 回复 %@：%@",commentM.nickName,commentM.toUserNickName,commentM.comment];
@@ -42,14 +42,12 @@
         _btn_secondName.enabled = YES;
     }
     [_btn_firstName setTitle:commentM.nickName forState:UIControlStateNormal];
-    [_btn_firstName setTitleColor:[UIColor clearColor] forState:UIControlStateNormal] ;
+    [_btn_firstName setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
      [_btn_secondName setTitleColor:[UIColor clearColor] forState:UIControlStateNormal] ;
     [_label_huifu setTextColor:[UIColor clearColor]];
     
     
-    
-    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init
-                                                                                            ];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
 //    paragraphStyle.firstLineHeadIndent = size.width + 10;
                                                    paragraphStyle.lineSpacing = 5;
     

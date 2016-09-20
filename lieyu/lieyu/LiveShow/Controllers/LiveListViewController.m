@@ -60,6 +60,7 @@ static NSString *liveShowListID = @"liveShowListID";
     [self setMenuView];
     [self initReleaseWishButton];
     self.title = @"";
+    
 }
 
 - (void)viewDidLoad {
@@ -146,7 +147,7 @@ static NSString *liveShowListID = @"liveShowListID";
             butt.titleLabel.font = [UIFont systemFontOfSize:17];
             butt.userInteractionEnabled = NO;
         }else {
-            butt.titleLabel.font = [UIFont systemFontOfSize:11];
+            butt.titleLabel.font = [UIFont systemFontOfSize:14];
             [butt addTarget:self action:@selector(chooseTypeButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
         }
         if (i== 1) {
@@ -172,7 +173,7 @@ static NSString *liveShowListID = @"liveShowListID";
     [self.view addSubview:_kongLabel];
 }
 
--(void) hideEmptyView{
+-(void)hideEmptyView{
     [_kongLabel removeFromSuperview];
 }
 
@@ -594,7 +595,7 @@ static NSString *liveShowListID = @"liveShowListID";
     
 }
 
-#pragma mark - 发送愿望按钮
+#pragma mark - 直播按钮
 - (void)initReleaseWishButton{
     //26-47
     UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
@@ -640,7 +641,5 @@ static NSString *liveShowListID = @"liveShowListID";
     [super didReceiveMemoryWarning];
     
 }
-
-
 
 @end

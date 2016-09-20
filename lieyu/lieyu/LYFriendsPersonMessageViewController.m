@@ -18,9 +18,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"好友动态";
     self.pageNum = 1;
 }
+
 
 #pragma mark - 获取最新玩友圈数据
 - (void)getDataWithType:(dataType)type needLoad:(BOOL)need{

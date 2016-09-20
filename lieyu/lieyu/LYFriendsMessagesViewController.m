@@ -25,13 +25,16 @@
 #import "LYPictiureView.h"
 #import "LYDateUtil.h"
 #import "DaShangView.h"
+#import "DaShangViewCell.h"
 
 #import "LiveListViewController.h"
 
 #define LYFriendsAllCommentCellID @"LYFriendsAllCommentTableViewCell"
 #define LYFriendsLikeCellID @"LYFriendsLikeTableViewCell"
 
-@interface LYFriendsMessagesViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,emojiClickDelegate,ImagePickerFinish,UIImagePickerControllerDelegate,UINavigationControllerDelegate,sendBackVedioAndImage,ISEmojiViewDelegate,UITextFieldDelegate>
+static NSString *daShangCellID = @"dashangCellID";
+
+@interface LYFriendsMessagesViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,emojiClickDelegate,ImagePickerFinish,UIImagePickerControllerDelegate,UINavigationControllerDelegate,sendBackVedioAndImage,ISEmojiViewDelegate,UITextFieldDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 {
     BOOL _friendsBtnSelect;//朋友圈按钮选择状态
     HotMenuButton *_friendsBtn,*_myBtn;//朋友圈按钮 我的按钮
@@ -46,8 +49,9 @@
     NSString *jubaoMomentID;//要删除的动态ID
     UIView *_bigView;//评论的背景view
     DaShangView *_daShangView;//打赏View
+    NSMutableArray *_dataArr;
     NSInteger _giftNumber;//礼物数量
-    NSInteger _giftValue;//礼物价值
+    NSString *_giftValue;//礼物价值
     NSString *_toUserId;//打赏对象id
     NSString *_businessid;//业务id
     UIView *_backgroudView;//背景
@@ -131,6 +135,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
     [IQKeyboardManager sharedManager].enable = YES;
     [IQKeyboardManager sharedManager].isAdd = NO;
     
@@ -327,7 +332,7 @@
     [effectView addSubview:_carmerBtn];
     
     //发布按钮出来动画
-    CGFloat offset = 120;
+    CGFloat offset = 140;
     if(_isTopic)offset = 130;
     [UIView animateWithDuration:.4 animations:^{
         effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - offset - 3, 60, 60);
@@ -615,7 +620,7 @@
         if(_isTopic){//话题
             offset = 10;
         }else{
-            offset = 0;
+            offset = -20;
         }
         
         if (scrollView.contentOffset.y > _contentOffSetY) {
@@ -725,15 +730,15 @@
                 nameCell.btn_headerImg.tag = indexPath.section;
                 [nameCell.btn_headerImg addTarget:self action:@selector(pushUserMessagePage:) forControlEvents:UIControlEventTouchUpInside];
             }else{
-                [nameCell.btn_delete setTitle:@"删除" forState:UIControlStateNormal];
-                [nameCell.btn_delete setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
-                [nameCell.btn_delete addTarget:self action:@selector(deleteClick:) forControlEvents:UIControlEventTouchUpInside];
-                nameCell.btn_delete.hidden = NO;
-                nameCell.btn_delete.enabled = YES;
+//                [nameCell.btn_delete setTitle:@"删除" forState:UIControlStateNormal];
+//                [nameCell.btn_delete setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+//                [nameCell.btn_delete addTarget:self action:@selector(deleteClick:) forControlEvents:UIControlEventTouchUpInside];
+//                nameCell.btn_delete.hidden = NO;
+//                nameCell.btn_delete.enabled = YES;
             }
             
             if(_isFriendToUserMessage) {//好友动态隐藏删除按钮
-                nameCell.btn_delete.hidden = YES;
+//                nameCell.btn_delete.hidden = YES;
                 if(_isTopic){
                     nameCell.btn_delete.hidden = NO;
                     if([recentM.userId isEqualToString:_useridStr]) nameCell.btn_delete.hidden = YES;//话题中我的话题隐藏删除按钮
@@ -940,8 +945,8 @@
             break;
         default://评论
         {
-            if(!recentM.commentList.count) return 36;
-            if(indexPath.row - 4 > recentM.commentList.count - 1) return 36;
+            if(!recentM.commentList.count) return 26;
+            if(indexPath.row - 4 > recentM.commentList.count - 1) return 26;
             
             FriendsCommentModel *commentM = recentM.commentList[indexPath.row - 4];
             NSString *str = nil;
@@ -1123,69 +1128,50 @@
     [self.view bringSubviewToFront:_backgroudView];
     
     _daShangView = [[[NSBundle mainBundle] loadNibNamed:@"DaShangView" owner:self options:nil] lastObject];
-    _daShangView.frame = CGRectMake(10, SCREEN_HEIGHT / 5, SCREEN_WIDTH - 20, 300);
+    _daShangView.frame = CGRectMake(10, SCREEN_HEIGHT / 5, SCREEN_WIDTH / 15 * 14 , 300);
+
 //    _daShangView.center = self.view.center;
 //    _daShangView.size = CGSizeMake(SCREEN_WIDTH - 20, 300);
     _daShangView.backgroundColor = [UIColor whiteColor];
     _daShangView.alpha = 1.f;
     _daShangView.layer.cornerRadius = 3.f;
     _daShangView.layer.masksToBounds = YES;
-    //    _daShangView.giftCollectionView.delegate = self;
-    _daShangView.giftCollectionView.tag = 888;
     [_backgroudView addSubview:_daShangView];
     [_daShangView.closeButton addTarget:self action:@selector(dashangMomentCloseViewAction:) forControlEvents:(UIControlEventTouchUpInside)];
     [_daShangView.sendGiftButton addTarget:self action:@selector(sendGiftMomentButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
-    
 }
 
 -(void)notice:(NSNotification *)notification{
-    NSString *values = notification.userInfo[@"value"];
-    if (_giftValueArray.count == 0) {//第一次点击直接加入数组
-        [_giftValueArray addObject:values];
-    } else {
-        if (_giftNumber >= 1 ) {
-            if ([_giftValueArray containsObject:values]) {
-                [self.giftValueArray removeObject:values];
-            } else {
-                [self.giftValueArray addObject:values];
-            }
-        } else {//
-        [_giftValueArray removeObject:values];
-        }
-    }
-    _giftNumber = [notification.userInfo[@"number"] integerValue];
+//    NSString *values = notification.userInfo[@"value"];
+//    if (_giftValueArray.count == 0) {//第一次点击直接加入数组
+//        [_giftValueArray addObject:values];
+//    } else {
+//        if (_giftNumber >= 1 ) {
+//            if ([_giftValueArray containsObject:values]) {
+//                [self.giftValueArray removeObject:values];
+//            } else {
+//                [self.giftValueArray addObject:values];
+//            }
+//        } else {//
+//        [_giftValueArray removeObject:values];
+//        }
+//    }
+    _giftValue = notification.userInfo[@"value"];
 }
 
 -(void)dashangMomentCloseViewAction:(UIButton *)sender{
-    [_giftValueArray removeAllObjects];
     [_backgroudView removeFromSuperview];
     _backgroudView = nil;
 }
 
 -(void)sendGiftMomentButtonAction:(UIButton *)sender{
-    switch (_giftNumber) {
-        case 0:
-            
-            break;
-        case 1://单个送
-        {
-            NSDictionary *dictGift = @{@"amount":[NSString stringWithFormat:@"%@",_giftValueArray.firstObject],
-                                       @"toUserid":_toUserId,
-                                       @"rid":@"moment",
-                                       @"businessid":_businessid};
-            [LYFriendsHttpTool daShangWithParms:dictGift complete:^(NSDictionary *dic) {
-                [MyUtil showMessage:[NSString stringWithFormat:@"%@",_giftValueArray.firstObject]];
-            }];
-            
-        }
-            break;
-            
-        default:
-            [MyUtil showMessage:@"壕！一次送一个呦"];
-            return;
-            break;
-    }
-    [_giftValueArray removeAllObjects];
+    NSDictionary *dictGift = @{@"amount":[NSString stringWithFormat:@"%@",_giftValue],
+                               @"toUserid":_toUserId,
+                               @"rid":@"moment",
+                               @"businessid":_businessid};
+    [LYFriendsHttpTool daShangWithParms:dictGift complete:^(NSDictionary *dic) {
+        [MyUtil showMessage:[NSString stringWithFormat:@"%@",_giftValue]];
+    }];
     [_backgroudView removeFromSuperview];
     _backgroudView = nil;
 }

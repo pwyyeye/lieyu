@@ -23,7 +23,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="off-7t-eF1">
-                        <rect key="frame" x="52" y="36" width="70" height="27"/>
+                        <rect key="frame" x="61" y="36" width="70" height="27"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="27" id="Ajt-nK-man"/>
                             <constraint firstAttribute="width" constant="70" id="bz0-bq-Q4j"/>
@@ -64,7 +64,7 @@
                     <constraint firstAttribute="trailingMargin" secondItem="MFb-mw-wez" secondAttribute="trailing" constant="2" id="he2-rx-Y16"/>
                     <constraint firstAttribute="trailingMargin" secondItem="bWI-rz-BzT" secondAttribute="trailing" constant="7" id="kDb-gf-Wyh"/>
                     <constraint firstItem="X8n-Fr-jyx" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="rcx-7r-VU6"/>
-                    <constraint firstItem="off-7t-eF1" firstAttribute="leading" secondItem="X8n-Fr-jyx" secondAttribute="trailing" constant="6" id="x3q-aI-NKv"/>
+                    <constraint firstItem="off-7t-eF1" firstAttribute="leading" secondItem="X8n-Fr-jyx" secondAttribute="trailing" constant="15" id="x3q-aI-NKv"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>

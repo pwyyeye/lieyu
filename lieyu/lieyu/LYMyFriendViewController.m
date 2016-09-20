@@ -301,7 +301,7 @@ static NSString *CellIdentifier = @"CustomerCell";
                 cell.tipLabel.text = @"（互相关注后将成为玩友）";
                 if (_isOpen) {
                     cell.smallImageView.image = nil;
-                    [cell.smallImageView setImage:[UIImage imageNamed:@"arrowdown"]];
+                    [cell.smallImageView setImage:[UIImage imageNamed:@"downArrow"]];
                 } else {
                     cell.smallImageView.image = nil;
                     [cell.smallImageView setImage:[UIImage imageNamed:@"arrowRitht"]];

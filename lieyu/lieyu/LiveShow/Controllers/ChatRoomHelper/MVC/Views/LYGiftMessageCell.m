@@ -39,27 +39,61 @@
     LYGiftMessage *_likeMessage = (LYGiftMessage *)self.model.content;
     
     NSString *tiptext = @"";
-    switch (_likeMessage.type.integerValue) {
-        case 0:
-            tiptext = @"赞";
-            break;
-        case 1:
-            tiptext = @"赞";
-            break;
-        case 2:
-            tiptext = @"赞";
-            break;
-        case 3:
-            tiptext = @"赞";
-            break;
-        case 4:
-            tiptext = @"赞";
-            break;
-        case 5:
-            tiptext = @"赞";
-            break;
-        default:
-            break;
+    if (_likeMessage.type.integerValue == 0) {//赞
+        tiptext = @"赞";
+    } else {//礼物
+        switch (_likeMessage.gift.giftId.integerValue) {
+            case 10:
+                tiptext = @"玫瑰花";
+                break;
+            case 50:
+                tiptext = @"风油精";
+                break;
+            case 100:
+                tiptext = @"金瓶梅";
+                break;
+            case 200:
+                tiptext = @"烤鸡";
+                break;
+            case 520:
+                tiptext = @"一束玫瑰";
+                break;
+            case 680:
+                tiptext = @"香槟";
+                break;
+            case 1280:
+                tiptext = @"拉菲";
+                break;
+            case 1880:
+                tiptext = @"皇家礼炮";
+                break;
+            case 8888:
+                tiptext = @"钻戒";
+                break;
+            case 2500:
+                tiptext = @"元宝";
+                break;
+            case 6666:
+                tiptext = @"Iphone10";
+                break;
+            case 88888:
+                tiptext = @"跑车";
+                break;
+            case 131400:
+                tiptext = @"游艇";
+                break;
+            case 334400:
+                tiptext = @"别墅";
+                break;
+            case 39999:
+                tiptext = @"百达翡丽";
+                break;
+            case 222222:
+                tiptext = @"私人飞机";
+                break;
+            default:
+                break;
+        }
     }
     if (_likeMessage) {
         if(_likeMessage.senderUserInfo){

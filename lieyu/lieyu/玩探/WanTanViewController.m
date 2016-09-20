@@ -114,7 +114,6 @@ static NSString *wantanCellID = @"wantanCellID";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     WanTanCell *cell = [tableView dequeueReusableCellWithIdentifier:wantanCellID forIndexPath:indexPath];
-    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     if (indexPath.section == 0) {
         cell.redTiPot.hidden = YES;
         [cell setIamge:[UIImage imageNamed:@"wanyouquan.png"] andLabel:@"玩友圈"];
@@ -138,6 +137,10 @@ static NSString *wantanCellID = @"wantanCellID";
                 cell.redTiPot.hidden = YES;
             }
             [cell setIamge:[UIImage imageNamed:@"lianxi.png"] andLabel:@"最近联系"];
+            UIView *lineView = [[UIView alloc] initWithFrame:(CGRectMake(0, cell.height - 1, SCREEN_WIDTH, 1))];
+            lineView.alpha = .1f;
+            lineView.backgroundColor = [UIColor darkGrayColor];
+            [cell addSubview:lineView];
         } else {
             cell.redTiPot.hidden = YES;
             [cell setIamge:[UIImage imageNamed:@"wanyoulist.png"] andLabel:@"玩友列表"];
@@ -146,6 +149,10 @@ static NSString *wantanCellID = @"wantanCellID";
         if (indexPath.row == 0) {
             cell.redTiPot.hidden = YES;
             [cell setIamge:[UIImage imageNamed:@"xiangwan.png"] andLabel:@"大家想玩"];
+            UIView *lineView = [[UIView alloc] initWithFrame:(CGRectMake(0, cell.height - 1, SCREEN_WIDTH, 1))];
+            lineView.alpha = .1f;
+            lineView.backgroundColor = [UIColor darkGrayColor];
+            [cell addSubview:lineView];
         } else if(indexPath.row == 1){
             cell.redTiPot.hidden = YES;
             [cell setIamge:[UIImage imageNamed:@"wantanGW.png"] andLabel:@"娱乐顾问"];
@@ -153,7 +160,6 @@ static NSString *wantanCellID = @"wantanCellID";
     } else {
         cell.redTiPot.hidden = YES;
         [cell setIamge:[UIImage imageNamed:@"baodian.png"] andLabel:@"娱乐宝典"];
-//        cell.tagIamgeView.frame = CGRectMake(cell.frame.origin.x, cell.frame.origin.y,cell.frame.size.width - 10, cell.frame.size.height + 15);
         cell.tagIamgeView.contentMode = UIViewContentModeScaleAspectFit;
     }
     return cell;
@@ -176,7 +182,11 @@ static NSString *wantanCellID = @"wantanCellID";
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return SCREEN_HEIGHT / 60;
+    if (section) {
+        return SCREEN_HEIGHT / 60;
+    } else {
+        return 0;
+    }
 }
 //-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 //{

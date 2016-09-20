@@ -78,7 +78,7 @@
 
 #define headerHeight SCREEN_WIDTH * 187 / 375
 
-#define iconWidth SCREEN_WIDTH / 6
+#define iconWidth SCREEN_WIDTH / 5
 
 @implementation UserMomentViewController
 
@@ -98,7 +98,6 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.title = @"我的玩友圈";
-
 //    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
 //    if(app.userModel.userid != _useridStr.intValue){
 //        _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
@@ -121,7 +120,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
-    
+    [super viewWillDisappear:animated];
     [IQKeyboardManager sharedManager].enable = YES;
     [IQKeyboardManager sharedManager].isAdd = NO;
     
@@ -206,7 +205,7 @@
 - (void)setupTableForHeaderForUserMomentPage{
     UIView *headerView = [[UIView alloc] init];
     headerView.backgroundColor = [UIColor whiteColor];
-    headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 187 / 375 + 50);
+    headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 187 / 375 + 30);
     //背景图
     bgIamge = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, headerHeight)];
     [bgIamge setImage:[UIImage imageNamed:@"empyImage16_9"]];
@@ -220,7 +219,7 @@
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     _iconIamge = [[UIImageView alloc] init];
     [_iconIamge sd_setImageWithURL:[NSURL URLWithString:app.userModel.avatar_img]];
-    _iconIamge.frame = CGRectMake(SCREEN_WIDTH - 10 - iconWidth, headerHeight - 50, iconWidth, iconWidth);
+    _iconIamge.frame = CGRectMake(SCREEN_WIDTH - 10 - iconWidth, headerHeight - iconWidth / 4 * 3, iconWidth, iconWidth);
     _iconIamge.userInteractionEnabled = YES;
     _iconIamge.layer.cornerRadius = _iconIamge.frame.size.height / 2;
     _iconIamge.layer.masksToBounds = YES;
@@ -466,26 +465,26 @@
             nameCell.btn_delete.tag = indexPath.section;
             nameCell.btn_topic.tag = indexPath.section;
             [nameCell.btn_topic addTarget:self action:@selector(topicNameClick:) forControlEvents:UIControlEventTouchUpInside];
-            if (!tableView.tag) {
-                [nameCell.btn_delete setTitle:@"" forState:UIControlStateNormal];
-                [nameCell.btn_delete setImage:[[UIImage imageNamed:@"downArrow"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
-                [nameCell.btn_delete addTarget:self action:@selector(warningSheet:) forControlEvents:UIControlEventTouchUpInside];
-                if ([recentM.userId isEqualToString:[NSString stringWithFormat:@"%d",self.userModel.userid]]) {
-                    nameCell.btn_delete.hidden = YES;
-                    nameCell.btn_delete.enabled = NO;
-                }else{
-                    nameCell.btn_delete.hidden = NO;
-                    nameCell.btn_delete.enabled = YES;
-                }
-                nameCell.btn_headerImg.tag = indexPath.section;
-                [nameCell.btn_headerImg addTarget:self action:@selector(pushUserMessagePage:) forControlEvents:UIControlEventTouchUpInside];
-            }else{
+//            if (!tableView.tag) {
+//                [nameCell.btn_delete setTitle:@"" forState:UIControlStateNormal];
+//                [nameCell.btn_delete setImage:[[UIImage imageNamed:@"downArrow"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+//                [nameCell.btn_delete addTarget:self action:@selector(warningSheet:) forControlEvents:UIControlEventTouchUpInside];
+//                if ([recentM.userId isEqualToString:[NSString stringWithFormat:@"%d",self.userModel.userid]]) {
+//                    nameCell.btn_delete.hidden = YES;
+//                    nameCell.btn_delete.enabled = NO;
+//                }else{
+//                    nameCell.btn_delete.hidden = NO;
+//                    nameCell.btn_delete.enabled = YES;
+//                }
+//                nameCell.btn_headerImg.tag = indexPath.section;
+//                [nameCell.btn_headerImg addTarget:self action:@selector(pushUserMessagePage:) forControlEvents:UIControlEventTouchUpInside];
+//            }else{
                 [nameCell.btn_delete setTitle:@"删除" forState:UIControlStateNormal];
                 [nameCell.btn_delete setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
                 [nameCell.btn_delete addTarget:self action:@selector(deleteMonmentClick:) forControlEvents:UIControlEventTouchUpInside];
                 nameCell.btn_delete.hidden = NO;
                 nameCell.btn_delete.enabled = YES;
-            }
+//            }
             
             if([MyUtil isEmptyString:[NSString stringWithFormat:@"%@",recentM.id]]){
                 nameCell.btn_delete.enabled = NO;
@@ -548,7 +547,6 @@
                     btn.tag = 7 * indexPath.section + i;
                     [btn addTarget:self action:@selector(zangBtnClick:) forControlEvents:UIControlEventTouchUpInside];
                 }
-                
                 return likeCell;
             }
             else{
@@ -557,7 +555,6 @@
             }
         }
             break;
-            
         default:{ //评论 4-8
             if(!recentM.commentList.count){//没有评论
                 LYFriendsAllCommentTableViewCell *allCommentCell = [tableView dequeueReusableCellWithIdentifier:LYFriendsAllCommentCellID forIndexPath:indexPath];
@@ -671,8 +668,8 @@
             break;
         default://评论
         {
-            if(!recentM.commentList.count) return 36;
-            if(indexPath.row - 4 > recentM.commentList.count - 1) return 36;
+            if(!recentM.commentList.count) return 26;
+            if(indexPath.row - 4 > recentM.commentList.count - 1) return 26;
             
             FriendsCommentModel *commentM = recentM.commentList[indexPath.row - 4];
             NSString *str = nil;

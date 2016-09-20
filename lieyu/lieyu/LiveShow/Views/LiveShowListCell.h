@@ -36,6 +36,9 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *secondTagLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *onlyOneTagLabel;
+
+
 @property (weak, nonatomic) IBOutlet UIView *firstView;
 
 @property (weak, nonatomic) IBOutlet UIView *secondView;
