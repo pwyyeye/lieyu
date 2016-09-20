@@ -62,7 +62,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c1I-zd-5Qv">
-                        <color key="backgroundColor" red="0.6705882353" green="0.0" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.74117647058823533" green="0.19607843137254902" blue="0.89411764705882346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1.5" id="FUf-8N-ZKj"/>
                             <constraint firstAttribute="width" constant="60" id="n1M-vX-7bE"/>
@@ -72,7 +72,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y7m-3P-Y1q">
-                        <color key="backgroundColor" red="0.6705882353" green="0.0" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.74117647060000003" green="0.1960784314" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1.5" id="HaK-kU-X4V"/>
                             <constraint firstAttribute="width" constant="60" id="okF-zT-ATV"/>
@@ -123,7 +123,7 @@
                 <outlet property="partyText" destination="9rx-xT-uUV" id="j42-bD-qNM"/>
                 <outlet property="shadowView" destination="Dh3-Ug-CD0" id="0hj-gw-qYL"/>
             </connections>
-            <point key="canvasLocation" x="262" y="-58.5"/>
+            <point key="canvasLocation" x="2" y="-93"/>
         </tableViewCell>
     </objects>
     <resources>

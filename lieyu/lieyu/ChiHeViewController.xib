@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChiHeViewController">
@@ -18,12 +19,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="ChiHeViewController" layoutMarginsFollowReadableWidth="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ieN-Zf-EMT">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <edgeInsets key="layoutMargins" top="4" left="4" bottom="4" right="4"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="C37-Fj-r2t">
                         <size key="itemSize" width="151" height="288"/>
@@ -37,15 +37,13 @@
                     </connections>
                 </collectionView>
                 <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oj5-Cy-zW0">
-                    <rect key="frame" x="0.0" y="64" width="320" height="36"/>
                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Gyg-A8-fhQ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="36"/>
+                        <frame key="frameInset"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8bS-fH-dUH">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="36"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gLX-c9-d2K">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="36"/>
+                                    <frame key="frameInset"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <vibrancyEffect>
@@ -66,60 +64,55 @@
                     <blurEffect style="extraLight"/>
                 </visualEffectView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FsN-Tv-T2I" customClass="ShaiXuanBtn">
-                    <rect key="frame" x="0.0" y="64" width="64" height="36"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="36" id="qJq-ou-4fi"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <state key="normal">
-                        <color key="titleColor" red="0.4941176471" green="0.08235294118" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="0.74117647060000003" green="0.1960784314" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="sxBtnClick:" destination="-1" eventType="touchUpInside" id="r5l-Al-fd4"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ACj-im-fEU" customClass="ShaiXuanBtn">
-                    <rect key="frame" x="64" y="64" width="64" height="36"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <state key="normal">
-                        <color key="titleColor" red="0.4941176471" green="0.08235294118" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="0.74117647060000003" green="0.1960784314" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="sxBtnClick:" destination="-1" eventType="touchUpInside" id="Z4h-Rs-5BU"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vfZ-1U-1uV" customClass="ShaiXuanBtn">
-                    <rect key="frame" x="128" y="64" width="64" height="36"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <state key="normal">
-                        <color key="titleColor" red="0.4941176471" green="0.08235294118" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="0.74117647060000003" green="0.1960784314" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="sxBtnClick:" destination="-1" eventType="touchUpInside" id="Jzo-A0-AWV"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uR0-ef-oAw" customClass="ShaiXuanBtn">
-                    <rect key="frame" x="192" y="64" width="64" height="36"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <state key="normal">
-                        <color key="titleColor" red="0.4941176471" green="0.08235294118" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="0.74117647060000003" green="0.1960784314" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="sxBtnClick:" destination="-1" eventType="touchUpInside" id="fcR-3m-Ifu"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T0u-qE-nUk" customClass="ShaiXuanBtn">
-                    <rect key="frame" x="256" y="64" width="64" height="36"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <state key="normal" image="more_purper.png">
-                        <color key="titleColor" red="0.4941176471" green="0.08235294118" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="0.74117647060000003" green="0.1960784314" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
                         <action selector="sxBtnClick:" destination="-1" eventType="touchUpInside" id="63A-l9-Se9"/>
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="uR0-ef-oAw" firstAttribute="height" secondItem="FsN-Tv-T2I" secondAttribute="height" id="13u-Ns-bDH"/>
                 <constraint firstItem="ieN-Zf-EMT" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="5ne-eL-XV5"/>
@@ -148,10 +141,15 @@
                 <constraint firstItem="ACj-im-fEU" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="x7g-mr-vSE"/>
                 <constraint firstItem="uR0-ef-oAw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="xZg-x4-nCc"/>
             </constraints>
-            <point key="canvasLocation" x="252" y="46"/>
+            <point key="canvasLocation" x="41" y="-252"/>
         </view>
     </objects>
     <resources>
         <image name="more_purper.png" width="12" height="13"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
+    </simulatedMetricsContainer>
 </document>

@@ -120,7 +120,7 @@
     button.backgroundColor = [UIColor clearColor];
     [button setTitle:@"更多活动专题" forState:UIControlStateNormal];
     button.titleLabel.font = [UIFont systemFontOfSize:12];
-    [button setTitleColor:RGB(186, 40, 227) forState:UIControlStateNormal];
+    [button setTitleColor:COMMON_PURPLE forState:UIControlStateNormal];
     button.layer.cornerRadius = 2;
     button.layer.borderColor = [RGBA(186, 40, 227, 1)CGColor];
     button.layer.borderWidth = 1;
@@ -166,7 +166,7 @@
                 //没有活动
                 warningLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 75, SCREEN_HEIGHT / 2 - 10, 150, 20)];
                 warningLabel.font = [UIFont systemFontOfSize:14];
-                warningLabel.textColor = RGB(186, 40, 227);
+                warningLabel.textColor = COMMON_PURPLE;
                 warningLabel.text = @"该专题暂无活动";
                 warningLabel.textAlignment = NSTextAlignmentCenter;
                 [weakSelf.tableView addSubview:warningLabel];

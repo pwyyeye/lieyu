@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BeerNewBarViewController">
@@ -22,25 +23,22 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="Beernew">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fcE-SZ-V8q">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="1ky-r2-Maa"/>
                         <outlet property="delegate" destination="-1" id="8ds-cG-jhp"/>
                     </connections>
                 </tableView>
                 <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y9E-Dm-l7q">
-                    <rect key="frame" x="130" y="519" width="60" height="60"/>
                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gO0-r1-Ell">
-                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                        <frame key="frameInset"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cE4-0h-nKR">
-                                <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="awU-eI-FfP"/>
                                     <constraint firstAttribute="height" constant="60" id="jVp-lN-JHE"/>
@@ -49,7 +47,7 @@
                                 <inset key="titleEdgeInsets" minX="-16" minY="0.0" maxX="0.0" maxY="-31"/>
                                 <inset key="imageEdgeInsets" minX="17" minY="-20" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="签到" image="sign.png">
-                                    <color key="titleColor" red="0.72941176470000002" green="0.15686274510000001" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.72941176470000002" green="0.15686274510000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="signClick:" destination="-1" eventType="touchUpInside" id="owg-XS-xox"/>
@@ -80,36 +78,32 @@
                     </variation>
                 </visualEffectView>
                 <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TgT-YK-qid">
-                    <rect key="frame" x="0.0" y="519" width="320" height="49"/>
                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="5px-QE-bIu">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <frame key="frameInset"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3nz-fQ-7yP">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 16.png" translatesAutoresizingMaskIntoConstraints="NO" id="9ZH-Pd-9Ic">
-                                        <rect key="frame" x="73" y="14" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="PjO-Er-eEN"/>
                                             <constraint firstAttribute="height" constant="30" id="mJR-U3-Xwc"/>
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aZi-Z4-kaI">
-                                        <rect key="frame" x="40" y="10" width="240" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="kUh-aM-s2Q"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" title="老司机带你飞">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="groupChatButtonAction:" destination="-1" eventType="touchUpInside" id="xFN-J4-sPI"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.72941176470588232" green="0.14901960784313725" blue="0.8901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.74117647060000003" green="0.1960784314" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="aZi-Z4-kaI" secondAttribute="bottom" constant="9" id="28w-hM-wwy"/>
                                     <constraint firstItem="9ZH-Pd-9Ic" firstAttribute="centerX" secondItem="aZi-Z4-kaI" secondAttribute="centerX" constant="-72" id="JCu-Mn-w9x"/>
@@ -132,20 +126,17 @@
                     <blurEffect style="extraLight"/>
                 </visualEffectView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bardetail_mask.png" translatesAutoresizingMaskIntoConstraints="NO" id="2M0-7o-qm3">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="84"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="84" id="Wha-yJ-Fe8"/>
                     </constraints>
                 </imageView>
                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="navBarbg" translatesAutoresizingMaskIntoConstraints="NO" id="Fwq-Sp-gAa">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="64" id="KnY-Gx-e2H"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="64" id="VfP-j2-5Uv"/>
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gEV-Ne-pSz">
-                    <rect key="frame" x="227" y="26" width="32" height="32"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="32" id="btq-HD-hcK"/>
                         <constraint firstAttribute="height" constant="32" id="kLc-bQ-Kkw"/>
@@ -156,7 +147,6 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gu7-Ag-jA3">
-                    <rect key="frame" x="173" y="26" width="32" height="32"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="32" id="RlT-1k-jRb"/>
                         <constraint firstAttribute="height" constant="32" id="kkT-qY-5Wt"/>
@@ -167,7 +157,6 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0zl-aU-4MY" userLabel="back">
-                    <rect key="frame" x="12" y="25" width="32" height="32"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="32" id="77J-gj-bSd"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="RYY-Lv-qTz"/>
@@ -186,7 +175,6 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7V2-dl-Wyd">
-                    <rect key="frame" x="281" y="26" width="32" height="32"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="32" id="0uc-8b-LHS"/>
                         <constraint firstAttribute="width" constant="32" id="rv1-JU-Ycd"/>
@@ -197,7 +185,7 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="2M0-7o-qm3" secondAttribute="trailing" id="4W6-q7-mPf"/>
                 <constraint firstItem="fcE-SZ-V8q" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="4m6-m3-8HN"/>
@@ -223,7 +211,6 @@
                 <constraint firstItem="2M0-7o-qm3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="u0u-JP-18g"/>
                 <constraint firstItem="2M0-7o-qm3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="xHe-RU-U1C"/>
             </constraints>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
     <resources>

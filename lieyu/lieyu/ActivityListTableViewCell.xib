@@ -73,7 +73,7 @@
                 <outlet property="activityPriceLabel" destination="bBJ-de-Qeo" id="zw5-rI-KZm"/>
                 <outlet property="activityTimeLabel" destination="6yb-mm-s62" id="Se7-DU-pA2"/>
             </connections>
-            <point key="canvasLocation" x="249" y="286"/>
+            <point key="canvasLocation" x="48" y="40"/>
         </tableViewCell>
     </objects>
     <resources>
