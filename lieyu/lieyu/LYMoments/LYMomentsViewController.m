@@ -16,7 +16,7 @@
 
 #define headerHeight SCREEN_WIDTH * 187 / 375
 
-#define iconWidth SCREEN_WIDTH / 6
+#define iconWidth SCREEN_WIDTH / 96 * 17
 
 @interface LYMomentsViewController ()<UIActionSheetDelegate>
 
@@ -42,7 +42,6 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.title = @"玩友圈";
-
     UITableView *tabView = _tableViewArray[0];
     tabView.frame = CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 64);
     
@@ -160,8 +159,9 @@
     _nameLabel = [[UILabel alloc] init];
     _nameLabel.textColor = [UIColor whiteColor];
     [_nameLabel setText:app.userModel.usernick];
+    [_nameLabel.font fontWithSize:18];
     [_nameLabel setTextAlignment:NSTextAlignmentRight];
-    _nameLabel.frame =CGRectMake(SCREEN_WIDTH - iconWidth - 10 - 7 - 90, SCREEN_WIDTH * 187 / 375 - 30, 90, 30);
+    _nameLabel.frame =CGRectMake(SCREEN_WIDTH - iconWidth - 10 - 15 - 90, SCREEN_WIDTH * 187 / 375 - 30, 90, 30);
     _nameLabel.backgroundColor = [UIColor clearColor];
     [headerView addSubview:_nameLabel];
     

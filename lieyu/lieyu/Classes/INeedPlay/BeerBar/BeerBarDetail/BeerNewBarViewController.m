@@ -1041,7 +1041,6 @@
 #pragma mark -- 底部群聊按钮
 - (IBAction)groupChatButtonAction:(UIButton *)sender
 {
-    
     __weak __typeof(self) weakSelf = self;
     if (!_beerBarDetail.hasGroup) {//没有群组--创建
         NSMutableDictionary *paraDic = [[NSMutableDictionary alloc] init];

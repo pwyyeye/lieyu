@@ -16,7 +16,7 @@
 #import "LYFriendsHttpTool.h"
 #import "LPUserLoginViewController.h"
 
-#import <AVFoundation/AVAudioSession.h>
+//#import <AVFoundation/AVAudioSession.h>
 
 @interface MainTabbarViewController ()
 <
@@ -154,10 +154,6 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:RECEIVES_MESSAGE object:nil];
     }
     
-//    AVAudioSession *session = [AVAudioSession sharedInstance];
-//    [session setActive:YES error:nil];
-//    [session setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
-//    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
 }
 
 
@@ -226,7 +222,6 @@
     // Pass the selected object to the new view controller.
 }
 */
-
 
 #pragma mark - tabBarController delegate
 -(BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{

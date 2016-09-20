@@ -55,6 +55,8 @@
     }
     if (((roomHostUser *)listModel.roomHostUser).usertype.integerValue == 1) {//隐藏顾问tag
         _guWenLabel.hidden = YES;
+    } else {
+        _guWenLabel.hidden = NO;
     }
     if (((roomHostUser *)listModel.roomHostUser).userTag.count == 1) {
         _onlyOneTagLabel.hidden = NO;

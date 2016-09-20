@@ -125,7 +125,7 @@
             <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Qob-lM-F6e" firstAttribute="leading" secondItem="3p4-aX-xSb" secondAttribute="trailing" constant="30" id="3mp-66-NtT"/>
-                <constraint firstItem="3p4-aX-xSb" firstAttribute="top" secondItem="chy-vq-2tb" secondAttribute="bottom" constant="7" id="5WN-Jl-z6Y"/>
+                <constraint firstItem="3p4-aX-xSb" firstAttribute="top" secondItem="chy-vq-2tb" secondAttribute="bottom" constant="13" id="5WN-Jl-z6Y"/>
                 <constraint firstAttribute="trailing" secondItem="ebE-JX-il8" secondAttribute="trailing" constant="20" id="95J-v1-MzZ"/>
                 <constraint firstItem="WHF-X3-1mp" firstAttribute="centerX" secondItem="KhN-GU-MT9" secondAttribute="centerX" id="AsA-AF-10w"/>
                 <constraint firstItem="ebE-JX-il8" firstAttribute="top" secondItem="eJu-ff-0ko" secondAttribute="top" constant="20" id="B82-ci-oAA"/>
@@ -133,10 +133,10 @@
                 <constraint firstItem="ILA-i2-lZX" firstAttribute="top" secondItem="iDO-C2-dGG" secondAttribute="bottom" constant="40" id="DR0-Oe-NBK"/>
                 <constraint firstItem="Qob-lM-F6e" firstAttribute="width" secondItem="1Wt-wu-UjC" secondAttribute="width" id="Fl7-ue-5Qn"/>
                 <constraint firstItem="dU5-my-FNc" firstAttribute="height" secondItem="1Wt-wu-UjC" secondAttribute="height" id="GeI-HG-j9P"/>
-                <constraint firstItem="iDO-C2-dGG" firstAttribute="top" secondItem="T5D-Ie-9XE" secondAttribute="bottom" constant="23" id="Iwv-dm-bsg"/>
+                <constraint firstItem="iDO-C2-dGG" firstAttribute="top" secondItem="T5D-Ie-9XE" secondAttribute="bottom" constant="11" id="Iwv-dm-bsg"/>
                 <constraint firstItem="dU5-my-FNc" firstAttribute="centerY" secondItem="eJu-ff-0ko" secondAttribute="centerY" id="NZn-qM-jrp"/>
                 <constraint firstItem="dU5-my-FNc" firstAttribute="centerX" secondItem="eJu-ff-0ko" secondAttribute="centerX" constant="-30" id="XbR-tt-r28"/>
-                <constraint firstItem="chy-vq-2tb" firstAttribute="top" secondItem="b8F-tD-B5g" secondAttribute="bottom" constant="18" id="Xj2-x4-FRc"/>
+                <constraint firstItem="chy-vq-2tb" firstAttribute="top" secondItem="b8F-tD-B5g" secondAttribute="bottom" constant="8" id="Xj2-x4-FRc"/>
                 <constraint firstItem="KhN-GU-MT9" firstAttribute="centerX" secondItem="eJu-ff-0ko" secondAttribute="centerX" id="YyL-ga-sY3"/>
                 <constraint firstItem="b8F-tD-B5g" firstAttribute="top" secondItem="WHF-X3-1mp" secondAttribute="bottom" constant="38" id="Zzv-Jr-eec"/>
                 <constraint firstItem="T5D-Ie-9XE" firstAttribute="top" secondItem="3p4-aX-xSb" secondAttribute="bottom" constant="36" id="abc-s6-P3U"/>
