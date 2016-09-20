@@ -1036,11 +1036,6 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 //                RecommendedTopic *topic = [_ydDict objectForKey:@"recommendedTopic"];
                 ActivityMainViewController *activityMainVC = [[ActivityMainViewController alloc]init];
                 [self.navigationController pushViewController:activityMainVC animated:YES];
-//                ActionPage *aPage = [[ActionPage alloc]init];
-//                aPage.ActionImage = ((HomepageActiveTableViewCell *)[tableView cellForRowAtIndexPath:indexPath]).topicImage.image;
-//                if(!topic.id) return;
-//                aPage.topicid = topic.id;
-//                [self.navigationController pushViewController:aPage animated:YES];
             }else if (indexPath.section == 3){//酒吧
                 JiuBaModel *model = [((NSMutableArray *)[_ydDict objectForKey:@"barList"]) objectAtIndex:indexPath.row];
                 BeerNewBarViewController * controller = [[BeerNewBarViewController alloc] initWithNibName:@"BeerNewBarViewController" bundle:nil];
@@ -1092,9 +1087,15 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             NSDictionary *dict = @{@"roomid":roomId};
             __weak __typeof(self) weakSelf = self;
             [LYFriendsHttpTool getLiveShowRoomWithParams:dict complete:^(NSDictionary *Arr) {
-                watchLiveVC.contentURL = Arr[@"liveRtmpUrl"];
-                watchLiveVC.chatRoomId = Arr[@"chatroomid"];
+                if ([Arr[@"roomType"] isEqualToString:@"live"]) {
+                    watchLiveVC.contentURL = Arr[@"liveRtmpUrl"];
+                    watchLiveVC.chatRoomId = Arr[@"chatroomid"];
+                } else {
+                    watchLiveVC.contentURL = Arr[@"playbackURL"];
+                    watchLiveVC.chatRoomId = nil;
+                }
                 watchLiveVC.hostUser = Arr[@"roomHostUser"];
+                watchLiveVC.shareIamge = model.roomImg;
                 [weakSelf presentViewController:watchLiveVC animated:YES completion:NULL];
             }];
         }
