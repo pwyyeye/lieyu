@@ -81,7 +81,7 @@
     _menuView.alpha = 5;
     _menuView.layer.shadowColor = RGBA(0, 0, 0, 1).CGColor;
     _menuView.layer.shadowOffset = CGSizeMake(0, 0.5);
-    _menuView.layer.shadowOpacity = 0.3;
+//    _menuView.layer.shadowOpacity = 0.3;
     _menuView.layer.shadowRadius = 1;
     [self.view addSubview:_menuView];
     

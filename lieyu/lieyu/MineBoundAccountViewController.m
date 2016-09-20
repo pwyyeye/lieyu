@@ -111,7 +111,6 @@
 }
 
 - (void)lyUserBoundAccount{
-    
     NSDictionary *dict ;
     //accountType : 1、支付宝 2、银行卡 3、微信
     if (_choosedIndex == 1) {
@@ -127,6 +126,19 @@
                  @"accountNo":_firstTextField.text,
                  @"accountName":_thirdTextField.text};
     }
+    __weak __typeof(self)weakSelf = self;
+    [LYUserHttpTool lyUserBoundAccountWithParams:dict complete:^(BOOL result) {
+        if (result) {
+            //代理方法，绑定成功
+            [weakSelf goBack];
+        }
+    }];
+}
+
+- (void)lyUserBoundWechat:(UserModel *)model{
+    NSDictionary *dict = @{@"accountType":@"3",
+                           @"accountNo":model.openID,
+                           @"accountName":model.usernick};
     __weak __typeof(self)weakSelf = self;
     [LYUserHttpTool lyUserBoundAccountWithParams:dict complete:^(BOOL result) {
         if (result) {
@@ -162,7 +174,7 @@
                 [LYHomePageHttpTool getWeixinUserInfoWithAccessToken:accessToken compelete:^(UserModel *userInfo) {
                     if(userInfo){
                         [weakSelf bangding:userInfo.openID and:2];
-                        [weakSelf lyUserBoundAccount];
+                        [weakSelf lyUserBoundWechat:userInfo];
                     }
                 }];
             }
@@ -173,7 +185,7 @@
                 if(![MyUtil isEmptyString:accessToken]){
                     [LYHomePageHttpTool getWeixinUserInfoWithAccessToken:accessToken compelete:^(UserModel *userInfo) {
                         [weakSelf bangding:userInfo.openID and:2];
-                        [weakSelf lyUserBoundAccount];
+                        [weakSelf lyUserBoundWechat:userInfo];
                     }];
                 }
             }];
@@ -181,7 +193,7 @@
             
             [LYHomePageHttpTool getWeixinUserInfoWithAccessToken:accessTokenStr compelete:^(UserModel *userInfo) {
                 [weakSelf bangding:userInfo.openID and:2];
-                [weakSelf lyUserBoundAccount];
+                [weakSelf lyUserBoundWechat:userInfo];
             }];
             
         }

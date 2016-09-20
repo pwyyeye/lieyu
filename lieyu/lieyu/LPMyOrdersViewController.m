@@ -120,7 +120,7 @@
     effectView.alpha = 5;
     effectView.layer.shadowColor = [RGBA(0, 0, 0, 1)CGColor];
     effectView.layer.shadowOffset = CGSizeMake(0, 0.5);
-    effectView.layer.shadowOpacity = 0.3;
+//    effectView.layer.shadowOpacity = 0.3;
     effectView.layer.shadowRadius = 1;
     [self.view addSubview:effectView];
     

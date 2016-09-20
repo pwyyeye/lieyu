@@ -36,7 +36,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationBar.translucent = YES;
-    
     self.delegate = self;
     //    self.automaticallyAdjustsScrollViewInsets = NO;
 
