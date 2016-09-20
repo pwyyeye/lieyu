@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,7 +13,6 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="JoinedNumber.png" translatesAutoresizingMaskIntoConstraints="NO" id="xls-l2-pEe">
-                    <rect key="frame" x="2" y="16" width="35" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="h4D-Kn-ldK"/>
                         <constraint firstAttribute="width" constant="35" id="yyd-6x-uxh"/>
@@ -22,34 +22,31 @@
                     </userDefinedRuntimeAttributes>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="科比布拉恩特" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UbF-Vu-5da">
-                    <rect key="frame" x="44" y="3" width="78" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mmx-WE-fqn">
-                    <rect key="frame" x="163" y="22" width="50" height="24"/>
-                    <color key="backgroundColor" red="0.69803921570000005" green="0.14901960780000001" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.69803921570000005" green="0.14901960780000001" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="50" id="4lg-Lu-zhX"/>
                         <constraint firstAttribute="height" constant="24" id="BoR-gC-6U2"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <state key="normal" title="关注">
-                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="12"/>
                     </userDefinedRuntimeAttributes>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NGE-YD-aOG">
-                    <rect key="frame" x="44" y="40" width="78" height="11"/>
                     <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="NGE-YD-aOG" firstAttribute="leading" secondItem="UbF-Vu-5da" secondAttribute="leading" id="0Xh-sj-mFn"/>
                 <constraint firstItem="NGE-YD-aOG" firstAttribute="bottom" secondItem="xls-l2-pEe" secondAttribute="bottom" id="Dbg-jv-dMB"/>
@@ -74,7 +71,7 @@
                 <outlet property="numberLabel" destination="NGE-YD-aOG" id="E1Q-qj-djX"/>
                 <outlet property="userNameLabel" destination="UbF-Vu-5da" id="aJW-BO-Xgv"/>
             </connections>
-            <point key="canvasLocation" x="367.5" y="-53"/>
+            <point key="canvasLocation" x="576" y="-64"/>
         </view>
     </objects>
     <resources>

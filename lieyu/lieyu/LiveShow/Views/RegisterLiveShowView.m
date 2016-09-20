@@ -72,13 +72,12 @@
     _isShare = YES;
     _shareType = 3;//默认分享到朋友圈
     
-    [self setcorrnerRadius:_qqButton];
-    [self setcorrnerRadius:_weiboButton];
-    [self setcorrnerRadius:_weChatMonmentButton];
-    [self setcorrnerRadius:_weChatSessionButton];
-    [self setcorrnerRadius:_lyMonmentButton];
-    [self setcorrnerRadius:_titleTextFiled];
-    [self setcorrnerRadius:_beginShow];
+   // [self setcorrnerRadius:_qqButton];
+    //[self setcorrnerRadius:_weiboButton];
+   // [self setcorrnerRadius:_weChatMonmentButton];
+    //[self setcorrnerRadius:_weChatSessionButton];
+    //[self setcorrnerRadius:_titleTextFiled];
+    //[self setcorrnerRadius:_beginShow];
     
     _beginShow.layer.borderWidth = 1.f;
     _beginShow.layer.borderColor = RGB(187, 40, 217).CGColor;
@@ -207,6 +206,8 @@
         case 0:
         {
             pickerCtl.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            UIViewController *selfVC = [self getCurrentViewController];
+            [selfVC presentViewController:pickerCtl animated:YES completion:NULL];
         }
             break;
             
@@ -215,13 +216,14 @@
             if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
                 pickerCtl.sourceType = UIImagePickerControllerSourceTypeCamera;
             else pickerCtl.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            UIViewController *selfVC = [self getCurrentViewController];
+            [selfVC presentViewController:pickerCtl animated:YES completion:NULL];
         }
-            
+            break;
         default:
             break;
     }
-    UIViewController *selfVC = [self getCurrentViewController];
-    [selfVC presentViewController:pickerCtl animated:YES completion:NULL];
+  
 }
 
 //获取控制器
