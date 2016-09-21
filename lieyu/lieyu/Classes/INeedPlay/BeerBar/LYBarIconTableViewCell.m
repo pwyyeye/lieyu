@@ -28,7 +28,7 @@
     UIButton *lastBtn = [_btnArray lastObject];
     _moreBtn = [[UIButton alloc]initWithFrame:CGRectMake(lastBtn.frame.origin.x, lastBtn.frame.origin.y, btnWidth, btnWidth)];
     _moreBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-    _moreBtn.backgroundColor = RGBA(186, 40,227, .5);
+    _moreBtn.backgroundColor = COMMON_PURPLE_HALF;
     [self addSubview:_moreBtn];
 }
 

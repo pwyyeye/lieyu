@@ -14,7 +14,7 @@
 - (void)setSelected:(BOOL)selected{
     if(selected){
         self.backView.layer.borderWidth = 2;
-        self.backView.layer.borderColor = [RGB(186, 40, 227)CGColor];
+        self.backView.layer.borderColor = [COMMON_PURPLE CGColor];
         self.button_add.hidden = NO;
         self.button_less.hidden = NO;
         self.label_number.hidden = NO;

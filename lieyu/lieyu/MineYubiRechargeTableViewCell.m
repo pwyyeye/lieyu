@@ -14,7 +14,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    _rechargeButton.layer.borderColor = [RGBA(186, 40, 227, 1) CGColor];
+    _rechargeButton.layer.borderColor = [COMMON_PURPLE CGColor];
     _rechargeButton.layer.borderWidth = 1;
     _rechargeButton.layer.cornerRadius = 6;
     

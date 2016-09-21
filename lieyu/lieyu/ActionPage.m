@@ -122,7 +122,7 @@
     button.titleLabel.font = [UIFont systemFontOfSize:12];
     [button setTitleColor:COMMON_PURPLE forState:UIControlStateNormal];
     button.layer.cornerRadius = 2;
-    button.layer.borderColor = [RGBA(186, 40, 227, 1)CGColor];
+    button.layer.borderColor = [COMMON_PURPLE CGColor];
     button.layer.borderWidth = 1;
     button.tag = 2;
     [button addTarget:self action:@selector(MoreTopic:) forControlEvents:UIControlEventTouchUpInside];

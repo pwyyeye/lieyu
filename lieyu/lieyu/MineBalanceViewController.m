@@ -13,7 +13,7 @@
 #import "MineBoundAccountViewController.h"
 #import "ZSTiXianRecordViewController.h"
 
-@interface MineBalanceViewController ()<UIAlertViewDelegate>
+@interface MineBalanceViewController ()<UIAlertViewDelegate,MineBoundAccountDelegate>
 
 @end
 
@@ -78,18 +78,16 @@
 - (void)withdrawButtonClick:(UIButton *)sender{
     __weak __typeof(self) weakSelf = self;
     //需要参数
-    /*
-    if ([_balance.balances doubleValue] <= 0){
-        [MyUtil showPlaceMessage:@"余额不足，无法提现！"];
-    }else if ([MyUtil isEmptyString:_balance.accountName] || [MyUtil isEmptyString:_balance.accountType]) {
-    */
+    if ([MyUtil isEmptyString:_balance.accountName] || [MyUtil isEmptyString:_balance.accountType]) {
         [[[AlertBlock alloc]initWithTitle:nil message:@"您还未绑定提现账户，请先绑定！" cancelButtonTitle:@"下次吧" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex) {
             if (buttonIndex == 1){
                 MineBoundAccountViewController *mineBoundAccountVC = [[MineBoundAccountViewController alloc]initWithNibName:@"MineBoundAccountViewController" bundle:nil];
+                mineBoundAccountVC.delegate = weakSelf;
                 [weakSelf.navigationController pushViewController:mineBoundAccountVC animated:YES];
             }
         }]show];
-        /*
+    }else if ([_balance.balances doubleValue] <= 0){
+        [MyUtil showPlaceMessage:@"余额不足，无法提现！"];
     }else{
         LYWithdrawTypeViewController *lyWithdrawTypeVC = [[LYWithdrawTypeViewController alloc]initWithNibName:@"LYWithdrawTypeViewController" bundle:[NSBundle mainBundle]];
         lyWithdrawTypeVC.type = _balance.accountType;
@@ -97,7 +95,11 @@
         lyWithdrawTypeVC.balance = _balance.balances;
         [self.navigationController pushViewController:lyWithdrawTypeVC animated:YES];
     }
-        */
+}
+
+- (void)mineBoundAccountWithType:(NSString *)type Account:(NSString *)account{
+    _balance.accountType = type;
+    _balance.accountName = account;
 }
 
 #pragma mark - alertview的代理事件

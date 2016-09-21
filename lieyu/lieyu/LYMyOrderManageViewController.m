@@ -305,7 +305,7 @@
         // 使用颜色创建UIImage//未选中颜色
         CGSize imageSize = CGSizeMake((SCREEN_WIDTH/5.5), 34);
         UIGraphicsBeginImageContextWithOptions(imageSize, 0, [UIScreen mainScreen].scale);
-        [RGBA(186, 40, 227, 1) set];
+        [COMMON_PURPLE set];
         UIRectFill(CGRectMake(0, 0, imageSize.width, imageSize.height));
         UIImage *normalImg = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();

@@ -97,7 +97,7 @@
         _kongLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, SCREEN_WIDTH / 2 - 30, SCREEN_WIDTH, 20)];
         [_kongLabel setText:@"抱歉，暂无攻略！"];
         [_kongLabel setFont:[UIFont systemFontOfSize:14]];
-        [_kongLabel setTextColor:RGBA(186, 40, 227, 1)];
+        [_kongLabel setTextColor:COMMON_PURPLE];
         [_kongLabel setTextAlignment:NSTextAlignmentCenter];
     }
     [self.view addSubview:_kongLabel];

@@ -16,7 +16,7 @@
 
 - (void)setSelected:(BOOL)selected{
     if(selected){//选择了
-        _lineLabel.backgroundColor = RGBA(186, 40, 227, 1);
+        _lineLabel.backgroundColor = COMMON_PURPLE;
     }else{//未选择或取消选择
         _lineLabel.backgroundColor = [UIColor clearColor];
     }

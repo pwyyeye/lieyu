@@ -22,10 +22,10 @@
 - (void)setSelected:(BOOL)selected{
     _choosed = selected;
     if (selected == YES) {
-        [self setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal];
+        [self setTitleColor:COMMON_PURPLE forState:UIControlStateNormal];
         [self setBackgroundColor:[UIColor whiteColor]];
         self.layer.borderWidth = 1;
-        self.layer.borderColor = [RGBA(186,40,227,1)CGColor];
+        self.layer.borderColor = [COMMON_PURPLE CGColor];
     }else if (selected == NO){
         [self setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
         [self setBackgroundColor:[UIColor whiteColor]];

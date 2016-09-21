@@ -45,7 +45,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadData) name:@"loadUserInfo" object:nil];
     self.btnMessage.hidden = YES;
     //设置背景色
-    UIImageView *bgImage = [[UIImageView alloc]initWithImage:[MyUtil getImageFromColor:RGBA(186, 40, 227, 1)] ];
+    UIImageView *bgImage = [[UIImageView alloc]initWithImage:[MyUtil getImageFromColor:COMMON_PURPLE] ];
     //    UIImageView *bgImage=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"headBgColor"]];
     bgImage.frame=CGRectMake(0, 0, SCREEN_WIDTH, CGRectGetHeight(_headView.frame));
     bgImage.contentMode=UIViewContentModeScaleToFill;
@@ -63,14 +63,15 @@
     
     [self.avatar_btn addTarget:self action:@selector(changeAvatar) forControlEvents:UIControlEventTouchUpInside];
     
-    _img_icon.layer.cornerRadius = CGRectGetHeight(_img_icon.frame)/2.f;
-    _img_icon.layer.masksToBounds = YES;
-    
-    _label_constellation.layer.cornerRadius = CGRectGetHeight(_label_constellation.frame)/2.f;
-    _label_constellation.layer.masksToBounds = YES;
-    
-    _label_work.layer.cornerRadius = CGRectGetHeight(_label_constellation.frame)/2.f;
-    _label_work.layer.masksToBounds = YES;
+//    _img_icon.layer.cornerRadius = CGRectGetHeight(_img_icon.frame)/2.f;
+//    _img_icon.layer.masksToBounds = YES;
+//    
+//    NSLog(@" CGRectGetHeight(_label_constellation.frame)/2.f : %f", CGRectGetHeight(_label_constellation.frame)/2.f)
+//    _label_constellation.layer.cornerRadius = CGRectGetHeight(_label_constellation.frame)/2.f;
+//    _label_constellation.layer.masksToBounds = YES;
+//    
+//    _label_work.layer.cornerRadius = CGRectGetHeight(_label_constellation.frame)/2.f;
+//    _label_work.layer.masksToBounds = YES;
     
     
 }
@@ -85,6 +86,15 @@
     [_thirdMenuButton setImageUrl:@"MineGroup"];
     [_forthMenuButton setMenuName:@"商家入驻"];
     [_forthMenuButton setImageUrl:@"MineApply"];
+    
+    _img_icon.layer.cornerRadius = CGRectGetHeight(_img_icon.frame)/2.f;
+    _img_icon.layer.masksToBounds = YES;
+    
+    _label_constellation.layer.cornerRadius = CGRectGetHeight(_label_constellation.frame)/2.f;
+    _label_constellation.layer.masksToBounds = YES;
+    
+    _label_work.layer.cornerRadius = CGRectGetHeight(_label_constellation.frame)/2.f;
+    _label_work.layer.masksToBounds = YES;
 }
 
 - (void)changeAvatar{

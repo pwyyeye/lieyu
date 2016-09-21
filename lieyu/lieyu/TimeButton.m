@@ -16,10 +16,10 @@
 -(void)setSelected:(BOOL)selected{
     [super setSelected:selected];
     if(selected){
-        self.titleLal.textColor=RGB(186, 40, 227);
-        self.weekLal.textColor=RGB(186, 40, 227);
+        self.titleLal.textColor=COMMON_PURPLE;
+        self.weekLal.textColor=COMMON_PURPLE;
         self.backgroundColor = [UIColor whiteColor];
-        _lineView.backgroundColor = RGB(186, 40, 227);
+        _lineView.backgroundColor = COMMON_PURPLE;
     }else{
         self.titleLal.textColor=RGB(102, 102, 102);
         self.weekLal.textColor=RGB(102, 102, 102);

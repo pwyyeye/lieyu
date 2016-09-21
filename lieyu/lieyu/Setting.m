@@ -108,7 +108,7 @@
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 218, 10, 200, 30)];
         label.textAlignment = NSTextAlignmentRight;
         [label setBackgroundColor:[UIColor whiteColor]];
-        [label setTextColor:RGBA(186, 40, 227, 1)];
+        [label setTextColor:COMMON_PURPLE];
         [label setFont:[UIFont systemFontOfSize:14]];
         UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
         [cell addSubview:label];

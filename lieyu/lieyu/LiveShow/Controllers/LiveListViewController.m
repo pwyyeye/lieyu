@@ -122,7 +122,7 @@ static NSString *liveShowListID = @"liveShowListID";
     }else{
         _lineView.center = CGPointMake(_newBtn.center.x, mavMenuView.frame.size.height - 1);
     }
-    _lineView.backgroundColor = RGBA(186, 40, 227, 1);
+    _lineView.backgroundColor = COMMON_PURPLE;
     [mavMenuView addSubview:_lineView];
     
     //筛选按钮
@@ -166,7 +166,7 @@ static NSString *liveShowListID = @"liveShowListID";
     [_kongLabel setText:@"抱歉小主，搜索不到！"];
     [_kongLabel setTextAlignment:NSTextAlignmentCenter];
     [_kongLabel setFont:[UIFont systemFontOfSize:14]];
-    [_kongLabel setTextColor:RGBA(186, 30, 227, 1)];
+    [_kongLabel setTextColor:COMMON_PURPLE];
     _kongLabel.layer.zPosition = 3;
     [self.view addSubview:_kongLabel];
 }

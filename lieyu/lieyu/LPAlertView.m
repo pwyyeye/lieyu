@@ -95,7 +95,7 @@
             button.layer.cornerRadius = 5.f;
             button.layer.masksToBounds = YES;
             button.backgroundColor = [UIColor whiteColor];
-            [button setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal];
+            [button setTitleColor:COMMON_PURPLE forState:UIControlStateNormal];
             [button setTitle:buttonTitle forState:UIControlStateNormal];
             [button addTarget:self action:@selector(buttonWithPressed:) forControlEvents:UIControlEventTouchUpInside];
             [_buttonArray addObject:button];

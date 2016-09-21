@@ -24,11 +24,18 @@
     _recentButton.layer.shadowOffset = CGSizeMake(0, 1);
     _recentButton.layer.shadowOpacity = 0.3;
     
+//    for (UIImageView *imageView in _filterArray) {
+//        imageView.layer.cornerRadius = imageView.frame.size.width / 2;
+//        imageView.layer.masksToBounds = YES;
+//    }
+
+}
+
+- (void)drawRect:(CGRect)rect{
     for (UIImageView *imageView in _filterArray) {
         imageView.layer.cornerRadius = imageView.frame.size.width / 2;
         imageView.layer.masksToBounds = YES;
     }
-
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

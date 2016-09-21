@@ -31,8 +31,8 @@
 
 - (void)setSelected:(BOOL)selected{
     if (selected) {
-        [self setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal];
-        [_lineLabel setBackgroundColor:RGBA(186, 40, 227, 1)];
+        [self setTitleColor:COMMON_PURPLE forState:UIControlStateNormal];
+        [_lineLabel setBackgroundColor:COMMON_PURPLE];
     }else{
         [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_lineLabel setBackgroundColor:[UIColor clearColor]];

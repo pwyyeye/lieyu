@@ -85,7 +85,7 @@
         }else{
             warningLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 100, SCREEN_HEIGHT / 2 - 40, 200, 20)];
             warningLabel.textAlignment = NSTextAlignmentCenter;
-            warningLabel.textColor = RGB(186, 40, 227);
+            warningLabel.textColor = COMMON_PURPLE;
             warningLabel.text = @"购物车空空如也～";
             warningLabel.font = [UIFont systemFontOfSize:14];
             [weakSelf.view addSubview:warningLabel];

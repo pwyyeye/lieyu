@@ -43,7 +43,7 @@
     UIButton *lastBtn = ((UIButton *)_btnArray[4]);
     CGRect rect = lastBtn.frame;
     _btn_more.frame = CGRectMake(0, 0, rect.size.width, rect.size.height);
-    _btn_more.backgroundColor = RGBA(186, 20, 227, 0.5);
+    _btn_more.backgroundColor = COMMON_PURPLE_HALF;
     [lastBtn addSubview:_btn_more];
     
     for (UIButton *btn in _btnArray) {

@@ -135,7 +135,7 @@
     _menuView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 90);
     _menuView.layer.shadowColor = RGBA(0, 0, 0, 1).CGColor;
     _menuView.layer.shadowOffset = CGSizeMake(0, 0.5);
-//    _menuView.layer.shadowOpacity = 0.1;
+    _menuView.layer.shadowOpacity = 0.3;
     _menuView.layer.shadowRadius = 1;
     [self.view addSubview:_menuView];
     
@@ -196,7 +196,7 @@
     CGFloat hotMenuBtnWidth = hotBtn.frame.size.width;
     CGFloat offsetWidth = _scrollView.contentOffset.x;
     _purpleLineView.frame = CGRectMake(0, _menuView.size.height - 2, 42, 2);
-    _purpleLineView.backgroundColor = RGBA(186, 40, 227, 1);
+    _purpleLineView.backgroundColor = COMMON_PURPLE;
     _purpleLineView.center = CGPointMake(hotBtn.center.x + offsetWidth * hotMenuBtnWidth/SCREEN_WIDTH , CGRectGetCenter(_purpleLineView.frame).y);
     [_menuView addSubview:_purpleLineView];
 }

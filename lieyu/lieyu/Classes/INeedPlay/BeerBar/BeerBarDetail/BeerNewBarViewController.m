@@ -166,7 +166,7 @@
     _signBtn = [[UIButton alloc]initWithFrame:CGRectMake((effectView.frame.size.width - 60)/2.f,(effectView.frame.size.height - 60)/2.f , 60, 60)];
     [_signBtn addTarget:self action:@selector(signClick:) forControlEvents:UIControlEventTouchUpInside];
     [_signBtn setTitle:@"签到" forState:UIControlStateNormal];
-    [_signBtn setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal ];
+    [_signBtn setTitleColor:COMMON_PURPLE forState:UIControlStateNormal ];
     _signBtn.titleLabel.font = [UIFont systemFontOfSize:10];
     _signBtn.imageEdgeInsets = UIEdgeInsetsMake(-20,21, 0, 0);
     _signBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -13, -31, 0);

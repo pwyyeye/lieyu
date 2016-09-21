@@ -280,7 +280,7 @@ static NSString *daShangCellID = @"dashangCellID";
     }else{
         _lineView.center = CGPointMake(_myBtn.center.x, navMenuView.frame.size.height - 1);
     }
-    _lineView.backgroundColor = RGBA(186, 40, 227, 1);
+    _lineView.backgroundColor = COMMON_PURPLE;
     [navMenuView addSubview:_lineView];
     
     //配置直播按钮

@@ -92,7 +92,7 @@
 
 #pragma mark - 从审核页面过来
 - (void)initCheckView{
-    [self.jiubaLal setTextColor:RGBA(186, 40, 227, 1)];
+    [self.jiubaLal setTextColor:COMMON_PURPLE];
     if([_checkModel.barid isEqualToString:@"-1"]){
         self.jiubaLal.text = _checkModel.barName;
     }else{
@@ -347,7 +347,7 @@
 #pragma mark - 选择酒吧代理
 - (void)chooseJiuBa:(JiuBaModel *)jiuBaModel{
     jiuBaNow=jiuBaModel;
-    [self.jiubaLal setTextColor:RGBA(186, 40, 227, 1)];
+    [self.jiubaLal setTextColor:COMMON_PURPLE];
     self.jiubaLal.text=jiuBaModel.barname;
 }
 - (IBAction)exitEdit:(UITextField *)sender {

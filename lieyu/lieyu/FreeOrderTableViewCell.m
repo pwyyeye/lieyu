@@ -122,7 +122,7 @@
 
 - (void)drawPurperLayer:(UIButton *)button{
     button.layer.borderWidth = 0 ;
-    [button setBackgroundColor:RGBA(186, 40, 227, 1)];
+    [button setBackgroundColor:COMMON_PURPLE];
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }
 

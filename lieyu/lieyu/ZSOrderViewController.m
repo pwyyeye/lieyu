@@ -119,7 +119,7 @@
     [effectView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, 90)];
     effectView.layer.shadowColor = [RGBA(0, 0, 0, 1)CGColor];
     effectView.layer.shadowOffset = CGSizeMake(0, 0.5);
-//    effectView.layer.shadowOpacity = 0.3;
+    effectView.layer.shadowOpacity = 0.3;
     effectView.layer.shadowRadius = 1;
     [self.view addSubview:effectView];
     
@@ -1031,7 +1031,7 @@
         // 使用颜色创建UIImage//未选中颜色
         CGSize imageSize = CGSizeMake((SCREEN_WIDTH/3), 44);
         UIGraphicsBeginImageContextWithOptions(imageSize, 0, [UIScreen mainScreen].scale);
-        [RGBA(186, 40, 227, 1) set];
+        [COMMON_PURPLE set];
         UIRectFill(CGRectMake(0, 0, imageSize.width, imageSize.height));
         UIImage *normalImg = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();

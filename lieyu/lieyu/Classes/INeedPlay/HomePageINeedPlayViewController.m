@@ -374,8 +374,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     _menuView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 90);
     _menuView.layer.shadowColor = RGBA(0, 0, 0, 1).CGColor;
     _menuView.layer.shadowOffset = CGSizeMake(0, 1);
-//    _menuView.layer.shadowOpacity = 5;
-    _menuView.layer.shadowRadius = 5;
+    _menuView.layer.shadowOpacity = 0.5;
+    _menuView.layer.shadowRadius = 1;
     [self.view addSubview:_menuView];
     
     //城市搜索
@@ -394,7 +394,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     _searchBtn = [[UIButton alloc]initWithFrame:CGRectMake(65, 26 , SCREEN_WIDTH - 130, 30)];
     [_searchBtn setTitle:@"搜索商户名、直播" forState:UIControlStateNormal];
     [_searchBtn.titleLabel setFont:[UIFont systemFontOfSize:12 weight:UIFontWeightLight]];
-    [_searchBtn setTitleColor:RGBA(51, 51, 51, 1) forState:UIControlStateNormal];
+    [_searchBtn setTitleColor:RGBA(51, 51, 51, 0.5) forState:UIControlStateNormal];
     [_searchBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 20, 0, 0)];
     [_searchBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 31, 0, 0)];
     [_searchBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
@@ -443,7 +443,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     //按钮下滑线
     HotMenuButton *firstBtn = _menuBtnArray.firstObject;
     _lineView = [[UIView alloc]init];
-    _lineView.backgroundColor = RGBA(186, 40, 227, 1);
+    _lineView.backgroundColor = COMMON_PURPLE;
     [_menuView addSubview:_lineView];
     _lineView.frame = CGRectMake(0, _menuView.frame.size.height - 2, 42, 2);
     _lineView.center = CGPointMake(firstBtn.center.x, _lineView.center.y);
@@ -1435,7 +1435,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     HomepageBannerModel *bannerModel = [bannerArray objectAtIndex:index];
     NSInteger ad_type = [bannerModel.ad_type integerValue];
     NSInteger linkid = [bannerModel.linkid integerValue];
-    //    "ad_type": 1,//banner图片类别 0广告，1：酒吧/3：套餐/2：活动/4：拼客 5：专题 6:专题活动
+    //    "ad_type": 1,//banner图片类别 0广告，1：酒吧/3：套餐/2：活动/4：拼客 5：专题 6:酒吧活动  7:  8:  9:演出派对
     //    "linkid": 1 //对应的id  比如酒吧 就是对应酒吧id  套餐就是对应套餐id 活动就对应活动页面的id
     if(ad_type ==1){
         //酒吧
@@ -1487,7 +1487,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         }
         ActivityMainViewController *activityMainVC = [[ActivityMainViewController alloc]init];
         [self.navigationController pushViewController:activityMainVC animated:YES];
-    }else if (ad_type ==6){//专题活动
+    }else if (ad_type ==6){//酒吧活动
         if (!linkid) {
             return;
         }
@@ -1509,6 +1509,13 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         [self.navigationController pushViewController:zujuVC animated:YES];
         NSString *str = [NSString stringWithFormat:@"首页滑动视图组局ID%ld",linkid];
         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:str]];
+    }else if (ad_type == 10){//演出派对
+        if (!linkid) {
+            return;
+        }
+        ActivityDetailViewController *activityDetailVC = [[ActivityDetailViewController alloc]initWithNibName:@"ActivityDetailViewController" bundle:nil];
+        activityDetailVC.activityID = [NSString stringWithFormat:@"%ld",linkid];
+        [self.navigationController pushViewController:activityDetailVC animated:YES];
     }
 }
 

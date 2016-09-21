@@ -211,6 +211,7 @@ description:__VA_ARGS__];                             \
 #define NAVIGATIONBARTITLECOLOR [UIColor blackColor]
 #define NAVIGATIONBARTINTCOLOR [UIColor whiteColor]
 #define COMMON_PURPLE RGBA(189 , 50 ,228 ,1)
+#define COMMON_PURPLE_HALF RGBA(189 , 50 ,228 ,0.5)
 
 //----------------------其他----------------------------
 

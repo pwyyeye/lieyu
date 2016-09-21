@@ -158,7 +158,7 @@
                     [MyUtil showCleanMessage:@"提现金额不可少于两元！"];
                     [self hidePoundage];
                 }else{
-                    [self.withdrawBtn setBackgroundColor:RGB(186, 40, 227)];
+                    [self.withdrawBtn setBackgroundColor:COMMON_PURPLE];
                     [self.withdrawBtn setEnabled:YES];
                     [self showPoundage];
                 }
@@ -171,7 +171,7 @@
                 [self hidePoundage];
             }else{
                 
-                [self.withdrawBtn setBackgroundColor:RGB(186, 40, 227)];
+                [self.withdrawBtn setBackgroundColor:COMMON_PURPLE];
                 [self.withdrawBtn setEnabled:YES];
                 [self showPoundage];
             }
