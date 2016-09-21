@@ -10,8 +10,8 @@
 
 @implementation KuCunCell
 
-- (void)awakeFromNib {
-    // Initialization code
+- (void)drawRect:(CGRect)rect{
+    
     self.kuCunImageView.layer.masksToBounds =YES;
     
     self.kuCunImageView.layer.cornerRadius =self.kuCunImageView.frame.size.width/2;

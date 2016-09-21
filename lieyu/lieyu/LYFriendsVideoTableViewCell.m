@@ -11,7 +11,8 @@
 @implementation LYFriendsVideoTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    [super awakeFromNib];
+    
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     _imgView_video.clipsToBounds = YES;
 }

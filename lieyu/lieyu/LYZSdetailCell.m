@@ -12,6 +12,7 @@
 @implementation LYZSdetailCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     _imagesArray = @[_iconStar1,_iconStar2,_iconStar3,_iconStar4,_iconStar5];
     self.backView.layer.cornerRadius = 2;
     self.backView.layer.masksToBounds = YES;

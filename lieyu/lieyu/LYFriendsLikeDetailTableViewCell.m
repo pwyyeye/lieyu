@@ -15,7 +15,8 @@
 @implementation LYFriendsLikeDetailTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    [super awakeFromNib];
+    
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     _btnArray = [[NSMutableArray alloc]initWithCapacity:0];

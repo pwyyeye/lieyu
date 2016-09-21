@@ -10,8 +10,6 @@
 
 @implementation preview
 
-- (void)awakeFromNib{
-}
 
 - (void)viewConfigure{
     [self.button setImage:[UIImage imageNamed:@"imageSelected"] forState:UIControlStateNormal];

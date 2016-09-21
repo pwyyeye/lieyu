@@ -12,7 +12,8 @@
 @implementation FindNotificatinDetailTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    [super awakeFromNib];
+    
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 

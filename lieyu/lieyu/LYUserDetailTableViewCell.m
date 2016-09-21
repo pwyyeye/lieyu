@@ -15,7 +15,8 @@
 @implementation LYUserDetailTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    [super awakeFromNib];
+    
     self.textF_content.delegate = self;
 }
 

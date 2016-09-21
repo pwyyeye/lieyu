@@ -38,7 +38,8 @@
 }
 
 - (void)awakeFromNib {
-    // Initialization code
+    [super awakeFromNib];
+    
     [self loadData];
     _badgesArray = [[NSMutableArray alloc]init];
     [_badgesArray addObject:@"0"];

@@ -11,9 +11,6 @@
 
 @implementation LYTaoCanHeaderTableViewCell
 
-- (void)awakeFromNib {
-    // Initialization code
-}
 
 - (void)setModel:(TaoCanModel *)model{
     _model = model;

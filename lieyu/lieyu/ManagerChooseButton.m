@@ -10,14 +10,20 @@
 
 @implementation ManagerChooseButton
 - (void)awakeFromNib{
+    [super awakeFromNib];
+    
     self.selected = NO;
     self.recommond.hidden = YES;
+    self.maskLabel.hidden = YES;
+    _starsArray = @[_star1Img,_star2Img,_star3Img,_star4Img,_star5Img];
+}
+
+- (void)drawRect:(CGRect)rect{
+    
     self.avatarImg.layer.cornerRadius = self.avatarImg.frame.size.width / 2;
     self.avatarImg.layer.masksToBounds = YES;
     self.maskLabel.layer.cornerRadius = self.avatarImg.frame.size.width / 2;
     self.maskLabel.layer.masksToBounds = YES;
-    self.maskLabel.hidden = YES;
-    _starsArray = @[_star1Img,_star2Img,_star3Img,_star4Img,_star5Img];
 }
 
 - (void)setSelected:(BOOL)selected{

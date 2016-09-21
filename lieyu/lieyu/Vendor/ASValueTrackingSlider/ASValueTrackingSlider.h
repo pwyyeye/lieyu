@@ -90,10 +90,7 @@
  @end
  
  @implementation SliderCell
- - (void)awakeFromNib
- {
-    self.slider.delegate = self;
- }
+
  
  - (void)sliderWillDisplayPopUpView:(ASValueTrackingSlider *)slider;
  {

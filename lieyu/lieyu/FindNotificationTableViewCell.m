@@ -12,10 +12,15 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    _label_badge.layer.cornerRadius = CGRectGetHeight(_label_badge.frame)/2.f;
-    _label_badge.layer.masksToBounds = YES;
+    [super awakeFromNib];
     _imgView.hidden = YES;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+}
+
+- (void)drawRect:(CGRect)rect{
+    
+    _label_badge.layer.cornerRadius = CGRectGetHeight(_label_badge.frame)/2.f;
+    _label_badge.layer.masksToBounds = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

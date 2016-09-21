@@ -10,8 +10,8 @@
 
 @implementation CheHeCell
 
-- (void)awakeFromNib {
-    // Initialization code
+- (void)drawRect:(CGRect)rect{
+    
     self.cheHeImageView.layer.masksToBounds =YES;
     
     self.cheHeImageView.layer.cornerRadius =self.cheHeImageView.frame.size.width/2;

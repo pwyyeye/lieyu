@@ -12,6 +12,7 @@
 @implementation CHTopDetailCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     // Initialization code
 }
 

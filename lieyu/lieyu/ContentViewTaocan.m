@@ -19,6 +19,8 @@
 */
 
 - (void)awakeFromNib{
+    [super awakeFromNib];
+    
     self.frame = CGRectMake(10, SCREEN_HEIGHT - 370, SCREEN_WIDTH - 20, 300);
 }
 - (IBAction)sureClick:(id)sender {

@@ -10,13 +10,11 @@
 
 @implementation DetailCell
 
-- (void)awakeFromNib {
+- (void)drawRect:(CGRect)rect{
+    
     self.detImageView.layer.masksToBounds =YES;
     
     self.detImageView.layer.cornerRadius =self.detImageView.frame.size.width/2;
-    
-//    self.lineLal.height=0.5;
-    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

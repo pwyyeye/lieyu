@@ -11,6 +11,8 @@
 @implementation HDZTHeaderCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
     _action_image.layer.cornerRadius = 2;
 }
 

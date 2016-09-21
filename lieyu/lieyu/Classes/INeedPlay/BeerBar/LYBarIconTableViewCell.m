@@ -13,7 +13,8 @@
 @implementation LYBarIconTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    [super awakeFromNib];
+    
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.layer.shouldRasterize = YES;
     self.layer.rasterizationScale = [[UIScreen mainScreen]scale];

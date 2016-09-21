@@ -11,7 +11,8 @@
 @implementation LYUserCenterCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    [super awakeFromNib];
+    
     self.icon.contentMode = UIViewContentModeScaleAspectFit;
     //重置之前的layer
     if (self.layer.sublayers.count>1) {
@@ -49,11 +50,12 @@
     self.backgroundColor=[UIColor whiteColor];
     
     _icon.contentMode=UIViewContentModeScaleAspectFit;
+}
+
+- (void)drawRect:(CGRect)rect{
     
     _btn_count.layer.cornerRadius = CGRectGetHeight(_btn_count.frame)/2.f;
     _btn_count.layer.masksToBounds = YES;
-    
-    
 }
 
 - (id)initWithFrame:(CGRect)frame

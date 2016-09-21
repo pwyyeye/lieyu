@@ -921,11 +921,11 @@
             break;
         case 2:
         {
-            if(_beerBarDetail.isSign == 0){
+//            if(_beerBarDetail.isSign == 0){
                 return 60;
-            }else{
-                return 0;
-            }
+//            }else{
+//                return 0;
+//            }
         }
             break;
         case 3:{

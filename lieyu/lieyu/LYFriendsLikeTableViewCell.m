@@ -14,6 +14,8 @@
 @implementation LYFriendsLikeTableViewCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
     self.layer.shouldRasterize = YES;
     self.layer.rasterizationScale =[UIScreen mainScreen].scale;
     self.selectionStyle = UITableViewCellSelectionStyleNone;

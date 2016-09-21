@@ -11,6 +11,8 @@
 @implementation LiuchengTableViewCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
     // Initialization code
 }
 

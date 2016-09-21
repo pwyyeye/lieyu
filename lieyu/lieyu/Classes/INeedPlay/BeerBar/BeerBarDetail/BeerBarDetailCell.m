@@ -18,12 +18,6 @@
 
 @implementation BeerBarDetailCell
 
-- (void)awakeFromNib {
-    // Initialization code
-//    [self initializeStar:_serviceNumView];
-//    [self initializeStar:_envNumView];
-    
-}
 
 //- (void)initializeStar:(HCSStarRatingView *)starView
 //{

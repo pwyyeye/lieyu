@@ -13,6 +13,7 @@
 @implementation CarInfoCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     self.lessbtn.enabled = NO;
 //    self.danPinImageView.layer.masksToBounds =YES;
 //    

@@ -12,10 +12,6 @@
 #import "UIButton+WebCache.h"
 @implementation LYFriendsImgTableViewCell
 
-- (void)awakeFromNib {
-    // Initialization code
-}
-
 - (void)setRecentModel:(FriendsRecentModel *)recentModel{
     if (self.btnArray.count) {
         for (UIButton *btn in self.btnArray) {

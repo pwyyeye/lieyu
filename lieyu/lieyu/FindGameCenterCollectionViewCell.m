@@ -11,6 +11,8 @@
 @implementation FindGameCenterCollectionViewCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
     // Initialization code
     UIView *_lineView_right = [[UIView alloc]init];
     CGFloat viewWidth = SCREEN_WIDTH/3.f;

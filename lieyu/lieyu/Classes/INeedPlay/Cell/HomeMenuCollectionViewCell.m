@@ -11,6 +11,7 @@
 @implementation HomeMenuCollectionViewCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     // Initialization code
     self.imgView_bg.layer.cornerRadius = 2;
     self.imgView_bg.layer.masksToBounds = YES;

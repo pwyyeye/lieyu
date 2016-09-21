@@ -19,7 +19,8 @@
 @implementation LYHotsCollectionViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    [super awakeFromNib];
+    
     
     _collectViewInside.dataSource = self;
     _collectViewInside.delegate = self;

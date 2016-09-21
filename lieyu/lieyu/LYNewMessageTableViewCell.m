@@ -13,8 +13,11 @@
 @implementation LYNewMessageTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    [super awakeFromNib];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+}
+
+- (void)drawRect:(CGRect)rect{
     _btn_headerImg.layer.cornerRadius = CGRectGetHeight(_btn_headerImg.frame) / 2.f;
     _btn_headerImg.layer.masksToBounds = YES;
 }

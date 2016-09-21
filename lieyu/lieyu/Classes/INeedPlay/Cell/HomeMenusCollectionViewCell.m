@@ -10,8 +10,5 @@
 
 @implementation HomeMenusCollectionViewCell
 
-- (void)awakeFromNib {
-    // Initialization code
-}
 
 @end

@@ -10,15 +10,6 @@
 
 @implementation LYChatrommAllPeopleTableViewCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-    
-    _imgV_header.layer.cornerRadius = CGRectGetWidth(_imgV_header.frame)/2.f;
-    _imgV_header.layer.masksToBounds = YES;
-    
-}
-
 - (void)drawRect:(CGRect)rect{//画底线
     UIColor *color = RGBA(178, 178, 178, 0.5);
     [color set];
@@ -27,6 +18,9 @@
     [bezierP moveToPoint:CGPointMake(0, rect.size.height)];
     [bezierP addLineToPoint:CGPointMake(rect.size.width, rect.size.height)];
     [bezierP stroke];
+    
+    _imgV_header.layer.cornerRadius = CGRectGetWidth(_imgV_header.frame)/2.f;
+    _imgV_header.layer.masksToBounds = YES;
 }
 
 - (void)setUserM:(UserModel *)userM{

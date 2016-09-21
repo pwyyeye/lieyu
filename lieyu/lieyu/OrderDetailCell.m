@@ -10,11 +10,11 @@
 
 @implementation OrderDetailCell
 
-- (void)awakeFromNib {
+- (void)drawRect:(CGRect)rect{
+    
     self.taoCanImageView.layer.masksToBounds =YES;
     
     self.taoCanImageView.layer.cornerRadius =self.taoCanImageView.frame.size.width/2;
-    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

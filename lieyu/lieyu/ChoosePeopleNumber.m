@@ -18,6 +18,8 @@
 }
 */
 - (void)awakeFromNib{
+    [super awakeFromNib];
+    
     [_title_Label setHidden:YES];
     [self setSelectedTag:1];
 }

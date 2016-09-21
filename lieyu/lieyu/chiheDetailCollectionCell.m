@@ -13,6 +13,8 @@
 @implementation chiheDetailCollectionCell
 
 - (void)awakeFromNib{
+    [super awakeFromNib];
+    
     _addToShoppingCarBtn.layer.cornerRadius = 2;
     _addToShoppingCarBtn.layer.masksToBounds = YES;
     self.goodImage.image=nil;

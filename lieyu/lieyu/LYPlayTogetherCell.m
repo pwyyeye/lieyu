@@ -22,9 +22,6 @@
 //@property (weak, nonatomic) IBOutlet UIButton *pkBtn;//拼客按钮
 
 
-- (void)awakeFromNib {
-    // Initialization code
-}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

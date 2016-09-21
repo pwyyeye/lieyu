@@ -28,7 +28,7 @@
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:button];
     self.navigationItem.leftBarButtonItem = item;
     
-//    [self getBackView:self.navigationController.navigationBar];
+    [self getBackView:self.navigationController.navigationBar];
     
     //设置标题颜色
     UIColor * color = [UIColor blackColor];
@@ -41,6 +41,11 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 }
 
+//- (void)viewWillAppear:(BOOL)animated{
+//    [super viewWillAppear:animated];
+//    [self getBackView:self.navigationController.navigationBar];
+//}
+
 
 -(void)getBackView:(UIView*)superView
 {
@@ -48,7 +53,7 @@
     {
         
         //_UIBackdropEffectView是_UIBackdropView的子视图，这是只需隐藏父视图即可
-        superView.hidden = YES;
+        superView.backgroundColor = [UIColor clearColor];
     }
     
     for (UIView *view in superView.subviews)

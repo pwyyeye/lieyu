@@ -10,6 +10,8 @@
 #import "UIImageView+WebCache.h"
 @implementation DetailView
 - (void)awakeFromNib{
+    [super awakeFromNib];
+    
     _collect_btn.hidden = YES;
     self.layer.cornerRadius = 4;
     self.layer.masksToBounds = YES;

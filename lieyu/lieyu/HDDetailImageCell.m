@@ -11,6 +11,8 @@
 @implementation HDDetailImageCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
     _image.layer.cornerRadius = 2;
     _image.layer.masksToBounds = YES;
     _image.contentMode=UIViewContentModeScaleAspectFit;

@@ -15,44 +15,26 @@
 @implementation LYYUCollectionViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
-//    self.view_cell.layer.shadowColor = RGBA(0, 0, 0, .2).CGColor;
-//    self.view_cell.layer.shadowOffset = CGSizeMake(0, 0.5);
-//    self.view_cell.layer.shadowRadius = 1;
-//    self.view_cell.layer.shadowOpacity = 1;
+    [super awakeFromNib];
     
     self.layer.shouldRasterize = YES;
     self.layer.rasterizationScale = [[UIScreen mainScreen] scale];
     
-//    self.view_cell.layer.cornerRadius = 2;
     self.view_cell.layer.borderWidth = 0.5;
     self.view_cell.layer.borderColor = RGBA(204, 204, 204, 1).CGColor;
-//    self.view_cell.layer.masksToBounds = YES;
-
-    _btn_headerImg.layer.cornerRadius = CGRectGetHeight(_btn_headerImg.frame)/2.f;
-    _btn_headerImg.layer.masksToBounds = YES;
     
     UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(68, 180 + 6, SCREEN_WIDTH - 68 - 25, 0.5)];
     lineView.backgroundColor = RGBA(204, 204, 204, 1);
     [self.view_cell addSubview:lineView];
     
-    _label_constell.layer.cornerRadius = CGRectGetHeight(_label_constell.frame)/2.f;
-    _label_constell.layer.masksToBounds = YES;
     _label_constell.layer.borderColor = RGBA(217, 217, 217, 1).CGColor;
     _label_constell.layer.borderWidth = 0.5;
     
-    
-    _label_work.layer.cornerRadius = CGRectGetHeight(_label_work.frame)/2.f;
-    _label_work.layer.masksToBounds = YES;
     _label_work.layer.borderColor = RGBA(217, 217, 217, 1).CGColor;
     _label_work.layer.borderWidth = 0.5;
     
 
     CGFloat btnWidth = (SCREEN_WIDTH - 16 - 68 - 10 - 20 * 4)/5.f;
-//    for (UIButton *btn in _btnArray) {
-//        btn.layer.cornerRadius = btnWidth/2.f;
-//        btn.layer.masksToBounds = YES;
-//    }
     
     
     _btn_more = [[UIButton alloc]init];
@@ -63,6 +45,18 @@
     _btn_more.backgroundColor = COMMON_PURPLE_HALF;
     [lastBtn addSubview:_btn_more];
 
+}
+
+- (void)drawRect:(CGRect)rect{
+    
+    _btn_headerImg.layer.cornerRadius = CGRectGetHeight(_btn_headerImg.frame)/2.f;
+    _btn_headerImg.layer.masksToBounds = YES;
+    
+    _label_constell.layer.cornerRadius = CGRectGetHeight(_label_constell.frame)/2.f;
+    _label_constell.layer.masksToBounds = YES;
+    
+    _label_work.layer.cornerRadius = CGRectGetHeight(_label_work.frame)/2.f;
+    _label_work.layer.masksToBounds = YES;
 }
 
 

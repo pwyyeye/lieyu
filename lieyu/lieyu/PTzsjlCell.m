@@ -12,12 +12,16 @@
 @implementation PTzsjlCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    [super awakeFromNib];
+    
+    _starsArray = @[_icon1,_icon2,_icon3,_icon4,_icon5];
+}
+
+- (void)drawRect:(CGRect)rect{
+    
     self.managerAvatar.layer.masksToBounds =YES;
     
     self.managerAvatar.layer.cornerRadius =self.managerAvatar.frame.size.width/2;
-    
-    _starsArray = @[_icon1,_icon2,_icon3,_icon4,_icon5];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

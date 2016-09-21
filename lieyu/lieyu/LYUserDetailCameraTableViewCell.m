@@ -11,7 +11,8 @@
 @implementation LYUserDetailCameraTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    [super awakeFromNib];
+    
     NSString *str = @"精彩从头像开始";
     NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc] initWithString:str];
     [attributedStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:11] range:NSMakeRange(3, 2.99)];

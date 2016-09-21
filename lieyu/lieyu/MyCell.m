@@ -11,6 +11,8 @@
 @implementation MyCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
     self.cellButton.selected = NO;
 }
 

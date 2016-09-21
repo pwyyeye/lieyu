@@ -11,7 +11,8 @@
 @implementation LPBuyPriceCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    [super awakeFromNib];
+    
     self.payBtn.enabled = YES;
 }
 

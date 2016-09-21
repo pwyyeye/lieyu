@@ -16,11 +16,6 @@
 
 @implementation ContentTableViewCell
 
-- (void)awakeFromNib {
-//    self.goodList = [[NSArray alloc]init];
-    
-}
-
 - (void)cellConfigure{
 //    NSLog(@"%@",self.goodList);
     self.tableView.dataSource = self;

@@ -19,6 +19,8 @@
 //@property (weak, nonatomic) IBOutlet UILabel *LPmarketPrice;
 //
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
     self.LPName.textColor = RGBA(51, 51, 51, 1);
     self.LPway.textColor = RGBA(114, 5, 147, 1);
     self.LPprice.textColor = RGBA(255, 64, 64, 0.98);
