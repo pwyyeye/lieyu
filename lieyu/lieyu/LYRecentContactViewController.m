@@ -28,6 +28,7 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.automaticallyAdjustsScrollViewInsets = YES;
     [self setupView];
+    self.title=@"最近联系";
     //设置tableView样式
     self.conversationListTableView.separatorColor = RGB(223, 223, 223);
     self.conversationListTableView.tableFooterView = [UIView new];

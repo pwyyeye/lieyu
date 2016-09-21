@@ -1179,10 +1179,10 @@ static NSString *daShangCellID = @"dashangCellID";
                  @{@"giftIamge":@"house.png",@"giftName":@"别墅",@"giftValue":@"334400娱币"}
                  ];
     __weak typeof (self) WeakSelf = self;
-    UIImage *img = nil;
+    NSString *img = nil;
     for (NSDictionary *dic in _dataArr) {
         if (_giftValue == dic[@"giftValue"]) {
-            img = (UIImage *)dic[@"giftIamge"];
+            img = dic[@"giftIamge"];
         }
     }
     NSDictionary *dictGift = @{@"amount":[NSString stringWithFormat:@"%@",_giftValue],
@@ -1193,13 +1193,15 @@ static NSString *daShangCellID = @"dashangCellID";
         [MyUtil showMessage:[NSString stringWithFormat:@"%@",_giftValue]];
         [WeakSelf showGiftIamgeAnmiationWith:img];
     }];
-    
+    [self showGiftIamgeAnmiationWith:img];
     [_backgroudView removeFromSuperview];
     _backgroudView = nil;
 }
 
--(void) showGiftIamgeAnmiationWith:(UIImage *) giftImg{
-    UIImageView *giftIamge = [[UIImageView alloc] initWithImage:giftImg];
+-(void) showGiftIamgeAnmiationWith:(NSString *) giftImg{
+    UIImage *img = [UIImage imageNamed:giftImg];
+    UIImageView *giftIamge = [[UIImageView alloc] initWithImage:img];
+    giftIamge.contentMode = UIViewContentModeScaleAspectFit;
     giftIamge.center = self.view.center;
     giftIamge.size = CGSizeMake(60, 60);
     [self.view addSubview:giftIamge];

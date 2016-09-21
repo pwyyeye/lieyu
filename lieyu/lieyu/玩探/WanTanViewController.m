@@ -47,7 +47,6 @@ static NSString *wantanCellID = @"wantanCellID";
 {
     [super viewWillDisappear:animated];
     //    [super setCustomTitle:@""];
-    [_myTitle removeFromSuperview];
     self.title = @"";
     [_timers invalidate];
     _timers = nil;
@@ -56,6 +55,9 @@ static NSString *wantanCellID = @"wantanCellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
   //  [self setuptitle];
+    if ([self.title isEqualToString:@""]) {
+        
+    }
     [self.tableView registerNib:[UINib nibWithNibName:@"WanTanCell" bundle:nil] forCellReuseIdentifier:wantanCellID];
     self.tableView.showsHorizontalScrollIndicator=NO;
     self.tableView.showsVerticalScrollIndicator=NO;
@@ -210,7 +212,6 @@ static NSString *wantanCellID = @"wantanCellID";
             [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
             
             LYRecentContactViewController * chat=[[LYRecentContactViewController alloc]init];
-            chat.title=@"最近联系";
             [self.navigationController pushViewController:chat animated:YES];
         } else {//玩友列表
             //统计发现页面的选择

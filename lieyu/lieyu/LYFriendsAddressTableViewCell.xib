@@ -43,7 +43,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hD0-IZ-Aze">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="19" id="Kc3-YI-eED"/>
-                                    <constraint firstAttribute="width" constant="55" id="NTT-YV-QeM"/>
+                                    <constraint firstAttribute="width" constant="45" id="NTT-YV-QeM"/>
                                 </constraints>
                                 <state key="normal" image="DP_comment.png"/>
                             </button>
@@ -55,10 +55,6 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v46-BG-Lsl">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="22" id="Pyg-Qc-e3F"/>
-                                    <constraint firstAttribute="width" constant="45" id="SVe-Yh-550"/>
-                                </constraints>
                                 <state key="normal" image="DP_like.png"/>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nbV-Yr-SKR">
@@ -69,25 +65,26 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tiI-4v-Zr9">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="39" id="pQ3-6v-9si"/>
-                                </constraints>
                                 <state key="normal" image="DP_dashang.png"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="tiI-4v-Zr9" firstAttribute="height" secondItem="v46-BG-Lsl" secondAttribute="height" id="6R7-qk-seg"/>
                             <constraint firstItem="tiI-4v-Zr9" firstAttribute="height" secondItem="v46-BG-Lsl" secondAttribute="height" id="CTI-vr-jsX"/>
                             <constraint firstItem="tiI-4v-Zr9" firstAttribute="centerY" secondItem="f3j-nk-PcS" secondAttribute="centerY" constant="1" id="N8Y-xe-MZY"/>
                             <constraint firstAttribute="height" constant="33" id="OEb-jK-4aF"/>
-                            <constraint firstItem="nbV-Yr-SKR" firstAttribute="leading" secondItem="hD0-IZ-Aze" secondAttribute="trailing" constant="1" id="Ugy-S8-tTU"/>
+                            <constraint firstItem="nbV-Yr-SKR" firstAttribute="leading" secondItem="hD0-IZ-Aze" secondAttribute="trailing" constant="5" id="Ugy-S8-tTU"/>
                             <constraint firstItem="v46-BG-Lsl" firstAttribute="centerY" secondItem="f3j-nk-PcS" secondAttribute="centerY" id="VIG-ex-Yoz"/>
-                            <constraint firstItem="pNn-Uw-AYh" firstAttribute="leading" secondItem="v46-BG-Lsl" secondAttribute="trailing" constant="3" id="VlI-sJ-3BG"/>
+                            <constraint firstItem="pNn-Uw-AYh" firstAttribute="leading" secondItem="v46-BG-Lsl" secondAttribute="trailing" constant="5" id="VlI-sJ-3BG"/>
                             <constraint firstAttribute="width" constant="170" id="WNV-My-ZdO"/>
                             <constraint firstItem="pNn-Uw-AYh" firstAttribute="centerY" secondItem="f3j-nk-PcS" secondAttribute="centerY" id="biE-Xq-QaV"/>
-                            <constraint firstItem="hD0-IZ-Aze" firstAttribute="leading" secondItem="pNn-Uw-AYh" secondAttribute="trailing" constant="1" id="gNe-CS-8nf"/>
+                            <constraint firstItem="hD0-IZ-Aze" firstAttribute="width" secondItem="v46-BG-Lsl" secondAttribute="width" id="cqS-De-gvq"/>
+                            <constraint firstItem="hD0-IZ-Aze" firstAttribute="leading" secondItem="pNn-Uw-AYh" secondAttribute="trailing" constant="5" id="gNe-CS-8nf"/>
+                            <constraint firstItem="hD0-IZ-Aze" firstAttribute="height" secondItem="v46-BG-Lsl" secondAttribute="height" id="i0p-Df-UJj"/>
+                            <constraint firstItem="tiI-4v-Zr9" firstAttribute="width" secondItem="v46-BG-Lsl" secondAttribute="width" id="p6f-YR-S27"/>
                             <constraint firstItem="nbV-Yr-SKR" firstAttribute="centerY" secondItem="f3j-nk-PcS" secondAttribute="centerY" id="pt7-Pj-xJB"/>
-                            <constraint firstItem="tiI-4v-Zr9" firstAttribute="leading" secondItem="nbV-Yr-SKR" secondAttribute="trailing" constant="6" id="rN2-SR-MtR"/>
+                            <constraint firstItem="tiI-4v-Zr9" firstAttribute="leading" secondItem="nbV-Yr-SKR" secondAttribute="trailing" constant="5" id="rN2-SR-MtR"/>
                             <constraint firstItem="hD0-IZ-Aze" firstAttribute="centerY" secondItem="f3j-nk-PcS" secondAttribute="centerY" constant="1" id="uX8-NE-XIV"/>
                             <constraint firstItem="hD0-IZ-Aze" firstAttribute="centerX" secondItem="f3j-nk-PcS" secondAttribute="centerX" id="wq0-3i-zP9"/>
                         </constraints>
@@ -135,8 +132,8 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="DP_comment.png" width="140" height="34"/>
-        <image name="DP_dashang.png" width="44" height="15"/>
+        <image name="DP_comment.png" width="41" height="13"/>
+        <image name="DP_dashang.png" width="41" height="14"/>
         <image name="DP_like.png" width="41" height="13"/>
         <image name="addressFriend.png" width="24" height="24"/>
         <image name="dianping@2x.png" width="24" height="24"/>

@@ -675,22 +675,21 @@
             _barTitleCell.selectionStyle = UITableViewCellSelectionStyleNone;
             [_barTitleCell.btn_comment addTarget:self action:@selector(barCommentClick) forControlEvents:UIControlEventTouchUpInside];
             return _barTitleCell;
-            
         }
             break;
         case 2:{
-            if(_beerBarDetail.isSign == 0){
+//            if(_beerBarDetail.isSign == 0){
                 LYBarPointTableViewCell *barPointCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarPointTableViewCell" forIndexPath:indexPath];
                 barPointCell.label_point.text = @"在线订座";
                 [barPointCell.img_icon setImage:[UIImage imageNamed:@"Group 4 @2x"]];
                 barPointCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 barPointCell.selectionStyle = UITableViewCellSelectionStyleNone;
                 return barPointCell;
-            }else{
-                UITableViewCell *cell = [[UITableViewCell alloc]init];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                return cell;
-            }
+//            }else{
+//                UITableViewCell *cell = [[UITableViewCell alloc]init];
+//                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//                return cell;
+//            }
             break;
         }
         case 4://酒吧地址
@@ -724,10 +723,8 @@
             }
             [iconCell.moreBtn addTarget:self action:@selector(moreClick:) forControlEvents:UIControlEventTouchUpInside];
             return iconCell;
-            
         }
             break;
-            
         case 6://activity 活动cell
         {
             LYBarScrollTableViewCell *scrollCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarScrollTableViewCell" forIndexPath:indexPath];

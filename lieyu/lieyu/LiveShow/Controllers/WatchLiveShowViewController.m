@@ -374,10 +374,10 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
                  @{@"giftIamge":@"house.png",@"giftName":@"别墅",@"giftValue":@"334400娱币"}
                  ];
     __weak typeof (self) WeakSelf = self;
-    UIImage *img = nil;
+    NSString *img = nil;
     for (NSDictionary *dic in _dataArr) {
         if (_giftValue == dic[@"giftValue"]) {
-            img = (UIImage *)dic[@"giftIamge"];
+            img = dic[@"giftIamge"];
         }
     }
     NSDictionary *dictGift = @{@"amount":_giftValue,
@@ -396,8 +396,9 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     _daShangView = nil;
 }
 
--(void) showGiftIamgeAnmiationWith:(UIImage *) giftImg{
-    UIImageView *giftIamge = [[UIImageView alloc] initWithImage:giftImg];
+-(void) showGiftIamgeAnmiationWith:(NSString *) giftImg{
+    UIImage *img = [UIImage imageNamed:giftImg];
+    UIImageView *giftIamge = [[UIImageView alloc] initWithImage:img];
     giftIamge.center = self.view.center;
     giftIamge.size = CGSizeMake(60, 60);
     [self.view addSubview:giftIamge];
