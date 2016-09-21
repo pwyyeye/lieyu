@@ -57,9 +57,9 @@
     
     NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:strrr];
     [attributedStr addAttributes:attributes range:NSMakeRange(0, attributedStr.length)];
-    [attributedStr addAttributes:@{NSForegroundColorAttributeName:RGBA(186, 40, 227, 1)} range:NSMakeRange(0, commentM.nickName.length)];
+    [attributedStr addAttributes:@{NSForegroundColorAttributeName:COMMON_PURPLE} range:NSMakeRange(0, commentM.nickName.length)];
     if (![commentM.toUserId isEqualToString:@"0"]) {
-        [attributedStr addAttributes:@{NSForegroundColorAttributeName:RGBA(186, 40, 227, 1)} range:NSMakeRange(commentM.nickName.length + 3, commentM.toUserNickName.length + 1)];
+        [attributedStr addAttributes:@{NSForegroundColorAttributeName:COMMON_PURPLE} range:NSMakeRange(commentM.nickName.length + 3, commentM.toUserNickName.length + 1)];
     }
 //    if([commentM.toUserId isEqualToString:@"0"]) {
 //        if([MyUtil isEmptyString:commentM.nickName] || [MyUtil isEmptyString:commentM.nickName]) return;

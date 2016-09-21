@@ -106,7 +106,7 @@
         //紫色第二个按钮
         _secondButton.hidden = NO;
         _secondButton.layer.borderWidth = 0 ;
-        [_secondButton setBackgroundColor:RGBA(186, 40, 227, 1)];
+        [_secondButton setBackgroundColor:COMMON_PURPLE];
         [_secondButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
         if (model.ordertype == 1) {
@@ -225,7 +225,7 @@
                 [_introduceLbl setText:[NSString stringWithFormat:@"%@人组局",model.allnum]];
                 [_introduceLbl setFont:[UIFont systemFontOfSize:12]];
                 _secondButton.layer.borderWidth = 0 ;
-                [_secondButton setBackgroundColor:RGBA(186, 40, 227, 1)];
+                [_secondButton setBackgroundColor:COMMON_PURPLE];
                 [_secondButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
                 [_secondButton setTitle:@"查看详情" forState:UIControlStateNormal];
                 [_secondButton addTarget:self.delegate action:@selector(checkForDetail:) forControlEvents:UIControlEventTouchUpInside];
@@ -239,7 +239,7 @@
         //待评价
         _firstButton.hidden = YES;
         _secondButton.hidden = NO;
-        [_secondButton setBackgroundColor:RGBA(186, 40, 227, 1)];
+        [_secondButton setBackgroundColor:COMMON_PURPLE];
         _secondButton.layer.borderWidth = 0 ;
         [_secondButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_secondButton setTitle:@"立即评价" forState:UIControlStateNormal];
@@ -287,7 +287,7 @@
             [_secondButton addTarget:self.delegate action:@selector(deleteOrder:) forControlEvents:UIControlEventTouchUpInside];
         }else{
             _secondButton.layer.borderWidth = 0 ;
-            [_secondButton setBackgroundColor:RGBA(186, 40, 227, 1)];
+            [_secondButton setBackgroundColor:COMMON_PURPLE];
             [_secondButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             [_secondButton setTitle:@"退款中" forState:UIControlStateNormal];
             [_secondButton addTarget:self.delegate action:@selector(checkForDetail:) forControlEvents:UIControlEventTouchUpInside];

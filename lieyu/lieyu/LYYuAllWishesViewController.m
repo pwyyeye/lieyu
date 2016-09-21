@@ -357,7 +357,7 @@
     if(!kongLabel){
         kongLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT / 2 - 50, SCREEN_WIDTH, 20)];
         [kongLabel setBackgroundColor:[UIColor clearColor]];
-        [kongLabel setTextColor:RGBA(186, 40, 227, 1)];
+        [kongLabel setTextColor:COMMON_PURPLE];
         [kongLabel setText:@"还未发布任何愿望哦～"];
         [kongLabel setTextAlignment:NSTextAlignmentCenter];
         [kongLabel setFont:[UIFont systemFontOfSize:14]];
@@ -380,7 +380,7 @@
             [_ringButton setTitle:@"关闭通知" forState:UIControlStateNormal];
             _ringButton.tag = 7154 ;
         }else if([tagIndex isEqualToString:@"0"]){//通知是关着的
-            [_ringButton setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal];
+            [_ringButton setTitleColor:COMMON_PURPLE forState:UIControlStateNormal];
             [_ringButton setTitle:@"打开通知" forState:UIControlStateNormal];
             _ringButton.tag = 3754 ;
         }
@@ -417,7 +417,7 @@
                 [LYUserHttpTool changeUserNotificationWithPara:dict compelte:^(bool result) {
                     if (result) {
 //                        UIButton *button = [weakSelf.view viewWithTag:7154];
-                        [_ringButton setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal];
+                        [_ringButton setTitleColor:COMMON_PURPLE forState:UIControlStateNormal];
                         [_ringButton setTitle:@"打开通知" forState:UIControlStateNormal];
                         _ringButton.tag = 3754 ;
                     }

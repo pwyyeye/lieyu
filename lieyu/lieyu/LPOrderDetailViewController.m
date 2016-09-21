@@ -74,7 +74,7 @@
         [_firstButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
         _secondButton.layer.borderWidth = 0 ;
         [_secondButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_secondButton setBackgroundColor:RGBA(186, 40, 227, 1)];
+        [_secondButton setBackgroundColor:COMMON_PURPLE];
         if (self.orderInfoModel.ordertype == 1) {
             //组局
             if(self.orderInfoModel.userid == self.userModel.userid){
@@ -162,14 +162,14 @@
         _firstButton.hidden = YES;
         _secondButton.layer.borderWidth = 0 ;
         [_secondButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_secondButton setBackgroundColor:RGBA(186, 40, 227, 1)];
+        [_secondButton setBackgroundColor:COMMON_PURPLE];
         [_secondButton setTitle:@"立即评价" forState:UIControlStateNormal];
         [_secondButton addTarget:self action:@selector(judgeOrder:) forControlEvents:UIControlEventTouchUpInside];
     }else{
         _firstButton.hidden = YES;
         _secondButton.layer.borderWidth = 0 ;
         [_secondButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_secondButton setBackgroundColor:RGBA(186, 40, 227, 1)];
+        [_secondButton setBackgroundColor:COMMON_PURPLE];
         [_secondButton setTitle:@"咨询猎娱" forState:UIControlStateNormal];
         [_secondButton addTarget:self action:@selector(messageHurtingFun:) forControlEvents:UIControlEventTouchUpInside];
     }

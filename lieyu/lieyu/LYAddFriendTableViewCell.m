@@ -50,7 +50,7 @@
     if(addressBook.appUserType == 0){
         //邀请
         [_statusButton setTitle:@"邀请" forState:UIControlStateNormal];
-        [_statusButton setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal];
+        [_statusButton setTitleColor:COMMON_PURPLE forState:UIControlStateNormal];
     }else if (addressBook.appUserType == 1){
         //添加
         [_statusButton setTitle:@"关注" forState:UIControlStateNormal];
@@ -63,7 +63,7 @@
     }else if (addressBook.appUserType == 3){
         //已邀请
         [_statusButton setTitle:@"已邀请" forState:UIControlStateNormal];
-        [_statusButton setTitleColor:RGBA(186, 40, 227, 0.5) forState:UIControlStateNormal];
+        [_statusButton setTitleColor:COMMON_PURPLE_HALF forState:UIControlStateNormal];
         _statusButton.enabled = NO;
     }
 }

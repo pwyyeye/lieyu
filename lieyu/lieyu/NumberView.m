@@ -19,7 +19,7 @@
     _label3 = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 130, 15, 100, 14)];
     _label3.textAlignment = NSTextAlignmentRight;
     _label3.backgroundColor = [UIColor clearColor];
-    _label3.textColor = RGBA(186, 40, 227, 1);
+    _label3.textColor = COMMON_PURPLE;
     _label3.font = [UIFont systemFontOfSize:12];
     _label3.text = [NSString stringWithFormat:@"(请选择)"];
     

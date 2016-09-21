@@ -21,7 +21,7 @@
 - (void)setIsMenuSelected:(BOOL)isMenuSelected{
     _isMenuSelected = isMenuSelected;
     if (isMenuSelected) {
-        [self setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal];
+        [self setTitleColor:COMMON_PURPLE forState:UIControlStateNormal];
 //        self.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:12];
         self.titleLabel.font = [UIFont boldSystemFontOfSize:13];
     }else{
@@ -33,7 +33,7 @@
 - (void)setIsHomePageMenuViewSelected:(BOOL)isHomePageMenuViewSelected{
     _isHomePageMenuViewSelected = isHomePageMenuViewSelected;
     if (isHomePageMenuViewSelected) {
-        [self setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal];
+        [self setTitleColor:COMMON_PURPLE forState:UIControlStateNormal];
         self.titleLabel.font = [UIFont boldSystemFontOfSize:13];
     }else{
         [self setTitleColor:RGBA(0, 0, 0, 1) forState:UIControlStateNormal];
@@ -44,7 +44,7 @@
 - (void)setIsFriendsMenuViewSelected:(BOOL)isFriendsMenuViewSelected{
     _isFriendsMenuViewSelected = isFriendsMenuViewSelected;
     if (isFriendsMenuViewSelected) {
-        [self setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal];
+        [self setTitleColor:COMMON_PURPLE forState:UIControlStateNormal];
         self.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:13];
 //        self.titleLabel.font = [UIFont boldSystemFontOfSize:13];
     }else{
@@ -58,7 +58,7 @@
 {
     _isLiveListMenuSelected = isLiveListMenuSelected;
     if (_isLiveListMenuSelected) {
-        [self setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal];
+        [self setTitleColor:COMMON_PURPLE forState:UIControlStateNormal];
         self.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:18];
         //        self.titleLabel.font = [UIFont boldSystemFontOfSize:13];
     }else{
@@ -74,7 +74,7 @@
     _isGuWenSelected = isGuWenSelected;
     self.titleLabel.font = [UIFont systemFontOfSize:14];
     if (_isGuWenSelected) {
-         [self setTitleColor:RGBA(186, 40, 227, 1) forState:UIControlStateNormal];
+         [self setTitleColor:COMMON_PURPLE forState:UIControlStateNormal];
     }else{
          [self setTitleColor:RGBA(0, 0, 0, 1) forState:UIControlStateNormal];
     }

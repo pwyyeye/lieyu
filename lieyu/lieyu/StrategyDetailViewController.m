@@ -183,8 +183,6 @@
     }else if (indexPath.row == 1){
         _infoCell = [tableView dequeueReusableCellWithIdentifier:@"StrategyDetailInfoTableViewCell" forIndexPath:indexPath];
         _infoCell.selectionStyle = UITableViewCellSelectionStyleNone;
-        _strategyModel.title = @"独家开发哈首都科技护发素看了绝代风华的三舅咖啡毒辣回复觉得撒复活节看得十分艰苦啊双方尽快收到回复可见阿萨德恢复健康了啥叫快乐风刀霜剑看阿凡达三舅卡发的黄金时刻发的话三舅克拉发号施令卡放到失联客机分开就收到啦疯狂激动撒饭卡附近看到撒饭卡的路上分开了大煞风景离开撒到合肥是打开链接付款速度啦分";
-        _strategyModel.subtitle = @"康了啥叫快乐风刀霜剑看阿凡达三舅卡发的黄金时刻发的话三舅克拉发号施令卡放到失联客机分开就收到啦疯狂激动撒饭";
         _infoCell.strategyModel = _strategyModel;
         return _infoCell;
     }else if (indexPath.row == 2){

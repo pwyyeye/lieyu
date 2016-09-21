@@ -8,6 +8,12 @@
 
 #import "LYBaseViewController.h"
 
+@protocol MineBoundAccountDelegate <NSObject>
+
+- (void)mineBoundAccountWithType:(NSString *)type Account:(NSString *)account;
+
+@end
+
 @interface MineBoundAccountViewController : LYBaseViewController
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *withdrawButtons;
@@ -26,5 +32,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *finishButton;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *viewHeight;
+
+@property (nonatomic, assign) id<MineBoundAccountDelegate> delegate;
 
 @end

@@ -460,7 +460,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }else{
         cell.backView.layer.borderWidth = 2;
-        cell.backView.layer.borderColor = [RGB(186, 40, 227)CGColor];
+        cell.backView.layer.borderColor = [COMMON_PURPLE CGColor];
         cell.button_add.hidden = NO;
         cell.button_less.hidden = NO;
         cell.label_number.hidden = NO;
@@ -491,7 +491,7 @@
         oldCell.button_less.enabled = NO;
         [oldCell.button_less setImage:[UIImage imageNamed:@"gray_less_circle"] forState:UIControlStateNormal];
         self.payBtn.enabled = YES;
-        self.payBtn.backgroundColor = RGB(186, 40, 207);
+        self.payBtn.backgroundColor = COMMON_PURPLE;
         self.NumberLbl.text = @"共1点单";
         self.moneyLbl.text = [NSString stringWithFormat:@"总需支付：%@",cell.label_price_now.text];
         

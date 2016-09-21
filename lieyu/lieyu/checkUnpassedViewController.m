@@ -68,7 +68,7 @@
     [self.scrollerView setBackgroundColor:RGBA(245, 245, 245, 1)];
     
     UILabel *titleLbl = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 60, 10, 120, 33)];
-    [titleLbl setTextColor:RGBA(186, 40, 227, 1)];
+    [titleLbl setTextColor:COMMON_PURPLE];
     [titleLbl setText:@"审核未通过"];
     [titleLbl setFont:[UIFont systemFontOfSize:24]];
     [self.scrollerView addSubview:titleLbl];
@@ -230,7 +230,7 @@
 - (void)chooseJiuBa:(JiuBaModel *)jiuBaModel{
     jiuBaNow=jiuBaModel;
     barid = [NSString stringWithFormat:@"%d",jiuBaNow.barid];
-    [applicationVC.jiubaLal setTextColor:RGBA(186, 40, 227, 1)];
+    [applicationVC.jiubaLal setTextColor:COMMON_PURPLE];
     applicationVC.jiubaLal.text=jiuBaModel.barname;
 }
 

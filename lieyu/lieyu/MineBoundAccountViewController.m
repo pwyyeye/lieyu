@@ -130,6 +130,9 @@
     [LYUserHttpTool lyUserBoundAccountWithParams:dict complete:^(BOOL result) {
         if (result) {
             //代理方法，绑定成功
+            if ([weakSelf.delegate respondsToSelector:@selector(mineBoundAccountWithType:Account:)]) {
+                [weakSelf.delegate mineBoundAccountWithType:[dict objectForKey:@"accountType"] Account:[dict objectForKey:@"accountNo"]];
+            }
             [weakSelf goBack];
         }
     }];
@@ -143,6 +146,9 @@
     [LYUserHttpTool lyUserBoundAccountWithParams:dict complete:^(BOOL result) {
         if (result) {
             //代理方法，绑定成功
+            if ([weakSelf.delegate respondsToSelector:@selector(mineBoundAccountWithType:Account:)]) {
+            [weakSelf.delegate mineBoundAccountWithType:[dict objectForKey:@"accountType"] Account:[dict objectForKey:@"accountNo"]];
+        }
             [weakSelf goBack];
         }
     }];

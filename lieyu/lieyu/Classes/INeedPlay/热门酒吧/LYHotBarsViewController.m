@@ -94,13 +94,13 @@
 #pragma mark - 创建菜单view
 - (void)createMenuView{
     
-    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
-    _menuView = [[UIVisualEffectView alloc]initWithEffect:effect];
-    _menuView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 26);
-    _menuView.layer.shadowColor = RGBA(0, 0, 0, 1).CGColor;
-    _menuView.layer.shadowOffset = CGSizeMake(0, 0.5);
-//    _menuView.layer.shadowOpacity = 0.1;
-    _menuView.layer.shadowRadius = 1;
+//    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+//    _menuView = [[UIVisualEffectView alloc]initWithEffect:effect];
+//    _menuView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 26);
+//    _menuView.layer.shadowColor = RGBA(0, 0, 0, 1).CGColor;
+//    _menuView.layer.shadowOffset = CGSizeMake(0, 0.5);
+//    _menuView.layer.shadowOpacity = 0.3;
+//    _menuView.layer.shadowRadius = 1;
     //    [self.view addSubview:_menuView];
     UIBlurEffect *effectExtraLight = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
     _menuView = [[UIVisualEffectView alloc]initWithEffect:effectExtraLight];
@@ -108,7 +108,7 @@
     _menuView.alpha = 5;
     _menuView.layer.shadowColor = RGBA(0, 0, 0, 1).CGColor;
     _menuView.layer.shadowOffset = CGSizeMake(0, 0.5);
-//    _menuView.layer.shadowOpacity = 0.3;
+    _menuView.layer.shadowOpacity = 0.3;
     _menuView.layer.shadowRadius = 1;
     [self.view addSubview:_menuView];
     
@@ -184,7 +184,7 @@
     CGFloat hotMenuBtnWidth = hotBtn.frame.size.width;
 
     _purpleLineView.frame = CGRectMake(0, _menuView.size.height - 2, 42, 2);
-    _purpleLineView.backgroundColor = RGBA(186, 40, 227, 1);
+    _purpleLineView.backgroundColor = COMMON_PURPLE;
     CGFloat offsetWidth = _collectView.contentOffset.x;
     _purpleLineView.center = CGPointMake(hotBtn.center.x + offsetWidth * hotMenuBtnWidth/SCREEN_WIDTH , CGRectGetCenter(_purpleLineView.frame).y);
     [_menuView addSubview:_purpleLineView];
@@ -419,7 +419,7 @@
     if (!_kongView) {
         _kongView = [[UILabel alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT / 2 - 45, SCREEN_WIDTH, 16)];
         [_kongView setFont:[UIFont systemFontOfSize:14]];
-        [_kongView setTextColor:RGBA(186, 40, 227, 1)];
+        [_kongView setTextColor:COMMON_PURPLE];
         [_kongView setText:@"抱歉，暂无酒吧入驻！"];
         [_kongView setTextAlignment:NSTextAlignmentCenter];
     }

@@ -29,34 +29,34 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CGz-vo-9ld">
-                        <constraints>
-                            <constraint firstAttribute="width" constant="90" id="0Nj-QM-pxn"/>
-                            <constraint firstAttribute="height" constant="90" id="aUw-QK-zVl"/>
-                        </constraints>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="热门" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tZB-V6-MuY">
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3xk-bf-NIT">
-                        <constraints>
-                            <constraint firstAttribute="height" constant="50" id="Ijw-qq-2s8"/>
-                            <constraint firstAttribute="width" constant="50" id="Zy4-KX-ix7"/>
-                        </constraints>
-                    </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bql-n9-KmT">
-                        <constraints>
-                            <constraint firstAttribute="width" constant="50" id="KWM-Oz-rDP"/>
-                            <constraint firstAttribute="height" constant="50" id="M2A-Sh-ryJ"/>
-                        </constraints>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="附近" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DPn-Hs-h6x">
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empyImage120.png" translatesAutoresizingMaskIntoConstraints="NO" id="3xk-bf-NIT">
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="Ijw-qq-2s8"/>
+                            <constraint firstAttribute="width" constant="50" id="Zy4-KX-ix7"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empyImage120.png" translatesAutoresizingMaskIntoConstraints="NO" id="CGz-vo-9ld">
+                        <constraints>
+                            <constraint firstAttribute="width" constant="90" id="0Nj-QM-pxn"/>
+                            <constraint firstAttribute="height" constant="90" id="aUw-QK-zVl"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empyImage120.png" translatesAutoresizingMaskIntoConstraints="NO" id="Bql-n9-KmT">
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="KWM-Oz-rDP"/>
+                            <constraint firstAttribute="height" constant="50" id="M2A-Sh-ryJ"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
@@ -94,7 +94,10 @@
                 <outletCollection property="filterArray" destination="3xk-bf-NIT" id="BqE-1g-NJd"/>
                 <outletCollection property="filterArray" destination="Bql-n9-KmT" id="bWT-g8-XaD"/>
             </connections>
-            <point key="canvasLocation" x="428.5" y="262"/>
+            <point key="canvasLocation" x="332" y="246"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="empyImage120.png" width="240" height="240"/>
+    </resources>
 </document>

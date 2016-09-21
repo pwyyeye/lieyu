@@ -20,11 +20,11 @@
     _wishTextView.layer.borderWidth = 0.5;
     _wishTextView.layer.cornerRadius = 3;
     
-    _sendWishButton.layer.borderColor = [RGBA(186, 40, 227, 1)CGColor];
+    _sendWishButton.layer.borderColor = [COMMON_PURPLE CGColor];
     _sendWishButton.layer.borderWidth = 0.6;
     _sendWishButton.layer.cornerRadius = 6;
     
-    _dontCareButton.layer.borderColor = [RGBA(186, 40, 227, 1)CGColor];
+    _dontCareButton.layer.borderColor = [COMMON_PURPLE CGColor];
     _dontCareButton.layer.borderWidth = 0.6;
     _dontCareButton.layer.cornerRadius = 6;
     

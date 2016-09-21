@@ -350,7 +350,7 @@
         [_kongLabel setText:@"抱歉，暂无顾问入驻！"];
         [_kongLabel setTextAlignment:NSTextAlignmentCenter];
         [_kongLabel setFont:[UIFont systemFontOfSize:14]];
-        [_kongLabel setTextColor:RGBA(186, 40, 227, 1)];
+        [_kongLabel setTextColor:COMMON_PURPLE];
         _kongLabel.layer.zPosition = 3;
     }
         [self.view addSubview:_kongLabel];

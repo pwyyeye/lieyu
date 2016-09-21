@@ -122,7 +122,7 @@
 
 #pragma 设置话题
 - (void)addTopicLabel{
-    NSDictionary *attribute = @{NSForegroundColorAttributeName:RGBA(186, 40, 227, 1),
+    NSDictionary *attribute = @{NSForegroundColorAttributeName:COMMON_PURPLE,
                                 NSFontAttributeName:[UIFont systemFontOfSize:14]};
     NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@ ",_TopicTitle]];
     [attributeString addAttributes:attribute range:NSMakeRange(0, _TopicTitle.length)];
@@ -189,7 +189,7 @@
     }else if ([text isEqualToString:@""] && range.location == _TopicTitle.length-1 && range.length == 1){//即将删除话题
         if (PrepareDelete == NO) {//初次删除
             NSDictionary *attribute = @{NSBackgroundColorAttributeName:RGBA(116, 200, 252, 0.8),
-                                    NSForegroundColorAttributeName:RGBA(186, 40, 227, 1),
+                                    NSForegroundColorAttributeName:COMMON_PURPLE,
                                     NSFontAttributeName:[UIFont systemFontOfSize:14]};
             NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@ ",_TopicTitle]];
             [attributeString addAttributes:attribute range:NSMakeRange(0, _TopicTitle.length)];
@@ -233,7 +233,7 @@
 
 - (void)oneFingerTapTextView{
     if (_TopicTitle.length && PrepareDelete == YES) {
-        NSDictionary *attribute = @{NSForegroundColorAttributeName:RGBA(186, 40, 227, 1),
+        NSDictionary *attribute = @{NSForegroundColorAttributeName:COMMON_PURPLE,
                                     NSFontAttributeName:[UIFont systemFontOfSize:14]};
         NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@ ",_TopicTitle]];
         [attributeString addAttributes:attribute range:NSMakeRange(0, _TopicTitle.length)];

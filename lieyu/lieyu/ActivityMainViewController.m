@@ -321,6 +321,13 @@
         [self.navigationController pushViewController:zujuVC animated:YES];
         NSString *str = [NSString stringWithFormat:@"首页滑动视图组局ID%ld",linkid];
         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:@"活动列表" titleName:str]];
+    }else if (ad_type == 10){//演出派对
+        if (!linkid) {
+            return;
+        }
+        ActivityDetailViewController *activityDetailVC = [[ActivityDetailViewController alloc]initWithNibName:@"ActivityDetailViewController" bundle:nil];
+        activityDetailVC.activityID = [NSString stringWithFormat:@"%ld",linkid];
+        [self.navigationController pushViewController:activityDetailVC animated:YES];
     }
 }
 

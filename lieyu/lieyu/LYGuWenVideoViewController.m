@@ -81,7 +81,7 @@
     _menuView.alpha = 5;
     _menuView.layer.shadowColor = RGBA(0, 0, 0, 1).CGColor;
     _menuView.layer.shadowOffset = CGSizeMake(0, 0.5);
-//    _menuView.layer.shadowOpacity = 0.3;
+    _menuView.layer.shadowOpacity = 0.3;
     _menuView.layer.shadowRadius = 1;
     [self.view addSubview:_menuView];
     
@@ -274,7 +274,7 @@
         [_kongLabel setText:@"抱歉，暂无直播视频！"];
         [_kongLabel setTextAlignment:NSTextAlignmentCenter];
         [_kongLabel setFont:[UIFont systemFontOfSize:14]];
-        [_kongLabel setTextColor:RGBA(186, 40, 227, 1)];
+        [_kongLabel setTextColor:COMMON_PURPLE];
         _kongLabel.layer.zPosition = 3;
     }
         [self.view addSubview:_kongLabel];

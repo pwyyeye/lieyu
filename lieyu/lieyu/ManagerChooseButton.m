@@ -22,7 +22,7 @@
 
 - (void)setSelected:(BOOL)selected{
     if(selected == YES){
-        self.avatarImg.layer.borderColor = [RGB(186, 40, 227)CGColor];
+        self.avatarImg.layer.borderColor = [COMMON_PURPLE CGColor];
         self.avatarImg.layer.borderWidth = 2;
     }else{
         self.avatarImg.layer.borderWidth = 0;

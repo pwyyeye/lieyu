@@ -76,7 +76,7 @@
     [paragraphStyle setLineSpacing:3];
     [attributeStr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [attributeStr length])];
     if(_recentM.topicTypeName.length){
-        [attributeStr addAttribute:NSForegroundColorAttributeName value:RGBA(186, 40, 227, 1) range:NSMakeRange(0, topicNameStr.length)];
+        [attributeStr addAttribute:NSForegroundColorAttributeName value:COMMON_PURPLE range:NSMakeRange(0, topicNameStr.length)];
     }
     
     if(recentM.message != nil){

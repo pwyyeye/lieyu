@@ -99,7 +99,7 @@
         cell.cityNameLabel.text = _userLocation;
         cell.layer.masksToBounds = YES;
         cell.layer.cornerRadius = 8;
-        cell.cityNameLabel.textColor = RGB(186, 40, 227);
+        cell.cityNameLabel.textColor = COMMON_PURPLE;
         return cell;
     } else {
         cell.cityNameLabel.text = _dataArray[indexPath.row];

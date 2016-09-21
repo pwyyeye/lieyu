@@ -22,7 +22,7 @@
     _bottomView.layer.shadowOffset = CGSizeMake(0, 1);
     
     _communicateButton.layer.cornerRadius = 15;
-    _communicateButton.layer.borderColor = [RGBA(186, 40, 227, 1) CGColor];
+    _communicateButton.layer.borderColor = [COMMON_PURPLE CGColor];
     _communicateButton.layer.borderWidth = 1;
 }
 

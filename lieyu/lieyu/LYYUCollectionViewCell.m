@@ -60,7 +60,7 @@
     CGRect rect = CGRectMake(lastBtn.frame.origin.x, lastBtn.frame.origin.y, btnWidth, btnWidth);
     _btn_more.hidden = YES;
     _btn_more.frame = CGRectMake(0, 0, rect.size.width, rect.size.height);
-    _btn_more.backgroundColor = RGBA(186, 20, 227, 0.5);
+    _btn_more.backgroundColor = COMMON_PURPLE_HALF;
     [lastBtn addSubview:_btn_more];
 
 }
@@ -221,7 +221,7 @@
             label.tag=1111+i;
             label.font = [UIFont systemFontOfSize:12];
             label.layer.masksToBounds = YES;
-            label.backgroundColor =RGB(186, 40, 227);
+            label.backgroundColor = COMMON_PURPLE ;
             label.textAlignment=NSTextAlignmentCenter;
             label.text=pinkerInfo.quantity;
             label.layer.zPosition = 20.0;

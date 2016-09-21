@@ -120,7 +120,7 @@
     effectView.alpha = 5;
     effectView.layer.shadowColor = [RGBA(0, 0, 0, 1)CGColor];
     effectView.layer.shadowOffset = CGSizeMake(0, 0.5);
-//    effectView.layer.shadowOpacity = 0.3;
+    effectView.layer.shadowOpacity = 0.3;
     effectView.layer.shadowRadius = 1;
     [self.view addSubview:effectView];
     
@@ -372,7 +372,7 @@
     if (![self.view viewWithTag:501]) {
         kongLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 100, SCREEN_HEIGHT / 2 - 50, 200, 20)];
         [kongLabel setBackgroundColor:[UIColor clearColor]];
-        [kongLabel setTextColor:RGBA(186, 40, 227, 1)];
+        [kongLabel setTextColor:COMMON_PURPLE];
         [kongLabel setTextAlignment:NSTextAlignmentCenter];
         [kongLabel setText:@"暂无订单"];
         [kongLabel setFont:[UIFont systemFontOfSize:12]];
@@ -381,7 +381,7 @@
     }
     if (![self.view viewWithTag:502]) {
         kongButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 60, SCREEN_HEIGHT / 2 - 15, 120, 35)];
-        [kongButton setBackgroundColor:RGBA(186, 40, 227, 1)];
+        [kongButton setBackgroundColor:COMMON_PURPLE];
         [kongButton setTitle:@"约约去" forState:UIControlStateNormal];
         [kongButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
         kongButton.layer.cornerRadius = 4;
