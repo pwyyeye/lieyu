@@ -12,7 +12,8 @@
 @implementation LYAdshowCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    [super awakeFromNib];
+    
     _pageCtrl.numberOfPages = 0;
     _bannerScrollview.delegate = self;
 

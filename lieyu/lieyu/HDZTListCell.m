@@ -15,6 +15,8 @@
 @implementation HDZTListCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
     _back_view.layer.cornerRadius = 2;
     _back_view.layer.masksToBounds = YES;
     _action_page.contentMode = UIViewContentModeScaleAspectFill;

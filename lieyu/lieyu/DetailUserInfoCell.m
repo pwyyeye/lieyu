@@ -14,6 +14,10 @@
     [super awakeFromNib];
     _quantityLbl.layer.cornerRadius = 6;
     _quantityLbl.layer.masksToBounds = YES;
+}
+
+- (void)drawRect:(CGRect)rect{
+    
     _userAvatarImg.layer.cornerRadius = _userAvatarImg.frame.size.width / 2 ;
     _userAvatarImg.layer.masksToBounds = YES;
 }

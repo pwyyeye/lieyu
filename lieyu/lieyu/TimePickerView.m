@@ -11,6 +11,8 @@
 @implementation TimePickerView
 
 - (void)awakeFromNib{
+    [super awakeFromNib];
+    
     self.timePicker.datePickerMode = UIDatePickerModeDateAndTime;
     self.timePicker.minimumDate = [NSDate date];
     self.timePicker.tintColor = [UIColor purpleColor];

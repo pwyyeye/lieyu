@@ -11,6 +11,8 @@
 @implementation KaZuoCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
     // Initialization code
 }
 

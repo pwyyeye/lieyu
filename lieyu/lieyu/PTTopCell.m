@@ -14,6 +14,8 @@
 @implementation PTTopCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
     [_daohanBtn setBackgroundColor:[UIColor clearColor]];
     // Initialization code
 }

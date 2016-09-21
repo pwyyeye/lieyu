@@ -16,6 +16,8 @@
 @implementation ZSBirthdayWishView
 
 - (void)awakeFromNib{
+    [super awakeFromNib];
+    
     _wishTextView.layer.borderColor = [[UIColor blackColor]CGColor];
     _wishTextView.layer.borderWidth = 0.5;
     _wishTextView.layer.cornerRadius = 3;

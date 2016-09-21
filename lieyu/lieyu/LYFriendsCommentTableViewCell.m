@@ -13,14 +13,17 @@
 @implementation LYFriendsCommentTableViewCell
 
 - (void)awakeFromNib {
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
-    _btn_headerImg.layer.cornerRadius = CGRectGetHeight(_btn_headerImg.frame)/2.f;
-    _btn_headerImg.layer.masksToBounds = YES;
+    [super awakeFromNib];
     
-
-//    [_label_comment sizeToFit];
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     [_label_comment setContentMode:UIViewContentModeTopLeft];
     
+}
+
+- (void)drawRect:(CGRect)rect{
+    
+    _btn_headerImg.layer.cornerRadius = CGRectGetHeight(_btn_headerImg.frame)/2.f;
+    _btn_headerImg.layer.masksToBounds = YES;
 }
 
 - (void)setCommentM:(FriendsCommentModel *)commentM{

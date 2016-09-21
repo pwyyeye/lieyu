@@ -11,6 +11,8 @@
 @implementation ContentView
 
 - (void)awakeFromNib{
+    [super awakeFromNib];
+    
     self.radioButtons = @[_redioButton1,_radioButton2,_radioButton3];
     self.selectButton = @[_selectBtn1, _selectBtn2, _selectBtn3];
     self.buttonStatusArray = [[NSMutableArray alloc]initWithArray:@[@"1",@"0",@"0"]];

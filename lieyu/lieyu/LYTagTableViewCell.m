@@ -15,7 +15,7 @@
 @implementation LYTagTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    [super awakeFromNib];
     _btnArray = @[_button1,_button2,_button3];
     [self.btn_custom setTitleColor:RGB(102, 102, 102) forState:UIControlStateNormal];
     self.btn_custom.layer.masksToBounds=YES;

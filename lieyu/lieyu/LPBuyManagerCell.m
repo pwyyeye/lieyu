@@ -12,6 +12,8 @@
 @implementation LPBuyManagerCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
     // Initialization code
 }
 

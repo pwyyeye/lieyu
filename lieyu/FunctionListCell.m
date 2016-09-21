@@ -9,12 +9,11 @@
 #import "FunctionListCell.h"
 
 @implementation FunctionListCell
-
-- (void)awakeFromNib {
+- (void)drawRect:(CGRect)rect{
+    
     self.mesImageView.layer.masksToBounds =YES;
     
     self.mesImageView.layer.cornerRadius =self.mesImageView.frame.size.width/2;
-    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

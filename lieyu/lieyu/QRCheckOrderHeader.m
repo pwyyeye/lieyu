@@ -11,14 +11,19 @@
 @implementation QRCheckOrderHeader
 
 - (void)awakeFromNib {
-    _user_avater.layer.cornerRadius = CGRectGetHeight(_user_avater.frame) / 2;
-    _user_avater.layer.masksToBounds = YES;
+    [super awakeFromNib];
     _IsSelected.selected = NO;
     UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, SCREEN_WIDTH - 6, 82) byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(4, 4) ];
     CAShapeLayer *maskLayer = [[CAShapeLayer alloc]init];
     maskLayer.frame = CGRectMake(0, 0, SCREEN_WIDTH - 6, 82);
     maskLayer.path = maskPath.CGPath;
     self.bgView.layer.mask = maskLayer;
+}
+
+- (void)drawRect:(CGRect)rect{
+    
+    _user_avater.layer.cornerRadius = CGRectGetHeight(_user_avater.frame) / 2;
+    _user_avater.layer.masksToBounds = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

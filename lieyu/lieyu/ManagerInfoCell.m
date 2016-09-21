@@ -13,6 +13,7 @@
 @implementation ManagerInfoCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     self.starsArray = @[_star1,_star2,_star3,_star4,_star5];
 //    [self.iconImage addTarget:self action:@selector(imageClick) forControlEvents:UIControlEventTouchUpInside];
 //    [self.name addTarget:self action:@selector(nameClick) forControlEvents:UIControlEventTouchUpInside];
@@ -21,6 +22,10 @@
     }else{
         [self.radioButon setBackgroundImage:[UIImage imageNamed:@"CustomBtn_unSelected"] forState:UIControlStateSelected];
     }
+}
+
+- (void)drawRect:(CGRect)rect{
+    
     self.avatarImage.layer.cornerRadius = self.avatarImage.frame.size.width / 2.0 ;
     self.avatarImage.layer.masksToBounds = YES;
 }

@@ -10,8 +10,8 @@
 
 @implementation NoticeCell
 
-- (void)awakeFromNib {
-    // Initialization code
+- (void)drawRect:(CGRect)rect{
+    
     self.userImageView.layer.masksToBounds =YES;
     
     self.userImageView.layer.cornerRadius =self.userImageView.frame.size.width/2;

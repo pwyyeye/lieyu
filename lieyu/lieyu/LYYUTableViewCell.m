@@ -16,26 +16,19 @@
 @implementation LYYUTableViewCell
 
 - (void)awakeFromNib {
-    
+    [super awakeFromNib];
     self.layer.shouldRasterize = YES;
     self.layer.rasterizationScale = [[UIScreen mainScreen] scale];
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    _btn_headerImg.layer.cornerRadius = CGRectGetHeight(_btn_headerImg.frame)/2.f;
-    _btn_headerImg.layer.masksToBounds = YES;
     
     UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(68, 180, SCREEN_WIDTH - 68 - 16, 0.5)];
     lineView.backgroundColor = RGBA(204, 204, 204, 1);
     [self.view_cell addSubview:lineView];
     
-    _label_constell.layer.cornerRadius = CGRectGetHeight(_label_constell.frame)/2.f;
-    _label_constell.layer.masksToBounds = YES;
     _label_constell.layer.borderColor = RGBA(217, 217, 217, 1).CGColor;
     _label_constell.layer.borderWidth = 0.5;
     
-    
-    _label_work.layer.cornerRadius = CGRectGetHeight(_label_work.frame)/2.f;
-    _label_work.layer.masksToBounds = YES;
     _label_work.layer.borderColor = RGBA(217, 217, 217, 1).CGColor;
     _label_work.layer.borderWidth = 0.5;
     
@@ -45,6 +38,19 @@
     _btn_more.frame = CGRectMake(0, 0, rect.size.width, rect.size.height);
     _btn_more.backgroundColor = COMMON_PURPLE_HALF;
     [lastBtn addSubview:_btn_more];
+    
+}
+
+- (void)drawRect:(CGRect)rect{
+    
+    _btn_headerImg.layer.cornerRadius = CGRectGetHeight(_btn_headerImg.frame)/2.f;
+    _btn_headerImg.layer.masksToBounds = YES;
+    
+    _label_constell.layer.cornerRadius = CGRectGetHeight(_label_constell.frame)/2.f;
+    _label_constell.layer.masksToBounds = YES;
+    
+    _label_work.layer.cornerRadius = CGRectGetHeight(_label_work.frame)/2.f;
+    _label_work.layer.masksToBounds = YES;
     
     for (UIButton *btn in _btnArray) {
         btn.layer.cornerRadius = CGRectGetHeight(btn.frame)/2.f;

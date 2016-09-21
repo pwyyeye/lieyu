@@ -16,6 +16,10 @@
     _shadowView.layer.shadowOffset = CGSizeMake(0, 1);
     _shadowView.layer.shadowOpacity = 0.3;
     
+}
+
+- (void)drawRect:(CGRect)rect{
+    
     _userAvatarImage.layer.cornerRadius = _userAvatarImage.frame.size.width / 2;
     _userAvatarImage.layer.masksToBounds = YES;
 }

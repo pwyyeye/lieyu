@@ -10,11 +10,11 @@
 
 @implementation FindMenuCell
 
-- (void)awakeFromNib {
+- (void)drawRect:(CGRect)rect{
+    
     self.messageImageView.layer.masksToBounds =YES;
     
     self.messageImageView.layer.cornerRadius =self.messageImageView.frame.size.width/2;
-    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

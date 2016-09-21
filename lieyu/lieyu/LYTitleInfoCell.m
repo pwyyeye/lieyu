@@ -11,7 +11,8 @@
 @implementation LYTitleInfoCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    [super awakeFromNib];
+    
     _titleLal.font = [UIFont boldSystemFontOfSize:18];
     _titleLal.textColor = RGBA(51, 51, 51, 1);
     _titleLal.frame = CGRectMake(10, 8, 72, 24);

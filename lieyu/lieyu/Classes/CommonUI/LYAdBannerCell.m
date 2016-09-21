@@ -11,6 +11,8 @@
 @implementation LYAdBannerCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
     // Initialization code
 }
 

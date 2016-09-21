@@ -11,10 +11,6 @@
 
 @implementation LYTaoCanListTableViewCell
 
-- (void)awakeFromNib {
-    // Initialization code
-}
-
 - (void)setGoodListArray:(NSArray *)goodListArray{
     _goodListArray = goodListArray;
     NSInteger x = _goodListArray.count;

@@ -9,9 +9,7 @@
 #import "TimeButton.h"
 
 @implementation TimeButton
-- (void)awakeFromNib{
-    
-}
+
 
 -(void)setSelected:(BOOL)selected{
     [super setSelected:selected];

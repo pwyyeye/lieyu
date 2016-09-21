@@ -10,11 +10,11 @@
 
 @implementation MyChooseZSCell
 
-- (void)awakeFromNib {
+- (void)drawRect:(CGRect)rect{
+    
     self.userImageView.layer.masksToBounds =YES;
     
     self.userImageView.layer.cornerRadius =self.userImageView.frame.size.width/2;
-    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

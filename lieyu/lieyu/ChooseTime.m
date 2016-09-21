@@ -11,6 +11,8 @@
 @implementation ChooseTime
 
 - (void)awakeFromNib{
+    [super awakeFromNib];
+    
     self.timePicker.datePickerMode = UIDatePickerModeTime;
     self.timePicker.tintColor = [UIColor purpleColor];
 //    

@@ -11,6 +11,8 @@
 @implementation QRCheckOrderBody
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     shapeLayer.bounds = _lineImage.bounds;
     [shapeLayer setPosition:_lineImage.center];

@@ -11,14 +11,15 @@
 @implementation SignIconTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    [super awakeFromNib];
+    
     self.layer.shouldRasterize = YES;
     CGFloat btnWidth = (SCREEN_WIDTH - 64 - 12 - 4 * 19) / 5.f;
     for (UIButton *btn in _btnArray) {
         btn.layer.cornerRadius = btnWidth/2.f;
         btn.layer.masksToBounds = YES;
     }
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 - (void)layoutSubviews{

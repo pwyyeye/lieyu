@@ -11,6 +11,8 @@
 @implementation QRCheckOrderFooter
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
     UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, SCREEN_WIDTH - 6, 42) byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(4, 4) ];
     CAShapeLayer *maskLayer = [[CAShapeLayer alloc]init];
     maskLayer.frame = CGRectMake(0, 0, SCREEN_WIDTH - 6, 42);

@@ -21,12 +21,6 @@
 
 @implementation LYHomeCollectionViewCell
 
-- (void)awakeFromNib {
-    // Initialization code
-
-    
-}
-
 
 - (void)setJiubaArray:(NSArray *)jiubaArray{
     _jiubaArray = jiubaArray;

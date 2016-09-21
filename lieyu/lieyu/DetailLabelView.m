@@ -10,6 +10,8 @@
 
 @implementation DetailLabelView
 - (void)awakeFromNib{
+    [super awakeFromNib];
+    
     UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, SCREEN_WIDTH - 6, 26) byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(4, 4)];
     CAShapeLayer *layer = [CAShapeLayer layer];
     layer.frame = CGRectMake(0, 0, SCREEN_WIDTH, 26);

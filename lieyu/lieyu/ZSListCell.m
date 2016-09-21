@@ -11,12 +11,18 @@
 @implementation ZSListCell
 
 - (void)awakeFromNib {
-    self.mesImageView.layer.masksToBounds =YES;
     
-    self.mesImageView.layer.cornerRadius =self.mesImageView.frame.size.width/2;
+    [super awakeFromNib];
     
     self.backImageView.hidden = YES;
     self.CoutentImageView.hidden = YES;
+}
+
+- (void)drawRect:(CGRect)rect{
+    
+    self.mesImageView.layer.masksToBounds =YES;
+    
+    self.mesImageView.layer.cornerRadius =self.mesImageView.frame.size.width/2;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

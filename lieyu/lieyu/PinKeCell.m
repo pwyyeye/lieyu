@@ -10,11 +10,11 @@
 
 @implementation PinKeCell
 
-- (void)awakeFromNib {
+- (void)drawRect:(CGRect)rect{
+    
     self.pinkeImageView.layer.masksToBounds =YES;
     
     self.pinkeImageView.layer.cornerRadius =self.pinkeImageView.frame.size.width/2;
-    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

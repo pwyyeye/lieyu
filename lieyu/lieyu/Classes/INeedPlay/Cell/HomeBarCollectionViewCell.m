@@ -22,6 +22,7 @@
 @implementation HomeBarCollectionViewCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     [_imgView_bg setContentMode:UIViewContentModeScaleAspectFill];
     _imgView_bg.layer.masksToBounds = YES;
     

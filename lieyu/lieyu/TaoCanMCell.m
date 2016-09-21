@@ -10,11 +10,11 @@
 
 @implementation TaoCanMCell
 
-- (void)awakeFromNib {
+- (void)drawRect:(CGRect)rect{
+    
     self.taocanImageView.layer.masksToBounds =YES;
     
     self.taocanImageView.layer.cornerRadius =self.taocanImageView.frame.size.width/2;
-    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
