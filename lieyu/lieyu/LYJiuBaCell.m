@@ -8,6 +8,7 @@
 
 #import "LYJiuBaCell.h"
 
+@implementation LYJiuBaCell
 
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

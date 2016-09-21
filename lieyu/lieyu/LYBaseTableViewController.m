@@ -52,7 +52,7 @@
     self.navigationItem.leftBarButtonItem = item;
 
     //改变navigationbar的颜色：黑色－>白色／透明，但是难以实现
-//    [self getBackView:self.navigationController.navigationBar];
+    [self getBackView:self.navigationController.navigationBar];
     
     //设置标题颜色
     
@@ -72,7 +72,7 @@
     {
         
         //_UIBackdropEffectView是_UIBackdropView的子视图，这是只需隐藏父视图即可
-        superView.backgroundColor = [UIColor whiteColor];
+        superView.backgroundColor = [UIColor clearColor];
     }
     
     for (UIView *view in superView.subviews)

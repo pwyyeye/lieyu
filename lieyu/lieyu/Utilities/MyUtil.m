@@ -935,4 +935,12 @@
     return nil;
 }
 
++ (BOOL)isMoreThaniOSTen{
+    CGFloat systemVersion = [[[UIDevice currentDevice] systemVersion] floatValue];
+    if (systemVersion >= 10.00) {
+        return YES;
+    }
+    return NO;
+}
+
 @end

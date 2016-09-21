@@ -12,11 +12,15 @@
             <objects>
                 <navigationController storyboardIdentifier="LYNavigationController" id="lfO-n6-zMf" customClass="LYNavigationController" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Btl-dE-Vya">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Btl-dE-Vya">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" id="ZIV-nE-w0K">
+                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="sLR-xf-imo" kind="relationship" relationship="rootViewController" id="Id1-Df-RHU"/>
                     </connections>
@@ -31,7 +35,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="sLR-xf-imo" customClass="MainTabbarViewController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="kvM-jh-PFs"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="XgS-9b-cRc">
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="XgS-9b-cRc">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -44,7 +48,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5v1-il-bzj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-298" y="-803"/>
+            <point key="canvasLocation" x="-289" y="-804"/>
         </scene>
         <!--我要玩-->
         <scene sceneID="fed-O2-VjL">
@@ -55,7 +59,7 @@
                         <viewControllerLayoutGuide type="bottom" id="eV5-Su-loG"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="4t4-fS-ga6">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -276,12 +280,12 @@
             <objects>
                 <tableViewController title="玩探" id="UzS-fP-W3B" customClass="WanTanViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ytF-tr-u0Y">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="hh4-bd-m3H">
-                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hh4-bd-m3H" id="0Rq-25-SuA">
                                     <frame key="frameInset" width="375" height="43.5"/>
@@ -430,7 +434,7 @@
             <objects>
                 <collectionViewController title="我" id="yPs-RX-H79" customClass="LYUserCenterController" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="3oT-oW-mWa">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gIL-5Q-ET4">
                             <size key="itemSize" width="50" height="50"/>

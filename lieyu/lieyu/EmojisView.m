@@ -46,7 +46,9 @@ static EmojisView *shareView = nil;
         _emojiEffectView.layer.shadowColor = [RGBA(0, 0, 0, 1) CGColor];
         _emojiEffectView.layer.shadowOffset = CGSizeMake(0.5, 0);
         _emojiEffectView.layer.shadowRadius = 1;
-        _emojiEffectView.layer.shadowOpacity = 0.3;
+        if (![MyUtil isMoreThaniOSTen]) {
+            _emojiEffectView.layer.shadowOpacity = 0.3;
+        }
         //        [self.view bringSubviewToFront:emojiEffectView];
         
         

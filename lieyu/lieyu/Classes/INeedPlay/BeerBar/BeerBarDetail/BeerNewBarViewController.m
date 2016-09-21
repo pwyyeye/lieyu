@@ -679,18 +679,18 @@
         }
             break;
         case 2:{
-            if(_beerBarDetail.isSign == 0){
+//            if(_beerBarDetail.isSign == 0){
                 LYBarPointTableViewCell *barPointCell = [tableView dequeueReusableCellWithIdentifier:@"LYBarPointTableViewCell" forIndexPath:indexPath];
                 barPointCell.label_point.text = @"在线订座";
                 [barPointCell.img_icon setImage:[UIImage imageNamed:@"Group 4 @2x"]];
                 barPointCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 barPointCell.selectionStyle = UITableViewCellSelectionStyleNone;
                 return barPointCell;
-            }else{
-                UITableViewCell *cell = [[UITableViewCell alloc]init];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                return cell;
-            }
+//            }else{
+//                UITableViewCell *cell = [[UITableViewCell alloc]init];
+//                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//                return cell;
+//            }
             break;
         }
         case 4://酒吧地址
@@ -924,11 +924,11 @@
             break;
         case 2:
         {
-            if(_beerBarDetail.isSign == 0){
+//            if(_beerBarDetail.isSign == 0){
                 return 60;
-            }else{
-                return 0;
-            }
+//            }else{
+//                return 0;
+//            }
         }
             break;
         case 3:{

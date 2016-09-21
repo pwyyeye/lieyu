@@ -133,4 +133,6 @@ typedef enum {
 
 +(NSArray *)getAreaWithName:(NSString *)areaName withStyle:(LYAreaStyle) style;
 
++ (BOOL)isMoreThaniOSTen;
+
 @end
