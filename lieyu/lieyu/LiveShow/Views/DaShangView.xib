@@ -21,12 +21,16 @@
                 </pageControl>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GRi-JC-jj2">
                     <constraints>
-                        <constraint firstAttribute="width" constant="58" id="63Y-Lh-aea"/>
-                        <constraint firstAttribute="height" constant="29" id="wfx-Gf-mwx"/>
+                        <constraint firstAttribute="width" constant="62" id="63Y-Lh-aea"/>
+                        <constraint firstAttribute="height" constant="28" id="wfx-Gf-mwx"/>
                     </constraints>
                     <state key="normal" title="赏">
                         <color key="titleColor" red="0.69803921570000005" green="0.14901960780000001" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="4"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NGZ-Ee-cIZ">
                     <constraints>
@@ -48,12 +52,12 @@
                 <constraint firstItem="NGZ-Ee-cIZ" firstAttribute="top" secondItem="bCl-8e-6hV" secondAttribute="top" constant="6" id="1jP-yU-Wyv"/>
                 <constraint firstAttribute="trailing" secondItem="HAK-J3-Knr" secondAttribute="trailing" id="6YJ-e0-bG0"/>
                 <constraint firstItem="GRi-JC-jj2" firstAttribute="centerX" secondItem="bCl-8e-6hV" secondAttribute="centerX" id="Dsc-wZ-jXE"/>
-                <constraint firstItem="GRi-JC-jj2" firstAttribute="top" secondItem="HAK-J3-Knr" secondAttribute="bottom" constant="14" id="VIy-A7-42f"/>
+                <constraint firstItem="GRi-JC-jj2" firstAttribute="top" secondItem="HAK-J3-Knr" secondAttribute="bottom" constant="24" id="VIy-A7-42f"/>
                 <constraint firstAttribute="trailing" secondItem="NGZ-Ee-cIZ" secondAttribute="trailing" constant="6" id="i9A-Bp-QOv"/>
                 <constraint firstAttribute="bottom" secondItem="GRi-JC-jj2" secondAttribute="bottom" constant="3" id="iz7-4C-R68"/>
                 <constraint firstItem="lDl-VJ-otu" firstAttribute="centerX" secondItem="bCl-8e-6hV" secondAttribute="centerX" id="puO-wZ-EAJ"/>
                 <constraint firstItem="HAK-J3-Knr" firstAttribute="leading" secondItem="bCl-8e-6hV" secondAttribute="leading" id="q2O-dU-4sy"/>
-                <constraint firstAttribute="bottom" secondItem="lDl-VJ-otu" secondAttribute="bottom" constant="19" id="t9N-pY-ish"/>
+                <constraint firstAttribute="bottom" secondItem="lDl-VJ-otu" secondAttribute="bottom" constant="22" id="t9N-pY-ish"/>
                 <constraint firstItem="HAK-J3-Knr" firstAttribute="top" secondItem="bCl-8e-6hV" secondAttribute="top" constant="33" id="x1g-ng-tOM"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

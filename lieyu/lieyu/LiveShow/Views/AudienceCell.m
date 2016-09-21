@@ -10,9 +10,6 @@
 
 @implementation AudienceCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
+
 
 @end

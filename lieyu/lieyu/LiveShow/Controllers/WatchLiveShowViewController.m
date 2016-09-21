@@ -70,7 +70,7 @@
 //距离底部
 #define distanceOfBottom CGRectGetMaxY(self.view.bounds) - 20
 
-@interface WatchLiveShowViewController () <PLPlayerDelegate,UICollectionViewDataSource, UICollectionViewDelegate ,UICollectionViewDelegateFlowLayout,ISEmojiViewDelegate>
+@interface WatchLiveShowViewController () <PLPlayerDelegate,ISEmojiViewDelegate>
 
 {
     NSTimer *_timer;//定时器
@@ -86,7 +86,7 @@
     NSTimer *_burstTimer;//延时
     NSInteger _giftNumber;//礼物数量
     NSString *_giftValue;//礼物价值
-    
+    NSArray *_dataArr;//礼物数组
 }
 @property (nonatomic, strong) NSMutableArray *giftValueArray;
 
@@ -255,7 +255,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     [_player.playerView addSubview:_CAEmitterView];
     _heartSize = 36;
     //返回按钮
-    _backButton = [UIButton buttonWithType:(UIButtonTypeSystem)];
+    _backButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
     _backButton.frame = CGRectMake(SCREEN_WIDTH - 50, 30, 40, 40);
     [_backButton setImage:[UIImage imageNamed:@"live_close.png"] forState:(UIControlStateNormal)];
     [_backButton addTarget:self action:@selector(closebackButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
@@ -284,11 +284,10 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     NSInteger status = [_hostUser[@"friendStatus"] integerValue];
     if (status == 2 || status == 0) {//0 没有关系   1 关注   2 粉丝   3 好友
         _userView.isFoucsButton.tag = 2;
-        _userView.isFoucsButton.titleLabel.text = @"关注";
-        _userView.isFoucsButton.userInteractionEnabled = YES;
+        [_closeView.focusButton setTitle:@"关注" forState:(UIControlStateNormal)];
     } else if (status == 1 || status == 3) {
         _userView.isFoucsButton.tag = 1;
-        _userView.isFoucsButton.titleLabel.text = @"已关注";
+        [_closeView.focusButton setTitle:@"已关注" forState:(UIControlStateNormal)];
         _userView.isFoucsButton.userInteractionEnabled = NO;
     }
     
@@ -299,7 +298,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
         UICollectionViewFlowLayout *layout=[[ UICollectionViewFlowLayout alloc ] init ];
         [layout setScrollDirection:(UICollectionViewScrollDirectionHorizontal)];
         _audienceCollectionView = [[ UICollectionView alloc ] initWithFrame : CGRectMake(SCREEN_WIDTH / 50, SCREEN_HEIGHT / 12 + 30 +10, SCREEN_WIDTH - 20, SCREEN_HEIGHT / 13) collectionViewLayout :layout];
-        [_audienceCollectionView registerClass :[ AudienceCell class ] forCellWithReuseIdentifier : _CELL ];
+        [_audienceCollectionView registerNib:[UINib nibWithNibName:@"AudienceCell" bundle:nil] forCellWithReuseIdentifier:_CELL];
         _audienceCollectionView.showsHorizontalScrollIndicator = NO;
         _audienceCollectionView. backgroundColor =[ UIColor clearColor];
         _audienceCollectionView. delegate = self ;
@@ -309,7 +308,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
         
         //礼物按钮
         UIButton *giftButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        giftButton.frame = CGRectMake(SCREEN_WIDTH / 50, distanceOfBottom - SCREEN_WIDTH / 8, SCREEN_WIDTH / 8 , SCREEN_WIDTH / 8);
+        giftButton.frame = CGRectMake(SCREEN_WIDTH / 49, distanceOfBottom - SCREEN_WIDTH / 8, SCREEN_WIDTH / 8 , SCREEN_WIDTH / 8);
         [giftButton setImage:[UIImage imageNamed:@"live_gift.png"] forState:(UIControlStateNormal)];
         [giftButton addTarget:self action:@selector(giftButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
         _giftButton = giftButton;
@@ -355,7 +354,32 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     [_daShangView.closeButton addTarget:self action:@selector(dashangCloseViewAction:) forControlEvents:(UIControlEventTouchUpInside)];
     [_daShangView.sendGiftButton addTarget:self action:@selector(sendGiftButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
 }
+
 -(void)sendGiftButtonAction:(UIButton *)sender{
+    _dataArr = @[@{@"giftIamge":@"rose.png",@"giftName":@"玫瑰花",@"giftValue":@"10娱币"},
+                 @{@"giftIamge":@"gold.png",@"giftName":@"元宝",@"giftValue":@"2500娱币"},
+                 @{@"giftIamge":@"biantai.png",@"giftName":@"风油精",@"giftValue":@"50娱币"},
+                 @{@"giftIamge":@"apple.png",@"giftName":@"Iphone10",@"giftValue":@"6666娱币"},
+                 @{@"giftIamge":@"book.png",@"giftName":@"金瓶梅",@"giftValue":@"100娱币"},
+                 @{@"giftIamge":@"watch.png",@"giftName":@"百达翡丽",@"giftValue":@"39999娱币"},
+                 @{@"giftIamge":@"chicken.png",@"giftName":@"烤鸡",@"giftValue":@"200娱币"},
+                 @{@"giftIamge":@"airport.png",@"giftName":@"私人飞机",@"giftValue":@"222222娱币"},
+                 @{@"giftIamge":@"moreRose.png",@"giftName":@"玫瑰",@"giftValue":@"520娱币"},
+                 @{@"giftIamge":@"ring.png",@"giftName":@"钻戒",@"giftValue":@"8888娱币"},
+                 @{@"giftIamge":@"champagne.png",@"giftName":@"香槟",@"giftValue":@"680娱币"},
+                 @{@"giftIamge":@"car.png",@"giftName":@"跑车",@"giftValue":@"88888娱币"},
+                 @{@"giftIamge":@"lafei.png",@"giftName":@"拉菲",@"giftValue":@"1280娱币"},
+                 @{@"giftIamge":@"ship.png",@"giftName":@"游艇",@"giftValue":@"131400娱币"},
+                 @{@"giftIamge":@"huangjia.png",@"giftName":@"皇家礼炮",@"giftValue":@"1880娱币"},
+                 @{@"giftIamge":@"house.png",@"giftName":@"别墅",@"giftValue":@"334400娱币"}
+                 ];
+    __weak typeof (self) WeakSelf = self;
+    UIImage *img = nil;
+    for (NSDictionary *dic in _dataArr) {
+        if (_giftValue == dic[@"giftValue"]) {
+            img = (UIImage *)dic[@"giftIamge"];
+        }
+    }
     NSDictionary *dictGift = @{@"amount":_giftValue,
                                @"toUserid":_hostUser[@"id"],
                                @"rid":@"live",
@@ -366,9 +390,23 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
         giftMessage.type = @"1";
         giftMessage.gift.giftId = _giftValue;
         [weakSelf sendMessage:giftMessage pushContent:@""];
+        [WeakSelf showGiftIamgeAnmiationWith:img];
     }];
     [_daShangView removeFromSuperview];
     _daShangView = nil;
+}
+
+-(void) showGiftIamgeAnmiationWith:(UIImage *) giftImg{
+    UIImageView *giftIamge = [[UIImageView alloc] initWithImage:giftImg];
+    giftIamge.center = self.view.center;
+    giftIamge.size = CGSizeMake(60, 60);
+    [self.view addSubview:giftIamge];
+    [self.view bringSubviewToFront:giftIamge];
+    [UIView animateWithDuration:2 delay:2 usingSpringWithDamping:.7f initialSpringVelocity:.3f options:UIViewAnimationOptionOverrideInheritedCurve animations:^{
+        giftIamge.size = CGSizeMake(0, 0);
+    } completion:^(BOOL finished) {
+        [giftIamge removeFromSuperview];
+    }];
 }
 
 -(void)notice:(NSNotification *)notification{
@@ -436,12 +474,12 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
             NSLog(@"2");
             break;
         case PLPlayerStatusCaching:
-            [app startLoading];
+//            [app startLoading];
             NSLog(@"3");
             break;
         case PLPlayerStatusPlaying:
             NSLog(@"4");
-            [app stopLoading];
+//            [app stopLoading];
             break;
         case PLPlayerStatusPaused:
             [MyUtil showMessage:@"主播暂停了直播..."];
@@ -468,7 +506,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
 
     if (![_contentURL isEqual: [NSNull null]] || _contentURL != nil) {
-        [app stopLoading];
+//        [app stopLoading];
         [MyUtil showMessage:@"链接失败！"];
         [self dismissViewControllerAnimated:YES completion:NULL];
     }
@@ -492,11 +530,11 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
         _closeView.focusButton.tag = 2;
         _userView.frame = CGRectMake(20, 30, SCREEN_WIDTH / 2 - 40, 40);
     } else if (status == 1 || status == 3) {
-        _closeView.focusButton.titleLabel.text = @"已关注";
+        [_closeView.focusButton setTitle:@"已关注" forState:(UIControlStateNormal)];
         _closeView.focusButton.userInteractionEnabled = NO;
     }
     [_closeView.backButton addTarget:self action:@selector(closebackButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
-    [_closeView.focusButton addTarget:self action:@selector(closeFocusButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
+    [_closeView.focusButton addTarget:self action:@selector(closeFocusButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
     [self.player stop];//关闭播放器
 }
 
@@ -505,36 +543,47 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
--(void)closeFocusButtonAction{
-    
+-(void)closeFocusButtonAction:(UIButton *)sender{
+    NSInteger userid = [_hostUser[@"id"] integerValue];
+    NSDictionary *dict = @{@"followid":[NSString stringWithFormat:@"%ld",userid]};
+    [LYFriendsHttpTool followFriendWithParms:dict complete:^(NSDictionary *dict) {
+        sender.titleLabel.text = @"已关注";
+        sender.userInteractionEnabled = NO;
+    }];
+    [self.player stop];//关闭播放器
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 #pragma mark -- 关注
 -(void)foucsButtonAction: (UIButton *) sender{
     NSInteger userid = [_hostUser[@"id"] integerValue];
     NSDictionary *dict = @{@"followid":[NSString stringWithFormat:@"%ld",userid]};
-    if (sender.tag == 1) {//不能取消关注
-        [LYFriendsHttpTool unFollowFriendWithParms:dict complete:^(NSDictionary *dict) {
-            sender.titleLabel.text = @"关注";
-        }];
-    } else {
+//    if (sender.tag == 1) {//不能取消关注
+//        [LYFriendsHttpTool unFollowFriendWithParms:dict complete:^(NSDictionary *dict) {
+//            sender.titleLabel.text = @"关注";
+//        }];
+//    } else {
         [LYFriendsHttpTool followFriendWithParms:dict complete:^(NSDictionary *dict) {
             sender.titleLabel.text = @"已关注";
             sender.userInteractionEnabled = NO;
         }];
-    }
+//    }
 }
 
 #pragma mark -- 点击头像事件
 -(void)anchorDetail{
     _anchorDetailView = [[[NSBundle mainBundle] loadNibNamed:@"AnchorDetailView" owner:self options:nil] lastObject];
-    _anchorDetailView.frame = CGRectMake(0, 0, SCREEN_WIDTH/5 *4,SCREEN_HEIGHT / 3);
+    _anchorDetailView.frame = CGRectMake(0, 0, 260,210);
     _anchorDetailView.center = self.view.center;
     _anchorDetailView.layer.cornerRadius = 8.f;
     _anchorDetailView.layer.masksToBounds = YES;
     _anchorDetailView.backgroundColor = [UIColor whiteColor];
     _anchorDetailView.nickNameLabel.text = self.hostUser[@"usernick"];
-    [_anchorDetailView.anchorIcon sd_setImageWithURL:[NSURL URLWithString:self.hostUser[@"avatar_img"]]];
+    NSString *imgStr = [NSString stringWithFormat:@"%@",_hostUser[@"avatar_img"]];
+    if (imgStr.length < 50) {
+        imgStr = [MyUtil getQiniuUrl:_hostUser[@"avatar_img"] width:0 andHeight:0];
+    }
+    [_anchorDetailView.anchorIcon sd_setImageWithURL:[NSURL URLWithString:imgStr]];
     if ([_hostUser[@"gender"] isEqualToString:@"0"]) {
         _anchorDetailView.genderIamge.image=[UIImage imageNamed:@"woman"];
     }else{
@@ -592,13 +641,14 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     } else {//信息
         return self.conversationDataRepository.count;
     }
-    return 31 ;
+    return 31;
 }
 //定义展示的Section的个数
 -( NSInteger )numberOfSectionsInCollectionView:( UICollectionView *)collectionView
 {
-    return 1 ;
+    return 1;
 }
+
 //每个UICollectionView展示的内容
 -( UICollectionViewCell *)collectionView:( UICollectionView *)collectionView cellForItemAtIndexPath:( NSIndexPath *)indexPath
 {
@@ -606,8 +656,15 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
         AudienceCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier : _CELL forIndexPath :indexPath];
         ChatUseres *user = [[ChatUseres alloc] init];
         user = _dataArray[indexPath.row];
-        [cell.iconButton.imageView sd_setImageWithURL:[NSURL URLWithString:user.avatar_img]];
-        [cell.iconButton addTarget:self action:@selector(ceshiAction:) forControlEvents:(UIControlEventTouchUpInside)];
+        NSString *imgStr = user.avatar_img;
+        if (imgStr.length < 50) {
+            imgStr = [MyUtil getQiniuUrl:user.avatar_img width:0 andHeight:0];
+        }
+        if (cell.iconButton.imageView.image == nil) {
+            [cell.iconButton.imageView sd_setImageWithURL:[NSURL URLWithString:imgStr]];
+            [cell.iconButton addTarget:self action:@selector(watchAudienceAction:) forControlEvents:UIControlEventTouchUpInside];
+            cell.iconButton.tag = user.id;
+        }
         cell.layer.borderColor = RGB(187, 47, 217).CGColor;
         cell.layer.borderWidth = 1.f;
         cell.layer.cornerRadius = cell.frame.size.height /2;
@@ -642,6 +699,13 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     }
 }
 
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    if (touch.view != self.audienceCollectionView || touch.view != _daShangView.giftCollectionView) {
+        return NO;
+    }
+    return YES;
+}
+
 -(void)showTheLove{
     DMHeartFlyView* heart = [[DMHeartFlyView alloc]initWithFrame:CGRectMake(0, 0, _heartSize, _heartSize)];
     [self.view addSubview:heart];
@@ -651,11 +715,11 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 }
 
 #pragma mark -- 点击聊天室成员
--(void)ceshiAction:(UIButton *)sender{
+-(void)watchAudienceAction:(UIButton *)sender{
     LYMyFriendDetailViewController *myFriendVC = [[LYMyFriendDetailViewController alloc]init];
     myFriendVC.isChatroom = 4;
     myFriendVC.imUserId = [NSString stringWithFormat:@"%ld",sender.tag];
-    [self.navigationController pushViewController:myFriendVC animated:YES];
+//    [self.navigationController pushViewController:myFriendVC animated:YES];
 }
 //cell消失时
 -(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
@@ -663,7 +727,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     if (collectionView.tag == 199) {
         AudienceCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier : _CELL forIndexPath :indexPath];
         cell.iconButton.imageView.image = nil;
-        [cell.iconButton removeTarget:self action:@selector(ceshiAction:) forControlEvents:(UIControlEventTouchUpInside)];
+        [cell.iconButton removeTarget:self action:@selector(watchAudienceAction:) forControlEvents:(UIControlEventTouchUpInside)];
     } else {
         
     }
@@ -718,10 +782,10 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
             if(likeMessage.senderUserInfo){
                 if ([likeMessage.senderUserInfo.userId isEqualToString:[RCIM sharedRCIM].currentUserInfo.userId]) {
                     txt = @"你送出一个";
-                }else{
+                } else {
                     txt = [NSString stringWithFormat:@"%@送出一个",likeMessage.senderUserInfo.name];
                 }
-            }else{
+            } else {
                 txt = @"神秘人送出一个";
             }
         }
@@ -741,11 +805,6 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     }
 }
 
-- (BOOL) collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    return YES;
-}
-
 #pragma mark --- UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"%ld",indexPath.row);
@@ -753,7 +812,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
             LYMyFriendDetailViewController *LYMyFriendDetailVC = [[LYMyFriendDetailViewController alloc] init];
             LYMyFriendDetailVC.type = @"4";
             LYMyFriendDetailVC.imUserId = @"";
-            [self.navigationController pushViewController:LYMyFriendDetailVC animated:NO];
+//            [self.navigationController pushViewController:LYMyFriendDetailVC animated:NO];
     } else {
         
     }
@@ -887,18 +946,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     self.conversationMessageCollectionView.dataSource = self;
     self.conversationMessageCollectionView.delegate = self;
     [self.contentView addSubview:self.conversationMessageCollectionView];
-//    //输入区
-//    if(self.inputBar == nil){
-//        float inputBarOriginY = distanceOfBottom - SCREEN_WIDTH / 8;
-//        float inputBarOriginX = SCREEN_WIDTH / 6 ;
-//        float inputBarSizeWidth = SCREEN_WIDTH / 3 *2 ;
-//        float inputBarSizeHeight = MinHeight_InputView;
-//        self.inputBar = [[RCInputBarControl alloc]initWithFrame:CGRectMake(inputBarOriginX, inputBarOriginY,inputBarSizeWidth,inputBarSizeHeight)
-//                                                inViewConroller:self];
-//        self.inputBar.delegate = self;
-//        self.inputBar.backgroundColor = [UIColor clearColor];
-//        [self.view addSubview:self.inputBar];
-//    }
+
     _commentView = [[[NSBundle mainBundle]loadNibNamed:@"LYFriendsCommentView" owner:nil options:nil] firstObject];
     _commentView.frame = CGRectMake(SCREEN_WIDTH / 6, distanceOfBottom - SCREEN_WIDTH / 8,SCREEN_WIDTH / 3 * 2 , MinHeight_InputView);
     _commentView.backgroundColor = [UIColor clearColor];

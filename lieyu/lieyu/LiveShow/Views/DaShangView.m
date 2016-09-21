@@ -25,14 +25,11 @@ static NSString *daShangCellID = @"dashangCellID";
     [self setupSubviews];
     self.sendGiftButton.layer.borderColor = RGB(187, 40, 217).CGColor;
     self.sendGiftButton.layer.borderWidth = 1.f;
-    self.sendGiftButton.layer.cornerRadius = 5.f;
-    self.sendGiftButton.layer.masksToBounds = YES;
 }
 
 -(void)setupSubviews{
     _number = 0;
     _chooseTag = 6666;
-    self.giftCollectionView.backgroundColor = [UIColor whiteColor];
     self.giftCollectionView.delegate = self;
     self.giftCollectionView.dataSource = self;
     self.giftCollectionView.backgroundColor = [UIColor clearColor];
@@ -128,13 +125,12 @@ static NSString *daShangCellID = @"dashangCellID";
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(self.frame.size.width / 4 - 10 , self.frame.size.height / 3);
+    return CGSizeMake(self.frame.size.width / 4 - 10 , self.frame.size.height / 3 - 10);
 }
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
     return UIEdgeInsetsMake(5, 5, 5, 5);
 }
-
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     DaShangViewCell *cell = (DaShangViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
@@ -158,7 +154,6 @@ static NSString *daShangCellID = @"dashangCellID";
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
     DaShangViewCell *cell = (DaShangViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
     cell.DSChooseImage.hidden = YES;
-    
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView

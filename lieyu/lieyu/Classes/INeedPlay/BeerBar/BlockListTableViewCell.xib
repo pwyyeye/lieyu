@@ -55,7 +55,7 @@
                 <outlet property="logoutButton" destination="rQG-fB-6Dz" id="aRO-Xz-aUG"/>
                 <outlet property="nameLabel" destination="PwN-tu-6BC" id="hOr-Cv-kXj"/>
             </connections>
-            <point key="canvasLocation" x="319" y="214.5"/>
+            <point key="canvasLocation" x="58" y="124"/>
         </tableViewCell>
     </objects>
 </document>

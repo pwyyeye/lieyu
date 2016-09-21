@@ -193,7 +193,6 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
     [self.conversationMessageCollectionView reloadData];
-    
     _takeNum = 0;
     
     [RCIM sharedRCIM].disableMessageAlertSound = YES;//关闭融云的提示音
@@ -331,8 +330,6 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
         if ([dict valueForKey:@"users"]) {
             self.dataArray = dict[@"users"];
         }
-        
-        
         [_audienceCollectionView reloadData];
     }];
     
@@ -433,6 +430,9 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 -(void)setButtonAction{
     if (_backgroudView.hidden) {
         _backgroudView.hidden = NO;
+        if (_livesetView.hidden) {
+            _livesetView.hidden = NO;
+        }
         _backgroudView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
         [self.view insertSubview:_backgroudView aboveSubview:_conversationMessageCollectionView];
     } else {
@@ -453,6 +453,8 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"http://10.17.114.61/lieyu/liveroom/live?liveChatId=%@",self.chatRoomId];
     [UMSocialData defaultData].extConfig.qqData.url = [NSString stringWithFormat:@"http://10.17.114.61/lieyu/liveroom/live?liveChatId=%@",self.chatRoomId];
     [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:nil shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,nil] delegate:nil];
+    _backgroudView.hidden = YES;
+    _backgroudView.frame = self.setButton.frame;
 }
 
 -(void)shiftButtonAction{
@@ -462,6 +464,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 }
 
 -(void)beautifulButtonAction{
+    _livesetView.hidden = YES;
     if (_blackView.hidden) {
         _blackView.hidden = NO;
     } else {
@@ -812,7 +815,6 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 }
 
 
-
 #pragma mark --UICollectionViewDataSource
 
 //定义展示的UICollectionViewCell的个数
@@ -821,7 +823,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 {
     if (collectionView.tag == 199) {//观众列表
         return _dataArray.count;
-    }else {//信息
+    } else {//信息
         return self.conversationDataRepository.count;
     }
 }
@@ -836,9 +838,15 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     if (collectionView.tag == 199) {
         AudienceCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier : _CELL forIndexPath :indexPath];
         ChatUseres *user = _dataArray[indexPath.row];
-        [cell.iconButton.imageView sd_setImageWithURL:[NSURL URLWithString:user.avatar_img]];
-        
-//        [cell.iconButton addTarget:self action:@selector(ceshiAction:) forControlEvents:(UIControlEventTouchUpInside)];
+        NSString *imgStr = user.avatar_img;
+        if (imgStr.length < 50) {
+            imgStr = [MyUtil getQiniuUrl:user.avatar_img width:0 andHeight:0];
+        }
+        if (cell.iconButton.imageView.image == nil) {
+            [cell.iconButton.imageView sd_setImageWithURL:[NSURL URLWithString:imgStr]];
+            [cell.iconButton addTarget:self action:@selector(liveAudienceAction:) forControlEvents:UIControlEventTouchUpInside];
+            cell.iconButton.tag = user.id;
+        }
         cell.layer.borderColor = RGB(187, 47, 217).CGColor;
         cell.layer.borderWidth = 1.f;
         cell.layer.cornerRadius = cell.frame.size.height /2;
@@ -883,11 +891,11 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 }
 
 #pragma mark -- 点击聊天室成员
--(void)ceshiAction:(UIButton *)sender{
+-(void)liveAudienceAction:(UIButton *)sender{
     LYMyFriendDetailViewController *myFriendVC = [[LYMyFriendDetailViewController alloc]init];
     myFriendVC.isChatroom = 4;
     myFriendVC.imUserId = [NSString stringWithFormat:@"%ld",sender.tag];
-    [self.navigationController pushViewController:myFriendVC animated:YES];
+//    [self.navigationController pushViewController:myFriendVC animated:YES];
 }
 
 //cell消失时
@@ -895,9 +903,10 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 {
     if (collectionView.tag == 199) {
         AudienceCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier : _CELL forIndexPath :indexPath];
-        cell.iconButton.imageView.image = nil;
+//        cell.iconButton.imageView.image = nil;
 //        [cell.iconButton removeTarget:self action:@selector(ceshiAction:) forControlEvents:(UIControlEventTouchUpInside)];
     } else {
+        
     }
 }
 
