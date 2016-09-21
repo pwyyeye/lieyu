@@ -118,10 +118,24 @@
 		<key>NSExceptionDomains</key>
 		<dict/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>NSCameraUsageDescription</string>
+	<key>NSContactsUsageDescription</key>
+	<string>猎娱希望调用你的通讯录</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>YES</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>YES</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>microphoneDesciption</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>猎娱希望调用你的相册</string>
+	<key>NSSiriUsageDescription</key>
+	<string>OK</string>
+	<key>NSVideoSubscriberAccountUsageDescription</key>
+	<string>ok</string>
+	<key>NSVoIPUsageDescription</key>
+	<string>ok</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>

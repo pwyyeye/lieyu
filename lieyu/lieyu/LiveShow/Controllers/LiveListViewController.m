@@ -48,29 +48,29 @@ static NSString *liveShowListID = @"liveShowListID";
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title = @"";
+    _type = 0;
     _pageNum = 2;
     _chooseType = 0;
-    
-    _tableViewArray = [NSMutableArray array];
-    _hotDataArray = [NSMutableArray array];
-    _rencentDataArray = [NSMutableArray array];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-    [self setTableView];//配置表
-    [self initMJFooterAndHeader];
-    [self setMenuView];
-    [self initReleaseWishButton];
-    self.title = @"";
-    
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    _type = 0;
     if (!_index) {//0热门
         _friendsBtnSelect = YES;
     } else {
         _friendsBtnSelect = NO;
     }
+    _tableViewArray = [NSMutableArray array];
+    _hotDataArray = [NSMutableArray array];
+    _rencentDataArray = [NSMutableArray array];
+    [self setTableView];//配置表
+    [self initMJFooterAndHeader];
+    [self setMenuView];
+    [self initReleaseWishButton];
+    [self refreshData];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -115,7 +115,6 @@ static NSString *liveShowListID = @"liveShowListID";
         _newBtn.isLiveListMenuSelected = YES;
         _hotBtn.isLiveListMenuSelected = NO;
     }
-    
     _lineView = [[UIView alloc]init];
     _lineView.bounds = CGRectMake(0,0,42, 2);
     if (_friendsBtnSelect) {
@@ -159,7 +158,6 @@ static NSString *liveShowListID = @"liveShowListID";
     _chooseView.alpha = 0.6f;
     [self.view addSubview:_chooseView];
     _chooseView.hidden = YES;
-    
 }
 
 #pragma mark - 空界面
@@ -291,7 +289,6 @@ static NSString *liveShowListID = @"liveShowListID";
     _newTablwView.dataSource  = self;
     [_newTablwView registerNib:[UINib nibWithNibName:@"LiveShowListCell" bundle:nil] forCellReuseIdentifier:liveShowListID];
     
-    [self refreshData];
     
 }
 
@@ -535,7 +532,6 @@ static NSString *liveShowListID = @"liveShowListID";
 }
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
     if (tableView == (UITableView *)_tableViewArray[0]) {//热门
         return _hotDataArray.count;
     } else {
@@ -550,11 +546,7 @@ static NSString *liveShowListID = @"liveShowListID";
         cell = [[LiveShowListCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:liveShowListID];
     }
     LYLiveShowListModel *model = [LYLiveShowListModel new];
-    if (_hotDataArray.count == 0 || _rencentDataArray.count == 0) {
-        return nil;
-    }
     if (tableView == (UITableView *)_tableViewArray[0]) {//热门
-        
         model = _hotDataArray[indexPath.row];
     } else {
         model = _rencentDataArray[indexPath.row];

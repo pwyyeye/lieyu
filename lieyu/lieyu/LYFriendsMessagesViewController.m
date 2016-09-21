@@ -49,7 +49,7 @@ static NSString *daShangCellID = @"dashangCellID";
     NSString *jubaoMomentID;//要删除的动态ID
     UIView *_bigView;//评论的背景view
     DaShangView *_daShangView;//打赏View
-    NSMutableArray *_dataArr;
+    NSArray *_dataArr;
     NSInteger _giftNumber;//礼物数量
     NSString *_giftValue;//礼物价值
     NSString *_toUserId;//打赏对象id
@@ -836,7 +836,7 @@ static NSString *daShangCellID = @"dashangCellID";
                 allCommentCell.label_commentCount.text = @"暂无评论";
                 return allCommentCell;
             }
-            int commentCount = 0;
+            NSInteger commentCount = 0;
             commentCount = recentM.commentList.count;
             if(recentM.commentList.count >= 5) commentCount = 5;
             if(indexPath.row == commentCount + 4) {//所有评论
@@ -1161,18 +1161,55 @@ static NSString *daShangCellID = @"dashangCellID";
 }
 
 -(void)sendGiftMomentButtonAction:(UIButton *)sender{
+    _dataArr = @[@{@"giftIamge":@"rose.png",@"giftName":@"玫瑰花",@"giftValue":@"10娱币"},
+                 @{@"giftIamge":@"gold.png",@"giftName":@"元宝",@"giftValue":@"2500娱币"},
+                 @{@"giftIamge":@"biantai.png",@"giftName":@"风油精",@"giftValue":@"50娱币"},
+                 @{@"giftIamge":@"apple.png",@"giftName":@"Iphone10",@"giftValue":@"6666娱币"},
+                 @{@"giftIamge":@"book.png",@"giftName":@"金瓶梅",@"giftValue":@"100娱币"},
+                 @{@"giftIamge":@"watch.png",@"giftName":@"百达翡丽",@"giftValue":@"39999娱币"},
+                 @{@"giftIamge":@"chicken.png",@"giftName":@"烤鸡",@"giftValue":@"200娱币"},
+                 @{@"giftIamge":@"airport.png",@"giftName":@"私人飞机",@"giftValue":@"222222娱币"},
+                 @{@"giftIamge":@"moreRose.png",@"giftName":@"玫瑰",@"giftValue":@"520娱币"},
+                 @{@"giftIamge":@"ring.png",@"giftName":@"钻戒",@"giftValue":@"8888娱币"},
+                 @{@"giftIamge":@"champagne.png",@"giftName":@"香槟",@"giftValue":@"680娱币"},
+                 @{@"giftIamge":@"car.png",@"giftName":@"跑车",@"giftValue":@"88888娱币"},
+                 @{@"giftIamge":@"lafei.png",@"giftName":@"拉菲",@"giftValue":@"1280娱币"},
+                 @{@"giftIamge":@"ship.png",@"giftName":@"游艇",@"giftValue":@"131400娱币"},
+                 @{@"giftIamge":@"huangjia.png",@"giftName":@"皇家礼炮",@"giftValue":@"1880娱币"},
+                 @{@"giftIamge":@"house.png",@"giftName":@"别墅",@"giftValue":@"334400娱币"}
+                 ];
+    __weak typeof (self) WeakSelf = self;
+    UIImage *img = nil;
+    for (NSDictionary *dic in _dataArr) {
+        if (_giftValue == dic[@"giftValue"]) {
+            img = (UIImage *)dic[@"giftIamge"];
+        }
+    }
     NSDictionary *dictGift = @{@"amount":[NSString stringWithFormat:@"%@",_giftValue],
                                @"toUserid":_toUserId,
                                @"rid":@"moment",
                                @"businessid":_businessid};
     [LYFriendsHttpTool daShangWithParms:dictGift complete:^(NSDictionary *dic) {
         [MyUtil showMessage:[NSString stringWithFormat:@"%@",_giftValue]];
+        [WeakSelf showGiftIamgeAnmiationWith:img];
     }];
+    
     [_backgroudView removeFromSuperview];
     _backgroudView = nil;
 }
 
-
+-(void) showGiftIamgeAnmiationWith:(UIImage *) giftImg{
+    UIImageView *giftIamge = [[UIImageView alloc] initWithImage:giftImg];
+    giftIamge.center = self.view.center;
+    giftIamge.size = CGSizeMake(60, 60);
+    [self.view addSubview:giftIamge];
+    [self.view bringSubviewToFront:giftIamge];
+    [UIView animateWithDuration:2 delay:2 usingSpringWithDamping:.7f initialSpringVelocity:.3f options:UIViewAnimationOptionOverrideInheritedCurve animations:^{
+        giftIamge.size = CGSizeMake(0, 0);
+    } completion:^(BOOL finished) {
+        [giftIamge removeFromSuperview];
+    }];
+}
 
 #pragma mark - 表白action
 - (void)likeFriendsButtonClick:(UIButton *)button{

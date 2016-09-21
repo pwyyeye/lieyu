@@ -45,12 +45,16 @@
 - (void)setListModel:(LYLiveShowListModel *)listModel{
     _listModel = listModel;
     [_backImageView sd_setImageWithURL:[NSURL URLWithString:listModel.roomImg] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
-    [_iconImageView sd_setImageWithURL:[NSURL URLWithString:((roomHostUser *)listModel.roomHostUser).avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+    NSString *imgStr = [NSString stringWithFormat:@"%@",((roomHostUser *)listModel.roomHostUser).avatar_img];
+    if (imgStr.length < 50) {
+        imgStr = [MyUtil getQiniuUrl:((roomHostUser *)listModel.roomHostUser).avatar_img width:0 andHeight:0];
+    }
+    [_iconImageView sd_setImageWithURL:[NSURL URLWithString:imgStr] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     [_nameLabel setText:((roomHostUser *)listModel.roomHostUser).usernick];
     [_lookNumLabel setText:[NSString stringWithFormat:@"%d",listModel.joinNum]];
     if ([listModel.roomType isEqualToString:@"live"]) {//直播
         _liveTypeLabel.text = @"直播";
-    }else{
+    } else {
         _liveTypeLabel.text = @"回放";
     }
     if (((roomHostUser *)listModel.roomHostUser).usertype.integerValue == 1) {//隐藏顾问tag
