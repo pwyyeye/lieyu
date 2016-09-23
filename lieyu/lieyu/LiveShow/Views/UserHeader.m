@@ -10,9 +10,14 @@
 
 @implementation UserHeader
 
-
 -(void)layoutSubviews{
-    
+    [self setCornerRadiusView:self.iconIamgeView With:self.iconIamgeView.frame.size.height/2  and:YES];
+}
+
+
+-(void)setCornerRadiusView:(UIView *) maskView With:(CGFloat) size and:(BOOL) mask{
+    maskView.layer.cornerRadius = size;
+    maskView.layer.masksToBounds = YES;
 }
 
 /*

@@ -947,7 +947,7 @@ static NSString *daShangCellID = @"dashangCellID";
             FriendsCommentModel *commentM = recentM.commentList[indexPath.row - 4];
             NSString *str = nil;
             if([commentM.toUserId isEqualToString:@"0"]) {
-                str = [NSString stringWithFormat:@"%@： %@",commentM.nickName,commentM.comment];
+                str = [NSString stringWithFormat:@"%@：&%@",commentM.nickName,commentM.comment];
             }else{
                 str = [NSString stringWithFormat:@"%@ 回复 %@：%@d",commentM.nickName,commentM.toUserNickName,commentM.comment];
             }
@@ -1124,10 +1124,8 @@ static NSString *daShangCellID = @"dashangCellID";
     [self.view bringSubviewToFront:_backgroudView];
     
     _daShangView = [[[NSBundle mainBundle] loadNibNamed:@"DaShangView" owner:self options:nil] lastObject];
-    _daShangView.frame = CGRectMake(10, SCREEN_HEIGHT / 5, SCREEN_WIDTH / 15 * 14 , 300);
-
-//    _daShangView.center = self.view.center;
-//    _daShangView.size = CGSizeMake(SCREEN_WIDTH - 20, 300);
+    _daShangView.frame = CGRectMake(SCREEN_WIDTH / 30, SCREEN_HEIGHT / 5, SCREEN_WIDTH / 15 * 14 , 300);
+    
     _daShangView.backgroundColor = [UIColor whiteColor];
     _daShangView.alpha = 1.f;
     _daShangView.layer.cornerRadius = 3.f;

@@ -26,10 +26,12 @@
 
 @implementation FindGameCenterViewController
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.navigationItem.title = @"娱乐宝典";
+//    self.navigationItem.title = @"娱乐宝典";
     _titleArray = @[@"咬手鲨鱼牙",@"真心话大冒险",@"大话骰"];
     [_collectionView registerNib:[UINib nibWithNibName:@"FindGameCenterCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"FindGameCenterCollectionViewCell"];
     [self getData];
@@ -40,6 +42,7 @@
     LYNavigationController *nav = (LYNavigationController *)self.navigationController;
     nav.cj_canDragBack = YES;
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    self.title = @"娱乐宝典";
 }
 
 - (void)getData{

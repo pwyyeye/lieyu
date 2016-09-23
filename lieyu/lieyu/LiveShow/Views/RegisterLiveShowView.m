@@ -69,7 +69,7 @@
     [_LiveImageView addGestureRecognizer:tapGes];
     _LiveImageView.userInteractionEnabled = YES;
     
-    _isShare = YES;
+    _isShare = NO;//第一次默认是分享到朋友圈，所以设置为NO
     _shareType = 3;//默认分享到朋友圈
     
    // [self setcorrnerRadius:_qqButton];
@@ -89,7 +89,7 @@
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(registerAction)];
     [self addGestureRecognizer:tap];
-    
+   
 }
 
 -(void)registerAction{
@@ -181,9 +181,7 @@
                 [self.weChatMonmentButton setImage:[UIImage imageNamed:@"live_B_wechatmoment.png"] forState:(UIControlStateNormal)];
             }
             break;
-//        case 105:
-//            _shareType = 4;
-//            break;
+
         default:
             break;
     }

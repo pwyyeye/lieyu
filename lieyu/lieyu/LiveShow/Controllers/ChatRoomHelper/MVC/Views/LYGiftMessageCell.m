@@ -134,9 +134,8 @@
     messageContentViewRect.size.height = __textSize.height;
     self.messageContentView.frame = messageContentViewRect;
     self.bubbleBackgroundView.frame = CGRectMake(6, 0, __bubbleSize.width, __bubbleSize.height);
-    self.messageLabel.frame = CGRectMake(10,0, __textSize.width, __textSize.height);
-    self.bubbleBackgroundView.backgroundColor = HEXCOLOR(0x61a1ff);
-    [self.messageLabel setTextColor:HEXCOLOR(0xffffff)];
+    self.messageLabel.frame = CGRectMake(0,0, __textSize.width, __textSize.height);
+ 
     self.bubbleBackgroundView.backgroundColor = [UIColor clearColor];
         [self.messageLabel setTextColor:[UIColor redColor]];
 //        if (MessageDirection_RECEIVE == self.messageDirection) {

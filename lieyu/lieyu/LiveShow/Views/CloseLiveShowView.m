@@ -11,7 +11,7 @@
 
 @interface CloseLiveShowView ()
 
-@property (weak, nonatomic) IBOutlet UILabel *moneyNumLabel;
+
 
 @property (weak, nonatomic) IBOutlet UIButton *qqButton;
 

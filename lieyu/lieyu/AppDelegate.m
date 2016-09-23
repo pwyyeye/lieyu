@@ -102,10 +102,6 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
     
     
     
-    //    NSError *setCategoryErr=nil;
-    //    NSError *activationErr=nil;
-    //    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&setCategoryErr];
-    //    [[AVAudioSession sharedInstance] setActive:YES error:&activationErr];
     
     _timer=[NSTimer scheduledTimerWithTimeInterval:60*5 target:self selector:@selector(doHeart) userInfo:nil repeats:YES];
     [_timer setFireDate:[NSDate distantFuture]];//暂停
@@ -568,7 +564,6 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
             if ([dic objectForKey:@"type"] == nil || [dic objectForKey:@"bzId"] ==nil ) {
                 return;
             }
-            
             if([[dic objectForKey:@"type"] isEqualToString:@"13"] ||[[dic objectForKey:@"type"] isEqualToString:@"14"]||
                [[dic objectForKey:@"type"] isEqualToString:@"1"]||
                [[dic objectForKey:@"type"] isEqualToString:@"18"]) {
@@ -576,14 +571,10 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
                     [self nontifyJump:dic];
                 }else{
                     [USER_DEFAULT setObject:dic forKey:@"NOTIFYDIC"];
-                    
                 }
-                
             }
         }
-        
-        
-    }else if(dic.count>0){
+    } else if(dic.count>0) {
         NSString *count=[USER_DEFAULT objectForKey:@"badgeValue"];
         if (![MyUtil isEmptyString:count]) {
             [USER_DEFAULT setObject:[NSString stringWithFormat:@"%d",count.intValue<99?count.intValue+1:99]  forKey:@"badgeValue"];
@@ -600,13 +591,11 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+
     //    UIApplication *app=[UIApplication sharedApplication];
     //    __block UIBackgroundTaskIdentifier bgTask;
     //    bgTask =[app beginBackgroundTaskWithExpirationHandler:^{
@@ -637,7 +626,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
     //通知打开session
     NSNotification *startNotification = [NSNotification notificationWithName:@"startNotification" object:nil];
     [[NSNotificationCenter defaultCenter] postNotification:startNotification];

@@ -1472,6 +1472,10 @@
 		85C4417E1D73D67900299C17 /* yubiIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85C441761D73D67900299C17 /* yubiIcon@2x.png */; };
 		85C4417F1D73D67900299C17 /* yubiIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85C441771D73D67900299C17 /* yubiIcon@3x.png */; };
 		85C8F2341C3A4DE700288844 /* FriendsUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C8F2331C3A4DE700288844 /* FriendsUserInfoModel.m */; };
+		85E32A3C1D93FCD8007AF71F /* LYSystemTextMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E32A3B1D93FCD8007AF71F /* LYSystemTextMessageCell.m */; };
+		85E32A3F1D93FF7C007AF71F /* LYStystemMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E32A3E1D93FF7C007AF71F /* LYStystemMessage.m */; };
+		85E32A421D95013A007AF71F /* live_setBG@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85E32A401D95013A007AF71F /* live_setBG@3x.png */; };
+		85E32A431D95013A007AF71F /* live_setBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85E32A411D95013A007AF71F /* live_setBG@2x.png */; };
 		85EC69FB1C17F71F0082AA3E /* LYUserDetailSexTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F545311C13FCD20013B92B /* LYUserDetailSexTableViewCell.m */; };
 		85EC6A031C18109A0082AA3E /* LYBarDescTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EC6A021C18109A0082AA3E /* LYBarDescTableViewCell.m */; };
 		85EE80321C0AF09B00958F76 /* LYHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85EE80301C0AF09B00958F76 /* LYHeaderTableViewCell.m */; };
@@ -4123,6 +4127,12 @@
 		85C441771D73D67900299C17 /* yubiIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yubiIcon@3x.png"; sourceTree = "<group>"; };
 		85C8F2321C3A4DE700288844 /* FriendsUserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsUserInfoModel.h; sourceTree = "<group>"; };
 		85C8F2331C3A4DE700288844 /* FriendsUserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsUserInfoModel.m; sourceTree = "<group>"; };
+		85E32A3A1D93FCD8007AF71F /* LYSystemTextMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYSystemTextMessageCell.h; sourceTree = "<group>"; };
+		85E32A3B1D93FCD8007AF71F /* LYSystemTextMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYSystemTextMessageCell.m; sourceTree = "<group>"; };
+		85E32A3D1D93FF7C007AF71F /* LYStystemMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYStystemMessage.h; sourceTree = "<group>"; };
+		85E32A3E1D93FF7C007AF71F /* LYStystemMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYStystemMessage.m; sourceTree = "<group>"; };
+		85E32A401D95013A007AF71F /* live_setBG@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "live_setBG@3x.png"; sourceTree = "<group>"; };
+		85E32A411D95013A007AF71F /* live_setBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "live_setBG@2x.png"; sourceTree = "<group>"; };
 		85EC6A011C18109A0082AA3E /* LYBarDescTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYBarDescTableViewCell.h; sourceTree = "<group>"; };
 		85EC6A021C18109A0082AA3E /* LYBarDescTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYBarDescTableViewCell.m; sourceTree = "<group>"; };
 		85EE802F1C0AF09B00958F76 /* LYHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHeaderTableViewCell.h; sourceTree = "<group>"; };
@@ -7773,6 +7783,8 @@
 				85251A7D1D6ED414005CE01D /* live_B_momo@2x.png */,
 				85251A7E1D6ED414005CE01D /* live_B_momo@3x.png */,
 				85251A7F1D6ED414005CE01D /* live_addImage@3x.png */,
+				85E32A401D95013A007AF71F /* live_setBG@3x.png */,
+				85E32A411D95013A007AF71F /* live_setBG@2x.png */,
 				85251A651D6EADA7005CE01D /* live_set@2x.png */,
 				85251A661D6EADA7005CE01D /* live_set@3x.png */,
 				85251A671D6EADA7005CE01D /* live_beautiful@2x.png */,
@@ -7860,6 +7872,8 @@
 			children = (
 				85251A431D6D4F07005CE01D /* LYGiftMessage.h */,
 				85251A441D6D4F07005CE01D /* LYGiftMessage.m */,
+				85E32A3D1D93FF7C007AF71F /* LYStystemMessage.h */,
+				85E32A3E1D93FF7C007AF71F /* LYStystemMessage.m */,
 				85FE546F1D782A5F00B262EA /* GiftContent.h */,
 				85FE54701D782A5F00B262EA /* GiftContent.m */,
 			);
@@ -7875,6 +7889,8 @@
 				85251A491D6D4F07005CE01D /* LYMessageCell.m */,
 				85251A4A1D6D4F07005CE01D /* LYTextMessageCell.h */,
 				85251A4B1D6D4F07005CE01D /* LYTextMessageCell.m */,
+				85E32A3A1D93FCD8007AF71F /* LYSystemTextMessageCell.h */,
+				85E32A3B1D93FCD8007AF71F /* LYSystemTextMessageCell.m */,
 				85251A4C1D6D4F07005CE01D /* LYTipMessageCell.h */,
 				85251A4D1D6D4F07005CE01D /* LYTipMessageCell.m */,
 				85251A4E1D6D4F07005CE01D /* RCCollectionViewHeader.h */,
@@ -11760,6 +11776,7 @@
 				15E240831BB279CB0090D240 /* LYMyOrderManageViewController.xib in Resources */,
 				ADAFCD3E1CA0E261008BF959 /* manifest.json in Resources */,
 				ADD264871C93CD1A002894AC /* 1@2x.jpg in Resources */,
+				85E32A421D95013A007AF71F /* live_setBG@3x.png in Resources */,
 				85FE54A71D791AFF00B262EA /* gold@2x.png in Resources */,
 				AD399ED31C940D4D00028F23 /* logo84@2x.jpg in Resources */,
 				38E5D75A1C113445004B49D2 /* triangle_up@2x.png in Resources */,
@@ -11823,6 +11840,7 @@
 				A2020D771BA67FA40090B92A /* Fill2097@3x.png in Resources */,
 				85FE550D1D7AB67800B262EA /* BarActivity@2x.png in Resources */,
 				854C38491CF847FA000AB0CE /* LYHomeGuWenCollectionViewCell.xib in Resources */,
+				85E32A431D95013A007AF71F /* live_setBG@2x.png in Resources */,
 				85FE54B61D791AFF00B262EA /* rose@3x.png in Resources */,
 				ADC367481C62408E006C2AE5 /* viewNumber@3x.png in Resources */,
 				A2F9DA891BAAAF1A009DEAF3 /* OrderBottomForLWView.xib in Resources */,
@@ -12645,6 +12663,7 @@
 				85251A8F1D6F165D005CE01D /* LiveShowEndView.m in Sources */,
 				8540B6891C2CF40B00F16463 /* LYFriendsSendViewController.m in Sources */,
 				A20100C21BA90E4E009283D1 /* CustomerCell.m in Sources */,
+				85E32A3C1D93FCD8007AF71F /* LYSystemTextMessageCell.m in Sources */,
 				8551B4F41C8EB8FA0057F0E7 /* UserNotificationTableViewCell.m in Sources */,
 				ADE1039E1BDE49BC00D9EC38 /* RSADataSigner.m in Sources */,
 				853D3AB21C34CCC200B4FEAD /* LYFriendsChooseLocationViewController.m in Sources */,
@@ -12672,6 +12691,7 @@
 				AD106BB61C0DDEFF007F5FBA /* MJFoundation.m in Sources */,
 				15EB7C4C1BC3785200756153 /* SetMealVOModel.m in Sources */,
 				85FE55561D7AE21E00B262EA /* FansCell.m in Sources */,
+				85E32A3F1D93FF7C007AF71F /* LYStystemMessage.m in Sources */,
 				A2F9DA871BAAAEFB009DEAF3 /* OrderBottomForLWView.m in Sources */,
 				15EB3FDC1BAD472A00F07A29 /* ZSListCell.m in Sources */,
 				85F66F151C565559005D1CD8 /* HomeBarCollectionViewCell.m in Sources */,

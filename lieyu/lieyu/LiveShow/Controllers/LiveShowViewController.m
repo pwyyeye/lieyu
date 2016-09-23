@@ -36,6 +36,8 @@
 #import "LYGiftMessage.h"
 #import "LYTipMessageCell.h"
 #import "RCMessageModel.h"
+#import "LYStystemMessage.h"
+#import "LYSystemTextMessageCell.h"
 #import "RCIM.h"
 #import "RCCollectionViewHeader.h"
 #import "RCKitUtility.h"
@@ -46,7 +48,6 @@
 #import <RongIMToolKit/RCInputBarControl.h>
 #import <RongIMToolKit/RCInputBarTheme.h>
 
-#import <AVFoundation/AVAudioPlayer.h>
 
 const char *stateNames[] = {
     "Unknow",
@@ -86,17 +87,17 @@ const char *networkStatus[] = {
 PLStreamingSendingBufferDelegate,UICollectionViewDataSource, UICollectionViewDelegate ,UICollectionViewDelegateFlowLayout,UITextFieldDelegate,ISEmojiViewDelegate,AVAudioPlayerDelegate>
 
 {
-    AVAudioPlayer *_avAudioPlayer;
-    NSDictionary *dic;
     CGFloat _beautify;//美颜值
     UISlider *_beaSlider;
     UIView *_blackView;
     NSTimer *_timer;//定时器
     int _takeNum;//聊天数
     long _likeNum;//点赞数
+    NSString *_lookNum;//观看人数
     UIImage *_begainImage;
     NSInteger _commentBtnTag;
     LYFriendsCommentView *_commentView;//弹出的评论框
+    UILabel *_textLabel;//输入框
     NSString *defaultComment;//残留评论
     ISEmojiView *_emojiView;//表情键盘
     UIView *_bigView;//评论的背景view
@@ -184,6 +185,12 @@ static NSString *const rcTipMessageCellIndentifier = @"LYTipMessageCellIndentifi
  *  礼物cell标示
  */
 static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndentifier";
+
+/**
+ *  系统cell标示
+ */
+static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellIndentifier";
+
 #define _CELL @ "audienceCellID"
 
 @implementation LiveShowViewController
@@ -213,13 +220,13 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     [self.conversationMessageCollectionView removeGestureRecognizer:_resetBottomTapGesture];
     [self.conversationMessageCollectionView
      addGestureRecognizer:_resetBottomTapGesture];
-    
     [_timer invalidate];
     _timer = nil;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view.
     self.dataArray = [NSMutableArray array];
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -241,6 +248,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
                                                                      error:&err];
         _streamId = streamJSON[@"id"];
         [weakSelf initPLplayer];//初始化摄像头
+
         _registerView = [[[NSBundle mainBundle] loadNibNamed:@"RegisterLiveShowView" owner:weakSelf options:nil] lastObject];
         _registerView.frame = self.view.bounds;
        _registerView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.5f];
@@ -266,9 +274,9 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 //    [_registerView setBegainImage:^(UIImage *img) {
 //        _begainImage = img;
 //    }];
-
+    _beautify = .5f;
     [self.session setBeautifyModeOn:YES];
-//    [self beginLiveShow];
+    [self.session setBeautify:_beautify];
     //获取通知中心单例对象
     NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(notice:) name:@"kobe24" object:nil];
@@ -282,12 +290,24 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 }
 
 -(void)stopLiveNow{
-    [self.session stopCaptureSession];
+//    dispatch_sync(self.sessionQueue, ^{
+//        [self.session destroy];
+//    });
+//    self.session = nil;
+//    self.sessionQueue = nil;
 }
 
 -(void)startLiveNow{
-    [self.session startCaptureSession];
+//    [self initPLplayer];
+//    [self beginLiveShow];
+    PLVideoStreamingConfiguration *newStreamingConfiguration = [self.videoStreamingConfigurations firstObject];
+    PLVideoCaptureConfiguration *newCaptureConfiguration = [self.videoCaptureConfigurations firstObject];
+    [self.session reloadVideoStreamingConfiguration:newStreamingConfiguration videoCaptureConfiguration:newCaptureConfiguration];
 }
+
+//- (CMSampleBufferRef)cameraStreamingSession:(PLCameraStreamingSession *)session cameraSourceDidGetSampleBuffer:(CMSampleBufferRef)sampleBuffer{
+//    
+//}
 
 -(void)notice:(NSNotification *)sender{
 //    __weak typeof(self) weakSelf = self;
@@ -324,6 +344,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     [LYFriendsHttpTool requestListWithParms:dictionary complete:^(NSDictionary *dict) {
         if ([dict valueForKey:@"total"]) {
             _userView.numberLabel.text = [NSString stringWithFormat:@"%@",dict[@"total"]];
+            _lookNum = [NSString stringWithFormat:@"%@",dict[@"total"]];
         } else {
             _userView.numberLabel.text = @"";
         }
@@ -361,21 +382,17 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     _userView.layer.cornerRadius = 20;
     _userView.layer.masksToBounds = YES;
     _userView.backgroundColor = RGBA(68, 64, 67, 0.5);
-    [_userView.iconIamgeView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",app.userModel.avatar_img]]];
+    [_userView.iconIamgeView sd_setImageWithURL:[NSURL URLWithString:app.userModel.avatar_img]];
     _userView.iconIamgeView.layer.cornerRadius = _userView.iconIamgeView.frame.size.height/2;
     _userView.iconIamgeView.layer.masksToBounds = YES;
-//    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDetail)];
-//    [_userView.iconIamgeView addGestureRecognizer:tapGesture];
-    _userView.iconIamgeView.userInteractionEnabled = YES;
     _userView.userNameLabel.text = [NSString stringWithFormat:@"%@",app.userModel.usernick];
-    
     _userView.isFoucsButton.hidden = YES;
     [CAEmitterView addSubview:_userView];
     
     //观众列表
     UICollectionViewFlowLayout *layout=[[ UICollectionViewFlowLayout alloc ] init ];
     [layout setScrollDirection:(UICollectionViewScrollDirectionHorizontal)];
-    _audienceCollectionView = [[ UICollectionView alloc ] initWithFrame : CGRectMake(SCREEN_WIDTH / 50, SCREEN_HEIGHT / 12 + 30 +10, SCREEN_WIDTH - 20, SCREEN_HEIGHT / 13) collectionViewLayout :layout];
+    _audienceCollectionView = [[ UICollectionView alloc ] initWithFrame : CGRectMake(SCREEN_WIDTH / 50, 70 + 15, SCREEN_WIDTH - 20, SCREEN_HEIGHT / 13) collectionViewLayout :layout];
     [_audienceCollectionView registerClass :[ AudienceCell class ] forCellWithReuseIdentifier : _CELL ];
     _audienceCollectionView.tag = 199;
     _audienceCollectionView.showsHorizontalScrollIndicator = NO;
@@ -395,8 +412,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     
     _livesetView = [[[NSBundle mainBundle] loadNibNamed:@"LiveSetView" owner:self options:nil] lastObject];
     _livesetView.frame = (CGRectMake(SCREEN_WIDTH / 10 * 9 + MinHeight_InputView/2 - 100, distanceOfBottom - 140 -SCREEN_WIDTH / 8 - 20 , 100, 160));
-    _livesetView.backgroundColor = [UIColor whiteColor];
-    _livesetView.alpha = 0.9f;
+    _livesetView.backgroundColor = [UIColor clearColor];
     _livesetView.layer.cornerRadius = 5.f;
     _livesetView.layer.masksToBounds = YES;
     _backgroudView = [[UIView alloc]init];
@@ -444,6 +460,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 -(void)backgroudViewGes{
     _backgroudView.hidden = YES;
     _backgroudView.frame = self.setButton.frame;
+    _blackView.hidden = YES;
 }
 
 -(void)shareButtonAction{
@@ -504,7 +521,6 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     self.internetReachability = [Reachability reachabilityForInternetConnection];
     [self.internetReachability startNotifier];
     
-
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleLiveShowInterruption:)
                                                  name:AVAudioSessionInterruptionNotification
@@ -551,11 +567,10 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
                         UIView *previewViewNew = self.session.previewView;
                         previewViewNew.autoresizingMask = UIViewAutoresizingFlexibleHeight| UIViewAutoresizingFlexibleWidth;
                         [self.view insertSubview:previewViewNew atIndex:0];
-                        [self.registerView setBeginLive:^(CGFloat value) {
+                        [weakSelf.registerView setBeginLive:^(CGFloat value) {
                             [weakSelf.session setBeautify:value];
                             _beautify = value;
                         }];
-//                        [self.session setBeautify:_beautify];
                     }
                     
                 });
@@ -597,7 +612,6 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
         [self stopSession];
         [MyUtil showMessage:@"无法连接网络,请检查网络设置"];
     }
-    
     NSString *log = [NSString stringWithFormat:@"Networkt Status: %s", networkStatus[status]];
     NSLog(@"%@", log);
 }
@@ -778,11 +792,12 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
         [self.view bringSubviewToFront:_closeView];
         [_closeView.backButton addTarget:self action:@selector(backButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
         [_closeView.notSaveButton addTarget:self action:@selector(notSaveBackButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
+        _closeView.lookNumLabel.text = _lookNum;
+        _closeView.begainImage = _begainImage;
+        _closeView.chatRoomID = _chatRoomId;
         dispatch_sync(self.sessionQueue, ^{
             [self.session destroy];
         });
-        _closeView.begainImage = _begainImage;
-        _closeView.chatRoomID = _chatRoomId;
         self.session = nil;
         self.sessionQueue = nil;
     }];
@@ -847,10 +862,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
             [cell.iconButton addTarget:self action:@selector(liveAudienceAction:) forControlEvents:UIControlEventTouchUpInside];
             cell.iconButton.tag = user.id;
         }
-        cell.layer.borderColor = RGB(187, 47, 217).CGColor;
-        cell.layer.borderWidth = 1.f;
-        cell.layer.cornerRadius = cell.frame.size.height /2;
-        cell.layer.masksToBounds = YES;
+        
         return cell;
     } else {
         RCMessageModel *model =
@@ -878,6 +890,12 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 
             cell = __cell;
         }
+        else if ([messageContent isMemberOfClass:[LYStystemMessage class]]) {
+            LYSystemTextMessageCell *__cell = [collectionView dequeueReusableCellWithReuseIdentifier:rcStystemMessageCellIndentifier forIndexPath:indexPath];
+            [__cell setDelegate:self];
+            [__cell setDataModel:model];
+            cell = __cell;
+        }
         return cell;
     }
 }
@@ -902,7 +920,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 -(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (collectionView.tag == 199) {
-        AudienceCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier : _CELL forIndexPath :indexPath];
+//        AudienceCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier : _CELL forIndexPath :indexPath];
 //        cell.iconButton.imageView.image = nil;
 //        [cell.iconButton removeTarget:self action:@selector(ceshiAction:) forControlEvents:(UIControlEventTouchUpInside)];
     } else {
@@ -923,7 +941,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
             return model.cellSize;
         }
         RCMessageContent *messageContent = model.content;
-        if ([messageContent isMemberOfClass:[RCTextMessage class]] || [messageContent isMemberOfClass:[RCInformationNotificationMessage class]] || [messageContent isMemberOfClass:[LYGiftMessage class]]) {
+        if ([messageContent isMemberOfClass:[RCTextMessage class]] || [messageContent isMemberOfClass:[RCInformationNotificationMessage class]] || [messageContent isMemberOfClass:[LYGiftMessage class]] || [messageContent isMemberOfClass:[LYStystemMessage class]]) {
             model.cellSize = [self sizeForItem:collectionView atIndexPath:indexPath];
         } else {
             return CGSizeZero;
@@ -969,9 +987,14 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
         }
         CGSize _textMessageSize = [LYGiftMessageCell getMessageCellSize:txt withWidth:__width];
         __height = _textMessageSize.height ;
+    } else if ([messageContent isMemberOfClass:[LYStystemMessage class]]) {
+        NSString *text = @"我们提倡绿色直播，封面和直播内容含吸烟、低俗、诱导、违规等内容都将会被封停帐号，网警24小时在线巡查呦。";
+        CGSize _textMessageSize = [LYSystemTextMessageCell getMessageCellSize:text withWidth:300];
+        __height = _textMessageSize.height;
     }
     return CGSizeMake(__width, __height);
 }
+
 
 /* 定义每个UICollectionView 的边缘 */
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
@@ -1076,8 +1099,11 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
              dispatch_async(dispatch_get_main_queue(), ^{
             RCInformationNotificationMessage *joinChatroomMessage = [[RCInformationNotificationMessage alloc]init];
                  joinChatroomMessage.message = [NSString stringWithFormat: @"%@加入了聊天室",[RCIM sharedRCIM].currentUserInfo.name];
+                 LYStystemMessage *lyStystem = [[LYStystemMessage alloc] init];
+                 [weakSelf sendMessage:lyStystem pushContent:nil];
                  [weakSelf sendMessage:joinChatroomMessage pushContent:nil];
              });
+             
          }
          error:^(RCErrorCode status) {
              dispatch_async(dispatch_get_main_queue(), ^{
@@ -1108,7 +1134,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 }
 
 /**
- *  初始化页面控件
+ *  初始化聊天页面控件
  */
 - (void)initializedSubViews {
     //聊天区
@@ -1144,17 +1170,16 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     _commentView.bgView.layer.borderWidth = 0.5;
     _commentView.layer.cornerRadius = _commentView.frame.size.height / 2;
     _commentView.layer.masksToBounds = YES;
-    _commentView.textField.placeholder = @"说点什么吧";
-    _commentView.textField.backgroundColor = [[UIColor clearColor] colorWithAlphaComponent:.1f];
+    _commentView.textField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"说点什么吧" attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    _commentView.textField.backgroundColor = [[UIColor clearColor] colorWithAlphaComponent:0];
     _commentView.textField.alpha = .5f;
     _commentView.textField.layer.borderColor = RGB(68, 64, 67).CGColor;
     _commentView.textField.borderStyle = UITextBorderStyleNone;
+
     [self.view addSubview:_commentView];
     _commentView.textField.delegate = self;
     [_commentView.btn_emotion addTarget:self action:@selector(emotionClick:) forControlEvents:UIControlEventTouchUpInside];
     _commentView.btn_emotion.hidden = YES;
-    _commentView.textField.center = _commentView.center;
-    [_commentView layoutIfNeeded];
     _bigView = [[UIView alloc]init];
     _bigView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(LiveBigViewGes)];
@@ -1166,6 +1191,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     [self registerClass:[LYTextMessageCell class]forCellWithReuseIdentifier:rctextCellIndentifier];
     [self registerClass:[LYTipMessageCell class]forCellWithReuseIdentifier:rcTipMessageCellIndentifier];
     [self registerClass:[LYGiftMessageCell class]forCellWithReuseIdentifier:rcGiftMessageCellIndentifier];
+    [self registerClass:[LYSystemTextMessageCell class] forCellWithReuseIdentifier:rcStystemMessageCellIndentifier];
     [self changeModel:self.isFullScreen];
     _resetBottomTapGesture =[[UITapGestureRecognizer alloc]
                              initWithTarget:self
@@ -1199,14 +1225,13 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     _commentView.bgView.layer.borderWidth = 0.5;
     _commentView.layer.cornerRadius = _commentView.frame.size.height / 2;
     _commentView.layer.masksToBounds = YES;
-    _commentView.textField.backgroundColor = [[UIColor clearColor] colorWithAlphaComponent:.1f];
+    _commentView.textField.backgroundColor = [[UIColor clearColor] colorWithAlphaComponent:0];
     _commentView.textField.borderStyle = UITextBorderStyleNone;
     _commentView.btn_emotion.hidden = YES;
     _commentView.textField.center = _commentView.center;
-    
+  
     _contentView.frame = CGRectMake(0, SCREEN_HEIGHT / 8 *5 - 20,SCREEN_WIDTH - SCREEN_WIDTH / 8 , distanceOfBottom - SCREEN_HEIGHT /8 * 5 - SCREEN_WIDTH / 8);
     _bigView.hidden = YES;
-
     return YES;
 }
 
@@ -1258,7 +1283,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
         _commentView.bgView.layer.borderWidth = 0.5;
         _commentView.layer.cornerRadius = _commentView.frame.size.height / 2;
         _commentView.layer.masksToBounds = YES;
-        _commentView.textField.backgroundColor = [[UIColor clearColor] colorWithAlphaComponent:.1f];
+        _commentView.textField.backgroundColor = [[UIColor clearColor] colorWithAlphaComponent:0];
         _commentView.textField.borderStyle = UITextBorderStyleNone;
         _commentView.btn_emotion.hidden = YES;
         _commentView.textField.center = _commentView.center;
@@ -1348,6 +1373,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
     self.inputTextFieldView.alpha = .5f;
     [self.conversationMessageCollectionView reloadData];
     [self.unreadButtonView setFrame:CGRectMake((self.view.frame.size.width - 80)/2, self.view.frame.size.height - MinHeight_InputView - 30, 80, 30)];
+    
 }
 
 - (void)pushOldMessageModel:(RCMessageModel *)model {

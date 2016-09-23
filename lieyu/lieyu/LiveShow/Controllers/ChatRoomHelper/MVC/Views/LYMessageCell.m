@@ -109,7 +109,7 @@
 }
 - (void)setCellAutoLayout {
     
-    _messageContentViewWidth = 200;
+    _messageContentViewWidth = 300;
     // receiver
     CGFloat messageContentViewY = 0;
     CGFloat messageContentViewX = 6;

@@ -31,16 +31,18 @@
     [_btn_headerImg sd_setBackgroundImageWithURL:[NSURL URLWithString:commentM.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"CommonIcon"]];
     NSString *string = nil;
     NSString *strrr = nil;
+    //冒号
+    NSString *maoStr = @"：";
     if([commentM.toUserId isEqualToString:@"0"]) {
         string = [NSString stringWithFormat:@"%@",commentM.nickName];
-        strrr = [NSString stringWithFormat:@"%@:%@",commentM.nickName,commentM.comment];
+        strrr = [NSString stringWithFormat:@"%@%@%@",commentM.nickName,maoStr,commentM.comment];
         _label_huifu.text = @"";
         [_btn_secondName setTitle:@"" forState:UIControlStateNormal];
         _btn_secondName.enabled = NO;
     } else {
         _label_huifu.text = @" 回复 ";
         string = [NSString stringWithFormat:@"%@ 回复 %@",commentM.nickName,commentM.toUserNickName];
-        strrr = [NSString stringWithFormat:@"%@ 回复 %@：%@",commentM.nickName,commentM.toUserNickName,commentM.comment];
+        strrr = [NSString stringWithFormat:@"%@ 回复 %@%@%@",commentM.nickName,commentM.toUserNickName,maoStr,commentM.comment];
         [_btn_secondName setTitle:commentM.toUserNickName forState:UIControlStateNormal];
         _btn_secondName.enabled = YES;
     }
@@ -56,13 +58,14 @@
     
                                                    NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:14], NSParagraphStyleAttributeName:paragraphStyle};
     
-    
-    
     NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:strrr];
     [attributedStr addAttributes:attributes range:NSMakeRange(0, attributedStr.length)];
-    [attributedStr addAttributes:@{NSForegroundColorAttributeName:COMMON_PURPLE} range:NSMakeRange(0, commentM.nickName.length)];
+    [attributedStr addAttributes:@{NSForegroundColorAttributeName:COMMON_PURPLE} range:NSMakeRange(0, commentM.nickName.length + 1)];
+    [attributedStr addAttributes:@{NSForegroundColorAttributeName:COMMON_PURPLE} range:NSMakeRange(commentM.nickName.length,maoStr.length)];
+
     if (![commentM.toUserId isEqualToString:@"0"]) {
-        [attributedStr addAttributes:@{NSForegroundColorAttributeName:COMMON_PURPLE} range:NSMakeRange(commentM.nickName.length + 3, commentM.toUserNickName.length + 1)];
+       
+        [attributedStr addAttributes:@{NSForegroundColorAttributeName:COMMON_PURPLE} range:NSMakeRange(commentM.nickName.length + 3, commentM.toUserNickName.length + 2)];
     }
 //    if([commentM.toUserId isEqualToString:@"0"]) {
 //        if([MyUtil isEmptyString:commentM.nickName] || [MyUtil isEmptyString:commentM.nickName]) return;

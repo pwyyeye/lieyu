@@ -1581,7 +1581,7 @@
 
 //键盘弹出
 - (void)keyBorderApearce:(NSNotification *)note{
-    
+    _bigView.hidden = NO;
     //    NSString *keybordHeight = note.userInfo[@"UIKeyboardFrameEndUserInfoKey"];
     CGRect rect = [note.userInfo[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
     [UIView animateWithDuration:.25 animations:^{

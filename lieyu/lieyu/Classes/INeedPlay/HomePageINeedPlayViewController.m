@@ -1175,26 +1175,22 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [_lineView removeFromSuperview];
     [_menuView removeFromSuperview];
 //    [_effectView removeFromSuperview];
-    
 //    _effectView = nil;
 }
 
 //筛选，跳转，增加，删除，确认
 #pragma mark 搜索action
 - (void)searchClick:(UIButton *)sender {
-    
     LYHomeSearcherViewController *homeSearchVC = [[LYHomeSearcherViewController alloc]init];
     if (_index != 2) {//_index != 0 /**/
         homeSearchVC.isSearchBar = YES;
         [self.navigationController pushViewController:homeSearchVC animated:YES];
-        
         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:@"搜索酒吧"]];
     }else{
         homeSearchVC.isSearchBar = NO;
         [self.navigationController pushViewController:homeSearchVC animated:YES];
         
         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:HOMEPAGE_MTA titleName:@"搜索专属经理"]];
-        
     }
 }
 

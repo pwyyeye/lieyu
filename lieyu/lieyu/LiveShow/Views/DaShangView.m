@@ -29,7 +29,7 @@ static NSString *daShangCellID = @"dashangCellID";
 
 -(void)setupSubviews{
     _number = 0;
-    _chooseTag = 6666;
+    _chooseTag = 10;
     self.giftCollectionView.delegate = self;
     self.giftCollectionView.dataSource = self;
     self.giftCollectionView.backgroundColor = [UIColor clearColor];
@@ -53,7 +53,7 @@ static NSString *daShangCellID = @"dashangCellID";
                  ];
     dispatch_async(dispatch_get_main_queue(), ^{
         //创建一个消息对象
-        NSNotification * notice = [NSNotification notificationWithName:@"sendGift" object:nil userInfo:@{@"value":@"6666"}];
+        NSNotification * notice = [NSNotification notificationWithName:@"sendGift" object:nil userInfo:@{@"value":@"10"}];
         //发送消息
         [[NSNotificationCenter defaultCenter]postNotification:notice];
     });
@@ -71,7 +71,7 @@ static NSString *daShangCellID = @"dashangCellID";
     cell.giftImageView.userInteractionEnabled = YES;
     cell.giftNameLabel.text = giftDic[@"giftName"];
     cell.YuBiLabel.text = giftDic[@"giftValue"];
-    if (indexPath.row == 3) {
+    if (indexPath.row == 0) {
         cell.DSChooseImage.hidden = NO;
     } else {
         cell.DSChooseImage.hidden = YES;
@@ -137,8 +137,8 @@ static NSString *daShangCellID = @"dashangCellID";
     if (cell.DSChooseImage.hidden) {
         cell.DSChooseImage.hidden = NO;
     }
-    if (indexPath.row != 3) {
-        NSIndexPath *temp = [NSIndexPath indexPathForRow:3 inSection:0];
+    if (indexPath.row != 0) {
+        NSIndexPath *temp = [NSIndexPath indexPathForRow:0 inSection:0];
         DaShangViewCell *cell_old = (DaShangViewCell *)[collectionView cellForItemAtIndexPath:temp];
         cell_old.DSChooseImage.hidden = YES;
     }

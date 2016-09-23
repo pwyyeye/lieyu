@@ -9,11 +9,12 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="srb-N1-vlq" customClass="LiveSetView">
-            <rect key="frame" x="0.0" y="0.0" width="100" height="160"/>
+            <rect key="frame" x="0.0" y="0.0" width="108" height="161"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="live_setBG.png" translatesAutoresizingMaskIntoConstraints="NO" id="eHI-2A-SKg"/>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ym3-Pf-VH2">
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <state key="normal" title="翻转">
                         <color key="titleColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
@@ -21,22 +22,25 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l0l-4Y-Y7v">
                     <constraints>
                         <constraint firstAttribute="width" constant="60" id="KTC-og-JrH"/>
-                        <constraint firstAttribute="height" constant="50" id="bQa-Sa-fgv"/>
+                        <constraint firstAttribute="height" constant="45" id="bQa-Sa-fgv"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <state key="normal" title="分享">
                         <color key="titleColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="live_share1.png" translatesAutoresizingMaskIntoConstraints="NO" id="Szi-SD-qsl">
                     <constraints>
-                        <constraint firstAttribute="height" constant="25" id="bmx-YS-4rT"/>
-                        <constraint firstAttribute="width" constant="25" id="dS0-U4-EH3"/>
+                        <constraint firstAttribute="height" constant="23" id="bmx-YS-4rT"/>
+                        <constraint firstAttribute="width" constant="23" id="dS0-U4-EH3"/>
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="live_beautiful.png" translatesAutoresizingMaskIntoConstraints="NO" id="ebO-Mw-gIE"/>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zyE-5K-AqP">
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="2Fq-dX-c7j"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <state key="normal" title="美颜">
                         <color key="titleColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
@@ -48,21 +52,24 @@
                 <constraint firstItem="Ym3-Pf-VH2" firstAttribute="centerX" secondItem="l0l-4Y-Y7v" secondAttribute="centerX" id="4W4-0g-45h"/>
                 <constraint firstItem="wab-Jq-259" firstAttribute="height" secondItem="Szi-SD-qsl" secondAttribute="height" id="4wb-ug-CIz"/>
                 <constraint firstItem="ebO-Mw-gIE" firstAttribute="width" secondItem="Szi-SD-qsl" secondAttribute="width" id="6RA-PR-DKa"/>
+                <constraint firstAttribute="bottom" secondItem="eHI-2A-SKg" secondAttribute="bottom" id="Bul-Zw-ZCu"/>
                 <constraint firstItem="Ym3-Pf-VH2" firstAttribute="width" secondItem="l0l-4Y-Y7v" secondAttribute="width" id="HYL-4Y-kwy"/>
                 <constraint firstItem="zyE-5K-AqP" firstAttribute="centerX" secondItem="l0l-4Y-Y7v" secondAttribute="centerX" id="JGI-PR-wLv"/>
                 <constraint firstItem="wab-Jq-259" firstAttribute="centerX" secondItem="Szi-SD-qsl" secondAttribute="centerX" id="JnH-d6-3XB"/>
+                <constraint firstItem="Ym3-Pf-VH2" firstAttribute="top" secondItem="l0l-4Y-Y7v" secondAttribute="bottom" id="KHX-9h-bY4"/>
                 <constraint firstItem="wab-Jq-259" firstAttribute="centerY" secondItem="Ym3-Pf-VH2" secondAttribute="centerY" id="LIZ-bq-SRz"/>
-                <constraint firstItem="Ym3-Pf-VH2" firstAttribute="centerY" secondItem="srb-N1-vlq" secondAttribute="centerY" id="LxW-ne-q4Y"/>
-                <constraint firstAttribute="bottom" secondItem="zyE-5K-AqP" secondAttribute="bottom" id="MD4-VA-FRo"/>
-                <constraint firstItem="zyE-5K-AqP" firstAttribute="height" secondItem="l0l-4Y-Y7v" secondAttribute="height" id="NMt-YO-hF4"/>
+                <constraint firstAttribute="trailing" secondItem="eHI-2A-SKg" secondAttribute="trailing" id="aRq-oC-Is0"/>
+                <constraint firstItem="zyE-5K-AqP" firstAttribute="top" secondItem="Ym3-Pf-VH2" secondAttribute="bottom" id="aaO-EI-9ce"/>
                 <constraint firstItem="Ym3-Pf-VH2" firstAttribute="height" secondItem="l0l-4Y-Y7v" secondAttribute="height" id="acv-rs-IOO"/>
+                <constraint firstItem="eHI-2A-SKg" firstAttribute="top" secondItem="srb-N1-vlq" secondAttribute="top" id="aut-HT-JS2"/>
                 <constraint firstItem="ebO-Mw-gIE" firstAttribute="centerX" secondItem="Szi-SD-qsl" secondAttribute="centerX" id="e0q-HO-Jhb"/>
-                <constraint firstAttribute="trailing" secondItem="zyE-5K-AqP" secondAttribute="trailing" id="iP1-xy-6ea"/>
                 <constraint firstItem="wab-Jq-259" firstAttribute="width" secondItem="Szi-SD-qsl" secondAttribute="width" id="oit-eX-pEs"/>
                 <constraint firstItem="l0l-4Y-Y7v" firstAttribute="top" secondItem="srb-N1-vlq" secondAttribute="top" id="qg3-Dg-He1"/>
+                <constraint firstAttribute="trailing" secondItem="zyE-5K-AqP" secondAttribute="trailing" id="rCE-S3-ZXs"/>
+                <constraint firstItem="eHI-2A-SKg" firstAttribute="leading" secondItem="srb-N1-vlq" secondAttribute="leading" id="raR-pN-hXO"/>
                 <constraint firstItem="l0l-4Y-Y7v" firstAttribute="centerY" secondItem="Szi-SD-qsl" secondAttribute="centerY" id="s2f-sx-I2Y"/>
                 <constraint firstItem="ebO-Mw-gIE" firstAttribute="centerY" secondItem="zyE-5K-AqP" secondAttribute="centerY" id="tWI-li-PWz"/>
-                <constraint firstItem="l0l-4Y-Y7v" firstAttribute="leading" secondItem="Szi-SD-qsl" secondAttribute="trailing" constant="1" id="tWh-UD-jgv"/>
+                <constraint firstItem="l0l-4Y-Y7v" firstAttribute="leading" secondItem="Szi-SD-qsl" secondAttribute="trailing" constant="3" id="tWh-UD-jgv"/>
                 <constraint firstItem="zyE-5K-AqP" firstAttribute="width" secondItem="l0l-4Y-Y7v" secondAttribute="width" id="xYT-3A-14K"/>
                 <constraint firstItem="ebO-Mw-gIE" firstAttribute="height" secondItem="Szi-SD-qsl" secondAttribute="height" id="yuC-O4-19m"/>
                 <constraint firstAttribute="trailing" secondItem="l0l-4Y-Y7v" secondAttribute="trailing" id="zzR-gU-dzb"/>
@@ -73,12 +80,13 @@
                 <outlet property="shareButton" destination="l0l-4Y-Y7v" id="TcT-ag-Vtt"/>
                 <outlet property="shiftButton" destination="Ym3-Pf-VH2" id="YVi-dn-ZWM"/>
             </connections>
-            <point key="canvasLocation" x="-19" y="232"/>
+            <point key="canvasLocation" x="-15" y="232.5"/>
         </view>
     </objects>
     <resources>
         <image name="live_beautiful.png" width="22" height="23"/>
         <image name="live_cremar.png" width="23" height="22"/>
+        <image name="live_setBG.png" width="102" height="153"/>
         <image name="live_share1.png" width="18" height="18"/>
     </resources>
 </document>

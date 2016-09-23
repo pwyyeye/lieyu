@@ -16,7 +16,11 @@
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m1h-DD-xEE">
                             <constraints>
-                                <constraint firstAttribute="height" constant="60" id="Ch7-1J-gYw"/>
+                                <constraint firstAttribute="height" constant="60" id="Ch7-1J-gYw">
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="30"/>
+                                    </userDefinedRuntimeAttributes>
+                                </constraint>
                                 <constraint firstAttribute="width" constant="60" id="Vde-74-hul"/>
                             </constraints>
                         </imageView>

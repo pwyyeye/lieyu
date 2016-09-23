@@ -95,7 +95,7 @@ static NSString *liveShowListID = @"liveShowListID";
 #pragma mark -- 配置导航栏
 -(void)setMenuView{
     CGFloat buttonWidth = SCREEN_WIDTH / 6;
-    UIView *mavMenuView = [[UIView alloc] initWithFrame:(CGRectMake((SCREEN_WIDTH - buttonWidth*2 - 40)/2.f, 0, buttonWidth * 2 + 80, 44))];
+    UIView *mavMenuView = [[UIView alloc] initWithFrame:(CGRectMake(CGRectGetCenter(self.view.bounds).x - buttonWidth- 40, 0, SCREEN_WIDTH / 2, 44))];
     [self.navigationController.navigationBar addSubview:mavMenuView];
     
     _hotBtn = [[HotMenuButton alloc]initWithFrame:CGRectMake(0, 12, buttonWidth, 20)];
@@ -103,7 +103,7 @@ static NSString *liveShowListID = @"liveShowListID";
     _hotBtn.titleLabel.textColor = RGBA(255, 255, 255, 1);
     [_hotBtn addTarget:self action:@selector(hotButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [mavMenuView addSubview:_hotBtn];
-    _newBtn = [[HotMenuButton alloc]initWithFrame:CGRectMake(buttonWidth + 20, 12, buttonWidth, 20)];
+    _newBtn = [[HotMenuButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/ 3, 12, buttonWidth, 20)];
     [_newBtn setTitle:@"最新" forState:UIControlStateNormal];
     _newBtn.titleLabel.textColor = RGBA(255, 255, 255, 1);
     [_newBtn addTarget:self action:@selector(newButtonClick) forControlEvents:UIControlEventTouchUpInside];

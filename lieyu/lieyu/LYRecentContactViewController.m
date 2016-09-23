@@ -17,10 +17,31 @@
 @interface LYRecentContactViewController ()
 {
     NSString *_targetId;//创建聊天
+    UILabel *_labelTitle;
 }
 @end
 
 @implementation LYRecentContactViewController
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    UINavigationBar *navBar = self.navigationController.navigationBar;
+    UIFont * font = [UIFont systemFontOfSize:18 weight:UIFontWeightRegular];
+    UIColor * textColor = navBar.titleTextAttributes[NSForegroundColorAttributeName];
+    _labelTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, navBar.frame.size.width, 44)];
+    _labelTitle.font = font;
+    _labelTitle.textColor = textColor;
+    _labelTitle.text = @"最近联系";
+    _labelTitle.textAlignment = NSTextAlignmentCenter;
+    [self.navigationController.navigationBar addSubview:_labelTitle];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [_labelTitle removeFromSuperview];
+    _labelTitle = nil;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,7 +49,7 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.automaticallyAdjustsScrollViewInsets = YES;
     [self setupView];
-    self.title=@"最近联系";
+    
     //设置tableView样式
     self.conversationListTableView.separatorColor = RGB(223, 223, 223);
     self.conversationListTableView.tableFooterView = [UIView new];

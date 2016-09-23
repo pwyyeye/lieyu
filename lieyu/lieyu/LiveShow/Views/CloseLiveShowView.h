@@ -15,6 +15,9 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *notSaveButton;
 
+@property (weak, nonatomic) IBOutlet UILabel *moneyNumLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *lookNumLabel;
 
 @property (strong, nonatomic) NSString *chatRoomID;
 @property (strong, nonatomic) UIImage *begainImage;

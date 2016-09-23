@@ -149,7 +149,7 @@
     self.messageContentView.frame = messageContentViewRect;
 //    self.bubbleBackgroundView.frame = CGRectMake(6, 0, __bubbleSize.width, __bubbleSize.height);
     self.bubbleBackgroundView.frame = messageContentViewRect;
-    self.textLabel.frame = CGRectMake(6,0, __textSize.width, __textSize.height);
+    self.textLabel.frame = CGRectMake(0,0, __textSize.width, __textSize.height);
     
     self.bubbleBackgroundView.backgroundColor = [UIColor clearColor];
     [self.textLabel setTextColor:[UIColor whiteColor]];
@@ -200,21 +200,21 @@
  @param label The label whose link was selected.
  @param phoneNumber The phone number for the selected link.
  */
-- (void)attributedLabel:(RCAttributedLabel *)label didSelectLinkWithPhoneNumber:(NSString *)phoneNumber
-{
-    NSString *number = [@"tel://" stringByAppendingString:phoneNumber];
-    if ([self.delegate respondsToSelector:@selector(didTapPhoneNumberInMessageCell:model:)]) {
-        [self.delegate didTapPhoneNumberInMessageCell:number model:self.model];
-        return;
-    }
-}
-
--(void)attributedLabel:(RCAttributedLabel *)label didTapLabel:(NSString *)content
-{
-    if ([self.delegate respondsToSelector:@selector(didTapMessageCell:)]) {
-        [self.delegate didTapMessageCell:self.model];
-    }
-}
+//- (void)attributedLabel:(RCAttributedLabel *)label didSelectLinkWithPhoneNumber:(NSString *)phoneNumber
+//{
+//    NSString *number = [@"tel://" stringByAppendingString:phoneNumber];
+//    if ([self.delegate respondsToSelector:@selector(didTapPhoneNumberInMessageCell:model:)]) {
+//        [self.delegate didTapPhoneNumberInMessageCell:number model:self.model];
+//        return;
+//    }
+//}
+//
+//-(void)attributedLabel:(RCAttributedLabel *)label didTapLabel:(NSString *)content
+//{
+//    if ([self.delegate respondsToSelector:@selector(didTapMessageCell:)]) {
+//        [self.delegate didTapMessageCell:self.model];
+//    }
+//}
 
 + (CGSize)getMessageCellSize:(NSString *)content withWidth:(CGFloat)width{
     CGSize textSize = CGSizeZero;

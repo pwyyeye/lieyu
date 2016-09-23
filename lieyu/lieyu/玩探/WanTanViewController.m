@@ -38,9 +38,14 @@ static NSString *wantanCellID = @"wantanCellID";
     if (self.navigationController.navigationBarHidden != NO) {
         [self.navigationController setNavigationBarHidden:NO];
     }
-    self.title = @"玩探";
     _timers = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(getNewMessage) userInfo:nil repeats:YES];//定时器获取新消息数
     [_timers fire];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    self.title = @"玩探";
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -55,9 +60,6 @@ static NSString *wantanCellID = @"wantanCellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
   //  [self setuptitle];
-    if ([self.title isEqualToString:@""]) {
-        
-    }
     [self.tableView registerNib:[UINib nibWithNibName:@"WanTanCell" bundle:nil] forCellReuseIdentifier:wantanCellID];
     self.tableView.showsHorizontalScrollIndicator=NO;
     self.tableView.showsVerticalScrollIndicator=NO;
