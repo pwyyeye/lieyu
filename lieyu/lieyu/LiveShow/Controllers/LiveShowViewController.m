@@ -388,7 +388,11 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     _userView.userNameLabel.text = [NSString stringWithFormat:@"%@",app.userModel.usernick];
     _userView.isFoucsButton.hidden = YES;
     [CAEmitterView addSubview:_userView];
-    
+//    else if ([messageContent isMemberOfClass:[LYStystemMessage class]]) {
+//        NSString *text = @"我们提倡绿色直播，封面和直播内容含吸烟、低俗、诱导、违规等内容都将会被封停帐号，网警24小时在线巡查呦。";
+//        CGSize _textMessageSize = [LYTextMessageCell getMessageCellSize:text withWidth:__width];
+//        __height = _textMessageSize.height;
+//    }
     //观众列表
     UICollectionViewFlowLayout *layout=[[ UICollectionViewFlowLayout alloc ] init ];
     [layout setScrollDirection:(UICollectionViewScrollDirectionHorizontal)];
