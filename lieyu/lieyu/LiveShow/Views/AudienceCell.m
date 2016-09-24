@@ -12,11 +12,14 @@
 
 -(void)layoutSubviews
 {
-    [self setCornerRadiusView:self.iconButton With:self.iconButton.frame.size.height/2 and:YES];
-    self.iconButton.layer.borderColor = RGB(187, 47, 217).CGColor;
+    _iconButton = [[UIImageView alloc ] init];
+    _iconButton.frame = self.bounds;
+    _iconButton.backgroundColor = [UIColor clearColor];
+    [self addSubview:_iconButton];
+    [self setCornerRadiusView:self.iconButton With:self.iconButton.frame.size.height / 2  and:YES];
+    self.iconButton.layer.borderColor = COMMON_PURPLE.CGColor;
     self.iconButton.layer.borderWidth = 1.f;
 }
-
 
 -(void)setCornerRadiusView:(UIView *) maskView With:(CGFloat) size and:(BOOL) mask{
     maskView.layer.cornerRadius = size;

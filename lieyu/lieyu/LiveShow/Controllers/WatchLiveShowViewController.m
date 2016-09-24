@@ -90,6 +90,7 @@
     NSInteger _giftNumber;//礼物数量
     NSString *_giftValue;//礼物价值
     NSArray *_dataArr;//礼物数组
+    NSInteger _chatuserid;
 }
 @property (nonatomic, strong) NSMutableArray *giftValueArray;
 
@@ -225,7 +226,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [self initUI];
     if (_chatRoomId != nil) {
         [self joinChatRoom];
-        _timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(timerUpdataAction) userInfo:nil repeats:YES];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:15 target:self selector:@selector(timerUpdataAction) userInfo:nil repeats:YES];
         [_timer fire];
     }
     [IQKeyboardManager sharedManager].enable = NO;
@@ -272,7 +273,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"UserHeader" owner:self options:nil];
     _userView = [nib objectAtIndex:0];
     CGSize textSize = CGSizeZero;
-    textSize = [LYTextMessageCell getContentSize:_hostUser[@"usernick"] withFrontSize:16 withWidth:100];
+    textSize = [LYTextMessageCell getContentSize:_hostUser[@"usernick"] withFrontSize:16 withWidth:270];
     _userView.frame = CGRectMake(SCREEN_WIDTH / 50, 30, textSize.width + 110 , 40);
     _userView.layer.cornerRadius = 20;
     _userView.layer.masksToBounds = YES;
@@ -588,7 +589,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 //    }
 }
 
-#pragma mark -- 点击头像事件
+#pragma mark -- 点击主播头像事件
 -(void)anchorDetail{
     _anchorDetailView = [[[NSBundle mainBundle] loadNibNamed:@"AnchorDetailView" owner:self options:nil] lastObject];
     _anchorDetailView.frame = CGRectMake(0, 0, 260,210);
@@ -613,16 +614,33 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     NSInteger status = [_hostUser[@"friendStatus"] integerValue];
     if (status == 2 || status == 0) {//0 没有关系   1 关注   2 粉丝   3 好友
         _anchorDetailView.focusButton.tag = 2;
-        _anchorDetailView.focusButton.titleLabel.text = @"关注";
+        [_anchorDetailView.focusButton setTitle:@"关注" forState:(UIControlStateNormal)];
     } else if (status == 1 || status == 3) {
         _anchorDetailView.focusButton.tag = 1;
-        _anchorDetailView.focusButton.titleLabel.text = @"已关注";
+        [_anchorDetailView.focusButton setTitle:@"已关注" forState:(UIControlStateNormal)];
         _anchorDetailView.focusButton.userInteractionEnabled = NO;
     }
     [_anchorDetailView.focusButton addTarget:self action:@selector(anchorFocusButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
     [_anchorDetailView.mainViewButton addTarget:self action:@selector(mainViewButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
     _anchorDetailView.mainViewButton.tag = [self.hostUser[@"userid"] integerValue];
 }
+
+-(void)showWatchDetailWith:(ChatUseres *) chatuser{
+    _anchorDetailView = [[[NSBundle mainBundle] loadNibNamed:@"AnchorDetailView" owner:self options:nil] lastObject];
+    _anchorDetailView.frame = CGRectMake(0, 0, SCREEN_WIDTH/5 * 3,SCREEN_HEIGHT / 4);
+    _anchorDetailView.center = self.view.center;
+    [_anchorDetailView.anchorIcon sd_setImageWithURL:[NSURL URLWithString:chatuser.avatar_img]];
+    _anchorDetailView.nickNameLabel.text = chatuser.usernick;
+    _chatuserid = chatuser.id;
+    [_anchorDetailView.focusButton addTarget:self action:@selector(anchorFocusButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
+    [_anchorDetailView.mainViewButton addTarget:self action:@selector(mainViewButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
+    _anchorDetailView.layer.cornerRadius = 10.f;
+    _anchorDetailView.layer.masksToBounds = YES;
+    _anchorDetailView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:_anchorDetailView];
+    [self.view bringSubviewToFront:_anchorDetailView];
+}
+
 
 -(void)anchorFocusButtonAction:(UIButton *) sender{
     NSInteger userid = [_hostUser[@"id"] integerValue];
@@ -678,11 +696,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         if (imgStr.length < 50) {
             imgStr = [MyUtil getQiniuUrl:user.avatar_img width:0 andHeight:0];
         }
-        if (cell.iconButton.imageView.image == nil) {
-            [cell.iconButton.imageView sd_setImageWithURL:[NSURL URLWithString:imgStr]];
-            [cell.iconButton addTarget:self action:@selector(watchAudienceAction:) forControlEvents:UIControlEventTouchUpInside];
-            cell.iconButton.tag = user.id;
-        }
+            [cell.iconButton sd_setImageWithURL:[NSURL URLWithString:imgStr] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
         
         return cell;
     } else {
@@ -743,17 +757,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     myFriendVC.imUserId = [NSString stringWithFormat:@"%ld",sender.tag];
 //    [self.navigationController pushViewController:myFriendVC animated:YES];
 }
-//cell消失时
--(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (collectionView.tag == 199) {
-        AudienceCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier : _CELL forIndexPath :indexPath];
-        cell.iconButton.imageView.image = nil;
-        [cell.iconButton removeTarget:self action:@selector(watchAudienceAction:) forControlEvents:(UIControlEventTouchUpInside)];
-    } else {
-        
-    }
-}
+
 /* 定义每个UICollectionView 的大小 */
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -816,7 +820,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     } else if ([messageContent isMemberOfClass:[LYStystemMessage class]]) {
         NSString *text = @"直播消息：\n我们提倡绿色直播，封面和直播内容含吸烟、低俗、诱导、违规等内容都将会被封停帐号，网警24小时在线巡查呦。";
         CGSize _textMessageSize = [LYSystemTextMessageCell getMessageCellSize:text withWidth:__width];
-        __height = _textMessageSize.height;
+        __height = _textMessageSize.height + 10;
     }
     return CGSizeMake(__width, __height);
 }
@@ -835,10 +839,8 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"%ld",indexPath.row);
     if (collectionView.tag == 188) {
-            LYMyFriendDetailViewController *LYMyFriendDetailVC = [[LYMyFriendDetailViewController alloc] init];
-            LYMyFriendDetailVC.type = @"4";
-            LYMyFriendDetailVC.imUserId = @"";
-//            [self.navigationController pushViewController:LYMyFriendDetailVC animated:NO];
+        ChatUseres *user = _dataArray[indexPath.row];
+        [self showWatchDetailWith:user];
     } else {
         
     }
@@ -910,6 +912,8 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
              dispatch_async(dispatch_get_main_queue(), ^{
                  RCInformationNotificationMessage *joinChatroomMessage = [[RCInformationNotificationMessage alloc]init];
                  joinChatroomMessage.message = [NSString stringWithFormat: @"%@加入了聊天室",[RCIM sharedRCIM].currentUserInfo.name];
+                 LYStystemMessage *lyStystem = [[LYStystemMessage alloc] init];
+                 [weakSelf sendMessage:lyStystem pushContent:nil];
                  [weakSelf sendMessage:joinChatroomMessage pushContent:nil];
              });
          }
@@ -986,8 +990,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     _commentView.textField.alpha = .5f;
     _commentView.textField.layer.borderColor = RGB(68, 64, 67).CGColor;
     _commentView.textField.borderStyle = UITextBorderStyleNone;
-    _commentView.textField.hidden = YES;
-    
     [self.view addSubview:_commentView];
     _commentView.textField.delegate = self;
     [_commentView.btn_emotion addTarget:self action:@selector(emotionClick:) forControlEvents:UIControlEventTouchUpInside];

@@ -382,17 +382,13 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     _userView.layer.cornerRadius = 20;
     _userView.layer.masksToBounds = YES;
     _userView.backgroundColor = RGBA(68, 64, 67, 0.5);
-    [_userView.iconIamgeView sd_setImageWithURL:[NSURL URLWithString:app.userModel.avatar_img]];
+    [_userView.iconIamgeView sd_setImageWithURL:[NSURL URLWithString:app.userModel.avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     _userView.iconIamgeView.layer.cornerRadius = _userView.iconIamgeView.frame.size.height/2;
     _userView.iconIamgeView.layer.masksToBounds = YES;
     _userView.userNameLabel.text = [NSString stringWithFormat:@"%@",app.userModel.usernick];
     _userView.isFoucsButton.hidden = YES;
     [CAEmitterView addSubview:_userView];
-//    else if ([messageContent isMemberOfClass:[LYStystemMessage class]]) {
-//        NSString *text = @"我们提倡绿色直播，封面和直播内容含吸烟、低俗、诱导、违规等内容都将会被封停帐号，网警24小时在线巡查呦。";
-//        CGSize _textMessageSize = [LYTextMessageCell getMessageCellSize:text withWidth:__width];
-//        __height = _textMessageSize.height;
-//    }
+
     //观众列表
     UICollectionViewFlowLayout *layout=[[ UICollectionViewFlowLayout alloc ] init ];
     [layout setScrollDirection:(UICollectionViewScrollDirectionHorizontal)];
@@ -861,11 +857,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         if (imgStr.length < 50) {
             imgStr = [MyUtil getQiniuUrl:user.avatar_img width:0 andHeight:0];
         }
-        if (cell.iconButton.imageView.image == nil) {
-            [cell.iconButton.imageView sd_setImageWithURL:[NSURL URLWithString:imgStr]];
-            [cell.iconButton addTarget:self action:@selector(liveAudienceAction:) forControlEvents:UIControlEventTouchUpInside];
-            cell.iconButton.tag = user.id;
-        }
+            [cell.iconButton sd_setImageWithURL:[NSURL URLWithString:imgStr] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
         
         return cell;
     } else {
@@ -992,9 +984,9 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         CGSize _textMessageSize = [LYGiftMessageCell getMessageCellSize:txt withWidth:__width];
         __height = _textMessageSize.height ;
     } else if ([messageContent isMemberOfClass:[LYStystemMessage class]]) {
-        NSString *text = @"我们提倡绿色直播，封面和直播内容含吸烟、低俗、诱导、违规等内容都将会被封停帐号，网警24小时在线巡查呦。";
+        NSString *text = @"直播消息：\n我们提倡绿色直播，封面和直播内容含吸烟、低俗、诱导、违规等内容都将会被封停帐号，网警24小时在线巡查呦。";
         CGSize _textMessageSize = [LYSystemTextMessageCell getMessageCellSize:text withWidth:300];
-        __height = _textMessageSize.height;
+        __height = _textMessageSize.height + 10;
     }
     return CGSizeMake(__width, __height);
 }
@@ -1014,10 +1006,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 #pragma mark --- UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"%ld",indexPath.row);
-//    LYMyFriendDetailViewController *LYMyFriendDetailVC = [[LYMyFriendDetailViewController alloc] init];
-//    LYMyFriendDetailVC.type = @"4";
-//    LYMyFriendDetailVC.imUserId = @"";
-//    [self.navigationController pushViewController:LYMyFriendDetailVC animated:NO];
     
     if (collectionView.tag == 199) {
         ChatUseres *user = _dataArray[indexPath.row];

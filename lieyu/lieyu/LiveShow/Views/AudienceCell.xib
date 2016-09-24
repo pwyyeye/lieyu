@@ -14,20 +14,8 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="101" height="91"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vJo-6g-6pJ"/>
-                </subviews>
             </view>
-            <constraints>
-                <constraint firstItem="vJo-6g-6pJ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="AAK-qG-Edu"/>
-                <constraint firstAttribute="trailing" secondItem="vJo-6g-6pJ" secondAttribute="trailing" id="Ori-N7-cQW"/>
-                <constraint firstAttribute="bottom" secondItem="vJo-6g-6pJ" secondAttribute="bottom" id="W7i-Fm-9nY"/>
-                <constraint firstItem="vJo-6g-6pJ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="XZ1-iw-rtL"/>
-            </constraints>
             <size key="customSize" width="101" height="91"/>
-            <connections>
-                <outlet property="iconButton" destination="vJo-6g-6pJ" id="dPk-CQ-nJn"/>
-            </connections>
             <point key="canvasLocation" x="36" y="245"/>
         </collectionViewCell>
     </objects>
