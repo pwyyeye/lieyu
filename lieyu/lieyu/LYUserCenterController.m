@@ -36,6 +36,7 @@
 #import "LYMyFreeOrdersViewController.h"
 #import "ZSManageHttpTool.h"
 #import "AddressBookModel.h"
+#import "LYFriendsRecommendViewController.h"
 
 @interface LYUserCenterController ()<TencentSessionDelegate>{
     NSInteger num,orderNum,freeOrderNum;
@@ -291,9 +292,11 @@ static NSString * const reuseIdentifier = @"userCenterCell";
         NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"发现主页面",@"titleName":@"选择扫一扫"};
         [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
         
-        SaoYiSaoViewController *saoYiSaoViewController=[[SaoYiSaoViewController alloc]initWithNibName:@"SaoYiSaoViewController" bundle:nil];
-        saoYiSaoViewController.title=@"扫一扫";
-        [self.navigationController pushViewController:saoYiSaoViewController  animated:YES];
+//        SaoYiSaoViewController *saoYiSaoViewController=[[SaoYiSaoViewController alloc]initWithNibName:@"SaoYiSaoViewController" bundle:nil];
+//        saoYiSaoViewController.title=@"扫一扫";
+//        [self.navigationController pushViewController:saoYiSaoViewController  animated:YES];
+        LYFriendsRecommendViewController *view = [[LYFriendsRecommendViewController alloc]init];
+        [self.navigationController pushViewController:view animated:YES];
     }else if (indexPath.section == 1){
         if (indexPath.row == 0) {
             //订单

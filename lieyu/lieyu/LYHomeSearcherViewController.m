@@ -21,6 +21,10 @@
 #import "LYAdviserHttpTool.h"
 #import "LYGuWenPersonCollectionViewCell.h"
 #import "LYMyFriendDetailViewController.h"
+#import "LYFriendsHttpTool.h"
+#import "LYLiveShowListModel.h"
+#import "LYSearchLiveShowCollectionViewCell.h"
+#import "WatchLiveShowViewController.h"
 
 #define PAGESIZE 20
 #define SEARCHPAGE_MTA @"SEARCHPAGE"
@@ -46,7 +50,7 @@
     if (_isSearchBar) {
         self.title = @"搜索酒吧";
     }else{
-        self.title = @"搜索用户";
+        self.title = @"搜索直播";
     }
 }
 
@@ -70,7 +74,8 @@
     if (_isSearchBar) {
         [self.collectView registerNib:[UINib nibWithNibName:@"HomeBarCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeBarCollectionViewCell"];
     }else{
-        [self.collectView registerNib:[UINib nibWithNibName:@"LYGuWenPersonCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"LYGuWenPersonCollectionViewCell"];
+//        [self.collectView registerNib:[UINib nibWithNibName:@"LYGuWenPersonCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"LYGuWenPersonCollectionViewCell"];
+        [self.collectView registerNib:[UINib nibWithNibName:@"LYSearchLiveShowCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"LYSearchLiveShowCollectionViewCell"];
     }
     self.collectView.hidden = YES;
     [self loadHisData];
@@ -116,7 +121,7 @@
     if (_isSearchBar) {
         filename = [Path stringByAppendingPathComponent:@"hisSerchData.plist"];
     }else{
-        filename = [Path stringByAppendingPathComponent:@"hisSearchManagerData.plist"];
+        filename = [Path stringByAppendingPathComponent:@"hisSearchLiveShowData.plist"];
     }
     
     if([fileManager fileExistsAtPath:filename]){
@@ -143,7 +148,7 @@
         if (_isSearchBar) {
             filename = [Path stringByAppendingPathComponent:@"hisSerchData.plist"];
         }else{
-            filename = [Path stringByAppendingPathComponent:@"hisSearchManagerData.plist"];
+            filename = [Path stringByAppendingPathComponent:@"hisSearchLiveShowData.plist"];
         }
         if([fileManager fileExistsAtPath:filename]){
             hisSerchArr= [NSKeyedUnarchiver unarchiveObjectWithFile:filename];
@@ -168,7 +173,7 @@
     if (_isSearchBar) {
         filename = [Path stringByAppendingPathComponent:@"hisSerchData.plist"];
     }else{
-        filename = [Path stringByAppendingPathComponent:@"hisSearchManagerData.plist"];
+        filename = [Path stringByAppendingPathComponent:@"hisSearchLiveShowData.plist"];
     }
     if([fileManager fileExistsAtPath:filename]){
         hisRoute= [NSKeyedUnarchiver unarchiveObjectWithFile:filename];
@@ -202,7 +207,7 @@
     for (int i = 0; i < hisSerchArr.count;i ++) {
         UIButton *button = _btnHistoryArray[i];
         button.layer.borderWidth = 0.5;
-        button.layer.borderColor = RGBA(114, 5, 147, 1).CGColor;
+        button.layer.borderColor = COMMON_PURPLE.CGColor;
         button.layer.cornerRadius = 1.8;
         button.layer.masksToBounds = YES;
         NSString *str = hisSerchArr[i];
@@ -277,27 +282,21 @@
 
 - (void)getManagerData{
     __weak __typeof(self) weakSelf = self;
-    CLLocation *userLocation = [LYUserLocation instance].currentLocation;
-    [_managerDict setObject:[[NSDecimalNumber alloc]initWithString:@(userLocation.coordinate.longitude).stringValue] forKey:@"longitude"];
-    [_managerDict setObject:[[NSDecimalNumber alloc]initWithString:@(userLocation.coordinate.latitude).stringValue] forKey:@"latitude"];
-    [_managerDict setObject:[NSNumber numberWithInt:_managerPage] forKey:@"p"];
-    [_managerDict setObject:[NSNumber numberWithInt:PAGESIZE] forKey:@"per"];
-    [_managerDict setObject:keyStr forKey:@"usernick"];
-    [LYAdviserHttpTool lyGetAdviserListWithParams:_managerDict complete:^(HomePageModel *model) {
-        NSArray *arrayTemp = model.viplist;
+    NSDictionary *dict = @{@"roomName":keyStr,
+                           @"page":[NSString stringWithFormat:@"%d",_managerPage]};
+    [LYFriendsHttpTool getLiveShowlistWithParams:dict complete:^(NSArray *Arr) {
         [weakSelf saveHisData:keyStr];
-        if(arrayTemp.count){
+        if (Arr.count) {
             if (_managerPage == 1) {
                 [searchlist removeAllObjects];
                 [_collectView.mj_header endRefreshing];
             }
-            [searchlist addObjectsFromArray:arrayTemp];
+            [searchlist addObjectsFromArray:Arr];
             [_collectView.mj_footer endRefreshing];
-            
             _managerPage ++;
         }else{
             if (_managerPage == 1) {
-                [MyUtil showCleanMessage:@"搜索无结果"];
+                [MyUtil showPlaceMessage:@"搜索无结果"];
                 [_collectView.mj_header endRefreshing];
             }else{
                 [_collectView.mj_footer endRefreshingWithNoMoreData];
@@ -305,6 +304,28 @@
         }
         [_collectView reloadData];
     }];
+//    [LYAdviserHttpTool lyGetAdviserListWithParams:dict complete:^(HomePageModel *model) {
+//        NSArray *arrayTemp = model.viplist;
+//        [weakSelf saveHisData:keyStr];
+//        if(arrayTemp.count){
+//            if (_managerPage == 1) {
+//                [searchlist removeAllObjects];
+//                [_collectView.mj_header endRefreshing];
+//            }
+//            [searchlist addObjectsFromArray:arrayTemp];
+//            [_collectView.mj_footer endRefreshing];
+//            
+//            _managerPage ++;
+//        }else{
+//            if (_managerPage == 1) {
+//                [MyUtil showCleanMessage:@"搜索无结果"];
+//                [_collectView.mj_header endRefreshing];
+//            }else{
+//                [_collectView.mj_footer endRefreshingWithNoMoreData];
+//            }
+//        }
+//        [_collectView reloadData];
+//    }];
 }
 
 -(void)getData{
@@ -392,14 +413,18 @@
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    return UIEdgeInsetsMake(3, 3, 3, 3);
+//    if (_isSearchBar) {
+        return UIEdgeInsetsMake(3, 3, 3, 3);
+//    }else{
+//        return UIEdgeInsetsMake(0, 0, 0, 0);
+//    }
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     if (_isSearchBar) {
         return CGSizeMake(SCREEN_WIDTH, SCREEN_WIDTH * 9 /16 + 57);
     }else{
-        return CGSizeMake(SCREEN_WIDTH - 6, 122);
+        return CGSizeMake(SCREEN_WIDTH, SCREEN_WIDTH * 0.7);
     }
 }
 
@@ -410,8 +435,11 @@
         cell.jiuBaM = jiubaM;
         return cell;
     }else{
-        LYGuWenPersonCollectionViewCell *cell = [_collectView dequeueReusableCellWithReuseIdentifier:@"LYGuWenPersonCollectionViewCell" forIndexPath:indexPath];
-        cell.vipModel = [searchlist objectAtIndex:indexPath.item];
+        LYSearchLiveShowCollectionViewCell *cell = [_collectView dequeueReusableCellWithReuseIdentifier:@"LYSearchLiveShowCollectionViewCell" forIndexPath:indexPath];
+        cell.listModel = [searchlist objectAtIndex:indexPath.item];
+        [cell setBackgroundColor:[UIColor redColor]];
+//        LYGuWenPersonCollectionViewCell *cell = [_collectView dequeueReusableCellWithReuseIdentifier:@"LYGuWenPersonCollectionViewCell" forIndexPath:indexPath];
+//        cell.vipModel = [searchlist objectAtIndex:indexPath.item];
         return cell;
     }
     
@@ -424,11 +452,29 @@
         [self.navigationController pushViewController:detailVC animated:YES];
         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:SEARCHPAGE_MTA titleName:model.barname]];
     }else{
-        UserModel *model = (UserModel *)[searchlist objectAtIndex:indexPath.item];
-        LYMyFriendDetailViewController *detailVC = [[LYMyFriendDetailViewController alloc]init];
-        detailVC.userID = [NSString stringWithFormat:@"%d",model.userid];
-        [self.navigationController pushViewController:detailVC animated:YES];
-        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:SEARCHPAGE_MTA titleName:model.usernick]];
+//        UserModel *model = (UserModel *)[searchlist objectAtIndex:indexPath.item];
+//        LYMyFriendDetailViewController *detailVC = [[LYMyFriendDetailViewController alloc]init];
+//        detailVC.userID = [NSString stringWithFormat:@"%d",model.userid];
+//        [self.navigationController pushViewController:detailVC animated:YES];
+        
+        LYLiveShowListModel *model = [searchlist objectAtIndex:indexPath.item];
+        WatchLiveShowViewController *watchLiveVC = [[WatchLiveShowViewController alloc]init];
+        NSString *roomId = [NSString stringWithFormat:@"%d",model.roomId];
+        NSDictionary *dict = @{@"roomid":roomId};
+        __weak __typeof(self) weakSelf = self;
+        [LYFriendsHttpTool getLiveShowRoomWithParams:dict complete:^(NSDictionary *Arr) {
+            if ([Arr[@"roomType"] isEqualToString:@"live"]) {
+                watchLiveVC.contentURL = Arr[@"liveRtmpUrl"];
+                watchLiveVC.chatRoomId = Arr[@"chatroomid"];
+            } else {
+                watchLiveVC.contentURL = Arr[@"playbackURL"];
+                watchLiveVC.chatRoomId = nil;
+            }
+            watchLiveVC.hostUser = Arr[@"roomHostUser"];
+            watchLiveVC.shareIamge = model.roomImg;
+            [weakSelf presentViewController:watchLiveVC animated:YES completion:NULL];
+            [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:SEARCHPAGE_MTA titleName:roomId]];
+        }];
     }
 }
 

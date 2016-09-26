@@ -149,7 +149,11 @@
             }
             [_datePicker setDate:birthday animated:NO];
         }else{
-            [_datePicker setDate:[NSDate date] animated:NO];
+            NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+            [formatter setDateFormat:@"yyyy-MM-dd"];
+            NSString *nowDateString = [formatter stringFromDate:[NSDate date]];
+            NSString *showDateString = [nowDateString stringByReplacingCharactersInRange:NSMakeRange(0, 4) withString:@"1995"];
+            [_datePicker setDate:[formatter dateFromString:showDateString] animated:NO];
         }
         
     }else if(indexPath.row==4){

@@ -19,6 +19,9 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+    self.customerImageView.layer.masksToBounds =YES;
+    
+    self.customerImageView.layer.cornerRadius = 40;
     self.title=@"客户详情";
 }
 
@@ -27,9 +30,6 @@
     [self.navigationController setNavigationBarHidden:NO];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.customerImageView.layer.masksToBounds =YES;
-    
-    self.customerImageView.layer.cornerRadius =self.customerImageView.frame.size.width/2;
     self.nameLal.text=_customerModel.username;
 //    self.juliLal.text=[NSString stringWithFormat:@"%@米",_customerModel.distance];
     if(_customerModel.tag.count>0){

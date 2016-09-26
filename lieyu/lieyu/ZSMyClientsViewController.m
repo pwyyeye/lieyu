@@ -18,7 +18,9 @@
 #import "ZSManageHttpTool.h"
 
 @interface ZSMyClientsViewController ()
-
+{
+    BOOL _isFilter;
+}
 @end
 
 @implementation ZSMyClientsViewController
@@ -31,11 +33,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO];
-    
+    [self.view setBackgroundColor:COMMON_GRAY];
     
     _listContent = [NSMutableArray new];
     _filteredListContent = [NSMutableArray new];
-    _searchBar.barTintColor=[UIColor whiteColor];
+    
+    [_searchBar setBackgroundImage:[UIImage new]];
+    _searchBar.delegate = self;
+    _searchBar.returnKeyType = UIReturnKeySearch;
+    
     [self getMyCustomerslist];
     [self initRightItemsButton];
 }
@@ -55,24 +61,28 @@
     LYAddressBook *addressBook = [[LYAddressBook alloc]init];
     NSMutableArray *updateArray = [[NSMutableArray alloc]init];
     NSArray *array = [addressBook getAddressBook];
-    for (AddressBookModel *userModel in array) {
-        NSDictionary *dict = @{@"mobile":userModel.mobile,
-                               @"name":userModel.name,
-                               @"birthday":userModel.birthday,
-                               @"headUrl":@""};
-        [updateArray addObject:dict];
+    if (array.count <= 0) {
+        [MyUtil showPlaceMessage:@"未获取到联系人！"];
+    }else{
+        for (AddressBookModel *userModel in array) {
+            NSDictionary *dict = @{@"mobile":userModel.mobile,
+                                   @"name":userModel.name,
+                                   @"birthday":userModel.birthday,
+                                   @"headUrl":@""};
+            [updateArray addObject:dict];
+        }
+        NSError *error;
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:updateArray options:NSJSONWritingPrettyPrinted error:&error];
+        NSString *jsonString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+        NSDictionary *dict = @{@"isBirthdayImport":@"0",//0是否，1是
+                               @"phonebookVoList":jsonString};
+        __weak __typeof(self) weakSelf = self;
+        [[ZSManageHttpTool shareInstance]zsImportAddressBookWithParams:dict complete:^(NSArray *dataList) {
+            LYAddFriendByAddressBookViewController *addFriendByAddressBookVC =  [[LYAddFriendByAddressBookViewController alloc]initWithNibName:@"LYAddFriendByAddressBookViewController" bundle:[NSBundle mainBundle]];
+            [weakSelf.navigationController pushViewController:addFriendByAddressBookVC animated:YES];
+            addFriendByAddressBookVC.dataList = [[NSMutableArray alloc]initWithArray:dataList];
+        }];
     }
-    NSError *error;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:updateArray options:NSJSONWritingPrettyPrinted error:&error];
-    NSString *jsonString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
-    NSDictionary *dict = @{@"isBirthdayImport":@"0",//0是否，1是
-                           @"phonebookVoList":jsonString};
-    __weak __typeof(self) weakSelf = self;
-    [[ZSManageHttpTool shareInstance]zsImportAddressBookWithParams:dict complete:^(NSArray *dataList) {
-        LYAddFriendByAddressBookViewController *addFriendByAddressBookVC =  [[LYAddFriendByAddressBookViewController alloc]initWithNibName:@"LYAddFriendByAddressBookViewController" bundle:[NSBundle mainBundle]];
-        [weakSelf.navigationController pushViewController:addFriendByAddressBookVC animated:YES];
-        addFriendByAddressBookVC.dataList = [[NSMutableArray alloc]initWithArray:dataList];
-    }];
 }
 
 
@@ -81,44 +91,17 @@
     __weak __typeof(self)weakSelf = self;
     NSDictionary *dic=@{@"userid":[NSString stringWithFormat:@"%d",self.userModel.userid]};
     [[ZSManageHttpTool shareInstance] getUsersFriendWithParams:dic block:^(NSMutableArray *result) {
-//        NSMutableArray *addressBookTemp = [[NSMutableArray array]init];
-//        [addressBookTemp addObjectsFromArray:result];
-//        
-//        UILocalizedIndexedCollation *theCollation = [UILocalizedIndexedCollation currentCollation];
-//        for (CustomerModel *addressBook in addressBookTemp) {
-//            NSInteger sect = [theCollation sectionForObject:addressBook
-//                                    collationStringSelector:@selector(username)];
-//            addressBook.sectionNumber = sect;
-//            
-//        }
-//        NSInteger highSection = [[theCollation sectionTitles] count];
-//        NSMutableArray *sectionArrays = [NSMutableArray arrayWithCapacity:highSection];
-//        for (int i=0; i<=highSection; i++) {
-//            NSMutableArray *sectionArray = [NSMutableArray arrayWithCapacity:1];
-//            [sectionArrays addObject:sectionArray];
-//        }
-//        
-//        for (CustomerModel *addressBook in addressBookTemp) {
-//            [(NSMutableArray *)[sectionArrays objectAtIndex:addressBook.sectionNumber] addObject:addressBook];
-//        }
-//        
-//        for (NSMutableArray *sectionArray in sectionArrays) {
-//            NSArray *sortedSection = [theCollation sortedArrayFromArray:sectionArray collationStringSelector:@selector(username)];
-//            [_listContent addObject:sortedSection];
-//            
-//        }
-        
         LYAddressBook *addressBook = [[LYAddressBook alloc]init];
         _listContent = [addressBook getCustomArrayToSectionArray:result];
-        
-        
         [weakSelf.tableView reloadData];
     }];
 
 }
+
+#pragma mark - tableview代理方法
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
+    if (_isFilter) {
         return nil;
     } else {
         return [[NSArray arrayWithObject:UITableViewIndexSearch] arrayByAddingObjectsFromArray:
@@ -128,11 +111,10 @@
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
 {
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
+    if (_isFilter) {
         return 0;
     } else {
         if (title == UITableViewIndexSearch) {
-            [tableView scrollRectToVisible:self.searchDisplayController.searchBar.frame animated:NO];
             return -1;
         } else {
             return [[UILocalizedIndexedCollation currentCollation] sectionForSectionIndexTitleAtIndex:index-1];
@@ -142,7 +124,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
+    if (_isFilter) {
         return 1;
     } else {
         return [_listContent count];
@@ -151,7 +133,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
+    if (_isFilter) {
         return nil;
     } else {
         return [[_listContent objectAtIndex:section] count] ? [[[UILocalizedIndexedCollation currentCollation] sectionTitles] objectAtIndex:section] : nil;
@@ -189,18 +171,35 @@
 */
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (tableView == self.searchDisplayController.searchResultsTableView)
+    if (_isFilter)
         return 0;
-    return [[_listContent objectAtIndex:section] count] ? tableView.sectionHeaderHeight : 0;
+    return [[_listContent objectAtIndex:section] count] ? 32 : 0;
 }
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if (_isFilter) {
+        return nil;
+    }else{
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 32)];
+        [view setBackgroundColor:COMMON_GRAY];
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH - 10, 32)];
+        [label setTextColor:[UIColor darkTextColor]];
+        [label setFont:[UIFont systemFontOfSize:16]];
+        [label setText:[[_listContent objectAtIndex:section] count] ? [[[UILocalizedIndexedCollation currentCollation] sectionTitles] objectAtIndex:section] : nil];
+        [view addSubview:label];
+        return view;
+    }
+}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
     return 55;
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
+    if (_isFilter) {
         return [_filteredListContent count];
     } else {
         return [[_listContent objectAtIndex:section] count];
@@ -216,45 +215,33 @@
         NSArray *nibArray = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
         cell = (CustomerCell *)[nibArray objectAtIndex:0];
         cell.backgroundColor=[UIColor whiteColor];
-        
-        
     }
-
-    
     CustomerModel *addressBook = nil;
-    if (tableView == self.searchDisplayController.searchResultsTableView)
+    if (_isFilter)
         addressBook = (CustomerModel *)[_filteredListContent objectAtIndex:indexPath.row];
     else
         addressBook = (CustomerModel *)[[_listContent objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    
     if ([[addressBook.username stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] > 0) {
         cell.nameLal.text = addressBook.username;
-        
     } else {
-        
         cell.nameLal.text = @"No Name";
     }
-    
     if (![MyUtil isEmptyString:addressBook.ordernum]&&![@"null" isEqualToString:addressBook.ordernum]) {
-        
         cell.countLal.text=addressBook.ordernum;
     }else{
         cell.countLal.text=@"0";
     }
-    
     [cell.cusImageView setImageWithURL:[NSURL URLWithString:addressBook.avatar_img]];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//    cell.backgroundColor=[UIColor clearColor];
-    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CustomerModel *addressBook = nil;
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
+    if (_isFilter) {
         addressBook = (CustomerModel*)[_filteredListContent objectAtIndex:indexPath.row];
-        [self.searchDisplayController.searchResultsTableView deselectRowAtIndexPath:indexPath animated:YES];
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
     else {
         addressBook = (CustomerModel*)[[_listContent objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
@@ -263,28 +250,32 @@
     ZSCustomerDetailViewController *customerDetailsViewController=[[ZSCustomerDetailViewController alloc]initWithNibName:@"ZSCustomerDetailViewController" bundle:nil];
     customerDetailsViewController.customerModel=addressBook;
     [self.navigationController pushViewController:customerDetailsViewController animated:YES];
+    //WTT
+    [_searchBar resignFirstResponder];
 }
 
 
 
-#pragma mark -
+#pragma mark - scrollView代理方法
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+//    if (!_isFilter) {
+//        _searchBar.text = @"";
+//    }
+    [_searchBar resignFirstResponder];
+}
+
 #pragma mark UISearchBarDelegate
 
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)_searchBar
-{
-    //[self.searchDisplayController.searchBar setShowsCancelButton:NO];
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    if (searchText.length == 0) {
+        [_searchBar resignFirstResponder];
+        _isFilter = NO;
+        [self.tableView reloadData];
+    }
 }
 
-- (void)searchBarCancelButtonClicked:(UISearchBar *)_searchBar
-{
-    //[self.searchDisplayController setActive:NO animated:YES];
-    [self.tableView reloadData];
-}
-
-- (void)searchBarSearchButtonClicked:(UISearchBar *)_searchBar
-{
-    //[self.searchDisplayController setActive:NO animated:YES];
-    [self.tableView reloadData];
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    [self filterContentForSearchText:_searchBar.text scope:nil];
 }
 
 #pragma mark -
@@ -292,6 +283,7 @@
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
+    _isFilter = YES;
     [_filteredListContent removeAllObjects];
     for (NSArray *section in _listContent) {
         for (CustomerModel *addressBook in section)
@@ -303,26 +295,11 @@
             }
         }
     }
+    [self.tableView reloadData];
 }
 
-#pragma mark -
 #pragma mark UISearchDisplayControllerDelegate
 
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-    [self filterContentForSearchText:searchString scope:
-     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
-    
-    return YES;
-}
-
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
-{
-    [self filterContentForSearchText:[self.searchDisplayController.searchBar text] scope:
-     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:searchOption]];
-    
-    return YES;
-}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

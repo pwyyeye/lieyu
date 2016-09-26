@@ -45,7 +45,7 @@
         }else{
             NSString *priceTotle = [NSString stringWithFormat:@"%d",model.price.integerValue * model.num.integerValue];
             str = [NSString stringWithFormat:@"¥%@",priceTotle];
-            label.textColor = RGBA(114, 5, 147, 1);
+            label.textColor = COMMON_PURPLE;
             label.textAlignment = NSTextAlignmentRight;
         }
         label.text = str;

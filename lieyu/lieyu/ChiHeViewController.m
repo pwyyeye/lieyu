@@ -174,12 +174,12 @@ static NSString * CellIdentifier = @"chiheCell";
 #pragma mark 设置标签栏数据
 - (void)setItemsData{
     for (int i = 0 ; i < _buttonsArray.count; i ++) {
-//        [((ShaiXuanBtn *)_buttonsArray[i]) setBackgroundColor:RGBA(114, 5, 147, 0.8)];
+//        [((ShaiXuanBtn *)_buttonsArray[i]) setBackgroundColor:COMMON_PURPLE_HALF];
         [((ShaiXuanBtn *)_buttonsArray[i]) setBackgroundColor:[UIColor clearColor]];
         [((ShaiXuanBtn *)_buttonsArray[i]) setTitle:((ProductCategoryModel *)biaoqianList[i]).name forState:UIControlStateNormal];
         [((ShaiXuanBtn *)_buttonsArray[i]) setTag:((ProductCategoryModel *)biaoqianList[i]).id];
     }
-//    [_sxBtn5 setBackgroundColor:RGBA(114, 5, 147, 0.8)];
+//    [_sxBtn5 setBackgroundColor:COMMON_PURPLE_HALF];
     [_sxBtn5 setBackgroundColor:[UIColor clearColor]];
     [_sxBtn5 setTag:105];
 }
@@ -419,7 +419,7 @@ static NSString * CellIdentifier = @"chiheCell";
     ShaiXuanBtn *btn=(ShaiXuanBtn*)sender;
     for (UIButton *button in _buttonsArray) {
         [button setBackgroundColor:[UIColor clearColor]];
-        [button setTitleColor:RGBA(114, 5, 147, 1) forState:UIControlStateNormal];
+        [button setTitleColor:COMMON_PURPLE forState:UIControlStateNormal];
         if(button.tag == btn.tag){
             //等待选择
             [button setSelected:YES];
@@ -499,7 +499,7 @@ static NSString * CellIdentifier = @"chiheCell";
     }else{
         _moreShow = NO;
         [_sxBtn5 setTitle:@"" forState:UIControlStateNormal];
-//        [_sxBtn5 setBackgroundColor:RGBA(114, 5, 147, 0.8)];
+//        [_sxBtn5 setBackgroundColor:COMMON_PURPLE_HALF];
         [_sxBtn5 setBackgroundColor:[UIColor clearColor]];
 //        [_sxBtn5 setImage:[UIImage imageNamed:@"more_white"] forState:UIControlStateNormal];
         [_MoreView removeFromSuperview];
@@ -511,12 +511,12 @@ static NSString * CellIdentifier = @"chiheCell";
 - (void)chooseTypes:(UIButton *)sender{
     [self.MoreView removeFromSuperview];
     
-    [sender setBackgroundColor:RGBA(114, 5, 147, 1)];
+    [sender setBackgroundColor:COMMON_PURPLE];
     [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
     [_sxBtn5 setBackgroundColor:[UIColor clearColor]];
-//    [_sxBtn5 setTitleColor:RGBA(114, 5, 147, 0.8) forState:UIControlStateNormal];
-    [_sxBtn5 setTitleColor:RGBA(114, 5, 147, 1) forState:UIControlStateNormal];
+//    [_sxBtn5 setTitleColor:COMMON_PURPLE_HALF forState:UIControlStateNormal];
+    [_sxBtn5 setTitleColor:COMMON_PURPLE forState:UIControlStateNormal];
     [_sxBtn5 setTitle:sender.titleLabel.text forState:UIControlStateNormal];
     [_sxBtn5 setSelected:YES];
     

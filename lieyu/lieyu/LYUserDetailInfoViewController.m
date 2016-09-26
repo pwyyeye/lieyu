@@ -19,6 +19,7 @@
 #import "LYUserLoginViewController.h"
 #import "LYTagsViewController.h"
 #import "UserTagModel.h"
+#import "LYFriendsRecommendViewController.h"
 
 @interface LYUserDetailInfoViewController ()<UITableViewDataSource,UITableViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,LPAlertViewDelegate,LYTagsViewControllerDelegate>
 {
@@ -222,8 +223,6 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    UserModel *mod= app.userModel;
     if (indexPath.row == 3) {//选择生日
         LPAlertView *alertView = [[LPAlertView alloc]initWithDelegate:self buttonTitles:@"取消", @"确定",nil];
         
@@ -231,6 +230,11 @@
         timeView.timePicker.datePickerMode = UIDatePickerModeDate;
         timeView.timePicker.minimumDate = [NSDate dateWithTimeIntervalSince1970:0];
         timeView.timePicker.maximumDate = [NSDate date];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        [formatter setDateFormat:@"yyyy-MM-dd"];
+        NSString *nowDateString = [formatter stringFromDate:[NSDate date]];
+        NSString *showDateString = [nowDateString stringByReplacingCharactersInRange:NSMakeRange(0, 4) withString:@"1995"];
+        [timeView.timePicker setDate:[formatter dateFromString:showDateString] animated:NO];
         timeView.label_title.text = @"请选择出生年日";
         timeView.tag = 11;
         timeView.frame = CGRectMake(10, SCREEN_HEIGHT - 270, SCREEN_WIDTH - 20, 200);
@@ -523,7 +527,9 @@
     
     [self savaUserInfo:userinfo needReload:YES];
     
-    [self.navigationController popToRootViewControllerAnimated:YES];
+//    [self.navigationController popToRootViewControllerAnimated:YES];
+    LYFriendsRecommendViewController *friendsRecommendVC = [[LYFriendsRecommendViewController alloc]init];
+    [self.navigationController pushViewController:friendsRecommendVC animated:YES];
 
 }
 

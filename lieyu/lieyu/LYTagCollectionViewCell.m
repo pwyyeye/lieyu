@@ -31,7 +31,7 @@
 
 - (void)setSelected:(BOOL)selected{
     if (selected) {
-        self.tagLabel.backgroundColor = RGBA(114, 5, 147, 1);
+        self.tagLabel.backgroundColor = COMMON_PURPLE;
         self.tagLabel.textColor = RGBA(255,255,255, 1);
     }else{
         self.tagLabel.backgroundColor = RGBA(255, 255, 255, 1);

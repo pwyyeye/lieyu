@@ -18,7 +18,7 @@
     _titleLal.frame = CGRectMake(10, 8, 72, 24);
 
     _delLal.font = [UIFont systemFontOfSize:14];
-    _delLal.textColor = RGBA(114, 5, 147, 1);
+    _delLal.textColor = COMMON_PURPLE;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

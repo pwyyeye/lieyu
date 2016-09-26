@@ -246,5 +246,7 @@
 + (void)lyGetYukebangQRCodeWithParams:(NSDictionary *)dict complete:(void(^)(NSString *result))complete;
 #pragma mark - 普通用户绑定账户
 + (void)lyUserBoundAccountWithParams:(NSDictionary *)dict complete:(void(^)(BOOL result))complete;
+#pragma mark - 用户注册之后进行玩友推荐
++ (void)lyRecommendFriendsWithParams:(NSDictionary *)dict complete:(void(^)(NSArray *dataList))complete;
 
 @end

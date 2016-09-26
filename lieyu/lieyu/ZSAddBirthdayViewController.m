@@ -37,6 +37,9 @@
 
 - (void)initMainView{
     
+    _avatarImage.layer.cornerRadius = 35;
+    _avatarImage.layer.masksToBounds = YES;
+    
     [_changeAvatarButton addTarget:self action:@selector(changeAvatarImage) forControlEvents:UIControlEventTouchUpInside];
     _avatarImage.layer.cornerRadius = 35;
     _usernameTextField.layer.borderColor = [RGBA(102, 102, 102, 1) CGColor];
@@ -59,17 +62,30 @@
     NSLocale *local=[[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
     _datePicker.locale=local;
     [_datePicker setMaximumDate:[NSDate date]];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
     
     if (_editModel) {
 //        [_avatarImage sd_setImageWithURL:[NSURL URLWithString:_editModel.headUrl]];
         _selectedImage = _headImage;
-        _birthday = [NSString stringWithFormat:@"2015-%@",_editModel.birthday];
+        if (![MyUtil isEmptyString:_editModel.birthday]) {
+            _birthday = [NSString stringWithFormat:@"1995-%@",_editModel.birthday];
+            [_datePicker setDate:[formatter dateFromString:_birthday]];
+        }else{
+            NSString *nowDateString = [formatter stringFromDate:[NSDate date]];
+            NSString *showDateString = [nowDateString stringByReplacingCharactersInRange:NSMakeRange(0, 4) withString:@"1995"];
+            [_datePicker setDate:[formatter dateFromString:showDateString]];
+        }
         [_avatarImage setImage:_headImage];
         _usernameTextField.text = _editModel.name;
         _phoneTextField.text = _editModel.mobile;
         [_chooseBirthdayButton setTitle:_editModel.birthday forState:UIControlStateNormal];
         _sex = [_editModel.sex intValue];
     }else{
+        NSString *nowDateString = [formatter stringFromDate:[NSDate date]];
+        NSString *showDateString = [nowDateString stringByReplacingCharactersInRange:NSMakeRange(0, 4) withString:@"1995"];
+        [_datePicker setDate:[formatter dateFromString:showDateString]];
+        
         [_avatarImage setImage:[UIImage imageNamed:@"CommonIcon"]];
     }
     for (UIButton *button in _chooseSexButton) {

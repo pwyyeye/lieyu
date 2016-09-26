@@ -21,7 +21,7 @@
 - (void)setSelected:(BOOL)selected{
     if (selected) {
         [self setTitleColor:RGBA(255, 255,225  , 1) forState:UIControlStateNormal];
-        self.backgroundColor = RGBA(114, 5, 147, 1);
+        self.backgroundColor = COMMON_PURPLE;
     }else{
         self.backgroundColor = RGBA(255, 255, 255, 1);
         [self setTitleColor:RGBA(26, 26, 26, 1) forState:UIControlStateNormal];

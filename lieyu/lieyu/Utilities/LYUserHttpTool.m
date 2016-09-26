@@ -1755,7 +1755,25 @@
     }];
 }
 
-
+#pragma mark - 用户注册之后进行玩友推荐
++ (void)lyRecommendFriendsWithParams:(NSDictionary *)dict complete:(void(^)(NSArray *dataList))complete{
+    AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_RECOMMEND_FRIEND baseURL:RUIQIU_SERVER params:dict success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"success"]) {
+            NSArray *array = [[response objectForKey:@"data"] objectForKey:@"userlist"];
+            NSArray *userList = [UserModel mj_objectArrayWithKeyValuesArray:array];
+            complete(userList);
+        }else{
+            complete(nil);
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        complete(nil);
+        [app stopLoading];
+    }];
+}
 
 
 

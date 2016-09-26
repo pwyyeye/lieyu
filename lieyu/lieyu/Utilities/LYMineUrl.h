@@ -146,5 +146,7 @@
 #define LY_GET_YUKEBANGQRCODE @"/lieyu//app/api/yukegroup/getShareUrl?1=1"
 //普通用户绑定提现账户
 #define LY_BOUND_ACCOUNT @"dailyCoinAction.do?action=expand"
+//玩友推荐
+#define LY_RECOMMEND_FRIEND @"/lieyu//app/api/user/activeUser?1=1"
 
 #endif

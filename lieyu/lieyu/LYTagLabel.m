@@ -21,7 +21,7 @@
 - (void)setSelected:(int)selected{
     _selected = selected;
     if (_selected) {
-        self.backgroundColor = RGBA(114, 5, 147, 1);
+        self.backgroundColor = COMMON_PURPLE;
         self.textColor = RGBA(255,255,255, 1);
     }else{
         self.backgroundColor = RGBA(255, 255, 255, 1);

@@ -228,7 +228,7 @@
     
 //    first.alignment = NSTextAlignmentCenter;
     
-    [KxMenu setTintColor:RGBA(114, 5, 147, 0.8)];
+    [KxMenu setTintColor:COMMON_PURPLE_HALF];
     [KxMenu setTitleFont:[UIFont italicSystemFontOfSize:13]];
     
     [KxMenu showMenuInView:self.view

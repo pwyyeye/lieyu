@@ -281,7 +281,7 @@
 //        button.layer.borderWidth = 0.5;
 //        [button setImage:[self imageWithColor:RGBA(255, 255, 255, 1) andSize:button.frame.size] forState:UIControlStateNormal];
 ////        [button setBackgroundColor:[UIColor grayColor]];
-//        [button setImage:[self imageWithColor:RGBA(114, 5, 147, 1) andSize:button.frame.size] forState:UIControlStateHighlighted];
+//        [button setImage:[self imageWithColor:COMMON_PURPLE andSize:button.frame.size] forState:UIControlStateHighlighted];
 //        [button setTitle:array[i] forState:UIControlStateNormal];
 ////        button.enabled = YES;
 //        [self.selectView addSubview:button];
