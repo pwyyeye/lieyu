@@ -3388,8 +3388,8 @@
 		38FE0B801D9912E400CA6D3A /* LYSearchLiveShowCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYSearchLiveShowCollectionViewCell.h; sourceTree = "<group>"; };
 		38FE0B811D9912E400CA6D3A /* LYSearchLiveShowCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYSearchLiveShowCollectionViewCell.m; sourceTree = "<group>"; };
 		38FE0B821D9912E400CA6D3A /* LYSearchLiveShowCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYSearchLiveShowCollectionViewCell.xib; sourceTree = "<group>"; };
-		38FE0B851D9A252F00CA6D3A /* arrowdown@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrowdown@2x.png"; sourceTree = "<group>"; };
-		38FE0B861D9A252F00CA6D3A /* arrowdown@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrowdown@3x.png"; sourceTree = "<group>"; };
+		38FE0B851D9A252F00CA6D3A /* arrowdown@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "arrowdown@2x.png"; path = "../娱/arrowdown@2x.png"; sourceTree = "<group>"; };
+		38FE0B861D9A252F00CA6D3A /* arrowdown@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "arrowdown@3x.png"; path = "../娱/arrowdown@3x.png"; sourceTree = "<group>"; };
 		525CA0C41C5B626E009ED9DA /* daohang_xiangji.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daohang_xiangji.png; sourceTree = "<group>"; };
 		525CA0C51C5B626E009ED9DA /* daohang_xiangji@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daohang_xiangji@2x.png"; sourceTree = "<group>"; };
 		525CA0C61C5B626E009ED9DA /* daohang_xiangji@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daohang_xiangji@3x.png"; sourceTree = "<group>"; };
@@ -7554,8 +7554,6 @@
 		850099AF1C61EEE700DDE626 /* 娱 */ = {
 			isa = PBXGroup;
 			children = (
-				38FE0B851D9A252F00CA6D3A /* arrowdown@2x.png */,
-				38FE0B861D9A252F00CA6D3A /* arrowdown@3x.png */,
 				855C889D1CCB40A60055E8B0 /* yu_money_yugu@3x.png */,
 				855C889E1CCB40A60055E8B0 /* yu_money_yugu@2x.png */,
 				858B3A1F1C7A0351000C6589 /* priceBlackYUD@2x.png */,
@@ -7756,6 +7754,8 @@
 			isa = PBXGroup;
 			children = (
 				854107031D7E93A70083AF04 /* BackImage.png */,
+				38FE0B851D9A252F00CA6D3A /* arrowdown@2x.png */,
+				38FE0B861D9A252F00CA6D3A /* arrowdown@3x.png */,
 				85FE54761D791AFF00B262EA /* GiftImage */,
 				854106FA1D7D05A40083AF04 /* sayHello@2x.png */,
 				854106FB1D7D05A40083AF04 /* sayHello@3x.png */,
