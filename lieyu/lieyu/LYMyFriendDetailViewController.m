@@ -363,6 +363,7 @@
 //    dict = @{@"imuserId":_imUserId};
 //    = @{@"userid":self.userID};
 //    NSLog(@"%d",self.userModel.userid);
+    
     __weak __typeof(self) weakSelf = self;
     [LYUserHttpTool GetUserInfomationWithID:dict complete:^(find_userInfoModel *result) {
         _result = result;
