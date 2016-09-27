@@ -14,6 +14,7 @@
                 <outlet property="LIVEView" destination="wqH-MS-yNM" id="LZH-W9-dTn"/>
                 <outlet property="addressLabel" destination="kqF-if-ubr" id="EcG-tF-ioO"/>
                 <outlet property="advanceImage" destination="6jh-TB-wPs" id="YcF-Um-W4k"/>
+                <outlet property="advangeView" destination="Gjx-DZ-OdC" id="sLc-dc-RyS"/>
                 <outlet property="barnameLabel" destination="RcS-7F-6bU" id="U5Z-FN-rRF"/>
                 <outlet property="bigAddressImage" destination="Wnp-HL-Dav" id="IH4-TD-w6r"/>
                 <outlet property="bigBarImage" destination="ync-b2-KdE" id="73o-qv-ALs"/>
@@ -557,7 +558,11 @@
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wqH-MS-yNM">
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zjW-vt-s0j"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zjW-vt-s0j">
+                                    <connections>
+                                        <action selector="liveSelfList:" destination="-1" eventType="touchUpInside" id="cgr-NX-jRf"/>
+                                    </connections>
+                                </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="直播" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jWh-zL-CMN">
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

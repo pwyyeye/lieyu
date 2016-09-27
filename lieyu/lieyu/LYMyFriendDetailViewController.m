@@ -24,14 +24,20 @@
 #import "LYwoYaoDinWeiMainViewController.h"
 #import "FreeOrderViewController.h"
 #import "LYFriendsHttpTool.h"
+#import "LYLiveShowListModel.h"
+#import "LYMyFriendLiveListViewController.h"
 
 @interface LYMyFriendDetailViewController ()
 {
     preview *_subView;
     find_userInfoModel *_result;
     NSArray *imgArray;
+    NSArray *liveImageArray;
     UILabel *clearLabel;
 }
+
+@property (nonatomic, strong) NSMutableArray *liveArray;//直播列表
+
 @end
 
 @implementation LYMyFriendDetailViewController
@@ -53,7 +59,7 @@
         self.setBG.hidden = NO;
     }
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-    
+    _liveArray = [NSMutableArray arrayWithCapacity:1];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
@@ -88,6 +94,7 @@
     self.DTView.layer.cornerRadius = 4;
     self.DTView.layer.masksToBounds = YES;
     imgArray = @[_image1,_image2,_image3,_image4];
+    liveImageArray = @[_liveImageView_1,_liveImageView_2,_liveImageView_3,_liveImageView_4];
     if (_userID || _imUserId) {
         [self getData];
     }else{
@@ -350,6 +357,38 @@
             image.clipsToBounds = YES;
         }
     }
+    //直播页面
+    if (_liveArray.count == 0) {
+        _advangeView.hidden = YES;
+        if (!clearLabel) {
+            clearLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 0, 150, 72)];
+            [clearLabel setFont:[UIFont systemFontOfSize:14]];
+            [clearLabel setTextColor:[UIColor darkGrayColor]];
+            [clearLabel setText:@"暂无直播！"];
+        }
+        self.zhiboButton.enabled = NO;
+        [self.LIVEView addSubview:clearLabel];
+    }else{
+        _advangeView.hidden = NO;
+        [clearLabel removeFromSuperview];
+        self.zhiboButton.enabled = YES;
+        NSInteger num = _liveArray.count <= 4? _liveArray.count : 4;
+        
+        for(int i = 0 ; i < num; i ++){
+            LYLiveShowListModel *model = _liveArray[num];
+            UIImageView *image = [liveImageArray objectAtIndex:i];
+            [image sd_setImageWithURL:[NSURL URLWithString:model.roomImg]];
+            image.contentMode = UIViewContentModeScaleAspectFill;
+            image.clipsToBounds = YES;
+        }
+    }
+    for (LYLiveShowListModel *model in _liveArray) {
+        if ([model.roomType isEqualToString:@"playback"]) {
+            self.liveStatus.hidden = YES;
+        } else {
+            self.liveStatus.hidden = NO;
+        }
+    }
 }
 
 -(void)getData{
@@ -367,17 +406,15 @@
     __weak __typeof(self) weakSelf = self;
     [LYUserHttpTool GetUserInfomationWithID:dict complete:^(find_userInfoModel *result) {
         _result = result;
-        [weakSelf configureThisView];
         if (_imUserId) {
             _userID = [NSString stringWithFormat:@"%d",_result.userid];
         }
+        NSDictionary *dictionary = @{@"cityCode":@"310000",@"livetype":@"live",@"sort":@"recent",@"page":@"1",@"userId":_userID};
+        [LYFriendsHttpTool getLiveShowlistWithParams:dictionary complete:^(NSArray *Arr) {
+            [self.liveArray addObjectsFromArray:Arr];
+            [weakSelf configureThisView];
+        }];
     }];
-//    NSDictionary *dict = @{@"cityCode":@"310000",@"livetype":@"live",@"sort":@"recent",@"page":@"1"};
-
-    [LYFriendsHttpTool getLiveShowlistWithParams:dict complete:^(NSArray *Arr) {
-        
-    }];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -559,6 +596,14 @@
     [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:[self createMTADctionaryWithActionName:@"跳转" pageName:@"专属经理" titleName:@"在线预订"]];
     [MTA trackCustomEvent:@"YDList" args:nil];
 }
+
+- (IBAction)liveSelfList:(UIButton *)sender {
+    LYMyFriendLiveListViewController *liveListVC = [[LYMyFriendLiveListViewController alloc] init];
+    liveListVC.userID = [NSString stringWithFormat:@"%id", _result.userid];
+    liveListVC.userName = _result.usernick;
+    [self.navigationController pushViewController:liveListVC animated:YES];
+}
+
 
 //进入酒吧详情
 - (void)checkBarInfo{
