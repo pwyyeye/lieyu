@@ -903,6 +903,8 @@
 		38F156D21C5E3B46004BDA0F /* BarIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F156D01C5E3B46004BDA0F /* BarIcon@2x.png */; };
 		38FE0B831D9912E400CA6D3A /* LYSearchLiveShowCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FE0B811D9912E400CA6D3A /* LYSearchLiveShowCollectionViewCell.m */; };
 		38FE0B841D9912E400CA6D3A /* LYSearchLiveShowCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38FE0B821D9912E400CA6D3A /* LYSearchLiveShowCollectionViewCell.xib */; };
+		38FE0B871D9A252F00CA6D3A /* arrowdown@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38FE0B851D9A252F00CA6D3A /* arrowdown@2x.png */; };
+		38FE0B881D9A252F00CA6D3A /* arrowdown@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38FE0B861D9A252F00CA6D3A /* arrowdown@3x.png */; };
 		525CA0C71C5B626E009ED9DA /* daohang_xiangji.png in Resources */ = {isa = PBXBuildFile; fileRef = 525CA0C41C5B626E009ED9DA /* daohang_xiangji.png */; };
 		525CA0C81C5B626E009ED9DA /* daohang_xiangji@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 525CA0C51C5B626E009ED9DA /* daohang_xiangji@2x.png */; };
 		525CA0C91C5B626E009ED9DA /* daohang_xiangji@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 525CA0C61C5B626E009ED9DA /* daohang_xiangji@3x.png */; };
@@ -3386,6 +3388,8 @@
 		38FE0B801D9912E400CA6D3A /* LYSearchLiveShowCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYSearchLiveShowCollectionViewCell.h; sourceTree = "<group>"; };
 		38FE0B811D9912E400CA6D3A /* LYSearchLiveShowCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYSearchLiveShowCollectionViewCell.m; sourceTree = "<group>"; };
 		38FE0B821D9912E400CA6D3A /* LYSearchLiveShowCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYSearchLiveShowCollectionViewCell.xib; sourceTree = "<group>"; };
+		38FE0B851D9A252F00CA6D3A /* arrowdown@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrowdown@2x.png"; sourceTree = "<group>"; };
+		38FE0B861D9A252F00CA6D3A /* arrowdown@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrowdown@3x.png"; sourceTree = "<group>"; };
 		525CA0C41C5B626E009ED9DA /* daohang_xiangji.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daohang_xiangji.png; sourceTree = "<group>"; };
 		525CA0C51C5B626E009ED9DA /* daohang_xiangji@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daohang_xiangji@2x.png"; sourceTree = "<group>"; };
 		525CA0C61C5B626E009ED9DA /* daohang_xiangji@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daohang_xiangji@3x.png"; sourceTree = "<group>"; };
@@ -7550,6 +7554,8 @@
 		850099AF1C61EEE700DDE626 /* 娱 */ = {
 			isa = PBXGroup;
 			children = (
+				38FE0B851D9A252F00CA6D3A /* arrowdown@2x.png */,
+				38FE0B861D9A252F00CA6D3A /* arrowdown@3x.png */,
 				855C889D1CCB40A60055E8B0 /* yu_money_yugu@3x.png */,
 				855C889E1CCB40A60055E8B0 /* yu_money_yugu@2x.png */,
 				858B3A1F1C7A0351000C6589 /* priceBlackYUD@2x.png */,
@@ -12000,6 +12006,7 @@
 				8515080F1CFD619F002375D4 /* epIden_purper@3x.png in Resources */,
 				38AD5AD01D62DF3700521150 /* MineApply@3x.png in Resources */,
 				85FE55241D7AB86C00B262EA /* strategyUnColl@2x.png in Resources */,
+				38FE0B871D9A252F00CA6D3A /* arrowdown@2x.png in Resources */,
 				854405A81CB8DF7A00EA5556 /* userFav@3x.png in Resources */,
 				AD203BAF1CAEA9C70014618A /* CoinBack@1x.png in Resources */,
 				38B2B2661D7AE0E4008BC63E /* activityPhoneIcon@3x.png in Resources */,
@@ -12473,6 +12480,7 @@
 				AD92AE9D1BE1D339009F2A34 /* lieyu_default_male@2x.png in Resources */,
 				15ED32731BE2F49800E086A1 /* YaoYiYaoViewController.xib in Resources */,
 				AD399E861C940D4D00028F23 /* logo7@2x.jpg in Resources */,
+				38FE0B881D9A252F00CA6D3A /* arrowdown@3x.png in Resources */,
 				A2F9DA931BABD62F009DEAF3 /* OrderBottomForCCView.xib in Resources */,
 				857968241CFC112F00284555 /* AddCare@2x.png in Resources */,
 				8550E7201C302A33001FF2DE /* daohang_fabu.png in Resources */,
