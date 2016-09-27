@@ -30,12 +30,13 @@
     
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:imgurl]];
     self.nameLabel.text = fansModel.usernick;
-    self.firstLabel.text = @"狮子座";
+    self.firstLabel.text = [MyUtil getAstroWithBirthday:fansModel.birthday];
     self.secondLabel.text = @"互联网";
-    if ([fansModel.friendStatus isEqualToString:@"3"]) {//好友
-        self.focusButton.titleLabel.text = @"取消关注";
-    } else if([fansModel.friendStatus isEqualToString:@"2"]){//粉丝
-        self.focusButton.titleLabel.text = @"关注";
+    if ([fansModel.friendStatus isEqualToString:@"3"] || [fansModel.friendStatus isEqualToString:@"1"]) {//好友
+        [self.focusButton setTitle:@"已关注" forState:(UIControlStateNormal)];
+        self.focusButton.userInteractionEnabled = NO;
+    } else {//粉丝
+        [self.focusButton setTitle:@"关注" forState:(UIControlStateNormal)];
     }
 }
 

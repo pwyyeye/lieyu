@@ -282,8 +282,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [_userView.iconIamgeView sd_setImageWithURL:[NSURL URLWithString:imgUrl]];
     _userView.userNameLabel.text = _hostUser[@"usernick"];
     _userView.numberLabel.text = @"";
-    _userView.iconIamgeView.layer.cornerRadius = _userView.iconIamgeView.frame.size.height/2;
-    _userView.iconIamgeView.layer.masksToBounds = YES;
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(anchorDetail)];
     _userView.iconIamgeView.userInteractionEnabled  = YES;
     [_userView.iconIamgeView addGestureRecognizer:tapGes];
@@ -829,7 +827,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
     if (collectionView.tag == 188) {
-        return UIEdgeInsetsMake(15, 5, 15, 5);//上 左 下 右
+        return UIEdgeInsetsMake(0, 5, 0, 5);//上 左 下 右
     }else{
         return UIEdgeInsetsMake(0, 0, 0, 0);
     }
@@ -963,8 +961,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     customFlowLayout.sectionInset = UIEdgeInsetsMake(10.0f, 0.0f, 10.0f, 0.0f);
     customFlowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
     CGRect _conversationViewFrame = self.contentView.bounds;
-    _conversationViewFrame.origin.y = 30;
-    _conversationViewFrame.size.height = self.contentView.bounds.size.height - 40;
     //    CGRect _conversationViewFrame = CGRectMake(0, distanceOfBottom - MinHeight_InputView - SCREEN_HEIGHT / 8 * 3, SCREEN_WIDTH, SCREEN_HEIGHT /8 * 3);
     self.conversationMessageCollectionView =
     [[UICollectionView alloc] initWithFrame:_conversationViewFrame
@@ -1179,8 +1175,8 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     self.conversationMessageCollectionView.backgroundColor = [UIColor clearColor];
     //修改会话列表和输入框位置
     CGRect _conversationViewFrame = self.contentView.bounds;
-    _conversationViewFrame.size.height = self.contentView.bounds.size.height - 35;
-    _conversationViewFrame.origin.y = 30;
+    _conversationViewFrame.size.height = self.contentView.bounds.size.height ;
+    _conversationViewFrame.origin.y = 0;
     //     CGRect _conversationViewFrame = CGRectMake(0, distanceOfBottom - MinHeight_InputView - SCREEN_HEIGHT / 8 * 3, SCREEN_WIDTH, SCREEN_HEIGHT /8 * 3);
     [self.conversationMessageCollectionView setFrame:_conversationViewFrame];
 //    float inputBarOriginY = distanceOfBottom - SCREEN_WIDTH / 8;

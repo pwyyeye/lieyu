@@ -23,6 +23,7 @@
 #import "LYAdviserHttpTool.h"
 #import "LYwoYaoDinWeiMainViewController.h"
 #import "FreeOrderViewController.h"
+#import "LYFriendsHttpTool.h"
 
 @interface LYMyFriendDetailViewController ()
 {
@@ -226,7 +227,7 @@
           isEqualToString:@"2"] &&
         ![_result.usertype isEqualToString:@"3"]) {
         //对方是普通用户
-        _collectButton.hidden = YES;
+//        _collectButton.hidden = YES;
         _fansOrCaresNumLabel.hidden = YES;
         _fansOrCaresLabel.hidden = YES;
         _careNumberImage.hidden = YES;
@@ -239,13 +240,7 @@
         [_fansOrCaresLabel setText:@"粉丝"];
         [_fansOrCaresNumLabel setText:[NSString stringWithFormat:@"%d",_result.beCollectNum]];
         [_careNumberImage setImage:[UIImage imageNamed:@"CareNumber"]];
-        if ([_result.liked isEqualToString:@"1"] || [_result.liked isEqualToString:@"3"]) {
-            [_collectButton setImage:[UIImage imageNamed:@"CareNumber"] forState:UIControlStateNormal];
-            _collectButton.tag = 189;
-        }else{
-            [_collectButton setImage:[UIImage imageNamed:@"AddCare"] forState:UIControlStateNormal];
-            _collectButton.tag = 589;
-        }
+       
         [_fansOrCaresLabel setText:@"粉丝"];
         _popularityView.hidden = NO;
         [_popularityNumberLabel setText:[NSString stringWithFormat:@"人气：%d",_result.popularityNum]];
@@ -279,7 +274,13 @@
         }
         
     }
-    
+    if ([_result.liked isEqualToString:@"1"] || [_result.liked isEqualToString:@"3"]) {
+        [_collectButton setImage:[UIImage imageNamed:@"hadCollect"] forState:UIControlStateNormal];
+        _collectButton.tag = 189;
+    }else{
+        [_collectButton setImage:[UIImage imageNamed:@"notCollect"] forState:UIControlStateNormal];
+        _collectButton.tag = 589;
+    }
     _namelal.text = _result.usernick;
     
     [_userImageView sd_setImageWithURL:[NSURL URLWithString:_result.avatar_img]];
@@ -370,6 +371,12 @@
             _userID = [NSString stringWithFormat:@"%d",_result.userid];
         }
     }];
+//    NSDictionary *dict = @{@"cityCode":@"310000",@"livetype":@"live",@"sort":@"recent",@"page":@"1"};
+
+    [LYFriendsHttpTool getLiveShowlistWithParams:dict complete:^(NSArray *Arr) {
+        
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -489,7 +496,7 @@
         [LYAdviserHttpTool lyAddCollectWithParams:dict complete:^(BOOL result) {
             if (result) {
                 [MyUtil showPlaceMessage:@"添加关注成功！"];
-                [sender setImage:[UIImage imageNamed:@"CareNumber"] forState:UIControlStateNormal];
+                [sender setImage:[UIImage imageNamed:@"hadCollect"] forState:UIControlStateNormal];
                 _fansOrCaresNumLabel.text = [NSString stringWithFormat:@"%d",[_fansOrCaresNumLabel.text intValue] + 1];
                 self.userModel.collectNum = [NSString stringWithFormat:@"%d",[self.userModel.collectNum intValue] + 1];
                 sender.tag = 189;
@@ -501,7 +508,7 @@
         [LYAdviserHttpTool lyDeleteCollectWithParams:dict complete:^(BOOL result) {
             if (result) {
                 [MyUtil showPlaceMessage:@"取消关注成功！"];
-                [sender setImage:[UIImage imageNamed:@"AddCare"] forState:UIControlStateNormal];
+                [sender setImage:[UIImage imageNamed:@"notCollect"] forState:UIControlStateNormal];
                 _fansOrCaresNumLabel.text = [NSString stringWithFormat:@"%d",[_fansOrCaresNumLabel.text intValue] - 1];
                 
                 self.userModel.collectNum = [NSString stringWithFormat:@"%d",[self.userModel.collectNum intValue] - 1];
