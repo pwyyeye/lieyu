@@ -32,6 +32,7 @@
 @property(strong,nonatomic) NSString *birthday;
 @property(assign,nonatomic) BOOL isGrpupManage;
 @property(strong,nonatomic) NSArray *tags;
+@property (nonatomic, strong) NSArray *userTag;
 @property (nonatomic,copy) NSString *tag;
 @property(nonatomic,assign)int barid;
 @property (nonatomic,copy) NSString *openID;
