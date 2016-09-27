@@ -80,7 +80,7 @@
 
 #pragma mark - 空界面
 - (void)initKongLabel{
-    _kongLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT / 2 - 20, SCREEN_WIDTH, 20)];
+    _kongLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT / 2 - 50, SCREEN_WIDTH, 20)];
     [_kongLabel setTextAlignment:NSTextAlignmentCenter];
     [_kongLabel setTextColor:COMMON_PURPLE];
     [_kongLabel setFont:[UIFont systemFontOfSize:16]];
@@ -97,8 +97,10 @@
             for (int i = 0 ; i < _dataList.count; i ++) {
                 [_selectedArray addObject:@"1"];
             }
+            _selectedNumber = _dataList.count;
             [_tableView reloadData];
         }else{
+            _allSelectButton.hidden = YES;
             [_tableView removeFromSuperview];
         }
     }];
@@ -190,7 +192,29 @@
 }
 
 - (void)enterLieyu{
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    __weak __typeof(self) weakSelf = self;
+    if (_selectedNumber > 0) {
+        int i = 0 ;
+        NSMutableArray *array = [[NSMutableArray alloc]init];
+        for (NSString *status in _selectedArray) {
+            if ([status isEqualToString:@"1"]) {
+                [array addObject:[NSString stringWithFormat:@"%d",((UserModel *)[_dataList objectAtIndex:i]).id]];
+            }
+            i ++;
+        }
+        NSDictionary *dict = @{@"followid":array};
+        [LYUserHttpTool lyFollowRecommendFriendsWithOarams:dict complete:^(BOOL result) {
+            if (result) {
+                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+                [MyUtil showPlaceMessage:@"欢迎来到猎娱！"];
+            }else{
+                [MyUtil showPlaceMessage:@"添加失败，请稍后重试！"];
+            }
+        }];
+    }else{
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        [MyUtil showPlaceMessage:@"欢迎来到猎娱！"];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

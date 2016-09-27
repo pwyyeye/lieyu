@@ -109,7 +109,14 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0 && indexPath.item == 0) {
         //进入娱币商城
-        [MyUtil showPlaceMessage:@"娱币商城敬请期待！"];
+        [LYUserHttpTool lyEnterCoinShopWithParams:nil complete:^(NSString *result) {
+            if ([MyUtil isEmptyString:result]) {
+                [MyUtil showPlaceMessage:@"娱币商城敬请期待！"];
+            }else{
+//                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.baidu.com"]];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:result]];
+            }
+        }];
     }else if (indexPath.section == 0 && indexPath.item == 1){
         //进入猎娱VIP
         [MyUtil showPlaceMessage:@"猎娱VIP敬请期待！"];

@@ -248,5 +248,9 @@
 + (void)lyUserBoundAccountWithParams:(NSDictionary *)dict complete:(void(^)(BOOL result))complete;
 #pragma mark - 用户注册之后进行玩友推荐
 + (void)lyRecommendFriendsWithParams:(NSDictionary *)dict complete:(void(^)(NSArray *dataList))complete;
+#pragma mark - 用户关注推荐玩友
++ (void)lyFollowRecommendFriendsWithOarams:(NSDictionary *)dict complete:(void(^)(BOOL result))complete;
+#pragma mark - 进入娱币商城
++ (void)lyEnterCoinShopWithParams:(NSDictionary *)dict complete:(void(^)(NSString *result))complete;
 
 @end
