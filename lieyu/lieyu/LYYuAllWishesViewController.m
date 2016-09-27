@@ -154,7 +154,7 @@
 //    [effectView setFrame:CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 60, 60, 60)];
    
     if (_type == 0) {
-        [effectView setFrame:CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 60, 60, 60)];
+        [effectView setFrame:CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 64, 60, 60)];
     }else if (_type == 1){
         [effectView setFrame:CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 64, 60, 60)];
     }
@@ -170,14 +170,14 @@
     
     [UIView animateWithDuration:.4 animations:^{
         if (_type == 0) {
-            effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 123, 60, 60);
+            effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 147, 60, 60);
         }else if (_type == 1){
             effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 147, 60, 60);
         }
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:0.2 animations:^{
             if (_type == 0) {
-                effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 120, 60, 60);
+                effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 144, 60, 60);
             }else if (_type == 1){
                 effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 144, 60, 60);
             }
@@ -191,7 +191,7 @@
     if (scrollView.contentOffset.y > _oldScrollOffectY) {
         if (scrollView.contentOffset.y <= 0.f) {
             if (_type == 0) {
-                effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 120, 60, 60);
+                effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 144, 60, 60);
             }else if (_type == 1){
                 effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 144, 60, 60);
             }
@@ -204,14 +204,14 @@
         if (CGRectGetMaxY(effectView.frame) > SCREEN_HEIGHT - 5) {
             [UIView animateWithDuration:.4 animations:^{
                 if (_type == 0) {
-                    effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 123, 60, 60);
+                    effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 144, 60, 60);
                 }else if (_type == 1){
                     effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 147, 60, 60);
                 }
             } completion:^(BOOL finished) {
                 [UIView animateWithDuration:0.2 animations:^{
                     if (_type == 0) {
-                        effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 120, 60, 60);
+                        effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 144, 60, 60);
                     }else if (_type == 1){
                         effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - 144, 60, 60);
                     }

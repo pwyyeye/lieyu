@@ -96,7 +96,6 @@
 #pragma mark - 最近联系
 - (void)recentConnect{
     LYRecentContactViewController * chat=[[LYRecentContactViewController alloc]init];
-    chat.title=@"最近联系";
     [self.navigationController pushViewController:chat animated:YES];
 }
 

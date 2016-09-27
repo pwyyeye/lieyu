@@ -393,7 +393,7 @@
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_friendsGroup baseURL:LY_LIVE_SERVER params:prams success:^(id response) {
         if ([response[@"errorcode"] isEqualToString:@"success"]) {
             NSDictionary *tempDic = response[@"data"];
-            if ([tempDic valueForKey:@"friendsList"]) {
+            if (![tempDic valueForKey:@"friendsList"]) {
                 return;
             }
             NSArray *tempsArr = tempDic[@"friendsList"];

@@ -146,12 +146,6 @@ PLStreamingSendingBufferDelegate,UICollectionViewDataSource, UICollectionViewDel
  */
 @property(nonatomic, assign) BOOL isNeedScrollToButtom;
 
-
-/**
- *  点击空白区域事件
- */
-@property(nonatomic, strong) UITapGestureRecognizer *resetBottomTapGesture;
-
 /**
  *  底部显示未读消息view
  */
@@ -207,7 +201,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    
     [RCIM sharedRCIM].disableMessageAlertSound = NO;//打开提示音
     
     [super viewWillDisappear:animated];
@@ -217,9 +210,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
      name:@"kRCPlayVoiceFinishNotification"
      object:nil];
     
-    [self.conversationMessageCollectionView removeGestureRecognizer:_resetBottomTapGesture];
-    [self.conversationMessageCollectionView
-     addGestureRecognizer:_resetBottomTapGesture];
     [_timer invalidate];
     _timer = nil;
 }
@@ -248,7 +238,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
                                                                      error:&err];
         _streamId = streamJSON[@"id"];
         [weakSelf initPLplayer];//初始化摄像头
-
+        
         _registerView = [[[NSBundle mainBundle] loadNibNamed:@"RegisterLiveShowView" owner:weakSelf options:nil] lastObject];
         _registerView.frame = self.view.bounds;
        _registerView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.5f];
@@ -281,8 +271,8 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(notice:) name:@"kobe24" object:nil];
     
-    [center addObserver:self selector:@selector(stopLiveNow) name:@"stopNotification" object:nil];
-    [center addObserver:self selector:@selector(startLiveNow) name:@"startNotification" object:nil];
+    [center addObserver:self selector:@selector(stopLiveNow) name:UIApplicationWillResignActiveNotification object:nil];
+    [center addObserver:self selector:@selector(startLiveNow) name:UIApplicationDidBecomeActiveNotification object:nil];
     
     [IQKeyboardManager sharedManager].enable = NO;
     [IQKeyboardManager sharedManager].isAdd = YES;
@@ -300,14 +290,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 -(void)startLiveNow{
 //    [self initPLplayer];
 //    [self beginLiveShow];
-    PLVideoStreamingConfiguration *newStreamingConfiguration = [self.videoStreamingConfigurations firstObject];
-    PLVideoCaptureConfiguration *newCaptureConfiguration = [self.videoCaptureConfigurations firstObject];
-    [self.session reloadVideoStreamingConfiguration:newStreamingConfiguration videoCaptureConfiguration:newCaptureConfiguration];
 }
-
-//- (CMSampleBufferRef)cameraStreamingSession:(PLCameraStreamingSession *)session cameraSourceDidGetSampleBuffer:(CMSampleBufferRef)sampleBuffer{
-//    
-//}
 
 -(void)notice:(NSNotification *)sender{
 //    __weak typeof(self) weakSelf = self;
@@ -383,8 +366,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     _userView.layer.masksToBounds = YES;
     _userView.backgroundColor = RGBA(68, 64, 67, 0.5);
     [_userView.iconIamgeView sd_setImageWithURL:[NSURL URLWithString:app.userModel.avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
-    _userView.iconIamgeView.layer.cornerRadius = _userView.iconIamgeView.frame.size.height/2;
-    _userView.iconIamgeView.layer.masksToBounds = YES;
     _userView.userNameLabel.text = [NSString stringWithFormat:@"%@",app.userModel.usernick];
     _userView.isFoucsButton.hidden = YES;
     [CAEmitterView addSubview:_userView];
@@ -392,7 +373,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     //观众列表
     UICollectionViewFlowLayout *layout=[[ UICollectionViewFlowLayout alloc ] init ];
     [layout setScrollDirection:(UICollectionViewScrollDirectionHorizontal)];
-    _audienceCollectionView = [[ UICollectionView alloc ] initWithFrame : CGRectMake(SCREEN_WIDTH / 50, 70 + 15, SCREEN_WIDTH - 20, SCREEN_HEIGHT / 13) collectionViewLayout :layout];
+    _audienceCollectionView = [[ UICollectionView alloc ] initWithFrame : CGRectMake(SCREEN_WIDTH / 50, 70 + 15, SCREEN_WIDTH - 20, SCREEN_WIDTH / 8 ) collectionViewLayout :layout];
     [_audienceCollectionView registerClass :[ AudienceCell class ] forCellWithReuseIdentifier : _CELL ];
     _audienceCollectionView.tag = 199;
     _audienceCollectionView.showsHorizontalScrollIndicator = NO;
@@ -415,7 +396,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     _livesetView.backgroundColor = [UIColor clearColor];
     _livesetView.layer.cornerRadius = 5.f;
     _livesetView.layer.masksToBounds = YES;
-    _backgroudView = [[UIView alloc]init];
+    _backgroudView = [[UIView alloc] init];
     _backgroudView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.1f];
     _backgroudView.frame = self.setButton.frame;
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(backgroudViewGes)];
@@ -490,7 +471,9 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 }
 
 -(void)beattifyValueChangeAction:(UISlider *)sender{
-    [self.session setBeautify:sender.value];
+    dispatch_async(self.sessionQueue, ^{
+        [self.session setBeautify:sender.value];
+    });
 }
 
 
@@ -510,9 +493,9 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
                                           [[PLVideoStreamingConfiguration alloc] initWithVideoSize:videoSize expectedSourceVideoFrameRate:30 videoMaxKeyframeInterval:90 averageVideoBitRate:800 * 1000 videoProfileLevel:AVVideoProfileLevelH264Baseline31],
                                           ];
     self.videoCaptureConfigurations = @[
-                                        [[PLVideoCaptureConfiguration alloc] initWithVideoFrameRate:15 sessionPreset:AVCaptureSessionPresetiFrame960x540 previewMirrorFrontFacing:YES previewMirrorRearFacing:NO streamMirrorFrontFacing:YES streamMirrorRearFacing:NO cameraPosition:AVCaptureDevicePositionFront videoOrientation:AVCaptureVideoOrientationPortrait],
-                                        [[PLVideoCaptureConfiguration alloc] initWithVideoFrameRate:24 sessionPreset:AVCaptureSessionPresetiFrame960x540 previewMirrorFrontFacing:YES previewMirrorRearFacing:NO streamMirrorFrontFacing:YES streamMirrorRearFacing:NO cameraPosition:AVCaptureDevicePositionFront videoOrientation:AVCaptureVideoOrientationPortrait],
-                                        [[PLVideoCaptureConfiguration alloc] initWithVideoFrameRate:30 sessionPreset:AVCaptureSessionPresetiFrame960x540 previewMirrorFrontFacing:YES previewMirrorRearFacing:NO streamMirrorFrontFacing:YES streamMirrorRearFacing:NO cameraPosition:AVCaptureDevicePositionFront videoOrientation:AVCaptureVideoOrientationPortrait]
+                                        [[PLVideoCaptureConfiguration alloc] initWithVideoFrameRate:15 sessionPreset:AVCaptureSessionPresetiFrame960x540 previewMirrorFrontFacing:YES previewMirrorRearFacing:NO streamMirrorFrontFacing:YES streamMirrorRearFacing:NO cameraPosition:AVCaptureDevicePositionBack videoOrientation:AVCaptureVideoOrientationPortrait],
+                                        [[PLVideoCaptureConfiguration alloc] initWithVideoFrameRate:24 sessionPreset:AVCaptureSessionPresetiFrame960x540 previewMirrorFrontFacing:YES previewMirrorRearFacing:NO streamMirrorFrontFacing:YES streamMirrorRearFacing:NO cameraPosition:AVCaptureDevicePositionBack videoOrientation:AVCaptureVideoOrientationPortrait],
+                                        [[PLVideoCaptureConfiguration alloc] initWithVideoFrameRate:30 sessionPreset:AVCaptureSessionPresetiFrame960x540 previewMirrorFrontFacing:YES previewMirrorRearFacing:NO streamMirrorFrontFacing:YES streamMirrorRearFacing:NO cameraPosition:AVCaptureDevicePositionBack videoOrientation:AVCaptureVideoOrientationPortrait]
                                         ];
     self.sessionQueue = dispatch_queue_create("pili.queue.streaming", DISPATCH_QUEUE_SERIAL);
     
@@ -525,16 +508,15 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
                                              selector:@selector(handleLiveShowInterruption:)
                                                  name:AVAudioSessionInterruptionNotification
                                                object:[AVAudioSession sharedInstance]];
-
+    
         NSString *jsonString = _stream;
         NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
         NSError *err;
         NSDictionary *streamJSON = [NSJSONSerialization JSONObjectWithData:jsonData
                                                                    options:NSJSONReadingMutableContainers
                                                                      error:&err];
-        
+    
         PLStream *stream = [PLStream streamWithJSON:streamJSON];
-        
         void (^permissionBlock)(void) = ^{
             dispatch_async(self.sessionQueue, ^{
                 PLVideoCaptureConfiguration *videoCaptureConfiguration = [self.videoCaptureConfigurations lastObject];
@@ -546,7 +528,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
                 AVCaptureVideoOrientation orientation = (AVCaptureVideoOrientation)(([[UIDevice currentDevice] orientation] <= UIDeviceOrientationLandscapeRight && [[UIDevice currentDevice] orientation] != UIDeviceOrientationUnknown) ? [[UIDevice currentDevice] orientation]: UIDeviceOrientationPortrait);
                 // 推流 session
                 self.session = [[PLCameraStreamingSession alloc] initWithVideoCaptureConfiguration:videoCaptureConfiguration audioCaptureConfiguration:audioCaptureConfiguration videoStreamingConfiguration:videoStreamingConfiguration audioStreamingConfiguration:audioStreamingConfiguration stream:stream videoOrientation:orientation];
-                self.session.captureDevicePosition = AVCaptureDevicePositionFront;
+                self.session.captureDevicePosition = AVCaptureDevicePositionBack;
                 self.session.delegate = self;
                 self.session.bufferDelegate = self;
                 __weak typeof(self) weakSelf = self;
@@ -561,9 +543,9 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
                             _beautify = value;
                         }];
                     } else {
-//                        previewView.alpha = 0;
-//                        [previewView removeFromSuperview];
-//                        previewView = nil;
+                        //                        previewView.alpha = 0;
+                        //                        [previewView removeFromSuperview];
+                        //                        previewView = nil;
                         UIView *previewViewNew = self.session.previewView;
                         previewViewNew.autoresizingMask = UIViewAutoresizingFlexibleHeight| UIViewAutoresizingFlexibleWidth;
                         [self.view insertSubview:previewViewNew atIndex:0];
@@ -572,7 +554,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
                             _beautify = value;
                         }];
                     }
-                    
                 });
             });
         };
@@ -634,11 +615,21 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 
 #pragma mark - <PLStreamingSendingBufferDelegate>
 
+- (void)streamingSession:(id)session sendingBufferCurrentDurationDidChange:(NSTimeInterval)currentDuration
+{
+    NSString *log = @"Buffer did change";
+    NSLog(@"%@",log);
+}
+
 - (void)streamingSessionSendingBufferDidFull:(id)session {
     NSString *log = @"Buffer is full";
     NSLog(@"%@", log);
 }
-
+- (void)streamingSessionSendingBufferFillDidLowerThanLowThreshold:(id)session
+{
+    NSString *log = @"Buffer is lower";
+    NSLog(@"%@", log);
+}
 - (void)streamingSession:(id)session sendingBufferDidDropItems:(NSArray *)items {
     NSString *log = @"Frame dropped";
     NSLog(@"%@", log);
@@ -662,15 +653,35 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 }
 
 - (void)cameraStreamingSession:(PLCameraStreamingSession *)session streamStatusDidUpdate:(PLStreamStatus *)status {
+    
     NSString *log = [NSString stringWithFormat:@"%@", status];
     NSLog(@"%@", log);
-    
+    BOOL isrunning = [session isRunning];
+    NSLog(@"%d", isrunning);
+    switch ([PLCameraStreamingSession cameraAuthorizationStatus]) {
+        case PLAuthorizationStatusAuthorized:
+            NSLog(@"已经获取授权");
+            break;
+        case PLAuthorizationStatusNotDetermined: {
+            [PLCameraStreamingSession requestCameraAccessWithCompletionHandler:^(BOOL granted) {
+                if (granted) {
+                    NSLog(@"再次获取授权");
+                } else {
+                    NSLog(@"没有获取授权");
+                }
+            }];
+        }
+            break;
+        default:
+            NSLog(@"授权");
+            break;
+    }
 #if kReloadConfigurationEnable
     NSDate *now = [NSDate date];
     if (!self.keyTime) {
         self.keyTime = now;
     }
-    double expectedVideoFPS = (double)self.session.videoConfiguration.videoFrameRate;
+    double expectedVideoFPS = (double)self.session.videoCaptureConfiguration.videoFrameRate;
     double realtimeVideoFPS = status.videoFPS;
     if (realtimeVideoFPS < expectedVideoFPS * (1 - kMaxVideoFPSPercent)) {
         // 当得到的 status 中 video fps 比设定的 fps 的 50% 还小时，触发降低推流质量的操作
@@ -686,6 +697,8 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     }
 #endif  // #if kReloadConfigurationEnable
 }
+/// @abstract 获取到摄像头原数据时的回调, 便于开发者做滤镜等处理，需要注意的是这个回调在 camera 数据的输出线程，请不要做过于耗时的操作，否则可能会导致推流帧率下降
+
 
 #pragma mark -
 
@@ -741,6 +754,8 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
             }
         }];
     });
+    
+    
     
 }
 
@@ -895,6 +910,13 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         return cell;
     }
 }
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    if (touch.view != self.audienceCollectionView) {
+        return NO;
+    }
+    return YES;
+}
 //显示点赞
 -(void)showTheLove{
     DMHeartFlyView* heart = [[DMHeartFlyView alloc]initWithFrame:CGRectMake(0, 0, _heartSize, _heartSize)];
@@ -984,7 +1006,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         CGSize _textMessageSize = [LYGiftMessageCell getMessageCellSize:txt withWidth:__width];
         __height = _textMessageSize.height ;
     } else if ([messageContent isMemberOfClass:[LYStystemMessage class]]) {
-        NSString *text = @"直播消息：\n我们提倡绿色直播，封面和直播内容含吸烟、低俗、诱导、违规等内容都将会被封停帐号，网警24小时在线巡查呦。";
+        NSString *text = @"直播消息：我们提倡绿色直播，封面和直播内容含吸烟、低俗、诱导、违规等内容都将会被封停帐号，网警24小时在线巡查呦。";
         CGSize _textMessageSize = [LYSystemTextMessageCell getMessageCellSize:text withWidth:300];
         __height = _textMessageSize.height + 10;
     }
@@ -996,17 +1018,15 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
     if (collectionView.tag == 199) {
-        return UIEdgeInsetsMake(15, 5, 15, 5);//上 左 下 右
+        return UIEdgeInsetsMake(0, 5, 0, 5);//上 左 下 右
     }else{
         return UIEdgeInsetsMake(0, 0, 0, 0);
     }
 }
 
-
 #pragma mark --- UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"%ld",indexPath.row);
-    
     if (collectionView.tag == 199) {
         ChatUseres *user = _dataArray[indexPath.row];
         [self showDetailWith:user];
@@ -1142,13 +1162,13 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     customFlowLayout.sectionInset = UIEdgeInsetsMake(10.0f, 0.0f, 10.0f, 0.0f);
     customFlowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
     CGRect _conversationViewFrame = self.contentView.bounds;
-    _conversationViewFrame.origin.y = 30;
-    _conversationViewFrame.size.height = self.contentView.bounds.size.height - 40;
-    //    CGRect _conversationViewFrame = CGRectMake(0, distanceOfBottom - MinHeight_InputView - SCREEN_HEIGHT / 8 * 3, SCREEN_WIDTH, SCREEN_HEIGHT /8 * 3);
+    _conversationViewFrame.origin.y = 0;
+    _conversationViewFrame.size.height = self.contentView.bounds.size.height;
+//        CGRect _conversationViewFrame = CGRectMake(0, 0, SCREEN_WIDTH - SCREEN_WIDTH / 8 , distanceOfBottom - SCREEN_HEIGHT /8 * 5 - SCREEN_WIDTH / 8);
     self.conversationMessageCollectionView =
     [[UICollectionView alloc] initWithFrame:_conversationViewFrame
                        collectionViewLayout:customFlowLayout];
-        [self.conversationMessageCollectionView setBackgroundColor:RGBCOLOR(235, 235, 235)];
+        [self.conversationMessageCollectionView setBackgroundColor:[UIColor clearColor]];
         self.conversationMessageCollectionView.showsVerticalScrollIndicator = NO;
         self.conversationMessageCollectionView.alwaysBounceVertical = YES;
         self.conversationMessageCollectionView.dataSource = self;
@@ -1167,7 +1187,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     _commentView.textField.alpha = .5f;
     _commentView.textField.layer.borderColor = RGB(68, 64, 67).CGColor;
     _commentView.textField.borderStyle = UITextBorderStyleNone;
-
+    
     [self.view addSubview:_commentView];
     _commentView.textField.delegate = self;
     [_commentView.btn_emotion addTarget:self action:@selector(emotionClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -1184,12 +1204,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [self registerClass:[LYTipMessageCell class]forCellWithReuseIdentifier:rcTipMessageCellIndentifier];
     [self registerClass:[LYGiftMessageCell class]forCellWithReuseIdentifier:rcGiftMessageCellIndentifier];
     [self registerClass:[LYSystemTextMessageCell class] forCellWithReuseIdentifier:rcStystemMessageCellIndentifier];
-    [self changeModel:self.isFullScreen];
-    _resetBottomTapGesture =[[UITapGestureRecognizer alloc]
-                             initWithTarget:self
-                             action:@selector(tap4ResetDefaultBottomBarStatus:)];
-    [_resetBottomTapGesture setDelegate:self];
-    [self.view addGestureRecognizer:_resetBottomTapGesture];
+    
 }
 
 #pragma mark --- 键盘监听事件
@@ -1221,7 +1236,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     _commentView.textField.borderStyle = UITextBorderStyleNone;
     _commentView.btn_emotion.hidden = YES;
     _commentView.textField.center = _commentView.center;
-  
+
     _contentView.frame = CGRectMake(0, SCREEN_HEIGHT / 8 *5 - 20,SCREEN_WIDTH - SCREEN_WIDTH / 8 , distanceOfBottom - SCREEN_HEIGHT /8 * 5 - SCREEN_WIDTH / 8);
     _bigView.hidden = YES;
     return YES;
@@ -1347,8 +1362,8 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     self.conversationMessageCollectionView.backgroundColor = [UIColor clearColor];
     //修改会话列表和输入框位置
     CGRect _conversationViewFrame = self.contentView.bounds;
-    _conversationViewFrame.size.height = self.contentView.bounds.size.height - 35;
-    _conversationViewFrame.origin.y = 30;
+    _conversationViewFrame.size.height = self.contentView.bounds.size.height;
+    _conversationViewFrame.origin.y = 0;
 //     CGRect _conversationViewFrame = CGRectMake(0, distanceOfBottom - MinHeight_InputView - SCREEN_HEIGHT / 8 * 3, SCREEN_WIDTH, SCREEN_HEIGHT /8 * 3);
     [self.conversationMessageCollectionView setFrame:_conversationViewFrame];
 //    float inputBarOriginY = distanceOfBottom - SCREEN_WIDTH / 8;
@@ -1692,21 +1707,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         self.unReadNewMessageLabel.text = @"底部有新消息";
     }
 }
-/**
- *  定义展示的UICollectionViewCell的个数
- *
- *  @return
- */
-- (void)tap4ResetDefaultBottomBarStatus:
-(UIGestureRecognizer *)gestureRecognizer {
-    if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
-        CGRect collectionViewRect = self.conversationMessageCollectionView.frame;
-        collectionViewRect.size.height = self.contentView.bounds.size.height - self.inputBar.frame.size.height -30;
-        [self.conversationMessageCollectionView setFrame:collectionViewRect];
-//        [self.inputBar setInputBarStatus:CHKBottomBarDefaultStatus];
-//        self.inputBar.height = MinHeight_InputView;
-    }
-}
+
 
 /**
  *  判断消息是否在collectionView的底部

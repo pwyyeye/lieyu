@@ -149,7 +149,7 @@
     self.messageContentView.frame = messageContentViewRect;
 //    self.bubbleBackgroundView.frame = CGRectMake(6, 0, __bubbleSize.width, __bubbleSize.height);
     self.bubbleBackgroundView.frame = messageContentViewRect;
-    self.textLabel.frame = CGRectMake(0,0, __textSize.width, __textSize.height);
+    self.textLabel.frame = CGRectMake(6,0, __textSize.width, __textSize.height);
     
     self.bubbleBackgroundView.backgroundColor = [UIColor clearColor];
     [self.textLabel setTextColor:[UIColor whiteColor]];

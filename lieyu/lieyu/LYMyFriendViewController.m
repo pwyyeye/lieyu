@@ -62,7 +62,6 @@ static NSString *CellIdentifier = @"CustomerCell";
     // Do any additional setup after loading the view from its nib.
 }
 
-
 -(void)getMyCustomerslist{
     [_listContent removeAllObjects];
     __weak __typeof(self)weakSelf = self;
@@ -133,10 +132,7 @@ static NSString *CellIdentifier = @"CustomerCell";
 //        
 //        [weakSelf.tableView reloadData];
 //    }];
-    NSDictionary *dict = @{@"newFansSize":[NSString stringWithFormat:@"%d",3]};
-    [LYFriendsHttpTool getNewFansListWithParms:dict complete:^(NSArray *Arr) {
-        [_fansListArray addObjectsFromArray:Arr];
-    }];
+   
     
 }
 
@@ -282,6 +278,7 @@ static NSString *CellIdentifier = @"CustomerCell";
 {
     
     CustomerCell *cell = (CustomerCell *)[_tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    cell.descLabel.hidden = YES;
     if (cell == nil) {
         NSArray *nibArray = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
         cell = (CustomerCell *)[nibArray objectAtIndex:0];
@@ -301,18 +298,18 @@ static NSString *CellIdentifier = @"CustomerCell";
                 cell.tipLabel.text = @"（互相关注后将成为玩友）";
                 if (_isOpen) {
                     cell.smallImageView.image = nil;
-                    [cell.smallImageView setImage:[UIImage imageNamed:@"downArrow"]];
+                    [cell.smallImageView setImage:[UIImage imageNamed:@"arrowdown"]];
                 } else {
                     cell.smallImageView.image = nil;
                     [cell.smallImageView setImage:[UIImage imageNamed:@"arrowRitht"]];
                 }
-                if (_tipNum != 0) {
+                if (_newFansListSize != 0) {
                     _redTip = [[UILabel alloc] initWithFrame:(CGRectMake(CGRectGetMaxX(cell.cusImageView.frame) - 10 , CGRectGetMinY(cell.cusImageView.frame), 10, 10))];
                     _redTip.backgroundColor = [UIColor redColor];
                     _redTip.text = [NSString stringWithFormat:@"%d",_tipNum];
                     _redTip.textAlignment = NSTextAlignmentCenter;
                     _redTip.font = [UIFont systemFontOfSize:8];
-                    _redTip.layer.cornerRadius = _redTip.frame.size.height / 2;
+                    _redTip.layer.cornerRadius = 5;
                     _redTip.layer.masksToBounds = YES;
                     [cell addSubview:_redTip];
                 }
@@ -323,6 +320,7 @@ static NSString *CellIdentifier = @"CustomerCell";
                     NSArray *nibArray = [[NSBundle mainBundle] loadNibNamed:@"FansCell" owner:self options:nil];
                     fansCell = (FansCell *)[nibArray objectAtIndex:0];
                 }
+                
                 fansCell.selectionStyle = UITableViewCellSelectionStyleNone;
                 fansCell.fansModel = _fansListArray[indexPath.row - 1];
                 [fansCell.focusButton addTarget:self action:@selector(fansFocusButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
@@ -363,10 +361,20 @@ static NSString *CellIdentifier = @"CustomerCell";
         if (indexPath.section == 0) {
             if (indexPath.row == 0) {
                 _isOpen = !_isOpen;
-                CustomerCell *cell = (CustomerCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-                
-                NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:0];
-                [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];            } else {
+                __weak typeof(self) WeakSelf = self;
+                if (_fansListArray.count == 0) {
+                    NSDictionary *dict = @{@"newFansSize":[NSString stringWithFormat:@"%ld",_newFansListSize]};
+                    [LYFriendsHttpTool getNewFansListWithParms:dict complete:^(NSArray *Arr) {
+                        [_fansListArray addObjectsFromArray:Arr];
+                        NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:0];
+                        [WeakSelf.tableView reloadData];
+                        [WeakSelf.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
+                    }];
+                } else {
+                    NSIndexSet *indexSet=[[NSIndexSet alloc]initWithIndex:0];
+                    [self.tableView reloadSections:indexSet withRowAnimation:UITableViewRowAnimationFade];
+                }
+            } else {
                  
             }
             return;
@@ -434,17 +442,18 @@ static NSString *CellIdentifier = @"CustomerCell";
     FansCell *cell = (FansCell *)[[sender superview] superview];
     NSIndexPath *index=[_tableView indexPathForCell:cell];
     FansModel *model = _fansListArray[index.row - 1];
-    if ([model.friendStatus isEqualToString:@"2"]) {
+    if ([model.friendStatus isEqualToString:@"2"] || [model.friendStatus isEqualToString:@"1"]) {
         NSDictionary *dict = @{@"followid":[NSString stringWithFormat:@"%d",model.id]};
         [LYFriendsHttpTool unFollowFriendWithParms:dict complete:^(NSDictionary *dict) {
             sender.titleLabel.text = @"关注";
         }];
-    } else if([model.friendStatus isEqualToString:@"3"]) {//不是改为关注
+    } else if([model.friendStatus isEqualToString:@"3"] || [model.friendStatus isEqualToString:@"0"]) {//不是改为关注
         NSDictionary *dict = @{@"followid":[NSString stringWithFormat:@"%d",model.id]};
         [LYFriendsHttpTool followFriendWithParms:dict complete:^(NSDictionary *dict) {
 //        [_fansListArray removeObject:model];
 //        [_tableView deleteRowsAtIndexPaths:[NSMutableArray arrayWithObject:index] withRowAnimation:UITableViewRowAnimationAutomatic];
-            sender.titleLabel.text = @"取消关注";
+            sender.titleLabel.text = @"已关注";
+            sender.userInteractionEnabled  = NO;
         }];
     }
 //    --_tipNum;

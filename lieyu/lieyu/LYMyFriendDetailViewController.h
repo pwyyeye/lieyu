@@ -13,7 +13,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *headerBGView;
 @property (weak, nonatomic) IBOutlet UIImageView *userImageView;
 @property (weak, nonatomic) IBOutlet UIButton *userimageBtn;
-@property (weak, nonatomic) IBOutlet UIButton *collectButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *liveStatus;//正在直播
+
 @property (weak, nonatomic) IBOutlet UIButton *checkCollectButton;
 @property (weak, nonatomic) IBOutlet UIImageView *careNumberImage;
 
@@ -63,6 +65,16 @@
 - (IBAction)checkTrends:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UIButton *checkTrendsBtn;
 
+//直播列表
+@property (weak, nonatomic) IBOutlet UIButton *zhiboButton;
+
+@property (weak, nonatomic) IBOutlet UIView *LIVEView;
+@property (weak, nonatomic) IBOutlet UIImageView *liveImageView_1;
+@property (weak, nonatomic) IBOutlet UIImageView *liveImageView_2;
+@property (weak, nonatomic) IBOutlet UIImageView *liveImageView_3;
+@property (weak, nonatomic) IBOutlet UIImageView *liveImageView_4;
+
+
 //聊天
 - (IBAction)sendMessageAct:(UIButton *)sender;
 
@@ -70,6 +82,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *setBtn;
 @property (weak, nonatomic) IBOutlet UIView *setBG;
 
+//关注
+@property (weak, nonatomic) IBOutlet UIButton *collectButton;
+//拉黑
+@property (weak, nonatomic) IBOutlet UIButton *setBlackButton;
 
 @property (retain, nonatomic)  CustomerModel *customerModel;
 @property (copy, nonatomic)  NSString *type;

@@ -23,6 +23,7 @@
 #import "LYUserHttpTool.h"
 #import "RCDataBaseManager.h"
 #import <PLStreamingKit/PLStreamingEnv.h>
+#import <PLCameraStreamingKit/PLCameraStreamingKit.h>
 
 #import <AlipaySDK/AlipaySDK.h>
 #import "UMessage.h"
@@ -619,19 +620,29 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         filename = [NSString stringWithFormat:@"/%@",filename];
         [manager removeItemAtPath:[pngDir stringByAppendingString:filename] error:nil];
     }
-    //通知关闭session
-    NSNotification *stopNotification = [NSNotification notificationWithName:@"stopNotification" object:nil];
-    [[NSNotificationCenter defaultCenter] postNotification:stopNotification];
+    
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
+    switch ([PLCameraStreamingSession cameraAuthorizationStatus]) {
+        case PLAuthorizationStatusAuthorized:
+            NSLog(@"已授权");
+            break;
+        case PLAuthorizationStatusNotDetermined: {
+            NSLog(@"notDetermined");
+            //            [PLCameraStreamingSession requestCameraAccessWithCompletionHandler:^(BOOL granted) {
+            //            }];
+        }
+            break;
+        default:
+            NSLog(@"nothing");
+            break;
+    }
     
-    //通知打开session
-    NSNotification *startNotification = [NSNotification notificationWithName:@"startNotification" object:nil];
-    [[NSNotificationCenter defaultCenter] postNotification:startNotification];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+    
     if ([[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
         LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
         [login autoLogin];
