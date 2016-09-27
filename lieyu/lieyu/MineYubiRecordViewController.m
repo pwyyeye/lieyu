@@ -42,7 +42,7 @@
     [self getData];
     // Do any additional setup after loading the view from its nib.
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    _tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
+    _tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64) style:UITableViewStylePlain];
     _tableview.dataSource = self;
     _tableview.delegate = self;
     [self.view addSubview:_tableview];
@@ -63,6 +63,8 @@
         _pageStart ++;
         [weakSelf getData];
     }];
+    MJRefreshBackGifFooter *footer = (MJRefreshBackGifFooter *)_tableview.mj_footer;
+    [self initMJRefeshFooterForGif:footer];
 }
 
 - (void)getData{

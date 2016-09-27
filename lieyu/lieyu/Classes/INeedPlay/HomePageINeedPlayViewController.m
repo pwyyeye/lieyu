@@ -218,6 +218,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 [weakSelf emptyUserDefault];
                 [weakSelf createUI];
             }
+            NSDate *date = [NSDate date];
+            NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+            [formatter setDateFormat:@"yyyy-MM-dd"];
+            NSString *dateString = [formatter stringFromDate:date];
+            [USER_DEFAULT setObject:dateString forKey:@"LocationTodayPosition"];
         }]show];
     }else if ([MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"LocationCityThisTime"]]){
         //为空，以上此为准

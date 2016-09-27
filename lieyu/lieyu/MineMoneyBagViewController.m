@@ -14,6 +14,7 @@
 #import "ZSTiXianRecordViewController.h"
 #import "LYUserHttpTool.h"
 #import "ZSBalance.h"
+#import "LYCoinShopViewController.h"
 
 #define IDENTIFIER @"MineMoneyBagCollectionViewCell"
 
@@ -109,12 +110,16 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0 && indexPath.item == 0) {
         //进入娱币商城
+        __weak __typeof(self)weakSelf = self;
         [LYUserHttpTool lyEnterCoinShopWithParams:nil complete:^(NSString *result) {
             if ([MyUtil isEmptyString:result]) {
                 [MyUtil showPlaceMessage:@"娱币商城敬请期待！"];
             }else{
 //                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.baidu.com"]];
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:result]];
+//                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:result]];
+                LYCoinShopViewController *coinShopVC = [[LYCoinShopViewController alloc]init];
+                coinShopVC.urlString = [NSURL URLWithString:result];
+                [weakSelf.navigationController pushViewController:coinShopVC animated:YES];
             }
         }];
     }else if (indexPath.section == 0 && indexPath.item == 1){

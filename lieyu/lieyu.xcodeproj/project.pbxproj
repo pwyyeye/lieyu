@@ -903,6 +903,7 @@
 		38F156D21C5E3B46004BDA0F /* BarIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F156D01C5E3B46004BDA0F /* BarIcon@2x.png */; };
 		38FE0B831D9912E400CA6D3A /* LYSearchLiveShowCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FE0B811D9912E400CA6D3A /* LYSearchLiveShowCollectionViewCell.m */; };
 		38FE0B841D9912E400CA6D3A /* LYSearchLiveShowCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38FE0B821D9912E400CA6D3A /* LYSearchLiveShowCollectionViewCell.xib */; };
+		38FE0B8C1D9A5E9400CA6D3A /* LYCoinShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FE0B8B1D9A5E9400CA6D3A /* LYCoinShopViewController.m */; };
 		525CA0C71C5B626E009ED9DA /* daohang_xiangji.png in Resources */ = {isa = PBXBuildFile; fileRef = 525CA0C41C5B626E009ED9DA /* daohang_xiangji.png */; };
 		525CA0C81C5B626E009ED9DA /* daohang_xiangji@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 525CA0C51C5B626E009ED9DA /* daohang_xiangji@2x.png */; };
 		525CA0C91C5B626E009ED9DA /* daohang_xiangji@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 525CA0C61C5B626E009ED9DA /* daohang_xiangji@3x.png */; };
@@ -3399,6 +3400,8 @@
 		38FE0B801D9912E400CA6D3A /* LYSearchLiveShowCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYSearchLiveShowCollectionViewCell.h; sourceTree = "<group>"; };
 		38FE0B811D9912E400CA6D3A /* LYSearchLiveShowCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYSearchLiveShowCollectionViewCell.m; sourceTree = "<group>"; };
 		38FE0B821D9912E400CA6D3A /* LYSearchLiveShowCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYSearchLiveShowCollectionViewCell.xib; sourceTree = "<group>"; };
+		38FE0B8A1D9A5E9400CA6D3A /* LYCoinShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYCoinShopViewController.h; sourceTree = "<group>"; };
+		38FE0B8B1D9A5E9400CA6D3A /* LYCoinShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYCoinShopViewController.m; sourceTree = "<group>"; };
 		525CA0C41C5B626E009ED9DA /* daohang_xiangji.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daohang_xiangji.png; sourceTree = "<group>"; };
 		525CA0C51C5B626E009ED9DA /* daohang_xiangji@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daohang_xiangji@2x.png"; sourceTree = "<group>"; };
 		525CA0C61C5B626E009ED9DA /* daohang_xiangji@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daohang_xiangji@3x.png"; sourceTree = "<group>"; };
@@ -6873,6 +6876,7 @@
 				85FE55081D7AB24400B262EA /* MineMoneyBagViewController.xib */,
 				38AD5B0C1D643D9400521150 /* 娱币 */,
 				38AD5B0B1D643D8700521150 /* 余额 */,
+				38FE0B891D9A5E6400CA6D3A /* 娱币商城 */,
 				38AD5B051D6433A100521150 /* cell */,
 			);
 			name = "我的钱包";
@@ -7515,6 +7519,15 @@
 				38B5F4B71CBB8F1F00AE1BF5 /* DetailLabelView.xib */,
 			);
 			name = "cell-内页";
+			sourceTree = "<group>";
+		};
+		38FE0B891D9A5E6400CA6D3A /* 娱币商城 */ = {
+			isa = PBXGroup;
+			children = (
+				38FE0B8A1D9A5E9400CA6D3A /* LYCoinShopViewController.h */,
+				38FE0B8B1D9A5E9400CA6D3A /* LYCoinShopViewController.m */,
+			);
+			name = "娱币商城";
 			sourceTree = "<group>";
 		};
 		52D4F9851C57B2AB00691BEF /* 首页 */ = {
@@ -12765,6 +12778,7 @@
 				8515081C1CFD921D002375D4 /* ChooseKaZuo.m in Sources */,
 				ADE1039B1BDE49BC00D9EC38 /* MD5DataSigner.m in Sources */,
 				3879F25C1C0D32D100B72629 /* BitianTableViewCell.m in Sources */,
+				38FE0B8C1D9A5E9400CA6D3A /* LYCoinShopViewController.m in Sources */,
 				15E184A01BB8D20700681BB2 /* MyUtil.m in Sources */,
 				15E2408E1BB283BA0090D240 /* LYOrderBottomView.m in Sources */,
 				AD106BBD1C0DDEFF007F5FBA /* NSObject+MJProperty.m in Sources */,

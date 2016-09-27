@@ -404,11 +404,11 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
                                     }
                                 }
                                 
-                                NSDate *date = [NSDate date];
-                                NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-                                [formatter setDateFormat:@"yyyy-MM-dd"];
-                                NSString *dateString = [formatter stringFromDate:date];
-                                [USER_DEFAULT setObject:dateString forKey:@"LocationTodayPosition"];
+//                                NSDate *date = [NSDate date];
+//                                NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+//                                [formatter setDateFormat:@"yyyy-MM-dd"];
+//                                NSString *dateString = [formatter stringFromDate:date];
+//                                [USER_DEFAULT setObject:dateString forKey:@"LocationTodayPosition"];
                                 [[NSNotificationCenter defaultCenter]postNotificationName:@"locationCityThisTime" object:nil];
                                 _locationCertain = YES;
                             }
