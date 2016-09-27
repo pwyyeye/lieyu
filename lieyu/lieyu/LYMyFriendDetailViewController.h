@@ -73,6 +73,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *liveImageView_2;
 @property (weak, nonatomic) IBOutlet UIImageView *liveImageView_3;
 @property (weak, nonatomic) IBOutlet UIImageView *liveImageView_4;
+@property (weak, nonatomic) IBOutlet UIImageView *advangeView;
 
 
 //聊天
