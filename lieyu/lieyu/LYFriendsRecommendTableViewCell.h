@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *userSecondTag;
 @property (weak, nonatomic) IBOutlet UIButton *userSelectButton;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *userTypeWidth;
+
 @property (nonatomic, strong) UserModel *RecommendFriendModel;
 
 @end

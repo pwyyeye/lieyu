@@ -13,7 +13,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="320" height="54.5"/>
+                <frame key="frameInset" width="320" height="54"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oKu-n7-D3C">
@@ -37,10 +37,11 @@
                             <constraint firstAttribute="width" secondItem="zRo-t2-ZgW" secondAttribute="height" multiplier="1:1" id="6cv-Dc-LpD"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MFO-yq-Yay">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MFO-yq-Yay">
                         <color key="backgroundColor" red="0.74117647060000003" green="0.1960784314" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="13" id="4TV-rP-vot"/>
+                            <constraint firstAttribute="height" constant="15" id="4TV-rP-vot"/>
+                            <constraint firstAttribute="width" constant="30" id="qff-iw-V8d"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -86,6 +87,7 @@
                 <outlet property="userSecondTag" destination="oqu-JY-I7O" id="swb-AP-sZA"/>
                 <outlet property="userSelectButton" destination="8wB-oC-3zt" id="ITY-Bp-NlX"/>
                 <outlet property="userType" destination="MFO-yq-Yay" id="QNh-7r-VJD"/>
+                <outlet property="userTypeWidth" destination="qff-iw-V8d" id="qCs-qR-j22"/>
             </connections>
             <point key="canvasLocation" x="25" y="57.5"/>
         </tableViewCell>
