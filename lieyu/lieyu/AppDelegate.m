@@ -426,14 +426,14 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
 
 #pragma mark 获取历史搜索数据
 -(void)loadHisData{
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        NSString *Path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-        NSString *filename = [Path stringByAppendingPathComponent:@"hisLocation.plist"];
-        if([fileManager fileExistsAtPath:filename]){
-            _userLocation= [NSKeyedUnarchiver unarchiveObjectWithFile:filename];
-        }else{
-            _userLocation = [[CLLocation alloc]initWithLatitude:31.2 longitude:121.4];
-        }
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *Path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *filename = [Path stringByAppendingPathComponent:@"hisLocation.plist"];
+    if([fileManager fileExistsAtPath:filename]){
+        _userLocation= [NSKeyedUnarchiver unarchiveObjectWithFile:filename];
+    }else{
+        _userLocation = [[CLLocation alloc]initWithLatitude:31.2 longitude:121.4];
+    }
 }
 
 #pragma mark 保存历史数据

@@ -8,8 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ZSMyClientsViewController">
             <connections>
-                <outlet property="searchBar" destination="QKg-qQ-Z6l" id="37D-4g-2ws"/>
-                <outlet property="searchDisplayController" destination="FvR-He-Ale" id="X34-M6-KYj"/>
+                <outlet property="searchBar" destination="iJ7-NM-eRB" id="oNr-oe-KGt"/>
                 <outlet property="tableView" destination="qDG-gA-XrY" id="c7Z-It-IDm"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -21,13 +20,11 @@
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="qDG-gA-XrY">
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                    <searchBar key="tableHeaderView" contentMode="redraw" placeholder="搜索" id="QKg-qQ-Z6l">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="44"/>
+                    <searchBar key="tableHeaderView" contentMode="redraw" placeholder="搜索" id="iJ7-NM-eRB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                        <color key="barTintColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textInputTraits key="textInputTraits"/>
-                        <connections>
-                            <outlet property="delegate" destination="-1" id="UJ2-Cp-mkB"/>
-                        </connections>
                     </searchBar>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="a5P-Rt-7Kg"/>
@@ -42,17 +39,8 @@
                 <constraint firstAttribute="trailing" secondItem="qDG-gA-XrY" secondAttribute="trailing" id="fWY-hg-sVW"/>
                 <constraint firstItem="qDG-gA-XrY" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="glj-hW-nEi"/>
             </constraints>
-            <point key="canvasLocation" x="238" y="299"/>
+            <point key="canvasLocation" x="-5" y="99"/>
         </view>
-        <searchDisplayController id="FvR-He-Ale">
-            <connections>
-                <outlet property="delegate" destination="-1" id="0al-2o-5Ic"/>
-                <outlet property="searchBar" destination="QKg-qQ-Z6l" id="hWb-CA-3xb"/>
-                <outlet property="searchContentsController" destination="-1" id="Nmb-2u-JQS"/>
-                <outlet property="searchResultsDataSource" destination="-1" id="74x-sc-l3R"/>
-                <outlet property="searchResultsDelegate" destination="-1" id="lrL-dW-vru"/>
-            </connections>
-        </searchDisplayController>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

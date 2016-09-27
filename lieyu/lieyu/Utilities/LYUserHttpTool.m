@@ -1755,9 +1755,61 @@
     }];
 }
 
+#pragma mark - 用户注册之后进行玩友推荐
++ (void)lyRecommendFriendsWithParams:(NSDictionary *)dict complete:(void(^)(NSArray *dataList))complete{
+    AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_RECOMMEND_FRIEND baseURL:RUIQIU_SERVER params:dict success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"success"]) {
+            NSArray *array = [[response objectForKey:@"data"] objectForKey:@"userlist"];
+            NSArray *userList = [UserModel mj_objectArrayWithKeyValuesArray:array];
+            complete(userList);
+        }else{
+            complete(nil);
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        complete(nil);
+        [app stopLoading];
+    }];
+}
 
+#pragma mark - 用户关注推荐玩友
++ (void)lyFollowRecommendFriendsWithOarams:(NSDictionary *)dict complete:(void (^)(BOOL))complete{
+    AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_FOLLOW_FRIENDS baseURL:RUIQIU_SERVER params:dict success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"success"]) {
+            complete(YES);
+        }else{
+            complete(NO);
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        complete(NO);
+        [app stopLoading];
+    }];
+}
 
-
+#pragma mark - 进入娱币商城
++ (void)lyEnterCoinShopWithParams:(NSDictionary *)dict complete:(void (^)(NSString *))complete{
+    AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_ENTER_COINSHOP baseURL:RUIQIU_SERVER params:dict success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"success"]) {
+            complete([[response objectForKey:@"data"] objectForKey:@"url"]);
+        }else{
+            complete(nil);
+        }
+        [app stopLoading];
+    } failure:^(NSError *err) {
+        complete(nil);
+        [app stopLoading];
+    }];
+}
 
 
 

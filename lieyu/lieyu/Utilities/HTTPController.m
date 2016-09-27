@@ -9,6 +9,7 @@
 #import "HTTPController.h"
 #import "AppDelegate.h"
 #import "LYUserLoginViewController.h"
+#import "LYMineUrl.h"
 
 @implementation HTTPController
 + (void)requestWihtMethod:(RequestMethodType)methodType
@@ -21,7 +22,7 @@
     //添加userid
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     NSLog(@"----->%@",app.s_app_id);
-    if (![MyUtil isEmptyString:app.s_app_id] && ![url isEqualToString:LY_DL] &![url isEqualToString:LY_ZC]&![url isEqualToString:LY_DL_THIRD]&&![url isEqualToString:LY_FORCED_UPDATE] ) {
+    if (![MyUtil isEmptyString:app.s_app_id] && ![url isEqualToString:LY_DL] &![url isEqualToString:LY_ZC]&![url isEqualToString:LY_DL_THIRD]&&![url isEqualToString:LY_FORCED_UPDATE] && ![url isEqualToString:LY_RECOMMEND_FRIEND]) {
         url = [NSString stringWithFormat:@"%@&SEM_LOGIN_TOKEN=%@",url,app.s_app_id];
     }
     NSURL* baseURL = [NSURL URLWithString:baseStr];

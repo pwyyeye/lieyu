@@ -42,6 +42,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.searchBar.delegate = self;
+    [self.searchBar setBackgroundImage:[UIImage new]];
     [self getdata];
 }
 
@@ -117,20 +118,38 @@
 //    }
 //}
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if (_isFiltered) {
-        return nil;
-    }else{
-        return [[_dataList objectAtIndex:section]count] ? [[[UILocalizedIndexedCollation currentCollation] sectionTitles] objectAtIndex:section] : nil;
-    }
-}
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+//    if (_isFiltered) {
+//        return nil;
+//    }else{
+//        return [[_dataList objectAtIndex:section]count] ? [[[UILocalizedIndexedCollation currentCollation] sectionTitles] objectAtIndex:section] : nil;
+//    }
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (_isFiltered) {
         return 0;
     }else{
-        return [[_dataList objectAtIndex:section] count] ? _tableView.sectionHeaderHeight : 0;
+        return [[_dataList objectAtIndex:section] count] ? 32 : 0;
     }
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if (_isFiltered) {
+        return nil;
+    }
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 32)];
+    [view setBackgroundColor:COMMON_GRAY];
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH - 10, 32)];
+    [label setTextColor:[UIColor darkTextColor]];
+    [label setFont:[UIFont systemFontOfSize:16]];
+    [label setText:[[_dataList objectAtIndex:section]count] ? [[[UILocalizedIndexedCollation currentCollation] sectionTitles] objectAtIndex:section] : nil];
+    [view addSubview:label];
+    return view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.00001;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -184,7 +203,7 @@
     friendDetailVC.title = @"详细信息";
     friendDetailVC.type = @"0";
     friendDetailVC.customerModel = addressBook;
-    friendDetailVC.userID = [NSString stringWithFormat:@"%d",addressBook.friend];
+    friendDetailVC.userID = [NSString stringWithFormat:@"%d",addressBook.id];
     [self.navigationController pushViewController:friendDetailVC animated:YES];
 }
 

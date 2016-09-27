@@ -280,6 +280,7 @@
 		15FD2AA91BD6243700D66920 /* TaoCanTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FD2AA81BD6243700D66920 /* TaoCanTitleView.m */; };
 		15FD2AAB1BD6244200D66920 /* TaoCanTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15FD2AAA1BD6244200D66920 /* TaoCanTitleView.xib */; };
 		15FD2AB11BD7231C00D66920 /* LYTaoCanXQCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15FD2AB01BD7231C00D66920 /* LYTaoCanXQCell.m */; };
+		3802FF041D9684E000E543D8 /* LYFriendsRecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3802FF031D9684E000E543D8 /* LYFriendsRecommendViewController.m */; };
 		380385DD1C327C19007C8DC0 /* play .png in Resources */ = {isa = PBXBuildFile; fileRef = 380385DA1C327C19007C8DC0 /* play .png */; };
 		380385DE1C327C19007C8DC0 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 380385DB1C327C19007C8DC0 /* play.png */; };
 		380385DF1C327C19007C8DC0 /* play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 380385DC1C327C19007C8DC0 /* play@2x.png */; };
@@ -373,6 +374,8 @@
 		3838944E1D15369B0014C8E9 /* free_order_icon@3x@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3838944C1D15369B0014C8E9 /* free_order_icon@3x@3x.png */; };
 		383894511D153A8F0014C8E9 /* Fill20520@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3838944F1D153A8F0014C8E9 /* Fill20520@2x.png */; };
 		383894521D153A8F0014C8E9 /* Fill20520@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 383894501D153A8F0014C8E9 /* Fill20520@3x.png */; };
+		38406F501D9688D3005B3042 /* LYFriendsRecommendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38406F4E1D9688D3005B3042 /* LYFriendsRecommendTableViewCell.m */; };
+		38406F511D9688D3005B3042 /* LYFriendsRecommendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38406F4F1D9688D3005B3042 /* LYFriendsRecommendTableViewCell.xib */; };
 		384A54901CF5A8B6008825ED /* LYChooseBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 384A548E1CF5A8B6008825ED /* LYChooseBarViewController.xib */; };
 		384A54981D10FB96008825ED /* FreeOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 384A54961D10FB96008825ED /* FreeOrderTableViewCell.m */; };
 		384A54991D10FB96008825ED /* FreeOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 384A54971D10FB96008825ED /* FreeOrderTableViewCell.xib */; };
@@ -898,6 +901,8 @@
 		38F0FE801C4692C30070092D /* biaobai_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F0FE7A1C4692C30070092D /* biaobai_icon@2x.png */; };
 		38F0FE811C4692C30070092D /* biaobai_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F0FE7B1C4692C30070092D /* biaobai_icon@3x.png */; };
 		38F156D21C5E3B46004BDA0F /* BarIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F156D01C5E3B46004BDA0F /* BarIcon@2x.png */; };
+		38FE0B831D9912E400CA6D3A /* LYSearchLiveShowCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FE0B811D9912E400CA6D3A /* LYSearchLiveShowCollectionViewCell.m */; };
+		38FE0B841D9912E400CA6D3A /* LYSearchLiveShowCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38FE0B821D9912E400CA6D3A /* LYSearchLiveShowCollectionViewCell.xib */; };
 		525CA0C71C5B626E009ED9DA /* daohang_xiangji.png in Resources */ = {isa = PBXBuildFile; fileRef = 525CA0C41C5B626E009ED9DA /* daohang_xiangji.png */; };
 		525CA0C81C5B626E009ED9DA /* daohang_xiangji@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 525CA0C51C5B626E009ED9DA /* daohang_xiangji@2x.png */; };
 		525CA0C91C5B626E009ED9DA /* daohang_xiangji@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 525CA0C61C5B626E009ED9DA /* daohang_xiangji@3x.png */; };
@@ -2642,6 +2647,8 @@
 		15FD2AAA1BD6244200D66920 /* TaoCanTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaoCanTitleView.xib; sourceTree = "<group>"; };
 		15FD2AAF1BD7231C00D66920 /* LYTaoCanXQCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYTaoCanXQCell.h; sourceTree = "<group>"; };
 		15FD2AB01BD7231C00D66920 /* LYTaoCanXQCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYTaoCanXQCell.m; sourceTree = "<group>"; };
+		3802FF021D9684E000E543D8 /* LYFriendsRecommendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYFriendsRecommendViewController.h; sourceTree = "<group>"; };
+		3802FF031D9684E000E543D8 /* LYFriendsRecommendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYFriendsRecommendViewController.m; sourceTree = "<group>"; };
 		380385DA1C327C19007C8DC0 /* play .png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play .png"; sourceTree = "<group>"; };
 		380385DB1C327C19007C8DC0 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		380385DC1C327C19007C8DC0 /* play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play@2x.png"; sourceTree = "<group>"; };
@@ -2750,6 +2757,9 @@
 		3838944C1D15369B0014C8E9 /* free_order_icon@3x@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "free_order_icon@3x@3x.png"; sourceTree = "<group>"; };
 		3838944F1D153A8F0014C8E9 /* Fill20520@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Fill20520@2x.png"; sourceTree = "<group>"; };
 		383894501D153A8F0014C8E9 /* Fill20520@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Fill20520@3x.png"; sourceTree = "<group>"; };
+		38406F4D1D9688D3005B3042 /* LYFriendsRecommendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYFriendsRecommendTableViewCell.h; sourceTree = "<group>"; };
+		38406F4E1D9688D3005B3042 /* LYFriendsRecommendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYFriendsRecommendTableViewCell.m; sourceTree = "<group>"; };
+		38406F4F1D9688D3005B3042 /* LYFriendsRecommendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYFriendsRecommendTableViewCell.xib; sourceTree = "<group>"; };
 		384A548C1CF5A8B6008825ED /* LYChooseBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYChooseBarViewController.h; sourceTree = "<group>"; };
 		384A548D1CF5A8B6008825ED /* LYChooseBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYChooseBarViewController.m; sourceTree = "<group>"; };
 		384A548E1CF5A8B6008825ED /* LYChooseBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYChooseBarViewController.xib; sourceTree = "<group>"; };
@@ -3385,6 +3395,9 @@
 		38F0FE7B1C4692C30070092D /* biaobai_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "biaobai_icon@3x.png"; sourceTree = "<group>"; };
 		38F156D01C5E3B46004BDA0F /* BarIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BarIcon@2x.png"; sourceTree = "<group>"; };
 		38F156D11C5E3B46004BDA0F /* BarIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BarIcon@3x.png"; sourceTree = "<group>"; };
+		38FE0B801D9912E400CA6D3A /* LYSearchLiveShowCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYSearchLiveShowCollectionViewCell.h; sourceTree = "<group>"; };
+		38FE0B811D9912E400CA6D3A /* LYSearchLiveShowCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYSearchLiveShowCollectionViewCell.m; sourceTree = "<group>"; };
+		38FE0B821D9912E400CA6D3A /* LYSearchLiveShowCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYSearchLiveShowCollectionViewCell.xib; sourceTree = "<group>"; };
 		525CA0C41C5B626E009ED9DA /* daohang_xiangji.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daohang_xiangji.png; sourceTree = "<group>"; };
 		525CA0C51C5B626E009ED9DA /* daohang_xiangji@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daohang_xiangji@2x.png"; sourceTree = "<group>"; };
 		525CA0C61C5B626E009ED9DA /* daohang_xiangji@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daohang_xiangji@3x.png"; sourceTree = "<group>"; };
@@ -5855,6 +5868,11 @@
 				85589CB71C16D41D000E342E /* SingletonRegiste.m */,
 				3879D0611C7AE423000F5795 /* CheckProtocol.h */,
 				3879D0621C7AE423000F5795 /* CheckProtocol.m */,
+				3802FF021D9684E000E543D8 /* LYFriendsRecommendViewController.h */,
+				3802FF031D9684E000E543D8 /* LYFriendsRecommendViewController.m */,
+				38406F4D1D9688D3005B3042 /* LYFriendsRecommendTableViewCell.h */,
+				38406F4E1D9688D3005B3042 /* LYFriendsRecommendTableViewCell.m */,
+				38406F4F1D9688D3005B3042 /* LYFriendsRecommendTableViewCell.xib */,
 			);
 			name = "注册";
 			sourceTree = "<group>";
@@ -9239,6 +9257,9 @@
 				85FE54E71D7AA98500B262EA /* HomepageLiveTableViewCell.h */,
 				85FE54E81D7AA98500B262EA /* HomepageLiveTableViewCell.m */,
 				85FE54E91D7AA98500B262EA /* HomepageLiveTableViewCell.xib */,
+				38FE0B801D9912E400CA6D3A /* LYSearchLiveShowCollectionViewCell.h */,
+				38FE0B811D9912E400CA6D3A /* LYSearchLiveShowCollectionViewCell.m */,
+				38FE0B821D9912E400CA6D3A /* LYSearchLiveShowCollectionViewCell.xib */,
 			);
 			name = "直播cell";
 			sourceTree = "<group>";
@@ -11659,6 +11680,7 @@
 				8540388D1CAE154B0056C27E /* FingerAnalyseViewController.xib in Resources */,
 				8512BCA81C4A14D20087FFA6 /* icon_zhuyishixiang_normal.png in Resources */,
 				851508381D027426002375D4 /* LYGuWenVideoCollectionViewCell.xib in Resources */,
+				38406F511D9688D3005B3042 /* LYFriendsRecommendTableViewCell.xib in Resources */,
 				15AE63461BA854AB00FFAD1A /* ZSNoticeCenterViewController.xib in Resources */,
 				AD399ED81C940D4D00028F23 /* logo89@2x.jpg in Resources */,
 				85416E0D1C9258FA0016BF0B /* QRCodeHeaderbg@2x.png in Resources */,
@@ -11854,6 +11876,7 @@
 				15EB35281BD379A500BA6161 /* LYtimeChooseTimeController.xib in Resources */,
 				853C4C8B1C311AAD00D48BA2 /* gengduo_icon@2x.png in Resources */,
 				85A639031D7413D6000816FD /* xiangwan@3x.png in Resources */,
+				38FE0B841D9912E400CA6D3A /* LYSearchLiveShowCollectionViewCell.xib in Resources */,
 				38979A671CA40919002946F5 /* kawayi2.png in Resources */,
 				38EE9D941CB4C0AA00201734 /* loading9@2x.png in Resources */,
 				38979A341CA40919002946F5 /* dianzan19.png in Resources */,
@@ -12721,6 +12744,7 @@
 				A20100C21BA90E4E009283D1 /* CustomerCell.m in Sources */,
 				85E32A3C1D93FCD8007AF71F /* LYSystemTextMessageCell.m in Sources */,
 				8551B4F41C8EB8FA0057F0E7 /* UserNotificationTableViewCell.m in Sources */,
+				3802FF041D9684E000E543D8 /* LYFriendsRecommendViewController.m in Sources */,
 				ADE1039E1BDE49BC00D9EC38 /* RSADataSigner.m in Sources */,
 				853D3AB21C34CCC200B4FEAD /* LYFriendsChooseLocationViewController.m in Sources */,
 				ADF88EAA1C1197C400CF5DED /* MJRefreshStateHeader.m in Sources */,
@@ -12780,6 +12804,7 @@
 				ADF88E531C1029F600CF5DED /* LYEvaluationController.m in Sources */,
 				15EE51601BA708FF00464B74 /* ZSRefundViewController.m in Sources */,
 				A20100E61BA94404009283D1 /* WQScrollCalendarView.m in Sources */,
+				38406F501D9688D3005B3042 /* LYFriendsRecommendTableViewCell.m in Sources */,
 				15013AFB1BBA33BE00061FAF /* SDWebImageDownloaderOperation.m in Sources */,
 				3812C50E1C57621D00F4DD6B /* ChooseTime.m in Sources */,
 				851508441D028853002375D4 /* LYGuWenVideoViewController.m in Sources */,
@@ -13159,6 +13184,7 @@
 				A20100B21BA7FDE6009283D1 /* ZSSeatControlView.m in Sources */,
 				38E5D6F41C0F10E7004B49D2 /* LPBuyManagerCell.m in Sources */,
 				853C36141C72BC4700F1703B /* BeerNewBarViewController.m in Sources */,
+				38FE0B831D9912E400CA6D3A /* LYSearchLiveShowCollectionViewCell.m in Sources */,
 				15EE51541BA7076E00464B74 /* ZSUrgedPayViewController.m in Sources */,
 				85163BEB1D65E55800243385 /* CloseLiveShowView.m in Sources */,
 				15013AF81BBA33BE00061FAF /* SDWebImageCompat.m in Sources */,

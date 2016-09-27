@@ -10,7 +10,7 @@
 #import "KaZuoCell.h"
 #import "ZSManageHttpTool.h"
 #import "DeckFullModel.h"
-@interface ZSSeatControlView ()
+@interface ZSSeatControlView ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
 
@@ -21,8 +21,6 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO];
     self.title=@"卡座满控制";
-    
-    //    _scrollView.contentOffset=CGPointMake(0, -kImageOriginHight+100);
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,7 +29,7 @@
     nowTime = [dateFormatter stringFromDate:[NSDate new]];
     listArr =[[NSMutableArray alloc]init];
     
-    
+    [self.tableView setBackgroundColor:COMMON_GRAY];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self getKaZuoData];
     // Do any additional setup after loading the view from its nib.
@@ -63,8 +61,9 @@
     return 1;
 }
 
-
-
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 6;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -75,8 +74,6 @@
         NSArray *nibArray = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
         cell = (KaZuoCell *)[nibArray objectAtIndex:0];
         cell.backgroundColor=[UIColor whiteColor];
-        
-        
     }
     DeckFullModel *deckFullModel=listArr[indexPath.row];
     cell.isQuanManSwitch.tag=indexPath.row;
@@ -94,13 +91,9 @@
     cell.zhouLal.text=deckFullModel.weekNum;
     //    cell.disImageView;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    
-    
     return cell;
-    
-    
 }
+
 -(void)kazuoChoose:(UISwitch *)sender{
     DeckFullModel *deckFullModel=listArr[sender.tag];
     NSDictionary *dic=@{@"setDate":deckFullModel.deckDate,@"barid":[NSNumber numberWithInt:self.userModel.barid],@"userid":[NSNumber numberWithInt:self.userModel.userid]};

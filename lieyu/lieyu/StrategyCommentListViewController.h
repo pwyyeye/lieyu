@@ -11,6 +11,7 @@
 @protocol StrategyCommentSendDelegate <NSObject>
 
 - (void)StrategySendCommentSuccess;
+- (void)StrategyDeleteCommentSuccess;
 
 @end
 

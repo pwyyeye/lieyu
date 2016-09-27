@@ -297,7 +297,7 @@
 //#pragma 填写支付金额
 //- (void)payMoney{
 //    UIAlertView *customAlert = [[UIAlertView alloc]initWithTitle:@"请填写您要支付的金额" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-//        [customAlert setTintColor:RGBA(114, 5, 147, 1)];
+//        [customAlert setTintColor:COMMON_PURPLE];
 //        [customAlert setAlertViewStyle:UIAlertViewStylePlainTextInput];
 //        UITextField *payField = [customAlert textFieldAtIndex:0];
 //        payField.keyboardType = UIKeyboardTypeNumberPad;

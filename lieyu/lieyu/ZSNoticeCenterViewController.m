@@ -17,7 +17,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    self.title=@"通知中心";
+    self.title=@"消息中心";
 }
 
 - (void)viewDidLoad {

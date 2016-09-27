@@ -43,6 +43,7 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _searchBar.delegate = self;
+    [_searchBar setBackgroundImage:[UIImage new]];
     _name = [[NSMutableString alloc]init];
     [_tableView registerNib:[UINib nibWithNibName:@"ZSBirthdayTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"ZSBirthdayTableViewCell"];
     _typeList = [[NSMutableArray alloc]initWithArray:@[@"7天内",@"30天内",@"其他"]];
@@ -187,15 +188,16 @@
 }
 
 - (void)smallViewShow{
-    [UIView animateWithDuration:0.5 animations:^{
-        _smallTableview.frame = CGRectMake(SCREEN_WIDTH - 100, 0, 100, 80);
-    }];
+    _smallTableview.frame = CGRectMake(SCREEN_WIDTH - 120, 0, 120, 100);
+//    [UIView animateWithDuration:0.5 animations:^{
+//        
+//    }];
 }
 
 - (void)smallViewHide{
-    [UIView animateWithDuration:0.5 animations:^{
-        _smallTableview.frame = CGRectMake(SCREEN_WIDTH, 0, 0, 0);
-    }];
+    _smallTableview.frame = CGRectMake(SCREEN_WIDTH, 0, 0, 0);
+//    [UIView animateWithDuration:0.5 animations:^{
+//    }];
 }
 
 - (void)sendWishButtonClick:(UIButton *)button{
@@ -259,6 +261,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.backgroundColor = RGBA(225, 225, 225, 1);
             [cell.textLabel setFont:[UIFont systemFontOfSize:14]];
+            [cell.textLabel setTextAlignment:NSTextAlignmentCenter];
         }
         if (indexPath.row == 0) {
             [cell.textLabel setText:@"手动添加"];
@@ -277,7 +280,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == _smallTableview) {
-        return 40;
+        return 50;
     }else{
         return 55;
     }
@@ -299,19 +302,26 @@
     //大的tableview没有选中事件
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (tableView == _tableView) {
-        return ((NSMutableArray *)[_dataList objectAtIndex:section]).count ? [_typeList objectAtIndex:section] : nil;
+        return ((NSMutableArray *)[_dataList objectAtIndex:section]).count ? 32 : 0 ;
     }else{
-        return nil;
+        return 0;
     }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (tableView == _tableView) {
-        return ((NSMutableArray *)[_dataList objectAtIndex:section]).count ? _tableView.sectionHeaderHeight : 0 ;
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 32)];
+        [view setBackgroundColor:COMMON_GRAY];
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH - 10, 32)];
+        [label setTextColor:[UIColor darkTextColor]];
+        [label setFont:[UIFont systemFontOfSize:16]];
+        [label setText:((NSMutableArray *)[_dataList objectAtIndex:section]).count ? [_typeList objectAtIndex:section] : nil];
+        [view addSubview:label];
+        return view;
     }else{
-        return 0;
+        return nil;
     }
 }
 

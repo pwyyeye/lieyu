@@ -141,15 +141,15 @@
     [listArr addObject:dic6];//新增套餐管理
     [listArr addObject:dic1];//最近联系
     [listArr addObject:dic3];//客户管理
-    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 151)];
+    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 157)];
     
     //    view.backgroundColor=RGB(35, 166, 116);
     //    view.backgroundColor = RGB(186, 40, 227);
-    view.backgroundColor = [UIColor whiteColor];
+    view.backgroundColor = COMMON_GRAY;
     
     
-    UIButton *suheButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH / 2, 106)];
-    //    [suheButton setImage:[UIImage imageNamed:@"businessSuhe"] forState:UIControlStateNormal];
+    UIButton *suheButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 6, SCREEN_WIDTH / 2, 106)];
+    [suheButton setBackgroundColor:[UIColor whiteColor]];
     [suheButton addTarget:self action:@selector(zsQRCodeScanClick) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:suheButton];
     UIImageView *suheImageView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 4 - 17, 25, 34, 34)];
@@ -163,8 +163,8 @@
     [suheButton addSubview:suheImageView];
     [suheButton addSubview:suheLabel];
     
-    UIButton *balanceButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/ 2, 0, SCREEN_WIDTH/ 2, 106)];
-    //    [yueButton setImage:[UIImage imageNamed:@"balanceIcon"] forState:UIControlStateNormal];
+    UIButton *balanceButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/ 2, 6, SCREEN_WIDTH/ 2, 106)];
+    [balanceButton setBackgroundColor:[UIColor whiteColor]];
     [balanceButton addTarget:self action:@selector(pushMyReceived) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:balanceButton];
     UIImageView *balanceImageView = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 4 - 20, 30, 40, 32)];
@@ -178,20 +178,22 @@
     [balanceButton addSubview:balanceLabel];
     [balanceButton addSubview:balanceImageView];
     
-    UILabel *spaceLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2, 19, 0.5, 68)];
+    UILabel *spaceLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2, 25, 0.5, 68)];
     [spaceLabel setBackgroundColor:RGBA(204, 204, 204, 1)];
     [view addSubview:spaceLabel];
     
-    UIView *textPlaceView = [[UIView alloc]initWithFrame:CGRectMake(0, 106, SCREEN_WIDTH, 45)];
-    [textPlaceView setBackgroundColor:RGBA(204, 204, 204, 204)];
+    UIView *textPlaceView = [[UIView alloc]initWithFrame:CGRectMake(0, 112, SCREEN_WIDTH, 45)];
+    [textPlaceView setBackgroundColor:COMMON_GRAY];
     [view addSubview:textPlaceView];
     
     UITextField *textView = [[UITextField alloc]initWithFrame:CGRectMake(5, 6, SCREEN_WIDTH - 10, 33)];
     textView.placeholder = @"输入用户消费码";
-    textView.font = [UIFont systemFontOfSize:13];
+    textView.font = [UIFont systemFontOfSize:18];
     textView.delegate = self;
     textView.tag = 123;
     textView.borderStyle = UITextBorderStyleRoundedRect;
+    textView.layer.borderColor = [[UIColor clearColor] CGColor];
+    textView.layer.borderWidth = 0.f;
     textView.keyboardType = UIKeyboardTypeNumberPad;
     textView.textAlignment = NSTextAlignmentCenter;
     [textPlaceView addSubview:textView];
@@ -366,7 +368,6 @@
     }else if (indexPath.row == 6){
         //最近联系
         LYRecentContactViewController * chat=[[LYRecentContactViewController alloc]init];
-        chat.title=@"最近联系";
         [self.navigationController pushViewController:chat animated:YES];
 
     }else if (indexPath.row == 7){

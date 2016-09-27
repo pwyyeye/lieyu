@@ -45,6 +45,11 @@
     _selectedArray = [[NSMutableArray alloc]init];
     LYAddressBook *addressBook = [[LYAddressBook alloc]init];
     NSArray *tempArray = [addressBook getAddressBook];
+    if (tempArray.count <= 0){
+        [_allSelectButton setHidden:YES];
+        [self.navigationController popViewControllerAnimated:YES];
+        [MyUtil showPlaceMessage:@"未获取到联系人！"];
+    }
 //    _addressArray = [addressBook getUserModelArrayToSectionArray:[NSMutableArray arrayWithArray:tempArray]];
     _addressArray = [addressBook getAddressBookModelArrayToSectionArray:[NSMutableArray arrayWithArray:tempArray]];
     for (int i = 0 ; i < _addressArray.count; i ++) {

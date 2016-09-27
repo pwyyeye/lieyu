@@ -253,6 +253,12 @@
     [_commentNumber setText:_strategyModel.commentNum];
 }
 
+- (void)StrategyDeleteCommentSuccess{
+    int commentNum = [_strategyModel.commentNum intValue];
+    _strategyModel.commentNum = [NSString stringWithFormat:@"%d",commentNum - 1];
+    [_commentNumber setText:_strategyModel.commentNum];
+}
+
 - (IBAction)collectButtonClick:(UIButton *)sender {
     NSDictionary *dict = @{@"strategyId":_strategyID};
     if ([_strategyModel.isCollected isEqualToString:@"1"]) {

@@ -87,6 +87,36 @@
 //    return UITableViewAutomaticDimension;
 }
 
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    StrategyCommentModel *commentModel = [_dataList objectAtIndex:indexPath.row];
+    if ([commentModel.userId intValue] == self.userModel.userid) {
+        return UITableViewCellEditingStyleDelete;
+    }else{
+        return UITableViewCellEditingStyleNone;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    StrategyCommentModel *commentModel = [_dataList objectAtIndex:indexPath.row];
+    if ([commentModel.userId intValue] == self.userModel.userid) {
+        NSDictionary *dict = @{@"commentId":commentModel.commentId};
+        if (editingStyle == UITableViewCellEditingStyleDelete) {
+            __weak __typeof (self) weakSelf = self;
+            [LYHomePageHttpTool deleteStrategyCommentWithParam:dict complete:^(BOOL result) {
+                if (result) {
+                    [_dataList removeObjectAtIndex:indexPath.row];
+                    [_tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationRight];
+                    if ([weakSelf.delegate respondsToSelector:@selector(StrategyDeleteCommentSuccess)]) {
+                        [weakSelf.delegate StrategyDeleteCommentSuccess];
+                    }
+                }else{
+                    [MyUtil showPlaceMessage:@"删除失败，请稍后重试！"];
+                }
+            }];
+        }
+    }
+}
+
 #pragma mark - textField代理方法
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);

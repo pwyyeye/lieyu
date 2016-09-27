@@ -14,7 +14,7 @@
 {
     UIWindow * window = [UIApplication sharedApplication].keyWindow;
     UIView *showview =  [[UIView alloc]init];
-    showview.backgroundColor = RGBA(114, 5, 147, 0.8);
+    showview.backgroundColor = COMMON_PURPLE_HALF;
     showview.frame = CGRectMake(1, 1, 1, 1);
     showview.alpha = 0.8f;
     showview.layer.cornerRadius = 5.0f;

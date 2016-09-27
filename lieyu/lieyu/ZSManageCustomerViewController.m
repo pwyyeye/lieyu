@@ -29,14 +29,15 @@
     [self initMainView];}
 
 - (void)initMainView{
-    [self.view setBackgroundColor:RGB(242, 242, 242)];
+    [self.view setBackgroundColor:COMMON_GRAY];
     
     _titleArray = @[@"我的客户",@"生日管家"];
     
-    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50 * _titleArray.count) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStyleGrouped];
+    [_tableView setBackgroundColor:COMMON_GRAY];
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    _tableView.scrollEnabled = NO;
+//    _tableView.scrollEnabled = YES;
     [self.view addSubview:_tableView];
     
 }
@@ -49,6 +50,10 @@
 }
 
 #pragma mark - tableview的代理方法
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 6;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
