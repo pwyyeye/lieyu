@@ -25,6 +25,7 @@
 
 - (void)setRecommendFriendModel:(UserModel *)RecommendFriendModel{
     _RecommendFriendModel = RecommendFriendModel;
+    
 }
 
 @end
