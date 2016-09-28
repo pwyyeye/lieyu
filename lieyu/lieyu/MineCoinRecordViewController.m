@@ -1,39 +1,35 @@
 //
-//  ZSTiXianRecordViewController.m
+//  MineCoinRecordViewController.m
 //  lieyu
 //
-//  Created by 狼族 on 16/3/29.
+//  Created by 王婷婷 on 16/9/28.
 //  Copyright © 2016年 狼族（上海）网络科技有限公司. All rights reserved.
 //
 
-#import "ZSTiXianRecordViewController.h"
+#import "MineCoinRecordViewController.h"
 #import "ZSTiXianRecordMonthTableViewCell.h"
 #import "ZSTiXianRecordTableViewCell.h"
 #import "ZSManageHttpTool.h"
 #import "ZSTiXianRecord.h"
-#import "MJRefresh.h"
 
 #define ZSTiXianRecordMonthTableViewCellID @"ZSTiXianRecordMonthTableViewCell"
 #define ZSTiXianRecordTableViewCellID @"ZSTiXianRecordTableViewCell"
-@interface ZSTiXianRecordViewController ()<UITableViewDelegate,UITableViewDataSource>{
+
+@interface MineCoinRecordViewController ()<UITableViewDelegate,UITableViewDataSource>
+{
     NSInteger _pageStart;
     NSInteger _pageSize;
     NSMutableArray *_beforeDataArray,*_dataArray;
 }
-@property (weak, nonatomic) IBOutlet UITableView *tableview;
 
 @end
 
-@implementation ZSTiXianRecordViewController
-
+@implementation MineCoinRecordViewController
+#pragma mark - 生命周期
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    if ([MyUtil isEmptyString:_subTitle]) {
-        self.title = @"提现记录";
-    }else{
-        self.title = _subTitle;
-    }
+    self.title = @"充值记录";
 }
 
 - (void)viewDidLoad {
@@ -43,30 +39,41 @@
     _pageStart = 0;
     [self setupTableViewRefresh];
     [self getData];
-    // Do any additional setup after loading the view from its nib.
-    [_tableview registerNib:[UINib nibWithNibName:ZSTiXianRecordMonthTableViewCellID bundle:nil] forCellReuseIdentifier:ZSTiXianRecordMonthTableViewCellID];
-    [_tableview registerNib:[UINib nibWithNibName:ZSTiXianRecordTableViewCellID bundle:nil] forCellReuseIdentifier:ZSTiXianRecordTableViewCellID];
+    _tableView.dataSource = self;
+    _tableView.delegate = self;
+    [_tableView registerNib:[UINib nibWithNibName:ZSTiXianRecordMonthTableViewCellID bundle:nil] forCellReuseIdentifier:ZSTiXianRecordMonthTableViewCellID];
+    [_tableView registerNib:[UINib nibWithNibName:ZSTiXianRecordTableViewCellID bundle:nil] forCellReuseIdentifier:ZSTiXianRecordTableViewCellID];
 }
 
 - (void)setupTableViewRefresh{
     __weak __typeof(self) weakSelf = self;
-    _tableview.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+    _tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         _pageStart = 0;
         [weakSelf getData];
     }];
-    MJRefreshGifHeader *header=(MJRefreshGifHeader *)_tableview.mj_header;
+    MJRefreshGifHeader *header=(MJRefreshGifHeader *)_tableView.mj_header;
     [self initMJRefeshHeaderForGif:header];
     
-    _tableview.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
+    _tableView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
         _pageStart ++;
         [weakSelf getData];
     }];
+//    MJRefreshBackGifFooter *footer = (MJRefreshBackGifFooter *)_tableView.mj_footer;
+//    [self initMJRefeshFooterForGif:footer];
 }
 
+#pragma mark - 获取数据
 - (void)getData{
     NSDictionary *paraDic = @{@"start":[NSString stringWithFormat:@"%ld",_pageStart * _pageSize],@"limit":[NSString stringWithFormat:@"%ld",_pageSize]};
-     
-    [[ZSManageHttpTool shareInstance] getPersonTiXianRecordWithParams:paraDic complete:^(NSArray *dataArray) {
+    
+    [[ZSManageHttpTool shareInstance] getPersonTiXianRecordWithParams:paraDic complete:^(NSArray *tempArray) {
+        NSMutableArray *dataArray = [[NSMutableArray alloc]init];
+        for (ZSTiXianRecord *model in tempArray) {
+            if ([model.wtype integerValue] == 4) {
+                [dataArray addObject:model];
+            }
+        }
+        //        NSMutableArray *dataArray = [[NSMutableArray alloc]initWithArray:tempArray];
         if(_pageStart == 0) _beforeDataArray = dataArray.mutableCopy;
         else [_beforeDataArray addObjectsFromArray:dataArray];
         NSMutableArray *dateMutablearray = [@[] mutableCopy];
@@ -102,10 +109,10 @@
         }
         
         _dataArray = dateMutablearray;
-        [_tableview reloadData];
-        [_tableview.mj_header endRefreshing];
-        if(dataArray.count == 0) [_tableview.mj_footer endRefreshingWithNoMoreData];
-        else [_tableview.mj_footer endRefreshing];
+        [_tableView reloadData];
+        [_tableView.mj_header endRefreshing];
+        if(dataArray.count == 0) [_tableView.mj_footer endRefreshingWithNoMoreData];
+        else [_tableView.mj_footer endRefreshing];
     }];
 }
 
@@ -124,20 +131,20 @@
     switch (indexPath.row) {
         case 0:
         {
-            ZSTiXianRecordMonthTableViewCell *cell = [_tableview dequeueReusableCellWithIdentifier:ZSTiXianRecordMonthTableViewCellID forIndexPath:indexPath];
+            ZSTiXianRecordMonthTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:ZSTiXianRecordMonthTableViewCellID forIndexPath:indexPath];
             NSArray *strArray = [tiXianRecord.month componentsSeparatedByString:@"-"];
             if (strArray.count == 2) {
                 cell.label_time.text = [NSString stringWithFormat:@"%@年%@月",strArray.firstObject,strArray[1]];
             }
-            cell.label_tiXianSum.text = [NSString stringWithFormat:@"共提现:¥%@", tiXianRecord.amountSum];
+            cell.label_tiXianSum.text = [NSString stringWithFormat:@"共充值:¥%@", tiXianRecord.amountSum];
             cell.label_receivedSum.text = [NSString stringWithFormat:@"已到账:¥%@",tiXianRecord.receivedAmountSum];
             return cell;
         }
             break;
             
         default:{
-            ZSTiXianRecordTableViewCell *cell = [_tableview dequeueReusableCellWithIdentifier:ZSTiXianRecordTableViewCellID forIndexPath:indexPath];
-            cell.tiXianR = tiXianRecord;
+            ZSTiXianRecordTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:ZSTiXianRecordTableViewCellID forIndexPath:indexPath];
+            cell.chongzhiR = tiXianRecord;
             return cell;
         }
             break;
@@ -157,19 +164,10 @@
     }
 }
 
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

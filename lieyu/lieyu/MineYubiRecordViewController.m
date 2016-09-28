@@ -11,7 +11,7 @@
 #import "ZSTiXianRecordTableViewCell.h"
 #import "ZSManageHttpTool.h"
 #import "ZSTiXianRecord.h"
-#import "MJRefresh.h"
+//#import "MJRefresh.h"
 
 #define ZSTiXianRecordMonthTableViewCellID @"ZSTiXianRecordMonthTableViewCell"
 #define ZSTiXianRecordTableViewCellID @"ZSTiXianRecordTableViewCell"
@@ -30,6 +30,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.title = @"充值记录";
 }
 
@@ -41,8 +42,7 @@
     [self setupTableViewRefresh];
     [self getData];
     // Do any additional setup after loading the view from its nib.
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-    _tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64) style:UITableViewStylePlain];
+    _tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64)];
     _tableview.dataSource = self;
     _tableview.delegate = self;
     [self.view addSubview:_tableview];
@@ -77,6 +77,7 @@
                 [dataArray addObject:model];
             }
         }
+//        NSMutableArray *dataArray = [[NSMutableArray alloc]initWithArray:tempArray];
         if(_pageStart == 0) _beforeDataArray = dataArray.mutableCopy;
         else [_beforeDataArray addObjectsFromArray:dataArray];
         NSMutableArray *dateMutablearray = [@[] mutableCopy];

@@ -904,6 +904,8 @@
 		38FE0B831D9912E400CA6D3A /* LYSearchLiveShowCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FE0B811D9912E400CA6D3A /* LYSearchLiveShowCollectionViewCell.m */; };
 		38FE0B841D9912E400CA6D3A /* LYSearchLiveShowCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38FE0B821D9912E400CA6D3A /* LYSearchLiveShowCollectionViewCell.xib */; };
 		38FE0B8C1D9A5E9400CA6D3A /* LYCoinShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FE0B8B1D9A5E9400CA6D3A /* LYCoinShopViewController.m */; };
+		38FE0B901D9B6C1D00CA6D3A /* MineCoinRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FE0B8E1D9B6C1D00CA6D3A /* MineCoinRecordViewController.m */; };
+		38FE0B911D9B6C1D00CA6D3A /* MineCoinRecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38FE0B8F1D9B6C1D00CA6D3A /* MineCoinRecordViewController.xib */; };
 		525CA0C71C5B626E009ED9DA /* daohang_xiangji.png in Resources */ = {isa = PBXBuildFile; fileRef = 525CA0C41C5B626E009ED9DA /* daohang_xiangji.png */; };
 		525CA0C81C5B626E009ED9DA /* daohang_xiangji@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 525CA0C51C5B626E009ED9DA /* daohang_xiangji@2x.png */; };
 		525CA0C91C5B626E009ED9DA /* daohang_xiangji@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 525CA0C61C5B626E009ED9DA /* daohang_xiangji@3x.png */; };
@@ -3402,6 +3404,9 @@
 		38FE0B821D9912E400CA6D3A /* LYSearchLiveShowCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYSearchLiveShowCollectionViewCell.xib; sourceTree = "<group>"; };
 		38FE0B8A1D9A5E9400CA6D3A /* LYCoinShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYCoinShopViewController.h; sourceTree = "<group>"; };
 		38FE0B8B1D9A5E9400CA6D3A /* LYCoinShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYCoinShopViewController.m; sourceTree = "<group>"; };
+		38FE0B8D1D9B6C1D00CA6D3A /* MineCoinRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineCoinRecordViewController.h; sourceTree = "<group>"; };
+		38FE0B8E1D9B6C1D00CA6D3A /* MineCoinRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineCoinRecordViewController.m; sourceTree = "<group>"; };
+		38FE0B8F1D9B6C1D00CA6D3A /* MineCoinRecordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineCoinRecordViewController.xib; sourceTree = "<group>"; };
 		525CA0C41C5B626E009ED9DA /* daohang_xiangji.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daohang_xiangji.png; sourceTree = "<group>"; };
 		525CA0C51C5B626E009ED9DA /* daohang_xiangji@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daohang_xiangji@2x.png"; sourceTree = "<group>"; };
 		525CA0C61C5B626E009ED9DA /* daohang_xiangji@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daohang_xiangji@3x.png"; sourceTree = "<group>"; };
@@ -6933,6 +6938,9 @@
 				38AD5B141D643DDE00521150 /* MineYubiViewController.xib */,
 				384B03DC1D8F9D7600078395 /* MineYubiRecordViewController.h */,
 				384B03DD1D8F9D7600078395 /* MineYubiRecordViewController.m */,
+				38FE0B8D1D9B6C1D00CA6D3A /* MineCoinRecordViewController.h */,
+				38FE0B8E1D9B6C1D00CA6D3A /* MineCoinRecordViewController.m */,
+				38FE0B8F1D9B6C1D00CA6D3A /* MineCoinRecordViewController.xib */,
 			);
 			name = "娱币";
 			sourceTree = "<group>";
@@ -12501,6 +12509,7 @@
 				AD203BB41CAEA9C70014618A /* coinBackground@1x.png in Resources */,
 				ADAFCD2C1CA0E261008BF959 /* shark5.png in Resources */,
 				8518067B1C2E5F0000006804 /* LYFriendsAllCommentTableViewCell.xib in Resources */,
+				38FE0B911D9B6C1D00CA6D3A /* MineCoinRecordViewController.xib in Resources */,
 				AD399EC71C940D4D00028F23 /* logo72@2x.jpg in Resources */,
 				A2FD57761BAFE94400CFFF92 /* TaoCanMCell.xib in Resources */,
 				38E5D75B1C113445004B49D2 /* triangle_up@3x.png in Resources */,
@@ -12981,6 +12990,7 @@
 				152247AC1BEB064600E68A2B /* IQNSArray+Sort.m in Sources */,
 				8537D4C91D71387400636229 /* InputTextFieldView.m in Sources */,
 				ADE1039C1BDE49BC00D9EC38 /* NSDataEx.m in Sources */,
+				38FE0B901D9B6C1D00CA6D3A /* MineCoinRecordViewController.m in Sources */,
 				15AE63401BA84FD500FFAD1A /* NoticeCell.m in Sources */,
 				8504B9391C71C36B008E5C6B /* LYHomeCollectionViewCell.m in Sources */,
 				38E5D6CC1C0EA5B7004B49D2 /* ContentView.m in Sources */,

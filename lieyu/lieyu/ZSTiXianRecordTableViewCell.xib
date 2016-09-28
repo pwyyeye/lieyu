@@ -71,6 +71,7 @@
                 </variation>
             </tableViewCellContentView>
             <connections>
+                <outlet property="label_action" destination="le8-Xm-mIQ" id="iU9-vW-D14"/>
                 <outlet property="label_money" destination="QDU-jp-04K" id="4WB-9w-42e"/>
                 <outlet property="label_poundage" destination="vUb-xK-hck" id="Pea-va-WZ9"/>
                 <outlet property="label_time" destination="BJV-1f-T8Y" id="MSu-lT-7cf"/>

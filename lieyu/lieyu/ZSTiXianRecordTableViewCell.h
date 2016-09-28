@@ -10,6 +10,7 @@
 @class ZSTiXianRecord;
 
 @interface ZSTiXianRecordTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *label_action;
 @property (weak, nonatomic) IBOutlet UILabel *label_type;
 @property (weak, nonatomic) IBOutlet UILabel *label_time;
 @property (weak, nonatomic) IBOutlet UILabel *label_money;
