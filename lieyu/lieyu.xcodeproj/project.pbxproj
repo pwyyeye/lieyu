@@ -381,7 +381,6 @@
 		384A54991D10FB96008825ED /* FreeOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 384A54971D10FB96008825ED /* FreeOrderTableViewCell.xib */; };
 		384A549F1D112422008825ED /* LYMyFreeOrdersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 384A549E1D112422008825ED /* LYMyFreeOrdersViewController.m */; };
 		384A54A21D112D69008825ED /* LYFreeOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 384A54A11D112D69008825ED /* LYFreeOrderModel.m */; };
-		384B03DE1D8F9D7600078395 /* MineYubiRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 384B03DD1D8F9D7600078395 /* MineYubiRecordViewController.m */; };
 		384B03E11D8FB0CB00078395 /* backBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 384B03DF1D8FB0CB00078395 /* backBtn@2x.png */; };
 		384B03E21D8FB0CB00078395 /* backBtn@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 384B03E01D8FB0CB00078395 /* backBtn@3x.png */; };
 		384B03E51D8FE77300078395 /* userSetting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 384B03E31D8FE77300078395 /* userSetting@2x.png */; };
@@ -2774,8 +2773,6 @@
 		384A549E1D112422008825ED /* LYMyFreeOrdersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYMyFreeOrdersViewController.m; sourceTree = "<group>"; };
 		384A54A01D112D69008825ED /* LYFreeOrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYFreeOrderModel.h; sourceTree = "<group>"; };
 		384A54A11D112D69008825ED /* LYFreeOrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYFreeOrderModel.m; sourceTree = "<group>"; };
-		384B03DC1D8F9D7600078395 /* MineYubiRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineYubiRecordViewController.h; sourceTree = "<group>"; };
-		384B03DD1D8F9D7600078395 /* MineYubiRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineYubiRecordViewController.m; sourceTree = "<group>"; };
 		384B03DF1D8FB0CB00078395 /* backBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backBtn@2x.png"; sourceTree = "<group>"; };
 		384B03E01D8FB0CB00078395 /* backBtn@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backBtn@3x.png"; sourceTree = "<group>"; };
 		384B03E31D8FE77300078395 /* userSetting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userSetting@2x.png"; sourceTree = "<group>"; };
@@ -6936,8 +6933,6 @@
 				38AD5B121D643DDE00521150 /* MineYubiViewController.h */,
 				38AD5B131D643DDE00521150 /* MineYubiViewController.m */,
 				38AD5B141D643DDE00521150 /* MineYubiViewController.xib */,
-				384B03DC1D8F9D7600078395 /* MineYubiRecordViewController.h */,
-				384B03DD1D8F9D7600078395 /* MineYubiRecordViewController.m */,
 				38FE0B8D1D9B6C1D00CA6D3A /* MineCoinRecordViewController.h */,
 				38FE0B8E1D9B6C1D00CA6D3A /* MineCoinRecordViewController.m */,
 				38FE0B8F1D9B6C1D00CA6D3A /* MineCoinRecordViewController.xib */,
@@ -12935,7 +12930,6 @@
 				855397301C8DA01C00289D18 /* qrinput.c in Sources */,
 				85529C271C9047B5005D8F0D /* FindNewMessageList.m in Sources */,
 				85FE54CF1D7AA6D800B262EA /* StrategryTableViewCell.m in Sources */,
-				384B03DE1D8F9D7600078395 /* MineYubiRecordViewController.m in Sources */,
 				A20100E31BA94404009283D1 /* WQCalendarTileView.m in Sources */,
 				850B32B61D2DFD230080CA6D /* BarGroupChatViewController.m in Sources */,
 				380659DD1C5639F4003094C9 /* ManagersView.m in Sources */,
