@@ -26,16 +26,35 @@
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="abZ-ld-xnr">
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tBk-mV-KVS">
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="互相关注后将成为玩友" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PsG-hN-zjK">
+                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                            <color key="textColor" red="0.11372549019607843" green="0.035294117647058823" blue="0.11372549019607843" alpha="0.28000000000000003" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="8bx-K9-Dgt"/>
+                        <constraint firstItem="PsG-hN-zjK" firstAttribute="centerX" secondItem="tBk-mV-KVS" secondAttribute="centerX" id="XPU-jm-k9h"/>
+                        <constraint firstItem="PsG-hN-zjK" firstAttribute="centerY" secondItem="tBk-mV-KVS" secondAttribute="centerY" id="bZK-df-Jgo"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="abZ-ld-xnr" firstAttribute="top" secondItem="tBk-mV-KVS" secondAttribute="bottom" id="A9M-NC-QVZ"/>
                 <constraint firstItem="VDm-dt-3B8" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="CrS-KU-2Ie"/>
+                <constraint firstItem="tBk-mV-KVS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="JIS-Vw-3GO"/>
+                <constraint firstItem="tBk-mV-KVS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="UMN-fz-9Vs"/>
                 <constraint firstItem="abZ-ld-xnr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Wet-R0-RY9"/>
                 <constraint firstAttribute="bottom" secondItem="abZ-ld-xnr" secondAttribute="bottom" id="bP8-Lw-KNR"/>
                 <constraint firstAttribute="trailing" secondItem="abZ-ld-xnr" secondAttribute="trailing" id="nLI-12-iZw"/>
                 <constraint firstItem="VDm-dt-3B8" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="p0y-ic-zT6"/>
-                <constraint firstItem="abZ-ld-xnr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="wXv-XC-X2a"/>
+                <constraint firstAttribute="trailing" secondItem="tBk-mV-KVS" secondAttribute="trailing" id="pbn-H3-CZX"/>
             </constraints>
+            <point key="canvasLocation" x="25.5" y="52.5"/>
         </view>
     </objects>
 </document>

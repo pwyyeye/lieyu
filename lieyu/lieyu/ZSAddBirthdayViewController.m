@@ -69,11 +69,11 @@
 //        [_avatarImage sd_setImageWithURL:[NSURL URLWithString:_editModel.headUrl]];
         _selectedImage = _headImage;
         if (![MyUtil isEmptyString:_editModel.birthday]) {
-            _birthday = [NSString stringWithFormat:@"1995-%@",_editModel.birthday];
+            _birthday = [NSString stringWithFormat:@"1985-%@",_editModel.birthday];
             [_datePicker setDate:[formatter dateFromString:_birthday]];
         }else{
             NSString *nowDateString = [formatter stringFromDate:[NSDate date]];
-            NSString *showDateString = [nowDateString stringByReplacingCharactersInRange:NSMakeRange(0, 4) withString:@"1995"];
+            NSString *showDateString = [nowDateString stringByReplacingCharactersInRange:NSMakeRange(0, 4) withString:@"1985"];
             [_datePicker setDate:[formatter dateFromString:showDateString]];
         }
         [_avatarImage setImage:_headImage];
@@ -83,7 +83,7 @@
         _sex = [_editModel.sex intValue];
     }else{
         NSString *nowDateString = [formatter stringFromDate:[NSDate date]];
-        NSString *showDateString = [nowDateString stringByReplacingCharactersInRange:NSMakeRange(0, 4) withString:@"1995"];
+        NSString *showDateString = [nowDateString stringByReplacingCharactersInRange:NSMakeRange(0, 4) withString:@"1985"];
         [_datePicker setDate:[formatter dateFromString:showDateString]];
         
         [_avatarImage setImage:[UIImage imageNamed:@"CommonIcon"]];
