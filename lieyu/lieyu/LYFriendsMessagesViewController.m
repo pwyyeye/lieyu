@@ -1128,7 +1128,7 @@ static NSString *daShangCellID = @"dashangCellID";
     
     _daShangView.backgroundColor = [UIColor whiteColor];
     _daShangView.alpha = 1.f;
-    _daShangView.layer.cornerRadius = 3.f;
+    _daShangView.layer.cornerRadius = 6.f;
     _daShangView.layer.masksToBounds = YES;
     [_backgroudView addSubview:_daShangView];
     [_daShangView.closeButton addTarget:self action:@selector(dashangMomentCloseViewAction:) forControlEvents:(UIControlEventTouchUpInside)];

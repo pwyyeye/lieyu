@@ -247,6 +247,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         _registerView.streamID = _streamId;//将streamid和roomid配置给开始界面
         _registerView.roomId = _roomid;
         [_registerView.backButton addTarget:weakSelf action:@selector(registerbackButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
+        [_registerView.shiftCamreButton addTarget:weakSelf action:@selector(shiftButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
         [_registerView setBegainImage:^(UIImage *img) {
             _begainImage = img;
         }];
@@ -495,9 +496,9 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
                                           [[PLVideoStreamingConfiguration alloc] initWithVideoSize:videoSize expectedSourceVideoFrameRate:30 videoMaxKeyframeInterval:90 averageVideoBitRate:800 * 1000 videoProfileLevel:AVVideoProfileLevelH264Baseline31],
                                           ];
     self.videoCaptureConfigurations = @[
-                                        [[PLVideoCaptureConfiguration alloc] initWithVideoFrameRate:15 sessionPreset:AVCaptureSessionPresetiFrame960x540 previewMirrorFrontFacing:YES previewMirrorRearFacing:NO streamMirrorFrontFacing:YES streamMirrorRearFacing:NO cameraPosition:AVCaptureDevicePositionBack videoOrientation:AVCaptureVideoOrientationPortrait],
-                                        [[PLVideoCaptureConfiguration alloc] initWithVideoFrameRate:24 sessionPreset:AVCaptureSessionPresetiFrame960x540 previewMirrorFrontFacing:YES previewMirrorRearFacing:NO streamMirrorFrontFacing:YES streamMirrorRearFacing:NO cameraPosition:AVCaptureDevicePositionBack videoOrientation:AVCaptureVideoOrientationPortrait],
-                                        [[PLVideoCaptureConfiguration alloc] initWithVideoFrameRate:30 sessionPreset:AVCaptureSessionPresetiFrame960x540 previewMirrorFrontFacing:YES previewMirrorRearFacing:NO streamMirrorFrontFacing:YES streamMirrorRearFacing:NO cameraPosition:AVCaptureDevicePositionBack videoOrientation:AVCaptureVideoOrientationPortrait]
+                                        [[PLVideoCaptureConfiguration alloc] initWithVideoFrameRate:15 sessionPreset:AVCaptureSessionPresetiFrame960x540 previewMirrorFrontFacing:YES previewMirrorRearFacing:NO streamMirrorFrontFacing:YES streamMirrorRearFacing:NO cameraPosition:AVCaptureDevicePositionFront videoOrientation:AVCaptureVideoOrientationPortrait],
+                                        [[PLVideoCaptureConfiguration alloc] initWithVideoFrameRate:24 sessionPreset:AVCaptureSessionPresetiFrame960x540 previewMirrorFrontFacing:YES previewMirrorRearFacing:NO streamMirrorFrontFacing:YES streamMirrorRearFacing:NO cameraPosition:AVCaptureDevicePositionFront videoOrientation:AVCaptureVideoOrientationPortrait],
+                                        [[PLVideoCaptureConfiguration alloc] initWithVideoFrameRate:30 sessionPreset:AVCaptureSessionPresetiFrame960x540 previewMirrorFrontFacing:YES previewMirrorRearFacing:NO streamMirrorFrontFacing:YES streamMirrorRearFacing:NO cameraPosition:AVCaptureDevicePositionFront videoOrientation:AVCaptureVideoOrientationPortrait]
                                         ];
     self.sessionQueue = dispatch_queue_create("pili.queue.streaming", DISPATCH_QUEUE_SERIAL);
     
@@ -530,7 +531,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
                 AVCaptureVideoOrientation orientation = (AVCaptureVideoOrientation)(([[UIDevice currentDevice] orientation] <= UIDeviceOrientationLandscapeRight && [[UIDevice currentDevice] orientation] != UIDeviceOrientationUnknown) ? [[UIDevice currentDevice] orientation]: UIDeviceOrientationPortrait);
                 // 推流 session
                 self.session = [[PLCameraStreamingSession alloc] initWithVideoCaptureConfiguration:videoCaptureConfiguration audioCaptureConfiguration:audioCaptureConfiguration videoStreamingConfiguration:videoStreamingConfiguration audioStreamingConfiguration:audioStreamingConfiguration stream:stream videoOrientation:orientation];
-                self.session.captureDevicePosition = AVCaptureDevicePositionBack;
+                self.session.captureDevicePosition = AVCaptureDevicePositionFront;
                 self.session.delegate = self;
                 self.session.bufferDelegate = self;
                 __weak typeof(self) weakSelf = self;
@@ -613,6 +614,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         }
     }
 }
+
 
 
 #pragma mark - <PLStreamingSendingBufferDelegate>
@@ -762,36 +764,65 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 }
 
 #pragma mark --- 展示用户详情以及交互
--(void)showDetailWith:(ChatUseres *) chatuser{
+//点击聊天室
+-(void)showWatchDetailWith:(ChatUseres *) chatuser{
     _anchorDetailView = [[[NSBundle mainBundle] loadNibNamed:@"AnchorDetailView" owner:self options:nil] lastObject];
-    _anchorDetailView.frame = CGRectMake(0, 0, SCREEN_WIDTH/5 * 3,SCREEN_HEIGHT / 4);
+    _anchorDetailView.frame = CGRectMake(0, 0, 260,210);
     _anchorDetailView.center = self.view.center;
-    [_anchorDetailView.anchorIcon sd_setImageWithURL:[NSURL URLWithString:chatuser.avatar_img]];
-    _anchorDetailView.nickNameLabel.text = chatuser.usernick;
-    _chatuserid = chatuser.id;
-    [_anchorDetailView.focusButton addTarget:self action:@selector(focusButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
-    [_anchorDetailView.mainViewButton addTarget:self action:@selector(mainButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
-    _anchorDetailView.layer.cornerRadius = 10.f;
+    _anchorDetailView.layer.cornerRadius = 8.f;
     _anchorDetailView.layer.masksToBounds = YES;
     _anchorDetailView.backgroundColor = [UIColor whiteColor];
+    _anchorDetailView.nickNameLabel.text = chatuser.usernick;
+    NSString *imgStr = chatuser.avatar_img;
+    if (imgStr.length < 50) {
+        imgStr = [MyUtil getQiniuUrl:chatuser.avatar_img width:0 andHeight:0];
+    }
+    [_anchorDetailView.anchorIcon sd_setImageWithURL:[NSURL URLWithString:imgStr]];
+    //    if ([_hostUser[@"gender"] isEqualToString:@"0"]) {
+    //        _anchorDetailView.genderIamge.image=[UIImage imageNamed:@"woman"];
+    //    }else{
+    //        _anchorDetailView.genderIamge.image=[UIImage imageNamed:@"manIcon"];
+    //    }
     [self.view addSubview:_anchorDetailView];
     [self.view bringSubviewToFront:_anchorDetailView];
+    
+    //    NSInteger status = [_hostUser[@"friendStatus"] integerValue];
+    //    if (status == 2 || status == 0) {//0 没有关系   1 关注   2 粉丝   3 好友
+    //        _anchorDetailView.focusButton.tag = 2;
+    //        [_anchorDetailView.focusButton setTitle:@"关注" forState:(UIControlStateNormal)];
+    //    } else if (status == 1 || status == 3) {
+    //        _anchorDetailView.focusButton.tag = 1;
+    //        [_anchorDetailView.focusButton setTitle:@"已关注" forState:(UIControlStateNormal)];
+    //        _anchorDetailView.focusButton.userInteractionEnabled = NO;
+    //    }
+    [_anchorDetailView.focusButton addTarget:self action:@selector(anchorFocusButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
+    _anchorDetailView.focusButton.tag = chatuser.id;
+    [_anchorDetailView.mainViewButton addTarget:self action:@selector(mainViewButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
+    _anchorDetailView.mainViewButton.tag = chatuser.id;
 }
 
--(void)focusButtonAction:(UIButton *) sender{
-    NSDictionary *dict = @{@"followid":[NSString stringWithFormat:@"%ld",_chatuserid]};
-   [LYFriendsHttpTool followFriendWithParms:dict complete:^(NSDictionary *dict) {
-       sender.titleLabel.text = @"已关注";
-       sender.userInteractionEnabled = NO;
-   }];
-    
+
+-(void)anchorFocusButtonAction:(UIButton *) sender{
+    NSDictionary *dict = @{@"followid":[NSString stringWithFormat:@"%ld",sender.tag]};
+    if (sender.tag == 1) {//不能取消关注
+        [LYFriendsHttpTool unFollowFriendWithParms:dict complete:^(NSDictionary *dict) {
+            sender.titleLabel.text = @"关注";
+        }];
+    } else {
+        [LYFriendsHttpTool followFriendWithParms:dict complete:^(NSDictionary *dict) {
+            [sender.titleLabel setText:@"已关注"];
+            sender.userInteractionEnabled = NO;
+        }];
+    }
 }
--(void)mainButtonAction:(UIButton *)sender{
-    LYMyFriendDetailViewController *LYMyFriendDetailVC = [[LYMyFriendDetailViewController alloc] init];
-    LYMyFriendDetailVC.type = @"4";
-    LYMyFriendDetailVC.imUserId = [NSString stringWithFormat:@"%ld",_chatuserid];
-    [self.navigationController pushViewController:LYMyFriendDetailVC animated:NO];
+
+-(void)mainViewButtonAction:(UIButton *) sender{
+//    LYMyFriendDetailViewController *myFriendVC = [[LYMyFriendDetailViewController  alloc] init];
+//    myFriendVC.isChatroom = 4;
+//    myFriendVC.userID = [NSString stringWithFormat:@"%ld", sender.tag];
+//    [self.navigationController pushViewController:myFriendVC animated:YES];
 }
+
 
 #pragma mark -- 返回（结束播放）
 //结束直播弹出结束画面
@@ -875,9 +906,8 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
             imgStr = [MyUtil getQiniuUrl:user.avatar_img width:0 andHeight:0];
         }
         [cell.iconButton sd_setImageWithURL:[NSURL URLWithString:imgStr] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
-//        UITapGestureRecognizer *tapGes =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(douniwan:)];
-//        [cell addGestureRecognizer:tapGes];
-        
+        [cell.detailButton addTarget:self action:@selector(detailViewShow:) forControlEvents:(UIControlEventTouchUpInside)];
+        cell.detailButton.tag = indexPath.row;
         return cell;
     } else {
         RCMessageModel *model =
@@ -937,12 +967,11 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 }
 
 #pragma mark -- 点击聊天室成员
--(void)liveAudienceAction:(UIButton *)sender{
-    LYMyFriendDetailViewController *myFriendVC = [[LYMyFriendDetailViewController alloc]init];
-    myFriendVC.isChatroom = 4;
-    myFriendVC.imUserId = [NSString stringWithFormat:@"%ld",sender.tag];
-//    [self.navigationController pushViewController:myFriendVC animated:YES];
+-(void)detailViewShow:(UIButton *)sender{
+    ChatUseres *user = _dataArray[sender.tag];
+    [self showWatchDetailWith:user];
 }
+
 
 //cell消失时
 -(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
@@ -1038,8 +1067,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"%ld",indexPath.row);
     if (collectionView.tag == 199) {
-        ChatUseres *user = _dataArray[indexPath.row];
-        [self showDetailWith:user];
+       
     } else {
         
     }
@@ -1119,8 +1147,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
          messageCount:-1
          success:^{
              dispatch_async(dispatch_get_main_queue(), ^{
-//            RCInformationNotificationMessage *joinChatroomMessage = [[RCInformationNotificationMessage alloc]init];
-//                 joinChatroomMessage.message = [NSString stringWithFormat: @"%@加入了聊天室",[RCIM sharedRCIM].currentUserInfo.name];
+                 
                  LYStystemMessage *lyStystem = [[LYStystemMessage alloc] init];
                  [weakSelf sendMessage:lyStystem pushContent:nil];
 //                 [weakSelf sendMessage:joinChatroomMessage pushContent:nil];

@@ -116,7 +116,7 @@
     if (_textMessage) {
         [self.textLabel setTextColor:[UIColor whiteColor]];
         NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:_textMessage.content];
-        [AttributedStr addAttribute:NSForegroundColorAttributeName value:COMMON_PURPLE range:NSMakeRange(0, self.model.content.senderUserInfo.name.length + 1)];
+        [AttributedStr addAttribute:NSForegroundColorAttributeName value:RGB(227, 207, 87) range:NSMakeRange(0, self.model.content.senderUserInfo.name.length + 1)];
         self.textLabel.attributedText = AttributedStr;
     }
     CGSize __textSize = [LYTextMessageCell getMessageCellSize:_textMessage.content withWidth:self.baseContentView.bounds.size.width];

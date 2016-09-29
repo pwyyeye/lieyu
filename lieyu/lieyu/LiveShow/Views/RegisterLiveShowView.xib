@@ -119,11 +119,15 @@
                         <action selector="shareAction:" destination="eJu-ff-0ko" eventType="touchUpInside" id="R8x-xN-E5Q"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qvd-qA-btm">
+                    <state key="normal" image="shiftCamre.png"/>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Qob-lM-F6e" firstAttribute="leading" secondItem="3p4-aX-xSb" secondAttribute="trailing" constant="30" id="3mp-66-NtT"/>
                 <constraint firstItem="3p4-aX-xSb" firstAttribute="top" secondItem="chy-vq-2tb" secondAttribute="bottom" constant="13" id="5WN-Jl-z6Y"/>
+                <constraint firstItem="Qvd-qA-btm" firstAttribute="top" secondItem="eJu-ff-0ko" secondAttribute="top" constant="20" id="7Nj-8Y-96M"/>
                 <constraint firstAttribute="trailing" secondItem="ebE-JX-il8" secondAttribute="trailing" constant="20" id="95J-v1-MzZ"/>
                 <constraint firstItem="WHF-X3-1mp" firstAttribute="centerX" secondItem="KhN-GU-MT9" secondAttribute="centerX" id="AsA-AF-10w"/>
                 <constraint firstItem="ebE-JX-il8" firstAttribute="top" secondItem="eJu-ff-0ko" secondAttribute="top" constant="20" id="B82-ci-oAA"/>
@@ -137,14 +141,17 @@
                 <constraint firstItem="chy-vq-2tb" firstAttribute="top" secondItem="b8F-tD-B5g" secondAttribute="bottom" constant="8" id="Xj2-x4-FRc"/>
                 <constraint firstItem="KhN-GU-MT9" firstAttribute="centerX" secondItem="eJu-ff-0ko" secondAttribute="centerX" id="YyL-ga-sY3"/>
                 <constraint firstItem="b8F-tD-B5g" firstAttribute="top" secondItem="WHF-X3-1mp" secondAttribute="bottom" constant="38" id="Zzv-Jr-eec"/>
+                <constraint firstItem="Qvd-qA-btm" firstAttribute="leading" secondItem="eJu-ff-0ko" secondAttribute="leading" constant="20" id="aYS-Y2-1bU"/>
                 <constraint firstItem="T5D-Ie-9XE" firstAttribute="top" secondItem="3p4-aX-xSb" secondAttribute="bottom" constant="36" id="abc-s6-P3U"/>
                 <constraint firstItem="dU5-my-FNc" firstAttribute="width" secondItem="1Wt-wu-UjC" secondAttribute="width" id="brH-0R-mZU"/>
                 <constraint firstItem="b8F-tD-B5g" firstAttribute="centerX" secondItem="KhN-GU-MT9" secondAttribute="centerX" id="cJ6-dR-gfr"/>
+                <constraint firstItem="ebE-JX-il8" firstAttribute="width" secondItem="Qvd-qA-btm" secondAttribute="width" id="cWB-Sr-WBp"/>
                 <constraint firstItem="WHF-X3-1mp" firstAttribute="top" secondItem="KhN-GU-MT9" secondAttribute="bottom" constant="15" id="cl7-zg-wnI"/>
                 <constraint firstItem="1Wt-wu-UjC" firstAttribute="centerY" secondItem="eJu-ff-0ko" secondAttribute="centerY" id="eko-9T-JrX"/>
                 <constraint firstItem="Qob-lM-F6e" firstAttribute="height" secondItem="1Wt-wu-UjC" secondAttribute="height" id="gtP-1d-TmQ"/>
                 <constraint firstItem="Qob-lM-F6e" firstAttribute="centerY" secondItem="eJu-ff-0ko" secondAttribute="centerY" id="lTB-dG-R61"/>
                 <constraint firstItem="ILA-i2-lZX" firstAttribute="centerX" secondItem="iDO-C2-dGG" secondAttribute="centerX" id="pvN-De-aW6"/>
+                <constraint firstItem="ebE-JX-il8" firstAttribute="height" secondItem="Qvd-qA-btm" secondAttribute="height" id="rZr-pC-NPC"/>
                 <constraint firstItem="dU5-my-FNc" firstAttribute="leading" secondItem="1Wt-wu-UjC" secondAttribute="trailing" constant="30" id="rcd-e3-3OE"/>
                 <constraint firstItem="T5D-Ie-9XE" firstAttribute="centerX" secondItem="iDO-C2-dGG" secondAttribute="centerX" id="uXo-qr-xXl"/>
                 <constraint firstItem="3p4-aX-xSb" firstAttribute="centerY" secondItem="eJu-ff-0ko" secondAttribute="centerY" id="vcT-DW-qgK"/>
@@ -157,12 +164,13 @@
                 <outlet property="beautifySlider" destination="iDO-C2-dGG" id="OvM-4R-jDX"/>
                 <outlet property="beginShow" destination="ILA-i2-lZX" id="kE0-o6-Pzp"/>
                 <outlet property="qqButton" destination="1Wt-wu-UjC" id="tUz-YW-cUD"/>
+                <outlet property="shiftCamreButton" destination="Qvd-qA-btm" id="3Gg-bp-tdi"/>
                 <outlet property="titleTextFiled" destination="b8F-tD-B5g" id="dXO-1E-x7f"/>
                 <outlet property="weChatMonmentButton" destination="3p4-aX-xSb" id="N6N-Ya-yuc"/>
                 <outlet property="weChatSessionButton" destination="dU5-my-FNc" id="nBM-I3-aBS"/>
                 <outlet property="weiboButton" destination="Qob-lM-F6e" id="fGA-7Z-s39"/>
             </connections>
-            <point key="canvasLocation" x="457" y="-70"/>
+            <point key="canvasLocation" x="474.5" y="-153.5"/>
         </view>
     </objects>
     <resources>
@@ -172,5 +180,6 @@
         <image name="live_addImage.png" width="80" height="80"/>
         <image name="live_close.png" width="19" height="19"/>
         <image name="live_wechatmonent.png" width="25" height="25"/>
+        <image name="shiftCamre.png" width="23" height="21"/>
     </resources>
 </document>

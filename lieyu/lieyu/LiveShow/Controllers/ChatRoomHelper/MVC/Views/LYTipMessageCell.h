@@ -13,7 +13,7 @@
 /*!
  提示的Label
  */
-@property(strong, nonatomic) RCTipLabel *tipMessageLabel;
+@property(strong, nonatomic) UILabel *tipMessageLabel;
 
 @property(assign, nonatomic) BOOL isFullScreenMode;
 

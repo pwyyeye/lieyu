@@ -39,9 +39,6 @@
     LYGiftMessage *_likeMessage = (LYGiftMessage *)self.model.content;
     
     NSString *tiptext = @"";
-    if (_likeMessage.type.integerValue == 2) {//赞
-        tiptext = @"赞";
-    } else {//礼物
         switch (_likeMessage.gift.giftId.integerValue) {
             case 10:
                 tiptext = @"玫瑰花";
@@ -94,17 +91,27 @@
             default:
                 break;
         }
-    }
     if (_likeMessage) {
         if(_likeMessage.senderUserInfo){
             if ([_likeMessage.senderUserInfo.userId isEqualToString:[RCIM sharedRCIM].currentUserInfo.userId]) {
-                self.messageLabel.text = [NSString stringWithFormat:@"你送出一个%@", tiptext];
+                self.messageLabel.text = [NSString stringWithFormat:@"%@：我赠送了一个%@",_likeMessage.senderUserInfo.name, tiptext];
             }else{
-                self.messageLabel.text = [NSString stringWithFormat:@"%@送出一个%@",_likeMessage.senderUserInfo.name,tiptext];
+                self.messageLabel.text = [NSString stringWithFormat:@"%@：%@赠送了一个%@",_likeMessage.senderUserInfo.name,_likeMessage.senderUserInfo.name,tiptext];
+            }
+            if (_likeMessage.type.integerValue == 2) {//赞
+                [self.messageLabel setTextColor:[UIColor whiteColor]];
+                NSString *dianzanStr = [NSString stringWithFormat:@"%@：给你点赞",_likeMessage.senderUserInfo.name];
+                NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:dianzanStr];
+                [AttributedStr addAttribute:NSForegroundColorAttributeName value:RGB(227, 207, 87) range:NSMakeRange(0, self.model.content.senderUserInfo.name.length + 1)];
+                self.messageLabel.attributedText = AttributedStr;
+            } else {
+                [self.messageLabel setTextColor:RGB(240, 26, 105)];
+                NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:self.messageLabel.text];
+                [AttributedStr addAttribute:NSForegroundColorAttributeName value:RGB(227, 207, 87) range:NSMakeRange(0, self.model.content.senderUserInfo.name.length + 1)];
+                self.messageLabel.attributedText = AttributedStr;
             }
         }else{
-//            self.nicknameLabel.text = @"神秘人";
-            self.messageLabel.text = [NSString stringWithFormat:@"神秘人送出一个%@", tiptext];
+            self.messageLabel.text = [NSString stringWithFormat:@"神秘人赠送了一个%@", tiptext];
         }
     }
     CGSize __textSize = [LYGiftMessageCell getMessageCellSize:self.messageLabel.text  withWidth:self.baseContentView.bounds.size.width];
@@ -136,7 +143,6 @@
     self.bubbleBackgroundView.frame = CGRectMake(6, 0, __bubbleSize.width, __bubbleSize.height);
     self.messageLabel.frame = CGRectMake(0,0, __textSize.width, __textSize.height);
     self.bubbleBackgroundView.backgroundColor = [UIColor clearColor];
-    [self.messageLabel setTextColor:[UIColor redColor]];
     self.bubbleBackgroundView.layer.cornerRadius = 4;
 }
 

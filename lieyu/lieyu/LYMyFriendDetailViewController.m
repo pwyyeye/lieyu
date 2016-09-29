@@ -171,6 +171,7 @@
 
 - (void)backForward:(UIButton *)sender{
     NSLog(@"%@",self.navigationController.viewControllers);
+    
     for (UIViewController *VC in self.navigationController.viewControllers) {
         NSLog(@"%@",VC.superclass);
         if ([VC isKindOfClass:[SaoYiSaoViewController class]]) {

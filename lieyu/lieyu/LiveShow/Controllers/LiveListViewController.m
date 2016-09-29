@@ -95,7 +95,7 @@ static NSString *liveShowListID = @"liveShowListID";
 #pragma mark -- 配置导航栏
 -(void)setMenuView{
     CGFloat buttonWidth = SCREEN_WIDTH / 6;
-    UIView *mavMenuView = [[UIView alloc] initWithFrame:(CGRectMake(CGRectGetCenter(self.view.bounds).x - 100, 0, 180, 44))];
+    UIView *mavMenuView = [[UIView alloc] initWithFrame:(CGRectMake(CGRectGetCenter(self.view.bounds).x - 80, 0, 150, 44))];
     [self.navigationController.navigationBar addSubview:mavMenuView];
     
     _hotBtn = [[HotMenuButton alloc]initWithFrame:CGRectMake(0, 12, buttonWidth, 20)];
@@ -103,7 +103,7 @@ static NSString *liveShowListID = @"liveShowListID";
     _hotBtn.titleLabel.textColor = RGBA(255, 255, 255, 1);
     [_hotBtn addTarget:self action:@selector(hotButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [mavMenuView addSubview:_hotBtn];
-    _newBtn = [[HotMenuButton alloc]initWithFrame:CGRectMake(200 - buttonWidth, 12, buttonWidth, 20)];
+    _newBtn = [[HotMenuButton alloc]initWithFrame:CGRectMake(150 - buttonWidth, 12, buttonWidth, 20)];
     [_newBtn setTitle:@"最新" forState:UIControlStateNormal];
     _newBtn.titleLabel.textColor = RGBA(255, 255, 255, 1);
     [_newBtn addTarget:self action:@selector(newButtonClick) forControlEvents:UIControlEventTouchUpInside];
@@ -111,7 +111,7 @@ static NSString *liveShowListID = @"liveShowListID";
     if(_friendsBtnSelect) {//按钮选择状态
         _newBtn.isLiveListMenuSelected = NO;
         _hotBtn.isLiveListMenuSelected = YES;
-    }else{
+    } else {
         _newBtn.isLiveListMenuSelected = YES;
         _hotBtn.isLiveListMenuSelected = NO;
     }
@@ -567,7 +567,9 @@ static NSString *liveShowListID = @"liveShowListID";
 
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     LiveShowListCell *cell = [tableView dequeueReusableCellWithIdentifier:liveShowListID forIndexPath:indexPath];
+    
     if (!cell) {
         cell = [[LiveShowListCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:liveShowListID];
     }
@@ -612,9 +614,9 @@ static NSString *liveShowListID = @"liveShowListID";
         watchLiveVC.hostUser = Arr[@"roomHostUser"];
         NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:model.roomImg]];
         watchLiveVC.shareIamge = [UIImage imageWithData:data];
-        [weakSelf presentViewController:watchLiveVC animated:YES completion:NULL];
+//        [weakSelf presentViewController:watchLiveVC animated:YES completion:NULL];
+        [weakSelf.navigationController pushViewController:watchLiveVC animated:YES];
     }];
-    
 }
 
 #pragma mark - 直播按钮

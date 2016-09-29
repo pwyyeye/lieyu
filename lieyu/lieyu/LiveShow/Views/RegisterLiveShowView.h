@@ -13,6 +13,8 @@
 @property (nonatomic, copy) void(^beginLive)(CGFloat);
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 
+@property (weak, nonatomic) IBOutlet UIButton *shiftCamreButton;
+
 @property (weak, nonatomic) IBOutlet UISlider *beautifySlider;
 
 @property (copy, nonatomic) void(^begainImage)(UIImage *);

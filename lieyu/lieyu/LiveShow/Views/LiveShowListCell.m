@@ -62,22 +62,36 @@
     } else {
         _guWenLabel.hidden = NO;
     }
-    if (((roomHostUser *)listModel.roomHostUser).userTag.count == 1) {
+//    if (((roomHostUser *)listModel.roomHostUser).userTag.count == 1) {
+//        _onlyOneTagLabel.hidden = NO;
+//        _onlyOneTagLabel.text = [NSString stringWithFormat:@"%@",((roomHostUser *)listModel.roomHostUser).userTag[0]];
+//        _firstTaglabel.hidden = YES;
+//        _secondTagLabel.hidden = YES;
+//    } else if (((roomHostUser *)listModel.roomHostUser).userTag.count == 2) {
+//        _onlyOneTagLabel.hidden = YES;
+//        _firstTaglabel.hidden = NO;
+//        _secondTagLabel.hidden = NO;
+//        _firstTaglabel.text = [NSString stringWithFormat:@"%@",((roomHostUser *)listModel.roomHostUser).userTag[0]];
+//        _secondTagLabel.text = [NSString stringWithFormat:@"%@",((roomHostUser *)listModel.roomHostUser).userTag[1]];
+//    } else {
+//        _onlyOneTagLabel.hidden = YES;
+//        _firstTaglabel.hidden = YES;
+//        _secondTagLabel.hidden = YES;
+//    }
+    
+   NSString *astro = [MyUtil getAstroWithBirthday:((roomHostUser *)listModel.roomHostUser).birthday];
+    if ([astro isEqualToString:@""]) {
         _onlyOneTagLabel.hidden = NO;
-        _onlyOneTagLabel.text = [NSString stringWithFormat:@"%@",((roomHostUser *)listModel.roomHostUser).userTag[0]];
         _firstTaglabel.hidden = YES;
         _secondTagLabel.hidden = YES;
-    } else if (((roomHostUser *)listModel.roomHostUser).userTag.count == 2) {
-        _onlyOneTagLabel.hidden = YES;
-        _firstTaglabel.hidden = NO;
-        _secondTagLabel.hidden = NO;
-        _firstTaglabel.text = [NSString stringWithFormat:@"%@",((roomHostUser *)listModel.roomHostUser).userTag[0]];
-        _secondTagLabel.text = [NSString stringWithFormat:@"%@",((roomHostUser *)listModel.roomHostUser).userTag[1]];
+        _onlyOneTagLabel.text = [NSString stringWithFormat:@"%@",((roomHostUser *)listModel.roomHostUser).userTag[0]];
     } else {
         _onlyOneTagLabel.hidden = YES;
-        _firstTaglabel.hidden = YES;
-        _secondTagLabel.hidden = YES;
+        _firstTaglabel.text = astro;
+        _secondTagLabel.text =  [NSString stringWithFormat:@"%@",((roomHostUser *)listModel.roomHostUser).userTag[0]];
     }
+    _firstTaglabel.text = astro;
+    _secondTagLabel.text =  [NSString stringWithFormat:@"%@",((roomHostUser *)listModel.roomHostUser).userTag[0]];
     _titleLabel.text = [NSString stringWithFormat:@"%@", listModel.roomName];
     _likeNum.text = [NSString stringWithFormat:@"%d",listModel.likeNum];
 }

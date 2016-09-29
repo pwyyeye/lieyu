@@ -159,7 +159,7 @@ static NSString *daShangCellID = @"dashangCellID";
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     if (scrollView  == self.giftCollectionView) {
-        NSInteger pageInt = scrollView.contentOffset.x / scrollView.frame.size.width;
+        NSInteger pageInt = scrollView.contentOffset.x / scrollView.frame.size.width <= 0 ? 0 : 1;
         _pageControl.currentPage = pageInt;
     }
 }

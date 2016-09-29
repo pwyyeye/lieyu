@@ -13,4 +13,6 @@
 
 @property (strong, nonatomic)  UIImageView *iconButton;
 
+@property (strong, nonatomic) UIButton *detailButton;
+
 @end

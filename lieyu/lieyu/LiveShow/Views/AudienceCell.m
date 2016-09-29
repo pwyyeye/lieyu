@@ -20,6 +20,11 @@
     self.iconButton.layer.borderColor = COMMON_PURPLE.CGColor;
     self.iconButton.layer.borderWidth = 1.f;
     self.iconButton.userInteractionEnabled = NO;
+    
+    self.detailButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+    self.detailButton.backgroundColor = [UIColor clearColor];
+    self.detailButton.frame = self.bounds;
+    [self addSubview:self.detailButton];
 }
 
 -(void)setCornerRadiusView:(UIView *) maskView With:(CGFloat) size and:(BOOL) mask{

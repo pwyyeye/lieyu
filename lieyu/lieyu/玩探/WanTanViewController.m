@@ -118,7 +118,6 @@ static NSString *wantanCellID = @"wantanCellID";
     }
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     WanTanCell *cell = [tableView dequeueReusableCellWithIdentifier:wantanCellID forIndexPath:indexPath];
     if (indexPath.section == 0) {
@@ -131,7 +130,7 @@ static NSString *wantanCellID = @"wantanCellID";
         cell.iconImageView.image = nil;
         if (_results) {
             cell.iconImageView.image = nil;
-            [cell.iconImageView sd_setImageWithURL:[NSURL URLWithString:_icon]];
+            [cell.iconImageView sd_setImageWithURL:[NSURL URLWithString:_icon] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
             cell.smallTip.alpha = 1.f;
         } else {
             cell.smallTip.alpha = 0;

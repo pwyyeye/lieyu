@@ -15,7 +15,7 @@
 @property (nonatomic, assign) int roleid;
 @property (nonatomic, assign) int sex;//1表示男，0表示女
 @property (nonatomic, strong) NSArray *userTag;
-
+@property (nonatomic, strong) NSString *birthday;
 //单个的
 @property (nonatomic, strong) NSString *userid;
 @property (nonatomic, strong) NSString *email;
