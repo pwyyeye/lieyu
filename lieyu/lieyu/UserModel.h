@@ -58,4 +58,7 @@
 @property (nonatomic, strong) NSData *image;
 @property NSInteger sectionNumber;
 
+@property (nonatomic, assign) BOOL friend;
+@property (nonatomic, strong) NSString *friendStatus;
+
 @end

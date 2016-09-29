@@ -67,6 +67,7 @@
         [app stopLoading];
     } failure:^(NSError *err) {
         [app stopLoading];
+        complete(NO);
     }];
 }
 
@@ -86,6 +87,7 @@
         }
         [app stopLoading];
     } failure:^(NSError *err) {
+        complete(NO);
         [app stopLoading];
     }];
 }
@@ -115,7 +117,7 @@
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_NEWGET_FANSLIST baseURL:RUIQIU_SERVER params:params success:^(id response) {
         NSString *errorCode = [response objectForKey:@"errorcode"];
         if ([errorCode isEqualToString:@"success"]) {
-            NSArray *dataList = [LYAdviserManagerBriefInfo mj_objectArrayWithKeyValuesArray:[[response objectForKey:@"data"] objectForKey:@"fansList"]];
+            NSArray *dataList = [UserModel mj_objectArrayWithKeyValuesArray:[[response objectForKey:@"data"] objectForKey:@"fansList"]];
             complete(dataList);
         }else{
             [MyUtil showPlaceMessage:[response objectForKey:@"message"]];
@@ -133,7 +135,7 @@
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_NEWGET_FOLLOWLIST baseURL:RUIQIU_SERVER params:params success:^(id response) {
         NSString *errorCode = [response objectForKey:@"errorcode"];
         if ([errorCode isEqualToString:@"success"]) {
-            NSArray *dataList = [LYAdviserManagerBriefInfo mj_objectArrayWithKeyValuesArray:[[response objectForKey:@"data"] objectForKey:@"followlist"]];
+            NSArray *dataList = [UserModel mj_objectArrayWithKeyValuesArray:[[response objectForKey:@"data"] objectForKey:@"followlist"]];
             complete(dataList);
         }else{
             [MyUtil showPlaceMessage:[response objectForKey:@"message"]];

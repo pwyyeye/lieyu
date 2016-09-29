@@ -28,6 +28,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     if ([MyUtil isEmptyString:_subTitle]) {
         self.title = @"提现记录";
     }else{
@@ -43,7 +44,6 @@
     [self setupTableViewRefresh];
     [self getData];
     // Do any additional setup after loading the view from its nib.
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
     [_tableview registerNib:[UINib nibWithNibName:ZSTiXianRecordMonthTableViewCellID bundle:nil] forCellReuseIdentifier:ZSTiXianRecordMonthTableViewCellID];
     [_tableview registerNib:[UINib nibWithNibName:ZSTiXianRecordTableViewCellID bundle:nil] forCellReuseIdentifier:ZSTiXianRecordTableViewCellID];
 }
@@ -64,26 +64,11 @@
 }
 
 - (void)getData{
-    NSDictionary *paraDic = @{@"start":[NSString stringWithFormat:@"%d",_pageStart * _pageSize],@"limit":[NSString stringWithFormat:@"%d",_pageSize]};
+    NSDictionary *paraDic = @{@"start":[NSString stringWithFormat:@"%ld",_pageStart * _pageSize],@"limit":[NSString stringWithFormat:@"%ld",_pageSize]};
      
     [[ZSManageHttpTool shareInstance] getPersonTiXianRecordWithParams:paraDic complete:^(NSArray *dataArray) {
         if(_pageStart == 0) _beforeDataArray = dataArray.mutableCopy;
         else [_beforeDataArray addObjectsFromArray:dataArray];
-        
-        
-//        ZSTiXianRecord *tiXian3 = [[ZSTiXianRecord alloc]init];
-//        tiXian3.amount = @"30";
-//        tiXian3.create_date = @"2016-03-28 21:03:59";
-//        tiXian3.checkMark = @"1";
-//        
-//        ZSTiXianRecord *tiXian2 = [[ZSTiXianRecord alloc]init];
-//        tiXian2.amount = @"20";
-//        tiXian2.checkMark = @"1";
-//        tiXian2.create_date = @"2016-02-28 21:03:59";
-//        
-//        _beforeDataArray = @[tiXian3,tiXian3,tiXian3,tiXian3,tiXian3,tiXian3,tiXian3,tiXian3,tiXian3,tiXian2,tiXian2,tiXian2,tiXian2,tiXian2,tiXian2,tiXian2,tiXian2,tiXian2,tiXian2,tiXian2].mutableCopy;
-        
-        
         NSMutableArray *dateMutablearray = [@[] mutableCopy];
         NSMutableArray *array = [NSMutableArray arrayWithArray:_beforeDataArray];
         for (int i = 0; i < array.count; i ++) {

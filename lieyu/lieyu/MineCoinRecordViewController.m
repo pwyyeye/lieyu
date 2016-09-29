@@ -1,35 +1,34 @@
 //
-//  MineYubiRecordViewController.m
+//  MineCoinRecordViewController.m
 //  lieyu
 //
-//  Created by 王婷婷 on 16/9/19.
+//  Created by 王婷婷 on 16/9/28.
 //  Copyright © 2016年 狼族（上海）网络科技有限公司. All rights reserved.
 //
 
-#import "MineYubiRecordViewController.h"
+#import "MineCoinRecordViewController.h"
 #import "ZSTiXianRecordMonthTableViewCell.h"
 #import "ZSTiXianRecordTableViewCell.h"
 #import "ZSManageHttpTool.h"
 #import "ZSTiXianRecord.h"
-#import "MJRefresh.h"
 
 #define ZSTiXianRecordMonthTableViewCellID @"ZSTiXianRecordMonthTableViewCell"
 #define ZSTiXianRecordTableViewCellID @"ZSTiXianRecordTableViewCell"
-@interface MineYubiRecordViewController ()<UITableViewDelegate,UITableViewDataSource>
+
+@interface MineCoinRecordViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSInteger _pageStart;
     NSInteger _pageSize;
     NSMutableArray *_beforeDataArray,*_dataArray;
 }
 
-@property (strong, nonatomic) UITableView *tableview;
-
 @end
 
-@implementation MineYubiRecordViewController
-
+@implementation MineCoinRecordViewController
+#pragma mark - 生命周期
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.title = @"充值记录";
 }
 
@@ -40,31 +39,30 @@
     _pageStart = 0;
     [self setupTableViewRefresh];
     [self getData];
-    // Do any additional setup after loading the view from its nib.
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-    _tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
-    _tableview.dataSource = self;
-    _tableview.delegate = self;
-    [self.view addSubview:_tableview];
-    [_tableview registerNib:[UINib nibWithNibName:ZSTiXianRecordMonthTableViewCellID bundle:nil] forCellReuseIdentifier:ZSTiXianRecordMonthTableViewCellID];
-    [_tableview registerNib:[UINib nibWithNibName:ZSTiXianRecordTableViewCellID bundle:nil] forCellReuseIdentifier:ZSTiXianRecordTableViewCellID];
+    _tableView.dataSource = self;
+    _tableView.delegate = self;
+    [_tableView registerNib:[UINib nibWithNibName:ZSTiXianRecordMonthTableViewCellID bundle:nil] forCellReuseIdentifier:ZSTiXianRecordMonthTableViewCellID];
+    [_tableView registerNib:[UINib nibWithNibName:ZSTiXianRecordTableViewCellID bundle:nil] forCellReuseIdentifier:ZSTiXianRecordTableViewCellID];
 }
 
 - (void)setupTableViewRefresh{
     __weak __typeof(self) weakSelf = self;
-    _tableview.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+    _tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         _pageStart = 0;
         [weakSelf getData];
     }];
-    MJRefreshGifHeader *header=(MJRefreshGifHeader *)_tableview.mj_header;
+    MJRefreshGifHeader *header=(MJRefreshGifHeader *)_tableView.mj_header;
     [self initMJRefeshHeaderForGif:header];
     
-    _tableview.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
+    _tableView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
         _pageStart ++;
         [weakSelf getData];
     }];
+//    MJRefreshBackGifFooter *footer = (MJRefreshBackGifFooter *)_tableView.mj_footer;
+//    [self initMJRefeshFooterForGif:footer];
 }
 
+#pragma mark - 获取数据
 - (void)getData{
     NSDictionary *paraDic = @{@"start":[NSString stringWithFormat:@"%ld",_pageStart * _pageSize],@"limit":[NSString stringWithFormat:@"%ld",_pageSize]};
     
@@ -75,6 +73,7 @@
                 [dataArray addObject:model];
             }
         }
+        //        NSMutableArray *dataArray = [[NSMutableArray alloc]initWithArray:tempArray];
         if(_pageStart == 0) _beforeDataArray = dataArray.mutableCopy;
         else [_beforeDataArray addObjectsFromArray:dataArray];
         NSMutableArray *dateMutablearray = [@[] mutableCopy];
@@ -110,17 +109,11 @@
         }
         
         _dataArray = dateMutablearray;
-        [_tableview reloadData];
-        [_tableview.mj_header endRefreshing];
-        if(dataArray.count == 0) [_tableview.mj_footer endRefreshingWithNoMoreData];
-        else [_tableview.mj_footer endRefreshing];
+        [_tableView reloadData];
+        [_tableView.mj_header endRefreshing];
+        if(dataArray.count == 0) [_tableView.mj_footer endRefreshingWithNoMoreData];
+        else [_tableView.mj_footer endRefreshing];
     }];
-}
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -138,7 +131,7 @@
     switch (indexPath.row) {
         case 0:
         {
-            ZSTiXianRecordMonthTableViewCell *cell = [_tableview dequeueReusableCellWithIdentifier:ZSTiXianRecordMonthTableViewCellID forIndexPath:indexPath];
+            ZSTiXianRecordMonthTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:ZSTiXianRecordMonthTableViewCellID forIndexPath:indexPath];
             NSArray *strArray = [tiXianRecord.month componentsSeparatedByString:@"-"];
             if (strArray.count == 2) {
                 cell.label_time.text = [NSString stringWithFormat:@"%@年%@月",strArray.firstObject,strArray[1]];
@@ -150,7 +143,7 @@
             break;
             
         default:{
-            ZSTiXianRecordTableViewCell *cell = [_tableview dequeueReusableCellWithIdentifier:ZSTiXianRecordTableViewCellID forIndexPath:indexPath];
+            ZSTiXianRecordTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:ZSTiXianRecordTableViewCellID forIndexPath:indexPath];
             cell.chongzhiR = tiXianRecord;
             return cell;
         }
@@ -171,5 +164,10 @@
     }
 }
 
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 @end

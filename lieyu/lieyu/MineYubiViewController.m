@@ -10,7 +10,7 @@
 #import "MineYubiRechargeTableViewCell.h"
 #import "ChoosePayController.h"
 #import "LYUserHttpTool.h"
-#import "MineYubiRecordViewController.h"
+#import "MineCoinRecordViewController.h"
 
 @interface MineYubiViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate,RechargeCoinDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -103,8 +103,10 @@
 
 - (void)withdrawListClick:(UIButton *)button{
     //    MineWithdrawListViewController *mineWithdrawListVC = [[MineWithdrawListViewController alloc]init];
-    MineYubiRecordViewController *mineYubiRecordVC = [[MineYubiRecordViewController alloc]init];
-    [self.navigationController pushViewController:mineYubiRecordVC animated:YES];
+//    MineYubiRecordViewController *mineYubiRecordVC = [[MineYubiRecordViewController alloc]init];
+//    [self.navigationController pushViewController:mineYubiRecordVC animated:YES];
+    MineCoinRecordViewController *coinRecordVC = [[MineCoinRecordViewController alloc]init];
+    [self.navigationController pushViewController:coinRecordVC animated:YES];
 }
 
 

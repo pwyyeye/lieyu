@@ -62,10 +62,23 @@
                         <state key="normal" image="CustomBtn_unSelected.png"/>
                         <state key="selected" image="CustomBtn_Selected.png"/>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O5T-co-HU9">
+                        <constraints>
+                            <constraint firstAttribute="width" constant="55" id="9lX-ph-bEI"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <inset key="titleEdgeInsets" minX="-7" minY="20" maxX="10" maxY="0.0"/>
+                        <inset key="imageEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="20"/>
+                        <state key="normal" title="关注" image="find_caresb.png">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="8wB-oC-3zt" secondAttribute="trailing" id="0bJ-DW-SXd"/>
+                    <constraint firstAttribute="bottom" secondItem="O5T-co-HU9" secondAttribute="bottom" id="3Qj-dc-pzM"/>
                     <constraint firstItem="oKu-n7-D3C" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="6Ft-OE-cxX"/>
+                    <constraint firstItem="O5T-co-HU9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="9mU-tn-W6z"/>
                     <constraint firstItem="MFO-yq-Yay" firstAttribute="centerY" secondItem="oKu-n7-D3C" secondAttribute="centerY" id="Dxd-AE-tSO"/>
                     <constraint firstAttribute="bottom" secondItem="oqu-JY-I7O" secondAttribute="bottom" constant="8" id="H9r-J5-dWZ"/>
                     <constraint firstItem="8r5-Py-tPr" firstAttribute="leading" secondItem="zRo-t2-ZgW" secondAttribute="trailing" constant="10" id="M8Y-Eb-VIB"/>
@@ -76,11 +89,13 @@
                     <constraint firstAttribute="bottom" secondItem="8wB-oC-3zt" secondAttribute="bottom" id="ebh-pH-ZyV"/>
                     <constraint firstAttribute="bottom" secondItem="zRo-t2-ZgW" secondAttribute="bottom" constant="10" id="ejE-GE-2yp"/>
                     <constraint firstItem="MFO-yq-Yay" firstAttribute="leading" secondItem="oKu-n7-D3C" secondAttribute="trailing" constant="5" id="gMT-5v-2gS"/>
+                    <constraint firstAttribute="trailing" secondItem="O5T-co-HU9" secondAttribute="trailing" id="teg-ev-4fN"/>
                     <constraint firstAttribute="bottom" secondItem="8r5-Py-tPr" secondAttribute="bottom" constant="8" id="uUk-i8-Jk2"/>
                     <constraint firstItem="oKu-n7-D3C" firstAttribute="leading" secondItem="zRo-t2-ZgW" secondAttribute="trailing" constant="10" id="ztP-6J-piV"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="addCareButton" destination="O5T-co-HU9" id="iwe-gJ-F2V"/>
                 <outlet property="avatarImage" destination="zRo-t2-ZgW" id="gm2-NR-eUL"/>
                 <outlet property="userFirstTag" destination="8r5-Py-tPr" id="PWW-AG-nVP"/>
                 <outlet property="userName" destination="oKu-n7-D3C" id="7NT-6k-5vs"/>
@@ -95,5 +110,6 @@
     <resources>
         <image name="CustomBtn_Selected.png" width="24" height="24"/>
         <image name="CustomBtn_unSelected.png" width="24" height="24"/>
+        <image name="find_caresb.png" width="20" height="18"/>
     </resources>
 </document>

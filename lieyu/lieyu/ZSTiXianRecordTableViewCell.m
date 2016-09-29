@@ -30,6 +30,7 @@
 }
 
 - (void)setChongzhiR:(ZSTiXianRecord *)chongzhiR{
+    [_label_action setText:@"充值"];
     _chongzhiR = chongzhiR;
     NSArray *strArray = [chongzhiR.create_date componentsSeparatedByString:@" "];
     if (strArray.count == 2) {

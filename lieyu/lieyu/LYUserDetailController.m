@@ -152,7 +152,7 @@
             NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
             [formatter setDateFormat:@"yyyy-MM-dd"];
             NSString *nowDateString = [formatter stringFromDate:[NSDate date]];
-            NSString *showDateString = [nowDateString stringByReplacingCharactersInRange:NSMakeRange(0, 4) withString:@"1995"];
+            NSString *showDateString = [nowDateString stringByReplacingCharactersInRange:NSMakeRange(0, 4) withString:@"1985"];
             [_datePicker setDate:[formatter dateFromString:showDateString] animated:NO];
         }
         

@@ -17,9 +17,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *userFirstTag;
 @property (weak, nonatomic) IBOutlet UILabel *userSecondTag;
 @property (weak, nonatomic) IBOutlet UIButton *userSelectButton;
+@property (weak, nonatomic) IBOutlet UIButton *addCareButton;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *userTypeWidth;
 
 @property (nonatomic, strong) UserModel *RecommendFriendModel;
+@property (nonatomic, strong) UserModel *FanOrCareModel;
 
 @end

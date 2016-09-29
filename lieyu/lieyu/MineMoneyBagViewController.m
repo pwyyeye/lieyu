@@ -14,6 +14,7 @@
 #import "ZSTiXianRecordViewController.h"
 #import "LYUserHttpTool.h"
 #import "ZSBalance.h"
+#import "LYCoinShopViewController.h"
 
 #define IDENTIFIER @"MineMoneyBagCollectionViewCell"
 
@@ -109,12 +110,16 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0 && indexPath.item == 0) {
         //进入娱币商城
+        __weak __typeof(self)weakSelf = self;
         [LYUserHttpTool lyEnterCoinShopWithParams:nil complete:^(NSString *result) {
             if ([MyUtil isEmptyString:result]) {
                 [MyUtil showPlaceMessage:@"娱币商城敬请期待！"];
             }else{
 //                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.baidu.com"]];
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:result]];
+//                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:result]];
+                LYCoinShopViewController *coinShopVC = [[LYCoinShopViewController alloc]init];
+                coinShopVC.urlString = [NSURL URLWithString:result];
+                [weakSelf.navigationController pushViewController:coinShopVC animated:YES];
             }
         }];
     }else if (indexPath.section == 0 && indexPath.item == 1){
@@ -123,16 +128,6 @@
     }
 }
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 #pragma mark - 按钮事件
 - (IBAction)balanceClick:(UIButton *)sender {
     MineBalanceViewController *mineBalanceVC = [[MineBalanceViewController alloc]initWithNibName:@"MineBalanceViewController" bundle:[NSBundle mainBundle]];
