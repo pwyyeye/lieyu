@@ -318,6 +318,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [self joinChatRoom];
     _timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(livetimerUpdataAction) userInfo:nil repeats:YES];
     [_timer fire];
+    [self livetimerUpdataAction];
 }
 
 #pragma mark -- 定时获取直播室人员和点赞数
@@ -369,12 +370,13 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     _userView.userNameLabel.text = [NSString stringWithFormat:@"%@",app.userModel.usernick];
     _userView.isFoucsButton.hidden = YES;
     [CAEmitterView addSubview:_userView];
-
+    
+    
     //观众列表
     UICollectionViewFlowLayout *layout=[[ UICollectionViewFlowLayout alloc ] init ];
     [layout setScrollDirection:(UICollectionViewScrollDirectionHorizontal)];
-    _audienceCollectionView = [[ UICollectionView alloc ] initWithFrame : CGRectMake(SCREEN_WIDTH / 50, 70 + 15, SCREEN_WIDTH - 20, SCREEN_WIDTH / 8 ) collectionViewLayout :layout];
-    [_audienceCollectionView registerClass :[ AudienceCell class ] forCellWithReuseIdentifier : _CELL ];
+    _audienceCollectionView = [[ UICollectionView alloc ] initWithFrame : CGRectMake(SCREEN_WIDTH / 50, 70 + 10, SCREEN_WIDTH - 20, 50) collectionViewLayout :layout];
+    [_audienceCollectionView registerClass :[AudienceCell class ] forCellWithReuseIdentifier : _CELL ];
     _audienceCollectionView.tag = 199;
     _audienceCollectionView.showsHorizontalScrollIndicator = NO;
     _audienceCollectionView.backgroundColor =[UIColor clearColor];
@@ -447,10 +449,10 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 -(void)shareButtonAction{
     NSString *string= [NSString stringWithFormat:@"猎娱直播间"];
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
-    [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"http://10.17.114.61/lieyu/liveroom/live?liveChatId=%@",self.chatRoomId];
-    [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"http://10.17.114.61/lieyu/liveroom/live?liveChatId=%@",self.chatRoomId];
-    [UMSocialData defaultData].extConfig.qqData.url = [NSString stringWithFormat:@"http://10.17.114.61/lieyu/liveroom/live?liveChatId=%@",self.chatRoomId];
-    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:nil shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,nil] delegate:nil];
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"%@%@%@",LY_LIVE_SERVER,LY_LIVE_share,self.chatRoomId];
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@%@%@",LY_LIVE_SERVER,LY_LIVE_share,self.chatRoomId];
+    [UMSocialData defaultData].extConfig.qqData.url = [NSString stringWithFormat:@"%@%@%@",LY_LIVE_SERVER,LY_LIVE_share,self.chatRoomId];
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:_begainImage shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,nil] delegate:nil];
     _backgroudView.hidden = YES;
     _backgroudView.frame = self.setButton.frame;
 }
@@ -480,11 +482,11 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 #pragma mark --- 初始化播放器
 -(void) initPLplayer{
     // 预先设定几组编码质量，之后可以切换
-    CGSize videoSize = CGSizeMake(480 , 640);
+    CGSize videoSize = CGSizeMake(720 , 1280);
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
     if (orientation <= AVCaptureVideoOrientationLandscapeLeft) {
         if (orientation > AVCaptureVideoOrientationPortraitUpsideDown) {
-            videoSize = CGSizeMake(640 , 480);
+            videoSize = CGSizeMake(1280 , 720);
         }
     }
     self.videoStreamingConfigurations = @[
@@ -872,7 +874,9 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         if (imgStr.length < 50) {
             imgStr = [MyUtil getQiniuUrl:user.avatar_img width:0 andHeight:0];
         }
-            [cell.iconButton sd_setImageWithURL:[NSURL URLWithString:imgStr] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+        [cell.iconButton sd_setImageWithURL:[NSURL URLWithString:imgStr] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+//        UITapGestureRecognizer *tapGes =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(douniwan:)];
+//        [cell addGestureRecognizer:tapGes];
         
         return cell;
     } else {
@@ -912,11 +916,17 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
-    if (touch.view != self.audienceCollectionView) {
+    if (touch.view != self.conversationMessageCollectionView ) {
         return NO;
     }
     return YES;
 }
+-(void)douniwan:(UITapGestureRecognizer *) gesture{
+    NSLog(@"切FB啊");
+//    ChatUseres *user = _dataArray[indexPath.row];
+//    [self showDetailWith:user];
+}
+
 //显示点赞
 -(void)showTheLove{
     DMHeartFlyView* heart = [[DMHeartFlyView alloc]initWithFrame:CGRectMake(0, 0, _heartSize, _heartSize)];
@@ -950,7 +960,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (collectionView.tag == 199) {
-        CGFloat width = SCREEN_WIDTH / 8;
+        CGFloat width = 50;
         return CGSizeMake(width, width);
     } else {
         RCMessageModel *model =
@@ -1018,8 +1028,8 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
     if (collectionView.tag == 199) {
-        return UIEdgeInsetsMake(0, 5, 0, 5);//上 左 下 右
-    }else{
+        return UIEdgeInsetsMake(0, 1, 0, 1);//上 左 下 右
+    } else {
         return UIEdgeInsetsMake(0, 0, 0, 0);
     }
 }
@@ -1109,11 +1119,11 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
          messageCount:-1
          success:^{
              dispatch_async(dispatch_get_main_queue(), ^{
-            RCInformationNotificationMessage *joinChatroomMessage = [[RCInformationNotificationMessage alloc]init];
-                 joinChatroomMessage.message = [NSString stringWithFormat: @"%@加入了聊天室",[RCIM sharedRCIM].currentUserInfo.name];
+//            RCInformationNotificationMessage *joinChatroomMessage = [[RCInformationNotificationMessage alloc]init];
+//                 joinChatroomMessage.message = [NSString stringWithFormat: @"%@加入了聊天室",[RCIM sharedRCIM].currentUserInfo.name];
                  LYStystemMessage *lyStystem = [[LYStystemMessage alloc] init];
                  [weakSelf sendMessage:lyStystem pushContent:nil];
-                 [weakSelf sendMessage:joinChatroomMessage pushContent:nil];
+//                 [weakSelf sendMessage:joinChatroomMessage pushContent:nil];
              });
              
          }
@@ -1121,11 +1131,11 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
              dispatch_async(dispatch_get_main_queue(), ^{
                  if (status == KICKED_FROM_CHATROOM) {
                      dispatch_async(dispatch_get_main_queue(), ^{
-                         [MyUtil showCleanMessage:@"已被踢出聊天室"];
+                         [MyUtil showCleanMessage:@"已被踢出"];
                      });
                  }else if(status == RC_CHATROOM_NOT_EXIST){
                      dispatch_async(dispatch_get_main_queue(), ^{
-                         [MyUtil showCleanMessage:@"聊天室不存在！"];
+                         [MyUtil showCleanMessage:@"不存在！"];
                      });
                  }else if(status == 30003){
                      dispatch_async(dispatch_get_main_queue(), ^{

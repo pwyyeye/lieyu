@@ -48,7 +48,8 @@ UIScrollViewDelegate, UINavigationControllerDelegate,RCInputBarControlDelegate,R
  */
 @property(nonatomic, strong) NSString *contentURL;
 @property (nonatomic, strong) NSDictionary *hostUser;//主播
-@property (nonatomic, strong) NSString *shareIamge;//分享图片
+@property (nonatomic, strong) UIImage *shareIamge;//分享图片
+
 #pragma mark - 聊天界面属性
 
 /*!

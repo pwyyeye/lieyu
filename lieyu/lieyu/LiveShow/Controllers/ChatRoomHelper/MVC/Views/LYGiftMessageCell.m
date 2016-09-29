@@ -39,7 +39,7 @@
     LYGiftMessage *_likeMessage = (LYGiftMessage *)self.model.content;
     
     NSString *tiptext = @"";
-    if (_likeMessage.type.integerValue == 0) {//赞
+    if (_likeMessage.type.integerValue == 2) {//赞
         tiptext = @"赞";
     } else {//礼物
         switch (_likeMessage.gift.giftId.integerValue) {
@@ -135,14 +135,8 @@
     self.messageContentView.frame = messageContentViewRect;
     self.bubbleBackgroundView.frame = CGRectMake(6, 0, __bubbleSize.width, __bubbleSize.height);
     self.messageLabel.frame = CGRectMake(0,0, __textSize.width, __textSize.height);
- 
     self.bubbleBackgroundView.backgroundColor = [UIColor clearColor];
-        [self.messageLabel setTextColor:[UIColor redColor]];
-//        if (MessageDirection_RECEIVE == self.messageDirection) {
-//            [self.nicknameLabel setTextColor:HEXCOLOR(0xe2e2e2)];
-//        }else{
-//            [self.nicknameLabel setTextColor:HEXCOLOR(0x62e0ff)];
-//        }
+    [self.messageLabel setTextColor:[UIColor redColor]];
     self.bubbleBackgroundView.layer.cornerRadius = 4;
 }
 

@@ -126,13 +126,15 @@ static NSString *wantanCellID = @"wantanCellID";
         [cell setIamge:[UIImage imageNamed:@"wanyouquan.png"] andLabel:@"玩友圈"];
         cell.iconImageView.layer.cornerRadius = cell.iconImageView.frame.size.height / 2;
         cell.iconImageView.layer.masksToBounds = YES;
+        cell.smallTip.layer.cornerRadius = cell.smallTip.frame.size.height / 2;
+        cell.smallTip.layer.masksToBounds = YES;
         cell.iconImageView.image = nil;
         if (_results) {
             cell.iconImageView.image = nil;
             [cell.iconImageView sd_setImageWithURL:[NSURL URLWithString:_icon]];
-            cell.smallTip.hidden = NO;
+            cell.smallTip.alpha = 1.f;
         } else {
-            cell.smallTip.hidden = YES;
+            cell.smallTip.alpha = 0;
         }
         
     } else if(indexPath.section == 1){
@@ -206,7 +208,9 @@ static NSString *wantanCellID = @"wantanCellID";
         LYMomentsViewController *friendsMessage = [[LYMomentsViewController alloc] init];
         friendsMessage.isFriendToUserMessage = YES;
         [self.navigationController pushViewController:friendsMessage animated:YES];
-        
+        WanTanCell *cell = (WanTanCell * )[tableView cellForRowAtIndexPath:indexPath];
+        cell.iconImageView.image = nil;
+        cell.smallTip.alpha = 0;
     } else if(indexPath.section == 1){
         if (indexPath.row == 0) {//最近联系
             //统计发现页面的选择

@@ -8,8 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface GiftContent : NSObject
-
+@interface GiftContent : NSObject <NSCoding, NSCopying>
 @property (nonatomic ,strong) NSString *giftId;
 @property (nonatomic, strong) NSString *giftUrl;
 @property (nonatomic, strong) NSString *giftLocalUrl;

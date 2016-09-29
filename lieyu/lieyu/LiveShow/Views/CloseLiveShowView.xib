@@ -21,15 +21,6 @@
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自动保存中..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XRS-aQ-vAE">
-                    <constraints>
-                        <constraint firstAttribute="height" constant="30" id="j3g-v6-0IT"/>
-                        <constraint firstAttribute="width" constant="130" id="l65-c9-aIU"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分享到" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uda-iw-cTS">
                     <constraints>
                         <constraint firstAttribute="width" constant="120" id="0AP-Hf-TFb"/>
@@ -139,13 +130,13 @@
             <constraints>
                 <constraint firstItem="ciV-0L-Gfd" firstAttribute="width" secondItem="DDU-5n-9MR" secondAttribute="width" id="01z-fi-GCf"/>
                 <constraint firstItem="xJj-Lk-wgs" firstAttribute="width" secondItem="jzt-n5-HEb" secondAttribute="width" id="0of-8I-kV5"/>
+                <constraint firstItem="uda-iw-cTS" firstAttribute="top" secondItem="fgk-Xz-AbF" secondAttribute="bottom" constant="50" id="1L2-d0-O9x"/>
                 <constraint firstItem="Izc-3d-IXQ" firstAttribute="top" secondItem="9lZ-IV-giz" secondAttribute="top" constant="67" id="3e2-hr-SZM"/>
                 <constraint firstItem="CRf-6i-qDd" firstAttribute="centerX" secondItem="Izc-3d-IXQ" secondAttribute="centerX" id="3oF-4m-xf9"/>
                 <constraint firstItem="fgk-Xz-AbF" firstAttribute="centerX" secondItem="QPQ-VU-7QA" secondAttribute="centerX" id="3ss-VH-xlG"/>
                 <constraint firstItem="SeM-eN-ub9" firstAttribute="top" secondItem="ccQ-1Y-HAU" secondAttribute="bottom" constant="20" id="51N-ee-WTE"/>
                 <constraint firstItem="9sb-BV-toB" firstAttribute="centerY" secondItem="DDU-5n-9MR" secondAttribute="centerY" id="590-4R-4bU"/>
                 <constraint firstItem="9sb-BV-toB" firstAttribute="leading" secondItem="vqk-9Z-H09" secondAttribute="trailing" constant="40" id="7gM-df-kYU"/>
-                <constraint firstItem="XRS-aQ-vAE" firstAttribute="top" secondItem="fgk-Xz-AbF" secondAttribute="bottom" constant="5" id="Dtu-XO-bO2"/>
                 <constraint firstItem="uda-iw-cTS" firstAttribute="centerX" secondItem="Izc-3d-IXQ" secondAttribute="centerX" id="Ez7-3U-zGh"/>
                 <constraint firstItem="CRf-6i-qDd" firstAttribute="height" secondItem="jzt-n5-HEb" secondAttribute="height" id="FcJ-7U-Eee"/>
                 <constraint firstItem="CRf-6i-qDd" firstAttribute="centerY" secondItem="jzt-n5-HEb" secondAttribute="centerY" id="GMu-rr-oD8"/>
@@ -156,15 +147,13 @@
                 <constraint firstItem="ciV-0L-Gfd" firstAttribute="top" secondItem="uda-iw-cTS" secondAttribute="bottom" constant="18" id="NiV-M3-8Fp"/>
                 <constraint firstItem="CRf-6i-qDd" firstAttribute="top" secondItem="Izc-3d-IXQ" secondAttribute="bottom" constant="18" id="O3T-uZ-geo"/>
                 <constraint firstItem="ciV-0L-Gfd" firstAttribute="centerX" secondItem="9lZ-IV-giz" secondAttribute="centerX" constant="-30" id="QJo-5l-LXE"/>
-                <constraint firstItem="fgk-Xz-AbF" firstAttribute="centerX" secondItem="XRS-aQ-vAE" secondAttribute="centerX" id="R1q-6Z-0jR"/>
                 <constraint firstItem="ciV-0L-Gfd" firstAttribute="leading" secondItem="DDU-5n-9MR" secondAttribute="trailing" constant="40" id="RQ7-BW-KaJ"/>
                 <constraint firstItem="uda-iw-cTS" firstAttribute="centerY" secondItem="9lZ-IV-giz" secondAttribute="centerY" id="Rxw-bK-j4h"/>
-                <constraint firstItem="uda-iw-cTS" firstAttribute="top" secondItem="XRS-aQ-vAE" secondAttribute="bottom" constant="15" id="SCq-Ck-7fM"/>
+                <constraint firstItem="fgk-Xz-AbF" firstAttribute="centerX" secondItem="9lZ-IV-giz" secondAttribute="centerX" id="S3E-K8-Xl9"/>
                 <constraint firstItem="vqk-9Z-H09" firstAttribute="width" secondItem="DDU-5n-9MR" secondAttribute="width" id="TaK-0S-d8D"/>
                 <constraint firstItem="ccQ-1Y-HAU" firstAttribute="centerX" secondItem="Izc-3d-IXQ" secondAttribute="centerX" id="Tnl-bp-o7f"/>
                 <constraint firstItem="SeM-eN-ub9" firstAttribute="centerX" secondItem="Izc-3d-IXQ" secondAttribute="centerX" id="VOk-k9-9xt"/>
                 <constraint firstItem="SeM-eN-ub9" firstAttribute="width" secondItem="ccQ-1Y-HAU" secondAttribute="width" id="VZk-1h-V39"/>
-                <constraint firstItem="XRS-aQ-vAE" firstAttribute="centerX" secondItem="Izc-3d-IXQ" secondAttribute="centerX" id="Zfy-hC-I9l"/>
                 <constraint firstItem="SeM-eN-ub9" firstAttribute="height" secondItem="ccQ-1Y-HAU" secondAttribute="height" id="ckU-jj-Sfr"/>
                 <constraint firstItem="9sb-BV-toB" firstAttribute="height" secondItem="DDU-5n-9MR" secondAttribute="height" id="dSd-Vi-hhn"/>
                 <constraint firstItem="fgk-Xz-AbF" firstAttribute="top" secondItem="QPQ-VU-7QA" secondAttribute="bottom" constant="3" id="ih5-QK-DbO"/>
@@ -188,7 +177,7 @@
                 <outlet property="weChatButton" destination="ciV-0L-Gfd" id="jVc-Pl-saN"/>
                 <outlet property="weChatMonmentButton" destination="vqk-9Z-H09" id="gup-O8-0r3"/>
             </connections>
-            <point key="canvasLocation" x="426" y="348"/>
+            <point key="canvasLocation" x="40" y="174"/>
         </view>
     </objects>
     <resources>

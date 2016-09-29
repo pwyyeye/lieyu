@@ -72,8 +72,6 @@ static NSString *const rcGiftMessageCellIndentifier = @"rcGiftMessageCellIndenti
     self.view.subviews[0].frame = CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT);
     self.view.subviews[0].backgroundColor = [UIColor clearColor];
     
-    
-    
 //    UIImage *back = [UIImage imageNamed:[NSString stringWithFormat:@"backimage.png"]];
 //    UIImageView *backimg = [[UIImageView alloc] initWithImage:back];
 //    backimg.userInteractionEnabled = YES;
@@ -243,19 +241,12 @@ static NSString *const rcGiftMessageCellIndentifier = @"rcGiftMessageCellIndenti
 
 #pragma marks --- 通知
 -(void)notificationChoose{
-    NSLog(@"111111111111--%d", _notificationStatus);
-    
     [[RCIMClient sharedRCIMClient] setConversationNotificationStatus:self.conversationType targetId:self.targetId isBlocked:_notificationStatus success:^(RCConversationNotificationStatus nStatus) {
         _notificationStatus = nStatus;
-        NSLog(@"222222222222222--%d", _notificationStatus);
         
     } error:^(RCErrorCode status) {
     }];
-    NSLog(@"333333333333333--%d", _notificationStatus);
-    //    [[RCIMClient sharedRCIMClient] getConversationNotificationStatus:self.conversationType targetId:self.targetId success:^(RCConversationNotificationStatus nStatus) {
-    //        _notificationStatus = nStatus;
-    //    } error:^(RCErrorCode status) {
-    //    }];
+
 }
 
 #pragma mark - 退出群组
@@ -277,141 +268,6 @@ static NSString *const rcGiftMessageCellIndentifier = @"rcGiftMessageCellIndenti
 
 
 #pragma mark -- 自定义
-
-//- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
-//                  cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-//    //NSLog(@"path row is %d", indexPath.row);
-//    RCMessageModel *model =
-//    [self.conversationDataRepository objectAtIndex:indexPath.row];
-//    RCMessageContent *messageContent = model.content;
-//    RCMessageBaseCell *cell = nil;
-//    if ([messageContent isMemberOfClass:[RCTextMessage class]]) {
-//        RCTextMessageCell *__cell = [collectionView dequeueReusableCellWithReuseIdentifier:rctextCellIndentifier forIndexPath:indexPath];
-////        __cell.isFullScreenMode = _isFullScreen;
-//        [__cell setDataModel:model];
-////        [__cell setDelegate:self];
-//        cell = __cell;
-//    } else if ([messageContent isMemberOfClass:[RCInformationNotificationMessage class]]){
-//        RCTipMessageCell *__cell = [collectionView dequeueReusableCellWithReuseIdentifier:rcTipMessageCellIndentifier forIndexPath:indexPath];
-////        __cell.isFullScreenMode = _isFullScreen;
-//        [__cell setDataModel:model];
-////        [__cell setDelegate:self];
-//        cell = __cell;
-//    }
-////    else if ([messageContent isMemberOfClass:[RCGiftMessage class]]){
-////        RCGiftMessageCell *__cell = [collectionView dequeueReusableCellWithReuseIdentifier:rcGiftMessageCellIndentifier forIndexPath:indexPath];
-////        __cell.isFullScreenMode = _isFullScreen;
-////        [__cell setDataModel:model];
-////        [__cell setDelegate:self];
-////        cell = __cell;
-////    }
-//    return cell;
-//}
-//
-///**
-// *  cell的大小
-// *
-// *  @return
-// */
-//- (CGSize)collectionView:(UICollectionView *)collectionView
-//                  layout:(UICollectionViewLayout *)collectionViewLayout
-//  sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-//    RCMessageModel *model =
-//    [self.conversationDataRepository objectAtIndex:indexPath.row];
-//    model.isDisplayMessageTime = NO;
-//    if (model.cellSize.height > 0) {
-//        return model.cellSize;
-//    }
-//    RCMessageContent *messageContent = model.content;
-//    if ([messageContent isMemberOfClass:[RCTextMessage class]] || [messageContent isMemberOfClass:[RCInformationNotificationMessage class]]) {
-//        model.cellSize = [self sizeForItem:collectionView atIndexPath:indexPath];
-//    } else {
-//        return CGSizeZero;
-//    }
-//    return model.cellSize;
-//}
-//
-///**
-// *  计算不同消息的具体尺寸
-// *
-// *  @return
-// */
-//- (CGSize)sizeForItem:(UICollectionView *)collectionView
-//          atIndexPath:(NSIndexPath *)indexPath {
-//    CGFloat __width = CGRectGetWidth(collectionView.frame);
-//    RCMessageModel *model =
-//    [self.conversationDataRepository objectAtIndex:indexPath.row];
-//    RCMessageContent *messageContent = model.content;
-//    CGFloat __height = 0.0f;
-//    if ([messageContent
-//         isMemberOfClass:[RCInformationNotificationMessage class]]) {
-//        RCInformationNotificationMessage *notification = (RCInformationNotificationMessage *)messageContent;
-//        NSString *localizedMessage = [RCKitUtility formatMessage:notification];
-//        CGSize __labelSize = [self getTipMessageCellSize:localizedMessage];
-//        __height = __height + __labelSize.height;
-//    } else if ([messageContent isMemberOfClass:[RCTextMessage class]]) {
-//        RCTextMessage *_textMessage = (RCTextMessage *)messageContent;
-//        CGSize _textMessageSize = [self getMessageCellSize:_textMessage.content withWidth:__width];
-//        __height = _textMessageSize.height ;
-//    }
-////    else if([messageContent isMemberOfClass:[RCGiftMessage class]]){
-////        RCGiftMessage *likeMessage = (RCGiftMessage *)messageContent;
-////        NSString *txt = @"";
-////        if (likeMessage) {
-////            if(likeMessage.senderUserInfo){
-////                if ([likeMessage.senderUserInfo.userId isEqualToString:[RCIM sharedRCIM].currentUserInfo.userId]) {
-////                    txt = @"你送出一个";
-////                }else{
-////                    txt = [NSString stringWithFormat:@"%@送出一个",likeMessage.senderUserInfo.name];
-////                }
-////            }else{
-////                txt = @"神秘人送出一个";
-////            }
-////        }
-////        CGSize _textMessageSize = [RCGiftMessageCell getMessageCellSize:txt withWidth:__width];
-////        __height = _textMessageSize.height ;
-////    }
-//    return CGSizeMake(__width, __height);
-//}
-//
-//// 大于等于IOS7
-//#define RC_MULTILINE_TEXTSIZE_GEIOS7(text, font, maxSize) [text length] > 0 ? [text \
-//boundingRectWithSize:maxSize options:(NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading) \
-//attributes:@{NSFontAttributeName:font} context:nil].size : CGSizeZero;
-////小于IOS7
-//#define RC_MULTILINE_TEXTSIZE_LIOS7(text, font, maxSize, mode) [text length] > 0 ? [text \
-//sizeWithFont:font constrainedToSize:maxSize lineBreakMode:mode] : CGSizeZero;
-//
-//- (CGSize)getTipMessageCellSize:(NSString *)content{
-//    CGFloat maxMessageLabelWidth = [UIScreen mainScreen].bounds.size.width - 30 * 2;
-//    CGSize __textSize = CGSizeZero;
-//    if ([[[UIDevice currentDevice] systemVersion] floatValue] < 7.0) {
-//        __textSize = RC_MULTILINE_TEXTSIZE_LIOS7(content, [UIFont systemFontOfSize:12.5f], CGSizeMake(maxMessageLabelWidth, MAXFLOAT), NSLineBreakByTruncatingTail);
-//    }else {
-//        __textSize = RC_MULTILINE_TEXTSIZE_GEIOS7(content, [UIFont systemFontOfSize:12.5f], CGSizeMake(maxMessageLabelWidth, MAXFLOAT));
-//    }
-//    __textSize = CGSizeMake(ceilf(__textSize.width)+10 , ceilf(__textSize.height)+6);    return __textSize;
-//}
-//
-//- (CGSize)getMessageCellSize:(NSString *)content withWidth:(CGFloat)width{
-//    CGSize textSizes = CGSizeZero;
-//    float maxWidth = width-(10+[RCIM sharedRCIM].globalMessagePortraitSize.width+8)*2-28;
-//    textSizes = [self getContentSize:content withFrontSize:12.5f withWidth:maxWidth];
-//    textSizes.height = textSizes.height + 17;
-//    return textSizes;
-//}
-//
-//- (CGSize)getContentSize:(NSString *)content withFrontSize:(int)fontSize withWidth:(CGFloat)width{
-//    CGSize textSize = CGSizeZero;
-//    CGSize maxSize = CGSizeMake(width, 8000);
-//    if ([[[UIDevice currentDevice] systemVersion] floatValue] < 7.0) {
-//        textSize = RC_MULTILINE_TEXTSIZE_LIOS7(content, [UIFont systemFontOfSize:fontSize],maxSize , NSLineBreakByTruncatingTail);
-//    }else{
-//        textSize = RC_MULTILINE_TEXTSIZE_GEIOS7(content,[UIFont systemFontOfSize:fontSize], maxSize);
-//    }
-//    textSize = CGSizeMake(ceilf(textSize.width), ceil(textSize.height));
-//    return textSize;
-//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

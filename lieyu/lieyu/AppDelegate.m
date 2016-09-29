@@ -154,7 +154,6 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
         NSLog(@"该启动事件不包含来自融云的推送服务");
     }
     
-    
     //设置友盟社会化组件appkey
     [UMSocialData setAppKey:UmengAppkey];
     
@@ -162,11 +161,13 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
     [UMSocialData openLog:NO];
     //AppID：wxf1e19b28e6b1613c
     //设置微信AppId，设置分享url，默认使用友盟的网址
-    [UMSocialWechatHandler setWXAppId:@"wxb1f5e1de5d4778b9" appSecret:@"d4624c36b6795d1d99dcf0547af5443d" url:@"http://www.lie98.com"];
-    
     //向微信注册
     [WXApi registerApp:@"wxb1f5e1de5d4778b9" withDescription:@"猎娱"];
-    [UMSocialQQHandler setQQWithAppId:@"1104853065" appKey:@"9wumIImmJdUgJn2N" url:@"http://www.lie98.com"];
+    [UMSocialWechatHandler setWXAppId:@"wxb1f5e1de5d4778b9" appSecret:@"d4624c36b6795d1d99dcf0547af5443d" url:@"http://www.lie98.com"];
+    
+    //向 QQ注册 //QQ05fc5b14 //tencent1104853065 //appkey 9wumIImmJdUgJn2N
+    [UMSocialQQHandler setQQWithAppId:@"1104853065" appKey:@"c7394704798a158208a74ab60104f0ba" url:@"http://www.lie98.com"];
+    [UMSocialQQHandler setSupportWebView:YES];
     
     //打开新浪微博的SSO开关
     [UMSocialSinaHandler openSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];

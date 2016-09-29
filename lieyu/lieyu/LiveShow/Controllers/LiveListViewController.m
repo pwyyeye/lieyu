@@ -95,7 +95,7 @@ static NSString *liveShowListID = @"liveShowListID";
 #pragma mark -- 配置导航栏
 -(void)setMenuView{
     CGFloat buttonWidth = SCREEN_WIDTH / 6;
-    UIView *mavMenuView = [[UIView alloc] initWithFrame:(CGRectMake(CGRectGetCenter(self.view.bounds).x - buttonWidth- 40, 0, SCREEN_WIDTH / 2, 44))];
+    UIView *mavMenuView = [[UIView alloc] initWithFrame:(CGRectMake(CGRectGetCenter(self.view.bounds).x - 100, 0, 180, 44))];
     [self.navigationController.navigationBar addSubview:mavMenuView];
     
     _hotBtn = [[HotMenuButton alloc]initWithFrame:CGRectMake(0, 12, buttonWidth, 20)];
@@ -103,7 +103,7 @@ static NSString *liveShowListID = @"liveShowListID";
     _hotBtn.titleLabel.textColor = RGBA(255, 255, 255, 1);
     [_hotBtn addTarget:self action:@selector(hotButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [mavMenuView addSubview:_hotBtn];
-    _newBtn = [[HotMenuButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/ 3, 12, buttonWidth, 20)];
+    _newBtn = [[HotMenuButton alloc]initWithFrame:CGRectMake(200 - buttonWidth, 12, buttonWidth, 20)];
     [_newBtn setTitle:@"最新" forState:UIControlStateNormal];
     _newBtn.titleLabel.textColor = RGBA(255, 255, 255, 1);
     [_newBtn addTarget:self action:@selector(newButtonClick) forControlEvents:UIControlEventTouchUpInside];
@@ -313,10 +313,8 @@ static NSString *liveShowListID = @"liveShowListID";
 }
 
 - (void)refreshData{
-        [_hotDataArray removeAllObjects];
         _currentHotPage = 1;
         [self getDataWithType:@"hot" AndPage:@"1"];
-        [_rencentDataArray removeAllObjects];
         _currentRencentPage = 1;
         [self getDataWithType:@"recent" AndPage:@"1"];
 }
@@ -337,30 +335,31 @@ static NSString *liveShowListID = @"liveShowListID";
     [LYFriendsHttpTool getLiveShowlistWithParams:dict complete:^(NSArray *Arr) {
         if ([sort isEqualToString:@"hot"]) {
             UITableView *hotTableView = (UITableView *)_tableViewArray[0];
+            NSMutableArray *hotTempArray = [NSMutableArray arrayWithCapacity:1];
             for (LYLiveShowListModel *model in Arr) {
                 roomHostUser *user = model.roomHostUser;
                 switch (_chooseType) {
                     case 0://全部
-                        [self.hotDataArray addObject:model];
+                        [hotTempArray addObject:model];
                         break;
                     case 1://美女
                         if (user.sex == 0) {
-                        [self.hotDataArray addObject:model];
+                        [hotTempArray addObject:model];
                         }
                         break;
                     case 2://帅哥
                         if (user.sex == 1) {
-                        [self.hotDataArray addObject:model];
+                        [hotTempArray addObject:model];
                         }
                         break;
                     case 3://娱乐顾问
                         if (![user.usertype isEqualToString:@"1"]) {
-                        [self.hotDataArray addObject:model];
+                        [hotTempArray addObject:model];
                         }
                         break;
                     case 4://玩友
                         if ([user.usertype isEqualToString:@"1"]) {
-                        [self.hotDataArray addObject:model];
+                        [hotTempArray addObject:model];
                         }
                         break;
                     default:
@@ -368,8 +367,24 @@ static NSString *liveShowListID = @"liveShowListID";
                 }
             }
             [self hideEmptyView];
-            if (_hotDataArray.count <= 0) {
-                if (_hotDataArray.count <= 0) {
+//            if (_hotDataArray.count <= 0) {
+//                if (_hotDataArray.count <= 0) {
+//                    [self initKongView];
+//                    [hotTableView.mj_header endRefreshing];
+//                }else{
+//                    if(_currentHotPage == 1){
+//                        [hotTableView.mj_header endRefreshing];
+//                    }else{
+//                        [hotTableView.mj_footer endRefreshingWithNoMoreData];
+//                    }
+//                }
+//            }else{
+//                [hotTableView.mj_footer endRefreshing];
+//                [hotTableView.mj_header endRefreshing];
+//            }
+            
+            if (hotTempArray.count == 0) {
+                if (_hotDataArray.count == 0) {
                     [self initKongView];
                     [hotTableView.mj_header endRefreshing];
                 }else{
@@ -379,39 +394,45 @@ static NSString *liveShowListID = @"liveShowListID";
                         [hotTableView.mj_footer endRefreshingWithNoMoreData];
                     }
                 }
-            }else{
-                [hotTableView.mj_footer endRefreshing];
-                [hotTableView.mj_header endRefreshing];
+            } else {
+                if (_currentHotPage == 1) {
+                    [self.hotDataArray removeAllObjects];
+                    [self.hotDataArray addObjectsFromArray:hotTempArray];
+                } else {
+                    [self.hotDataArray addObjectsFromArray:hotTempArray];
+                }
             }
             dispatch_async(dispatch_get_main_queue(), ^{
                 [hotTableView reloadData];
+                [hotTableView.mj_header endRefreshing];
             });
         } else {
             UITableView *newTableView = (UITableView *)_tableViewArray[1];
+            NSMutableArray *newTempArray = [NSMutableArray arrayWithCapacity:1];
             for (LYLiveShowListModel *model in Arr) {
                 roomHostUser *user = model.roomHostUser;
                 switch (_chooseType) {
                     case 0://全部
-                        [self.rencentDataArray addObject:model];
+                        [newTempArray addObject:model];
                         break;
                     case 1://美女
                         if (user.sex == 0) {
-                            [self.rencentDataArray addObject:model];
+                            [newTempArray addObject:model];
                         }
                         break;
                     case 2://帅哥
                         if (user.sex == 1) {
-                            [self.rencentDataArray addObject:model];
+                            [newTempArray addObject:model];
                         }
                         break;
                     case 3://娱乐顾问
                         if (![user.usertype isEqualToString:@"1"]) {
-                            [self.rencentDataArray addObject:model];
+                            [newTempArray addObject:model];
                         }
                         break;
                     case 4://玩友
                         if ([user.usertype isEqualToString:@"1"]) {
-                            [self.rencentDataArray addObject:model];
+                            [newTempArray addObject:model];
                         }
                         break;
                     default:
@@ -419,23 +440,28 @@ static NSString *liveShowListID = @"liveShowListID";
                 }
             }
             [self hideEmptyView];
-            if (_rencentDataArray.count <= 0) {
-                if (_rencentDataArray.count <= 0) {
+            if (newTempArray.count == 0) {
+                if (newTempArray.count == 0) {
                     [self initKongView];
                     [newTableView.mj_header endRefreshing];
-                }else{
-                    if(_currentRencentPage == 1){
+                } else {
+                    if(_currentHotPage == 1){
                         [newTableView.mj_header endRefreshing];
                     }else{
                         [newTableView.mj_footer endRefreshingWithNoMoreData];
                     }
                 }
-            }else{
-                [newTableView.mj_footer endRefreshing];
-                [newTableView.mj_header endRefreshing];
+            } else {
+                if (_currentRencentPage == 1) {
+                    [self.rencentDataArray removeAllObjects];
+                    [self.rencentDataArray addObjectsFromArray:newTempArray];
+                } else {
+                    [self.rencentDataArray addObjectsFromArray:newTempArray];
+                }
             }
             dispatch_async(dispatch_get_main_queue(), ^{
                 [newTableView reloadData];
+                [newTableView.mj_header endRefreshing];
             });
         }
             }];
@@ -584,7 +610,8 @@ static NSString *liveShowListID = @"liveShowListID";
             watchLiveVC.chatRoomId = nil;
         }
         watchLiveVC.hostUser = Arr[@"roomHostUser"];
-        watchLiveVC.shareIamge = model.roomImg;
+        NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:model.roomImg]];
+        watchLiveVC.shareIamge = [UIImage imageWithData:data];
         [weakSelf presentViewController:watchLiveVC animated:YES completion:NULL];
     }];
     

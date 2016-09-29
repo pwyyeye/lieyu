@@ -91,6 +91,9 @@
     NSString *_giftValue;//礼物价值
     NSArray *_dataArr;//礼物数组
     NSInteger _chatuserid;
+    BOOL _isActiveNow;//是否是前台
+    BOOL _isLiveing;//直播状态
+    
 }
 @property (nonatomic, strong) NSMutableArray *giftValueArray;
 
@@ -221,13 +224,14 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.emitterLayer setHidden:NO];
-    
+    _isLiveing = YES;
     [self initPLplayer];
     [self initUI];
     if (_chatRoomId != nil) {
         [self joinChatRoom];
-        _timer = [NSTimer scheduledTimerWithTimeInterval:15 target:self selector:@selector(timerUpdataAction) userInfo:nil repeats:YES];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(timerUpdataAction) userInfo:nil repeats:YES];
         [_timer fire];
+        [self timerUpdataAction];
     }
     [IQKeyboardManager sharedManager].enable = NO;
     [IQKeyboardManager sharedManager].isAdd = YES;
@@ -235,7 +239,20 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(notice:) name:@"sendGift" object:nil];
     _giftValueArray = [NSMutableArray arrayWithCapacity:1];
+    _isActiveNow = YES;
+    [center addObserver:self selector:@selector(LieYuStauts:) name:UIApplicationWillResignActiveNotification object:nil];
+    [center addObserver:self selector:@selector(LieYuStauts:) name:UIApplicationDidBecomeActiveNotification object:nil];
 }
+
+#pragma mark --- 判断是否进入后台
+-(void)LieYuStauts:(NSNotification *) sender{
+    if (sender.name == UIApplicationDidBecomeActiveNotification) {
+        [self.player play];
+    } else {
+        
+    }
+}
+
 
 #pragma mark -- 定时获取直播室人员和点赞数
 -(void)timerUpdataAction{
@@ -253,6 +270,14 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         }
         [_audienceCollectionView reloadData];
     }];
+    NSDictionary *watchDict = @{@"liveChatId":_chatRoomId};
+    [LYFriendsHttpTool getLiveStatusWithParms:watchDict complete:^(NSDictionary *dict) {
+        if ([dict[@"livestatus"] isEqualToString:@"1"]) {
+            _isLiveing = YES;
+        } else {
+            _isLiveing = NO;
+        }
+    }];
 }
 
 #pragma mark --- 初始化页面
@@ -260,7 +285,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     //粒子动画
     _CAEmitterView = [[UIView alloc] initWithFrame:self.view.bounds];
     _CAEmitterView.backgroundColor = [UIColor clearColor];
-    [_player.playerView addSubview:_CAEmitterView];
+    [self.view addSubview:_CAEmitterView];
     _heartSize = 36;
     //返回按钮
     _backButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
@@ -278,8 +303,11 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     _userView.layer.cornerRadius = 20;
     _userView.layer.masksToBounds = YES;
     _userView.backgroundColor = RGBA(68, 64, 67, 0.5);
-    NSString *imgUrl = [MyUtil getQiniuUrl:_hostUser[@"avatar_img"] width:0 andHeight:0];
-    [_userView.iconIamgeView sd_setImageWithURL:[NSURL URLWithString:imgUrl]];
+    NSString *imgStr = [NSString stringWithFormat:@"%@",_hostUser[@"avatar_img"]];
+    if (imgStr.length < 50) {
+        imgStr = [MyUtil getQiniuUrl:_hostUser[@"avatar_img"] width:0 andHeight:0];
+    }
+     [_userView.iconIamgeView sd_setImageWithURL:[NSURL URLWithString:imgStr] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     _userView.userNameLabel.text = _hostUser[@"usernick"];
     _userView.numberLabel.text = @"";
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(anchorDetail)];
@@ -307,7 +335,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         //观众列表
         UICollectionViewFlowLayout *layout=[[ UICollectionViewFlowLayout alloc ] init ];
         [layout setScrollDirection:(UICollectionViewScrollDirectionHorizontal)];
-        _audienceCollectionView = [[ UICollectionView alloc ] initWithFrame : CGRectMake(SCREEN_WIDTH / 50, 70 + 14, SCREEN_WIDTH - 20, SCREEN_HEIGHT / 13) collectionViewLayout :layout];
+        _audienceCollectionView = [[ UICollectionView alloc ] initWithFrame : CGRectMake(SCREEN_WIDTH / 50, 70 + 10, SCREEN_WIDTH - 20, 50) collectionViewLayout :layout];
         [_audienceCollectionView registerNib:[UINib nibWithNibName:@"AudienceCell" bundle:nil] forCellWithReuseIdentifier:_CELL];
         _audienceCollectionView.showsHorizontalScrollIndicator = NO;
         _audienceCollectionView. backgroundColor =[ UIColor clearColor];
@@ -353,8 +381,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     _daShangView = [[[NSBundle mainBundle] loadNibNamed:@"DaShangView" owner:self options:nil] lastObject];
     _daShangView.frame = CGRectMake(0, SCREEN_HEIGHT- 300, SCREEN_WIDTH, 300);
     _daShangView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.5f];
-    _daShangView.layer.cornerRadius = 3.f;
-    _daShangView.layer.masksToBounds = YES;
     _daShangView.type = textTypeWhite;
     _daShangView.giftCollectionView.tag = 888;
     _daShangView.giftCollectionView.delegate = self;
@@ -383,25 +409,30 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
                  @{@"giftIamge":@"huangjia.png",@"giftName":@"皇家礼炮",@"giftValue":@"1880娱币"},
                  @{@"giftIamge":@"house.png",@"giftName":@"别墅",@"giftValue":@"334400娱币"}
                  ];
-    __weak typeof (self) WeakSelf = self;
     NSString *img = nil;
     for (NSDictionary *dic in _dataArr) {
         if (_giftValue == dic[@"giftValue"]) {
             img = dic[@"giftIamge"];
         }
     }
-    NSDictionary *dictGift = @{@"amount":_giftValue,
-                               @"toUserid":_hostUser[@"id"],
-                               @"rid":@"live",
-                               @"businessid":_chatRoomId};
-    __weak typeof(self) weakSelf = self;
-    [LYFriendsHttpTool daShangWithParms:dictGift complete:^(NSDictionary *dic) {
-        LYGiftMessage *giftMessage = [[LYGiftMessage alloc]init];
-        giftMessage.type = @"1";
-        giftMessage.gift.giftId = _giftValue;
-        [weakSelf sendMessage:giftMessage pushContent:@""];
-        [WeakSelf showGiftIamgeAnmiationWith:img];
-    }];
+//    NSDictionary *dictGift = @{@"amount":_giftValue,
+//                               @"toUserid":_hostUser[@"id"],
+//                               @"rid":@"live",
+//                               @"businessid":_chatRoomId};
+//    __weak typeof(self) weakSelf = self;
+//    [LYFriendsHttpTool daShangWithParms:dictGift complete:^(NSDictionary *dic) {
+//        LYGiftMessage *giftMessage = [[LYGiftMessage alloc]init];
+//        giftMessage.type = @"1";
+//        giftMessage.gift.giftId = _giftValue;
+//        [weakSelf sendMessage:giftMessage pushContent:@""];
+//        [WeakSelf showGiftIamgeAnmiationWith:img];
+//    }];
+    LYGiftMessage *giftMessage = [[LYGiftMessage alloc]init];
+    giftMessage.type = @"1";
+    GiftContent *giftContent = [[GiftContent alloc] init];
+    giftContent.giftId = _giftValue;
+    giftMessage.gift = giftContent;
+    [self sendMessage:giftMessage pushContent:@""];
     [_daShangView removeFromSuperview];
     _daShangView = nil;
 }
@@ -435,23 +466,24 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [LYFriendsHttpTool watchLikeWithParms:dic complete:^(NSDictionary *dict) {
         
     }];
+    NSInteger temp = [_likeLabel.text integerValue];
+    temp +=1;
+    [_likeLabel setText:[NSString stringWithFormat:@"%ld", temp]];
     LYGiftMessage *giftMessage = [[LYGiftMessage alloc]init];
-    giftMessage.type = @"0";
+    giftMessage.type = @"2";
     [self sendMessage:giftMessage pushContent:@""];
 }
-
 
 
 #pragma mark -- 分享
 -(void)liveShareButtonAction{
     NSString *string= [NSString stringWithFormat:@"猎娱直播间"];
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
-    [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"http://10.17.30.44:8080/liveroom/live?liveChatId=%@",self.chatRoomId];
-    [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"http://10.17.30.44:8080/liveroom/live?liveChatId=%@",self.chatRoomId];
-    [UMSocialData defaultData].extConfig.qqData.url = [NSString stringWithFormat:@"http://10.17.30.44:8080/liveroom/live?liveChatId=%@",self.chatRoomId];
-    NSData *imgData = [_shareIamge dataUsingEncoding:NSUTF8StringEncoding];
-    UIImage *img = [UIImage imageWithData:imgData];
-    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:img shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,nil] delegate:nil];
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"%@%@%@",LY_LIVE_SERVER,LY_LIVE_share,self.chatRoomId];
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@%@%@",LY_LIVE_SERVER,LY_LIVE_share,self.chatRoomId];
+    [UMSocialData defaultData].extConfig.qqData.url = [NSString stringWithFormat:@"%@%@%@",LY_LIVE_SERVER,LY_LIVE_share,self.chatRoomId];
+
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:_shareIamge shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
 }
 
 
@@ -472,7 +504,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 
 #pragma mark ---- 检测播放状态改变
 - (void)player:(nonnull PLPlayer *)player statusDidChange:(PLPlayerStatus)state{
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     
     switch (state) {
         case PLPlayerStatusUnknow:
@@ -485,19 +516,19 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
             NSLog(@"2");
             break;
         case PLPlayerStatusCaching:
-//            [app startLoading];
             NSLog(@"3");
             break;
         case PLPlayerStatusPlaying:
             NSLog(@"4");
-//            [app stopLoading];
             break;
         case PLPlayerStatusPaused:
             [MyUtil showMessage:@"主播暂停了直播..."];
             NSLog(@"5");
             break;
         case PLPlayerStatusStopped:
-            [self watchBackButtonAction];
+            if (_isActiveNow) {
+                [self watchBackButtonAction];
+            }
             NSLog(@"6");
             break;
         case PLPlayerStatusError:
@@ -514,13 +545,17 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 }
 
 - (void)player:(nonnull PLPlayer *)player stoppedWithError:(nullable NSError *)error{
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-
-    if (![_contentURL isEqual: [NSNull null]] || _contentURL != nil) {
-//        [app stopLoading];
-        [MyUtil showMessage:@"链接失败！"];
+    if (_isLiveing) {//有直播但是获取失败
+        if (![_contentURL isEqual: [NSNull null]] || _contentURL != nil) {
+            //        [app stopLoading];
+            [MyUtil showMessage:@"链接失败！"];
+            [self dismissViewControllerAnimated:YES completion:NULL];
+        }
+    } else {
+        [MyUtil showMessage:@"直播结束"];
         [self dismissViewControllerAnimated:YES completion:NULL];
     }
+
 }
 
 
@@ -541,18 +576,10 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     }
     [self.view addSubview:_closeView];
     [self.view bringSubviewToFront:_closeView];
-//    NSInteger status = [_hostUser[@"friendStatus"] integerValue];
-//    if (status == 2) {//0 没有关系   1 关注   2 粉丝   3 好友
-//        _closeView.focusButton.tag = 2;
-//        _userView.frame = CGRectMake(20, 30, SCREEN_WIDTH / 2 - 40, 40);
-//    } else if (status == 1 || status == 3) {
-//        [_closeView.focusButton setTitle:@"已关注" forState:(UIControlStateNormal)];
-//        _closeView.focusButton.userInteractionEnabled = NO;
-//    }
-    
+    _closeView.shareImage = self.shareIamge;
+    _closeView.chatRoomID = _chatRoomId;
     [_closeView.backButton addTarget:self action:@selector(closebackButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
     [_closeView.focusButton addTarget:self action:@selector(closeFocusButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
-    [self.player stop];//关闭播放器
 }
 
 -(void)closebackButtonAction{
@@ -694,7 +721,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         if (imgStr.length < 50) {
             imgStr = [MyUtil getQiniuUrl:user.avatar_img width:0 andHeight:0];
         }
-            [cell.iconButton sd_setImageWithURL:[NSURL URLWithString:imgStr] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+        [cell.iconButton sd_setImageWithURL:[NSURL URLWithString:imgStr] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
         
         return cell;
     } else {
@@ -760,7 +787,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (collectionView.tag == 188) {
-        CGFloat width = SCREEN_WIDTH / 10;
+        CGFloat width = 50;
         return CGSizeMake(width, width);
     } else {
         RCMessageModel *model =
@@ -827,7 +854,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
     if (collectionView.tag == 188) {
-        return UIEdgeInsetsMake(0, 5, 0, 5);//上 左 下 右
+        return UIEdgeInsetsMake(0, 3, 0, 3);//上 左 下 右
     }else{
         return UIEdgeInsetsMake(0, 0, 0, 0);
     }
@@ -909,7 +936,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
          success:^{
              dispatch_async(dispatch_get_main_queue(), ^{
                  RCInformationNotificationMessage *joinChatroomMessage = [[RCInformationNotificationMessage alloc]init];
-                 joinChatroomMessage.message = [NSString stringWithFormat: @"%@加入了聊天室",[RCIM sharedRCIM].currentUserInfo.name];
+                 joinChatroomMessage.message = [NSString stringWithFormat: @"%@进入了直播间",[RCIM sharedRCIM].currentUserInfo.name];
                  LYStystemMessage *lyStystem = [[LYStystemMessage alloc] init];
                  [weakSelf sendMessage:lyStystem pushContent:nil];
                  [weakSelf sendMessage:joinChatroomMessage pushContent:nil];
@@ -919,11 +946,11 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
              dispatch_async(dispatch_get_main_queue(), ^{
                  if (status == KICKED_FROM_CHATROOM) {
                      dispatch_async(dispatch_get_main_queue(), ^{
-                         [MyUtil showCleanMessage:@"已被踢出聊天室"];
+                         [MyUtil showCleanMessage:@"已被踢出"];
                      });
                  }else if(status == RC_CHATROOM_NOT_EXIST){
                      dispatch_async(dispatch_get_main_queue(), ^{
-                         [MyUtil showCleanMessage:@"聊天室不存在！"];
+                         [MyUtil showCleanMessage:@"不存在！"];
                      });
                  }else if(status == 30003){
                      dispatch_async(dispatch_get_main_queue(), ^{

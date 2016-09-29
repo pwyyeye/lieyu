@@ -12,20 +12,13 @@
             <rect key="frame" x="0.0" y="0.0" width="108" height="161"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ULv-kL-sdz"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="urU-w3-mfL"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JhQ-4W-MbA"/>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="live_setBG.png" translatesAutoresizingMaskIntoConstraints="NO" id="eHI-2A-SKg"/>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ym3-Pf-VH2">
+                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ym3-Pf-VH2">
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <state key="normal" title="翻转">
-                        <color key="titleColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </state>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l0l-4Y-Y7v">
-                    <constraints>
-                        <constraint firstAttribute="width" constant="60" id="KTC-og-JrH"/>
-                        <constraint firstAttribute="height" constant="45" id="bQa-Sa-fgv"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <state key="normal" title="分享">
                         <color key="titleColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                 </button>
@@ -36,7 +29,7 @@
                     </constraints>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="live_beautiful.png" translatesAutoresizingMaskIntoConstraints="NO" id="ebO-Mw-gIE"/>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zyE-5K-AqP">
+                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zyE-5K-AqP">
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="2Fq-dX-c7j"/>
                     </constraints>
@@ -46,6 +39,16 @@
                     </state>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="live_cremar.png" translatesAutoresizingMaskIntoConstraints="NO" id="wab-Jq-259"/>
+                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l0l-4Y-Y7v">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="KTC-og-JrH"/>
+                        <constraint firstAttribute="height" constant="45" id="bQa-Sa-fgv"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="分享">
+                        <color key="titleColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -53,16 +56,27 @@
                 <constraint firstItem="wab-Jq-259" firstAttribute="height" secondItem="Szi-SD-qsl" secondAttribute="height" id="4wb-ug-CIz"/>
                 <constraint firstItem="ebO-Mw-gIE" firstAttribute="width" secondItem="Szi-SD-qsl" secondAttribute="width" id="6RA-PR-DKa"/>
                 <constraint firstAttribute="bottom" secondItem="eHI-2A-SKg" secondAttribute="bottom" id="Bul-Zw-ZCu"/>
+                <constraint firstItem="Ym3-Pf-VH2" firstAttribute="height" secondItem="urU-w3-mfL" secondAttribute="height" id="G7l-p6-oHG"/>
                 <constraint firstItem="Ym3-Pf-VH2" firstAttribute="width" secondItem="l0l-4Y-Y7v" secondAttribute="width" id="HYL-4Y-kwy"/>
                 <constraint firstItem="zyE-5K-AqP" firstAttribute="centerX" secondItem="l0l-4Y-Y7v" secondAttribute="centerX" id="JGI-PR-wLv"/>
                 <constraint firstItem="wab-Jq-259" firstAttribute="centerX" secondItem="Szi-SD-qsl" secondAttribute="centerX" id="JnH-d6-3XB"/>
                 <constraint firstItem="Ym3-Pf-VH2" firstAttribute="top" secondItem="l0l-4Y-Y7v" secondAttribute="bottom" id="KHX-9h-bY4"/>
+                <constraint firstAttribute="trailing" secondItem="ULv-kL-sdz" secondAttribute="trailing" id="KoY-sM-zhx"/>
                 <constraint firstItem="wab-Jq-259" firstAttribute="centerY" secondItem="Ym3-Pf-VH2" secondAttribute="centerY" id="LIZ-bq-SRz"/>
+                <constraint firstItem="JhQ-4W-MbA" firstAttribute="top" secondItem="zyE-5K-AqP" secondAttribute="top" id="LWN-pM-tq2"/>
+                <constraint firstItem="JhQ-4W-MbA" firstAttribute="leading" secondItem="srb-N1-vlq" secondAttribute="leading" id="Mf3-eA-cpA"/>
+                <constraint firstAttribute="trailing" secondItem="JhQ-4W-MbA" secondAttribute="trailing" id="StK-Ox-8ax"/>
+                <constraint firstItem="ULv-kL-sdz" firstAttribute="top" secondItem="srb-N1-vlq" secondAttribute="top" id="U0w-4s-h6M"/>
+                <constraint firstItem="Ym3-Pf-VH2" firstAttribute="top" secondItem="urU-w3-mfL" secondAttribute="top" id="WWQ-8W-4Nt"/>
+                <constraint firstItem="ULv-kL-sdz" firstAttribute="leading" secondItem="srb-N1-vlq" secondAttribute="leading" id="Z3d-I4-cjN"/>
                 <constraint firstAttribute="trailing" secondItem="eHI-2A-SKg" secondAttribute="trailing" id="aRq-oC-Is0"/>
                 <constraint firstItem="zyE-5K-AqP" firstAttribute="top" secondItem="Ym3-Pf-VH2" secondAttribute="bottom" id="aaO-EI-9ce"/>
                 <constraint firstItem="Ym3-Pf-VH2" firstAttribute="height" secondItem="l0l-4Y-Y7v" secondAttribute="height" id="acv-rs-IOO"/>
                 <constraint firstItem="eHI-2A-SKg" firstAttribute="top" secondItem="srb-N1-vlq" secondAttribute="top" id="aut-HT-JS2"/>
                 <constraint firstItem="ebO-Mw-gIE" firstAttribute="centerX" secondItem="Szi-SD-qsl" secondAttribute="centerX" id="e0q-HO-Jhb"/>
+                <constraint firstItem="l0l-4Y-Y7v" firstAttribute="height" secondItem="ULv-kL-sdz" secondAttribute="height" id="lZi-3E-QzP"/>
+                <constraint firstAttribute="trailing" secondItem="urU-w3-mfL" secondAttribute="trailing" id="mYq-Ze-Xj4"/>
+                <constraint firstItem="urU-w3-mfL" firstAttribute="leading" secondItem="srb-N1-vlq" secondAttribute="leading" id="ngT-M8-fwz"/>
                 <constraint firstItem="wab-Jq-259" firstAttribute="width" secondItem="Szi-SD-qsl" secondAttribute="width" id="oit-eX-pEs"/>
                 <constraint firstItem="l0l-4Y-Y7v" firstAttribute="top" secondItem="srb-N1-vlq" secondAttribute="top" id="qg3-Dg-He1"/>
                 <constraint firstAttribute="trailing" secondItem="zyE-5K-AqP" secondAttribute="trailing" id="rCE-S3-ZXs"/>
@@ -70,15 +84,16 @@
                 <constraint firstItem="l0l-4Y-Y7v" firstAttribute="centerY" secondItem="Szi-SD-qsl" secondAttribute="centerY" id="s2f-sx-I2Y"/>
                 <constraint firstItem="ebO-Mw-gIE" firstAttribute="centerY" secondItem="zyE-5K-AqP" secondAttribute="centerY" id="tWI-li-PWz"/>
                 <constraint firstItem="l0l-4Y-Y7v" firstAttribute="leading" secondItem="Szi-SD-qsl" secondAttribute="trailing" constant="3" id="tWh-UD-jgv"/>
+                <constraint firstItem="JhQ-4W-MbA" firstAttribute="height" secondItem="zyE-5K-AqP" secondAttribute="height" id="vSM-aN-cYP"/>
                 <constraint firstItem="zyE-5K-AqP" firstAttribute="width" secondItem="l0l-4Y-Y7v" secondAttribute="width" id="xYT-3A-14K"/>
                 <constraint firstItem="ebO-Mw-gIE" firstAttribute="height" secondItem="Szi-SD-qsl" secondAttribute="height" id="yuC-O4-19m"/>
                 <constraint firstAttribute="trailing" secondItem="l0l-4Y-Y7v" secondAttribute="trailing" id="zzR-gU-dzb"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="beautifulButton" destination="zyE-5K-AqP" id="k5P-Kh-rGw"/>
-                <outlet property="shareButton" destination="l0l-4Y-Y7v" id="TcT-ag-Vtt"/>
-                <outlet property="shiftButton" destination="Ym3-Pf-VH2" id="YVi-dn-ZWM"/>
+                <outlet property="beautifulButton" destination="JhQ-4W-MbA" id="ahW-Ye-qTM"/>
+                <outlet property="shareButton" destination="ULv-kL-sdz" id="hEJ-Os-NWk"/>
+                <outlet property="shiftButton" destination="urU-w3-mfL" id="9h0-do-GO8"/>
             </connections>
             <point key="canvasLocation" x="-15" y="232.5"/>
         </view>

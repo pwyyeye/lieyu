@@ -26,8 +26,8 @@
         self.type = [dict objectForKey:@"type"];
         NSDictionary *userinfoDic = [dict objectForKey:@"user"];
         [self decodeUserInfo:userinfoDic];
-        NSDictionary *giftDic = [dict objectForKey:@"gift"];
-        [self decodeUserInfo:giftDic];
+        self.gift = [dict objectForKey:@"gift"];
+        
     } else {
         self.rawJSONData = data;
     }
@@ -39,6 +39,7 @@
     if (self.type) {
         [dict setObject:self.type forKey:@"type"];
     }
+    
     if (self.senderUserInfo) {
         NSMutableDictionary *__dic = [[NSMutableDictionary alloc] init];
         if (self.senderUserInfo.name) {
@@ -62,9 +63,6 @@
         }
         if (self.gift.giftLocalUrl) {
             [_dict setObject:self.gift.giftLocalUrl forKeyedSubscript:@"giftLocalUrl"];
-        }
-        if (self.gift.giftId) {
-            [_dict setObject:self.gift.giftId forKeyedSubscript:@"giftId"];
         }
         [dict setObject:_dict forKey:@"gift"];
     }
