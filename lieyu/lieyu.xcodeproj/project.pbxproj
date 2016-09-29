@@ -905,6 +905,12 @@
 		38FE0B8C1D9A5E9400CA6D3A /* LYCoinShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FE0B8B1D9A5E9400CA6D3A /* LYCoinShopViewController.m */; };
 		38FE0B901D9B6C1D00CA6D3A /* MineCoinRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FE0B8E1D9B6C1D00CA6D3A /* MineCoinRecordViewController.m */; };
 		38FE0B911D9B6C1D00CA6D3A /* MineCoinRecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38FE0B8F1D9B6C1D00CA6D3A /* MineCoinRecordViewController.xib */; };
+		38FE0B981D9CC5A400CA6D3A /* friendIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38FE0B921D9CC5A400CA6D3A /* friendIcon@2x.png */; };
+		38FE0B991D9CC5A400CA6D3A /* addCareIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38FE0B931D9CC5A400CA6D3A /* addCareIcon@3x.png */; };
+		38FE0B9A1D9CC5A400CA6D3A /* friendIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38FE0B941D9CC5A400CA6D3A /* friendIcon@3x.png */; };
+		38FE0B9B1D9CC5A400CA6D3A /* deleteCareIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38FE0B951D9CC5A400CA6D3A /* deleteCareIcon@2x.png */; };
+		38FE0B9C1D9CC5A400CA6D3A /* addCareIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38FE0B961D9CC5A400CA6D3A /* addCareIcon@2x.png */; };
+		38FE0B9D1D9CC5A400CA6D3A /* deleteCareIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38FE0B971D9CC5A400CA6D3A /* deleteCareIcon@3x.png */; };
 		525CA0C71C5B626E009ED9DA /* daohang_xiangji.png in Resources */ = {isa = PBXBuildFile; fileRef = 525CA0C41C5B626E009ED9DA /* daohang_xiangji.png */; };
 		525CA0C81C5B626E009ED9DA /* daohang_xiangji@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 525CA0C51C5B626E009ED9DA /* daohang_xiangji@2x.png */; };
 		525CA0C91C5B626E009ED9DA /* daohang_xiangji@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 525CA0C61C5B626E009ED9DA /* daohang_xiangji@3x.png */; };
@@ -3404,6 +3410,12 @@
 		38FE0B8D1D9B6C1D00CA6D3A /* MineCoinRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineCoinRecordViewController.h; sourceTree = "<group>"; };
 		38FE0B8E1D9B6C1D00CA6D3A /* MineCoinRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineCoinRecordViewController.m; sourceTree = "<group>"; };
 		38FE0B8F1D9B6C1D00CA6D3A /* MineCoinRecordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineCoinRecordViewController.xib; sourceTree = "<group>"; };
+		38FE0B921D9CC5A400CA6D3A /* friendIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "friendIcon@2x.png"; path = "最新修改/friendIcon@2x.png"; sourceTree = "<group>"; };
+		38FE0B931D9CC5A400CA6D3A /* addCareIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "addCareIcon@3x.png"; path = "最新修改/addCareIcon@3x.png"; sourceTree = "<group>"; };
+		38FE0B941D9CC5A400CA6D3A /* friendIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "friendIcon@3x.png"; path = "最新修改/friendIcon@3x.png"; sourceTree = "<group>"; };
+		38FE0B951D9CC5A400CA6D3A /* deleteCareIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "deleteCareIcon@2x.png"; path = "最新修改/deleteCareIcon@2x.png"; sourceTree = "<group>"; };
+		38FE0B961D9CC5A400CA6D3A /* addCareIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "addCareIcon@2x.png"; path = "最新修改/addCareIcon@2x.png"; sourceTree = "<group>"; };
+		38FE0B971D9CC5A400CA6D3A /* deleteCareIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "deleteCareIcon@3x.png"; path = "最新修改/deleteCareIcon@3x.png"; sourceTree = "<group>"; };
 		525CA0C41C5B626E009ED9DA /* daohang_xiangji.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daohang_xiangji.png; sourceTree = "<group>"; };
 		525CA0C51C5B626E009ED9DA /* daohang_xiangji@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daohang_xiangji@2x.png"; sourceTree = "<group>"; };
 		525CA0C61C5B626E009ED9DA /* daohang_xiangji@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daohang_xiangji@3x.png"; sourceTree = "<group>"; };
@@ -10439,6 +10451,12 @@
 		ADF88E551C102E2D00CF5DED /* 我的 */ = {
 			isa = PBXGroup;
 			children = (
+				38FE0B921D9CC5A400CA6D3A /* friendIcon@2x.png */,
+				38FE0B931D9CC5A400CA6D3A /* addCareIcon@3x.png */,
+				38FE0B941D9CC5A400CA6D3A /* friendIcon@3x.png */,
+				38FE0B951D9CC5A400CA6D3A /* deleteCareIcon@2x.png */,
+				38FE0B961D9CC5A400CA6D3A /* addCareIcon@2x.png */,
+				38FE0B971D9CC5A400CA6D3A /* deleteCareIcon@3x.png */,
 				384B03E31D8FE77300078395 /* userSetting@2x.png */,
 				384B03E41D8FE77300078395 /* userSetting@3x.png */,
 				ADCF4F011CCF5408005AEA2A /* lieyu_default_head.png */,
@@ -11492,6 +11510,7 @@
 				AD44F9591C9D27730030F5C2 /* biaoqing_icon@2x.png in Resources */,
 				38C738611D6C5D9D0006A088 /* ZSAddressBookAddViewController.xib in Resources */,
 				85F5451D1C13DF5A0013B92B /* cameraCircle@2x.png in Resources */,
+				38FE0B9B1D9CC5A400CA6D3A /* deleteCareIcon@2x.png in Resources */,
 				854038741CAE0F2F0056C27E /* 分析背景.jpg in Resources */,
 				389C010A1C1488F000FE9412 /* seeGirls@3x.png in Resources */,
 				38979A4F1CA40919002946F5 /* happy20.png in Resources */,
@@ -11540,6 +11559,7 @@
 				15E240681BB1243A0090D240 /* TypeChooseCell.xib in Resources */,
 				AD203BBE1CAEAA8D0014618A /* CoinStart@3x.png in Resources */,
 				AD44F95B1C9D27730030F5C2 /* emojDelete@2x.png in Resources */,
+				38FE0B991D9CC5A400CA6D3A /* addCareIcon@3x.png in Resources */,
 				38979A631CA40919002946F5 /* kawayi16.png in Resources */,
 				AD399E8B1C940D4D00028F23 /* logo12@2x.jpg in Resources */,
 				15571BC11BE8E6EC006F73D0 /* NewMain.storyboard in Resources */,
@@ -11906,6 +11926,7 @@
 				38979A511CA40919002946F5 /* happy22.png in Resources */,
 				38979A5F1CA40919002946F5 /* kawayi12.png in Resources */,
 				853C4C6E1C311A5C00D48BA2 /* zengjia_icon@3x.png in Resources */,
+				38FE0B981D9CC5A400CA6D3A /* friendIcon@2x.png in Resources */,
 				AD399EB51C940D4D00028F23 /* logo54@2x.jpg in Resources */,
 				38E5D6FA1C100B01004B49D2 /* TimePickerView.xib in Resources */,
 				38E5D7A21C113879004B49D2 /* choose@3x.png in Resources */,
@@ -12039,6 +12060,7 @@
 				854CCA841C918E2700368C72 /* sina_weibo_s2@3x.png in Resources */,
 				38EAA52E1CCDB1D00080A6D6 /* YU_pujie@3x.png in Resources */,
 				38EAA57E1CCF5B910080A6D6 /* YU_tipImage@3x.png in Resources */,
+				38FE0B9C1D9CC5A400CA6D3A /* addCareIcon@2x.png in Resources */,
 				8515080D1CFD619F002375D4 /* epIden_gray@3x.png in Resources */,
 				AD399E981C940D4D00028F23 /* logo25@2x.jpg in Resources */,
 				85FE55401D7AB8D900B262EA /* HomepageLiveHot@2x.png in Resources */,
@@ -12328,6 +12350,7 @@
 				853CB7551CAA253B006FC768 /* ZSTiXianRecordTableViewCell.xib in Resources */,
 				38EDEC651C5B9DE700694758 /* return_white@2x.png in Resources */,
 				38B2B2671D7AE0E4008BC63E /* activityTimeIcon@2x.png in Resources */,
+				38FE0B9D1D9CC5A400CA6D3A /* deleteCareIcon@3x.png in Resources */,
 				38B5F4C01CBBC69900AE1BF5 /* CustomBtn_Selected@2x.png in Resources */,
 				850351521D9683380035EEA3 /* setBlack@2x.png in Resources */,
 				38979A8E1CA40919002946F5 /* sad1.png in Resources */,
@@ -12548,6 +12571,7 @@
 				85251A1D1D6C202B005CE01D /* live_B_wechat@3x.png in Resources */,
 				38979A761CA40919002946F5 /* wow10.png in Resources */,
 				38B11C0D1C92AFCC00AD3EB8 /* CheckQRCode@3x.png in Resources */,
+				38FE0B9A1D9CC5A400CA6D3A /* friendIcon@3x.png in Resources */,
 				AD92AE9D1BE1D339009F2A34 /* lieyu_default_male@2x.png in Resources */,
 				15ED32731BE2F49800E086A1 /* YaoYiYaoViewController.xib in Resources */,
 				AD399E861C940D4D00028F23 /* logo7@2x.jpg in Resources */,

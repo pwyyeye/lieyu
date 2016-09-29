@@ -91,8 +91,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 2) {
         //黑名单
-        LYBlackListViewController *blackListVC = [[LYBlackListViewController alloc]init];
-        [self.navigationController pushViewController:blackListVC animated:YES];
+//        LYBlackListViewController *blackListVC = [[LYBlackListViewController alloc]init];
+//        [self.navigationController pushViewController:blackListVC animated:YES];
+        [MyUtil showPlaceMessage:@"黑名单敬请期待！"];
     }
 }
 

@@ -509,11 +509,13 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [_menuBtnArray enumerateObjectsUsingBlock:^(HotMenuButton *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         obj.isHomePageMenuViewSelected = NO;
     }];
-    HotMenuButton *button = (HotMenuButton *)[_menuBtnArray objectAtIndex:_index];
-    button.isHomePageMenuViewSelected = YES;
-    [UIView animateWithDuration:0.1 animations:^{
-        _lineView.center = CGPointMake(button.center.x, _lineView.center.y);
-    }];
+    if (_menuBtnArray.count > _index){
+        HotMenuButton *button = (HotMenuButton *)[_menuBtnArray objectAtIndex:_index];
+        button.isHomePageMenuViewSelected = YES;
+        [UIView animateWithDuration:0.1 animations:^{
+            _lineView.center = CGPointMake(button.center.x, _lineView.center.y);
+        }];
+    }
     
     if (tableView.tag == 2) {
         //直播按钮弹出
