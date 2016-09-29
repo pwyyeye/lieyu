@@ -242,8 +242,7 @@
     _begainImage(image);
 
     [HTTPController uploadImageToQiuNiu:image withDegree:0.5 complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
-        //            AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        //            [app startLoading];
+
         NSString *imgUrl = [MyUtil getQiniuUrl:key width:0 andHeight:0];
         _imgUrl = imgUrl;
     }];
@@ -264,7 +263,7 @@
 //    NSString *time13 = [NSString stringWithFormat:@"%f",a];
 //    NSString *times = [time13 substringToIndex:13];
 //    _roomId =  [NSString stringWithFormat:@"%d%@", app.userModel.userid,times];
-    NSString *liveStr = [NSString stringWithFormat:@"http://10.17.30.44:8080/liveroom/live?liveChatId=%@",_roomId];
+    NSString *liveStr = [NSString stringWithFormat:@"%@%@%@",LY_LIVE_SERVER,LY_LIVE_share,_roomId];
      UMSocialUrlResource *urlResource = [[UMSocialUrlResource alloc] initWithSnsResourceType:UMSocialUrlResourceTypeMusic url:liveStr];
      switch (_shareType) {
      case 0://分享微信好友
@@ -315,9 +314,13 @@
     
     if (!_imgUrl) {
         _imgUrl = @"http://source.lie98.com/lieyu_ios_20160918110927_HWnD4jLL.jpg";
+        NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:_imgUrl]];
+       UIImage *result = [UIImage imageWithData:data];
+        _begainImage(result);
     }
     if ([_titleTextFiled.text  isEqualToString: @""]) {
-        _titleTextFiled.text = @"#凡人皆需侍奉！#";
+        AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        _titleTextFiled.text = [NSString stringWithFormat:@"%@正在直播...",app.userModel.usernick];
     }
             NSDictionary *dic = @{@"cityCode":@"310000",@"liveimg":_imgUrl,@"livename":_titleTextFiled.text,@"liveChatId":_roomId,@"streamId":_streamID};
             [LYFriendsHttpTool beginToLiveShowWithParams:dic complete:^(NSDictionary *dict) {

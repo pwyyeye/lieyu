@@ -114,7 +114,10 @@
 - (void)updateUI {
     RCTextMessage *_textMessage = (RCTextMessage *)self.model.content;
     if (_textMessage) {
-        self.textLabel.text = _textMessage.content;
+        [self.textLabel setTextColor:[UIColor whiteColor]];
+        NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:_textMessage.content];
+        [AttributedStr addAttribute:NSForegroundColorAttributeName value:COMMON_PURPLE range:NSMakeRange(0, self.model.content.senderUserInfo.name.length + 1)];
+        self.textLabel.attributedText = AttributedStr;
     }
     CGSize __textSize = [LYTextMessageCell getMessageCellSize:_textMessage.content withWidth:self.baseContentView.bounds.size.width];
     
@@ -141,7 +144,6 @@
 //    CGFloat __bubbleWidth = __textWidth < 50 ? 50 : (__textWidth);
 //    CGSize __bubbleSize = CGSizeMake(__bubbleWidth - 6, __bubbleHeight);
     
-    
     CGRect messageContentViewRect = self.messageContentView.frame;
     
     messageContentViewRect.size.width = __textSize.width;
@@ -152,7 +154,6 @@
     self.textLabel.frame = CGRectMake(6,0, __textSize.width, __textSize.height);
     
     self.bubbleBackgroundView.backgroundColor = [UIColor clearColor];
-    [self.textLabel setTextColor:[UIColor whiteColor]];
 //        if (MessageDirection_RECEIVE == self.messageDirection) {
 //            [self.nicknameLabel setTextColor:HEXCOLOR(0xe2e2e2)];
 //        }else{

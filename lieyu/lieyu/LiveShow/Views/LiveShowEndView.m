@@ -11,15 +11,10 @@
 
 @implementation LiveShowEndView
 
-/*
+
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
-
--(void)layoutSubviews{
     self.backButton.layer.borderColor = RGB(187, 40, 217).CGColor;
     self.backButton.layer.borderWidth = 1.f;
     self.focusButton.layer.borderColor = RGB(187, 40, 217).CGColor;
@@ -27,8 +22,8 @@
     
     [self setCornerRadiusView:self.backButton With:self.backButton.frame.size.height / 2 and:YES];
     [self setCornerRadiusView:self.focusButton With:self.focusButton.frame.size.height / 2 and:YES];
-    
 }
+
 //获取控制器
 -(UIViewController *)getCurrentViewController{
     UIResponder *next = [self nextResponder];
@@ -46,21 +41,21 @@
     UIViewController *selfVC = [self getCurrentViewController];
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     CLLocation *location = app.userLocation;
-    
+    NSString *liveStr = [NSString stringWithFormat:@"%@%@%@",LY_LIVE_SERVER,LY_LIVE_share,_chatRoomID];
+    UMSocialUrlResource *urlResource = [[UMSocialUrlResource alloc] initWithSnsResourceType:UMSocialUrlResourceTypeMusic url:liveStr];
     switch (sender.tag) {
         case 100://分享微信好友
-        {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatSession] content:@"友盟社会化分享让您快速实现分享等社会化功能，http://umeng.com/social" image:nil location:location urlResource:nil presentedController:selfVC completion:^(UMSocialResponseEntity *response){
+        {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatSession] content:@"猎娱直播间" image:_shareImage location:location urlResource:urlResource presentedController:selfVC completion:^(UMSocialResponseEntity *response){
         }];
-            
         }
             break;
         case 99://分享到QQ
-        {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToQQ] content:@"友盟社会化分享让您快速实现分享等社会化功能，http://umeng.com/social" image:nil location:location urlResource:nil presentedController:selfVC completion:^(UMSocialResponseEntity *response){
+        {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToQQ] content:@"猎娱直播间" image:_shareImage location:location urlResource:urlResource presentedController:selfVC completion:^(UMSocialResponseEntity *response){
         }];
         }
             break;
         case 102://分享到微博
-        {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToSina] content:@"友盟社会化分享让您快速实现分享等社会化功能，http://umeng.com/social" image:nil location:location urlResource:nil presentedController:selfVC completion:^(UMSocialResponseEntity *response){
+        {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToSina] content:@"猎娱直播间" image:_shareImage location:location urlResource:urlResource presentedController:selfVC completion:^(UMSocialResponseEntity *response){
             if (response.responseCode == UMSResponseCodeSuccess) {
                 NSLog(@"分享成功！");
             }
@@ -68,7 +63,7 @@
         }
             break;
         case 101://分享到微信朋友圈
-        {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatTimeline] content:@"友盟社会化分享让您快速实现分享等社会化功能，http://umeng.com/social" image:nil location:location urlResource:nil presentedController:selfVC completion:^(UMSocialResponseEntity *response){
+        {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatTimeline] content:@"猎娱直播间" image:_shareImage location:location urlResource:urlResource presentedController:selfVC completion:^(UMSocialResponseEntity *response){
             if (response.responseCode == UMSResponseCodeSuccess) {
                 NSLog(@"分享成功！");
             }

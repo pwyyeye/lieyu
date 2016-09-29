@@ -26,7 +26,7 @@
 #import "LYDateUtil.h"
 #import "DaShangView.h"
 #import "DaShangViewCell.h"
-
+#import "MineYubiViewController.h"
 #import "LiveListViewController.h"
 
 #define LYFriendsAllCommentCellID @"LYFriendsAllCommentTableViewCell"
@@ -1188,14 +1188,29 @@ static NSString *daShangCellID = @"dashangCellID";
                                @"rid":@"moment",
                                @"businessid":_businessid};
     [LYFriendsHttpTool daShangWithParms:dictGift complete:^(NSDictionary *dic) {
-        [MyUtil showMessage:[NSString stringWithFormat:@"%@",_giftValue]];
-        [WeakSelf showGiftIamgeAnmiationWith:img];
+//        [WeakSelf showGiftIamgeAnmiationWith:img];
     }];
-    [self showGiftIamgeAnmiationWith:img];
+    [self vaconeyAmount];
     [_backgroudView removeFromSuperview];
     _backgroudView = nil;
 }
 
+
+#pragma mark -- 娱币不足是否充值
+-(void) vaconeyAmount{
+    UIAlertController *alterVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"娱币不足是否充值？" preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:nil];
+    __weak typeof (self) WeakSelf = self;
+    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+        MineYubiViewController *minrYUbIVC  = [[MineYubiViewController alloc] init];
+        [WeakSelf.navigationController pushViewController:minrYUbIVC animated:YES];
+    }];
+    [alterVC addAction:cancelAction];
+    [alterVC addAction:sureAction];
+    [self presentViewController:alterVC animated:YES completion:nil];
+}
+
+#pragma mark -- 打赏动画
 -(void) showGiftIamgeAnmiationWith:(NSString *) giftImg{
     UIImage *img = [UIImage imageNamed:giftImg];
     UIImageView *giftIamge = [[UIImageView alloc] initWithImage:img];

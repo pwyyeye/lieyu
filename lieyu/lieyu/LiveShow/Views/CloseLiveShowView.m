@@ -53,11 +53,11 @@ return nil;
     UIViewController *selfVC = [self getCurrentViewController];
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     CLLocation *location = app.userLocation;
-    NSString *liveStr = [NSString stringWithFormat:@"http://10.17.30.44:8080/liveroom/live?liveChatId=%@",_chatRoomID];
+    NSString *liveStr = [NSString stringWithFormat:@"%@%@%@",LY_LIVE_SERVER,LY_LIVE_share,_chatRoomID];
     UMSocialUrlResource *urlResource = [[UMSocialUrlResource alloc] initWithSnsResourceType:UMSocialUrlResourceTypeMusic url:liveStr];
     switch (sender.tag) {
         case 100://分享微信好友
-        {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatSession] content:@"友猎娱直播间" image:_begainImage location:location urlResource:urlResource presentedController:selfVC completion:^(UMSocialResponseEntity *response){
+        {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatSession] content:@"猎娱直播间" image:_begainImage location:location urlResource:urlResource presentedController:selfVC completion:^(UMSocialResponseEntity *response){
         }];
             
         }
