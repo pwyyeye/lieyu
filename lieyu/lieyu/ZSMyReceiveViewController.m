@@ -37,7 +37,9 @@
         [weakSelf.tableview reloadData];
     }];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-
+    
+    _btn_tiXian.layer.cornerRadius = CGRectGetHeight(_btn_tiXian.frame)/2.f;
+    _btn_tiXian.layer.masksToBounds = YES;
 }
 
 - (void)viewDidLoad {
@@ -49,8 +51,6 @@
     // Do any additional setup after loading the view from its nib.
     [_tableview registerNib:[UINib nibWithNibName:ZSTiXianTableViewCellID bundle:nil] forCellReuseIdentifier:ZSTiXianTableViewCellID];
     [_btn_tiXian addTarget:self action:@selector(WithdrawCash) forControlEvents:UIControlEventTouchUpInside];
-    _btn_tiXian.layer.cornerRadius = CGRectGetHeight(_btn_tiXian.frame)/2.f;
-    _btn_tiXian.layer.masksToBounds = YES;
 }
 
 - (void)WithdrawCash{
