@@ -47,7 +47,7 @@
     
     NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:tiptext];
     [attributedStr addAttribute:NSFontAttributeName
-                          value:[UIFont systemFontOfSize:22.0]
+                          value:[UIFont systemFontOfSize:18.0]
                           range:NSMakeRange(0, 4)];
     self.messageLabel.attributedText = attributedStr;
     CGSize __textSize = [LYSystemTextMessageCell getMessageCellSize:self.messageLabel.text  withWidth:300];
