@@ -54,15 +54,15 @@
     if ([FanOrCareModel.friendStatus isEqualToString:@"1"]) {
         [_addCareButton setTitle:@"关注" forState:UIControlStateNormal];
         [_addCareButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-        [_addCareButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        [_addCareButton setImage:[UIImage imageNamed:@"deleteCareIcon"] forState:UIControlStateNormal];
     }else if ([FanOrCareModel.friendStatus isEqualToString:@"2"] || [FanOrCareModel.friendStatus isEqualToString:@"0"]){
         [_addCareButton setTitle:@"关注" forState:UIControlStateNormal];
         [_addCareButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [_addCareButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        [_addCareButton setImage:[UIImage imageNamed:@"addCareIcon"] forState:UIControlStateNormal];
     }else if ([FanOrCareModel.friendStatus isEqualToString:@"3"]){
         [_addCareButton setTitle:@"玩友" forState:UIControlStateNormal];
         [_addCareButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-        [_addCareButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        [_addCareButton setImage:[UIImage imageNamed:@"friendIcon "] forState:UIControlStateNormal];
     }
 }
 
