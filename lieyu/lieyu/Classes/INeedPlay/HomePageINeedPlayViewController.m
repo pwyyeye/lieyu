@@ -1104,8 +1104,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                     watchLiveVC.chatRoomId = nil;
                 }
                 watchLiveVC.hostUser = Arr[@"roomHostUser"];
-                watchLiveVC.shareIamge = model.roomImg;
-                [weakSelf presentViewController:watchLiveVC animated:YES completion:NULL];
+                NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:model.roomImg]];
+                watchLiveVC.shareIamge = [UIImage imageWithData:data];
+                [weakSelf.navigationController pushViewController:watchLiveVC animated:YES];
             }];
         }
     }
