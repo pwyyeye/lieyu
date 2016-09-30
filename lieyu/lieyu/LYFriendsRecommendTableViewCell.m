@@ -62,7 +62,7 @@
     }else if ([FanOrCareModel.friendStatus isEqualToString:@"3"]){
         [_addCareButton setTitle:@"玩友" forState:UIControlStateNormal];
         [_addCareButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-        [_addCareButton setImage:[UIImage imageNamed:@"friendIcon "] forState:UIControlStateNormal];
+        [_addCareButton setImage:[UIImage imageNamed:@"friendIcon"] forState:UIControlStateNormal];
     }
 }
 

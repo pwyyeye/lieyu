@@ -464,7 +464,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         
         _lineView.center = CGPointMake(btn.center.x, _lineView.center.y);
     }
-    [_menuView addObserver:self forKeyPath:@"center" options:NSKeyValueObservingOptionNew context:nil];
+//    [_menuView addObserver:self forKeyPath:@"center" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 -(void)dealloc{
@@ -1169,7 +1169,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 #pragma mark 移除导航的按钮和图片
 - (void)removeNavButtonAndImageView{
-    [_menuView removeObserver:self forKeyPath:@"center"];//移除kvo
+//    [_menuView removeObserver:self forKeyPath:@"center"];//移除kvo
     [_titleImageView removeFromSuperview];
     [_searchBtn removeFromSuperview];
     [_cityChooseBtn removeFromSuperview];
