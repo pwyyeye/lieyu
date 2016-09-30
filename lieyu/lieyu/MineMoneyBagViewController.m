@@ -18,7 +18,7 @@
 
 #define IDENTIFIER @"MineMoneyBagCollectionViewCell"
 
-@interface MineMoneyBagViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,MineYubiDelegate>
+@interface MineMoneyBagViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,MineYubiDelegate,coinShopQuitDelegate>
 {
     NSArray *_dataArray;
 }
@@ -119,6 +119,7 @@
 //                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:result]];
                 LYCoinShopViewController *coinShopVC = [[LYCoinShopViewController alloc]init];
                 coinShopVC.urlString = [NSURL URLWithString:result];
+                coinShopVC.delegate = self;
                 [weakSelf.navigationController pushViewController:coinShopVC animated:YES];
             }
         }];
@@ -144,6 +145,10 @@
 }
 
 - (void)MineYubiWithdrawDelegate:(double)amount{
+    [self getData];
+}
+
+- (void)coinShopQuitDelegate{
     [self getData];
 }
 

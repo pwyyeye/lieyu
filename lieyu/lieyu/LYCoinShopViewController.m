@@ -35,6 +35,7 @@
     [self.view addSubview:_webView];
     [_webView loadRequest:request];
     _app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    _urlArray = [[NSMutableArray alloc]initWithObjects:_urlString, nil];
 }
 
 #pragma mark - webview的代理事件
@@ -52,7 +53,6 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     if (navigationType == UIWebViewNavigationTypeLinkClicked){
-        NSLog(@"%@",[request URL]);
         if ([[request URL] isEqual:[NSURL URLWithString:@"http://www.duiba.com.cn/mobile/index?dbbackroot"]]) {
             int i = 0 ;
             for (UIViewController *vc in self.navigationController.viewControllers) {
@@ -66,15 +66,35 @@
             if ([vc isKindOfClass:[LYCoinShopViewController class]]) {
                 [self.navigationController popToViewController:vc animated:YES];
             }
+            [_urlArray removeAllObjects];
+            [_urlArray addObject:[request URL]];
 //            NSLog(@"%@",self.navigationController.viewControllers);
         }else{
             LYCoinShopViewController *coinShopVC = [[LYCoinShopViewController alloc]init];
             coinShopVC.urlString = [request URL];
             [self.navigationController pushViewController:coinShopVC animated:YES];
+            [_urlArray addObject:[request URL]];
         }
         return NO;
     }
     return YES;
+}
+
+- (void)BaseGoBack{
+    int i = 0 ;
+    for (UIViewController *vc in self.navigationController.viewControllers) {
+        if ([vc isKindOfClass:[MineMoneyBagViewController class]]) {
+            break;
+        }else{
+            i ++;
+        }
+    }
+    if (self == [self.navigationController.viewControllers objectAtIndex:i + 1]) {
+        if ([self.delegate respondsToSelector:@selector(coinShopQuitDelegate)]) {
+            [self.delegate coinShopQuitDelegate];
+        }
+    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
