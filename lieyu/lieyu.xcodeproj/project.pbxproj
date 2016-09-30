@@ -10452,10 +10452,10 @@
 			isa = PBXGroup;
 			children = (
 				38FE0B921D9CC5A400CA6D3A /* friendIcon@2x.png */,
-				38FE0B931D9CC5A400CA6D3A /* addCareIcon@3x.png */,
 				38FE0B941D9CC5A400CA6D3A /* friendIcon@3x.png */,
-				38FE0B951D9CC5A400CA6D3A /* deleteCareIcon@2x.png */,
 				38FE0B961D9CC5A400CA6D3A /* addCareIcon@2x.png */,
+				38FE0B931D9CC5A400CA6D3A /* addCareIcon@3x.png */,
+				38FE0B951D9CC5A400CA6D3A /* deleteCareIcon@2x.png */,
 				38FE0B971D9CC5A400CA6D3A /* deleteCareIcon@3x.png */,
 				384B03E31D8FE77300078395 /* userSetting@2x.png */,
 				384B03E41D8FE77300078395 /* userSetting@3x.png */,

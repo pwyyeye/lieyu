@@ -237,7 +237,9 @@
         [USER_DEFAULT removeObjectForKey:@"user_pass"];
     }else if(indexPath.row == 2){
         //隐私设置
-        detailViewController = [[LYPrivateViewController alloc]init];
+//        detailViewController = [[LYPrivateViewController alloc]init];
+        [MyUtil showPlaceMessage:@"隐私设置敬请期待！"];
+        return;
     }else if(indexPath.row==0){
         detailViewController=[[LYAccountManager alloc] init];
     }else if(indexPath.row == 3){
