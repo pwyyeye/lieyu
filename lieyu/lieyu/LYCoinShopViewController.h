@@ -8,9 +8,16 @@
 
 #import "LYBaseViewController.h"
 
+@protocol coinShopQuitDelegate <NSObject>
+
+- (void)coinShopQuitDelegate;
+
+@end
+
 @interface LYCoinShopViewController : LYBaseViewController
 
 @property (nonatomic, strong) NSURL *urlString;
 @property (nonatomic, strong) NSString *subTitle;
+@property (nonatomic, strong) id<coinShopQuitDelegate> delegate;
 
 @end
