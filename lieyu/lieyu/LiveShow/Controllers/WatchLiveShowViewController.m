@@ -255,7 +255,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 
 
 #pragma mark -- 定时获取直播室人员和点赞数
--(void)timerUpdataAction{
+-(void)timerUpdataAction {
     NSDictionary *dictionary = @{@"chatNum":[NSString stringWithFormat:@"%d",_takeNum],@"liveChatId":_chatRoomId};
     [self.dataArray removeAllObjects];
     [LYFriendsHttpTool requestListWithParms:dictionary complete:^(NSDictionary *dict) {

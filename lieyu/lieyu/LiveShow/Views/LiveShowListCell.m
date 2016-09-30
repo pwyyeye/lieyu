@@ -80,18 +80,29 @@
 //    }
     
    NSString *astro = [MyUtil getAstroWithBirthday:((roomHostUser *)listModel.roomHostUser).birthday];
-    if ([astro isEqualToString:@""]) {
+    NSString *tagStr = ((roomHostUser *)listModel.roomHostUser).userTag[0];
+    if ([astro isEqualToString:@""] && [tagStr isEqualToString:@""]) {
+        _onlyOneTagLabel.hidden = YES;
+        _firstTaglabel.hidden = YES;
+        _secondTagLabel.hidden = YES;
+    } else if (![astro isEqualToString:@""] && [tagStr isEqualToString:@""]) {
         _onlyOneTagLabel.hidden = NO;
         _firstTaglabel.hidden = YES;
         _secondTagLabel.hidden = YES;
-        _onlyOneTagLabel.text = [NSString stringWithFormat:@"%@",((roomHostUser *)listModel.roomHostUser).userTag[0]];
+        _onlyOneTagLabel.text = astro;
+    } else if ([astro isEqualToString:@""] && ![tagStr isEqualToString:@""]) {
+        _onlyOneTagLabel.hidden = NO;
+        _firstTaglabel.hidden = YES;
+        _secondTagLabel.hidden = YES;
+        _onlyOneTagLabel.text = tagStr;
     } else {
         _onlyOneTagLabel.hidden = YES;
+        _firstTaglabel.hidden = NO;
+        _secondTagLabel.hidden = NO;
         _firstTaglabel.text = astro;
-        _secondTagLabel.text =  [NSString stringWithFormat:@"%@",((roomHostUser *)listModel.roomHostUser).userTag[0]];
+        _secondTagLabel.text = tagStr;
     }
-    _firstTaglabel.text = astro;
-    _secondTagLabel.text =  [NSString stringWithFormat:@"%@",((roomHostUser *)listModel.roomHostUser).userTag[0]];
+    
     _titleLabel.text = [NSString stringWithFormat:@"%@", listModel.roomName];
     _likeNum.text = [NSString stringWithFormat:@"%d",listModel.likeNum];
 }

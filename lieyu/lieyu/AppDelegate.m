@@ -260,7 +260,6 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
 
 #pragma mark --- 七牛直播
 -(void)initqiniuZhiBo{
-    
     [PLStreamingEnv initEnv];
 }
 
@@ -625,20 +624,6 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    switch ([PLCameraStreamingSession cameraAuthorizationStatus]) {
-        case PLAuthorizationStatusAuthorized:
-            NSLog(@"已授权");
-            break;
-        case PLAuthorizationStatusNotDetermined: {
-            NSLog(@"notDetermined");
-            //            [PLCameraStreamingSession requestCameraAccessWithCompletionHandler:^(BOOL granted) {
-            //            }];
-        }
-            break;
-        default:
-            NSLog(@"nothing");
-            break;
-    }
     
 }
 
@@ -744,13 +729,11 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 
 #pragma mark - 心跳获取7牛key
 -(void)doHeart{
-    //    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    //    [app startLoading];
     
     if ([[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
         LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
         [login autoLogin];
-        UserModel *userModel = ((AppDelegate *)[UIApplication sharedApplication].delegate).userModel;
+//        UserModel *userModel = ((AppDelegate *)[UIApplication sharedApplication].delegate).userModel;
         
         [[LYCommonHttpTool shareInstance] getTokenByqiNiuWithParams:nil block:^(NSString *result) {
             _qiniu_token=result;
