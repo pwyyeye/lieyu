@@ -14,6 +14,7 @@
 #import <RongIMKit/RCIM.h>
 #import "RCMessageContent.h"
 #import "RCIM.h"
+#import "barChatroomMoreView.h"
 
 /**
  *  文本cell标示
@@ -37,6 +38,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"rcGiftMessageCellIndenti
     NSString *_userId_RM;
     BOOL _isGroupManage;
     BOOL _notificationStatus;//通知状态
+    barChatroomMoreView *_barcahtMoreView;//选项菜单
 }
 
 @property(assign,nonatomic) BOOL isShow;//顶部
@@ -92,33 +94,28 @@ static NSString *const rcGiftMessageCellIndentifier = @"rcGiftMessageCellIndenti
     
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
     UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(10, 0, 44, 44)];
-    [button setImage:[UIImage imageNamed:@"more1"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"more2"] forState:UIControlStateNormal];
     [view addSubview:button];
     [button addTarget:self action:@selector(moreAct:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:view];
     self.navigationItem.rightBarButtonItem = item;
     
-    /*
-     UIButton *right = [UIButton buttonWithType:UIButtonTypeCustom];
-     right.frame = CGRectMake(0, 0, 30, 50);
-     [right addTarget:self action:@selector(checkAllPeople) forControlEvents:UIControlEventTouchUpInside];
-     [right setImage:[UIImage imageNamed:@"列表"] forState:(UIControlStateNormal)];
-     //    right.titleLabel.font = [UIFont systemFontOfSize:13];
-     //    [right setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:right];
-     
-     UIButton *quitBut = [UIButton buttonWithType:UIButtonTypeCustom];
-     quitBut.frame = CGRectMake(0, 0,30, 50);
-     [quitBut addTarget:self action:@selector(quitFromChatRoom) forControlEvents:UIControlEventTouchUpInside];
-     //    [quitBut setTitle:@"老司机列表" forState:UIControlStateNormal];
-     [quitBut setImage:[UIImage imageNamed:@"退出"] forState:(UIControlStateNormal)];
-     //    [quitBut setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-     UIBarButtonItem *quitItem = [[UIBarButtonItem alloc]initWithCustomView:quitBut];
-     self.navigationItem.rightBarButtonItems = @[quitItem,rightItem];
-     */
+ 
 }
 
 #pragma mark ---- 顶部按钮
+
+//-(void)moreAct:(id)sender {
+//    if (_isShow) {
+//        [_barcahtMoreView removeFromSuperview];
+//        _barcahtMoreView = nil;
+//    }
+//    _barcahtMoreView = [[[NSBundle mainBundle] loadNibNamed:@"barChatroomMoreView" owner:self options:nil] lastObject];
+//    _barcahtMoreView.frame = CGRectMake(SCREEN_WIDTH - 125, 64, 119, 149);
+//    _barcahtMoreView.backgroundColor = [UIColor clearColor];
+//    [self .view addSubview:_barcahtMoreView];
+//}
+
 - (void)moreAct:(id)sender{
     if (_isShow) {
         [KxMenu dismissMenu];
@@ -130,36 +127,34 @@ static NSString *const rcGiftMessageCellIndentifier = @"rcGiftMessageCellIndenti
     NSArray *menuItems =
     @[
       [KxMenuItem menuItem:@"老司机列表"
-                     image:[UIImage imageNamed:@"列表"]
+                     image:[UIImage imageNamed:@"chatPerson"]
                     target:self
                     action:@selector(checkAllPeople)],
       _notificationStatus?
       [KxMenuItem menuItem:@"关闭通知"
-                     image:[UIImage imageNamed:@"关闭通知"]
+                     image:[UIImage imageNamed:@"chatNotification"]
                     target:self
                     action:@selector(notificationChoose)]:[KxMenuItem menuItem:@"打开通知"
-                                                                         image:[UIImage imageNamed:@"打开通知"]
+                                                                         image:[UIImage imageNamed:@"chatNotification"]
                                                                         target:self
                                                                         action:@selector(notificationChoose)],
-      
       [KxMenuItem menuItem:@"退出群组"
-                     image:[UIImage imageNamed:@"退出"]
+                     image:[UIImage imageNamed:@"quitChat"]
                     target:self
                     action:@selector(quitFromGroup)]
-      
       ];
     for (KxMenuItem *item in menuItems) {
-        item.foreColor = [UIColor blackColor];
+        item.foreColor = [UIColor whiteColor];
     }
     //    KxMenuItem *first = menuItems[0];
     
     //    first.alignment = NSTextAlignmentCenter;
     
-    [KxMenu setTintColor:RGBA(246, 246, 246, 1)];
-    [KxMenu setTitleFont:[UIFont italicSystemFontOfSize:13]];
+    [KxMenu setTintColor:RGBA(72, 70, 70, 1)];
+    [KxMenu setTitleFont:[UIFont italicSystemFontOfSize:15]];
     
     [KxMenu showMenuInView:self.view
-                  fromRect:CGRectMake(SCREEN_WIDTH-75, 64, 100,0)
+                  fromRect:CGRectMake(SCREEN_WIDTH-90, 64, 129,0)
                  menuItems:menuItems];
 }
 

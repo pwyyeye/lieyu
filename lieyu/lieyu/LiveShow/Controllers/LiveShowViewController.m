@@ -662,24 +662,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     NSLog(@"%@", log);
     BOOL isrunning = [session isRunning];
     NSLog(@"%d", isrunning);
-    switch ([PLCameraStreamingSession cameraAuthorizationStatus]) {
-        case PLAuthorizationStatusAuthorized:
-            NSLog(@"已经获取授权");
-            break;
-        case PLAuthorizationStatusNotDetermined: {
-            [PLCameraStreamingSession requestCameraAccessWithCompletionHandler:^(BOOL granted) {
-                if (granted) {
-                    NSLog(@"再次获取授权");
-                } else {
-                    NSLog(@"没有获取授权");
-                }
-            }];
-        }
-            break;
-        default:
-            NSLog(@"授权");
-            break;
-    }
+   
 #if kReloadConfigurationEnable
     NSDate *now = [NSDate date];
     if (!self.keyTime) {

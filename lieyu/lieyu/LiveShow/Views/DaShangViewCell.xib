@@ -44,12 +44,12 @@
             </view>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="rki-Ua-e2f" firstAttribute="centerX" secondItem="Y9z-eC-GhI" secondAttribute="centerX" id="5O1-A1-VcA"/>
                 <constraint firstAttribute="trailing" secondItem="Kwj-E6-OH4" secondAttribute="trailing" constant="5" id="Jlj-2B-4kI"/>
                 <constraint firstItem="Kwj-E6-OH4" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="ONw-gG-pwD"/>
                 <constraint firstItem="CpP-Ag-k5Z" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="b51-AL-wsN"/>
                 <constraint firstAttribute="bottom" secondItem="rki-Ua-e2f" secondAttribute="bottom" constant="3" id="cy8-75-HOq"/>
                 <constraint firstItem="Y9z-eC-GhI" firstAttribute="top" secondItem="Kwj-E6-OH4" secondAttribute="bottom" constant="5" id="eVZ-eO-Zoi"/>
+                <constraint firstItem="Y9z-eC-GhI" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="f4j-KF-9XY"/>
                 <constraint firstItem="Kwj-E6-OH4" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="oYf-cJ-WTJ"/>
                 <constraint firstItem="rki-Ua-e2f" firstAttribute="top" secondItem="Y9z-eC-GhI" secondAttribute="bottom" constant="2" id="q16-aw-hW1"/>
                 <constraint firstItem="rki-Ua-e2f" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="t99-0G-ekb"/>

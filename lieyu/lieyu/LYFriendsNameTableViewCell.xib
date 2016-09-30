@@ -98,21 +98,11 @@
                             <constraint firstAttribute="height" constant="21" id="nXF-3b-B6K"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1111111" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRO-08-04L">
-                        <constraints>
-                            <constraint firstAttribute="width" constant="40" id="1Dt-66-Ohn"/>
-                            <constraint firstAttribute="height" constant="17" id="YrJ-Dc-G01"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" red="0.69803921570000005" green="0.14901960780000001" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="w85-Wu-Jkm" firstAttribute="leading" secondItem="luc-9F-P2m" secondAttribute="trailing" constant="8" id="4Ys-5i-ROP"/>
                     <constraint firstItem="pH5-Po-Wwa" firstAttribute="leading" secondItem="mUG-zY-dHD" secondAttribute="trailing" constant="10" id="6Ug-AU-1wx"/>
                     <constraint firstItem="luc-9F-P2m" firstAttribute="top" secondItem="pH5-Po-Wwa" secondAttribute="bottom" constant="5" id="73s-LP-wYE"/>
-                    <constraint firstItem="tRO-08-04L" firstAttribute="top" secondItem="ssQ-3f-wRw" secondAttribute="bottom" constant="3" id="7nR-5C-NtK"/>
                     <constraint firstItem="luc-9F-P2m" firstAttribute="leading" secondItem="mUG-zY-dHD" secondAttribute="trailing" constant="8" id="ADn-Dl-lWm"/>
                     <constraint firstItem="mUG-zY-dHD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="D2S-PB-lbF"/>
                     <constraint firstItem="ssQ-3f-wRw" firstAttribute="centerX" secondItem="mUG-zY-dHD" secondAttribute="centerX" id="GIc-1g-N9N"/>
@@ -120,7 +110,6 @@
                     <constraint firstItem="FEG-lw-pcv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="7" id="HtG-7k-6eO"/>
                     <constraint firstItem="lM4-4y-ffP" firstAttribute="centerY" secondItem="pH5-Po-Wwa" secondAttribute="centerY" id="Kfn-lS-Ddb"/>
                     <constraint firstItem="FEG-lw-pcv" firstAttribute="top" secondItem="7Rw-eO-sKU" secondAttribute="bottom" id="OXT-yJ-6be"/>
-                    <constraint firstItem="tRO-08-04L" firstAttribute="centerX" secondItem="ssQ-3f-wRw" secondAttribute="centerX" id="QvD-Bu-3rL"/>
                     <constraint firstItem="pH5-Po-Wwa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="SAK-0Z-MSb"/>
                     <constraint firstItem="luc-9F-P2m" firstAttribute="top" secondItem="pH5-Po-Wwa" secondAttribute="bottom" constant="8" id="U3g-ed-wTL"/>
                     <constraint firstAttribute="trailing" secondItem="lM4-4y-ffP" secondAttribute="trailing" constant="8" id="YpK-Iw-Kmq"/>
@@ -142,15 +131,15 @@
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
-                        <exclude reference="e3o-98-IHy"/>
-                        <exclude reference="ADn-Dl-lWm"/>
-                        <exclude reference="U3g-ed-wTL"/>
-                        <exclude reference="i5T-JJ-Xlc"/>
                         <exclude reference="HtG-7k-6eO"/>
                         <exclude reference="OXT-yJ-6be"/>
                         <exclude reference="c2Y-AQ-Lhv"/>
                         <exclude reference="mqS-7C-HcM"/>
                         <exclude reference="tf2-KC-5iH"/>
+                        <exclude reference="ADn-Dl-lWm"/>
+                        <exclude reference="U3g-ed-wTL"/>
+                        <exclude reference="i5T-JJ-Xlc"/>
+                        <exclude reference="e3o-98-IHy"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
@@ -160,7 +149,6 @@
                 <outlet property="btn_name" destination="pH5-Po-Wwa" id="pcs-dU-JVE"/>
                 <outlet property="btn_topic" destination="dMI-Vc-28l" id="NPN-SO-J5E"/>
                 <outlet property="dashangImageView" destination="ssQ-3f-wRw" id="tny-wR-n7p"/>
-                <outlet property="dashangNumLabel" destination="tRO-08-04L" id="uLh-A0-Zkg"/>
                 <outlet property="label_constellation" destination="luc-9F-P2m" id="4m4-iv-rYT"/>
                 <outlet property="label_constellation_constraint_width" destination="n0S-eC-rkf" id="yMl-9H-kgu"/>
                 <outlet property="label_content" destination="FEG-lw-pcv" id="f9C-Hy-cXB"/>

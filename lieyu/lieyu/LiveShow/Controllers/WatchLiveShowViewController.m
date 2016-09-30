@@ -31,6 +31,7 @@
 #import "LYFriendsHttpTool.h"
 #import "LYYUHttpTool.h"
 #import "LYMyFriendDetailViewController.h"
+#import "MineYubiViewController.h"
 
 #import "LYMessageCell.h"
 #import "LYTextMessageCell.h"
@@ -392,22 +393,22 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 }
 
 -(void)sendGiftButtonAction:(UIButton *)sender{
-    _dataArr = @[@{@"giftIamge":@"rose.png",@"giftName":@"玫瑰花",@"giftValue":@"10娱币"},
-                 @{@"giftIamge":@"gold.png",@"giftName":@"元宝",@"giftValue":@"2500娱币"},
-                 @{@"giftIamge":@"biantai.png",@"giftName":@"风油精",@"giftValue":@"50娱币"},
-                 @{@"giftIamge":@"apple.png",@"giftName":@"Iphone10",@"giftValue":@"6666娱币"},
-                 @{@"giftIamge":@"book.png",@"giftName":@"金瓶梅",@"giftValue":@"100娱币"},
-                 @{@"giftIamge":@"watch.png",@"giftName":@"百达翡丽",@"giftValue":@"39999娱币"},
-                 @{@"giftIamge":@"chicken.png",@"giftName":@"烤鸡",@"giftValue":@"200娱币"},
-                 @{@"giftIamge":@"airport.png",@"giftName":@"私人飞机",@"giftValue":@"222222娱币"},
-                 @{@"giftIamge":@"moreRose.png",@"giftName":@"玫瑰",@"giftValue":@"520娱币"},
-                 @{@"giftIamge":@"ring.png",@"giftName":@"钻戒",@"giftValue":@"8888娱币"},
-                 @{@"giftIamge":@"champagne.png",@"giftName":@"香槟",@"giftValue":@"680娱币"},
-                 @{@"giftIamge":@"car.png",@"giftName":@"跑车",@"giftValue":@"88888娱币"},
-                 @{@"giftIamge":@"lafei.png",@"giftName":@"拉菲",@"giftValue":@"1280娱币"},
-                 @{@"giftIamge":@"ship.png",@"giftName":@"游艇",@"giftValue":@"131400娱币"},
-                 @{@"giftIamge":@"huangjia.png",@"giftName":@"皇家礼炮",@"giftValue":@"1880娱币"},
-                 @{@"giftIamge":@"house.png",@"giftName":@"别墅",@"giftValue":@"334400娱币"}
+    _dataArr = @[@{@"giftIamge":@"rose.png",@"giftName":@"玫瑰花",@"giftValue":@"10"},
+                 @{@"giftIamge":@"gold.png",@"giftName":@"元宝",@"giftValue":@"2500"},
+                 @{@"giftIamge":@"biantai.png",@"giftName":@"风油精",@"giftValue":@"50"},
+                 @{@"giftIamge":@"apple.png",@"giftName":@"Iphone10",@"giftValue":@"6666"},
+                 @{@"giftIamge":@"book.png",@"giftName":@"金瓶梅",@"giftValue":@"100"},
+                 @{@"giftIamge":@"watch.png",@"giftName":@"百达翡丽",@"giftValue":@"39999"},
+                 @{@"giftIamge":@"chicken.png",@"giftName":@"烤鸡",@"giftValue":@"200"},
+                 @{@"giftIamge":@"airport.png",@"giftName":@"私人飞机",@"giftValue":@"222222"},
+                 @{@"giftIamge":@"moreRose.png",@"giftName":@"玫瑰",@"giftValue":@"520"},
+                 @{@"giftIamge":@"ring.png",@"giftName":@"钻戒",@"giftValue":@"8888"},
+                 @{@"giftIamge":@"champagne.png",@"giftName":@"香槟",@"giftValue":@"680"},
+                 @{@"giftIamge":@"car.png",@"giftName":@"跑车",@"giftValue":@"88888"},
+                 @{@"giftIamge":@"lafei.png",@"giftName":@"拉菲",@"giftValue":@"1280"},
+                 @{@"giftIamge":@"ship.png",@"giftName":@"游艇",@"giftValue":@"131400"},
+                 @{@"giftIamge":@"huangjia.png",@"giftName":@"皇家礼炮",@"giftValue":@"1880"},
+                 @{@"giftIamge":@"house.png",@"giftName":@"别墅",@"giftValue":@"334400"}
                  ];
     NSString *img = nil;
     for (NSDictionary *dic in _dataArr) {
@@ -415,28 +416,64 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
             img = dic[@"giftIamge"];
         }
     }
-//    NSDictionary *dictGift = @{@"amount":_giftValue,
-//                               @"toUserid":_hostUser[@"id"],
-//                               @"rid":@"live",
-//                               @"businessid":_chatRoomId};
-//    __weak typeof(self) weakSelf = self;
-//    [LYFriendsHttpTool daShangWithParms:dictGift complete:^(NSDictionary *dic) {
-//        LYGiftMessage *giftMessage = [[LYGiftMessage alloc]init];
-//        giftMessage.type = @"1";
-//        giftMessage.gift.giftId = _giftValue;
-//        [weakSelf sendMessage:giftMessage pushContent:@""];
-//        [WeakSelf showGiftIamgeAnmiationWith:img];
-//    }];
-    LYGiftMessage *giftMessage = [[LYGiftMessage alloc]init];
-    giftMessage.type = @"1";
-    GiftContent *giftContent = [[GiftContent alloc] init];
-    giftContent.giftId = _giftValue;
-    giftMessage.gift = giftContent;
-    [self sendMessage:giftMessage pushContent:@""];
+    NSDictionary *dictGift = @{@"amount":_giftValue,
+                               @"toUserid":_hostUser[@"id"],
+                               @"rid":@"2",
+                               @"businessid":_chatRoomId};
+    __weak typeof(self) weakSelf = self;
+    [LYFriendsHttpTool daShangWithParms:dictGift complete:^(NSDictionary *dic) {
+        NSInteger temp = [dic[@"errorcode"] integerValue];
+        switch (temp) {
+            case 1://成功
+            {
+                LYGiftMessage *giftMessage = [[LYGiftMessage alloc]init];
+                giftMessage.type = @"1";
+                GiftContent *giftContent = [[GiftContent alloc] init];
+                giftContent.giftId = _giftValue;
+                giftMessage.gift = giftContent;
+                [self sendMessage:giftMessage pushContent:@""];
+                [weakSelf showGiftIamgeAnmiationWith:img];
+            }
+                break;
+            case 11:
+                [MyUtil showMessage:@"请指定礼物"];
+                break;
+            case 12:
+                [MyUtil showMessage:@"请指定对象"];
+                break;
+            case 14:
+                [MyUtil showMessage:@"娱币金额不能为空"];
+                break;
+            case 15:
+                [MyUtil showMessage:@"娱币金额不能小于1"];
+                break;
+            case 16:
+                [MyUtil showMessage:@"无此用户"];
+                break;
+            case 17:
+                [self vaconeyAmount];//娱币不足
+                break;
+            default:
+                break;
+        }
+    }];
     [_daShangView removeFromSuperview];
     _daShangView = nil;
 }
 
+#pragma mark -- 娱币不足是否充值
+-(void) vaconeyAmount{
+    UIAlertController *alterVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"娱币不足是否充值？" preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:nil];
+    __weak typeof (self) WeakSelf = self;
+    UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+        MineYubiViewController *minrYUbIVC  = [[MineYubiViewController alloc] init];
+        [WeakSelf.navigationController pushViewController:minrYUbIVC animated:YES];
+    }];
+    [alterVC addAction:cancelAction];
+    [alterVC addAction:sureAction];
+    [self presentViewController:alterVC animated:YES completion:nil];
+}
 -(void) showGiftIamgeAnmiationWith:(NSString *) giftImg{
     UIImage *img = [UIImage imageNamed:giftImg];
     UIImageView *giftIamge = [[UIImageView alloc] initWithImage:img];

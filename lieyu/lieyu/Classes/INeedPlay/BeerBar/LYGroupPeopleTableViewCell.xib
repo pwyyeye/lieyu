@@ -15,27 +15,25 @@
                 <frame key="frameInset" width="394" height="54"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="科比" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lfp-mb-6la">
-                        <frame key="frameInset" minX="76" minY="7" width="70" height="19"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="科比" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lfp-mb-6la">
                         <constraints>
-                            <constraint firstAttribute="width" constant="70" id="Au0-ek-aNW"/>
+                            <constraint firstAttribute="width" constant="73" id="Au0-ek-aNW"/>
                             <constraint firstAttribute="height" constant="19" id="UJi-NP-hzY"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="天蝎" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yqp-TY-qz0">
-                        <frame key="frameInset" minX="50" minY="30" width="36" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="天蝎座" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yqp-TY-qz0">
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="37X-0B-bqA"/>
-                            <constraint firstAttribute="width" constant="36" id="KHE-ie-gBS"/>
+                            <constraint firstAttribute="width" constant="43" id="KHE-ie-gBS"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="篮球" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4vQ-jT-T0x">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="篮球" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4vQ-jT-T0x">
                         <constraints>
                             <constraint firstAttribute="width" constant="65" id="oz0-0u-bJn"/>
                             <constraint firstAttribute="height" constant="17" id="vHG-Qq-u46"/>
@@ -56,7 +54,7 @@
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="管理员" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2LM-Fq-DKm">
                         <constraints>
-                            <constraint firstAttribute="width" constant="21" id="cBk-eE-92y"/>
+                            <constraint firstAttribute="width" constant="24" id="cBk-eE-92y"/>
                             <constraint firstAttribute="height" constant="9" id="q70-IH-ywt"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="7"/>

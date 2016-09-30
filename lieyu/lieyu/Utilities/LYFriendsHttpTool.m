@@ -478,7 +478,7 @@
         if ([response[@"errorcode"] isEqualToString:@"1"]) {
             complete(response);
         } else {
-            [MyUtil showMessage:@"打赏失败"];
+            complete(response);
         }
     } failure:^(NSError *err) {
         

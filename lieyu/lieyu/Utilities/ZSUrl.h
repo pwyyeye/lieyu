@@ -20,7 +20,8 @@
 //#define RUIQIU_SERVER @""
 
 //直播的服务器
-#define LY_LIVE_SERVER @"http://10.17.114.61/lieyu/"
+//#define LY_LIVE_SERVER @"http://10.17.114.61/lieyu/"
+#define LY_LIVE_SERVER @"http://121.40.229.133:9080/lieyu/"
 
 //分享的
 #define LY_LIVE_share @"liveroom/live?liveChatId="

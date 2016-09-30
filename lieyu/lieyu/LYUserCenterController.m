@@ -137,7 +137,7 @@ static NSString * const reuseIdentifier = @"userCenterCell";
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
-    self.title=@"我";
+    self.title=@"我的";
     [self loadHeaderViewBadge];
     [self getGoodsNum];
 }

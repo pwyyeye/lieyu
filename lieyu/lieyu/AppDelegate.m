@@ -228,8 +228,6 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
     //for log
     [UMessage setLogEnabled:NO];
     
-    
-    
     NSString *username=[USER_DEFAULT objectForKey:@"username"];
     NSString *password=[USER_DEFAULT objectForKey:@"pass"];
     NSString *openID = [[NSUserDefaults standardUserDefaults] objectForKey:@"OPENIDSTR"];
