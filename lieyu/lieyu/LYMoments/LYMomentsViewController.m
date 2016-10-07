@@ -126,7 +126,7 @@
         _messageButton.layer.cornerRadius = _messageButton.frame.size.height / 2;
         _messageButton.layer.masksToBounds = YES;
         [_messageButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
-        [_messageButton setTitle:[NSString stringWithFormat:@"%ld条新消息",_results.integerValue] forState:(UIControlStateNormal)];
+        [_messageButton setTitle:[NSString stringWithFormat:@"%@条新消息",_results] forState:(UIControlStateNormal)];
         [_messageButton addTarget:self action:@selector(messageButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
         _messageButton.backgroundColor = RGB(96, 96, 96);
         headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 187 / 375 + 50);

@@ -26,6 +26,7 @@
 #import "DMHeartFlyView.h"
 #import "AudienceCell.h"
 
+#import "LYUserHttpTool.h"
 #import "LYFriendsHttpTool.h"
 #import "LYYUHttpTool.h"
 #import "LYMyFriendDetailViewController.h"
@@ -629,6 +630,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     NSString *log = @"Buffer is full";
     NSLog(@"%@", log);
 }
+
 - (void)streamingSessionSendingBufferFillDidLowerThanLowThreshold:(id)session
 {
     NSString *log = @"Buffer is lower";
@@ -761,11 +763,18 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         imgStr = [MyUtil getQiniuUrl:chatuser.avatar_img width:0 andHeight:0];
     }
     [_anchorDetailView.anchorIcon sd_setImageWithURL:[NSURL URLWithString:imgStr]];
-    //    if ([_hostUser[@"gender"] isEqualToString:@"0"]) {
-    //        _anchorDetailView.genderIamge.image=[UIImage imageNamed:@"woman"];
-    //    }else{
-    //        _anchorDetailView.genderIamge.image=[UIImage imageNamed:@"manIcon"];
-    //    }
+    if (chatuser.gender == 0) {
+        _anchorDetailView.genderIamge.image=[UIImage imageNamed:@"woman"];
+    }else{
+        _anchorDetailView.genderIamge.image=[UIImage imageNamed:@"manIcon"];
+    }
+    
+    NSString *astro = [MyUtil getAstroWithBirthday:chatuser.birthday];
+    [_anchorDetailView.starlabel setText:astro];
+    
+    NSString *tagText = chatuser.tag;
+    [_anchorDetailView.tagLabel setText:tagText];
+    
     [self.view addSubview:_anchorDetailView];
     [self.view bringSubviewToFront:_anchorDetailView];
     
@@ -786,7 +795,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 
 
 -(void)anchorFocusButtonAction:(UIButton *) sender{
-    NSDictionary *dict = @{@"followid":[NSString stringWithFormat:@"%ld",sender.tag]};
+    NSDictionary *dict = @{@"followid":[NSString stringWithFormat:@"%ld",(long)sender.tag]};
     if (sender.tag == 1) {//不能取消关注
         [LYFriendsHttpTool unFollowFriendWithParms:dict complete:^(NSDictionary *dict) {
             sender.titleLabel.text = @"关注";
@@ -899,20 +908,17 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         RCMessageBaseCell *cell = nil;
         if ([messageContent isMemberOfClass:[RCTextMessage class]]) {
             LYTextMessageCell *__cell = [collectionView dequeueReusableCellWithReuseIdentifier:rctextCellIndentifier forIndexPath:indexPath];
-//            __cell.isFullScreenMode = YES;
             [__cell setDataModel:model];
             [__cell setDelegate:self];
             cell = __cell;
         } else if ([messageContent isMemberOfClass:[RCInformationNotificationMessage class]]){
             LYTipMessageCell *__cell = [collectionView dequeueReusableCellWithReuseIdentifier:rcTipMessageCellIndentifier forIndexPath:indexPath];
-//            __cell.isFullScreenMode = YES;
             [__cell setDataModel:model];
             [__cell setDelegate:self];
             cell = __cell;
         }
         else if ([messageContent isMemberOfClass:[LYGiftMessage class]]){
             LYGiftMessageCell *__cell = [collectionView dequeueReusableCellWithReuseIdentifier:rcGiftMessageCellIndentifier forIndexPath:indexPath];
-//            __cell.isFullScreenMode = YES;
             [__cell setDataModel:model];
             [__cell setDelegate:self];
 
@@ -934,11 +940,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     }
     return YES;
 }
--(void)douniwan:(UITapGestureRecognizer *) gesture{
-    NSLog(@"切FB啊");
-//    ChatUseres *user = _dataArray[indexPath.row];
-//    [self showDetailWith:user];
-}
 
 //显示点赞
 -(void)showTheLove{
@@ -952,7 +953,15 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 #pragma mark -- 点击聊天室成员
 -(void)detailViewShow:(UIButton *)sender{
     ChatUseres *user = _dataArray[sender.tag];
-    [self showWatchDetailWith:user];
+    NSDictionary *dictID = @{@"userid":[NSString stringWithFormat:@"%ld",user.id]};
+    __weak typeof(self) weakSlef = self;
+    [LYUserHttpTool GetUserInfomationWithID:dictID complete:^(find_userInfoModel *model) {
+        user.gender = model.gender;
+        user.birthday = model.birthday;
+        user.tag = model.tag;
+        [weakSlef showWatchDetailWith:user];
+    }];
+    
 }
 
 

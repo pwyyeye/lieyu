@@ -322,10 +322,10 @@ static NSString *liveShowListID = @"liveShowListID";
 - (void)getMoreData{
     if (_friendsBtnSelect) {
         _currentHotPage += 1;
-        [self getDataWithType:@"hot" AndPage:[NSString stringWithFormat:@"%ld", _currentHotPage]];
+        [self getDataWithType:@"hot" AndPage:[NSString stringWithFormat:@"%ld", (long)_currentHotPage]];
     } else{
         _currentRencentPage += 1;
-        [self getDataWithType:@"recent" AndPage:[NSString stringWithFormat:@"%ld", _currentRencentPage]];
+        [self getDataWithType:@"recent" AndPage:[NSString stringWithFormat:@"%ld", (long)_currentRencentPage]];
     }
 }
 

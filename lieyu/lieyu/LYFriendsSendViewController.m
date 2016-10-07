@@ -69,8 +69,10 @@
     self.fodderArray = [[NSMutableArray alloc]init];
     self.imageViewArray = [[NSMutableArray alloc]init];
     self.shangchuanString = [[NSMutableString alloc]init];
+    
 //    self.location = [[NSMutableString alloc]init];
 //    self.city = [[NSMutableString alloc]init];
+    
     self.keysArray = [[NSMutableArray alloc]init];
     
     [IQKeyboardManager sharedManager].enable = NO;

@@ -28,6 +28,7 @@
 #import "DMHeartFlyView.h"
 #import "AudienceCell.h"
 
+#import "LYUserHttpTool.h"
 #import "LYFriendsHttpTool.h"
 #import "LYYUHttpTool.h"
 #import "LYMyFriendDetailViewController.h"
@@ -635,7 +636,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 }
 
 #pragma mark -- 关注
--(void)foucsButtonAction: (UIButton *) sender{
+-(void)foucsButtonAction: (UIButton *) sender {
     NSInteger userid = [_hostUser[@"id"] integerValue];
     NSDictionary *dict = @{@"followid":[NSString stringWithFormat:@"%ld",userid]};
 //    if (sender.tag == 1) {//不能取消关注
@@ -701,11 +702,11 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         imgStr = [MyUtil getQiniuUrl:chatuser.avatar_img width:0 andHeight:0];
     }
     [_anchorDetailView.anchorIcon sd_setImageWithURL:[NSURL URLWithString:imgStr]];
-//    if ([_hostUser[@"gender"] isEqualToString:@"0"]) {
-//        _anchorDetailView.genderIamge.image=[UIImage imageNamed:@"woman"];
-//    }else{
-//        _anchorDetailView.genderIamge.image=[UIImage imageNamed:@"manIcon"];
-//    }
+    if (chatuser.gender == 0) {
+        _anchorDetailView.genderIamge.image=[UIImage imageNamed:@"woman"];
+    }else{
+        _anchorDetailView.genderIamge.image=[UIImage imageNamed:@"manIcon"];
+    }
     [self.view addSubview:_anchorDetailView];
     [self.view bringSubviewToFront:_anchorDetailView];
     
@@ -727,7 +728,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 
 
 -(void)anchorFocusButtonAction:(UIButton *) sender{
-    NSDictionary *dict = @{@"followid":[NSString stringWithFormat:@"%ld",sender.tag]};
+    NSDictionary *dict = @{@"followid":[NSString stringWithFormat:@"%ld",(long)sender.tag]};
     if (sender.tag == 1) {//不能取消关注
         [LYFriendsHttpTool unFollowFriendWithParms:dict complete:^(NSDictionary *dict) {
             sender.titleLabel.text = @"关注";
@@ -742,7 +743,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 
 -(void)mainViewButtonAction:(UIButton *) sender{
     LYMyFriendDetailViewController *myFriendVC = [[LYMyFriendDetailViewController  alloc] init];
-    myFriendVC.userID = [NSString stringWithFormat:@"%ld", sender.tag];
+    myFriendVC.userID = [NSString stringWithFormat:@"%ld", (long)sender.tag];
     [self.navigationController pushViewController:myFriendVC animated:YES];
     [self.player stop];//关闭播放器
 }
@@ -836,7 +837,14 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 #pragma mark -- 点击聊天室成员
 -(void)detailViewShow:(UIButton *)sender{
     ChatUseres *user = _dataArray[sender.tag];
-    [self showWatchDetailWith:user];
+    NSDictionary *dictID = @{@"userid":[NSString stringWithFormat:@"%ld",user.id]};
+    __weak typeof(self) weakSlef = self;
+    [LYUserHttpTool GetUserInfomationWithID:dictID complete:^(find_userInfoModel *model) {
+        user.gender = model.gender;
+        user.birthday = model.birthday;
+        user.tag = model.tag;
+        [weakSlef showWatchDetailWith:user];
+    }];
 }
 
 /* 定义每个UICollectionView 的大小 */

@@ -15,5 +15,8 @@
 @property (nonatomic, strong) NSString *usernick;
 @property (nonatomic, strong) NSString *avatar_img;
 @property (nonatomic, assign) NSInteger id;
+@property (nonatomic, strong) NSString *birthday;
+@property (nonatomic, strong) NSString *tag;//
+@property (nonatomic, assign) int gender;
 
 @end

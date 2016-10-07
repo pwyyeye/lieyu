@@ -561,7 +561,7 @@
                 allCommentCell.label_commentCount.text = @"暂无评论";
                 return allCommentCell;
             }
-            int commentCount = 0;
+            NSInteger commentCount = 0;
             commentCount = recentM.commentList.count;
             if(recentM.commentList.count >= 5) commentCount = 5;
             if(indexPath.row == commentCount + 4) {//所有评论
@@ -1528,7 +1528,6 @@
     
     _bigView = [[UIView alloc]init];
     _bigView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    //NSLog(@"---->%@",NSStringFromCGRect(_bigView.frame));
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(bigViewGes)];
     [_bigView addGestureRecognizer:tapGes];
     [window addSubview:_bigView];
@@ -1555,13 +1554,6 @@
         FriendsCommentModel *commentM = recentM.commentList[_indexRow - 4];
         _commentView.textField.placeholder = [NSString stringWithFormat:@"回复%@",commentM.nickName];
     }
-    //  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBorderApearce:) name:UIKeyboardAnimation object:nil];
-    
-    //    [UIView animateWithDuration:.25 animations:^{
-    //        _commentView.frame = CGRectMake(0, SCREEN_HEIGHT - 244 - 59, SCREEN_WIDTH, 49);
-    //    } completion:^(BOOL finished) {
-    //
-    //    }];
     
     [_commentView.textField addObserver:self forKeyPath:@"text" options:(NSKeyValueObservingOptionNew) context:nil];
 }
@@ -1618,7 +1610,6 @@
         [UIView animateWithDuration:.1 animations:^{
             CGFloat y = SCREEN_HEIGHT - CGRectGetHeight(_commentView.frame) - CGRectGetHeight(_emojiView.frame);
             _commentView.frame = CGRectMake(0,y , CGRectGetWidth(_commentView.frame), CGRectGetHeight(_commentView.frame));
-            //        NSLog(@"----->%@",NSStringFromCGRect(_commentView.frame));
         }];
         if (_commentView.textField.text.length) {
             [_emojiView.sendBtn setBackgroundColor:RGBA(10, 96, 255, 1)];
@@ -1664,8 +1655,6 @@
     [_bigView removeFromSuperview];
     [textField endEditing:YES];
     if(!_commentView.textField.text.length) return NO;
-    
-    //    defaultComment = _commentView.textField.text;
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     FriendsRecentModel *recentM = nil;
     NSString *toUserId = nil;
