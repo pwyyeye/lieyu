@@ -273,25 +273,12 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(notice:) name:@"kobe24" object:nil];
     
-    [center addObserver:self selector:@selector(stopLiveNow) name:UIApplicationWillResignActiveNotification object:nil];
-    [center addObserver:self selector:@selector(startLiveNow) name:UIApplicationDidBecomeActiveNotification object:nil];
+//    [center addObserver:self selector:@selector(stopLiveNow) name:UIApplicationWillResignActiveNotification object:nil];
+//    [center addObserver:self selector:@selector(startLiveNow) name:UIApplicationDidBecomeActiveNotification object:nil];
     
     [IQKeyboardManager sharedManager].enable = NO;
     [IQKeyboardManager sharedManager].isAdd = YES;
     
-}
-
--(void)stopLiveNow{
-//    dispatch_sync(self.sessionQueue, ^{
-//        [self.session destroy];
-//    });
-//    self.session = nil;
-//    self.sessionQueue = nil;
-}
-
--(void)startLiveNow{
-//    [self initPLplayer];
-//    [self beginLiveShow];
 }
 
 -(void)notice:(NSNotification *)sender{
@@ -327,6 +314,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 -(void)livetimerUpdataAction{
     NSDictionary *dictionary = @{@"chatNum":[NSString stringWithFormat:@"%d",_takeNum],@"liveChatId":_chatRoomId};
     [self.dataArray removeAllObjects];
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [LYFriendsHttpTool requestListWithParms:dictionary complete:^(NSDictionary *dict) {
         if ([dict valueForKey:@"total"]) {
             _userView.numberLabel.text = [NSString stringWithFormat:@"%@",dict[@"total"]];
@@ -336,6 +324,11 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         }
         if ([dict valueForKey:@"users"]) {
             self.dataArray = dict[@"users"];
+            for (ChatUseres *model  in _dataArray) {
+                if (model.id == app.userModel.userid) {
+                    [_dataArray removeObject:model];
+                }
+            }
         }
         [_audienceCollectionView reloadData];
     }];
@@ -958,7 +951,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [LYUserHttpTool GetUserInfomationWithID:dictID complete:^(find_userInfoModel *model) {
         user.gender = model.gender;
         user.birthday = model.birthday;
-        user.tag = model.tag;
+        user.tag = [NSString stringWithFormat:@"%@",model.tags[0]];
         [weakSlef showWatchDetailWith:user];
     }];
     
