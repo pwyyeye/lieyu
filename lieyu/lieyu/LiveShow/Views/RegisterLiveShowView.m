@@ -263,7 +263,7 @@
 //    NSString *time13 = [NSString stringWithFormat:@"%f",a];
 //    NSString *times = [time13 substringToIndex:13];
 //    _roomId =  [NSString stringWithFormat:@"%d%@", app.userModel.userid,times];
-    NSString *liveStr = [NSString stringWithFormat:@"%@%@%@",LY_LIVE_SERVER,LY_LIVE_share,_roomId];
+    NSString *liveStr = [NSString stringWithFormat:@"%@%@%@",LY_SERVER,LY_LIVE_share,_roomId];
      UMSocialUrlResource *urlResource = [[UMSocialUrlResource alloc] initWithSnsResourceType:UMSocialUrlResourceTypeMusic url:liveStr];
      switch (_shareType) {
      case 0://分享微信好友

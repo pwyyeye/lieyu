@@ -301,7 +301,7 @@
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [app startLoading];
     
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_MY_ZSJL_DEL baseURL:RUIQIU_SERVER params:params success:^(id response) {
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_MY_ZSJL_DEL baseURL:LY_SERVER params:params success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
         if ([code isEqualToString:@"success"]) {
@@ -1699,7 +1699,7 @@
     AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);
     [app startLoading];
     NSString *ss = [NSString stringWithFormat:@"%@?userId=%@",LY_GET_YUKEBANG,[dict objectForKey:@"SEM_LOGIN_TOKEN"]];
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:ss baseURL:RUIQIU_SERVER params:dict success:^(id response) {
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:ss baseURL:LY_SERVER params:dict success:^(id response) {
         NSString *errorCode = [response objectForKey:@"errorcode"];
         if ([errorCode isEqualToString:@"success"]) {
             NSArray *yuUser = [CustomerModel mj_objectArrayWithKeyValuesArray:[[response objectForKey:@"data"] objectForKey:@"groupList"]];
@@ -1725,7 +1725,7 @@
 + (void)lyGetYukebangQRCodeWithParams:(NSDictionary *)dict complete:(void (^)(NSString *))complete{
     AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);
     [app startLoading];
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_GET_YUKEBANGQRCODE baseURL:RUIQIU_SERVER params:dict success:^(id response) {
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_GET_YUKEBANGQRCODE baseURL:LY_SERVER params:dict success:^(id response) {
         NSString *errorCode = [response objectForKey:@"errorcode"];
         if ([errorCode isEqualToString:@"success"]) {
             complete([[response objectForKey:@"data"] objectForKey:@"shareUrl"]);
@@ -1759,7 +1759,7 @@
 + (void)lyRecommendFriendsWithParams:(NSDictionary *)dict complete:(void(^)(NSArray *dataList))complete{
     AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);
     [app startLoading];
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_RECOMMEND_FRIEND baseURL:RUIQIU_SERVER params:dict success:^(id response) {
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_RECOMMEND_FRIEND baseURL:LY_SERVER params:dict success:^(id response) {
         NSString *errorCode = [response objectForKey:@"errorcode"];
         if ([errorCode isEqualToString:@"success"]) {
             NSArray *array = [[response objectForKey:@"data"] objectForKey:@"userlist"];
@@ -1779,7 +1779,7 @@
 + (void)lyFollowRecommendFriendsWithOarams:(NSDictionary *)dict complete:(void (^)(BOOL))complete{
     AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);
     [app startLoading];
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_FOLLOW_FRIENDS baseURL:RUIQIU_SERVER params:dict success:^(id response) {
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_FOLLOW_FRIENDS baseURL:LY_SERVER params:dict success:^(id response) {
         NSString *errorCode = [response objectForKey:@"errorcode"];
         if ([errorCode isEqualToString:@"success"]) {
             complete(YES);
@@ -1797,7 +1797,7 @@
 + (void)lyEnterCoinShopWithParams:(NSDictionary *)dict complete:(void (^)(NSString *))complete{
     AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);
     [app startLoading];
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_ENTER_COINSHOP baseURL:RUIQIU_SERVER params:dict success:^(id response) {
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_ENTER_COINSHOP baseURL:LY_SERVER params:dict success:^(id response) {
         NSString *errorCode = [response objectForKey:@"errorcode"];
         if ([errorCode isEqualToString:@"success"]) {
             complete([[response objectForKey:@"data"] objectForKey:@"url"]);

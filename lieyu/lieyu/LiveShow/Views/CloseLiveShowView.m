@@ -53,7 +53,7 @@ return nil;
     UIViewController *selfVC = [self getCurrentViewController];
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     CLLocation *location = app.userLocation;
-    NSString *liveStr = [NSString stringWithFormat:@"%@%@%@",LY_LIVE_SERVER,LY_LIVE_share,_chatRoomID];
+    NSString *liveStr = [NSString stringWithFormat:@"%@%@%@",LY_SERVER,LY_LIVE_share,_chatRoomID];
     UMSocialUrlResource *urlResource = [[UMSocialUrlResource alloc] initWithSnsResourceType:UMSocialUrlResourceTypeMusic url:liveStr];
     switch (sender.tag) {
         case 100://分享微信好友

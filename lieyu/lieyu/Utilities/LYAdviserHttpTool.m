@@ -54,7 +54,7 @@
 + (void)lyAddCollectWithParams:(NSDictionary *)params complete:(void (^)(BOOL))complete{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [app startLoading];
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_ADVISER_ADDCARE baseURL:RUIQIU_SERVER params:params success:^(id response) {
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_ADVISER_ADDCARE baseURL:LY_SERVER params:params success:^(id response) {
         NSString *errorCode = [response objectForKey:@"errorcode"];
         BOOL result;
         if ([errorCode isEqualToString:@"success"]) {
@@ -75,7 +75,7 @@
 + (void)lyDeleteCollectWithParams:(NSDictionary *)params complete:(void (^)(BOOL))complete{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [app startLoading];
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_ADVISER_DELCARE baseURL:RUIQIU_SERVER params:params success:^(id response) {
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_ADVISER_DELCARE baseURL:LY_SERVER params:params success:^(id response) {
         NSString *errorCode = [response objectForKey:@"errorcode"];
         BOOL result;
         if ([errorCode isEqualToString:@"success"]) {
@@ -114,7 +114,7 @@
 + (void)lyGetNewFansListWithParams:(NSDictionary *)params complete:(void (^)(NSArray *))complete{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [app startLoading];
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_NEWGET_FANSLIST baseURL:RUIQIU_SERVER params:params success:^(id response) {
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_NEWGET_FANSLIST baseURL:LY_SERVER params:params success:^(id response) {
         NSString *errorCode = [response objectForKey:@"errorcode"];
         if ([errorCode isEqualToString:@"success"]) {
             NSArray *dataList = [UserModel mj_objectArrayWithKeyValuesArray:[[response objectForKey:@"data"] objectForKey:@"fansList"]];
@@ -132,7 +132,7 @@
 + (void)lyGetNewFollowsListWithParams:(NSDictionary *)params complete:(void (^)(NSArray *))complete{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     [app startLoading];
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_NEWGET_FOLLOWLIST baseURL:RUIQIU_SERVER params:params success:^(id response) {
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_NEWGET_FOLLOWLIST baseURL:LY_SERVER params:params success:^(id response) {
         NSString *errorCode = [response objectForKey:@"errorcode"];
         if ([errorCode isEqualToString:@"success"]) {
             NSArray *dataList = [UserModel mj_objectArrayWithKeyValuesArray:[[response objectForKey:@"data"] objectForKey:@"followlist"]];

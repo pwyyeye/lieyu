@@ -282,7 +282,7 @@
 #pragma mark ----  直播
 //获取stream
 +(void)getStreamWithParms: (NSDictionary *)parms complete:(void(^)(NSDictionary *dict))complete failure:(void(^)(NSString *error))err{
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Live_getstream baseURL:LY_LIVE_SERVER params:parms success:^(id response) {
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Live_getstream baseURL:LY_SERVER params:parms success:^(id response) {
         if ([response[@"message"] isEqualToString:@"0"]) {
             complete(response[@"data"]);
         } else {
@@ -295,7 +295,7 @@
 }
 //开始直播
 +(void) beginToLiveShowWithParams:(NSDictionary *)params complete:(void(^)(NSDictionary *dict))complete{
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Live_beginLive baseURL:LY_LIVE_SERVER params:params success:^(id response) {
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Live_beginLive baseURL:LY_SERVER params:params success:^(id response) {
         if ([response[@"errorcode"] isEqualToString:@"success"]) {
             NSDictionary *dic = (NSDictionary *)response[@"data"];
             complete(dic);
@@ -310,7 +310,7 @@
 //获取直播列表
 +(void) getLiveShowlistWithParams:(NSDictionary *)params complete: (void (^)(NSArray *Arr)) complete{
     
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Live_getList baseURL:LY_LIVE_SERVER params:params success:^(id response) {
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Live_getList baseURL:LY_SERVER params:params success:^(id response) {
         NSArray *array = [LYLiveShowListModel mj_objectArrayWithKeyValuesArray:response[@"data"]];
         complete(array);
     } failure:^(NSError *err) {
@@ -321,7 +321,7 @@
 
 //进入直播间
 +(void) getLiveShowRoomWithParams:(NSDictionary *)params complete: (void (^)(NSDictionary *Arr))complete{
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Live_enter baseURL:LY_LIVE_SERVER params:params success:^(id response) {
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Live_enter baseURL:LY_SERVER params:params success:^(id response) {
 //        if ([response[@"message"] isEqualToString:@"return success!"]) {
             NSDictionary *dict = (NSDictionary *)response[@"data"];
             complete(dict);
@@ -336,7 +336,7 @@
 
 //结束直播
 +(void) closeLiveShowWithParams: (NSDictionary *)params complete : (void(^)(NSDictionary *dict))complete{
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Live_closeLive baseURL:LY_LIVE_SERVER params:params success:^(id response) {
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Live_closeLive baseURL:LY_SERVER params:params success:^(id response) {
         
     } failure:^(NSError *err) {
         NSLog(@"%@", [err localizedDescription]);
@@ -345,7 +345,7 @@
 
 //点赞
 +(void) watchLikeWithParms: (NSDictionary *) parms complete: (void(^)(NSDictionary *dict))complete {
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Live_like baseURL:LY_LIVE_SERVER params:parms success:^(id response) {
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Live_like baseURL:LY_SERVER params:parms success:^(id response) {
         
     } failure:^(NSError *err) {
         
@@ -354,7 +354,7 @@
 
 //请求人员列表
 +(void) requestListWithParms:(NSDictionary *) parms complete: (void(^)(NSDictionary *dict))complete{
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Live_requestlist baseURL:LY_LIVE_SERVER params:parms success:^(id response) {
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Live_requestlist baseURL:LY_SERVER params:parms success:^(id response) {
         if ([response[@"errorcode"] isEqualToString:@"success"]) {
             NSDictionary *dic = response[@"data"];
             if ([dic[@"roomUserList"] objectForKey:@"users"]) {
@@ -376,7 +376,7 @@
 
 //获取直播状态
 +(void) getLiveStatusWithParms:(NSDictionary *) parms complete: (void(^)(NSDictionary *dict))complete{
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Live_liveStatus baseURL:LY_LIVE_SERVER params:parms success:^(id response) {
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Live_liveStatus baseURL:LY_SERVER params:parms success:^(id response) {
         
         if ([response[@"errorcode"] isEqualToString:@"success"]) {
             NSDictionary *dic = response[@"data"];
@@ -390,7 +390,7 @@
 }
 #pragma mark --- 最新玩友列表和粉丝
 +(void) getfFriensGroupWithPrams: (NSDictionary *)prams complete: (void(^)(NSDictionary *dict)) complete{
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_friendsGroup baseURL:LY_LIVE_SERVER params:prams success:^(id response) {
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_friendsGroup baseURL:LY_SERVER params:prams success:^(id response) {
         if ([response[@"errorcode"] isEqualToString:@"success"]) {
             NSDictionary *tempDic = response[@"data"];
             if (![tempDic valueForKey:@"friendsList"]) {
@@ -430,7 +430,7 @@
 }
 
 +(void) getNewFansListWithParms: (NSDictionary *) parms complete: (void(^)(NSArray *Arr)) complete{
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_newFriendsList baseURL:LY_LIVE_SERVER params:parms success:^(id response) {
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_newFriendsList baseURL:LY_SERVER params:parms success:^(id response) {
         if ([response[@"errorcode"] isEqualToString:@"success"]) {
             NSDictionary *tempDic = response[@"data"];
             NSArray *newFriendsList = [FansModel mj_objectArrayWithKeyValuesArray:tempDic[@"newFansList"]];
@@ -445,7 +445,7 @@
 }
 #pragma mark --- 最新关注-取消关注
 +(void) followFriendWithParms:(NSDictionary *) parms complete: (void(^)(NSDictionary *dict))complete{
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_follow baseURL:LY_LIVE_SERVER params:parms success:^(id response) {
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_follow baseURL:LY_SERVER params:parms success:^(id response) {
         if ([response[@"errorcode"] isEqualToString:@"success"]) {
             NSDictionary *dic = response[@"data"];
             [MyUtil showMessage:@"关注成功"];
@@ -459,7 +459,7 @@
 }
 
 +(void) unFollowFriendWithParms:(NSDictionary *) parms complete: (void(^)(NSDictionary *dict))complete{
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Frienfs_Unfollow baseURL:LY_LIVE_SERVER params:parms success:^(id response) {
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Frienfs_Unfollow baseURL:LY_SERVER params:parms success:^(id response) {
         if ([response[@"errorcode"] isEqualToString:@"success"]) {
             NSDictionary *dic = response[@"data"];
             [MyUtil showMessage:@"取消关注成功"];
