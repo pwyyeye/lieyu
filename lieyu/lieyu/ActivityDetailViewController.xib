@@ -9,6 +9,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ActivityDetailViewController">
             <connections>
                 <outlet property="backButton" destination="4lJ-Yc-Y8f" id="pEq-kp-5od"/>
+                <outlet property="bottomView" destination="Fmz-ky-UCf" id="yGJ-kJ-r3y"/>
                 <outlet property="image_header" destination="OGr-DV-SnH" id="q8g-uw-89t"/>
                 <outlet property="image_layer" destination="xm6-mR-ICv" id="oJq-05-TBQ"/>
                 <outlet property="shareButton" destination="Nyo-XW-OSr" id="sb9-mi-ZpC"/>
@@ -148,6 +149,7 @@
                 <constraint firstAttribute="trailing" secondItem="Fmz-ky-UCf" secondAttribute="trailing" id="6er-Er-nzt"/>
                 <constraint firstAttribute="bottom" secondItem="Fmz-ky-UCf" secondAttribute="bottom" id="AOI-vR-8XS"/>
                 <constraint firstItem="xm6-mR-ICv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="EJy-jC-1Tw"/>
+                <constraint firstAttribute="bottom" secondItem="gJJ-8c-O3o" secondAttribute="bottom" id="Har-TK-9hH"/>
                 <constraint firstItem="4lJ-Yc-Y8f" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="12" id="IMy-JW-X2C"/>
                 <constraint firstItem="Nyo-XW-OSr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="25" id="Ku8-4v-h8w"/>
                 <constraint firstItem="OGr-DV-SnH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Un9-wO-Tzh"/>
@@ -155,7 +157,6 @@
                 <constraint firstItem="gJJ-8c-O3o" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Z36-Ar-1pu"/>
                 <constraint firstItem="xm6-mR-ICv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bMI-n0-OKx"/>
                 <constraint firstItem="Fmz-ky-UCf" firstAttribute="top" secondItem="gJJ-8c-O3o" secondAttribute="bottom" id="f5l-OB-2hu"/>
-                <constraint firstItem="Fmz-ky-UCf" firstAttribute="top" secondItem="gJJ-8c-O3o" secondAttribute="bottom" id="fCi-rT-tfl"/>
                 <constraint firstItem="OGr-DV-SnH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="j1h-fH-TXG"/>
                 <constraint firstAttribute="trailing" secondItem="Nyo-XW-OSr" secondAttribute="trailing" constant="12" id="nvE-zH-OlO"/>
                 <constraint firstAttribute="trailing" secondItem="OGr-DV-SnH" secondAttribute="trailing" id="zDe-rP-xUx"/>

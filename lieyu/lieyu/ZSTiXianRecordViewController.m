@@ -69,43 +69,47 @@
     [[ZSManageHttpTool shareInstance] getPersonTiXianRecordWithParams:paraDic complete:^(NSArray *dataArray) {
         if(_pageStart == 0) _beforeDataArray = dataArray.mutableCopy;
         else [_beforeDataArray addObjectsFromArray:dataArray];
-        NSMutableArray *dateMutablearray = [@[] mutableCopy];
-        NSMutableArray *array = [NSMutableArray arrayWithArray:_beforeDataArray];
-        for (int i = 0; i < array.count; i ++) {
-            ZSTiXianRecord *ZSTiXianRM = array[i];
-            NSArray *strArray = [ZSTiXianRM.create_date componentsSeparatedByString:@"-"];
-            if(strArray.count < 2) continue;
-            NSString *string = [NSString stringWithFormat:@"%@-%@",strArray.firstObject,strArray[1]];
-            NSMutableArray *tempArray = [@[] mutableCopy];
-            [tempArray addObject:ZSTiXianRM];
-            CGFloat tiXianSum = ZSTiXianRM.amount.floatValue;
-            CGFloat receiveddTiXianSum = ZSTiXianRM.checkMark.integerValue == 0 ? 0 : ZSTiXianRM.amount.floatValue;
-            for (int j = i+1; j < array.count; j ++) {
-                ZSTiXianRecord *ZSTiXianRM2 = array[j];
-                NSArray *strArray2 =  [ZSTiXianRM2.create_date componentsSeparatedByString:@"-"];
-                if(strArray2.count < 2) continue;
-                NSString *jstring = [NSString stringWithFormat:@"%@-%@",strArray2.firstObject,strArray2[1]];
-                if([string isEqualToString:jstring]){
-                    [tempArray addObject:ZSTiXianRM2];
-                    [array removeObjectAtIndex:j];
-                    j = j -1;
-                    tiXianSum += ZSTiXianRM2.amount.floatValue;
-                    receiveddTiXianSum += ZSTiXianRM2.checkMark.integerValue == 0 ? 0 : ZSTiXianRM2.amount.floatValue;
+        if (_beforeDataArray.count <= 0){
+            _tableview.hidden = YES;
+        }else{
+            NSMutableArray *dateMutablearray = [@[] mutableCopy];
+            NSMutableArray *array = [NSMutableArray arrayWithArray:_beforeDataArray];
+            for (int i = 0; i < array.count; i ++) {
+                ZSTiXianRecord *ZSTiXianRM = array[i];
+                NSArray *strArray = [ZSTiXianRM.create_date componentsSeparatedByString:@"-"];
+                if(strArray.count < 2) continue;
+                NSString *string = [NSString stringWithFormat:@"%@-%@",strArray.firstObject,strArray[1]];
+                NSMutableArray *tempArray = [@[] mutableCopy];
+                [tempArray addObject:ZSTiXianRM];
+                CGFloat tiXianSum = ZSTiXianRM.amount.floatValue;
+                CGFloat receiveddTiXianSum = ZSTiXianRM.checkMark.integerValue == 0 ? 0 : ZSTiXianRM.amount.floatValue;
+                for (int j = i+1; j < array.count; j ++) {
+                    ZSTiXianRecord *ZSTiXianRM2 = array[j];
+                    NSArray *strArray2 =  [ZSTiXianRM2.create_date componentsSeparatedByString:@"-"];
+                    if(strArray2.count < 2) continue;
+                    NSString *jstring = [NSString stringWithFormat:@"%@-%@",strArray2.firstObject,strArray2[1]];
+                    if([string isEqualToString:jstring]){
+                        [tempArray addObject:ZSTiXianRM2];
+                        [array removeObjectAtIndex:j];
+                        j = j -1;
+                        tiXianSum += ZSTiXianRM2.amount.floatValue;
+                        receiveddTiXianSum += ZSTiXianRM2.checkMark.integerValue == 0 ? 0 : ZSTiXianRM2.amount.floatValue;
+                    }
                 }
+                ZSTiXianRecord *tiXianR = [[ZSTiXianRecord alloc]init];
+                tiXianR.month = string;
+                tiXianR.amountSum = [NSString stringWithFormat:@"%.2f",tiXianSum];
+                tiXianR.receivedAmountSum = [NSString stringWithFormat:@"%.2f",receiveddTiXianSum];
+                [tempArray insertObject:tiXianR atIndex:0];
+                [dateMutablearray addObject:tempArray];
             }
-            ZSTiXianRecord *tiXianR = [[ZSTiXianRecord alloc]init];
-            tiXianR.month = string;
-            tiXianR.amountSum = [NSString stringWithFormat:@"%.2f",tiXianSum];
-            tiXianR.receivedAmountSum = [NSString stringWithFormat:@"%.2f",receiveddTiXianSum];
-            [tempArray insertObject:tiXianR atIndex:0];
-            [dateMutablearray addObject:tempArray];
+            
+            _dataArray = dateMutablearray;
+            [_tableview reloadData];
+            [_tableview.mj_header endRefreshing];
+            if(dataArray.count == 0) [_tableview.mj_footer endRefreshingWithNoMoreData];
+            else [_tableview.mj_footer endRefreshing];
         }
-        
-        _dataArray = dateMutablearray;
-        [_tableview reloadData];
-        [_tableview.mj_header endRefreshing];
-        if(dataArray.count == 0) [_tableview.mj_footer endRefreshingWithNoMoreData];
-        else [_tableview.mj_footer endRefreshing];
     }];
 }
 

@@ -64,7 +64,6 @@
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商家扫一扫核对订单" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NfF-YK-NMD">
                     <constraints>
-                        <constraint firstAttribute="width" constant="110" id="aD5-MH-sf9"/>
                         <constraint firstAttribute="height" constant="15" id="hiN-qn-LTF"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -91,7 +90,7 @@
                 <constraint firstItem="jCD-CN-Cav" firstAttribute="top" secondItem="Oyl-lY-YQH" secondAttribute="bottom" constant="16" id="tch-IM-LDk"/>
                 <constraint firstItem="gzh-q1-N0C" firstAttribute="centerX" secondItem="SeO-mk-dbd" secondAttribute="centerX" id="x2c-vQ-2bR"/>
             </constraints>
-            <point key="canvasLocation" x="309" y="374"/>
+            <point key="canvasLocation" x="85.5" y="332.5"/>
         </view>
     </objects>
     <resources>

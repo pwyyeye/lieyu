@@ -15,6 +15,8 @@
 #import "UMSocial.h"
 #import "StrategyCommentListViewController.h"
 
+#define banner_height SCREEN_WIDTH / 4 * 3 
+
 @interface StrategyDetailViewController ()<UITableViewDelegate,UITableViewDataSource,UIWebViewDelegate,StrategyCommentSendDelegate>
 {
     LYHeaderTableViewCell *_headerCell;//表的第一个cell图片
@@ -48,6 +50,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _shareButton.hidden = YES;
     _tableView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -119,7 +122,7 @@
 
 #pragma mark - scrollview的代理事件
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    if (scrollView.contentOffset.y >= SCREEN_WIDTH /16 * 9 - 64) {
+    if (scrollView.contentOffset.y >= banner_height - 64) {
         self.image_layer.alpha = 1;
         self.image_layer.layer.shadowRadius = 2;
         self.image_layer.layer.shadowOpacity = 0.5;
@@ -141,7 +144,7 @@
     
     if (_tableView.contentOffset.y < 0) {
         CGFloat y = scrollView.contentOffset.y;
-        CGFloat hegiht = SCREEN_WIDTH * 9 / 16.f;
+        CGFloat hegiht = banner_height;
         _tableHeaderImgView.frame = CGRectMake(- ((hegiht - y) * 16 / 9.f - SCREEN_WIDTH ) /2.f, y, (hegiht - y) * 16 / 9.f, hegiht -y);
     }
 }
@@ -170,7 +173,7 @@
         if (imageView) {
             [imageView removeFromSuperview];
         }
-        _tableHeaderImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 9 / 16.0f)];
+        _tableHeaderImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, banner_height)];
         _tableHeaderImgView.tag = 100;
         if (![MyUtil isEmptyString:_strategyModel.strategyIconAll]) {
             [_tableHeaderImgView sd_setImageWithURL:[NSURL URLWithString:_strategyModel.strategyIconAll] placeholderImage:[UIImage imageNamed:@"empyImageBar16_9"]];
@@ -201,7 +204,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
-        return SCREEN_WIDTH * 9 / 16;
+        return banner_height;
     }else if (indexPath.row == 1){
         CGSize titleSize = [_infoCell.titleLabel.text boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 58, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]} context:nil].size;
         CGSize subtitleSize = [_infoCell.subtitleLabel.text boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 58, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13]} context:nil].size;
@@ -289,7 +292,7 @@
 }
 
 - (IBAction)shareButtonClick:(UIButton *)sender {
-    NSString *string= [NSString stringWithFormat:@"我要推荐下～%@攻略!下载猎娱App猎寻更多特色酒吧。http://www.lie98.com/lieyu/toPlayAction.do?action=login&barid=%@",_strategyModel.title,_strategyModel.id];
+    NSString *string= [NSString stringWithFormat:@"我要推荐下～%@攻略!下载猎娱App猎寻更多特色酒吧。",_strategyModel.title];
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"http://www.lie98.com/lieyu/toPlayAction.do?action=login&barid=%@",_strategyModel.id];
     [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"http://www.lie98.com/lieyu/toPlayAction.do?action=login&barid=%@",_strategyModel.id];

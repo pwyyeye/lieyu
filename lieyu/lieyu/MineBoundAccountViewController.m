@@ -60,17 +60,19 @@
     [self setButtonSelected:(int)sender.tag];
     _choosedIndex = sender.tag;
     if (sender.tag == 1) {
-        [_firstLabel setText:@"微信号"];
-        [_firstTextField setPlaceholder:@"请输入您的微信号"];
-        [_firstTextField setKeyboardType:UIKeyboardTypeDefault];
-        [_secondLabel setText:@"姓名"];
-        [_secondTextField setPlaceholder:@"请输入您的姓名"];
-        _thirdLabel.hidden = YES;
-        _thirdTextField.hidden = YES;
-        _seperateLabel.hidden = YES;
-        _viewHeight.constant = 101;
-        _wechatLabel.hidden = NO;
+//        [_firstLabel setText:@"微信号"];
+//        [_firstTextField setPlaceholder:@"请输入您的微信号"];
+//        [_firstTextField setKeyboardType:UIKeyboardTypeDefault];
+//        [_secondLabel setText:@"姓名"];
+//        [_secondTextField setPlaceholder:@"请输入您的姓名"];
+//        _thirdLabel.hidden = YES;
+//        _thirdTextField.hidden = YES;
+//        _seperateLabel.hidden = YES;
+//        _viewHeight.constant = 101;
+//        _wechatLabel.hidden = NO;
+        _inputView.hidden = YES;
     }else if (sender.tag == 2){
+        _inputView.hidden = NO;
         [_firstLabel setText:@"支付宝账号"];
         [_firstTextField setPlaceholder:@"请输入您的支付宝账号"];
         [_firstTextField setKeyboardType:UIKeyboardTypeDefault];
@@ -82,6 +84,7 @@
         _viewHeight.constant = 101;
         _wechatLabel.hidden = YES;
     }else{
+        _inputView.hidden = NO;
         [_firstLabel setText:@"银行卡号"];
         [_firstTextField setPlaceholder:@"请输入您的银行卡号"];
         [_firstTextField setKeyboardType:UIKeyboardTypeNumberPad];
@@ -98,14 +101,15 @@
 }
 
 - (void)sendAccountInfo{
-    if ([MyUtil isEmptyString:_firstTextField.text] || [MyUtil isEmptyString:_secondTextField.text] || ([MyUtil isEmptyString:_thirdTextField.text] && _choosedIndex == 3)) {
-        [MyUtil showPlaceMessage:@"请将信息填写完整"];
-        return;
-    }
     if(_choosedIndex == 1){
         //绑定微信
         [self weixinLogin];
     }else{
+        
+        if ([MyUtil isEmptyString:_firstTextField.text] || [MyUtil isEmptyString:_secondTextField.text] || ([MyUtil isEmptyString:_thirdTextField.text] && _choosedIndex == 3)) {
+            [MyUtil showPlaceMessage:@"请将信息填写完整"];
+            return;
+        }
         [self lyUserBoundAccount];
     }
 }

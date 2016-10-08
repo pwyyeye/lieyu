@@ -17,6 +17,11 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="暂无提现记录！" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mqO-6n-R85">
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="0.74117647060000003" green="0.1960784314" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="E1g-2x-Cq8">
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
@@ -31,7 +36,10 @@
                 <constraint firstAttribute="trailing" secondItem="E1g-2x-Cq8" secondAttribute="trailing" id="KEQ-0Y-9is"/>
                 <constraint firstItem="E1g-2x-Cq8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="RCN-n3-tOM"/>
                 <constraint firstAttribute="bottom" secondItem="E1g-2x-Cq8" secondAttribute="bottom" id="cIY-fu-xAg"/>
+                <constraint firstItem="mqO-6n-R85" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="gBR-p2-A1h"/>
+                <constraint firstItem="mqO-6n-R85" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="qRo-GC-hnu"/>
             </constraints>
+            <point key="canvasLocation" x="320" y="-36"/>
         </view>
     </objects>
 </document>

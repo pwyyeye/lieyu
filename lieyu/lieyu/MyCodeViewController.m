@@ -30,7 +30,7 @@
     }
     [_userHeader sd_setImageWithURL:[NSURL URLWithString:self.userModel.avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     _userHeader.backgroundColor = [UIColor clearColor];
-    _userHeader.layer.cornerRadius = CGRectGetHeight(_userHeader.frame) / 2;
+    _userHeader.layer.cornerRadius = 32;
     _userHeader.layer.masksToBounds = YES;
     _userNick.text = self.userModel.usernick;
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];

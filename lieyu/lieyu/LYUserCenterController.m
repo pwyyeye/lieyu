@@ -289,9 +289,9 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         //扫一扫
-        NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"发现主页面",@"titleName":@"选择扫一扫"};
-        [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
-        
+//        NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"发现主页面",@"titleName":@"选择扫一扫"};
+//        [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+//        
 //        SaoYiSaoViewController *saoYiSaoViewController=[[SaoYiSaoViewController alloc]initWithNibName:@"SaoYiSaoViewController" bundle:nil];
 //        saoYiSaoViewController.title=@"扫一扫";
 //        [self.navigationController pushViewController:saoYiSaoViewController  animated:YES];

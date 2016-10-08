@@ -47,6 +47,8 @@
 #define LIKEKEY  [NSString stringWithFormat:@"%@%@",_userid,self.beerBarDetail.barid]
 #define BEERBARDETAIL_MTA @"酒吧详情"
 
+#define banner_height SCREEN_WIDTH / 4 * 3
+
 @interface BeerNewBarViewController ()<UIWebViewDelegate,UIScrollViewDelegate,UIActionSheetDelegate,LYBarCommentSuccessDelegate>
 {
     NSManagedObjectContext *_context;
@@ -354,7 +356,7 @@
     //        self.image_layer.hidden = NO;
     //        self.image_layer.alpha = scrollView.contentOffset.y / 64.f;
     //根据偏移量改变导航view透明度
-    if (scrollView.contentOffset.y >= SCREEN_WIDTH /16 * 9 - 64) {
+    if (scrollView.contentOffset.y >= banner_height - 64) {
         self.image_layer.alpha = 1;
         self.image_layer.layer.shadowRadius = 2;
         self.image_layer.layer.shadowOpacity = 0.5;
@@ -403,7 +405,7 @@
     if (_tableView.contentOffset.y < 0) {
         CGFloat y = scrollView.contentOffset.y;
         //        CGFloat hegiht = SCREEN_WIDTH * 95 / 183.f;
-        CGFloat hegiht = SCREEN_WIDTH * 9 / 16.f;
+        CGFloat hegiht = banner_height;
         //        _tableHeaderImgView.frame = CGRectMake(- ((hegiht - y) * 183 / 95.f - SCREEN_WIDTH ) /2.f, y, (hegiht - y) * 183 / 95.f, hegiht -y);
         _tableHeaderImgView.frame = CGRectMake(- ((hegiht - y) * 16 / 9.f - SCREEN_WIDTH ) /2.f, y, (hegiht - y) * 16 / 9.f, hegiht -y);
     }
@@ -652,7 +654,7 @@
                 [imgV removeFromSuperview];
             }
             //            _tableHeaderImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 95/183.f)];
-            _tableHeaderImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 9/16.f)];
+            _tableHeaderImgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, banner_height)];
             _tableHeaderImgView.tag = 1008611;
             if(_beerBarDetail.banners.count){
                 for (NSString *imageUrl in _beerBarDetail.banners) {
@@ -662,6 +664,8 @@
                     }
                 }
             }
+            _tableHeaderImgView.contentMode = UIViewContentModeScaleAspectFill;
+            _tableHeaderImgView.layer.masksToBounds = YES;
             [_headerCell addSubview:_tableHeaderImgView];
             _headerCell.selectionStyle = UITableViewCellSelectionStyleNone;
             return _headerCell;
@@ -911,7 +915,7 @@
         case 0:
         {
             //            return SCREEN_WIDTH * 95 / 183;
-            return SCREEN_WIDTH * 9 / 16;
+            return banner_height;
         }
             break;
         case 1:
@@ -975,10 +979,17 @@
 #pragma mark 分享按钮
 - (IBAction)shareClick:(id)sender {
     NSString *string= [NSString stringWithFormat:@"我要推荐下～%@酒吧!下载猎娱App猎寻更多特色酒吧。http://www.lie98.com/lieyu/toPlayAction.do?action=login&barid=%@",self.beerBarDetail.barname,self.beerBarDetail.barid];
+    
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
+    
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"http://www.lie98.com/lieyu/toPlayAction.do?action=login&barid=%@",self.beerBarDetail.barid];
     [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"http://www.lie98.com/lieyu/toPlayAction.do?action=login&barid=%@",self.beerBarDetail.barid];
-    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:_barTitleCell.imageView_header.image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
+    //主标题
+    [UMSocialData defaultData].extConfig.wechatTimelineData.title = string;
+    [UMSocialData defaultData].extConfig.wechatSessionData.title = string;
+    
+    //shareText是副标题
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:self.beerBarDetail.address shareImage:_barTitleCell.imageView_header.image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"分享" pageName:BEERBARDETAIL_MTA titleName:self.beerBarDetail.barname]];
 }
 

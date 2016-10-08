@@ -33,6 +33,7 @@
     _dict = dict;
     [_iconImage setImage:[UIImage imageNamed:[dict objectForKey:@"image"]]];
     [_titleLabel setText:[dict objectForKey:@"title"]];
+    [_titleLabel setTextColor:[dict objectForKey:@"color"]];
 }
 
 @end
