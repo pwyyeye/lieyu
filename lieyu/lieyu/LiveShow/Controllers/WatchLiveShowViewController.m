@@ -748,7 +748,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [self.player stop];//关闭播放器
 }
 
-#pragma mark --UICollectionViewDataSource
+#pragma mark -- UICollectionViewDataSource
 
 //定义展示的UICollectionViewCell的个数
 
@@ -842,7 +842,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [LYUserHttpTool GetUserInfomationWithID:dictID complete:^(find_userInfoModel *model) {
         user.gender = model.gender;
         user.birthday = model.birthday;
-        user.tag = model.tag;
+        user.tag = [NSString stringWithFormat:@"%@",model.tags[0]];
         [weakSlef showWatchDetailWith:user];
     }];
 }
@@ -1680,7 +1680,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"kobe24" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"sendGift" object:nil];
 }
 
 - (void)onRCIMConnectionStatusChanged:(RCConnectionStatus)status {
