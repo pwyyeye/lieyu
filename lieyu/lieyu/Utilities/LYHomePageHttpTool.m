@@ -845,8 +845,8 @@
 #pragma mark - 获取首页数据
 //获取首页数据 part－1
 + (void)getHomepageFirstScreenDataWith:(NSDictionary *)param complete:(void (^)(NSDictionary *))complete{
-    AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);
-    [app startLoading];
+//    AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);
+//    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_HOME_FIRSTSCREEN baseURL:LY_SERVER params:param success:^(id response) {
         NSString *errorCode = [response objectForKey:@"errorcode"];
         if ([errorCode isEqualToString:@"1"]) {
@@ -869,7 +869,7 @@
 }
 
 + (void)getHomepageListDataWith:(NSDictionary *)param complete:(void (^)(NSDictionary *))complete{
-    AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);
+//    AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);
 //    [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_HOME_LIST baseURL:LY_SERVER params:param success:^(id response) {
         NSString *errorCode = [response objectForKey:@"errorcode"];
@@ -882,9 +882,9 @@
         }else{
             
         }
-        [app stopLoading];
+//        [app stopLoading];
     } failure:^(NSError *err) {
-        [app stopLoading];
+//        [app stopLoading];
     }];
 }
 
