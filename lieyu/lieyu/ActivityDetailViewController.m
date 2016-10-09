@@ -53,6 +53,7 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     self.image_layer.alpha = 0.f;
+    _bottomView.hidden = YES;
     [self setupTableView];
     [self getData];
 }

@@ -11,6 +11,7 @@
                 <outlet property="finishButton" destination="6Y8-AY-eSJ" id="i7d-fi-mPu"/>
                 <outlet property="firstLabel" destination="5PB-We-8E2" id="cML-VU-yB0"/>
                 <outlet property="firstTextField" destination="Oap-IT-CoM" id="krR-0r-7Cr"/>
+                <outlet property="inputView" destination="4Sw-76-d6v" id="iCz-aG-tr3"/>
                 <outlet property="secondLabel" destination="VBj-6n-tSY" id="RTe-U4-ssJ"/>
                 <outlet property="secondTextField" destination="Kb8-Gk-jyT" id="Kp5-pa-GwK"/>
                 <outlet property="seperateLabel" destination="IrE-gy-kcf" id="iOA-vN-Cxp"/>
@@ -18,7 +19,6 @@
                 <outlet property="thirdTextField" destination="5SD-Uo-LBD" id="dyZ-FU-QEB"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewHeight" destination="gg5-o1-z93" id="eW2-s0-OxR"/>
-                <outlet property="wechatLabel" destination="gh9-R0-L3p" id="Vw0-Jj-zbx"/>
                 <outletCollection property="withdrawButtons" destination="WTa-Uu-Hau" id="Cvr-ix-Bna"/>
                 <outletCollection property="withdrawButtons" destination="zlB-Mv-Vc1" id="3yt-cC-JId"/>
                 <outletCollection property="withdrawButtons" destination="146-fq-qnU" id="s3X-E0-HIW"/>
@@ -193,11 +193,6 @@
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="绑定微信需要预先支付0.01元" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gh9-R0-L3p">
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <color key="textColor" red="0.75294117647058822" green="0.75294117647058822" blue="0.75294117647058822" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
@@ -207,10 +202,8 @@
                 <constraint firstAttribute="trailing" secondItem="4Sw-76-d6v" secondAttribute="trailing" id="B7J-Ht-PTX"/>
                 <constraint firstItem="UFd-uQ-oW9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="Etc-aU-KYl"/>
                 <constraint firstAttribute="trailing" secondItem="6Y8-AY-eSJ" secondAttribute="trailing" constant="10" id="Iev-sQ-bkV"/>
-                <constraint firstItem="gh9-R0-L3p" firstAttribute="top" secondItem="4Sw-76-d6v" secondAttribute="bottom" constant="99" id="JPT-4Q-14E"/>
                 <constraint firstItem="4Sw-76-d6v" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Kt3-9Q-MZL"/>
                 <constraint firstItem="zlB-Mv-Vc1" firstAttribute="height" secondItem="WTa-Uu-Hau" secondAttribute="height" id="PmA-Oq-Ud3"/>
-                <constraint firstItem="gh9-R0-L3p" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="QSh-bk-Ddt"/>
                 <constraint firstItem="F8M-RO-uX8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="UBz-Ja-avq"/>
                 <constraint firstItem="146-fq-qnU" firstAttribute="height" secondItem="WTa-Uu-Hau" secondAttribute="height" id="V22-fS-Kg2"/>
                 <constraint firstItem="zlB-Mv-Vc1" firstAttribute="leading" secondItem="WTa-Uu-Hau" secondAttribute="trailing" constant="10" id="VPZ-pN-PTm"/>
@@ -226,7 +219,7 @@
                 <constraint firstItem="WTa-Uu-Hau" firstAttribute="top" secondItem="UFd-uQ-oW9" secondAttribute="bottom" constant="8" id="rxZ-QK-RNa"/>
                 <constraint firstItem="UFd-uQ-oW9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="18" id="w94-Ja-Qiq"/>
             </constraints>
-            <point key="canvasLocation" x="559" y="289"/>
+            <point key="canvasLocation" x="558.5" y="288.5"/>
         </view>
     </objects>
     <resources>

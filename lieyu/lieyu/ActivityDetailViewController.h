@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIImageView *image_layer;
 @property (weak, nonatomic) IBOutlet UIImageView *image_header;
+@property (weak, nonatomic) IBOutlet UIVisualEffectView *bottomView;
 
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property (weak, nonatomic) IBOutlet UIButton *shareButton;

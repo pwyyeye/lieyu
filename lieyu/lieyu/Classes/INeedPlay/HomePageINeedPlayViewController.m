@@ -84,10 +84,12 @@
 @interface HomePageINeedPlayViewController ()
 <EScrollerViewDelegate,SDCycleScrollViewDelegate,
 UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout
-,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,EScrollerViewDelegate,LYBarCommentSuccessDelegate>{
+,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,EScrollerViewDelegate,LYBarCommentSuccessDelegate,CAAnimationDelegate>{
     UIButton *_searchBtn;
     UIButton *_titleImageView;
     UIActivityIndicatorView *_refreshView;
+//    UIView *_refreshView;
+//    UIImageView *_animationImageview;
     CGFloat _scale;
     NSInteger _index;//区分夜店和酒吧
     NSMutableArray *_dataArray,*_recommendedBarArray;//酒吧数组 推荐酒吧数组
@@ -218,11 +220,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 [weakSelf emptyUserDefault];
                 [weakSelf createUI];
             }
-            NSDate *date = [NSDate date];
-            NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-            [formatter setDateFormat:@"yyyy-MM-dd"];
-            NSString *dateString = [formatter stringFromDate:date];
-            [USER_DEFAULT setObject:dateString forKey:@"LocationTodayPosition"];
+//            NSDate *date = [NSDate date];
+//            NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+//            [formatter setDateFormat:@"yyyy-MM-dd"];
+//            NSString *dateString = [formatter stringFromDate:date];
+//            [USER_DEFAULT setObject:dateString forKey:@"LocationTodayPosition"];
         }]show];
     }else if ([MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"LocationCityThisTime"]]){
         //为空，以上此为准
@@ -417,6 +419,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [_refreshView setCenter:CGPointMake(SCREEN_WIDTH - 32, 42)];
     _refreshView.hidesWhenStopped = YES;
     _refreshView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+//    _refreshView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+//    _animationImageview = [[UIImageView alloc]initWithFrame:_refreshView.bounds];
+//    [_refreshView addSubview:_animationImageview];
     [_menuView addSubview:_refreshView];
     
     [self createMenuButtons];
@@ -487,6 +492,36 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     //    offsetY[_index] = collectView.contentOffset.y;
 }
 
+//- (void)startAnimating{
+//    NSMutableArray *imgArray = [[NSMutableArray alloc]init];
+//    for (int i = 0 ; i < 10 ; i ++) {
+//        UIImage *img = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"loading%d@2x",i] ofType:@"png"]];
+//        [imgArray addObject:(__bridge UIImage *)img.CGImage];
+//    }
+//    CAKeyframeAnimation *keyFrameA = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
+//    keyFrameA.duration = imgArray.count * 0.1;
+//    keyFrameA.delegate = self;
+//    keyFrameA.values = imgArray;
+//    keyFrameA.repeatCount = 1 ;
+//    [_animationImageview.layer addAnimation:keyFrameA forKey:nil];
+//}
+
+//- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
+//    if (_tableViewArray.count <= _index) {
+//        return;
+//    }
+//    UITableView *tableView = [_tableViewArray objectAtIndex:_index];
+//    //如果这个页面在刷新数据，则显示刷新控件，否则隐藏
+//    if ([[_refreshingArray objectAtIndex:tableView.tag] isEqualToString:@"1"]) {
+//        
+//    }else if ([[_refreshingArray objectAtIndex:tableView.tag] isEqualToString:@"0"]){
+//    }
+//}
+//
+//- (void)stopAnimating{
+//    
+//}
+
 - (void)lineViewAnimation{
     if (_tableViewArray.count <= _index) {
         return;
@@ -494,8 +529,10 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     UITableView *tableView = [_tableViewArray objectAtIndex:_index];
     //如果这个页面在刷新数据，则显示刷新控件，否则隐藏
     if ([[_refreshingArray objectAtIndex:tableView.tag] isEqualToString:@"1"]) {
+//        [self startAnimating];
         [_refreshView startAnimating];
     }else if ([[_refreshingArray objectAtIndex:tableView.tag] isEqualToString:@"0"]){
+//        [self stopAnimating];
         [_refreshView stopAnimating];
     }
     
@@ -586,6 +623,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 if ([[_refreshingArray objectAtIndex:tableView.tag] isEqualToString:@"0"]) {
                     [_refreshingArray replaceObjectAtIndex:tableView.tag withObject:@"1"];
                     [_refreshView startAnimating];
+//                    [self startAnimating];
                     [_currentPageArray replaceObjectAtIndex:tableView.tag withObject:@(1)];
                     [self getDataWith];
                 }
@@ -1357,6 +1395,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 NSMutableArray *array = [_liveDict objectForKey:@"liveList"];
                 [array addObjectsFromArray:Arr];
             }
+//            [self stopAnimating];
             [_refreshView stopAnimating];
             if (Arr.count <= 0) {
                 [tableView.mj_footer endRefreshingWithNoMoreData];
@@ -1396,6 +1435,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 [array addObjectsFromArray:[result objectForKey:@"barList"]];
             }
             [_refreshView stopAnimating];
+//            [self stopAnimating];
             if (((NSArray *)[result objectForKey:@"barList"]).count <= 0) {
                 [tableView.mj_footer endRefreshingWithNoMoreData];
             }else{

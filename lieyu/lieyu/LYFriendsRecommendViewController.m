@@ -202,7 +202,7 @@
             }
             i ++;
         }
-        NSDictionary *dict = @{@"followid":array};
+        NSDictionary *dict = @{@"followid":[array componentsJoinedByString:@","]};
         [LYUserHttpTool lyFollowRecommendFriendsWithOarams:dict complete:^(BOOL result) {
             if (result) {
                 [weakSelf.navigationController popToRootViewControllerAnimated:YES];

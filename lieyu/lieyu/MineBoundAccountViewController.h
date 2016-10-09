@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *thirdTextField;
 @property (weak, nonatomic) IBOutlet UILabel *seperateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *wechatLabel;
+@property (weak, nonatomic) IBOutlet UIView *inputView;
 
 @property (weak, nonatomic) IBOutlet UIButton *finishButton;
 

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "OrderTTL.h"
 #import "MineMenuButton.h"
-@interface LYUserCenterHeader : UICollectionReusableView
+@interface LYUserCenterHeader : UICollectionReusableView<CAAnimationDelegate>
 //顶部带背景view
 @property (nonatomic, assign) int badgeNum;
 @property (nonatomic, strong) NSMutableArray *badgesArray;

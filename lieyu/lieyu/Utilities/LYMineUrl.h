@@ -149,7 +149,8 @@
 //玩友推荐
 #define LY_RECOMMEND_FRIEND @"/lieyu//app/api/user/activeUser?1=1"
 //关注推荐玩友
-#define LY_FOLLOW_FRIENDS @"/lieyu//app/api/sns/followList?1=1"
+#define LY_FOLLOW_FRIENDS @"/lieyu//app/api/sns/followUserList?1=1"
+//#define LY_FOLLOW_FRIENDS @"/lieyu//app/api/sns/followList?1=1"
 //娱币商城
 #define LY_ENTER_COINSHOP @"/lieyu//app/api/user/coinmall/autologin?1=1"
 

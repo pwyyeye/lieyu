@@ -30,8 +30,8 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.title = @"我的钱包";
-    _dataArray = @[@{@"title":@"娱币商城",@"image":@"shopIcon"},
-                   @{@"title":@"猎娱VIP",@"image":@"VIPIcon"}];
+    _dataArray = @[@{@"title":@"娱币商城",@"image":@"shopIcon",@"color":[UIColor blackColor]},
+                   @{@"title":@"猎娱VIP",@"image":@"vipIconGray",@"color":RGB(210,210,210)}];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     [_collectionView registerNib:[UINib nibWithNibName:@"MineMoneyBagCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"MineMoneyBagCollectionViewCell"];

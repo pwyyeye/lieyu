@@ -911,6 +911,8 @@
 		38FE0B9B1D9CC5A400CA6D3A /* deleteCareIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38FE0B951D9CC5A400CA6D3A /* deleteCareIcon@2x.png */; };
 		38FE0B9C1D9CC5A400CA6D3A /* addCareIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38FE0B961D9CC5A400CA6D3A /* addCareIcon@2x.png */; };
 		38FE0B9D1D9CC5A400CA6D3A /* deleteCareIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38FE0B971D9CC5A400CA6D3A /* deleteCareIcon@3x.png */; };
+		38FE0BA21DA88C6200CA6D3A /* vipIconGray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38FE0BA01DA88C6200CA6D3A /* vipIconGray@2x.png */; };
+		38FE0BA31DA88C6200CA6D3A /* vipIconGray@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38FE0BA11DA88C6200CA6D3A /* vipIconGray@3x.png */; };
 		525CA0C71C5B626E009ED9DA /* daohang_xiangji.png in Resources */ = {isa = PBXBuildFile; fileRef = 525CA0C41C5B626E009ED9DA /* daohang_xiangji.png */; };
 		525CA0C81C5B626E009ED9DA /* daohang_xiangji@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 525CA0C51C5B626E009ED9DA /* daohang_xiangji@2x.png */; };
 		525CA0C91C5B626E009ED9DA /* daohang_xiangji@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 525CA0C61C5B626E009ED9DA /* daohang_xiangji@3x.png */; };
@@ -3428,6 +3430,8 @@
 		38FE0B951D9CC5A400CA6D3A /* deleteCareIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "deleteCareIcon@2x.png"; path = "最新修改/deleteCareIcon@2x.png"; sourceTree = "<group>"; };
 		38FE0B961D9CC5A400CA6D3A /* addCareIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "addCareIcon@2x.png"; path = "最新修改/addCareIcon@2x.png"; sourceTree = "<group>"; };
 		38FE0B971D9CC5A400CA6D3A /* deleteCareIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "deleteCareIcon@3x.png"; path = "最新修改/deleteCareIcon@3x.png"; sourceTree = "<group>"; };
+		38FE0BA01DA88C6200CA6D3A /* vipIconGray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vipIconGray@2x.png"; sourceTree = "<group>"; };
+		38FE0BA11DA88C6200CA6D3A /* vipIconGray@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vipIconGray@3x.png"; sourceTree = "<group>"; };
 		525CA0C41C5B626E009ED9DA /* daohang_xiangji.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daohang_xiangji.png; sourceTree = "<group>"; };
 		525CA0C51C5B626E009ED9DA /* daohang_xiangji@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daohang_xiangji@2x.png"; sourceTree = "<group>"; };
 		525CA0C61C5B626E009ED9DA /* daohang_xiangji@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "daohang_xiangji@3x.png"; sourceTree = "<group>"; };
@@ -5908,6 +5912,7 @@
 		15E240CD1BB3D56A0090D240 /* 注册 */ = {
 			isa = PBXGroup;
 			children = (
+				38FE0B9F1DA7A61900CA6D3A /* 推荐玩友 */,
 				15E240CE1BB3D5940090D240 /* LYRegistrationViewController.h */,
 				15E240CF1BB3D5940090D240 /* LYRegistrationViewController.m */,
 				15E240D01BB3D5940090D240 /* LYRegistrationViewController.xib */,
@@ -5915,11 +5920,6 @@
 				85589CB71C16D41D000E342E /* SingletonRegiste.m */,
 				3879D0611C7AE423000F5795 /* CheckProtocol.h */,
 				3879D0621C7AE423000F5795 /* CheckProtocol.m */,
-				3802FF021D9684E000E543D8 /* LYFriendsRecommendViewController.h */,
-				3802FF031D9684E000E543D8 /* LYFriendsRecommendViewController.m */,
-				38406F4D1D9688D3005B3042 /* LYFriendsRecommendTableViewCell.h */,
-				38406F4E1D9688D3005B3042 /* LYFriendsRecommendTableViewCell.m */,
-				38406F4F1D9688D3005B3042 /* LYFriendsRecommendTableViewCell.xib */,
 			);
 			name = "注册";
 			sourceTree = "<group>";
@@ -6913,8 +6913,8 @@
 				85FE55061D7AB24400B262EA /* MineMoneyBagViewController.h */,
 				85FE55071D7AB24400B262EA /* MineMoneyBagViewController.m */,
 				85FE55081D7AB24400B262EA /* MineMoneyBagViewController.xib */,
-				38AD5B0C1D643D9400521150 /* 娱币 */,
 				38AD5B0B1D643D8700521150 /* 余额 */,
+				38AD5B0C1D643D9400521150 /* 娱币 */,
 				38FE0B891D9A5E6400CA6D3A /* 娱币商城 */,
 				38AD5B051D6433A100521150 /* cell */,
 			);
@@ -7568,6 +7568,18 @@
 				38FE0B8B1D9A5E9400CA6D3A /* LYCoinShopViewController.m */,
 			);
 			name = "娱币商城";
+			sourceTree = "<group>";
+		};
+		38FE0B9F1DA7A61900CA6D3A /* 推荐玩友 */ = {
+			isa = PBXGroup;
+			children = (
+				3802FF021D9684E000E543D8 /* LYFriendsRecommendViewController.h */,
+				3802FF031D9684E000E543D8 /* LYFriendsRecommendViewController.m */,
+				38406F4D1D9688D3005B3042 /* LYFriendsRecommendTableViewCell.h */,
+				38406F4E1D9688D3005B3042 /* LYFriendsRecommendTableViewCell.m */,
+				38406F4F1D9688D3005B3042 /* LYFriendsRecommendTableViewCell.xib */,
+			);
+			name = "推荐玩友";
 			sourceTree = "<group>";
 		};
 		52D4F9851C57B2AB00691BEF /* 首页 */ = {
@@ -9065,6 +9077,8 @@
 		85C4416F1D73D67900299C17 /* 钱包 */ = {
 			isa = PBXGroup;
 			children = (
+				38FE0BA01DA88C6200CA6D3A /* vipIconGray@2x.png */,
+				38FE0BA11DA88C6200CA6D3A /* vipIconGray@3x.png */,
 				85C441701D73D67900299C17 /* balanceIcon@2x.png */,
 				85C441711D73D67900299C17 /* balanceIcon@3x.png */,
 				85C441721D73D67900299C17 /* shopIcon@2x.png */,
@@ -11714,6 +11728,7 @@
 				85251A151D6C202B005CE01D /* live_B_gift@3x.png in Resources */,
 				38877EEC1D83DE9900062F26 /* codeButton@2x.png in Resources */,
 				AD399E831C940D4D00028F23 /* logo4@2x.jpg in Resources */,
+				38FE0BA21DA88C6200CA6D3A /* vipIconGray@2x.png in Resources */,
 				854CCA851C918E2700368C72 /* qq_s2@3x.png in Resources */,
 				38B5F4E41CBE10BE00AE1BF5 /* emojiTIpBottom@3x.png in Resources */,
 				15EB35461BD4839D00BA6161 /* UMSocialLocalizable.strings in Resources */,
@@ -12376,6 +12391,7 @@
 				853CB75D1CAA2EE8006FC768 /* icon_balance@2x.png in Resources */,
 				854CCA751C9187B800368C72 /* saoyisao@2x.png in Resources */,
 				381A01E01C14229F00592485 /* more_white@2x.png in Resources */,
+				38FE0BA31DA88C6200CA6D3A /* vipIconGray@3x.png in Resources */,
 				3879F25D1C0D32D100B72629 /* BitianTableViewCell.xib in Resources */,
 				8550E7221C302A33001FF2DE /* daohang_fabu@3x.png in Resources */,
 				854CF48A1CA3BEAB00F7F95B /* beerBarTel@2x.png in Resources */,
