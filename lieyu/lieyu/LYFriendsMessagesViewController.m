@@ -185,8 +185,8 @@ static NSString *daShangCellID = @"dashangCellID";
         pageStartCount = _pageStartCountArray[1];
         tableView = [_tableViewArray objectAtIndex:1];
     }
-    NSString *startStr = [NSString stringWithFormat:@"%ld",pageStartCount * _pageCount];
-    NSString *pageCountStr = [NSString stringWithFormat:@"%ld",_pageCount];
+    NSString *startStr = [NSString stringWithFormat:@"%ld",(long)pageStartCount * _pageCount];
+    NSString *pageCountStr = [NSString stringWithFormat:@"%ld",(long)_pageCount];
     NSDictionary *paraDic = nil;
     __weak __typeof(self) weakSelf = self;
     if (type == dataForFriendsMessage) {//玩友圈数据
@@ -926,7 +926,7 @@ static NSString *daShangCellID = @"dashangCellID";
             break;
         case 2://地址
         {
-            return 30;
+            return 48;
         }
             break;
         case 3:
@@ -1187,36 +1187,47 @@ static NSString *daShangCellID = @"dashangCellID";
                                @"toUserid":_toUserId,
                                @"rid":@"1",
                                @"businessid":_businessid};//1 是玩友圈 2 是直播
-    [LYFriendsHttpTool daShangWithParms:dictGift complete:^(NSDictionary *dic) {
-        NSInteger temp = [dic[@"errorcode"] integerValue];
-        switch (temp) {
-            case 1://成功
-                [WeakSelf showGiftIamgeAnmiationWith:img];
-                break;
-            case 11:
-                [MyUtil showMessage:@"请指定礼物"];
-                break;
-            case 12:
-                [MyUtil showMessage:@"请指定对象"];
-                break;
-            case 14:
-                [MyUtil showMessage:@"娱币金额不能为空"];
-                break;
-            case 15:
-                [MyUtil showMessage:@"娱币金额不能小于1"];
-                break;
-            case 16:
-                [MyUtil showMessage:@"无此用户"];
-                break;
-            case 17:
-                [self vaconeyAmount];//娱币不足
-                break;
-            default:
-                
-                break;
+    NSInteger tempValue = _giftValue.integerValue;
+    [LYUserHttpTool getMyMoneyBagBalanceAndCoinWithParams:nil complete:^(ZSBalance *balance) {
+        NSInteger coin = balance.coin.integerValue;
+        if (coin >= tempValue) {//娱币足够
+            [LYFriendsHttpTool daShangWithParms:dictGift complete:^(NSDictionary *dic) {
+                NSInteger temp = [dic[@"errorcode"] integerValue];
+                switch (temp) {
+                    case 0:
+                        [MyUtil showMessage:@"服务器异常"];
+                        break;
+                    case 1://成功
+                        [WeakSelf showGiftIamgeAnmiationWith:img];
+                        break;
+                    case 11:
+                        [MyUtil showMessage:@"请指定礼物"];
+                        break;
+                    case 12:
+                        [MyUtil showMessage:@"请指定对象"];
+                        break;
+                    case 14:
+                        [MyUtil showMessage:@"娱币金额不能为空"];
+                        break;
+                    case 15:
+                        [MyUtil showMessage:@"娱币金额不能小于1"];
+                        break;
+                    case 16:
+                        [MyUtil showMessage:@"无此用户"];
+                        break;
+                    case 17:
+                        [self vaconeyAmount];//娱币不足
+                        break;
+                    default:
+                        
+                        break;
+                }
+            }];
+        } else {
+            [self vaconeyAmount];//娱币不足
         }
     }];
-    [_backgroudView removeFromSuperview];
+        [_backgroudView removeFromSuperview];
     _backgroudView = nil;
 }
 

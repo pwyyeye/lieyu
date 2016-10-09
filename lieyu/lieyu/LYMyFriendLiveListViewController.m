@@ -74,12 +74,12 @@ static NSString *liveShowListID = @"liveShowListID";
 
 -(void)getMoreData{
     _currentHotPage +=1;
-    [self getDataWithUserID:_userID andPage:[NSString stringWithFormat:@"%ld",_currentHotPage]];
+    [self getDataWithUserID:_userID andPage:[NSString stringWithFormat:@"%ld",(long)_currentHotPage]];
 }
 
 #pragma mark --- 获取数据
 -(void) getDataWithUserID: (NSString *)userID andPage:(NSString *)pages{
-    NSDictionary *dictionary = @{@"cityCode":@"310000",@"livetype":@"live",@"sort":@"recent",@"page":pages,@"userId":userID};
+    NSDictionary *dictionary = @{@"cityCode":@"310000",@"livetype":@"",@"sort":@"",@"page":pages,@"userid":userID};
     [LYFriendsHttpTool getLiveShowlistWithParams:dictionary complete:^(NSArray *Arr) {
         [self.liveArray addObjectsFromArray:Arr];
         if (_liveArray.count <= 0) {
@@ -145,8 +145,11 @@ static NSString *liveShowListID = @"liveShowListID";
             watchLiveVC.chatRoomId = nil;
         }
         watchLiveVC.hostUser = Arr[@"roomHostUser"];
-        watchLiveVC.shareIamge = model.roomImg;
-        [weakSelf presentViewController:watchLiveVC animated:YES completion:NULL];
+        watchLiveVC.joinNum = [NSString stringWithFormat:@"%d",model.joinNum];
+        NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:model.roomImg]];
+        watchLiveVC.shareIamge = [UIImage imageWithData:data];
+        //        [weakSelf presentViewController:watchLiveVC animated:YES completion:NULL];
+        [weakSelf.navigationController pushViewController:watchLiveVC animated:YES];
     }];
     
 }

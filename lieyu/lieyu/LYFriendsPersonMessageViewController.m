@@ -15,6 +15,8 @@
 
 @implementation LYFriendsPersonMessageViewController
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -33,13 +35,12 @@
         pageStartCount = _pageStartCountArray[1];
         tableView = [_tableViewArray objectAtIndex:1];
     }
-    NSString *startStr = [NSString stringWithFormat:@"%ld",pageStartCount * _pageCount];
-    NSString *pageCountStr = [NSString stringWithFormat:@"%ld",_pageCount];
+    NSString *startStr = [NSString stringWithFormat:@"%ld",(long)pageStartCount * _pageCount];
+    NSString *pageCountStr = [NSString stringWithFormat:@"%ld",(long)_pageCount];
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if(app.userModel) _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
     
     NSDictionary *paraDic = @{@"userId":_useridStr,@"start":startStr,@"limit":pageCountStr,@"frientId":_friendsId};
-//    __weak __typeof(self) weakSelf = self;
     if (type == dataForFriendsMessage) {
         __weak __typeof(self) weakSelf = self;
         [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic needLoading:YES compelte:^(FriendsUserInfoModel*userInfo, NSMutableArray *dataArray) {

@@ -98,15 +98,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.title = @"我的玩友圈";
-//    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-//    if(app.userModel.userid != _useridStr.intValue){
-//        _useridStr = [NSString stringWithFormat:@"%d",app.userModel.userid];
-//        if(_pageNum == 2){
-//            UITableView *tableView = _tableViewArray[_index];
-//            [tableView.mj_header beginRefreshing];
-//        }
-//    }
-    
+
     [self setupCarmerBtn];
     
     [self setupMenuView];//配置导航
@@ -159,8 +151,8 @@
 #pragma mark - 获取最新玩友圈数据
 - (void)getDataWithType:(dataType)type needLoad:(BOOL)need{
    
-    NSString *startStr = [NSString stringWithFormat:@"%ld",_pageStartCount * _pageCount];
-    NSString *pageCountStr = [NSString stringWithFormat:@"%ld",_pageCount];
+    NSString *startStr = [NSString stringWithFormat:@"%ld",(long)_pageStartCount * _pageCount];
+    NSString *pageCountStr = [NSString stringWithFormat:@"%ld",(long)_pageCount];
     NSDictionary *paraDic = nil;
     __weak __typeof(self) weakSelf = self;
     if(type == dataForMine){//我的玩友圈数据
@@ -189,14 +181,11 @@
                 [muArr addObjectsFromArray:dataArray];
             }
             _pageStartCount ++;
-            
             [_userTablewView.mj_footer endRefreshing];
-            
         }
     }else{
         [_userTablewView.mj_footer endRefreshingWithNoMoreData];
     }
-    
     [_userTablewView reloadData];
     [_userTablewView.mj_header endRefreshing];
 }
@@ -854,6 +843,7 @@
 -(void)dashangCloseViewAction:(UIButton *)sender{
     [_daShangView removeFromSuperview];
     _daShangView = nil;
+    
 }
 
 -(void)sendGiftButtonAction:(UIButton *)sender{

@@ -31,13 +31,20 @@
 //    _label_work.layer.masksToBounds = YES;
 }
 
+-(void)drawRect:(CGRect)rect
+{
+    [self setCornerRadiusView:_btn_headerImg With:_btn_headerImg.frame.size.height / 2.f and:YES];
+}
+
+-(void)setCornerRadiusView:(UIView *) maskView With:(CGFloat) size and:(BOOL) mask{
+    maskView.layer.cornerRadius = size;
+    maskView.layer.masksToBounds = YES;
+}
 - (void)setRecentM:(FriendsRecentModel *)recentM{
     _recentM = recentM;
 
-    
     [_btn_headerImg sd_setBackgroundImageWithURL:[NSURL URLWithString:recentM.avatar_img] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"empyImage120"]];
-    _btn_headerImg.layer.cornerRadius = CGRectGetHeight(_btn_headerImg.frame) / 2.f;
-    _btn_headerImg.layer.masksToBounds = YES;
+    
     [_btn_name setTitle:recentM.usernick forState:UIControlStateNormal];
     [_label_time setText:[MyUtil calculatedDateFromNowWith:recentM.date]];
     

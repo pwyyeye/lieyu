@@ -44,6 +44,8 @@
  */
 - (void)updateUI {
     [self.messageLabel setTextColor:RGB(147, 112, 219)];
+    self.messageLabel.shadowColor = [UIColor darkGrayColor];
+    self.messageLabel.shadowOffset =CGSizeMake(1,1);
     NSString *tiptext = @"直播消息：我们提倡绿色直播，封面和直播内容含吸烟、低俗、诱导、违规等内容都将会被封停帐号，网警24小时在线巡查呦。";
     
     NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:tiptext];

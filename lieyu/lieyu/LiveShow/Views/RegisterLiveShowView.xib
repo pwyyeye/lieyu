@@ -122,11 +122,26 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qvd-qA-btm">
                     <state key="normal" image="shiftCamre.png"/>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="强" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OtB-Fx-1hs">
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="弱" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t7R-Vi-CkP">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="42" id="BpM-Le-FxU"/>
+                        <constraint firstAttribute="height" constant="21" id="RhZ-ZQ-t30"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Qob-lM-F6e" firstAttribute="leading" secondItem="3p4-aX-xSb" secondAttribute="trailing" constant="30" id="3mp-66-NtT"/>
                 <constraint firstItem="3p4-aX-xSb" firstAttribute="top" secondItem="chy-vq-2tb" secondAttribute="bottom" constant="13" id="5WN-Jl-z6Y"/>
+                <constraint firstItem="OtB-Fx-1hs" firstAttribute="height" secondItem="t7R-Vi-CkP" secondAttribute="height" id="5x5-OW-4Kt"/>
                 <constraint firstItem="Qvd-qA-btm" firstAttribute="top" secondItem="eJu-ff-0ko" secondAttribute="top" constant="20" id="7Nj-8Y-96M"/>
                 <constraint firstAttribute="trailing" secondItem="ebE-JX-il8" secondAttribute="trailing" constant="20" id="95J-v1-MzZ"/>
                 <constraint firstItem="WHF-X3-1mp" firstAttribute="centerX" secondItem="KhN-GU-MT9" secondAttribute="centerX" id="AsA-AF-10w"/>
@@ -137,8 +152,11 @@
                 <constraint firstItem="dU5-my-FNc" firstAttribute="height" secondItem="1Wt-wu-UjC" secondAttribute="height" id="GeI-HG-j9P"/>
                 <constraint firstItem="iDO-C2-dGG" firstAttribute="top" secondItem="T5D-Ie-9XE" secondAttribute="bottom" constant="11" id="Iwv-dm-bsg"/>
                 <constraint firstItem="dU5-my-FNc" firstAttribute="centerY" secondItem="eJu-ff-0ko" secondAttribute="centerY" id="NZn-qM-jrp"/>
+                <constraint firstItem="t7R-Vi-CkP" firstAttribute="top" secondItem="iDO-C2-dGG" secondAttribute="bottom" constant="3" id="NzM-Na-xGQ"/>
+                <constraint firstItem="OtB-Fx-1hs" firstAttribute="width" secondItem="t7R-Vi-CkP" secondAttribute="width" id="Ofh-Pm-gQd"/>
                 <constraint firstItem="dU5-my-FNc" firstAttribute="centerX" secondItem="eJu-ff-0ko" secondAttribute="centerX" constant="-30" id="XbR-tt-r28"/>
                 <constraint firstItem="chy-vq-2tb" firstAttribute="top" secondItem="b8F-tD-B5g" secondAttribute="bottom" constant="8" id="Xj2-x4-FRc"/>
+                <constraint firstItem="OtB-Fx-1hs" firstAttribute="trailing" secondItem="iDO-C2-dGG" secondAttribute="trailing" id="YMa-m6-bxx"/>
                 <constraint firstItem="KhN-GU-MT9" firstAttribute="centerX" secondItem="eJu-ff-0ko" secondAttribute="centerX" id="YyL-ga-sY3"/>
                 <constraint firstItem="b8F-tD-B5g" firstAttribute="top" secondItem="WHF-X3-1mp" secondAttribute="bottom" constant="38" id="Zzv-Jr-eec"/>
                 <constraint firstItem="Qvd-qA-btm" firstAttribute="leading" secondItem="eJu-ff-0ko" secondAttribute="leading" constant="20" id="aYS-Y2-1bU"/>
@@ -147,6 +165,7 @@
                 <constraint firstItem="b8F-tD-B5g" firstAttribute="centerX" secondItem="KhN-GU-MT9" secondAttribute="centerX" id="cJ6-dR-gfr"/>
                 <constraint firstItem="ebE-JX-il8" firstAttribute="width" secondItem="Qvd-qA-btm" secondAttribute="width" id="cWB-Sr-WBp"/>
                 <constraint firstItem="WHF-X3-1mp" firstAttribute="top" secondItem="KhN-GU-MT9" secondAttribute="bottom" constant="15" id="cl7-zg-wnI"/>
+                <constraint firstItem="OtB-Fx-1hs" firstAttribute="centerY" secondItem="t7R-Vi-CkP" secondAttribute="centerY" id="cuq-d4-RBd"/>
                 <constraint firstItem="1Wt-wu-UjC" firstAttribute="centerY" secondItem="eJu-ff-0ko" secondAttribute="centerY" id="eko-9T-JrX"/>
                 <constraint firstItem="Qob-lM-F6e" firstAttribute="height" secondItem="1Wt-wu-UjC" secondAttribute="height" id="gtP-1d-TmQ"/>
                 <constraint firstItem="Qob-lM-F6e" firstAttribute="centerY" secondItem="eJu-ff-0ko" secondAttribute="centerY" id="lTB-dG-R61"/>
@@ -156,6 +175,7 @@
                 <constraint firstItem="T5D-Ie-9XE" firstAttribute="centerX" secondItem="iDO-C2-dGG" secondAttribute="centerX" id="uXo-qr-xXl"/>
                 <constraint firstItem="3p4-aX-xSb" firstAttribute="centerY" secondItem="eJu-ff-0ko" secondAttribute="centerY" id="vcT-DW-qgK"/>
                 <constraint firstItem="ILA-i2-lZX" firstAttribute="centerX" secondItem="eJu-ff-0ko" secondAttribute="centerX" id="vpB-hd-T5K"/>
+                <constraint firstItem="t7R-Vi-CkP" firstAttribute="leading" secondItem="iDO-C2-dGG" secondAttribute="leading" id="wmo-LH-GYN"/>
                 <constraint firstItem="3p4-aX-xSb" firstAttribute="centerX" secondItem="eJu-ff-0ko" secondAttribute="centerX" constant="30" id="y1Q-9Q-goM"/>
             </constraints>
             <connections>
@@ -178,7 +198,7 @@
         <image name="live_B_sina.png" width="23" height="19"/>
         <image name="live_B_wechat.png" width="26" height="21"/>
         <image name="live_addImage.png" width="80" height="80"/>
-        <image name="live_close.png" width="19" height="19"/>
+        <image name="live_close.png" width="29" height="29"/>
         <image name="live_wechatmonent.png" width="25" height="25"/>
         <image name="shiftCamre.png" width="23" height="21"/>
     </resources>

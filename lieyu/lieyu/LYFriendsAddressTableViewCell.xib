@@ -43,7 +43,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hD0-IZ-Aze">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="19" id="Kc3-YI-eED"/>
-                                    <constraint firstAttribute="width" constant="45" id="NTT-YV-QeM"/>
+                                    <constraint firstAttribute="width" constant="65" id="NTT-YV-QeM"/>
                                 </constraints>
                                 <state key="normal" image="DP_comment.png"/>
                             </button>
@@ -73,11 +73,11 @@
                             <constraint firstItem="tiI-4v-Zr9" firstAttribute="height" secondItem="v46-BG-Lsl" secondAttribute="height" id="6R7-qk-seg"/>
                             <constraint firstItem="tiI-4v-Zr9" firstAttribute="height" secondItem="v46-BG-Lsl" secondAttribute="height" id="CTI-vr-jsX"/>
                             <constraint firstItem="tiI-4v-Zr9" firstAttribute="centerY" secondItem="f3j-nk-PcS" secondAttribute="centerY" id="N8Y-xe-MZY"/>
-                            <constraint firstAttribute="height" constant="30" id="OEb-jK-4aF"/>
+                            <constraint firstAttribute="height" constant="35" id="OEb-jK-4aF"/>
                             <constraint firstItem="nbV-Yr-SKR" firstAttribute="leading" secondItem="hD0-IZ-Aze" secondAttribute="trailing" constant="5" id="Ugy-S8-tTU"/>
                             <constraint firstItem="v46-BG-Lsl" firstAttribute="centerY" secondItem="f3j-nk-PcS" secondAttribute="centerY" id="VIG-ex-Yoz"/>
                             <constraint firstItem="pNn-Uw-AYh" firstAttribute="leading" secondItem="v46-BG-Lsl" secondAttribute="trailing" constant="5" id="VlI-sJ-3BG"/>
-                            <constraint firstAttribute="width" constant="170" id="WNV-My-ZdO"/>
+                            <constraint firstAttribute="width" constant="220" id="WNV-My-ZdO"/>
                             <constraint firstItem="pNn-Uw-AYh" firstAttribute="centerY" secondItem="f3j-nk-PcS" secondAttribute="centerY" id="biE-Xq-QaV"/>
                             <constraint firstItem="hD0-IZ-Aze" firstAttribute="width" secondItem="v46-BG-Lsl" secondAttribute="width" id="cqS-De-gvq"/>
                             <constraint firstItem="hD0-IZ-Aze" firstAttribute="leading" secondItem="pNn-Uw-AYh" secondAttribute="trailing" constant="5" id="gNe-CS-8nf"/>

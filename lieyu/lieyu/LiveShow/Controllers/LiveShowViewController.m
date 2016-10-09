@@ -914,7 +914,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
             LYGiftMessageCell *__cell = [collectionView dequeueReusableCellWithReuseIdentifier:rcGiftMessageCellIndentifier forIndexPath:indexPath];
             [__cell setDataModel:model];
             [__cell setDelegate:self];
-
             cell = __cell;
         }
         else if ([messageContent isMemberOfClass:[LYStystemMessage class]]) {
@@ -946,12 +945,13 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 #pragma mark -- 点击聊天室成员
 -(void)detailViewShow:(UIButton *)sender{
     ChatUseres *user = _dataArray[sender.tag];
-    NSDictionary *dictID = @{@"userid":[NSString stringWithFormat:@"%ld",user.id]};
+    NSDictionary *dictID = @{@"userid":[NSString stringWithFormat:@"%ld",(long)user.id]};
     __weak typeof(self) weakSlef = self;
     [LYUserHttpTool GetUserInfomationWithID:dictID complete:^(find_userInfoModel *model) {
         user.gender = model.gender;
         user.birthday = model.birthday;
-        user.tag = [NSString stringWithFormat:@"%@",model.tags[0]];
+        NSDictionary *tempDic = [model.tags lastObject];
+        user.tag = [NSString stringWithFormat:@"%@",tempDic[@"tagname"]];
         [weakSlef showWatchDetailWith:user];
     }];
     

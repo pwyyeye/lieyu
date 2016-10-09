@@ -99,13 +99,17 @@
                 self.messageLabel.text = [NSString stringWithFormat:@"%@：%@赠送了一个%@",_likeMessage.senderUserInfo.name,_likeMessage.senderUserInfo.name,tiptext];
             }
             if (_likeMessage.type.integerValue == 2) {//赞
-                [self.messageLabel setTextColor:[UIColor whiteColor]];
+                [self.messageLabel setTextColor:RGB(37, 235, 255)];
+                self.messageLabel.shadowColor = [UIColor darkGrayColor];
+                self.messageLabel.shadowOffset =CGSizeMake(1,1);
                 NSString *dianzanStr = [NSString stringWithFormat:@"%@：给你点赞",_likeMessage.senderUserInfo.name];
                 NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:dianzanStr];
                 [AttributedStr addAttribute:NSForegroundColorAttributeName value:RGB(227, 207, 87) range:NSMakeRange(0, self.model.content.senderUserInfo.name.length + 1)];
                 self.messageLabel.attributedText = AttributedStr;
             } else {
                 [self.messageLabel setTextColor:RGB(240, 26, 105)];
+                self.messageLabel.shadowColor = [UIColor darkGrayColor];
+                self.messageLabel.shadowOffset =CGSizeMake(1,1);
                 NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:self.messageLabel.text];
                 [AttributedStr addAttribute:NSForegroundColorAttributeName value:RGB(227, 207, 87) range:NSMakeRange(0, self.model.content.senderUserInfo.name.length + 1)];
                 self.messageLabel.attributedText = AttributedStr;

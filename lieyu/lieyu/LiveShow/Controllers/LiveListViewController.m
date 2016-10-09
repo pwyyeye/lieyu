@@ -387,10 +387,10 @@ static NSString *liveShowListID = @"liveShowListID";
                 if (_hotDataArray.count == 0) {
                     [self initKongView];
                     [hotTableView.mj_header endRefreshing];
-                }else{
+                } else {
                     if(_currentHotPage == 1){
                         [hotTableView.mj_header endRefreshing];
-                    }else{
+                    } else {
                         [hotTableView.mj_footer endRefreshingWithNoMoreData];
                     }
                 }
@@ -405,6 +405,7 @@ static NSString *liveShowListID = @"liveShowListID";
             dispatch_async(dispatch_get_main_queue(), ^{
                 [hotTableView reloadData];
                 [hotTableView.mj_header endRefreshing];
+                [hotTableView.mj_footer endRefreshing];
             });
         } else {
             UITableView *newTableView = (UITableView *)_tableViewArray[1];
@@ -462,6 +463,7 @@ static NSString *liveShowListID = @"liveShowListID";
             dispatch_async(dispatch_get_main_queue(), ^{
                 [newTableView reloadData];
                 [newTableView.mj_header endRefreshing];
+                [newTableView.mj_footer endRefreshing];
             });
         }
             }];
@@ -612,6 +614,7 @@ static NSString *liveShowListID = @"liveShowListID";
             watchLiveVC.chatRoomId = nil;
         }
         watchLiveVC.hostUser = Arr[@"roomHostUser"];
+        watchLiveVC.joinNum = [NSString stringWithFormat:@"%d",model.joinNum];
         NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:model.roomImg]];
         watchLiveVC.shareIamge = [UIImage imageWithData:data];
 //        [weakSelf presentViewController:watchLiveVC animated:YES completion:NULL];
@@ -621,12 +624,9 @@ static NSString *liveShowListID = @"liveShowListID";
 
 #pragma mark - 直播按钮
 - (void)initReleaseWishButton{
-    //26-47
     UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
-    
     _effectView = [[UIVisualEffectView alloc]initWithEffect:effect];
     [_effectView setFrame:CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 60, 60, 60)];
-    
     _effectView.layer.cornerRadius = 30;
     _effectView.layer.masksToBounds = YES;
     [self.view addSubview:_effectView];

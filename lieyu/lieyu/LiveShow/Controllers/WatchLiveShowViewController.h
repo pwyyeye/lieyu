@@ -49,7 +49,7 @@ UIScrollViewDelegate, UINavigationControllerDelegate,RCInputBarControlDelegate,R
 @property(nonatomic, strong) NSString *contentURL;
 @property (nonatomic, strong) NSDictionary *hostUser;//主播
 @property (nonatomic, strong) UIImage *shareIamge;//分享图片
-
+@property (nonatomic, strong) NSString *joinNum;//回放时主播标签显示总共观看的人数
 #pragma mark - 聊天界面属性
 
 /*!

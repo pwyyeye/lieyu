@@ -326,8 +326,8 @@
             
         default://评论
         {
-            if(!recentM.commentList.count) return 36;
-            if(indexPath.row - 4 > recentM.commentList.count - 1) return 36;
+            if(!recentM.commentList.count) return 26;
+            if(indexPath.row - 4 > recentM.commentList.count - 1) return 26;
             
             FriendsCommentModel *commentM = recentM.commentList[indexPath.row - 4];
             NSString *str = nil;

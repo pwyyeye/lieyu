@@ -26,12 +26,22 @@
         self.type = [dict objectForKey:@"type"];
         NSDictionary *userinfoDic = [dict objectForKey:@"user"];
         [self decodeUserInfo:userinfoDic];
-        self.gift = [dict objectForKey:@"gift"];
-        
+//        self.gift = [dict objectForKey:@"gift"];
+        NSDictionary *giftDic = [dict objectForKey:@"gift"];
+        [self decodeGiftContent:giftDic];
     } else {
         self.rawJSONData = data;
     }
 }
+
+-(void)decodeGiftContent:(NSDictionary *)dict{
+    GiftContent *giftTemp = [[GiftContent alloc] init];
+    giftTemp.giftId = [dict objectForKey:@"giftId"];
+    giftTemp.giftUrl = [dict objectForKey:@"giftUrl"];
+    giftTemp.giftLocalUrl = [dict objectForKey:@"giftLocalUrl"];
+    self.gift = giftTemp;
+}
+
 
 - (NSData *)encode {
     

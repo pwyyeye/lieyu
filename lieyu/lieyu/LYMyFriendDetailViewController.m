@@ -376,7 +376,7 @@
         NSInteger num = _liveArray.count <= 4? _liveArray.count : 4;
         
         for(int i = 0 ; i < num; i ++){
-            LYLiveShowListModel *model = _liveArray[num];
+            LYLiveShowListModel *model = _liveArray[i];
             UIImageView *image = [liveImageArray objectAtIndex:i];
             [image sd_setImageWithURL:[NSURL URLWithString:model.roomImg]];
             image.contentMode = UIViewContentModeScaleAspectFill;
@@ -410,7 +410,7 @@
         if (_imUserId) {
             _userID = [NSString stringWithFormat:@"%d",_result.userid];
         }
-        NSDictionary *dictionary = @{@"cityCode":@"310000",@"livetype":@"live",@"sort":@"recent",@"page":@"1",@"userId":_userID};
+        NSDictionary *dictionary = @{@"sort":@"recent",@"page":@"1",@"userid":_userID};
         [LYFriendsHttpTool getLiveShowlistWithParams:dictionary complete:^(NSArray *Arr) {
             [self.liveArray addObjectsFromArray:Arr];
             [weakSelf configureThisView];
@@ -599,8 +599,11 @@
 }
 
 - (IBAction)liveSelfList:(UIButton *)sender {
+    if (_liveArray.count == 0) {
+        return;
+    }
     LYMyFriendLiveListViewController *liveListVC = [[LYMyFriendLiveListViewController alloc] init];
-    liveListVC.userID = [NSString stringWithFormat:@"%id", _result.userid];
+    liveListVC.userID = [NSString stringWithFormat:@"%i", _result.userid];
     liveListVC.userName = _result.usernick;
     [self.navigationController pushViewController:liveListVC animated:YES];
 }
