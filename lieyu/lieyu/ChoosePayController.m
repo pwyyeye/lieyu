@@ -19,6 +19,7 @@
 #import "LPMyOrdersViewController.h"
 #import "MineBalanceViewController.h"
 #import "MineYubiViewController.h"
+#import "WatchLiveShowViewController.h"
 
 @interface ChoosePayController ()
 {
@@ -87,8 +88,8 @@
 - (void)createPayButton{
     _payBtn = [[UIButton alloc]initWithFrame:CGRectMake(10, SCREEN_HEIGHT - 123, SCREEN_WIDTH - 20, 44)];
 //    [_payBtn setBackgroundImage:[UIImage imageNamed:@"purpleBtnBG"] forState:UIControlStateNormal];
-    [_payBtn setBackgroundColor:[UIColor clearColor]];
-    [_payBtn setBackgroundImage:[UIImage imageNamed:@"LoginNew"] forState:UIControlStateNormal];
+    [_payBtn setBackgroundColor:COMMON_PURPLE];
+//    [_payBtn setBackgroundImage:[UIImage imageNamed:@"LoginNew"] forState:UIControlStateNormal];
     _payBtn.layer.cornerRadius = 4;
     _payBtn.layer.masksToBounds = YES;
     [_payBtn setTitle:@"确认支付" forState:UIControlStateNormal];
@@ -181,6 +182,9 @@
         if([controller isKindOfClass:[HDDetailViewController class]] || [controller isKindOfClass:[CHDoOrderViewController class]] || [controller isKindOfClass:[ZujuViewController class]] || [controller isKindOfClass:[LYwoYaoDinWeiMainViewController class]]||[controller isKindOfClass:[PTjoinInViewController class]]){
             LPMyOrdersViewController *detailViewController = [[LPMyOrdersViewController alloc]init];
             [self.navigationController pushViewController:detailViewController animated:YES];
+            return;
+        }else if ([controller isKindOfClass:[WatchLiveShowViewController class]]){
+            [self.navigationController popToViewController:controller animated:YES];
             return;
         }
     }

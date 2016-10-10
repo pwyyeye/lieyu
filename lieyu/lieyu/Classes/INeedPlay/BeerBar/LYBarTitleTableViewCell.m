@@ -14,21 +14,22 @@
     [super awakeFromNib];
     
     self.label_name.text = @"酒吧名";
-    self.imageView_header.layer.cornerRadius = 2;
-    self.imageView_header.layer.masksToBounds = YES;
     
     _imageView_header.layer.borderColor = RGBA(204, 204, 204, 1).CGColor;
     _imageView_header.layer.borderWidth = 0.5;
     
-    CAShapeLayer *btn_commentLayer = [CAShapeLayer layer];
-    UIBezierPath *bezierP = [UIBezierPath bezierPathWithRoundedRect:_btn_comment.bounds byRoundingCorners:UIRectCornerTopLeft|UIRectCornerBottomLeft cornerRadii:CGSizeMake(_btn_comment.frame.size.height/2.f, _btn_comment.frame.size.height/2.f)];
-    btn_commentLayer.path = bezierP.CGPath;
-    _btn_comment.layer.mask = btn_commentLayer;
+    
 }
 
 - (void)drawRect:(CGRect)rect{
     _imageView_header.layer.cornerRadius = CGRectGetWidth(_imageView_header.frame)/2.f;
     _imageView_header.layer.masksToBounds = YES;
+    
+    
+    CAShapeLayer *btn_commentLayer = [CAShapeLayer layer];
+    UIBezierPath *bezierP = [UIBezierPath bezierPathWithRoundedRect:_btn_comment.bounds byRoundingCorners:UIRectCornerTopLeft|UIRectCornerBottomLeft cornerRadii:CGSizeMake(_btn_comment.frame.size.height/2.f, _btn_comment.frame.size.height/2.f)];
+    btn_commentLayer.path = bezierP.CGPath;
+    _btn_comment.layer.mask = btn_commentLayer;
 }
 
 - (void)setBeerM:(BeerBarOrYzhDetailModel *)beerM{
