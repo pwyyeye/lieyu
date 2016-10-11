@@ -42,7 +42,7 @@
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     CLLocation *location = app.userLocation;
     NSString *liveStr = [NSString stringWithFormat:@"%@%@%@",LY_SERVER,LY_LIVE_share,_chatRoomID];
-    UMSocialUrlResource *urlResource = [[UMSocialUrlResource alloc] initWithSnsResourceType:UMSocialUrlResourceTypeMusic url:liveStr];
+    UMSocialUrlResource *urlResource = [[UMSocialUrlResource alloc] initWithSnsResourceType:UMSocialUrlResourceTypeDefault url:liveStr];
     //主标题
     [UMSocialData defaultData].extConfig.wechatSessionData.title = @"猎娱直播间";
     [UMSocialData defaultData].extConfig.wechatTimelineData.title = @"猎娱直播间";

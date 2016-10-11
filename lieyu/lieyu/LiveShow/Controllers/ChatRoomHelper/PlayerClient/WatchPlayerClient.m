@@ -51,22 +51,22 @@ static WatchPlayerClient *PlayerClient = nil;
 //播放
 -(PLPlayer *) playWithUrl: (NSString *) url{
     PLPlayerOption *option = [PLPlayerOption defaultOption];
-    [option setOptionValue:@15 forKey:PLPlayerOptionKeyTimeoutIntervalForMediaPackets];
+    [option setOptionValue:@10 forKey:PLPlayerOptionKeyTimeoutIntervalForMediaPackets];
     
     if ([MyUtil isEmptyString:_oldUrl]) {//为空，第一次创建
-        
+        _oldUrl = url;
     } else {
         if ([_oldUrl isEqualToString:url]) {//检测是否一致
-            return nil;
+            return _player;
         } else {//不一致就把之前的关闭
             [self stopPlayWithUrl:_oldUrl];
+            _oldUrl = url;
         }
     }
     _player = [PLPlayer playerWithURL:[NSURL URLWithString:url] option:option];
     if (![_player isPlaying]) {
         [_player play];
     }
-    _oldUrl = url;
     return _player;
 }
 
@@ -74,6 +74,7 @@ static WatchPlayerClient *PlayerClient = nil;
 -(void)stopPlayWithUrl: (NSString *) url{
     if ([_player isPlaying]) {
         [_player stop];
+        _oldUrl = nil;
     }
 }
 

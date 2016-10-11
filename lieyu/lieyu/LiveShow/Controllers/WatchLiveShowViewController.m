@@ -213,10 +213,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
     [RCIM sharedRCIM].disableMessageAlertSound = YES;//关闭融云的提示音
-    if (_chatRoomId != nil) {
-        [self joinChatRoom];
-    }
-    
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -231,11 +227,11 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.emitterLayer setHidden:NO];
-
     _isLiveing = YES;
     [self initPLplayer];
     [self initUI];
     if (_chatRoomId != nil) {
+        [self joinChatRoom];
         _timer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(timerUpdataAction) userInfo:nil repeats:YES];
         [_timer fire];
         [self timerUpdataAction];
@@ -631,7 +627,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
             NSLog(@"4");
             break;
         case PLPlayerStatusPaused:
-            [MyUtil showMessage:@"直播暂停中..."];
+//            [MyUtil showMessage:@"直播暂停中..."];
             NSLog(@"5");
             break;
         case PLPlayerStatusStopped:
@@ -691,7 +687,8 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 }
 
 -(void)closebackButtonAction{
-    [self.player stop];//关闭播放器
+//    [self.player stop];//关闭播放器
+    [[WatchPlayerClient sharedPlayerClient] stopPlayWithUrl:_contentURL];
     [self quitChatroom];
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -703,7 +700,9 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         [sender setTitle:@"已关注" forState:(UIControlStateNormal)];
         sender.userInteractionEnabled = NO;
     }];
-    [self.player stop];//关闭播放器
+//    [self.player stop];//关闭播放器
+    [[WatchPlayerClient sharedPlayerClient] stopPlayWithUrl:_contentURL];
+
     [self quitChatroom];
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -812,11 +811,11 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     NSDictionary *dict = @{@"followid":[NSString stringWithFormat:@"%ld",(long)sender.tag]};
     if (sender.tag == 1) {//不能取消关注
         [LYFriendsHttpTool unFollowFriendWithParms:dict complete:^(NSDictionary *dict) {
-            sender.titleLabel.text = @"关注";
+            [sender setTitle:@"关注" forState:(UIControlStateNormal)];
         }];
     } else {
         [LYFriendsHttpTool followFriendWithParms:dict complete:^(NSDictionary *dict) {
-            sender.titleLabel.text = @"已关注";
+            [sender setTitle:@"已关注" forState:(UIControlStateNormal)];
             sender.userInteractionEnabled = NO;
         }];
     }
