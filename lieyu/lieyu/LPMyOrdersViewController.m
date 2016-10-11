@@ -623,10 +623,12 @@
             [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
             [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@inPinkerWebAction.do?id=%d",LY_SERVER,orderInfoModel.id];
             [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"%@inPinkerWebAction.do?id=%d",LY_SERVER,orderInfoModel.id];
+            [UMSocialData defaultData].extConfig.wechatTimelineData.title = ss;
+            [UMSocialData defaultData].extConfig.wechatSessionData.title = ss;
             @try {
                 [UMSocialSnsService presentSnsIconSheetView:weakSelf
                                                      appKey:UmengAppkey
-                                                  shareText:ss
+                                                  shareText:@"精彩活动，尽在猎娱！"
                                                  shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:orderInfoModel.pinkerinfo.linkUrl]]]
                                             shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,UMShareToEmail,nil]
                                                    delegate:nil];

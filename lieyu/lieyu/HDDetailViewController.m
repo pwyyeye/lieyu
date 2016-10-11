@@ -117,16 +117,18 @@
     NSDictionary *dict = @{@"actionName":@"确定",@"pageName":@"活动详情",@"titleName":@"分享"};
     [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
     
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);
     //http://121.40.229.133:8001/lieyu/inPinkerWebAction.do?id=77
     NSString *ss=[NSString stringWithFormat:@"你的好友%@邀请你一起来%@玩~",app.userModel.usernick,orderInfo.barinfo.barname];
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
     [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@inPinkerWebAction.do?id=%@",LY_SERVER,orderInfo.id];
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"%@inPinkerWebAction.do?id=%@",LY_SERVER,orderInfo.id];
+    [UMSocialData defaultData].extConfig.wechatSessionData.title = ss;
+    [UMSocialData defaultData].extConfig.wechatTimelineData.title = ss;
     @try {
         [UMSocialSnsService presentSnsIconSheetView:self
                                              appKey:UmengAppkey
-                                          shareText:ss
+                                          shareText:@"精彩活动，尽在猎娱！"
                                          shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:orderInfo.pinkerinfo.linkUrl]]]
                                     shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,UMShareToEmail,nil]
                                            delegate:nil];
