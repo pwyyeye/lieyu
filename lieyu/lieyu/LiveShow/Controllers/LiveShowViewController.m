@@ -335,6 +335,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         [_audienceCollectionView reloadData];
     }];
     
+   
 }
 
 #pragma mark --- 初始化页面
@@ -845,12 +846,9 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 -(void)closeButtonAction:(UIButton *) sender{
     UIAlertController *alertCloseView = [UIAlertController alertControllerWithTitle:@"确定要退出吗？" message:@"" preferredStyle:(UIAlertControllerStyleAlert)];
     __weak typeof(self) weakSelf = self;
-    NSDictionary *paramsDic = @{@"roomid":_chatRoomId};
+    
     UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
-        [LYFriendsHttpTool getLiveMoneyWithParams:paramsDic complete:^(NSDictionary *dict) {
-            _reward = dict[@"rewardNum"];
-            [weakSelf initCloseView];
-        }];
+        [weakSelf initCloseView];
     }];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:nil];
     [alertCloseView addAction:cancelAction];
@@ -870,7 +868,11 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [self.view bringSubviewToFront:_closeView];
     [_closeView.backButton addTarget:self action:@selector(backButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
     [_closeView.notSaveButton addTarget:self action:@selector(notSaveBackButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
-    _closeView.moneyNumLabel.text = _reward;
+    NSDictionary *paramsDic = @{@"roomid":_chatRoomId};
+    [LYFriendsHttpTool getLiveMoneyWithParams:paramsDic complete:^(NSDictionary *dict) {
+        _reward = dict[@"rewardNum"];
+        _closeView.moneyNumLabel.text = _reward;
+    }];
     _closeView.lookNumLabel.text = _lookNum;
     _closeView.begainImage = _begainImage;
     _closeView.chatRoomID = _chatRoomId;

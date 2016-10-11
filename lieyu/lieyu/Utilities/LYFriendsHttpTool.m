@@ -349,6 +349,8 @@
         if ([response[@"errorcode"] isEqualToString:@"success"]) {
             NSDictionary *temp = response[@"data"];
             complete(temp);
+        } else {
+            [MyUtil showCleanMessage:response[@"message"]];
         }
     } failure:^(NSError *err) {
         NSLog(@"%@", [err localizedDescription]);
