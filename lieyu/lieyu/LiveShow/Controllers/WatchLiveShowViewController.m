@@ -16,6 +16,7 @@
 #import "UMSocial.h"
 #import "ISEmojiView.h"
 #import "LYFriendsCommentView.h"
+#import "WatchPlayerClient.h"
 
 #import "RegisterLiveShowView.h"
 #import "CloseLiveShowView.h"
@@ -79,7 +80,7 @@
 {
     NSTimer *_timer;//定时器
     int _takeNum;//聊天数
-    long _likeNum;//点赞数
+    NSInteger _likeNum;//点赞数
     LYFriendsCommentView *_commentView;//弹出的评论框
     UILabel *_textLabel;//输入框
     NSString *defaultComment;//残留评论
@@ -212,7 +213,10 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
     [RCIM sharedRCIM].disableMessageAlertSound = YES;//关闭融云的提示音
-
+    if (_chatRoomId != nil) {
+        [self joinChatRoom];
+    }
+    
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -227,18 +231,17 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.emitterLayer setHidden:NO];
+
     _isLiveing = YES;
     [self initPLplayer];
     [self initUI];
     if (_chatRoomId != nil) {
-        [self joinChatRoom];
         _timer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(timerUpdataAction) userInfo:nil repeats:YES];
         [_timer fire];
         [self timerUpdataAction];
         _isfirstPlay = NO;
     } else {
         _isfirstPlay = YES;
-
     }
     [IQKeyboardManager sharedManager].enable = NO;
     [IQKeyboardManager sharedManager].isAdd = YES;
@@ -254,9 +257,9 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 #pragma mark --- 判断是否进入后台
 -(void)LieYuStauts:(NSNotification *) sender{
     if (sender.name == UIApplicationDidBecomeActiveNotification) {
-        [self.player pause];
-    } else {
         [self.player resume];
+    } else {
+        [self.player pause];
     }
 }
 
@@ -392,6 +395,23 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         _shareButton = shareButton;
         [self.view addSubview:_shareButton];
     }
+    _dataArr = @[@{@"giftIamge":@"rose.png",@"giftName":@"玫瑰花",@"giftValue":@"10"},
+                 @{@"giftIamge":@"gold.png",@"giftName":@"元宝",@"giftValue":@"2500"},
+                 @{@"giftIamge":@"biantai.png",@"giftName":@"风油精",@"giftValue":@"50"},
+                 @{@"giftIamge":@"apple.png",@"giftName":@"Iphone10",@"giftValue":@"6666"},
+                 @{@"giftIamge":@"book.png",@"giftName":@"金瓶梅",@"giftValue":@"100"},
+                 @{@"giftIamge":@"watch.png",@"giftName":@"百达翡丽",@"giftValue":@"39999"},
+                 @{@"giftIamge":@"chicken.png",@"giftName":@"烤鸡",@"giftValue":@"200"},
+                 @{@"giftIamge":@"airport.png",@"giftName":@"私人飞机",@"giftValue":@"222222"},
+                 @{@"giftIamge":@"moreRose.png",@"giftName":@"玫瑰",@"giftValue":@"520"},
+                 @{@"giftIamge":@"ring.png",@"giftName":@"钻戒",@"giftValue":@"8888"},
+                 @{@"giftIamge":@"champagne.png",@"giftName":@"香槟",@"giftValue":@"680"},
+                 @{@"giftIamge":@"car.png",@"giftName":@"跑车",@"giftValue":@"88888"},
+                 @{@"giftIamge":@"lafei.png",@"giftName":@"拉菲",@"giftValue":@"1280"},
+                 @{@"giftIamge":@"ship.png",@"giftName":@"游艇",@"giftValue":@"131400"},
+                 @{@"giftIamge":@"huangjia.png",@"giftName":@"皇家礼炮",@"giftValue":@"1880"},
+                 @{@"giftIamge":@"house.png",@"giftName":@"别墅",@"giftValue":@"334400"}
+                 ];
 }
 
 #pragma mark --- 礼物、点赞等事件
@@ -411,23 +431,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 }
 
 -(void)sendGiftButtonAction:(UIButton *)sender{
-    _dataArr = @[@{@"giftIamge":@"rose.png",@"giftName":@"玫瑰花",@"giftValue":@"10"},
-                 @{@"giftIamge":@"gold.png",@"giftName":@"元宝",@"giftValue":@"2500"},
-                 @{@"giftIamge":@"biantai.png",@"giftName":@"风油精",@"giftValue":@"50"},
-                 @{@"giftIamge":@"apple.png",@"giftName":@"Iphone10",@"giftValue":@"6666"},
-                 @{@"giftIamge":@"book.png",@"giftName":@"金瓶梅",@"giftValue":@"100"},
-                 @{@"giftIamge":@"watch.png",@"giftName":@"百达翡丽",@"giftValue":@"39999"},
-                 @{@"giftIamge":@"chicken.png",@"giftName":@"烤鸡",@"giftValue":@"200"},
-                 @{@"giftIamge":@"airport.png",@"giftName":@"私人飞机",@"giftValue":@"222222"},
-                 @{@"giftIamge":@"moreRose.png",@"giftName":@"玫瑰",@"giftValue":@"520"},
-                 @{@"giftIamge":@"ring.png",@"giftName":@"钻戒",@"giftValue":@"8888"},
-                 @{@"giftIamge":@"champagne.png",@"giftName":@"香槟",@"giftValue":@"680"},
-                 @{@"giftIamge":@"car.png",@"giftName":@"跑车",@"giftValue":@"88888"},
-                 @{@"giftIamge":@"lafei.png",@"giftName":@"拉菲",@"giftValue":@"1280"},
-                 @{@"giftIamge":@"ship.png",@"giftName":@"游艇",@"giftValue":@"131400"},
-                 @{@"giftIamge":@"huangjia.png",@"giftName":@"皇家礼炮",@"giftValue":@"1880"},
-                 @{@"giftIamge":@"house.png",@"giftName":@"别墅",@"giftValue":@"334400"}
-                 ];
     NSString *img = nil;
     for (NSDictionary *dic in _dataArr) {
         if (_giftValue == dic[@"giftValue"]) {
@@ -515,6 +518,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [alterVC addAction:sureAction];
     [self presentViewController:alterVC animated:YES completion:nil];
 }
+#pragma mark -- 礼物动画
 -(void) showGiftIamgeAnmiationWith:(NSString *) giftImg{
     UIImage *img = [UIImage imageNamed:giftImg];
     UIImageView *giftIamge = [[UIImageView alloc] initWithImage:img];
@@ -570,22 +574,27 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 
 #pragma mark --- 初始化播放器
 -(void) initPLplayer{
-    PLPlayerOption *option = [PLPlayerOption defaultOption];
-    [option setOptionValue:@15 forKey:PLPlayerOptionKeyTimeoutIntervalForMediaPackets];
-   
-        NSURL *url = [NSURL URLWithString:_contentURL];
-        self.player = [PLPlayer playerWithURL:url option:option];
-        self.player.delegate = self;
-        [self.view addSubview:self.player.playerView];
-        [self.view sendSubviewToBack:self.player.playerView];
-        [self.player play];
+    
+//    PLPlayerOption *option = [PLPlayerOption defaultOption];
+//    [option setOptionValue:@15 forKey:PLPlayerOptionKeyTimeoutIntervalForMediaPackets];
+//    NSURL *url = [NSURL URLWithString:_contentURL];
+//    self.player = [PLPlayer playerWithURL:url option:option];
+//    self.player.delegate = self;
+//    [self.view addSubview:self.player.playerView];
+//    [self.view sendSubviewToBack:self.player.playerView];
+//    [self.player play];
+    
+    self.player = [[WatchPlayerClient sharedPlayerClient] playWithUrl:_contentURL];
+    self.player.delegate = self;
+    [self.view addSubview:self.player.playerView];
+    [self.view sendSubviewToBack:self.player.playerView];
+    
 }
 
 #pragma mark ---- 开始直播时才能添加进度条
 -(void) setProgressSlider{
     _slider = [[UISlider alloc] initWithFrame:(CGRectMake(SCREEN_WIDTH / 8, distanceOfBottom - SCREEN_WIDTH / 8, SCREEN_WIDTH / 4 * 3 , 40))];
     _slider.value = 0;
-    //        _slider.maximumValue = _player.totalDuration.value / _player.totalDuration.timescale;
     CMTime time = _player.totalDuration;
     float seconds = CMTimeGetSeconds(time);
     _slider.maximumValue = seconds;
@@ -622,7 +631,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
             NSLog(@"4");
             break;
         case PLPlayerStatusPaused:
-            [MyUtil showMessage:@"主播暂停了直播..."];
+            [MyUtil showMessage:@"直播暂停中..."];
             NSLog(@"5");
             break;
         case PLPlayerStatusStopped:
@@ -655,7 +664,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         [MyUtil showMessage:@"直播结束"];
         [self.navigationController popViewControllerAnimated:YES];
     }
-
 }
 
 
@@ -684,6 +692,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 
 -(void)closebackButtonAction{
     [self.player stop];//关闭播放器
+    [self quitChatroom];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -691,10 +700,11 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     NSInteger userid = [_hostUser[@"id"] integerValue];
     NSDictionary *dict = @{@"followid":[NSString stringWithFormat:@"%ld",(long)userid]};
     [LYFriendsHttpTool followFriendWithParms:dict complete:^(NSDictionary *dict) {
-        sender.titleLabel.text = @"已关注";
+        [sender setTitle:@"已关注" forState:(UIControlStateNormal)];
         sender.userInteractionEnabled = NO;
     }];
     [self.player stop];//关闭播放器
+    [self quitChatroom];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -708,7 +718,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 //        }];
 //    } else {
         [LYFriendsHttpTool followFriendWithParms:dict complete:^(NSDictionary *dict) {
-            [sender.titleLabel setText:@"已关注"];
+            [sender setTitle:@"已关注" forState:(UIControlStateNormal)];
             sender.userInteractionEnabled = NO;
         }];
 //    }
@@ -816,7 +826,8 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     LYMyFriendDetailViewController *myFriendVC = [[LYMyFriendDetailViewController  alloc] init];
     myFriendVC.userID = [NSString stringWithFormat:@"%ld", (long)sender.tag];
     [self.navigationController pushViewController:myFriendVC animated:YES];
-    [self.player stop];//关闭播放器
+//    [self.player stop];//关闭播放器
+    [self quitChatroom];
 }
 
 #pragma mark -- UICollectionViewDataSource
@@ -1102,7 +1113,14 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
          }];
     }
 }
-
+//退出聊天室
+-(void)quitChatroom{
+    [[RCIMClient sharedRCIMClient] quitChatRoom:_chatRoomId success:^{
+        NSLog(@"我退出了聊天室");
+    } error:^(RCErrorCode status) {
+        
+    }];
+}
 /**
  *  初始化页面控件
  */
@@ -1184,7 +1202,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication ].delegate;
     if (![textField.text isEqualToString:@""]) {
-        NSString *text = [NSString stringWithFormat:@"%@: %@",app.userModel.usernick, _commentView.textField.text];
+        NSString *text = [NSString stringWithFormat:@"%@：%@",app.userModel.usernick, _commentView.textField.text];
         RCTextMessage *rcTextMessage = [RCTextMessage messageWithContent:text];
         [self sendMessage:rcTextMessage pushContent:nil];
         textField.text = @"";
@@ -1500,7 +1518,19 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
          * 该场景用于插入临时提示。
          */
         if (newId == -1) {
-            [self showTheLove];
+            LYGiftMessage *giftMessage =(LYGiftMessage *) model.content;
+            if ([giftMessage.type isEqualToString:@"2"]) {//点赞
+                [self showTheLove];//接受到消息
+            } else {// 礼物
+                NSString *img = nil;
+                NSString *giftValue = giftMessage.gift.giftId;
+                for (NSDictionary *dic in _dataArr) {
+                    if ([giftValue isEqualToString:dic[@"giftValue"]]) {
+                        img = dic[@"giftIamge"];
+                    }
+                }
+                [self showGiftIamgeAnmiationWith:img];
+            }
             break;
         }
         if (newId == __item.messageId) {

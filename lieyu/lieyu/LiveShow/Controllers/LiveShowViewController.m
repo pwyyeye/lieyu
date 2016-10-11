@@ -93,7 +93,7 @@ PLStreamingSendingBufferDelegate,UICollectionViewDataSource, UICollectionViewDel
     UIView *_blackView;
     NSTimer *_timer;//定时器
     int _takeNum;//聊天数
-    long _likeNum;//点赞数
+    NSInteger _likeNum;//点赞数
     NSString *_lookNum;//观看人数
     UIImage *_begainImage;
     NSInteger _commentBtnTag;
@@ -105,6 +105,8 @@ PLStreamingSendingBufferDelegate,UICollectionViewDataSource, UICollectionViewDel
     CGFloat _heartSize;//红心的大小
     NSTimer *_burstTimer;//延时
     NSInteger _chatuserid;
+    NSArray *_dataArr;//礼物数组
+    NSString *_reward;//获得的打赏
 }
 
 //配置信息
@@ -160,7 +162,7 @@ PLStreamingSendingBufferDelegate,UICollectionViewDataSource, UICollectionViewDel
 
 @property(nonatomic, strong) UIButton *giftButton;
 @property(nonatomic, strong) UIButton *likeButton;
-
+@property (nonatomic, strong) UILabel *likeLabel;
 @property(nonatomic, strong) UIButton *setButton;
 @property(nonatomic, assign) BOOL isShowSetView;
 
@@ -217,7 +219,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    _likeNum = 0;
     // Do any additional setup after loading the view.
     self.dataArray = [NSMutableArray array];
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -388,6 +390,21 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     _setButton = setButton;
     [self.view addSubview:_setButton];
     
+    //点赞按钮
+    _likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _likeButton.size = CGSizeMake(SCREEN_WIDTH / 8,  SCREEN_WIDTH /8);
+    _likeButton.center = CGPointMake(CGRectGetMaxX(self.view.bounds) -SCREEN_WIDTH / 10 , CGRectGetMaxY(self.view.bounds) - SCREEN_WIDTH / 4 - 15 );
+    [_likeButton setImage:[UIImage imageNamed:@"live_like.png"] forState:(UIControlStateNormal)];
+    _likeButton.userInteractionEnabled = NO;
+    [self.view addSubview:_likeButton];
+    _likeLabel = [[UILabel alloc] init];
+    _likeLabel.size = CGSizeMake(SCREEN_WIDTH / 12, 15);
+    _likeLabel.center = CGPointMake(CGRectGetMidX(_likeButton.bounds), CGRectGetMidY(_likeButton.bounds) + 11);
+    _likeLabel.textAlignment = NSTextAlignmentCenter;
+    _likeLabel.font = [UIFont systemFontOfSize:11];
+    _likeLabel.textColor = [UIColor whiteColor];
+    [_likeButton addSubview:_likeLabel];
+    
     _livesetView = [[[NSBundle mainBundle] loadNibNamed:@"LiveSetView" owner:self options:nil] lastObject];
     _livesetView.frame = (CGRectMake(SCREEN_WIDTH / 10 * 9 + MinHeight_InputView/2 - 100, distanceOfBottom - 140 -SCREEN_WIDTH / 8 - 20 , 100, 160));
     _livesetView.backgroundColor = [UIColor clearColor];
@@ -418,6 +435,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     _blackView.hidden = YES;
     [_blackView addSubview:_beaSlider];
     [_backgroudView addSubview:_blackView];
+  
 }
 
 #pragma mark --- 设置等事件
@@ -473,7 +491,20 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     });
 }
 
-
+#pragma mark -- 礼物动画
+-(void) showGiftIamgeAnmiationWith:(NSString *) giftImg{
+    UIImage *img = [UIImage imageNamed:giftImg];
+    UIImageView *giftIamge = [[UIImageView alloc] initWithImage:img];
+    giftIamge.center = self.view.center;
+    giftIamge.size = CGSizeMake(60, 60);
+    [self.view addSubview:giftIamge];
+    [self.view bringSubviewToFront:giftIamge];
+    [UIView animateWithDuration:2 delay:2 usingSpringWithDamping:.7f initialSpringVelocity:.3f options:UIViewAnimationOptionOverrideInheritedCurve animations:^{
+        giftIamge.size = CGSizeMake(0, 0);
+    } completion:^(BOOL finished) {
+        [giftIamge removeFromSuperview];
+    }];
+}
 #pragma mark --- 初始化播放器
 -(void) initPLplayer{
     // 预先设定几组编码质量，之后可以切换
@@ -791,11 +822,11 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     NSDictionary *dict = @{@"followid":[NSString stringWithFormat:@"%ld",(long)sender.tag]};
     if (sender.tag == 1) {//不能取消关注
         [LYFriendsHttpTool unFollowFriendWithParms:dict complete:^(NSDictionary *dict) {
-            sender.titleLabel.text = @"关注";
+            [sender setTitle:@"关注" forState:(UIControlStateNormal)];
         }];
     } else {
         [LYFriendsHttpTool followFriendWithParms:dict complete:^(NSDictionary *dict) {
-            [sender.titleLabel setText:@"已关注"];
+            [sender setTitle:@"已关注" forState:(UIControlStateNormal)];
             sender.userInteractionEnabled = NO;
         }];
     }
@@ -813,31 +844,41 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 //结束直播弹出结束画面
 -(void)closeButtonAction:(UIButton *) sender{
     UIAlertController *alertCloseView = [UIAlertController alertControllerWithTitle:@"确定要退出吗？" message:@"" preferredStyle:(UIAlertControllerStyleAlert)];
+    __weak typeof(self) weakSelf = self;
+    NSDictionary *paramsDic = @{@"roomid":_chatRoomId};
     UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
-        _backImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"BackImage.png"]];
-        _backImage.frame = self.view.bounds;
-        [self.view addSubview:_backImage];
-        [self.view bringSubviewToFront:_backImage];
-        _backImage.userInteractionEnabled = YES;
-        _closeView = [[[NSBundle mainBundle] loadNibNamed:@"CloseLiveShowView" owner:self options:nil] lastObject];
-        _closeView.frame = self.view.bounds;
-        [self.view addSubview:_closeView];
-        [self.view bringSubviewToFront:_closeView];
-        [_closeView.backButton addTarget:self action:@selector(backButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
-        [_closeView.notSaveButton addTarget:self action:@selector(notSaveBackButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
-        _closeView.lookNumLabel.text = _lookNum;
-        _closeView.begainImage = _begainImage;
-        _closeView.chatRoomID = _chatRoomId;
-        dispatch_sync(self.sessionQueue, ^{
-            [self.session destroy];
-        });
-        self.session = nil;
-        self.sessionQueue = nil;
+        [LYFriendsHttpTool getLiveMoneyWithParams:paramsDic complete:^(NSDictionary *dict) {
+            _reward = dict[@"rewardNum"];
+            [weakSelf initCloseView];
+        }];
     }];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:nil];
     [alertCloseView addAction:cancelAction];
     [alertCloseView addAction:sureAction];
     [self presentViewController:alertCloseView animated:YES completion:nil];
+}
+//结束画面
+-(void)initCloseView{
+    _backImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"BackImage.png"]];
+    _backImage.frame = self.view.bounds;
+    [self.view addSubview:_backImage];
+    [self.view bringSubviewToFront:_backImage];
+    _backImage.userInteractionEnabled = YES;
+    _closeView = [[[NSBundle mainBundle] loadNibNamed:@"CloseLiveShowView" owner:self options:nil] lastObject];
+    _closeView.frame = self.view.bounds;
+    [self.view addSubview:_closeView];
+    [self.view bringSubviewToFront:_closeView];
+    [_closeView.backButton addTarget:self action:@selector(backButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
+    [_closeView.notSaveButton addTarget:self action:@selector(notSaveBackButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
+    _closeView.moneyNumLabel.text = _reward;
+    _closeView.lookNumLabel.text = _lookNum;
+    _closeView.begainImage = _begainImage;
+    _closeView.chatRoomID = _chatRoomId;
+    dispatch_sync(self.sessionQueue, ^{
+        [self.session destroy];
+    });
+    self.session = nil;
+    self.sessionQueue = nil;
 }
 
 //结束画面返回
@@ -845,6 +886,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     NSDictionary *dict = @{@"roomid":_roomid,@"closeType":@"save"};
     [LYFriendsHttpTool closeLiveShowWithParams:dict complete:^(NSDictionary *dict) {
     }];
+    [self quitChatroom];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
 }
 
@@ -853,6 +895,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     NSDictionary *dict = @{@"roomid":_roomid,@"closeType":@"delete"};
     [LYFriendsHttpTool closeLiveShowWithParams:dict complete:^(NSDictionary *dict) {
     }];
+    [self quitChatroom];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
 }
 
@@ -1166,6 +1209,14 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
          }];
     }
 }
+//退出聊天室
+-(void)quitChatroom{
+    [[RCIMClient sharedRCIMClient] quitChatRoom:_chatRoomId success:^{
+        
+    } error:^(RCErrorCode status) {
+        
+    }];
+}
 
 /**
  *  初始化聊天页面控件
@@ -1239,7 +1290,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication ].delegate;
     if (![textField.text isEqualToString:@""]) {
-        NSString *text = [NSString stringWithFormat:@"%@: %@",app.userModel.usernick, _commentView.textField.text];
+        NSString *text = [NSString stringWithFormat:@"%@：%@",app.userModel.usernick, _commentView.textField.text];
         RCTextMessage *rcTextMessage = [RCTextMessage messageWithContent:text];
         [self sendMessage:rcTextMessage pushContent:nil];
         textField.text = @"";
@@ -1552,7 +1603,38 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
          */
         
         if (newId == -1) {
-            [self showTheLove];//接受到消息
+            LYGiftMessage *giftMessage =(LYGiftMessage *) model.content;
+            if ([giftMessage.type isEqualToString:@"2"]) {//点赞
+                [self showTheLove];//接受到消息
+                _likeNum += 1;
+                _likeLabel.text = [NSString stringWithFormat:@"%ld",(long)_likeNum];
+            } else {// 礼物
+                NSString *img = nil;
+                NSString *giftValue = giftMessage.gift.giftId;
+                _dataArr = @[@{@"giftIamge":@"rose.png",@"giftName":@"玫瑰花",@"giftValue":@"10"},
+                             @{@"giftIamge":@"gold.png",@"giftName":@"元宝",@"giftValue":@"2500"},
+                             @{@"giftIamge":@"biantai.png",@"giftName":@"风油精",@"giftValue":@"50"},
+                             @{@"giftIamge":@"apple.png",@"giftName":@"Iphone10",@"giftValue":@"6666"},
+                             @{@"giftIamge":@"book.png",@"giftName":@"金瓶梅",@"giftValue":@"100"},
+                             @{@"giftIamge":@"watch.png",@"giftName":@"百达翡丽",@"giftValue":@"39999"},
+                             @{@"giftIamge":@"chicken.png",@"giftName":@"烤鸡",@"giftValue":@"200"},
+                             @{@"giftIamge":@"airport.png",@"giftName":@"私人飞机",@"giftValue":@"222222"},
+                             @{@"giftIamge":@"moreRose.png",@"giftName":@"玫瑰",@"giftValue":@"520"},
+                             @{@"giftIamge":@"ring.png",@"giftName":@"钻戒",@"giftValue":@"8888"},
+                             @{@"giftIamge":@"champagne.png",@"giftName":@"香槟",@"giftValue":@"680"},
+                             @{@"giftIamge":@"car.png",@"giftName":@"跑车",@"giftValue":@"88888"},
+                             @{@"giftIamge":@"lafei.png",@"giftName":@"拉菲",@"giftValue":@"1280"},
+                             @{@"giftIamge":@"ship.png",@"giftName":@"游艇",@"giftValue":@"131400"},
+                             @{@"giftIamge":@"huangjia.png",@"giftName":@"皇家礼炮",@"giftValue":@"1880"},
+                             @{@"giftIamge":@"house.png",@"giftName":@"别墅",@"giftValue":@"334400"}
+                             ];
+                for (NSDictionary *dic in _dataArr) {
+                    if ([giftValue isEqualToString:dic[@"giftValue"]]) {
+                        img = dic[@"giftIamge"];
+                    }
+                }
+                [self showGiftIamgeAnmiationWith:img];
+            }
             break;
         }
         if (newId == __item.messageId) {

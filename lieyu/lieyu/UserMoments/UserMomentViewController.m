@@ -905,7 +905,7 @@
             //            imageSubview.backgroundColor = RGBA(0, 0, 0, 0.1);
             imageSubview.backgroundColor = [UIColor clearColor];
             //            imageSubview.tag = 541127;
-            UITapGestureRecognizer *tapImageSubview = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideDefaultPage:)];
+            UITapGestureRecognizer *tapImageSubview = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideDefaultPage)];
             [imageSubview addGestureRecognizer:tapImageSubview];
             
             imageView = [[UIImageView alloc]init];
@@ -1273,7 +1273,7 @@
 }
 
 #pragma mark - 隐藏引导页
-- (void)hideDefaultPage:(UITapGestureRecognizer *)gesture{
+- (void)hideDefaultPage{
   
     [imageSubview removeFromSuperview];
     [imageView removeFromSuperview];

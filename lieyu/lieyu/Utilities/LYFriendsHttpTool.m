@@ -343,6 +343,18 @@
     }];
 }
 
+//获取直播间打赏金额
++(void)getLiveMoneyWithParams:(NSDictionary *) params complete: (void(^)(NSDictionary *dict))complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Live_getMoney baseURL:LY_SERVER params:params success:^(id response) {
+        if ([response[@"errorcode"] isEqualToString:@"success"]) {
+            NSDictionary *temp = response[@"data"];
+            complete(temp);
+        }
+    } failure:^(NSError *err) {
+        NSLog(@"%@", [err localizedDescription]);
+    }];
+}
+
 //点赞
 +(void) watchLikeWithParms: (NSDictionary *) parms complete: (void(^)(NSDictionary *dict))complete {
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Live_like baseURL:LY_SERVER params:parms success:^(id response) {
@@ -388,6 +400,8 @@
         
     }];
 }
+
+
 #pragma mark --- 最新玩友列表和粉丝
 +(void) getfFriensGroupWithPrams: (NSDictionary *)prams complete: (void(^)(NSDictionary *dict)) complete{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Friends_friendsGroup baseURL:LY_SERVER params:prams success:^(id response) {

@@ -662,7 +662,7 @@
                                 <action selector="sendMessageAct:" destination="-1" eventType="touchUpInside" id="GRg-Mk-CZx"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ILk-Bk-xV6">
+                        <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ILk-Bk-xV6">
                             <state key="normal" title="Button" image="setBlack.png"/>
                         </button>
                     </subviews>

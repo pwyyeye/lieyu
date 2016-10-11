@@ -64,6 +64,9 @@
 //结束直播
 +(void) closeLiveShowWithParams: (NSDictionary *)params complete : (void(^)(NSDictionary *dict))complete;
 
+//获取直播间打赏金额
++(void)getLiveMoneyWithParams:(NSDictionary *) params complete: (void(^)(NSDictionary *dict))complete;
+
 //点赞
 +(void) watchLikeWithParms: (NSDictionary *) parms complete: (void(^)(NSDictionary *dict))complete;
 

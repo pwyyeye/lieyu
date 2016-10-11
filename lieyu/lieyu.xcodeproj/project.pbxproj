@@ -990,6 +990,7 @@
 		850B32C51D2E490F0080CA6D /* GroupLeaderRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850B32C31D2E490F0080CA6D /* GroupLeaderRegisterViewController.xib */; };
 		850B32C91D2E49E30080CA6D /* LYGroupPeopleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 850B32C71D2E49E30080CA6D /* LYGroupPeopleTableViewCell.m */; };
 		850B32CA1D2E49E30080CA6D /* LYGroupPeopleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850B32C81D2E49E30080CA6D /* LYGroupPeopleTableViewCell.xib */; };
+		850C45EB1DAB8FC000F79635 /* WatchPlayerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 850C45EA1DAB8FC000F79635 /* WatchPlayerClient.m */; };
 		850E0A7C1D6FDB6800F4C00C /* LiveListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 850E0A7B1D6FDB6800F4C00C /* LiveListViewController.m */; };
 		850E0A7F1D70499800F4C00C /* live_listlike@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 850E0A7D1D70499800F4C00C /* live_listlike@3x.png */; };
 		850E0A801D70499800F4C00C /* live_listlike@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 850E0A7E1D70499800F4C00C /* live_listlike@2x.png */; };
@@ -3524,6 +3525,8 @@
 		850B32C61D2E49E30080CA6D /* LYGroupPeopleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYGroupPeopleTableViewCell.h; sourceTree = "<group>"; };
 		850B32C71D2E49E30080CA6D /* LYGroupPeopleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYGroupPeopleTableViewCell.m; sourceTree = "<group>"; };
 		850B32C81D2E49E30080CA6D /* LYGroupPeopleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYGroupPeopleTableViewCell.xib; sourceTree = "<group>"; };
+		850C45E91DAB8FC000F79635 /* WatchPlayerClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatchPlayerClient.h; sourceTree = "<group>"; };
+		850C45EA1DAB8FC000F79635 /* WatchPlayerClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatchPlayerClient.m; sourceTree = "<group>"; };
 		850E0A7A1D6FDB6800F4C00C /* LiveListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveListViewController.h; sourceTree = "<group>"; };
 		850E0A7B1D6FDB6800F4C00C /* LiveListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiveListViewController.m; sourceTree = "<group>"; };
 		850E0A7D1D70499800F4C00C /* live_listlike@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "live_listlike@3x.png"; sourceTree = "<group>"; };
@@ -7715,6 +7718,15 @@
 			path = "酒吧群聊";
 			sourceTree = "<group>";
 		};
+		850C45E81DAB8F8D00F79635 /* PlayerClient */ = {
+			isa = PBXGroup;
+			children = (
+				850C45E91DAB8FC000F79635 /* WatchPlayerClient.h */,
+				850C45EA1DAB8FC000F79635 /* WatchPlayerClient.m */,
+			);
+			path = PlayerClient;
+			sourceTree = "<group>";
+		};
 		851507F81CFD4188002375D4 /* 顾问详情 */ = {
 			isa = PBXGroup;
 			children = (
@@ -7785,7 +7797,6 @@
 				851F03A61D645A44006BAA47 /* LiveShowViewController.m */,
 				851F03A71D645A44006BAA47 /* WatchLiveShowViewController.h */,
 				851F03A81D645A44006BAA47 /* WatchLiveShowViewController.m */,
-				85A639261D746232000816FD /* UserMoments */,
 				851F03B21D645A44006BAA47 /* Views */,
 			);
 			path = Controllers;
@@ -7794,6 +7805,7 @@
 		851F03A21D645A44006BAA47 /* ChatRoomHelper */ = {
 			isa = PBXGroup;
 			children = (
+				850C45E81DAB8F8D00F79635 /* PlayerClient */,
 				85251A331D6D4F07005CE01D /* MVC */,
 			);
 			path = ChatRoomHelper;
@@ -8255,6 +8267,7 @@
 		8540B65D1C2CD68C00F16463 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				85A639261D746232000816FD /* UserMoments */,
 				85A639201D744F25000816FD /* LYMoments */,
 				851F03A01D645A44006BAA47 /* LiveShow */,
 				85DB124C1CA00DA2002D6042 /* 话题动态 */,
@@ -9058,8 +9071,7 @@
 				8541070D1D80F9150083AF04 /* UserMomentViewController.h */,
 				8541070E1D80F9150083AF04 /* UserMomentViewController.m */,
 			);
-			name = UserMoments;
-			path = ../../UserMoments;
+			path = UserMoments;
 			sourceTree = "<group>";
 		};
 		85C4287B1C11B1D80028FC21 /* CoreDataModel */ = {
@@ -12831,6 +12843,7 @@
 				ADF88EAD1C1197C400CF5DED /* UIScrollView+MJExtension.m in Sources */,
 				38679E4F1D817520003C868A /* MineBoundAccountViewController.m in Sources */,
 				385665151C76A566000DCFA5 /* HDDetailFootCell.m in Sources */,
+				850C45EB1DAB8FC000F79635 /* WatchPlayerClient.m in Sources */,
 				857968191CFBEA1F00284555 /* AdvisorBookIngoTableViewCell.m in Sources */,
 				85F6259C1C0C382A002858C8 /* LYTaoCanHeaderTableViewCell.m in Sources */,
 				851F03EC1D645A44006BAA47 /* LYLiveShowListModel.m in Sources */,

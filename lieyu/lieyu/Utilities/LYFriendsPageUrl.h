@@ -84,6 +84,9 @@
 //结束直播
 #define LY_Live_closeLive @"/lieyu//app/api/liveroom/close?1=1"
 
+//获取直播间打赏金额
+#define LY_Live_getMoney @"/lieyu//app/api/liveroom/rewardNum?1=1"
+
 //点赞
 #define LY_Live_like @"/lieyu//app/api/liveroom/likeLiveRoom?1=1"
 

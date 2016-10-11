@@ -35,7 +35,9 @@
 /**
  *  更新UI
  */
+
 - (void)updateUI {
+    
     LYGiftMessage *_likeMessage = (LYGiftMessage *)self.model.content;
     
     NSString *tiptext = @"";

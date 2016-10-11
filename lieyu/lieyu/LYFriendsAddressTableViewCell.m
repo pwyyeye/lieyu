@@ -17,17 +17,17 @@
 }
 
 -(void)layoutSubviews{
-    [_dianpingButton addTarget:self action:@selector(isShowMoreButton) forControlEvents:(UIControlEventTouchUpInside)];
-    _moreView.alpha = 0.f;
+    [_dianpingButton addTarget:self action:@selector(isHiddenOrNot) forControlEvents:(UIControlEventTouchUpInside)];
+    _moreView.hidden = YES;
     _moreView.layer.cornerRadius = 5.f;
     _moreView.layer.masksToBounds = YES;
 }
 
--(void)isShowMoreButton{
-    if (_moreView.alpha == 1.f) {
-        _moreView.alpha = 0.f;
+-(void)isHiddenOrNot{
+    if (_moreView.hidden) {
+        _moreView.hidden = NO;
     } else {
-        _moreView.alpha = 1.f;
+        _moreView.hidden = YES;
     }
 }
 

@@ -793,7 +793,6 @@ static NSString *daShangCellID = @"dashangCellID";
             addressCell.recentM = recentM;
             addressCell.btn_like.tag = indexPath.section;
             addressCell.btn_comment.tag = indexPath.section;
-            
             [addressCell.btn_like addTarget:self action:@selector(likeFriendsButtonClick:) forControlEvents:UIControlEventTouchUpInside];
             
             UILongPressGestureRecognizer *likeLongPress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(likeLongPressClick:)];
@@ -1116,7 +1115,7 @@ static NSString *daShangCellID = @"dashangCellID";
     _toUserId = recentM.userId;
     _businessid = recentM.id;
     UIView *moreView = [sender superview];
-    moreView.alpha = 0.f;
+    moreView.hidden = YES;
     
     _backgroudView = [[UIView alloc] initWithFrame:self.view.bounds];
     _backgroudView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.4f];
@@ -1136,20 +1135,6 @@ static NSString *daShangCellID = @"dashangCellID";
 }
 
 -(void)notice:(NSNotification *)notification{
-//    NSString *values = notification.userInfo[@"value"];
-//    if (_giftValueArray.count == 0) {//第一次点击直接加入数组
-//        [_giftValueArray addObject:values];
-//    } else {
-//        if (_giftNumber >= 1 ) {
-//            if ([_giftValueArray containsObject:values]) {
-//                [self.giftValueArray removeObject:values];
-//            } else {
-//                [self.giftValueArray addObject:values];
-//            }
-//        } else {//
-//        [_giftValueArray removeObject:values];
-//        }
-//    }
     _giftValue = notification.userInfo[@"value"];
 }
 
@@ -1265,8 +1250,7 @@ static NSString *daShangCellID = @"dashangCellID";
 #pragma mark - 表白action
 - (void)likeFriendsButtonClick:(UIButton *)button{
     UIView *moreView = [button superview];
-    moreView.alpha = 0.f;
-    
+    moreView.hidden = YES;
     if(![MyUtil isUserLogin]){
         [MyUtil showCleanMessage:@"请先登录！"];
         [MyUtil gotoLogin];
@@ -1296,12 +1280,12 @@ static NSString *daShangCellID = @"dashangCellID";
     [LYFriendsHttpTool friendsLikeMessageWithParams:paraDic compelte:^(bool result) {
         if (![USER_DEFAULT objectForKey:@"firstUseFriendLike"]) {
             float distance = button.superview.superview.frame.origin.y - tableView.contentOffset.y;
-            imageSubview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-            //            imageSubview.backgroundColor = RGBA(0, 0, 0, 0.1);
-            imageSubview.backgroundColor = [UIColor clearColor];
-            //            imageSubview.tag = 541127;
-            UITapGestureRecognizer *tapImageSubview = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideDefaultPage:)];
-            [imageSubview addGestureRecognizer:tapImageSubview];
+//            imageSubview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+//            //            imageSubview.backgroundColor = RGBA(0, 0, 0, 0.1);
+//            imageSubview.backgroundColor = [UIColor clearColor];
+//            //            imageSubview.tag = 541127;
+//            UITapGestureRecognizer *tapImageSubview = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideDefaultPage)];
+//            [imageSubview addGestureRecognizer:tapImageSubview];
             
             imageView = [[UIImageView alloc]init];
             //            imageView.tag = 541128;
@@ -1310,19 +1294,17 @@ static NSString *daShangCellID = @"dashangCellID";
             [imageView addGestureRecognizer:tapImageTip];
             
             
-            
-            //            [weakSelf.view addSubview:imageSubview];
-            [((AppDelegate *)[UIApplication sharedApplication].delegate).window addSubview:imageSubview];
+//            [((AppDelegate *)[UIApplication sharedApplication].delegate).window addSubview:imageSubview];
             if (distance < SCREEN_HEIGHT / 2) {
-                //                imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"emojiTIpBottom"]];
                 [imageView setImage:[UIImage imageNamed:@"emojiTIpBottom"]];
                 [imageView setFrame:CGRectMake(SCREEN_WIDTH - 260, distance + 20, 206, 93)];
             }else{
-                //                imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"emojiTIpTop"]];
                 [imageView setImage:[UIImage imageNamed:@"emojiTIpTop"]];
                 [imageView setFrame:CGRectMake(SCREEN_WIDTH - 260, distance - 68, 206, 93)];
             }
-            [imageSubview addSubview:imageView];
+//            [imageSubview addSubview:imageView];
+            [((AppDelegate *)[UIApplication sharedApplication].delegate).window addSubview:imageView];
+
         }
         if (result) {//点赞成功
             FriendsLikeModel *likeModel = [[FriendsLikeModel alloc]init];
@@ -1762,7 +1744,7 @@ static NSString *daShangCellID = @"dashangCellID";
 }
 
 #pragma mark - 隐藏引导页
-- (void)hideDefaultPage:(UITapGestureRecognizer *)gesture{
+- (void)hideDefaultPage{
     //    if (gesture.view.tag == 541128) {
     //
     //        [USER_DEFAULT setObject:@"NO" forKey:@"firstUseFriendLike"];
@@ -2020,7 +2002,7 @@ static NSString *daShangCellID = @"dashangCellID";
 #pragma mark - 评论action
 - (void)commentClick:(UIButton *)button{
     UIView *moreView = [button superview];
-    moreView.alpha = 0.f;
+    moreView.hidden = YES;
     _commentBtnTag = button.tag;
     _isCommentToUser = NO;//不对他人评论
     if (isExidtEffectView) [emojisView hideEmojiEffectView];

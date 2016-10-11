@@ -385,8 +385,8 @@ static NSString *liveShowListID = @"liveShowListID";
             
             if (hotTempArray.count == 0) {
                 if (_hotDataArray.count == 0) {
-                    [self initKongView];
-                    [hotTableView.mj_header endRefreshing];
+                        [self initKongView];
+                        [hotTableView.mj_header endRefreshing];
                 } else {
                     if(_currentHotPage == 1){
                         [hotTableView.mj_header endRefreshing];
@@ -400,12 +400,12 @@ static NSString *liveShowListID = @"liveShowListID";
                     [self.hotDataArray addObjectsFromArray:hotTempArray];
                 } else {
                     [self.hotDataArray addObjectsFromArray:hotTempArray];
+                    [hotTableView.mj_footer endRefreshingWithNoMoreData];
                 }
             }
             dispatch_async(dispatch_get_main_queue(), ^{
                 [hotTableView reloadData];
                 [hotTableView.mj_header endRefreshing];
-                [hotTableView.mj_footer endRefreshing];
             });
         } else {
             UITableView *newTableView = (UITableView *)_tableViewArray[1];
@@ -442,9 +442,11 @@ static NSString *liveShowListID = @"liveShowListID";
             }
             [self hideEmptyView];
             if (newTempArray.count == 0) {
-                if (newTempArray.count == 0) {
-                    [self initKongView];
-                    [newTableView.mj_header endRefreshing];
+                if (_rencentDataArray.count == 0) {
+                   
+                        [self initKongView];
+                        [newTableView.mj_header endRefreshing];
+                    
                 } else {
                     if(_currentHotPage == 1){
                         [newTableView.mj_header endRefreshing];
@@ -458,12 +460,12 @@ static NSString *liveShowListID = @"liveShowListID";
                     [self.rencentDataArray addObjectsFromArray:newTempArray];
                 } else {
                     [self.rencentDataArray addObjectsFromArray:newTempArray];
+                    [newTableView.mj_footer endRefreshingWithNoMoreData];
                 }
             }
             dispatch_async(dispatch_get_main_queue(), ^{
                 [newTableView reloadData];
                 [newTableView.mj_header endRefreshing];
-                [newTableView.mj_footer endRefreshing];
             });
         }
             }];

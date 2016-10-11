@@ -55,6 +55,12 @@ return nil;
     CLLocation *location = app.userLocation;
     NSString *liveStr = [NSString stringWithFormat:@"%@%@%@",LY_SERVER,LY_LIVE_share,_chatRoomID];
     UMSocialUrlResource *urlResource = [[UMSocialUrlResource alloc] initWithSnsResourceType:UMSocialUrlResourceTypeMusic url:liveStr];
+    //主标题
+    [UMSocialData defaultData].extConfig.wechatSessionData.title = @"猎娱直播间";
+    [UMSocialData defaultData].extConfig.wechatTimelineData.title = @"猎娱直播间";
+    //分享的链接
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = liveStr;
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = liveStr;
     switch (sender.tag) {
         case 100://分享微信好友
         {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatSession] content:@"猎娱直播间" image:_begainImage location:location urlResource:urlResource presentedController:selfVC completion:^(UMSocialResponseEntity *response){
