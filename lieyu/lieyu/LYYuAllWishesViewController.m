@@ -602,11 +602,13 @@
 //分享
 - (void)shareWithModel:(YUWishesModel *)model{
     NSString *shareString = [NSString stringWithFormat:@"%@lyRequireOutAction.do?id=%d",LY_SERVER,model.id];
-    NSString *content = [NSString stringWithFormat:@"Q:%@\nA:%@\n%@",model.desc,model.replyContent,shareString];
+    NSString *content = [NSString stringWithFormat:@"Q:%@\n",model.desc];
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = shareString;
     [UMSocialData defaultData].extConfig.wechatSessionData.url = shareString;
-    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:content shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.userModel.avatar_img]]] shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
+    [UMSocialData defaultData].extConfig.wechatTimelineData.title = content;
+    [UMSocialData defaultData].extConfig.wechatSessionData.title = content;
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:[NSString stringWithFormat:@"A:%@\n%@",model.replyContent,shareString] shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.userModel.avatar_img]]] shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
 }
 
 //这都搞不定！算了吧／去吐槽

@@ -16,6 +16,8 @@
 #import "BeerBarOrYzhDetailModel.h"
 #import "LYUserLocation.h"
 
+#define banner_height SCREEN_WIDTH / 4 * 3
+
 @interface ActivityDetailViewController ()<UITableViewDelegate,UITableViewDataSource,UIWebViewDelegate>
 {
     LYHeaderTableViewCell *_headerCell;//表的第一个cell图片
@@ -99,7 +101,7 @@
 
 #pragma mark - scrollView的代理方法
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    if (scrollView.contentOffset.y >= SCREEN_WIDTH /16 * 9 - 64) {
+    if (scrollView.contentOffset.y >= banner_height - 64) {
         self.image_layer.alpha = 1;
         self.image_layer.layer.shadowRadius = 2;
         self.image_layer.layer.shadowOpacity = 0.5;
@@ -121,7 +123,7 @@
     
     if (_tableView.contentOffset.y < 0) {
         CGFloat y = scrollView.contentOffset.y;
-        CGFloat hegiht = SCREEN_WIDTH * 9 / 16.f;
+        CGFloat hegiht = banner_height;
         _tableHeaderImageView.frame = CGRectMake(- ((hegiht - y) * 16 / 9.f - SCREEN_WIDTH ) /2.f, y, (hegiht - y) * 16 / 9.f, hegiht -y);
     }
 }
@@ -150,7 +152,7 @@
         if (imageView) {
             [imageView removeFromSuperview];
         }
-        _tableHeaderImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 9 / 16.0f)];
+        _tableHeaderImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, banner_height)];
         _tableHeaderImageView.tag = 100;
         if (![MyUtil isEmptyString:_barActivity.imageUrl]) {
             [_tableHeaderImageView sd_setImageWithURL:[NSURL URLWithString:_barActivity.imageUrl] placeholderImage:[UIImage imageNamed:@"empyImageBar16_9"]];
@@ -183,7 +185,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
-        return SCREEN_WIDTH * 9 / 16;
+        return banner_height;
     }else if (indexPath.row == 1){
         CGSize timeSize = [_infoCell.activityTime.text boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 58, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]} context:nil].size;
         CGSize placeSize = [_infoCell.activityAddress.text boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 58, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]} context:nil].size;
@@ -208,11 +210,13 @@
 }
 
 - (IBAction)shareButtonClick:(UIButton *)sender {
-    NSString *string= [NSString stringWithFormat:@"我要推荐下～%@攻略!下载猎娱App猎寻更多特色酒吧。http://www.lie98.com/lieyu/toPlayAction.do?action=login&barid=%@",_barActivity.name,_barActivity.id];
+    NSString *string= [NSString stringWithFormat:@"我要推荐下～%@活动!下载猎娱App猎寻更多精彩活动！。",_barActivity.name];
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
-    [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"http://www.lie98.com/lieyu/toPlayAction.do?action=login&barid=%@",_barActivity.id];
-    [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"http://www.lie98.com/lieyu/toPlayAction.do?action=login&barid=%@",_barActivity.id];
-    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:_headerCell.imageView.image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = @"";
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = @"";
+    [UMSocialData defaultData].extConfig.wechatTimelineData.title = string;
+    [UMSocialData defaultData].extConfig.wechatSessionData.title = string;
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:@"精彩活动，尽在猎娱！" shareImage:_headerCell.imageView.image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"分享" pageName:@"活动详情" titleName:_barActivity.name]];
 }
 

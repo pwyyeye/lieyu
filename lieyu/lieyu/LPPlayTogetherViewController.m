@@ -466,12 +466,8 @@
 //    
     NSString *string=@"大家一起来看看～猎娱不错啊! 下载猎娱App即可优惠下单，还有超值返利。http://www.lie98.com\n";
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
-//    [UMSocialSnsService presentSnsController:self
-//                                appKey:UmengAppkey
-//                                shareText:string
-//                                shareImage:self.barinfoCell.barImage.image
-//                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSms,nil]
-//                                delegate:self];
+    [UMSocialData defaultData].extConfig.wechatTimelineData.title = string;
+    [UMSocialData defaultData].extConfig.wechatSessionData.title = string;
     [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:self.barinfoCell.barImage.image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatTimeline,UMShareToWechatSession,UMShareToSina,UMShareToSms,nil] delegate:self];
     
 }

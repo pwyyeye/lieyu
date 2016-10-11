@@ -121,12 +121,8 @@
 - (void)shareClick{
      NSString *string= [NSString stringWithFormat:@"大家一起来看看～%@酒吧不错啊!下载猎娱App即可优惠下单，还有超值返利。http://www.lie98.com",_jiubaModel.barname];
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
-    //    [UMSocialSnsService presentSnsController:self
-    //                                appKey:UmengAppkey
-    //                                shareText:string
-    //                                shareImage:self.barinfoCell.barImage.image
-    //                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSms,nil]
-    //                                delegate:self];
+    [UMSocialData defaultData].extConfig.wechatTimelineData.title = string;
+    [UMSocialData defaultData].extConfig.wechatSessionData.title = string;
     [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:_headerCell.imageView_header.image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"分享" pageName:TAOCANDETAILPAGE_MTA titleName:_jiubaModel.barname]];
 }

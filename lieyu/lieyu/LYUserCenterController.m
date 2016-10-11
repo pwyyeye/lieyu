@@ -289,14 +289,14 @@ static NSString * const reuseIdentifier = @"userCenterCell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         //扫一扫
-//        NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"发现主页面",@"titleName":@"选择扫一扫"};
-//        [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
-//        
-//        SaoYiSaoViewController *saoYiSaoViewController=[[SaoYiSaoViewController alloc]initWithNibName:@"SaoYiSaoViewController" bundle:nil];
-//        saoYiSaoViewController.title=@"扫一扫";
-//        [self.navigationController pushViewController:saoYiSaoViewController  animated:YES];
-        LYFriendsRecommendViewController *view = [[LYFriendsRecommendViewController alloc]init];
-        [self.navigationController pushViewController:view animated:YES];
+        NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"发现主页面",@"titleName":@"选择扫一扫"};
+        [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
+        
+        SaoYiSaoViewController *saoYiSaoViewController=[[SaoYiSaoViewController alloc]initWithNibName:@"SaoYiSaoViewController" bundle:nil];
+        saoYiSaoViewController.title=@"扫一扫";
+        [self.navigationController pushViewController:saoYiSaoViewController  animated:YES];
+//        LYFriendsRecommendViewController *view = [[LYFriendsRecommendViewController alloc]init];
+//        [self.navigationController pushViewController:view animated:YES];
     }else if (indexPath.section == 1){
         if (indexPath.row == 0) {
             //订单
@@ -350,7 +350,9 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
             [UMSocialData defaultData].extConfig.wechatTimelineData.url = @"http://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653";
             [UMSocialData defaultData].extConfig.wechatSessionData.url = @"http://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653";
-            [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:[UIImage imageNamed:@"CommonIcon"] shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
+            [UMSocialData defaultData].extConfig.wechatTimelineData.title = string;
+            [UMSocialData defaultData].extConfig.wechatSessionData.title = string;
+            [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:@"猎娱，猎享精彩！" shareImage:[UIImage imageNamed:@"CommonIcon"] shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
         }
     }
 }

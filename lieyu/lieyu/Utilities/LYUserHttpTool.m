@@ -1623,8 +1623,16 @@
                 [MyUtil showPlaceMessage:@"数据获取失败，请稍后重试！"];
             }else{
                 NSString *balanceStrEncry = [[response objectForKey:@"data"] objectForKey:@"balances"];
-                NSString *balanceStr = [MyUtil decryptUseDES:balanceStrEncry withKey:app.desKey];
-                
+                NSString *balanceString = [MyUtil decryptUseDES:balanceStrEncry withKey:app.desKey];
+                NSString *balanceStr;
+                NSArray *balanceArray = [balanceString componentsSeparatedByString:@"."];
+                if (balanceArray.count > 1) {
+                    if (((NSString *)[balanceArray objectAtIndex:1]).length > 2) {
+                        balanceStr = [NSString stringWithFormat:@"%@.%@",[balanceArray objectAtIndex:0],[[balanceArray objectAtIndex:1] substringToIndex:2]];
+                    }else{
+                        balanceStr = [NSString stringWithFormat:@"%@.00",[balanceArray objectAtIndex:0]];
+                    }
+                }
                 NSString *coinStrEncry = [[response objectForKey:@"data"] objectForKey:@"coin"];
                 NSString *coinStr = [MyUtil decryptUseDES:coinStrEncry withKey:app.desKey];
                 
