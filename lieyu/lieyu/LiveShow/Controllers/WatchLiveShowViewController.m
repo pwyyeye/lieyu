@@ -514,12 +514,13 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [alterVC addAction:sureAction];
     [self presentViewController:alterVC animated:YES completion:nil];
 }
+
 #pragma mark -- 礼物动画
 -(void) showGiftIamgeAnmiationWith:(NSString *) giftImg{
     UIImage *img = [UIImage imageNamed:giftImg];
     UIImageView *giftIamge = [[UIImageView alloc] initWithImage:img];
     giftIamge.center = self.view.center;
-    giftIamge.size = CGSizeMake(60, 60);
+    giftIamge.size = CGSizeMake(90, 90);
     [self.view addSubview:giftIamge];
     [self.view bringSubviewToFront:giftIamge];
     [UIView animateWithDuration:2 delay:2 usingSpringWithDamping:.7f initialSpringVelocity:.3f options:UIViewAnimationOptionOverrideInheritedCurve animations:^{
@@ -736,7 +737,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     if (imgStr.length < 50) {
         imgStr = [MyUtil getQiniuUrl:_hostUser[@"avatar_img"] width:0 andHeight:0];
     }
-    [_anchorDetailView.anchorIcon sd_setImageWithURL:[NSURL URLWithString:imgStr]];
+    [_anchorDetailView.anchorIcon sd_setImageWithURL:[NSURL URLWithString:imgStr] placeholderImage:[UIImage imageNamed:@"lieyu_default_head"]];
     if ([_hostUser[@"gender"] isEqualToString:@"0"]) {
         _anchorDetailView.genderIamge.image=[UIImage imageNamed:@"woman"];
     }else{
@@ -773,17 +774,20 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     if (imgStr.length < 50) {
         imgStr = [MyUtil getQiniuUrl:chatuser.avatar_img width:0 andHeight:0];
     }
-    [_anchorDetailView.anchorIcon sd_setImageWithURL:[NSURL URLWithString:imgStr]];
+    [_anchorDetailView.anchorIcon sd_setImageWithURL:[NSURL URLWithString:imgStr] placeholderImage:[UIImage imageNamed:@"lieyu_default_head"]];
     if (chatuser.gender == 0) {
-        _anchorDetailView.genderIamge.image=[UIImage imageNamed:@"woman"];
+        _anchorDetailView.genderIamge.image = [UIImage imageNamed:@"woman"];
     }else{
-        _anchorDetailView.genderIamge.image=[UIImage imageNamed:@"manIcon"];
+        _anchorDetailView.genderIamge.image = [UIImage imageNamed:@"manIcon"];
     }
     
     NSString *astro = [MyUtil getAstroWithBirthday:chatuser.birthday];
     [_anchorDetailView.starlabel setText:astro];
     
     NSString *tagText = chatuser.tag;
+    if ([tagText isEqualToString:@""]) {
+        tagText = @"其他";
+    }
     [_anchorDetailView.tagLabel setText:tagText];
     
     
@@ -803,9 +807,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     _anchorDetailView.focusButton.tag = chatuser.id;
     [_anchorDetailView.mainViewButton addTarget:self action:@selector(mainViewButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
     _anchorDetailView.mainViewButton.tag = chatuser.id;
-    
 }
-
 
 -(void)anchorFocusButtonAction:(UIButton *) sender{
     NSDictionary *dict = @{@"followid":[NSString stringWithFormat:@"%ld",(long)sender.tag]};
@@ -860,7 +862,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         if (imgStr.length < 50) {
             imgStr = [MyUtil getQiniuUrl:user.avatar_img width:0 andHeight:0];
         }
-        [cell.iconButton sd_setImageWithURL:[NSURL URLWithString:imgStr] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+        [cell.iconButton sd_setImageWithURL:[NSURL URLWithString:imgStr] placeholderImage:[UIImage imageNamed:@"lieyu_default_head"]];
         [cell.detailButton addTarget:self action:@selector(detailViewShow:) forControlEvents:(UIControlEventTouchUpInside)];
         cell.detailButton.tag = indexPath.row;
         return cell;
@@ -930,7 +932,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (collectionView.tag == 188) {
-        CGFloat width = 50;
+        CGFloat width = 39;
         return CGSizeMake(width, width);
     } else {
         RCMessageModel *model =

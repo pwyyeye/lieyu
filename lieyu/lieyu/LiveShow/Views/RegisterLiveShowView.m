@@ -264,13 +264,16 @@
 //    NSString *times = [time13 substringToIndex:13];
 //    _roomId =  [NSString stringWithFormat:@"%d%@", app.userModel.userid,times];
     NSString *liveStr = [NSString stringWithFormat:@"%@%@%@",LY_SERVER,LY_LIVE_share,_roomId];
+    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
      UMSocialUrlResource *urlResource = [[UMSocialUrlResource alloc] initWithSnsResourceType:UMSocialUrlResourceTypeDefault url:liveStr];
     //主标题
     [UMSocialData defaultData].extConfig.wechatSessionData.title = @"猎娱直播间";
     [UMSocialData defaultData].extConfig.wechatTimelineData.title = @"猎娱直播间";
+    [UMSocialData defaultData].extConfig.qqData.title = @"猎娱直播间";
     //分享的链接
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = liveStr;
     [UMSocialData defaultData].extConfig.wechatSessionData.url = liveStr;
+    [UMSocialData defaultData].extConfig.qqData.url = liveStr;
      switch (_shareType) {
      case 0://分享微信好友
          {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatSession] content:@"猎娱直播间" image:_LiveImageView.image location:location urlResource:urlResource presentedController:selfVC completion:^(UMSocialResponseEntity *response){

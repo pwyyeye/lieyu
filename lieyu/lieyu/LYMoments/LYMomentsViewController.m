@@ -88,7 +88,7 @@
 #pragma mark --- 进入直播列表
 -(void) recentConnect{
     LiveListViewController *liveVC = [[LiveListViewController alloc] init];
-    liveVC.index = 0;
+    liveVC.index = 1;
     [self.navigationController pushViewController:liveVC animated:YES];
 }
 

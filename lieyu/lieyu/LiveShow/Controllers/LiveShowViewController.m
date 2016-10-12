@@ -497,7 +497,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     UIImage *img = [UIImage imageNamed:giftImg];
     UIImageView *giftIamge = [[UIImageView alloc] initWithImage:img];
     giftIamge.center = self.view.center;
-    giftIamge.size = CGSizeMake(60, 60);
+    giftIamge.size = CGSizeMake(90, 90);
     [self.view addSubview:giftIamge];
     [self.view bringSubviewToFront:giftIamge];
     [UIView animateWithDuration:2 delay:2 usingSpringWithDamping:.7f initialSpringVelocity:.3f options:UIViewAnimationOptionOverrideInheritedCurve animations:^{
@@ -506,8 +506,9 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         [giftIamge removeFromSuperview];
     }];
 }
+
 #pragma mark --- 初始化播放器
--(void) initPLplayer{
+-(void) initPLplayer {
     // 预先设定几组编码质量，之后可以切换
     CGSize videoSize = CGSizeMake(720 , 1280);
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
@@ -578,6 +579,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
                         UIView *previewViewNew = self.session.previewView;
                         previewViewNew.autoresizingMask = UIViewAutoresizingFlexibleHeight| UIViewAutoresizingFlexibleWidth;
                         [self.view insertSubview:previewViewNew atIndex:0];
+                        [self.session setBeautify:.5f];
                         [weakSelf.registerView setBeginLive:^(CGFloat value) {
                             [weakSelf.session setBeautify:value];
                             _beautify = value;
@@ -640,7 +642,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         }
     }
 }
-
 
 
 #pragma mark - <PLStreamingSendingBufferDelegate>
@@ -787,7 +788,9 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     if (imgStr.length < 50) {
         imgStr = [MyUtil getQiniuUrl:chatuser.avatar_img width:0 andHeight:0];
     }
-    [_anchorDetailView.anchorIcon sd_setImageWithURL:[NSURL URLWithString:imgStr]];
+    
+    [_anchorDetailView.anchorIcon sd_setImageWithURL:[NSURL URLWithString:imgStr] placeholderImage:[UIImage imageNamed:@"lieyu_default_head"]];
+    
     if (chatuser.gender == 0) {
         _anchorDetailView.genderIamge.image=[UIImage imageNamed:@"woman"];
     }else{
@@ -870,7 +873,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [_closeView.notSaveButton addTarget:self action:@selector(notSaveBackButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
     NSDictionary *paramsDic = @{@"roomid":_chatRoomId};
     [LYFriendsHttpTool getLiveMoneyWithParams:paramsDic complete:^(NSDictionary *dict) {
-        _reward = dict[@"rewardNum"];
+        _reward = [NSString stringWithFormat:@"%@",dict[@"rewardNum"]];
         _closeView.moneyNumLabel.text = _reward;
     }];
     _closeView.lookNumLabel.text = _lookNum;
@@ -935,7 +938,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         if (imgStr.length < 50) {
             imgStr = [MyUtil getQiniuUrl:user.avatar_img width:0 andHeight:0];
         }
-        [cell.iconButton sd_setImageWithURL:[NSURL URLWithString:imgStr] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+        [cell.iconButton sd_setImageWithURL:[NSURL URLWithString:imgStr] placeholderImage:[UIImage imageNamed:@"lieyu_default_head"]];
         [cell.detailButton addTarget:self action:@selector(detailViewShow:) forControlEvents:(UIControlEventTouchUpInside)];
         cell.detailButton.tag = indexPath.row;
         return cell;
@@ -1019,7 +1022,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (collectionView.tag == 199) {
-        CGFloat width = 50;
+        CGFloat width = 39;
         return CGSizeMake(width, width);
     } else {
         RCMessageModel *model =
