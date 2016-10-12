@@ -212,7 +212,8 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
      removeObserver:self
      name:@"kRCPlayVoiceFinishNotification"
      object:nil];
-    
+    [IQKeyboardManager sharedManager].enable = YES;
+    [IQKeyboardManager sharedManager].isAdd = NO;
     [_timer invalidate];
     _timer = nil;
 }

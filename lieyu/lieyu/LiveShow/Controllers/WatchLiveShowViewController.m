@@ -219,6 +219,8 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 {
     [super viewWillDisappear:animated];
     [RCIM sharedRCIM].disableMessageAlertSound = NO;//打开提示音
+    [IQKeyboardManager sharedManager].enable = YES;
+    [IQKeyboardManager sharedManager].isAdd = NO;
     self.navigationController.navigationBarHidden = NO;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"sendGift" object:nil];
 }
