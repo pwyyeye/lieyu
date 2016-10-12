@@ -115,7 +115,7 @@
     RCTextMessage *_textMessage = (RCTextMessage *)self.model.content;
     if (_textMessage) {
         [self.textLabel setTextColor:[UIColor whiteColor]];
-        self.textLabel.shadowColor = [UIColor darkGrayColor];
+        self.textLabel.shadowColor = RGBA(150, 150, 150, .5);
         self.textLabel.shadowOffset =CGSizeMake(1,1);
         NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:_textMessage.content];
         [AttributedStr addAttribute:NSForegroundColorAttributeName value:RGB(227, 207, 87) range:NSMakeRange(0, self.model.content.senderUserInfo.name.length + 1)];

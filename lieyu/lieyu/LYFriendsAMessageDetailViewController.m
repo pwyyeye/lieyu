@@ -343,12 +343,10 @@
             
             NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:14], NSParagraphStyleAttributeName:paragraphStyle};
             
-            
-            
             NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:str];
             [attributedStr addAttributes:attributes range:NSMakeRange(0, attributedStr.length)];
             CGSize size = [attributedStr boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 70, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
-            return size.height + 10;
+            return size.height ;
         }
             break;
     }

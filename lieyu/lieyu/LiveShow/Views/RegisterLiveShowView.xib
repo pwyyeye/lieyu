@@ -136,9 +136,15 @@
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="中" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PaJ-h1-cfp">
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="OtB-Fx-1hs" firstAttribute="centerY" secondItem="PaJ-h1-cfp" secondAttribute="centerY" id="1c5-gf-VvK"/>
                 <constraint firstItem="Qob-lM-F6e" firstAttribute="leading" secondItem="3p4-aX-xSb" secondAttribute="trailing" constant="30" id="3mp-66-NtT"/>
                 <constraint firstItem="3p4-aX-xSb" firstAttribute="top" secondItem="chy-vq-2tb" secondAttribute="bottom" constant="13" id="5WN-Jl-z6Y"/>
                 <constraint firstItem="OtB-Fx-1hs" firstAttribute="height" secondItem="t7R-Vi-CkP" secondAttribute="height" id="5x5-OW-4Kt"/>
@@ -148,6 +154,7 @@
                 <constraint firstItem="ebE-JX-il8" firstAttribute="top" secondItem="eJu-ff-0ko" secondAttribute="top" constant="20" id="B82-ci-oAA"/>
                 <constraint firstItem="chy-vq-2tb" firstAttribute="centerX" secondItem="KhN-GU-MT9" secondAttribute="centerX" id="CAz-z8-iu5"/>
                 <constraint firstItem="ILA-i2-lZX" firstAttribute="top" secondItem="iDO-C2-dGG" secondAttribute="bottom" constant="40" id="DR0-Oe-NBK"/>
+                <constraint firstItem="OtB-Fx-1hs" firstAttribute="width" secondItem="PaJ-h1-cfp" secondAttribute="width" id="DdG-hS-Shk"/>
                 <constraint firstItem="Qob-lM-F6e" firstAttribute="width" secondItem="1Wt-wu-UjC" secondAttribute="width" id="Fl7-ue-5Qn"/>
                 <constraint firstItem="dU5-my-FNc" firstAttribute="height" secondItem="1Wt-wu-UjC" secondAttribute="height" id="GeI-HG-j9P"/>
                 <constraint firstItem="iDO-C2-dGG" firstAttribute="top" secondItem="T5D-Ie-9XE" secondAttribute="bottom" constant="11" id="Iwv-dm-bsg"/>
@@ -159,11 +166,13 @@
                 <constraint firstItem="OtB-Fx-1hs" firstAttribute="trailing" secondItem="iDO-C2-dGG" secondAttribute="trailing" id="YMa-m6-bxx"/>
                 <constraint firstItem="KhN-GU-MT9" firstAttribute="centerX" secondItem="eJu-ff-0ko" secondAttribute="centerX" id="YyL-ga-sY3"/>
                 <constraint firstItem="b8F-tD-B5g" firstAttribute="top" secondItem="WHF-X3-1mp" secondAttribute="bottom" constant="38" id="Zzv-Jr-eec"/>
+                <constraint firstItem="OtB-Fx-1hs" firstAttribute="height" secondItem="PaJ-h1-cfp" secondAttribute="height" id="aEb-Fh-EEh"/>
                 <constraint firstItem="Qvd-qA-btm" firstAttribute="leading" secondItem="eJu-ff-0ko" secondAttribute="leading" constant="20" id="aYS-Y2-1bU"/>
                 <constraint firstItem="T5D-Ie-9XE" firstAttribute="top" secondItem="3p4-aX-xSb" secondAttribute="bottom" constant="36" id="abc-s6-P3U"/>
                 <constraint firstItem="dU5-my-FNc" firstAttribute="width" secondItem="1Wt-wu-UjC" secondAttribute="width" id="brH-0R-mZU"/>
                 <constraint firstItem="b8F-tD-B5g" firstAttribute="centerX" secondItem="KhN-GU-MT9" secondAttribute="centerX" id="cJ6-dR-gfr"/>
                 <constraint firstItem="ebE-JX-il8" firstAttribute="width" secondItem="Qvd-qA-btm" secondAttribute="width" id="cWB-Sr-WBp"/>
+                <constraint firstItem="PaJ-h1-cfp" firstAttribute="centerX" secondItem="eJu-ff-0ko" secondAttribute="centerX" id="ceh-hF-lBd"/>
                 <constraint firstItem="WHF-X3-1mp" firstAttribute="top" secondItem="KhN-GU-MT9" secondAttribute="bottom" constant="15" id="cl7-zg-wnI"/>
                 <constraint firstItem="OtB-Fx-1hs" firstAttribute="centerY" secondItem="t7R-Vi-CkP" secondAttribute="centerY" id="cuq-d4-RBd"/>
                 <constraint firstItem="1Wt-wu-UjC" firstAttribute="centerY" secondItem="eJu-ff-0ko" secondAttribute="centerY" id="eko-9T-JrX"/>

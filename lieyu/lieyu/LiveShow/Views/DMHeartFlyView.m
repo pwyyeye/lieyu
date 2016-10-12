@@ -33,7 +33,8 @@
         _fillColor = DMRandColor;
         self.backgroundColor = [UIColor clearColor];
         self.layer.anchorPoint = CGPointMake(0.5, 1);
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"paopao"]];
+        int tempNum = arc4random() % 10;
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"redHeart_%d",tempNum]]];
         imageView.frame = self.bounds;
         [self addSubview:imageView];
     }

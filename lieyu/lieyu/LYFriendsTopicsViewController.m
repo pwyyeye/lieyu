@@ -29,9 +29,11 @@
     if (type == dataForFriendsMessage) {
         pageStartCount = _pageStartCountArray[0];
         tableView = _tableViewArray.firstObject;
+        tableView.frame= CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 47);
     }else if(type == dataForMine){
         pageStartCount = _pageStartCountArray[1];
         tableView = [_tableViewArray objectAtIndex:1];
+        tableView.frame= CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 47);
     }
     NSString *startStr = [NSString stringWithFormat:@"%ld",pageStartCount * _pageCount];
     NSString *pageCountStr = [NSString stringWithFormat:@"%ld",(long)_pageCount];
@@ -167,7 +169,7 @@
             }else{
                 
                 [UIView animateWithDuration:.4 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:5 options:UIViewAnimationOptionAllowUserInteraction animations:^{
-                    effectView.frame = CGRectMake(0, SCREEN_HEIGHT - 64, SCREEN_WIDTH, 47);
+//                    effectView.frame = CGRectMake(0, SCREEN_HEIGHT - 64, SCREEN_WIDTH, 47);
                 } completion:^(BOOL finished) {
                     
                 }];
@@ -181,7 +183,7 @@
                 
                 
                 [UIView animateWithDuration:.4 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:5 options:UIViewAnimationOptionAllowUserInteraction animations:^{
-                    effectView.frame = CGRectMake(0, SCREEN_HEIGHT - 47 - 64, SCREEN_WIDTH, 47);
+//                    effectView.frame = CGRectMake(0, SCREEN_HEIGHT - 47 - 64, SCREEN_WIDTH, 47);
                 } completion:^(BOOL finished) {
                     
                 }];

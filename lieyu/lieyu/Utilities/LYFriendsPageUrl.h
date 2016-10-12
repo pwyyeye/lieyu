@@ -57,41 +57,44 @@
 #define LY_Friends_TopicMessage @"lyMomentsOutAction.do?action=expand"
 
 //玩友--关注
-#define LY_Friends_follow @"/lieyu//app/api/sns/follow?1=1"
+#define LY_Friends_follow @"app/api/sns/follow?1=1"
 
 //玩友--取消关注
-#define LY_Frienfs_Unfollow @"/lieyu//app/api/sns/removefollow?1=1"
+#define LY_Frienfs_Unfollow @"app/api/sns/removefollow?1=1"
 
 //玩友列表
-#define LY_Friends_friendsGroup @"/lieyu//app/api/sns/friendsGroup?1=1"
+#define LY_Friends_friendsGroup @"app/api/sns/friendsGroup?1=1"
 
 //新粉丝列表
-#define LY_Friends_newFriendsList @"/lieyu//app/api/sns/newFansList?1=1"
+#define LY_Friends_newFriendsList @"app/api/sns/newFansList?1=1"
 
 #pragma mark -- 直播接口
 //获取stream
-#define LY_Live_getstream @"/lieyu//app/api/liveroom/createTempStream?1=1"
+#define LY_Live_getstream @"app/api/liveroom/createTempStream?1=1"
 
 //开始直播
-#define LY_Live_beginLive @"/lieyu//app/api/liveroom/create?1=1"
+#define LY_Live_beginLive @"app/api/liveroom/create?1=1"
 
 //获取直播列表
-#define LY_Live_getList @"/lieyu//app/api/liveroom/list?1=1"
+#define LY_Live_getList @"app/api/liveroom/list?1=1"
 
 //进入直播间
-#define LY_Live_enter @"/lieyu//app/api/liveroom/live?1=1"
+#define LY_Live_enter @"app/api/liveroom/live?1=1"
 
 //结束直播
-#define LY_Live_closeLive @"/lieyu//app/api/liveroom/close?1=1"
+#define LY_Live_closeLive @"app/api/liveroom/close?1=1"
+
+//获取直播间打赏金额
+#define LY_Live_getMoney @"app/api/liveroom/rewardNum?1=1"
 
 //点赞
-#define LY_Live_like @"/lieyu//app/api/liveroom/likeLiveRoom?1=1"
+#define LY_Live_like @"app/api/liveroom/likeLiveRoom?1=1"
 
 //请求人员列表和点赞
-#define LY_Live_requestlist @"/lieyu//app/api/liveroom/roomUserList?1=1"
+#define LY_Live_requestlist @"app/api/liveroom/roomUserList?1=1"
 
 //获取直播状态
-#define LY_Live_liveStatus @"/lieyu//app/api/liveroom/getLiveStatus?1=1"
+#define LY_Live_liveStatus @"app/api/liveroom/getLiveStatus?1=1"
 
 #pragma mark --- 打赏
 #define LY_DaShang @"dailyCoinAction.do?action=custom"
