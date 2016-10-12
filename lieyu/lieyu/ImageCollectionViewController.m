@@ -50,15 +50,16 @@
     //    self.collectionView.contentOffset = CGPointMake(0, self.collectionView.contentSize.height - self.view.frame.size.height);
     [self.collectionView registerNib:[UINib nibWithNibName:@"MyCell" bundle:nil] forCellWithReuseIdentifier:@"mycell"];
     self.collectionData = [[NSMutableArray alloc]init];
+    __weak __typeof(self)weakSelf = self;
     [_assetsGroup enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
         if (result) {
             NSString *type = [result valueForProperty:ALAssetPropertyType];
             if([type isEqualToString:ALAssetTypePhoto]){
                 //                [self.collectionData addObject:[UIImage imageWithCGImage:[result aspectRatioThumbnail ]]];
-                [self.collectionData addObject:result];
+                [weakSelf.collectionData addObject:result];
             }
         }
-        [self.collectionView reloadData];
+        [weakSelf.collectionView reloadData];
     }];
 }
 
@@ -114,12 +115,14 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    __weak __typeof(self)weakSelf = self;
     MyCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"mycell" forIndexPath:indexPath];
     __weak typeof(cell) weakcell = cell;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         weakcell.cellImage.contentMode = UIViewContentModeScaleAspectFill;
         dispatch_async(dispatch_get_main_queue(), ^{
-            weakcell.cellImage.image = [UIImage imageWithCGImage:[((ALAsset *)[self.collectionData objectAtIndex:indexPath.item]) aspectRatioThumbnail]];
+            weakcell.cellImage.image = [UIImage imageWithCGImage:[((ALAsset *)[weakSelf.collectionData objectAtIndex:indexPath.item]) aspectRatioThumbnail]];
             //            weakcell.cellImage.image = [self.collectionData objectAtIndex:indexPath.item % 10];
             //            weakcell.selectBtn.tag = indexPath.item;
             //            [weakcell.imageTap setBackgroundImage:[self.collectionData objectAtIndex:indexPath.item % 10] forState:UIControlStateNormal];

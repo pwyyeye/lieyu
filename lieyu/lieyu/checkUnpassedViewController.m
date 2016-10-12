@@ -513,22 +513,23 @@
             [dic setObject:bankCardUsername forKey:@"bankCardUsername"];
         }
     }
+    __weak __typeof(self)weakSelf = self;
     [[LYUserHttpTool shareInstance]updateApplyVip:dic block:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:UIImagePNGRepresentation(idcard_zhengmian) name:@"idcardImagesFile" fileName:@"idcard_1.png" mimeType:@"image/png"];
         [formData appendPartWithFileData:UIImagePNGRepresentation(idcard_fanmian) name:@"idcardImagesFileBack" fileName:@"idcard_2.png" mimeType:@"image/png"];
     } complete:^(BOOL result) {
         if(result){
             [MyUtil showMessage:@"申请成功!"];
-            self.userModel.applyStatus = 1;
+            weakSelf.userModel.applyStatus = 1;
             if([[dic objectForKey:@"applyType"] isEqualToString:@"3"]){
                 if (_checkModel.wechatAccount.length) {
-                    [self.navigationController popToRootViewControllerAnimated:YES];
+                    [weakSelf.navigationController popToRootViewControllerAnimated:YES];
                 }else{
                     wechatCheckAccountViewController *wechatCheckVC = [[wechatCheckAccountViewController alloc]initWithNibName:@"wechatCheckAccountViewController" bundle:nil];
-                    [self.navigationController pushViewController:wechatCheckVC animated:YES];
+                    [weakSelf.navigationController pushViewController:wechatCheckVC animated:YES];
                 }
             }else{
-                [self.navigationController popToRootViewControllerAnimated:YES];
+                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
             }
         }
     }];

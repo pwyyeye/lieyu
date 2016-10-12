@@ -296,6 +296,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
 }
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
+    __weak __typeof(self)weakSelf = self;
     UIImageView *imgV = (UIImageView *)[self.window viewWithTag:10086];
     [UIView animateWithDuration:.5 animations:^{
         imgV.alpha = 0.0;
@@ -304,7 +305,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
         [imgV.layer removeAllAnimations];
         [imgV removeFromSuperview];
         
-        self.window.userInteractionEnabled = YES;
+        weakSelf.window.userInteractionEnabled = YES;
         //        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
     }];
     
@@ -664,7 +665,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
             [[ZSManageHttpTool shareInstance]zsGetTodayFriendBirthdayWithParams:nil complete:^(NSArray *result) {
                 if (result.count > 0) {
                     NSString *message = [NSString stringWithFormat:@"今天有%ld位好友过生日，取送上祝福吧～",result.count];
-                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:message delegate:weakSelf cancelButtonTitle:@"取消" otherButtonTitles:@"去看看", nil];
+                    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"去看看", nil];
                     alert.tag = 123;
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [alert show];
@@ -763,11 +764,11 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 //获取IMToken
 -(void)getImToken{
     if(_userModel){
-        //        NSLog(@"userid=%d",_userModel.userid);
+        __weak __typeof(self) weakSelf = self;
         NSDictionary *dic=@{@"userId":[NSNumber numberWithInt:_userModel.userid]};
         [[LYCommonHttpTool shareInstance] getTokenByIMWithParams:dic block:^(NSString *result) {
             _im_token=result;
-            [self connectWithToken];
+            [weakSelf connectWithToken];
         }];
     }
 }

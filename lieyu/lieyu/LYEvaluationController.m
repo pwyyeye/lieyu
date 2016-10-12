@@ -66,6 +66,7 @@
  "vipuserid":"VIP专属经理ID"
  */
 - (IBAction)pingjia:(id)sender {
+    __weak __typeof(self)weakSelf = self;
     if (_isPickImage) {
         [HTTPController uploadImageToQiuNiu:_pingjiaImage.image complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
             
@@ -76,7 +77,7 @@
                     [MyUtil showMessage:@"评价成功！"];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
                     
-                    [self.navigationController popViewControllerAnimated:YES];
+                    [weakSelf.navigationController popViewControllerAnimated:YES];
                 }
             }];
             
@@ -91,7 +92,7 @@
                 [MyUtil showMessage:@"评价成功！"];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
 
-                [self.navigationController popViewControllerAnimated:YES];
+                [weakSelf.navigationController popViewControllerAnimated:YES];
             }
             
         }];

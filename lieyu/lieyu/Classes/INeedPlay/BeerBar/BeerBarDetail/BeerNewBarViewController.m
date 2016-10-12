@@ -1068,7 +1068,7 @@
             [IQKeyboardManager sharedManager].enable = NO;
             [IQKeyboardManager sharedManager].isAdd = YES;
             
-            barChatVC.navigationItem.leftBarButtonItem = [self getItem];
+            barChatVC.navigationItem.leftBarButtonItem = [weakSelf getItem];
         }];
     } else {//加入群组
         NSMutableDictionary *paraDic = [[NSMutableDictionary alloc] init];
@@ -1087,7 +1087,7 @@
             [IQKeyboardManager sharedManager].enable = NO;
             [IQKeyboardManager sharedManager].isAdd = YES;
             
-            barChatVC.navigationItem.leftBarButtonItem = [self getItem];
+            barChatVC.navigationItem.leftBarButtonItem = [weakSelf getItem];
             
         }];
         

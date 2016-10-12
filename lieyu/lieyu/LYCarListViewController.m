@@ -304,6 +304,7 @@
         return;
     }
     NSDictionary *dic=@{@"ids":ss,@"quantitys":nn};
+    __weak __typeof(self)weakSelf = self;
     [[LYHomePageHttpTool shareInstance]updataCarNumWithParams:dic complete:^(BOOL result) {
         if (result) {
             isChanged = NO;
@@ -311,7 +312,7 @@
             CHDoOrderViewController *doOrderViewController=[stroyBoard instantiateViewControllerWithIdentifier:@"CHDoOrderViewController"];
             doOrderViewController.title=@"确认订单";
             doOrderViewController.ids=ss;
-            [self.navigationController pushViewController:doOrderViewController animated:YES];
+            [weakSelf.navigationController pushViewController:doOrderViewController animated:YES];
         }else{
             [MyUtil showLikePlaceMessage:@"确认失败"];
         }

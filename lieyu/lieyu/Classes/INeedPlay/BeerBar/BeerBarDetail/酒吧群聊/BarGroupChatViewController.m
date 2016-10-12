@@ -246,6 +246,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"rcGiftMessageCellIndenti
 
 #pragma mark - 退出群组
 - (void)quitFromGroup{
+    __weak __typeof(self)weakSelf = self;
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSDictionary *paraDic = @{@"groupId":self.targetId,@"userId":app.userModel.imuserId};
     UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否退出群组，不再接收该群组消息？" preferredStyle:(UIAlertControllerStyleAlert)];
@@ -253,7 +254,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"rcGiftMessageCellIndenti
         [LYYUHttpTool yuQuitGroupWith:paraDic complete:^(NSString *str) {
             
         }];
-        [self.navigationController popViewControllerAnimated:YES];
+        [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
     UIAlertAction *alertQuit = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleDefault) handler:nil];
     [alertVC addAction:alertSure];

@@ -174,6 +174,7 @@
     NSMutableString *consumerID = [NSMutableString string];
     AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);
     
+    __weak __typeof(self)weakSelf = self;
     if(buttonIndex == 0){
         for(int i = 0 ; i < selectedArray.count ; i ++){
             if ([[selectedArray objectAtIndex:i] isEqualToString:@"1"]) {
@@ -192,7 +193,7 @@
                               @"consumptionCodes":DNS_consumerID};
         [LYUserHttpTool QuickCheckOrderWithParam:dic complete:^(NSString *message) {
 //            if ([message isEqualToString:@""]) {
-                [self.navigationController popToRootViewControllerAnimated:YES];
+                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
 //                [MyUtil showLikePlaceMessage:message];
             [MyUtil showMessage:message];
 //            }

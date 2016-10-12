@@ -1386,9 +1386,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 //获取列表数据
 - (void)getDataArray:(NSInteger)tag subids:(NSString *)subids{
+    __weak __typeof(self)weakSelf = self;
     UITableView *tableView = [_tableViewArray objectAtIndex:_index];
     if (tag == 2) {
         //获取后来的列表
+        
         NSDictionary *dict = @{@"cityCode":@"310000",
                                @"livetype":@"live",
                                @"sort":@"hot",
@@ -1402,7 +1404,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 NSMutableArray *array = [_liveDict objectForKey:@"liveList"];
                 [array addObjectsFromArray:Arr];
             }
-            [self stopAnimating];
+            [weakSelf stopAnimating];
 //            [_refreshView stopAnimating];
             if (Arr.count <= 0) {
                 [tableView.mj_footer endRefreshingWithNoMoreData];
@@ -1442,7 +1444,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 [array addObjectsFromArray:[result objectForKey:@"barList"]];
             }
 //            [_refreshView stopAnimating];
-            [self stopAnimating];
+            [weakSelf stopAnimating];
             if (((NSArray *)[result objectForKey:@"barList"]).count <= 0) {
                 [tableView.mj_footer endRefreshingWithNoMoreData];
             }else{
@@ -1680,7 +1682,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 #pragma mark - cell里的点击按钮事件
 - (void)collectBar:(UIButton *)button{
-//    NSLog(@"%ld",button.tag);
+    //    NSLog(@"%ld",button.tag);
+    __weak __typeof(self)weakSelf = self;
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if (!app.userModel.userid) {
         LYUserLoginViewController *loginVC = [[LYUserLoginViewController alloc]init];
@@ -1704,7 +1707,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                     [button setTitle:[NSString stringWithFormat:@"%d",model.like_num] forState:UIControlStateNormal];
                 }
             }];
-            [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"喜欢" pageName:@"首页酒吧列表" titleName:model.barname]];
+            [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[weakSelf createMTADctionaryWithActionName:@"喜欢" pageName:@"首页酒吧列表" titleName:model.barname]];
         }else{
             [[LYHomePageHttpTool shareInstance] likeJiuBa:param compelete:^(bool result) {
                 if (result && model.isLiked == 0) {
@@ -1713,7 +1716,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                     model.like_num ++;
                     [button setTitle:[NSString stringWithFormat:@"%d",model.like_num] forState:UIControlStateNormal];
                 }
-                [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"取消喜欢" pageName:@"首页酒吧列表" titleName:model.barname]];
+                [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[weakSelf createMTADctionaryWithActionName:@"取消喜欢" pageName:@"首页酒吧列表" titleName:model.barname]];
             }];
         }
     }

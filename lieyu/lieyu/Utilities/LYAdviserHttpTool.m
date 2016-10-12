@@ -57,7 +57,7 @@
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_ADVISER_ADDCARE baseURL:LY_SERVER params:params success:^(id response) {
         NSString *errorCode = [response objectForKey:@"errorcode"];
         BOOL result;
-        if ([errorCode isEqualToString:@"success"]) {
+        if ([errorCode isEqualToString:@"1"]) {
             result = YES;
             complete(result);
         }else{
@@ -78,7 +78,7 @@
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_ADVISER_DELCARE baseURL:LY_SERVER params:params success:^(id response) {
         NSString *errorCode = [response objectForKey:@"errorcode"];
         BOOL result;
-        if ([errorCode isEqualToString:@"success"]) {
+        if ([errorCode isEqualToString:@"1"]) {
             result = YES;
             complete(result);
         }else{
@@ -116,7 +116,7 @@
     [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_NEWGET_FANSLIST baseURL:LY_SERVER params:params success:^(id response) {
         NSString *errorCode = [response objectForKey:@"errorcode"];
-        if ([errorCode isEqualToString:@"success"]) {
+        if ([errorCode isEqualToString:@"1"]) {
             NSArray *dataList = [UserModel mj_objectArrayWithKeyValuesArray:[[response objectForKey:@"data"] objectForKey:@"fansList"]];
             complete(dataList);
         }else{
@@ -134,7 +134,7 @@
     [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_NEWGET_FOLLOWLIST baseURL:LY_SERVER params:params success:^(id response) {
         NSString *errorCode = [response objectForKey:@"errorcode"];
-        if ([errorCode isEqualToString:@"success"]) {
+        if ([errorCode isEqualToString:@"1"]) {
             NSArray *dataList = [UserModel mj_objectArrayWithKeyValuesArray:[[response objectForKey:@"data"] objectForKey:@"followlist"]];
             complete(dataList);
         }else{
