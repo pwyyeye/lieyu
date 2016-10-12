@@ -12,9 +12,9 @@
 #import "AlipayOrder.h"
 #import "LYBaseTableViewController.h"
 
-@protocol RechargeCoinDelegate <NSObject>
+@protocol RechargeDelegate <NSObject>
 
-- (void)rechargeCoinDelegate:(double) amount;
+- (void)rechargeDelegateRefreshData;
 
 @end
 
@@ -36,10 +36,8 @@
 
 @property(assign,nonatomic) BOOL isFaqi;
 
-@property (assign, nonatomic) BOOL isBalanceEnough;
+@property (assign, nonatomic) BOOL isRechargeBalance;
 
-@property (nonatomic, assign) BOOL isRechargeCoin;
-
-@property (nonatomic, assign) id<RechargeCoinDelegate> delegate;
+@property (nonatomic, assign) id<RechargeDelegate> delegate;
 
 @end

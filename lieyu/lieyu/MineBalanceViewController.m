@@ -13,7 +13,7 @@
 #import "MineBoundAccountViewController.h"
 #import "ZSTiXianRecordViewController.h"
 
-@interface MineBalanceViewController ()<UIAlertViewDelegate,MineBoundAccountDelegate>
+@interface MineBalanceViewController ()<UIAlertViewDelegate,MineBoundAccountDelegate,LYWithdrawDelegate,RechargeDelegate>
 
 @end
 
@@ -26,16 +26,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self getData];
     [self initRightItem];
     
     _rechargeButton.layer.cornerRadius = 19;
     [_rechargeButton addTarget:self action:@selector(rechargeButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     _withdrawButton.layer.cornerRadius = 19;
     [_withdrawButton addTarget:self action:@selector(withdrawButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    [_balanceLabel setText:[NSString stringWithFormat:@"¥%@",_balance.balances]];
 }
 
+- (void)getData{
+    [LYUserHttpTool getMyMoneyBagBalanceAndCoinWithParams:nil complete:^(ZSBalance *balance) {
+        _balance = balance;
+        [_balanceLabel setText:[NSString stringWithFormat:@"¥%@",_balance.balances]];
+    }];
+}
 
 - (void)initRightItem{
     UIButton *listButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 80, 40)];
@@ -93,13 +98,19 @@
         lyWithdrawTypeVC.type = _balance.accountType;
         lyWithdrawTypeVC.account = _balance.accountName;
         lyWithdrawTypeVC.balance = _balance.balances;
+        lyWithdrawTypeVC.delegate = self;
         [self.navigationController pushViewController:lyWithdrawTypeVC animated:YES];
     }
 }
 
+#pragma mark - 提现的代理方法
+- (void)lyWithdrawDataRefresh{
+    [self refreshBalanceViewControllerData];
+}
+
+#pragma mark - 绑定账户的代理方法
 - (void)mineBoundAccountWithType:(NSString *)type Account:(NSString *)account{
-    _balance.accountType = type;
-    _balance.accountName = account;
+    [self getData];
 }
 
 #pragma mark - alertview的代理事件
@@ -114,13 +125,16 @@
             }
             NSDictionary *dict = @{@"amount":textField.text,
                                    @"isToCoin":@"0"};
+            __weak __typeof(self)weakSelf = self;
             [LYUserHttpTool rechargeMoneyBagWithParams:dict complete:^(NSString *result) {
                 ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
                 detailViewController.orderNo=result;
                 detailViewController.payAmount=[textField.text doubleValue];
                 detailViewController.productName=@"钱包余额充值";
                 detailViewController.productDescription=@"暂无";
-                [self.navigationController pushViewController:detailViewController animated:YES];
+                detailViewController.isRechargeBalance = YES;
+                detailViewController.delegate = weakSelf;
+                [weakSelf.navigationController pushViewController:detailViewController animated:YES];
             }];
         }else{
             //cancel
@@ -128,5 +142,17 @@
     }
 }
 
+#pragma mark - 充值后的代理方法
+- (void)rechargeDelegateRefreshData{
+    [self refreshBalanceViewControllerData];
+}
+
+#pragma mark - 刷新数据
+- (void)refreshBalanceViewControllerData{
+    [self getData];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(MineBalanceDelegateRefreshData)]) {
+        [self.delegate MineBalanceDelegateRefreshData];
+    }
+}
 
 @end

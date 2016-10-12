@@ -8,7 +8,14 @@
 
 #import "LYBaseViewController.h"
 
+@protocol LYWithdrawDelegate <NSObject>
+
+- (void)lyWithdrawDataRefresh;
+
+@end
+
 @interface LYWithdrawTypeViewController : LYBaseViewController
+
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *account;
 @property (nonatomic, strong) NSString *balance;
@@ -23,5 +30,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *shouxuLabel;
 @property (weak, nonatomic) IBOutlet UILabel *poundageLabel;
 
+@property (nonatomic, assign) id<LYWithdrawDelegate>delegate; 
 
 @end

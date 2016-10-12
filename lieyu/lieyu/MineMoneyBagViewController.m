@@ -18,7 +18,7 @@
 
 #define IDENTIFIER @"MineMoneyBagCollectionViewCell"
 
-@interface MineMoneyBagViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,MineYubiDelegate,coinShopQuitDelegate>
+@interface MineMoneyBagViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,MineYubiDelegate,coinShopQuitDelegate,MineBalanceVCDelegate>
 {
     NSArray *_dataArray;
 }
@@ -132,14 +132,19 @@
 #pragma mark - 按钮事件
 - (IBAction)balanceClick:(UIButton *)sender {
     MineBalanceViewController *mineBalanceVC = [[MineBalanceViewController alloc]initWithNibName:@"MineBalanceViewController" bundle:[NSBundle mainBundle]];
-    mineBalanceVC.balance = _balanceModel;
+//    mineBalanceVC.balance = _balanceModel;
+    mineBalanceVC.delegate = self ;
     [self.navigationController pushViewController:mineBalanceVC animated:YES];
+}
+
+- (void)MineBalanceDelegateRefreshData{
+    [self getData];
 }
 
 - (IBAction)yubiClick:(UIButton *)sender {
     MineYubiViewController *mineYubiVC = [[MineYubiViewController alloc]initWithNibName:@"MineYubiViewController" bundle:nil];
-    mineYubiVC.coinAmount = _balanceModel.coin;
-    mineYubiVC.balance = _balanceModel.balances; 
+//    mineYubiVC.coinAmount = _balanceModel.coin;
+//    mineYubiVC.balance = _balanceModel.balances; 
     mineYubiVC.delegate = self;
     [self.navigationController pushViewController:mineYubiVC animated:YES];
 }

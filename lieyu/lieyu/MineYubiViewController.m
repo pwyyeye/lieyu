@@ -12,7 +12,7 @@
 #import "LYUserHttpTool.h"
 #import "MineCoinRecordViewController.h"
 
-@interface MineYubiViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate,RechargeCoinDelegate>
+@interface MineYubiViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate,RechargeDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UILabel *yubiAmountLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -31,11 +31,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self getData];
     [self initRightItem];
     
     [self initItems];
-    [_yubiAmountLabel setText:_coinAmount];
+}
+
+- (void)getData{
+    [LYUserHttpTool getMyMoneyBagBalanceAndCoinWithParams:nil complete:^(ZSBalance *balance) {
+        _coinAmount = balance.coin;
+        _balance = balance.balances;
+        
+        [_yubiAmountLabel setText:_coinAmount];
+    }];
 }
 
 - (void)initRightItem{
@@ -143,13 +151,9 @@
 }
 
 - (void)rechargeWithAmount:(NSString *)money{
-    BOOL isBalanceEnough = YES;
     if ([money doubleValue] <= 0.0) {
         [MyUtil showPlaceMessage:@"充值金额不可为0或更小！"];
         return;
-    }
-    if ([money doubleValue] > [_balance doubleValue]) {
-        isBalanceEnough = NO;
     }
     NSDictionary *dict = @{@"amount":money,
                            @"isToCoin":@"1"};
@@ -161,10 +165,15 @@
         detailViewController.payAmount=[money doubleValue];
         detailViewController.productName=@"钱包余额充值";
         detailViewController.productDescription=@"暂无";
-        detailViewController.isBalanceEnough = isBalanceEnough ;
-        detailViewController.isRechargeCoin = YES;
-        [self.navigationController pushViewController:detailViewController animated:YES];
+        [weakSelf.navigationController pushViewController:detailViewController animated:YES];
     }];
+}
+
+- (void)rechargeDelegateRefreshData{
+    [self getData];
+    if ([self.delegate respondsToSelector:@selector(MineYubiWithdrawDelegate:)]) {
+        [self.delegate MineYubiWithdrawDelegate:0];
+    }
 }
 
 - (void)rechargeCoinDelegate:(double)amount{

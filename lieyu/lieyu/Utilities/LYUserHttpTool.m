@@ -1627,8 +1627,10 @@
                 NSString *balanceStr;
                 NSArray *balanceArray = [balanceString componentsSeparatedByString:@"."];
                 if (balanceArray.count > 1) {
-                    if (((NSString *)[balanceArray objectAtIndex:1]).length > 2) {
+                    if (((NSString *)[balanceArray objectAtIndex:1]).length >= 2) {
                         balanceStr = [NSString stringWithFormat:@"%@.%@",[balanceArray objectAtIndex:0],[[balanceArray objectAtIndex:1] substringToIndex:2]];
+                    }else if (((NSString *)[balanceArray objectAtIndex:1]).length == 1){
+                        balanceStr = [NSString stringWithFormat:@"%@.%@0",[balanceArray objectAtIndex:0],[balanceArray objectAtIndex:1]];
                     }else{
                         balanceStr = [NSString stringWithFormat:@"%@.00",[balanceArray objectAtIndex:0]];
                     }

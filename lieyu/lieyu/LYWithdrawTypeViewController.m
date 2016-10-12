@@ -200,6 +200,9 @@
                            @"amountStr":[MyUtil encryptUseDES:_textview.text withKey:app.desKey]};
     [[ZSManageHttpTool shareInstance]applicationWithdrawWithParams:dict complete:^(NSString *message) {
         [MyUtil showLikePlaceMessage:message];
+        if (_delegate && [_delegate respondsToSelector:@selector(lyWithdrawDataRefresh)]) {
+            [_delegate lyWithdrawDataRefresh];
+        }
         [self.navigationController popViewControllerAnimated:YES];
     }];
 }

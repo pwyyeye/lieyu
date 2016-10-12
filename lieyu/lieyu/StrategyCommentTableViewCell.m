@@ -14,7 +14,7 @@
     [super awakeFromNib];
     _shadowView.layer.shadowColor = [[UIColor blackColor] CGColor];
     _shadowView.layer.shadowOffset = CGSizeMake(0, 1);
-    _shadowView.layer.shadowOpacity = 0.3;
+    _shadowView.layer.shadowOpacity = 0.1;
     
 }
 
