@@ -529,7 +529,7 @@
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_SC_VIPLIST baseURL:LY_SERVER params:params success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
-        if ([code isEqualToString:@"success"]) {
+        if ([code isEqualToString:@"1"]) {
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 result(YES);
             });

@@ -304,7 +304,7 @@
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_MY_ZSJL_DEL baseURL:LY_SERVER params:params success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
-        if ([code isEqualToString:@"success"]) {
+        if ([code isEqualToString:@"1"]) {
             dispatch_async(dispatch_get_main_queue(), ^(void) {
                 result(YES);
             });
@@ -1627,8 +1627,10 @@
                 NSString *balanceStr;
                 NSArray *balanceArray = [balanceString componentsSeparatedByString:@"."];
                 if (balanceArray.count > 1) {
-                    if (((NSString *)[balanceArray objectAtIndex:1]).length > 2) {
+                    if (((NSString *)[balanceArray objectAtIndex:1]).length >= 2) {
                         balanceStr = [NSString stringWithFormat:@"%@.%@",[balanceArray objectAtIndex:0],[[balanceArray objectAtIndex:1] substringToIndex:2]];
+                    }else if (((NSString *)[balanceArray objectAtIndex:1]).length == 1){
+                        balanceStr = [NSString stringWithFormat:@"%@.%@0",[balanceArray objectAtIndex:0],[balanceArray objectAtIndex:1]];
                     }else{
                         balanceStr = [NSString stringWithFormat:@"%@.00",[balanceArray objectAtIndex:0]];
                     }
@@ -1709,7 +1711,7 @@
     NSString *ss = [NSString stringWithFormat:@"%@?userId=%@",LY_GET_YUKEBANG,[dict objectForKey:@"SEM_LOGIN_TOKEN"]];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:ss baseURL:LY_SERVER params:dict success:^(id response) {
         NSString *errorCode = [response objectForKey:@"errorcode"];
-        if ([errorCode isEqualToString:@"success"]) {
+        if ([errorCode isEqualToString:@"1"]) {
             NSArray *yuUser = [CustomerModel mj_objectArrayWithKeyValuesArray:[[response objectForKey:@"data"] objectForKey:@"groupList"]];
             YuKeGroupModel *model = [YuKeGroupModel mj_objectWithKeyValues:[[response objectForKey:@"data"] objectForKey:@"yukegroup"]];
             NSDictionary *dict;
@@ -1735,7 +1737,7 @@
     [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_GET_YUKEBANGQRCODE baseURL:LY_SERVER params:dict success:^(id response) {
         NSString *errorCode = [response objectForKey:@"errorcode"];
-        if ([errorCode isEqualToString:@"success"]) {
+        if ([errorCode isEqualToString:@"1"]) {
             complete([[response objectForKey:@"data"] objectForKey:@"shareUrl"]);
         }else{
             [MyUtil showPlaceMessage:[response objectForKey:@"message"]];
@@ -1769,7 +1771,7 @@
     [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_RECOMMEND_FRIEND baseURL:LY_SERVER params:dict success:^(id response) {
         NSString *errorCode = [response objectForKey:@"errorcode"];
-        if ([errorCode isEqualToString:@"success"]) {
+        if ([errorCode isEqualToString:@"1"]) {
             NSArray *array = [[response objectForKey:@"data"] objectForKey:@"userlist"];
             NSArray *userList = [UserModel mj_objectArrayWithKeyValuesArray:array];
             complete(userList);
@@ -1789,7 +1791,7 @@
     [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_FOLLOW_FRIENDS baseURL:LY_SERVER params:dict success:^(id response) {
         NSString *errorCode = [response objectForKey:@"errorcode"];
-        if ([errorCode isEqualToString:@"success"]) {
+        if ([errorCode isEqualToString:@"1"]) {
             complete(YES);
         }else{
             complete(NO);
@@ -1807,7 +1809,7 @@
     [app startLoading];
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_ENTER_COINSHOP baseURL:LY_SERVER params:dict success:^(id response) {
         NSString *errorCode = [response objectForKey:@"errorcode"];
-        if ([errorCode isEqualToString:@"success"]) {
+        if ([errorCode isEqualToString:@"1"]) {
             complete([[response objectForKey:@"data"] objectForKey:@"url"]);
         }else{
             complete(nil);

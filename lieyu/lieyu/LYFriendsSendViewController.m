@@ -164,6 +164,7 @@
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    __weak __typeof(self)weakSelf = self;
     if([text isEqualToString:@"\n"]){
         [self.textView resignFirstResponder];
         return NO;
@@ -181,10 +182,10 @@
             }
             [self presentViewController:chooseTopicVC animated:YES completion:nil];
             [chooseTopicVC returnTopicID:^(NSString *topicID, NSString *topicName) {
-                self.TopicID = topicID;
-                self.TopicTitle = topicName;
+                weakSelf.TopicID = topicID;
+                weakSelf.TopicTitle = topicName;
 //                self.textView.text = self.TopicTitle;
-                [self addTopicLabel];
+                [weakSelf addTopicLabel];
 //                isntFirstEdit = NO;
             }];
         }
@@ -356,6 +357,7 @@
             [MyUtil showCleanMessage:@"无网络链接！"];
             return;
         }
+        __weak __typeof(self)weakSelf = self;
         if([compatiblePresets containsObject:_mp4Quality]){
             AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]initWithAsset:avAsset presetName:_mp4Quality];
             NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
@@ -371,8 +373,8 @@
                     case AVAssetExportSessionStatusCompleted:
 //                        [MyUtil showCleanMessage:@"视频压缩成功！"];
                         //将新的视频地址赋给 mediaUrl
-                        self.mediaUrl = [[NSMutableString alloc]initWithString:_mp4Path];
-                        [self sendFilesToQiniu];
+                        weakSelf.mediaUrl = [[NSMutableString alloc]initWithString:_mp4Path];
+                        [weakSelf sendFilesToQiniu];
                         break;
                     case AVAssetExportSessionStatusFailed:
                         [MyUtil showCleanMessage:@"视频上传失败！"];

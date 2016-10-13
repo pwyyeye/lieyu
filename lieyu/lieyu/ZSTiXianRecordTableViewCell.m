@@ -108,13 +108,15 @@
                 case 4:
                     _label_type.text = @"操作成功，本次为娱币充值";
                     break;
+                default:
+                    _label_type.text = @"操作成功";
+                    break;
             }
             break;
             
         case 0:
             switch (tiXianR.wtype.integerValue) {
                 case 1:
-                    
                     _label_type.text =  @"提现中，本次使用支付宝提现";
                     break;
                 case 2:
@@ -125,6 +127,9 @@
                     break;
                 case 4:
                     _label_type.text = @"操作中，本次为娱币充值";
+                    break;
+                default:
+                    _label_type.text = @"操作中";
                     break;
             }
             break;

@@ -61,13 +61,14 @@
     }else{
         dict = nil;
     }
+    __weak __typeof(self)weakSelf = self;
     [LYUserHttpTool getTopicList:dict complete:^(NSArray *dataList) {
         for(TopicModel *model in dataList){
             model.name = [NSString stringWithFormat:@"#%@#",model.name];
         }
         dataArray = dataList;
         newDataArr = [[NSMutableArray alloc]initWithArray:dataArray];
-        [self.myTableView reloadData];
+        [weakSelf.myTableView reloadData];
     }];
 }
 

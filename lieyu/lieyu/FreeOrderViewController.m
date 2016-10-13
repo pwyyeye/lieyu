@@ -300,8 +300,10 @@
                            @"cassetteType":[NSNumber numberWithInteger:_choosedType],
                            @"orderStatus":@"1",
                            @"reachTime":_stringDate};
+    
+    __weak __typeof(self)weakSelf = self;
     [LYAdviserHttpTool lyFreeBookWithParams:dict complete:^(NSString *message) {
-        [self.navigationController popViewControllerAnimated:YES];
+        [weakSelf.navigationController popViewControllerAnimated:YES];
         [MyUtil showPlaceMessage:message];
     }];
 }

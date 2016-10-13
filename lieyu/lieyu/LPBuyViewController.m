@@ -378,8 +378,8 @@
                 NSLog(@"result-------%@",result);
                 ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
                 detailViewController.orderNo=result;
-                detailViewController.payAmount=[self.InfoDict[@"money"] doubleValue];
-                detailViewController.productName=self.pinkeModel.title;
+                detailViewController.payAmount=[weakSelf.InfoDict[@"money"] doubleValue];
+                detailViewController.productName=weakSelf.pinkeModel.title;
                 detailViewController.productDescription=@"暂无";
                 UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:weakSelf action:nil];
                 weakSelf.navigationItem.backBarButtonItem = left;

@@ -51,7 +51,7 @@
 - (void) getData
 {
     [LYHomePageHttpTool getAllLocationInfoWith:nil complete:^(NSString *locationArr) {
-        self.dataArray = [locationArr componentsSeparatedByString:@","];
+        _dataArray = [locationArr componentsSeparatedByString:@","];
         [_cityListTableView reloadData];
     }];
 }

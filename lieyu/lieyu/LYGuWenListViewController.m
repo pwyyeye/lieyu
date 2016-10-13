@@ -184,7 +184,7 @@
     
     
     _filterBgView.frame = CGRectMake(0,  64, SCREEN_WIDTH, 0);
-    
+    __weak __typeof(self)weakSelf = self;
     [UIView animateWithDuration:0.5 animations:^{
         _filterView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 0);
     } completion:^(BOOL finished) {
@@ -198,7 +198,7 @@
             _pageRecommend = 1;
         }
         //  确定后执行搜索
-        [self getDataForHot];
+        [weakSelf getDataForHot];
     }];
 }
 

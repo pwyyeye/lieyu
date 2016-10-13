@@ -92,20 +92,20 @@
                        //申请机长
                        UIButton *recentBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 64, 20)];
                        [recentBtn setTitle:@"申请机长" forState:UIControlStateNormal];
-                       [recentBtn addTarget:self action:@selector(recentConnect) forControlEvents:UIControlEventTouchUpInside];
+                       [recentBtn addTarget:weekSelf action:@selector(recentConnect) forControlEvents:UIControlEventTouchUpInside];
                        [recentBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
                        recentBtn.titleLabel.font = [UIFont systemFontOfSize:13];
                        UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:recentBtn];;
-                       self.navigationItem.rightBarButtonItem = rightItem;
+                       weekSelf.navigationItem.rightBarButtonItem = rightItem;
                    } else {
                        //查看黑名单列表
                        UIButton *recentBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 84, 20)];
                        [recentBtn setTitle:@"禁言黑名单" forState:UIControlStateNormal];
-                       [recentBtn addTarget:self action:@selector(checkBlockList) forControlEvents:UIControlEventTouchUpInside];
+                       [recentBtn addTarget:weekSelf action:@selector(checkBlockList) forControlEvents:UIControlEventTouchUpInside];
                        [recentBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
                        recentBtn.titleLabel.font = [UIFont systemFontOfSize:13];
                        UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:recentBtn];;
-                       self.navigationItem.rightBarButtonItem = rightItem;
+                       weekSelf.navigationItem.rightBarButtonItem = rightItem;
                        
                    }
        });

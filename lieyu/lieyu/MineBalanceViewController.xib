@@ -25,7 +25,7 @@
                         <constraint firstAttribute="width" constant="60" id="yja-AG-qJG"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥500" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zb-me-CsU">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zb-me-CsU">
                     <fontDescription key="fontDescription" type="system" pointSize="32"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
@@ -73,7 +73,7 @@
                 <constraint firstItem="0hn-QC-vI3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="42" id="yAi-5z-j7v"/>
                 <constraint firstAttribute="trailing" secondItem="rk7-2c-RZp" secondAttribute="trailing" constant="42" id="yEe-Nj-654"/>
             </constraints>
-            <point key="canvasLocation" x="304" y="346"/>
+            <point key="canvasLocation" x="24" y="53"/>
         </view>
     </objects>
     <resources>

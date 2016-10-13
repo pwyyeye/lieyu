@@ -64,9 +64,10 @@
 
 #pragma mark - 获取主题
 - (void)getDataForTheme{
+    __weak __typeof(self)weakSelf = self;
     [LYYUHttpTool yuGetYUAllTagsWithParams:nil complete:^(NSMutableArray *yuTagsModelArr) {
         _titleArray = yuTagsModelArr;
-        [self createUI];
+        [weakSelf createUI];
     }];
 }
 

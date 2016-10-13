@@ -9,6 +9,12 @@
 #import "LYBaseViewController.h"
 #import "ZSBalance.h"
 
+@protocol MineBalanceVCDelegate <NSObject>
+
+- (void)MineBalanceDelegateRefreshData;
+
+@end
+
 @interface MineBalanceViewController : LYBaseViewController
 
 @property (nonatomic, strong) ZSBalance *balance;
@@ -17,5 +23,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *rechargeButton;
 @property (weak, nonatomic) IBOutlet UIButton *withdrawButton;
+
+@property (nonatomic, assign) id<MineBalanceVCDelegate> delegate;
 
 @end

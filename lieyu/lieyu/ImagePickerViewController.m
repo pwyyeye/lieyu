@@ -33,6 +33,7 @@
     _AssetsGroup = [[NSMutableArray alloc]init];
     _assetsLibrary = [[ALAssetsLibrary alloc]init];
     
+    __weak __typeof(self)weakSelf = self;
     void(^assetsGroupsEnumerationBlock)(ALAssetsGroup *, BOOL *) = ^(ALAssetsGroup *assetsGroup, BOOL *stop){
         if(assetsGroup){
             if (assetsGroup) {
@@ -42,7 +43,7 @@
                 }
             }
         }
-        [self.tableView reloadData];
+        [weakSelf.tableView reloadData];
     };
     void (^assetsGroupsFailureBlock)(NSError *) = ^(NSError *error) {
         NSLog(@"Error: %@", [error localizedDescription]);
@@ -130,9 +131,11 @@
     imagePickerVC.title = [NSString stringWithFormat:@"%@",[[self.AssetsGroup objectAtIndex:indexPath.row] valueForProperty:ALAssetsGroupPropertyName]];
 //    imagePickerVC.imagesCount = 4;
     [self.navigationController pushViewController:imagePickerVC animated:YES];
+    
+    __weak __typeof(self)weakSelf = self;
     void(^pushSuccess)(NSArray *) = ^(NSArray *imagesArray){
-        [self.navigationController popViewControllerAnimated:NO];
-        [self.delegate ImagePickerDidFinishWithImages:imagesArray];
+        [weakSelf.navigationController popViewControllerAnimated:NO];
+        [weakSelf.delegate ImagePickerDidFinishWithImages:imagesArray];
     };
     imagePickerVC.pushSuccessBlock = pushSuccess;
 }
