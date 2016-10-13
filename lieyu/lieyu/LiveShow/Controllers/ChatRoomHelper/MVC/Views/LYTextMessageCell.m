@@ -113,15 +113,23 @@
 }
 - (void)updateUI {
     RCTextMessage *_textMessage = (RCTextMessage *)self.model.content;
+    NSString *userName = nil;
+    if (self.model.content.senderUserInfo) {
+        userName = self.model.content.senderUserInfo.name;
+    } else {
+        userName = @"神秘人";
+    }
     if (_textMessage) {
         [self.textLabel setTextColor:[UIColor whiteColor]];
         self.textLabel.shadowColor = RGBA(150, 150, 150, .5);
         self.textLabel.shadowOffset =CGSizeMake(1,1);
-        NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:_textMessage.content];
-        [AttributedStr addAttribute:NSForegroundColorAttributeName value:RGB(227, 207, 87) range:NSMakeRange(0, self.model.content.senderUserInfo.name.length + 1)];
+        NSMutableString *text = [NSMutableString stringWithFormat:@"%@：%@",userName, _textMessage.content];
+        NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:text];
+        [AttributedStr addAttribute:NSForegroundColorAttributeName value:RGB(227, 207, 87) range:NSMakeRange(0, userName.length + 1)];
         self.textLabel.attributedText = AttributedStr;
     }
-    CGSize __textSize = [LYTextMessageCell getMessageCellSize:_textMessage.content withWidth:self.baseContentView.bounds.size.width];
+    NSMutableString *text = [NSMutableString stringWithFormat:@"%@：%@",userName, _textMessage.content];
+    CGSize __textSize = [LYTextMessageCell getMessageCellSize:text withWidth:self.baseContentView.bounds.size.width];
     
 //    if (self.model.content.senderUserInfo) {
 //        CGSize __nameSize = [LYTextMessageCell getContentSize:self.model.content.senderUserInfo.name withFrontSize:Text_Message_Font_Size withWidth:self.baseContentView.bounds.size.width];

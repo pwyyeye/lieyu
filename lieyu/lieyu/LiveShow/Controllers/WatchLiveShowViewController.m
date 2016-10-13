@@ -971,7 +971,14 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         __height = __height + __labelSize.height;
     } else if ([messageContent isMemberOfClass:[RCTextMessage class]]) {
         RCTextMessage *_textMessage = (RCTextMessage *)messageContent;
-        CGSize _textMessageSize = [LYTextMessageCell getMessageCellSize:_textMessage.content withWidth:__width];
+        NSString *userName = nil;
+        if (_textMessage.senderUserInfo) {
+            userName = _textMessage.senderUserInfo.name;
+        } else {
+            userName = @"神秘人";
+        }
+        NSMutableString *text = [NSMutableString stringWithFormat:@"%@：%@",userName, _textMessage.content];
+        CGSize _textMessageSize = [LYTextMessageCell getMessageCellSize:text withWidth:__width];
         __height = _textMessageSize.height ;
     }else if([messageContent isMemberOfClass:[LYGiftMessage class]]){
         LYGiftMessage *likeMessage = (LYGiftMessage *)messageContent;
@@ -1203,9 +1210,8 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication ].delegate;
     if (![textField.text isEqualToString:@""]) {
-        NSString *text = [NSString stringWithFormat:@"%@：%@",app.userModel.usernick, _commentView.textField.text];
+        NSString *text = [NSString stringWithFormat:@"%@", _commentView.textField.text];
         RCTextMessage *rcTextMessage = [RCTextMessage messageWithContent:text];
         [self sendMessage:rcTextMessage pushContent:nil];
         textField.text = @"";

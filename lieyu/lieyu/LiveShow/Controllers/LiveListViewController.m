@@ -397,11 +397,9 @@ static NSString *liveShowListID = @"liveShowListID";
             } else {
                 if (_currentHotPage == 1) {
                     [self.hotDataArray removeAllObjects];
-                    [self.hotDataArray addObjectsFromArray:hotTempArray];
-                } else {
-                    [self.hotDataArray addObjectsFromArray:hotTempArray];
-                    [hotTableView.mj_footer endRefreshingWithNoMoreData];
                 }
+                [self.hotDataArray addObjectsFromArray:hotTempArray];
+                [hotTableView.mj_footer endRefreshing];
             }
             dispatch_async(dispatch_get_main_queue(), ^{
                 [hotTableView reloadData];
@@ -457,11 +455,9 @@ static NSString *liveShowListID = @"liveShowListID";
             } else {
                 if (_currentRencentPage == 1) {
                     [self.rencentDataArray removeAllObjects];
-                    [self.rencentDataArray addObjectsFromArray:newTempArray];
-                } else {
-                    [self.rencentDataArray addObjectsFromArray:newTempArray];
-                    [newTableView.mj_footer endRefreshingWithNoMoreData];
                 }
+                [self.rencentDataArray addObjectsFromArray:newTempArray];
+                [newTableView.mj_footer endRefreshing];
             }
             dispatch_async(dispatch_get_main_queue(), ^{
                 [newTableView reloadData];
