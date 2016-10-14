@@ -177,10 +177,20 @@
     [fileMgr createDirectoryAtPath:FileDir withIntermediateDirectories:YES attributes:nil error:&err];
     BOOL bRet = [fileMgr fileExistsAtPath:FileDir];
     if (bRet) {
-        //
         NSError *err;
         [fileMgr removeItemAtPath:FileDir error:&err];
     }
+    
+    NSFileManager *manager = [NSFileManager defaultManager];
+    NSString *videoStr= [NSHomeDirectory() stringByAppendingString:@"/tmp"];
+    NSArray *contents = [manager contentsOfDirectoryAtPath:videoStr error:nil];
+    NSEnumerator *e = [contents objectEnumerator];
+    NSString *filename;
+    while (filename = [e nextObject]) {
+        filename = [NSString stringWithFormat:@"/%@",filename];
+        [manager removeItemAtPath:[pngDir stringByAppendingString:filename] error:nil];
+    }
+    
 }
 
 @end

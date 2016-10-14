@@ -151,7 +151,6 @@ static LYRegistrationViewController *_registe;
                 _isRegisted = NO;
             }
             [_yzmTex becomeFirstResponder];
-            
         }];
     }else{
     [[LYUserHttpTool shareInstance] getYanZhengMa:dic complete:^(BOOL result) {
@@ -166,7 +165,6 @@ static LYRegistrationViewController *_registe;
 #pragma mark - 密码
 - (IBAction)zcAct:(UIButton *)sender {
     if(![MyUtil isValidateTelephone:self.phoneTex.text]){
-        
         [MyUtil showMessage:@"请输入正确的手机格式!"];
         return;
     }
