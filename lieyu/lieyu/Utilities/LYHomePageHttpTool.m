@@ -796,35 +796,35 @@
     }];
 }
 
-#pragma mark - 获取娱乐顾问数据
-+ (void)homePageGetGuWenDataWith:(NSDictionary *)paraDic complete:(void(^)(HomePageModel *))complete{
-    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_HOME_GUWEN baseURL:LY_SERVER params:paraDic success:^(id response) {
-        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"] ];
-        if ([code isEqualToString:@"1"]) {
-            HomePageModel *homePageM = [[HomePageModel alloc]init];
-            NSDictionary *dataDic = response[@"data"];
-            
-            LYCoreDataUtil *core=[LYCoreDataUtil shareInstance];
-            [core saveOrUpdateCoreData:@"LYCache" withParam:@{
-                                                              @"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE_GUWEN,
-                                                              @"lyCacheValue":dataDic,
-                                                              @"createDate":[NSDate date]}
-                         andSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE_GUWEN}];
-            
-            
-            homePageM.banner = [dataDic valueForKey:@"banner"];
-            homePageM.newbanner=[dataDic valueForKey:@"newbanner"];
-            homePageM.filterImages = [dataDic valueForKey:@"filterImages"];
-            homePageM.viplist = [UserModel mj_objectArrayWithKeyValuesArray:[dataDic valueForKey:@"viplist"]];
-            complete(homePageM);
-        }else{
-            complete(nil);
-        }
-        
-    } failure:^(NSError *err) {
-        
-    }];
-}
+//#pragma mark - 获取娱乐顾问数据
+//+ (void)homePageGetGuWenDataWith:(NSDictionary *)paraDic complete:(void(^)(HomePageModel *))complete{
+//    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_HOME_GUWEN baseURL:LY_SERVER params:paraDic success:^(id response) {
+//        NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"] ];
+//        if ([code isEqualToString:@"1"]) {
+//            HomePageModel *homePageM = [[HomePageModel alloc]init];
+//            NSDictionary *dataDic = response[@"data"];
+//            
+//            LYCoreDataUtil *core=[LYCoreDataUtil shareInstance];
+//            [core saveOrUpdateCoreData:@"LYCache" withParam:@{
+//                                                              @"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE_GUWEN,
+//                                                              @"lyCacheValue":dataDic,
+//                                                              @"createDate":[NSDate date]}
+//                         andSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE_GUWEN}];
+//            
+//            
+//            homePageM.banner = [dataDic valueForKey:@"banner"];
+//            homePageM.newbanner=[dataDic valueForKey:@"newbanner"];
+//            homePageM.filterImages = [dataDic valueForKey:@"filterImages"];
+//            homePageM.viplist = [UserModel mj_objectArrayWithKeyValuesArray:[dataDic valueForKey:@"viplist"]];
+//            complete(homePageM);
+//        }else{
+//            complete(nil);
+//        }
+//        
+//    } failure:^(NSError *err) {
+//        
+//    }];
+//}
 
 //获取地理位置信息
 + (void) getAllLocationInfoWith:(NSDictionary *)paraDic complete: (void(^)(NSString *locationArr))complete
@@ -850,6 +850,21 @@
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_HOME_FIRSTSCREEN baseURL:LY_SERVER params:param success:^(id response) {
         NSString *errorCode = [response objectForKey:@"errorcode"];
         if ([errorCode isEqualToString:@"1"]) {
+            if ([[param objectForKey:@"subids"] isEqualToString:@"2"]) {//夜店
+                LYCoreDataUtil *core = [LYCoreDataUtil shareInstance];
+                [core saveOrUpdateCoreData:@"LYCache"
+                                 withParam:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE_YD,
+                                             @"lyCacheValue":[response objectForKey:@"data"],
+                                             @"createDate":[NSDate date]}
+                             andSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE_YD}];
+            }else if ([[param objectForKey:@"subids"]isEqualToString:@"1,6,7"]){//酒吧
+                LYCoreDataUtil *core = [LYCoreDataUtil shareInstance];
+                [core saveOrUpdateCoreData:@"LYCache"
+                                 withParam:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE_BAR,
+                                             @"lyCacheValue":[response objectForKey:@"data"],
+                                             @"createDate":[NSDate date]}
+                             andSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE_BAR}];
+            }
             NSArray *arrayBanner = [HomepageBannerModel mj_objectArrayWithKeyValuesArray:[[response objectForKey:@"data"] objectForKey:@"bannerList"]];
             BarTopicInfo *activeModel;
             if ([[response objectForKey:@"data"] objectForKey:@"recommendedTopic"]) {
@@ -893,6 +908,14 @@
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_GET_BANNERLIST baseURL:LY_SERVER params:param success:^(id response) {
         NSString *errorCode = [response objectForKey:@"errorcode"];
         if ([errorCode isEqualToString:@"1"]) {
+            if ([[param objectForKey:@"interfaceTypeId"]isEqualToString:@"4"]) {
+                LYCoreDataUtil *core = [LYCoreDataUtil shareInstance];
+                [core saveOrUpdateCoreData:@"LYCache"
+                                 withParam:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE_GUWEN,
+                                             @"lyCacheValue":[response objectForKey:@"data"],
+                                             @"createDate":[NSDate date]}
+                             andSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE_GUWEN}];
+            }
             NSArray *array = [HomepageBannerModel mj_objectArrayWithKeyValuesArray:[response objectForKey:@"data"]];
             complete(array);
         }else{

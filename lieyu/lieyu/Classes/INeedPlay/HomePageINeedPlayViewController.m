@@ -70,6 +70,7 @@
 #import "TopicModel.h"
 #import "ActivityDetailViewController.h"
 #import "LiveShowViewController.h"
+#import "BarTopicInfo.h"
 
 #define PAGESIZE 20
 #define HOMEPAGE_MTA @"HOMEPAGE"
@@ -178,11 +179,16 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    NSString *pngDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+
+    
     [self setupData];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeLocationCity) name:@"locationCityThisTime" object:nil];
     //初始化
 //    [self changeLocationCity];
     [self createUI];
+    [self getDataLocalAndReload];
     [self removeNavButtonAndImageView];
 }
 
@@ -1253,70 +1259,81 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     }
 }
 
+- (void)initMyDict{
+    
+}
+
 #pragma mark - 本地加载数据
 - (void)getDataLocalAndReload{
-    NSMutableArray *array = [self getDataFromLocal].mutableCopy;
-    if (array.count==0) {
-        return;
+    NSMutableDictionary *dict = [self getDataFromLocal].mutableCopy;
+    
+//    NSDictionary *dataDic = ((LYCache *)((NSArray *)array[i]).firstObject).lyCacheValue;
+//    if(dataDic==nil)continue;
+    
+    if ([dict objectForKey:@"Live"]) {
+        NSDictionary *dataDic = ((LYCache *)((NSArray *)[dict objectForKey:@"Live"]).firstObject).lyCacheValue;
+        if(dataDic){
+            NSArray *array = [HomepageBannerModel mj_objectArrayWithKeyValuesArray:dataDic];
+            [_liveDict setObject:array forKey:@"bannerList"];
+        }
     }
-    //  LYHomeCollectionViewCell *cell = (LYHomeCollectionViewCell *)[_collectView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_index inSection:0]];
-    if (array.count == 3) {//顾问的数据
-        /*
-         NSArray *array_GW = array.firstObject;*/
-        
-        NSArray *array_GW = [array objectAtIndex:2];
-        NSDictionary *dataDic_GW = ((LYCache *)array_GW.firstObject).lyCacheValue;
-        if (dataDic_GW==nil) return;
-        if (dataDic_GW[@"newbanner"]!=nil) {
-            /*
-             [_newbannerListArray replaceObjectAtIndex:0 withObject:dataDic_GW[@"newbanner"]];*/
-            [_newbannerListArray replaceObjectAtIndex:2 withObject:dataDic_GW[@"newbanner"]];
-        }
-        
-        NSArray *array_VipList = [[NSMutableArray alloc]initWithArray:[UserModel mj_objectArrayWithKeyValuesArray:dataDic_GW[@"viplist"]]];
-        /*
-         [_dataArray replaceObjectAtIndex:0 withObject:array_VipList];*/
-        [_dataArray replaceObjectAtIndex:2 withObject:array_VipList];
-        NSArray *bannerArray=dataDic_GW[@"banner"];
-        if (bannerArray.count>0) {
-            _guWenBannerImgUrl = dataDic_GW[@"banner"][0];
-        }
-        /*
-         [_fiterArray replaceObjectAtIndex:0 withObject:[dataDic_GW valueForKey:@"filterImages"]];*/
-        [_fiterArray replaceObjectAtIndex:2 withObject:[dataDic_GW valueForKey:@"filterImages"]];
-        /*
-         [array removeObjectAtIndex:0];*/
-        [array removeObjectAtIndex:2];
-        /*
-         for (int i = 1; i < array.count+ 1; i ++) {//夜店，酒吧的数据*/
-        for (int i = 0; i < array.count - 1; i ++) {
-            /*
-             NSDictionary *dataDic = ((LYCache *)((NSArray *)array[i-1]).firstObject).lyCacheValue;*/
-            NSDictionary *dataDic = ((LYCache *)((NSArray *)array[i]).firstObject).lyCacheValue;
-            if(dataDic==nil)continue;
-            [_newbannerListArray replaceObjectAtIndex:i withObject:dataDic[@"newbanner"]];
-            NSArray *array_Barlist = [[NSMutableArray alloc]initWithArray:[JiuBaModel mj_objectArrayWithKeyValuesArray:dataDic[@"barlist"]]] ;
-            [_fiterArray replaceObjectAtIndex:i withObject:[dataDic valueForKey:@"filterImages"]];
-            
-            NSDictionary *recommendedBarDic = [dataDic valueForKey:@"recommendedBar"];
-            [_recommendedBarArray replaceObjectAtIndex:i withObject:[JiuBaModel mj_objectWithKeyValues:recommendedBarDic]];
-            [_dataArray replaceObjectAtIndex:i withObject:array_Barlist];
-            
-            /*if(i == 1){*/
-            if(i == 0){
-                _recommendedTopic = [RecommendedTopic mj_objectWithKeyValues:[dataDic valueForKey:@"recommendedTopic"]];
+    if ([dict objectForKey:@"YD"]) {
+        NSDictionary *dataDic = ((LYCache *)((NSArray *)[dict objectForKey:@"YD"]).firstObject).lyCacheValue;
+        if(dataDic){
+            NSArray *arrayBanner = [HomepageBannerModel mj_objectArrayWithKeyValuesArray:[dataDic objectForKey:@"bannerList"]];
+            BarTopicInfo *activeModel ;
+            if ([dataDic objectForKey:@"recommendedTopic"]) {
+                activeModel = [BarTopicInfo mj_objectWithKeyValues:[dataDic objectForKey:@"recommendedTopic"]];
             }
-            else{
-                _recommendedTopic2 = [RecommendedTopic mj_objectWithKeyValues:[dataDic valueForKey:@"recommendedTopic"]];
-            }
+            [_ydDict setObject:arrayBanner forKey:@"bannerList"];
+            [_ydDict setObject:activeModel forKey:@"recommendedTopic"];
+            [_ydDict setObject:[dataDic objectForKey:@"filterImageList"] forKey:@"filterImageList"];
         }
-        [_collectionArray enumerateObjectsUsingBlock:^(UICollectionView *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [obj reloadData];
-        }];
-        
-        _isGetDataFromNet_BAR = YES;
-        _isGetDataFromNet_YD = YES;
     }
+    if ([dict objectForKey:@"Bar"]) {
+        NSDictionary *dataDic = ((LYCache *)((NSArray *)[dict objectForKey:@"Bar"]).firstObject).lyCacheValue;
+        if(dataDic){
+            NSArray *arrayBanner = [HomepageBannerModel mj_objectArrayWithKeyValuesArray:[dataDic objectForKey:@"bannerList"]];
+            BarTopicInfo *activeModel ;
+            if ([dataDic objectForKey:@"recommendedTopic"]) {
+                activeModel = [BarTopicInfo mj_objectWithKeyValues:[dataDic objectForKey:@"recommendedTopic"]];
+            }
+            [_barDict setObject:arrayBanner forKey:@"bannerList"];
+            [_barDict setObject:activeModel forKey:@"recommendedTopic"];
+            [_barDict setObject:[dataDic objectForKey:@"filterImageList"] forKey:@"filterImageList"];
+
+        }
+    }
+    __weak __typeof(self)weakSelf = self;
+    [_tableViewArray enumerateObjectsUsingBlock:^(UICollectionView *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj reloadData];
+        [weakSelf setTableviewHeader:obj.tag];
+    }];
+    
+//        _isGetDataFromNet_BAR = YES;
+//        _isGetDataFromNet_YD = YES;
+}
+
+
+#pragma mark 本地获取数据
+- (NSMutableDictionary *)getDataFromLocal{
+    NSPredicate *pre = [NSPredicate predicateWithFormat:@"lyCacheKey == %@",CACHE_INEED_PLAY_HOMEPAGE_YD];
+    NSPredicate *pre_Bar = [NSPredicate predicateWithFormat:@"lyCacheKey == %@",CACHE_INEED_PLAY_HOMEPAGE_BAR];
+    NSPredicate *pre_GW = [NSPredicate predicateWithFormat:@"lyCacheKey == %@",CACHE_INEED_PLAY_HOMEPAGE_GUWEN];
+    NSArray *array_YD = [[LYCoreDataUtil shareInstance]getCoreData:@"LYCache" withPredicate:pre];
+    NSArray *array_Bar = [[LYCoreDataUtil shareInstance] getCoreData:@"LYCache" withPredicate:pre_Bar];
+    NSArray *arry_Live = [[LYCoreDataUtil shareInstance] getCoreData:@"LYCache" withPredicate:pre_GW];
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+    if (array_YD && array_YD.count) {
+        [dict setObject:array_YD forKey:@"YD"];
+    }
+    if (array_Bar && array_Bar.count) {
+        [dict setObject:array_Bar forKey:@"Bar"];
+    }
+    if (arry_Live && arry_Live.count) {
+        [dict setObject:arry_Live forKey:@"Live"];
+    }
+    return dict;
 }
 
 #pragma mark - 设置表头
@@ -1338,8 +1355,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             [imageArray addObject:model.img_url];
         }
     }
-    EScrollerView *eScrollView = [_scrollViewArray objectAtIndex:_index];
-    
+//    EScrollerView *eScrollView = [_scrollViewArray objectAtIndex:_index];
+    EScrollerView *eScrollView = [_scrollViewArray objectAtIndex:tag];
     //    [eScrollView configureImagesArray:[self imagesArray]];
     [eScrollView configureImagesArray:imageArray];
 }
@@ -1352,6 +1369,12 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         NSDictionary *dic = @{@"interfaceTypeId":@"4"};
         [LYHomePageHttpTool getBannerListWith:dic complete:^(NSArray *bannerList) {
             [_liveDict setObject:bannerList forKey:@"bannerList"];
+//            LYCoreDataUtil *core = [LYCoreDataUtil shareInstance];
+//            [core saveOrUpdateCoreData:@"LYCache"
+//                  withParam:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE_GUWEN,
+//                              @"lyCacheValue":bannerList,
+//                              @"createDate":[NSDate date]}
+//                  andSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE_GUWEN}];
             [weakSelf setTableviewHeader:tableView.tag];
             [weakSelf getDataArray:tableView.tag subids:nil];
         }];
@@ -1397,7 +1420,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                                @"page":[_currentPageArray objectAtIndex:tag]};
         [LYFriendsHttpTool getLiveShowlistWithParams:dict complete:^(NSArray *Arr) {
             if ([[_currentPageArray objectAtIndex:tag] intValue] == 1) {
-                [_refreshingArray replaceObjectAtIndex:tag withObject:@"0"];
+//                [_refreshingArray replaceObjectAtIndex:tag withObject:@"0"];
                 NSMutableArray *array = [[NSMutableArray alloc]initWithArray:Arr];
                 [_liveDict setObject:array forKey:@"liveList"];
             }else{
@@ -1408,10 +1431,12 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 //            [_refreshView stopAnimating];
             if (Arr.count <= 0) {
                 [tableView.mj_footer endRefreshingWithNoMoreData];
+                
             }else{
                 [tableView.mj_footer endRefreshing];
                 [tableView reloadData];
             }
+            [_refreshingArray replaceObjectAtIndex:tag withObject:@"0"];
         }];
     }else if (tag == 0 || tag == 1){
         CLLocation *userPosition = [LYUserLocation instance].currentLocation;
@@ -1425,7 +1450,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                                @"per":@(PAGESIZE).stringValue};
         [LYHomePageHttpTool getHomepageListDataWith:dict complete:^(NSDictionary *result) {
             if ([[_currentPageArray objectAtIndex:tag] intValue] == 1) {
-                [_refreshingArray replaceObjectAtIndex:tag withObject:@"0"];
+//                [_refreshingArray replaceObjectAtIndex:tag withObject:@"0"];
                 NSMutableArray *array = [[NSMutableArray alloc]initWithArray:[result objectForKey:@"barList"]];
                 if (tag == 0) {
                     [_ydDict setObject:[result objectForKey:@"recommendBarList"] forKey:@"recommendBarList"];
@@ -1451,23 +1476,12 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 [tableView.mj_footer endRefreshing];
                 [tableView reloadData];
             }
+            
+            [_refreshingArray replaceObjectAtIndex:tag withObject:@"0"];
         }];
     }
 }
 
-#pragma mark 本地获取数据
-- (NSArray *)getDataFromLocal{
-    NSPredicate *pre = [NSPredicate predicateWithFormat:@"lyCacheKey == %@",CACHE_INEED_PLAY_HOMEPAGE_YD];
-    NSPredicate *pre_Bar = [NSPredicate predicateWithFormat:@"lyCacheKey == %@",CACHE_INEED_PLAY_HOMEPAGE_BAR];
-    NSPredicate *pre_GW = [NSPredicate predicateWithFormat:@"lyCacheKey == %@",CACHE_INEED_PLAY_HOMEPAGE_GUWEN];
-    NSArray *array_YD = [[LYCoreDataUtil shareInstance]getCoreData:@"LYCache" withPredicate:pre];
-    NSArray *array_Bar = [[LYCoreDataUtil shareInstance] getCoreData:@"LYCache" withPredicate:pre_Bar];
-    NSArray *arry_GW = [[LYCoreDataUtil shareInstance] getCoreData:@"LYCache" withPredicate:pre_GW];
-    /*
-     NSArray *array = @[arry_GW,array_YD,array_Bar];*/
-    NSArray *array = @[array_YD,array_Bar,arry_GW];
-    return array;
-}
 
 
 - (void)didReceiveMemoryWarning {
