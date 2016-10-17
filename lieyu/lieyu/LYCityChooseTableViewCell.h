@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface LYCityChooseTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *cityNameLabel;
+
+@property (nonatomic, strong) NSMutableArray *cityArray;
 
 @end
