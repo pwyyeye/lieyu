@@ -757,6 +757,7 @@
 		38D876551C17DEA100E2F284 /* typeBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = 38D876521C17DEA100E2F284 /* typeBorder.png */; };
 		38D876561C17DEA100E2F284 /* typeBorder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38D876531C17DEA100E2F284 /* typeBorder@2x.png */; };
 		38D876571C17DEA100E2F284 /* typeBorder@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38D876541C17DEA100E2F284 /* typeBorder@3x.png */; };
+		38D8EA561DB0DC8800807B27 /* CityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 38D8EA551DB0DC8800807B27 /* CityModel.m */; };
 		38DBCD761C585A5F00A1E207 /* detail_collect_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38DBCD721C585A5F00A1E207 /* detail_collect_normal@2x.png */; };
 		38DBCD771C585A5F00A1E207 /* detail_collect_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38DBCD731C585A5F00A1E207 /* detail_collect_normal@3x.png */; };
 		38DBCD781C585A5F00A1E207 /* detail_collect_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38DBCD741C585A5F00A1E207 /* detail_collect_selected@2x.png */; };
@@ -3249,6 +3250,8 @@
 		38D876521C17DEA100E2F284 /* typeBorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = typeBorder.png; sourceTree = "<group>"; };
 		38D876531C17DEA100E2F284 /* typeBorder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "typeBorder@2x.png"; sourceTree = "<group>"; };
 		38D876541C17DEA100E2F284 /* typeBorder@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "typeBorder@3x.png"; sourceTree = "<group>"; };
+		38D8EA541DB0DC8800807B27 /* CityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityModel.h; sourceTree = "<group>"; };
+		38D8EA551DB0DC8800807B27 /* CityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityModel.m; sourceTree = "<group>"; };
 		38DBCD721C585A5F00A1E207 /* detail_collect_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "detail_collect_normal@2x.png"; sourceTree = "<group>"; };
 		38DBCD731C585A5F00A1E207 /* detail_collect_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "detail_collect_normal@3x.png"; sourceTree = "<group>"; };
 		38DBCD741C585A5F00A1E207 /* detail_collect_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "detail_collect_selected@2x.png"; sourceTree = "<group>"; };
@@ -10526,6 +10529,8 @@
 				85512F501D13A1020021A7EA /* LYCityChooseTableViewCell.h */,
 				85512F511D13A1020021A7EA /* LYCityChooseTableViewCell.m */,
 				85512F521D13A1020021A7EA /* LYCityChooseTableViewCell.xib */,
+				38D8EA541DB0DC8800807B27 /* CityModel.h */,
+				38D8EA551DB0DC8800807B27 /* CityModel.m */,
 			);
 			name = "定位";
 			sourceTree = "<group>";
@@ -13263,6 +13268,7 @@
 				8588C4261C5DF90A0092259E /* LYYUTableViewCell.m in Sources */,
 				AD203BF81CB165AB0014618A /* WechatCheckAccountViewController.m in Sources */,
 				15EE516A1BA7096C00464B74 /* ZSPrepareRefundViewController.m in Sources */,
+				38D8EA561DB0DC8800807B27 /* CityModel.m in Sources */,
 				1559DD101BDA2A3E00F3FE9B /* CarInfoCell.m in Sources */,
 				ADF88EA21C1197C400CF5DED /* MJRefreshAutoGifFooter.m in Sources */,
 				386AE3A11C5B61B70062105F /* UIView+SDExtension.m in Sources */,

@@ -16,16 +16,16 @@
 - (void)drawRect:(CGRect)rect {
     // Drawing code
     
-    self.titleLabel.font=[UIFont systemFontOfSize:13];
-    [self setTitleColor:RGB(51, 51, 51) forState:UIControlStateNormal];
-    [self setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    self.layer.masksToBounds=YES;
-    self.layer.cornerRadius=13;
-    self.layer.borderWidth=0.5;
-    self.layer.borderColor=RGB(179, 179, 179).CGColor;
+    self.titleLabel.font = [UIFont systemFontOfSize:15];
+    [self setTitleColor:RGB(149, 149, 149) forState:UIControlStateNormal];
+//    [self setTitleColor:COMMON_PURPLE forState:UIControlStateSelected];
+    self.layer.masksToBounds = YES;
+    self.layer.cornerRadius = 17;
+    self.layer.borderWidth = 1;
+    self.layer.borderColor = COMMON_GRAY.CGColor;
     
-    [self setBackgroundImage:[MyUtil getImageFromColor:RGB(35, 166, 116)] forState:UIControlStateSelected];
-    [self setBackgroundImage:[MyUtil getImageFromColor:[UIColor whiteColor]] forState:UIControlStateNormal];
+//    [self setBackgroundImage:[MyUtil getImageFromColor:RGB(35, 166, 116)] forState:UIControlStateSelected];
+//    [self setBackgroundImage:[MyUtil getImageFromColor:[UIColor whiteColor]] forState:UIControlStateNormal];
     
     [self addTarget:self action:@selector(selectedClick:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -35,9 +35,12 @@
 -(void)selectedClick:(UIButton *)button{
     if (self.selected==YES) {
         self.selected=NO;
-        
+//        self.layer.borderWidth = 1;
+//        self.layer.borderColor = COMMON_GRAY.CGColor;
     }else{
         self.selected=YES;
+//        self.layer.borderWidth = 1;
+//        self.layer.borderColor = COMMON_PURPLE.CGColor;
     }
     
     if ([self.delegate respondsToSelector:@selector(chooseButton:andSelected:)]) {

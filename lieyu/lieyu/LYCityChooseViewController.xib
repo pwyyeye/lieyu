@@ -9,6 +9,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LYCityChooseViewController">
             <connections>
                 <outlet property="cityListTableView" destination="W6P-ZE-QHJ" id="gdw-KZ-PCH"/>
+                <outlet property="searchBar" destination="b9u-xC-Tck" id="0Cu-VZ-ZD1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,19 +18,27 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" style="grouped" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="W6P-ZE-QHJ">
-                    <frame key="frameInset" width="320" height="568"/>
-                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="W6P-ZE-QHJ">
+                    <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </tableView>
+                <searchBar contentMode="redraw" placeholder="请输入城市名称" translatesAutoresizingMaskIntoConstraints="NO" id="b9u-xC-Tck">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="0YS-rh-b36"/>
+                    </constraints>
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="b9u-xC-Tck" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="9l8-u0-1V8"/>
+                <constraint firstAttribute="trailing" secondItem="b9u-xC-Tck" secondAttribute="trailing" id="BK7-Sg-VvF"/>
                 <constraint firstAttribute="trailing" secondItem="W6P-ZE-QHJ" secondAttribute="trailing" id="Cvi-z4-828"/>
                 <constraint firstAttribute="bottom" secondItem="W6P-ZE-QHJ" secondAttribute="bottom" id="NIZ-dW-PVT"/>
                 <constraint firstItem="W6P-ZE-QHJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="dP3-ks-eez"/>
-                <constraint firstItem="W6P-ZE-QHJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="zou-9u-sDl"/>
+                <constraint firstItem="b9u-xC-Tck" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="v5I-6Y-IUw"/>
+                <constraint firstItem="W6P-ZE-QHJ" firstAttribute="top" secondItem="b9u-xC-Tck" secondAttribute="bottom" id="whd-zK-zpj"/>
             </constraints>
-            <point key="canvasLocation" x="241" y="398"/>
+            <point key="canvasLocation" x="-32.5" y="189.5"/>
         </view>
     </objects>
 </document>

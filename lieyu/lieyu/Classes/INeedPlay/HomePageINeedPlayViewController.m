@@ -342,6 +342,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         //        EScrollerView *eScrollView = [[EScrollerView alloc]initWithFrameRect:CGRectMake(0, 90, headerView.frame.size.width, headerView.frame.size.height - 90) scrolArray:[self imagesArray] needTitile:NO];
         //        [eScrollView configureImagesArray:[self imagesArray]];
         eScrollView.delegate = self;
+        eScrollView.tag = tableView.tag;
         [headerView addSubview:eScrollView];
         [_scrollViewArray addObject:eScrollView];
         tableView.contentInset = UIEdgeInsetsMake(0, 0, 49, 0);
@@ -1205,7 +1206,13 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                     [USER_DEFAULT setObject:[dict objectForKey:@"hasNightclub"] forKey:@"ThisTimeHasNightClub"];
                 }else{
                     [USER_DEFAULT setObject:@"" forKey:@"LocationCityThisTime"];
+                    [USER_DEFAULT setObject:@"0" forKey:@"ThisTimeHasBar"];
+                    [USER_DEFAULT setObject:@"0" forKey:@"ThisTimeHasNightClub"];
                 }
+            }else{
+                [USER_DEFAULT setObject:@"" forKey:@"LocationCityThisTime"];
+                [USER_DEFAULT setObject:@"0" forKey:@"ThisTimeHasBar"];
+                [USER_DEFAULT setObject:@"0" forKey:@"ThisTimeHasNightClub"];
             }
             _index = 0 ;
             [[NSNotificationCenter defaultCenter]postNotificationName:@"locationCityThisTime" object:nil];
@@ -1355,10 +1362,22 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             [imageArray addObject:model.img_url];
         }
     }
-//    EScrollerView *eScrollView = [_scrollViewArray objectAtIndex:_index];
-    EScrollerView *eScrollView = [_scrollViewArray objectAtIndex:tag];
+//    EScrollerView *eScrollView;
+    for (EScrollerView *eScrollView in _scrollViewArray) {
+        if (eScrollView.tag == tag) {
+            [eScrollView configureImagesArray:imageArray];
+            break;
+        }
+    }
+//    if (_scrollViewArray.count > tag){
+//         eScrollView= [_scrollViewArray objectAtIndex:tag];
+//    }else{
+//        eScrollView = [_scrollViewArray objectAtIndex:_index];
+//    }
+//    
+//    EScrollerView *eScrollView = [_scrollViewArray objectAtIndex:tag];
     //    [eScrollView configureImagesArray:[self imagesArray]];
-    [eScrollView configureImagesArray:imageArray];
+    
 }
 
 #pragma mark 获取数据
