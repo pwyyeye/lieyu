@@ -243,6 +243,8 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         _streamId = streamJSON[@"id"];
         [weakSelf initPLplayer];//初始化摄像头
         
+        
+        
         _registerView = [[[NSBundle mainBundle] loadNibNamed:@"RegisterLiveShowView" owner:weakSelf options:nil] lastObject];
         _registerView.frame = self.view.bounds;
        _registerView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.5f];
