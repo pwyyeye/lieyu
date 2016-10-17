@@ -635,7 +635,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     if ([[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
         LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
         [login autoLogin];
-        UserModel *userModel = ((AppDelegate *)[UIApplication sharedApplication].delegate).userModel;
+//        UserModel *userModel = ((AppDelegate *)[UIApplication sharedApplication].delegate).userModel;
     }
     
     [_timer setFireDate:[NSDate distantPast]];//开启
@@ -653,7 +653,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 }
 
 - (void)getTodayBirthday{
-    __weak __typeof(self) weakSelf = self;
+//    __weak __typeof(self) weakSelf = self;
 //    [USER_DEFAULT setObject:@"" forKey:@"todayBirthdayGet"];
     UserModel *userMode = ((AppDelegate *)[UIApplication sharedApplication].delegate).userModel;
     NSDate *date = [NSDate date];
@@ -664,7 +664,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         if (userMode.userid && [userMode.usertype isEqualToString:@"2"]) {
             [[ZSManageHttpTool shareInstance]zsGetTodayFriendBirthdayWithParams:nil complete:^(NSArray *result) {
                 if (result.count > 0) {
-                    NSString *message = [NSString stringWithFormat:@"今天有%ld位好友过生日，取送上祝福吧～",result.count];
+                    NSString *message = [NSString stringWithFormat:@"今天有%lu位好友过生日，取送上祝福吧～",(unsigned long)result.count];
                     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"去看看", nil];
                     alert.tag = 123;
                     dispatch_async(dispatch_get_main_queue(), ^{

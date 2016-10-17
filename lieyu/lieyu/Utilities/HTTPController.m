@@ -32,7 +32,6 @@
     mgr.responseSerializer.acceptableContentTypes = [NSSet setWithObject:ContentType];
 #endif
     mgr.requestSerializer.HTTPShouldHandleCookies = YES;
-    
     switch (methodType) {
         case RequestMethodTypeGet:
         {
@@ -230,7 +229,6 @@
     }];
     
     
-    
     [uploadTask resume];
 
 }
@@ -288,7 +286,7 @@
             //上传代码
             
             NSData *data =[NSData dataWithContentsOfFile:filePath];
-  
+            
             [upManager putData:data key:fileName token:app.qiniu_media_token complete:(QNUpCompletionHandler)completionHandler  option:op];
             return YES;
         }
