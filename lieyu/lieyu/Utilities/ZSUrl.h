@@ -9,14 +9,15 @@
 #ifndef lieyu_ZSUrl_h
 #define lieyu_ZSUrl_h
 //服务器
-//
-#define LY_SERVER @"http://121.40.229.133:9080/lieyu/"
-#define QINIU_SERVER @"http://121.40.229.133:80/portal/"
-
-//
+//测试环境
+//#define LY_SERVER @"http://121.40.229.133:9080/lieyu/"
+//#define QINIU_SERVER @"http://121.40.229.133:80/portal/"
+//中二环境
+#define LY_SERVER @"http://139.196.214.64/lieyu/"
+#define QINIU_SERVER @"http://139.196.214.64/portal/"
+// 正式环境
 //#define LY_SERVER @"http://www.lie98.com/lieyu/"
 //#define QINIU_SERVER @"http://www.lie98.com/portal/"
-
 
 //直播的服务器（弃用）
 //#define LY_LIVE_SERVER @"http://10.17.114.61/lieyu/"

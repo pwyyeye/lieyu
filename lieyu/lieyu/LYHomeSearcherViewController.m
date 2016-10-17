@@ -179,7 +179,6 @@
         hisRoute= [NSKeyedUnarchiver unarchiveObjectWithFile:filename];
     }else{
         hisRoute = [[NSMutableArray alloc]initWithCapacity:6];
-        
     }
     bool ishis=false;
     for (NSString *arrtemp in hisRoute) {

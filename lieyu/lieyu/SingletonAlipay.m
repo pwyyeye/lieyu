@@ -83,7 +83,6 @@
         
         [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
             NSLog(@"reslut = %@",resultDic);
-            
             if ([self.delegate respondsToSelector:@selector(callBack:)]) {
                 [self.delegate callBack:resultDic];
             }else{
