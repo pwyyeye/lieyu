@@ -283,10 +283,10 @@
         
     }
     if ([_result.liked isEqualToString:@"1"] || [_result.liked isEqualToString:@"3"]) {
-        [_collectButton setImage:[UIImage imageNamed:@"hadCollect"] forState:UIControlStateNormal];
+        [_collectButton setImage:[UIImage imageNamed:@"hadCollect-"] forState:UIControlStateNormal];
         _collectButton.tag = 189;
     }else{
-        [_collectButton setImage:[UIImage imageNamed:@"notCollect"] forState:UIControlStateNormal];
+        [_collectButton setImage:[UIImage imageNamed:@"notCollect-"] forState:UIControlStateNormal];
         _collectButton.tag = 589;
     }
     _namelal.text = _result.usernick;
@@ -383,13 +383,19 @@
             image.clipsToBounds = YES;
         }
     }
-    for (LYLiveShowListModel *model in _liveArray) {
-        if ([model.roomType isEqualToString:@"playback"]) {
-            self.liveStatus.hidden = YES;
-        } else {
-            self.liveStatus.hidden = NO;
+    [_liveStatus addTarget:self action:@selector(liveSelfList:) forControlEvents:(UIControlEventTouchUpInside)];
+    if (_liveArray.count != 0) {
+        for (LYLiveShowListModel *model in _liveArray) {
+            if ([model.roomType isEqualToString:@"playback"]) {
+                self.liveStatus.hidden = YES;
+            } else {
+                self.liveStatus.hidden = NO;
+            }
         }
+    } else {
+        self.liveStatus.hidden = YES;
     }
+    
 }
 
 -(void)getData{
@@ -535,7 +541,7 @@
         [LYAdviserHttpTool lyAddCollectWithParams:dict complete:^(BOOL result) {
             if (result) {
                 [MyUtil showPlaceMessage:@"添加关注成功！"];
-                [sender setImage:[UIImage imageNamed:@"hadCollect"] forState:UIControlStateNormal];
+                [sender setImage:[UIImage imageNamed:@"hadCollect-"] forState:UIControlStateNormal];
                 _fansOrCaresNumLabel.text = [NSString stringWithFormat:@"%d",[_fansOrCaresNumLabel.text intValue] + 1];
                 self.userModel.collectNum = [NSString stringWithFormat:@"%d",[self.userModel.collectNum intValue] + 1];
                 sender.tag = 189;
@@ -547,12 +553,11 @@
         [LYAdviserHttpTool lyDeleteCollectWithParams:dict complete:^(BOOL result) {
             if (result) {
                 [MyUtil showPlaceMessage:@"取消关注成功！"];
-                [sender setImage:[UIImage imageNamed:@"notCollect"] forState:UIControlStateNormal];
+                [sender setImage:[UIImage imageNamed:@"notCollect-"] forState:UIControlStateNormal];
                 _fansOrCaresNumLabel.text = [NSString stringWithFormat:@"%d",[_fansOrCaresNumLabel.text intValue] - 1];
-                
                 self.userModel.collectNum = [NSString stringWithFormat:@"%d",[self.userModel.collectNum intValue] - 1];
                 sender.tag = 589;
-            }else{
+            } else {
                 [MyUtil showPlaceMessage:@"取消关注失败，请稍后重试！"];
             }
         }];
@@ -607,7 +612,6 @@
     liveListVC.userName = _result.usernick;
     [self.navigationController pushViewController:liveListVC animated:YES];
 }
-
 
 //进入酒吧详情
 - (void)checkBarInfo{

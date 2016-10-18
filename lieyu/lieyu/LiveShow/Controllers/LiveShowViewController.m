@@ -166,7 +166,6 @@ PLStreamingSendingBufferDelegate,UICollectionViewDataSource, UICollectionViewDel
 @property(nonatomic, strong) UIButton *setButton;
 @property(nonatomic, assign) BOOL isShowSetView;
 
-
 @end
 /**
  *  文本cell标示
@@ -232,6 +231,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     __weak typeof(self) weakSelf = self;
     NSDictionary *roomDict = @{@"liveChatId":_roomid,@"1":@"1"};
     //获取直播的stream配置摄像头,请求stream之后将创建开始界面，所以必须传递roomid,此处已经开始配置好了音频和视频，当点击开始直播请求结束后，收到通知才开始推流。
+    //
     [LYFriendsHttpTool getStreamWithParms:roomDict complete:^(NSDictionary *dict) {
         _stream = dict[@"stream"];
         NSString *jsonString = _stream;

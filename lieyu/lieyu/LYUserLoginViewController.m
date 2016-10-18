@@ -238,7 +238,6 @@
     [alertView setBackgroundColor:[UIColor clearColor]];
     //必须在这里调用show方法，否则indicator不在UIAlerView里面
     [alertView show];
-    
 }
 #pragma mark - 自动登录
 - (void)autoLogin{
@@ -269,9 +268,7 @@
                 [weakSelf.navigationController popToRootViewControllerAnimated:YES];
             }
         }];
-
     }
-    
     
     NSString *username=[USER_DEFAULT objectForKey:@"username"];
     NSString *password=[USER_DEFAULT objectForKey:@"pass"];
