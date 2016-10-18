@@ -101,7 +101,7 @@
 }
 
 - (void)loadWebView{
-    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 55, SCREEN_WIDTH, 2500)];
+    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 2500)];
     _webView.delegate = self;
     _webView.tag = 200;
     [_webView sizeToFit];
@@ -115,7 +115,7 @@
     NSString *clientHeight_str = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementById('webview_content_wrapper').offsetHeight"];
     float clientHeight = [clientHeight_str floatValue];
     //设置到WebView上
-    webView.frame = CGRectMake(0, 55, SCREEN_WIDTH, clientHeight + 20);
+    webView.frame = CGRectMake(0, 0, SCREEN_WIDTH, clientHeight + 20);
     //获取WebView最佳尺寸（点）
     [_tableView reloadData];
 }
@@ -210,7 +210,7 @@
         CGSize subtitleSize = [_infoCell.subtitleLabel.text boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 58, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13]} context:nil].size;
         return 35 + titleSize.height + subtitleSize.height;
     }else if (indexPath.row == 2){
-        return _webView.frame.size.height + 55;
+        return _webView.frame.size.height + 0;
     }else{
         return 0;
     }
