@@ -82,13 +82,16 @@
 #define MENUVIEWCENTERTOP 8
 #define MENUVIEWCENTERDOWN 45
 
+#define bar_identifier @"1,6,7"
+#define yd_identifier @"2"
+
 @interface HomePageINeedPlayViewController ()
 <EScrollerViewDelegate,SDCycleScrollViewDelegate,
 UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout
 ,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,EScrollerViewDelegate,LYBarCommentSuccessDelegate,CAAnimationDelegate>{
     UIButton *_searchBtn;
     UIButton *_titleImageView;
-//    UIActivityIndicatorView *_refreshView;
+    //    UIActivityIndicatorView *_refreshView;
     UIView *_refreshView;
     UIImageView *_animationImageview;
     CAKeyframeAnimation *_keyFrameA;
@@ -181,12 +184,12 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [super viewDidLoad];
     
     NSString *pngDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-
+    
     
     [self setupData];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeLocationCity) name:@"locationCityThisTime" object:nil];
     //初始化
-//    [self changeLocationCity];
+    //    [self changeLocationCity];
     [self createUI];
     [self getDataLocalAndReload];
     [self removeNavButtonAndImageView];
@@ -227,11 +230,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 [weakSelf emptyUserDefault];
                 [weakSelf createUI];
             }
-//            NSDate *date = [NSDate date];
-//            NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-//            [formatter setDateFormat:@"yyyy-MM-dd"];
-//            NSString *dateString = [formatter stringFromDate:date];
-//            [USER_DEFAULT setObject:dateString forKey:@"LocationTodayPosition"];
+            //            NSDate *date = [NSDate date];
+            //            NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+            //            [formatter setDateFormat:@"yyyy-MM-dd"];
+            //            NSString *dateString = [formatter stringFromDate:date];
+            //            [USER_DEFAULT setObject:dateString forKey:@"LocationTodayPosition"];
         }]show];
     }else if ([MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"LocationCityThisTime"]]){
         //为空，以上此为准
@@ -357,9 +360,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             NSString *subids;
             if (tableView.tag == 1 || tableView.tag == 0) {
                 if (tableView.tag == 0) {
-                    subids = @"2";
+                    subids = yd_identifier;
                 }else if (tableView.tag == 1){
-                    subids = @"1,6,7";
+                    subids = bar_identifier;
                 }
             }
             
@@ -407,7 +410,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [_menuView addSubview:_cityChooseBtn];
     
     //搜索按钮
-//    CGFloat searchBtnWidth = 24;
+    //    CGFloat searchBtnWidth = 24;
     _searchBtn = [[UIButton alloc]initWithFrame:CGRectMake(65, 26 , SCREEN_WIDTH - 130, 30)];
     [_searchBtn setTitle:@"搜索商户名、直播" forState:UIControlStateNormal];
     [_searchBtn.titleLabel setFont:[UIFont systemFontOfSize:12 weight:UIFontWeightLight]];
@@ -423,10 +426,10 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [_menuView addSubview:_searchBtn];
     
     //刷新控件
-//    _refreshView = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
-//    [_refreshView setCenter:CGPointMake(SCREEN_WIDTH - 32, 42)];
-//    _refreshView.hidesWhenStopped = YES;
-//    _refreshView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+    //    _refreshView = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+    //    [_refreshView setCenter:CGPointMake(SCREEN_WIDTH - 32, 42)];
+    //    _refreshView.hidesWhenStopped = YES;
+    //    _refreshView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
     
     NSMutableArray *imgArray = [[NSMutableArray alloc]init];
     for (int i = 1 ; i < 10 ; i ++) {
@@ -489,7 +492,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         
         _lineView.center = CGPointMake(btn.center.x, _lineView.center.y);
     }
-//    [_menuView addObserver:self forKeyPath:@"center" options:NSKeyValueObservingOptionNew context:nil];
+    //    [_menuView addObserver:self forKeyPath:@"center" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 -(void)dealloc{
@@ -541,10 +544,10 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     //如果这个页面在刷新数据，则显示刷新控件，否则隐藏
     if ([[_refreshingArray objectAtIndex:tableView.tag] isEqualToString:@"1"]) {
         [self startAnimating];
-//        [_refreshView startAnimating];
+        //        [_refreshView startAnimating];
     }else if ([[_refreshingArray objectAtIndex:tableView.tag] isEqualToString:@"0"]){
         [self stopAnimating];
-//        [_refreshView stopAnimating];
+        //        [_refreshView stopAnimating];
     }
     
     //第一次进入页面要刷新数据
@@ -582,7 +585,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     if (!_effectView || !_registerLiveButton) {
         [self LiveButtonInit];
     }
-//    _effectView.hidden = NO;
+    //    _effectView.hidden = NO;
     [self.view bringSubviewToFront:_effectView];
     [UIView animateWithDuration:.4 animations:^{
         _effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 132, 60, 60);
@@ -597,7 +600,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [UIView animateWithDuration:.2 animations:^{
         [_effectView setFrame:CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 49, 60, 60)];
     }];
-//    _effectView.hidden = YES;
+    //    _effectView.hidden = YES;
 }
 
 //生成直播按钮
@@ -636,7 +639,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             if (scrollView.contentOffset.y < -50) {
                 if ([[_refreshingArray objectAtIndex:tableView.tag] isEqualToString:@"0"]) {
                     [_refreshingArray replaceObjectAtIndex:tableView.tag withObject:@"1"];
-//                    [_refreshView startAnimating];
+                    //                    [_refreshView startAnimating];
                     [self startAnimating];
                     [_currentPageArray replaceObjectAtIndex:tableView.tag withObject:@(1)];
                     [self getDataWith];
@@ -669,7 +672,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         if (scrollView == tableView) {
             EScrollerView *eScrollView = [_scrollViewArray objectAtIndex:_index];
             eScrollView.isDragVertical = NO;
-//            NSLog(@"scrollViewDidEndDecelerating:%f",scrollView.contentOffset.y);
+            //            NSLog(@"scrollViewDidEndDecelerating:%f",scrollView.contentOffset.y);
         }
         if (tableView.tag == 2) {
             _oldScrollOffectY = scrollView.contentOffset.y;
@@ -696,14 +699,14 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 eScrollView.isDragVertical = YES;
                 [eScrollView setScrollViewFrame:CGRectMake((imageWidth - imageWidth * bili) / 2, imageOffsetY, SCREEN_WIDTH * bili, totalOffset)];
             }
-//            if (imageOffsetY < -50) {
-//                if ([[_refreshingArray objectAtIndex:tableView.tag] isEqualToString:@"0"]) {
-//                    [_refreshingArray replaceObjectAtIndex:tableView.tag withObject:@"1"];
-//                    [_refreshView startAnimating];
-//                    [_currentPageArray replaceObjectAtIndex:tableView.tag withObject:@(1)];
-//                    [self getDataWith];
-//                }
-//            }
+            //            if (imageOffsetY < -50) {
+            //                if ([[_refreshingArray objectAtIndex:tableView.tag] isEqualToString:@"0"]) {
+            //                    [_refreshingArray replaceObjectAtIndex:tableView.tag withObject:@"1"];
+            //                    [_refreshView startAnimating];
+            //                    [_currentPageArray replaceObjectAtIndex:tableView.tag withObject:@(1)];
+            //                    [self getDataWith];
+            //                }
+            //            }
             if (tableView.tag == 2) {
                 if (imageOffsetY > _oldScrollOffectY){
                     if (imageOffsetY <= 0.f) {
@@ -714,8 +717,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                         }];
                     }
                 }else{
-//                    NSLog(@"CGRectGetMaxY(_effectView.frame):%f",CGRectGetMaxY(_effectView.frame));
-//                    NSLog(@"SCREEN_HEIGHT - 5:%f",SCREEN_HEIGHT - 5);
+                    //                    NSLog(@"CGRectGetMaxY(_effectView.frame):%f",CGRectGetMaxY(_effectView.frame));
+                    //                    NSLog(@"SCREEN_HEIGHT - 5:%f",SCREEN_HEIGHT - 5);
                     if (CGRectGetMaxY(_effectView.frame) > SCREEN_HEIGHT - 5) {
                         [UIView animateWithDuration:.4 animations:^{
                             _effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 132, 60, 60);
@@ -1094,7 +1097,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     if (tableView.tag == 0) {
         if (((RecommendedTopic *)[_ydDict objectForKey:@"recommendedTopic"]).name) {
             if (indexPath.section == 0) {//活动
-//                RecommendedTopic *topic = [_ydDict objectForKey:@"recommendedTopic"];
+                //                RecommendedTopic *topic = [_ydDict objectForKey:@"recommendedTopic"];
                 ActivityMainViewController *activityMainVC = [[ActivityMainViewController alloc]init];
                 [self.navigationController pushViewController:activityMainVC animated:YES];
             }else if (indexPath.section == 3){//酒吧
@@ -1116,12 +1119,12 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     }else if (tableView.tag == 1){
         if (((RecommendedTopic *)[_barDict objectForKey:@"recommendedTopic"]).name) {
             if (indexPath.section == 0) {//活动
-//                RecommendedTopic *topic = [_barDict objectForKey:@"recommendedTopic"];
-//                ActionPage *aPage = [[ActionPage alloc]init];
-//                aPage.ActionImage = ((HomepageActiveTableViewCell *)[tableView cellForRowAtIndexPath:indexPath]).topicImage.image;
-//                if(!topic.id) return;
-//                aPage.topicid = topic.id;
-//                [self.navigationController pushViewController:aPage animated:YES];
+                //                RecommendedTopic *topic = [_barDict objectForKey:@"recommendedTopic"];
+                //                ActionPage *aPage = [[ActionPage alloc]init];
+                //                aPage.ActionImage = ((HomepageActiveTableViewCell *)[tableView cellForRowAtIndexPath:indexPath]).topicImage.image;
+                //                if(!topic.id) return;
+                //                aPage.topicid = topic.id;
+                //                [self.navigationController pushViewController:aPage animated:YES];
                 ActivityMainViewController *activityMainVC = [[ActivityMainViewController alloc]init];
                 [self.navigationController pushViewController:activityMainVC animated:YES];
             }else if (indexPath.section == 3){//酒吧
@@ -1180,12 +1183,12 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     _index = button.tag;
     [self lineViewAnimation];
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"筛选" pageName:HOMEPAGE_MTA titleName:button.currentTitle]];
-//    if (_dataArray.count) {
-//        NSArray *array = _dataArray[button.tag];
-//        if (array.count == 0) {
-//            [self getDataWith];
-//        }
-//    }
+    //    if (_dataArray.count) {
+    //        NSArray *array = _dataArray[button.tag];
+    //        if (array.count == 0) {
+    //            [self getDataWith];
+    //        }
+    //    }
 }
 
 #pragma mark 选择城市action
@@ -1228,7 +1231,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 #pragma mark 移除导航的按钮和图片
 - (void)removeNavButtonAndImageView{
-//    [_menuView removeObserver:self forKeyPath:@"center"];//移除kvo
+    //    [_menuView removeObserver:self forKeyPath:@"center"];//移除kvo
     [_titleImageView removeFromSuperview];
     [_searchBtn removeFromSuperview];
     [_cityChooseBtn removeFromSuperview];
@@ -1240,8 +1243,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [_menuBtnArray removeAllObjects];
     [_lineView removeFromSuperview];
     [_menuView removeFromSuperview];
-//    [_effectView removeFromSuperview];
-//    _effectView = nil;
+    //    [_effectView removeFromSuperview];
+    //    _effectView = nil;
 }
 
 //筛选，跳转，增加，删除，确认
@@ -1274,8 +1277,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 - (void)getDataLocalAndReload{
     NSMutableDictionary *dict = [self getDataFromLocal].mutableCopy;
     
-//    NSDictionary *dataDic = ((LYCache *)((NSArray *)array[i]).firstObject).lyCacheValue;
-//    if(dataDic==nil)continue;
+    //    NSDictionary *dataDic = ((LYCache *)((NSArray *)array[i]).firstObject).lyCacheValue;
+    //    if(dataDic==nil)continue;
     
     if ([dict objectForKey:@"Live"]) {
         NSDictionary *dataDic = ((LYCache *)((NSArray *)[dict objectForKey:@"Live"]).firstObject).lyCacheValue;
@@ -1308,7 +1311,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             [_barDict setObject:arrayBanner forKey:@"bannerList"];
             [_barDict setObject:activeModel forKey:@"recommendedTopic"];
             [_barDict setObject:[dataDic objectForKey:@"filterImageList"] forKey:@"filterImageList"];
-
+            
         }
     }
     __weak __typeof(self)weakSelf = self;
@@ -1317,8 +1320,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         [weakSelf setTableviewHeader:obj.tag];
     }];
     
-//        _isGetDataFromNet_BAR = YES;
-//        _isGetDataFromNet_YD = YES;
+    //        _isGetDataFromNet_BAR = YES;
+    //        _isGetDataFromNet_YD = YES;
 }
 
 
@@ -1362,20 +1365,20 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             [imageArray addObject:model.img_url];
         }
     }
-//    EScrollerView *eScrollView;
+    //    EScrollerView *eScrollView;
     for (EScrollerView *eScrollView in _scrollViewArray) {
         if (eScrollView.tag == tag) {
             [eScrollView configureImagesArray:imageArray];
             break;
         }
     }
-//    if (_scrollViewArray.count > tag){
-//         eScrollView= [_scrollViewArray objectAtIndex:tag];
-//    }else{
-//        eScrollView = [_scrollViewArray objectAtIndex:_index];
-//    }
-//    
-//    EScrollerView *eScrollView = [_scrollViewArray objectAtIndex:tag];
+    //    if (_scrollViewArray.count > tag){
+    //         eScrollView= [_scrollViewArray objectAtIndex:tag];
+    //    }else{
+    //        eScrollView = [_scrollViewArray objectAtIndex:_index];
+    //    }
+    //
+    //    EScrollerView *eScrollView = [_scrollViewArray objectAtIndex:tag];
     //    [eScrollView configureImagesArray:[self imagesArray]];
     
 }
@@ -1388,21 +1391,21 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         NSDictionary *dic = @{@"interfaceTypeId":@"4"};
         [LYHomePageHttpTool getBannerListWith:dic complete:^(NSArray *bannerList) {
             [_liveDict setObject:bannerList forKey:@"bannerList"];
-//            LYCoreDataUtil *core = [LYCoreDataUtil shareInstance];
-//            [core saveOrUpdateCoreData:@"LYCache"
-//                  withParam:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE_GUWEN,
-//                              @"lyCacheValue":bannerList,
-//                              @"createDate":[NSDate date]}
-//                  andSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE_GUWEN}];
+            //            LYCoreDataUtil *core = [LYCoreDataUtil shareInstance];
+            //            [core saveOrUpdateCoreData:@"LYCache"
+            //                  withParam:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE_GUWEN,
+            //                              @"lyCacheValue":bannerList,
+            //                              @"createDate":[NSDate date]}
+            //                  andSearchPara:@{@"lyCacheKey":CACHE_INEED_PLAY_HOMEPAGE_GUWEN}];
             [weakSelf setTableviewHeader:tableView.tag];
             [weakSelf getDataArray:tableView.tag subids:nil];
         }];
     }else if (tableView.tag == 0 || tableView.tag == 1){
         NSString *subids;
         if (tableView.tag == 0) {
-            subids = @"2";
+            subids = yd_identifier;
         }else if (tableView.tag == 1){
-            subids = @"1,6,7";
+            subids = bar_identifier;
         }
         CLLocation *userPosition = [LYUserLocation instance].currentLocation;
         NSDictionary *dict = @{@"latitude":@(userPosition.coordinate.latitude).stringValue,
@@ -1439,7 +1442,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                                @"page":[_currentPageArray objectAtIndex:tag]};
         [LYFriendsHttpTool getLiveShowlistWithParams:dict complete:^(NSArray *Arr) {
             if ([[_currentPageArray objectAtIndex:tag] intValue] == 1) {
-//                [_refreshingArray replaceObjectAtIndex:tag withObject:@"0"];
+                //                [_refreshingArray replaceObjectAtIndex:tag withObject:@"0"];
                 NSMutableArray *array = [[NSMutableArray alloc]initWithArray:Arr];
                 if (array) {
                     [_liveDict setObject:array forKey:@"liveList"];
@@ -1449,7 +1452,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 [array addObjectsFromArray:Arr];
             }
             [weakSelf stopAnimating];
-//            [_refreshView stopAnimating];
+            //            [_refreshView stopAnimating];
             if (Arr.count <= 0) {
                 [tableView.mj_footer endRefreshingWithNoMoreData];
                 
@@ -1471,7 +1474,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                                @"per":@(PAGESIZE).stringValue};
         [LYHomePageHttpTool getHomepageListDataWith:dict complete:^(NSDictionary *result) {
             if ([[_currentPageArray objectAtIndex:tag] intValue] == 1) {
-//                [_refreshingArray replaceObjectAtIndex:tag withObject:@"0"];
+                //                [_refreshingArray replaceObjectAtIndex:tag withObject:@"0"];
                 NSMutableArray *array = [[NSMutableArray alloc]initWithArray:[result objectForKey:@"barList"]];
                 if (tag == 0) {
                     [_ydDict setObject:[result objectForKey:@"recommendBarList"] forKey:@"recommendBarList"];
@@ -1489,7 +1492,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 }
                 [array addObjectsFromArray:[result objectForKey:@"barList"]];
             }
-//            [_refreshView stopAnimating];
+            //            [_refreshView stopAnimating];
             [weakSelf stopAnimating];
             if (((NSArray *)[result objectForKey:@"barList"]).count <= 0) {
                 [tableView.mj_footer endRefreshingWithNoMoreData];
@@ -1646,13 +1649,13 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     switch (tableView.tag) {
         case 0:
         {
-            hotBarVC.subidStr = @"2";
+            hotBarVC.subidStr = yd_identifier;
             hotBarVC.titleText = @"夜店";
         }
             break;
         case 1:
         {
-            hotBarVC.subidStr = @"1,6,7";
+            hotBarVC.subidStr = bar_identifier;
             hotBarVC.titleText = @"酒吧";
         }
             break;
@@ -1668,13 +1671,13 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     switch (_index) {
         case 0:
         {
-            hotBarVC.subidStr = @"2";
+            hotBarVC.subidStr = yd_identifier;
             hotBarVC.titleText = @"夜店";
         }
             break;
         case 1:
         {
-            hotBarVC.subidStr = @"1,6,7";
+            hotBarVC.subidStr = bar_identifier;
             hotBarVC.titleText = @"酒吧";
         }
             break;
