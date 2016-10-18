@@ -18,6 +18,9 @@
     self.contentView.layer.shadowColor = [[UIColor blackColor] CGColor];
     self.contentView.layer.shadowOffset = CGSizeMake(0, 2);
     self.contentView.layer.shadowOpacity = 0.3;
+    
+    _topicName.hidden = YES;
+    _maskImage.hidden = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -29,7 +32,7 @@
 - (void)setTopicModel:(RecommendedTopic *)topicModel{
     _topicModel = topicModel;
     [_topicImage sd_setImageWithURL:[NSURL URLWithString:topicModel.imageUrl] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
-    [_topicName setText:_topicModel.name];
+//    [_topicName setText:_topicModel.name];
 }
 
 @end

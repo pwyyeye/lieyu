@@ -1099,6 +1099,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             if (indexPath.section == 0) {//活动
                 //                RecommendedTopic *topic = [_ydDict objectForKey:@"recommendedTopic"];
                 ActivityMainViewController *activityMainVC = [[ActivityMainViewController alloc]init];
+                activityMainVC.topicid = ((RecommendedTopic *)[_ydDict objectForKey:@"recommendedTopic"]).id;
                 [self.navigationController pushViewController:activityMainVC animated:YES];
             }else if (indexPath.section == 3){//酒吧
                 JiuBaModel *model = [((NSMutableArray *)[_ydDict objectForKey:@"barList"]) objectAtIndex:indexPath.row];
@@ -1126,6 +1127,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 //                aPage.topicid = topic.id;
                 //                [self.navigationController pushViewController:aPage animated:YES];
                 ActivityMainViewController *activityMainVC = [[ActivityMainViewController alloc]init];
+                activityMainVC.topicid = ((RecommendedTopic *)[_barDict objectForKey:@"recommendedTopic"]).id;
                 [self.navigationController pushViewController:activityMainVC animated:YES];
             }else if (indexPath.section == 3){//酒吧
                 JiuBaModel *model = [((NSMutableArray *)[_barDict objectForKey:@"barList"]) objectAtIndex:indexPath.row];
@@ -1468,7 +1470,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                                @"longitude":@(userPosition.coordinate.longitude).stringValue,
                                @"city":[USER_DEFAULT objectForKey:@"ChooseCityLastTime"],
                                @"subids":subids,
-                               @"sort":@"popularitydesc",
+                               @"sort":@"distanceasc",
                                @"need_page":@"1",
                                @"p":[_currentPageArray objectAtIndex:tag],
                                @"per":@(PAGESIZE).stringValue};
@@ -1585,6 +1587,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             return;
         }
         ActivityMainViewController *activityMainVC = [[ActivityMainViewController alloc]init];
+        activityMainVC.topicid = [NSString stringWithFormat:@"%ld",linkid];
         [self.navigationController pushViewController:activityMainVC animated:YES];
     }else if (ad_type ==6){//酒吧活动
         if (!linkid) {
