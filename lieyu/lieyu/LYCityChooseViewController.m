@@ -65,8 +65,7 @@
 - (void) getData
 {
     [LYHomePageHttpTool getAllLocationInfoWith:nil complete:^(NSString *locationArr) {
-//        _tempArray = [locationArr componentsSeparatedByString:@","];
-        _tempArray = @[@"成都",@"成庆",@"成阳",@"蚌埠",@"合肥",@"上海",@"北京",@"南京",@"郑州",@"登封",@"成庆",@"成阳",@"蚌埠",@"合肥",@"上海",@"北京",@"南京",@"郑州",@"登封",@"成庆",@"成阳",@"蚌埠",@"合肥",@"上海",@"北京",@"南京",@"郑州",@"登封",@"成庆",@"成阳",@"蚌埠",@"合肥",@"上海",@"北京",@"南京",@"郑州",@"登封"];
+        _tempArray = [locationArr componentsSeparatedByString:@","];
         NSMutableArray *tempCityArray = [[NSMutableArray alloc]init];
         for (NSString *name in _tempArray) {
             CityModel *cityModel = [[CityModel alloc]init];

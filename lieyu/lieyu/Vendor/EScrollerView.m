@@ -160,6 +160,9 @@
         if (scrollView) {
             [scrollView removeFromSuperview];
         }
+        if (pageControl) {
+            [pageControl removeFromSuperview];
+        }
         self.userInteractionEnabled=YES;
         viewSize=rect;
         NSUInteger pageCount = _imagePathArray.count;
@@ -177,6 +180,13 @@
         scrollView.delegate = self;
         scrollView.backgroundColor=[UIColor clearColor];
         scrollView.bounces = NO;
+        
+        NSInteger pageControllerWidth = 7 * pageCount + 10 * (pageCount - 1);
+        
+        pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake((viewSize.size.width - pageControllerWidth) / 2, viewSize.size.height - 15, pageControllerWidth, 7)];
+        pageControl.numberOfPages = pageCount;
+        pageControl.currentPage = 0 ;
+        
         for (int i=0; i<pageCount; i++)
         {
             UIImageView *imgView=[[UIImageView alloc] init];
@@ -187,7 +197,6 @@
             imgView.backgroundColor=[UIColor grayColor];
             if ([[_imagePathArray objectAtIndex:i]length]>0)
             {
-                //                [imgView setImage:[UIImage imageNamed:[_imagePathArray objectAtIndex:i]]];
                 [imgView sd_setImageWithURL:[NSURL URLWithString:[_imagePathArray objectAtIndex:i]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
             }
             
@@ -198,7 +207,7 @@
             [_eImagesArray addObject:imgView];
         }
         [self addSubview:scrollView];
-        //        [self addSubview:scrollView];
+        [self addSubview:pageControl];
     }
     [self updateScrollView];
     return self;

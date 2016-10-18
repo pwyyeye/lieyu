@@ -1435,13 +1435,15 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         
         NSDictionary *dict = @{@"cityCode":@"310000",
                                @"livetype":@"live",
-                               @"sort":@"hot",
+                               @"sort":@"recent",
                                @"page":[_currentPageArray objectAtIndex:tag]};
         [LYFriendsHttpTool getLiveShowlistWithParams:dict complete:^(NSArray *Arr) {
             if ([[_currentPageArray objectAtIndex:tag] intValue] == 1) {
 //                [_refreshingArray replaceObjectAtIndex:tag withObject:@"0"];
                 NSMutableArray *array = [[NSMutableArray alloc]initWithArray:Arr];
-                [_liveDict setObject:array forKey:@"liveList"];
+                if (array) {
+                    [_liveDict setObject:array forKey:@"liveList"];
+                }
             }else{
                 NSMutableArray *array = [_liveDict objectForKey:@"liveList"];
                 [array addObjectsFromArray:Arr];
@@ -1830,7 +1832,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             [paraDic setValue:model.barname forKey:@"groupName"];
             [LYYUHttpTool yuCreatGroupWith:paraDic complete:^(NSDictionary *data) {
                 BarGroupChatViewController *barChatVC = [[BarGroupChatViewController alloc] initWithConversationType:ConversationType_GROUP targetId:[NSString stringWithFormat:@"%d",model.barid]];
-                barChatVC.title = [NSString stringWithFormat:@"%@",model.barname];
+                barChatVC.titleName = [NSString stringWithFormat:@"%@",model.barname];
                 barChatVC.groupManage = [model.groupManage componentsSeparatedByString:@","];
                 [weakSelf.navigationController pushViewController:barChatVC animated:YES];
                 [IQKeyboardManager sharedManager].enable = NO;
@@ -1849,7 +1851,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 
                 //            NSString *code = data[@"code"];
                 BarGroupChatViewController *barChatVC = [[BarGroupChatViewController alloc] initWithConversationType:ConversationType_GROUP targetId:[NSString stringWithFormat:@"%d",model.barid]];
-                barChatVC.title = [NSString stringWithFormat:@"%@",model.barname];
+                barChatVC.titleName = [NSString stringWithFormat:@"%@",model.barname];
                 barChatVC.groupManage = [model.groupManage componentsSeparatedByString:@","];
                 [weakSelf.navigationController pushViewController:barChatVC animated:YES];
                 [IQKeyboardManager sharedManager].enable = NO;

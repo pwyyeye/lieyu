@@ -70,7 +70,7 @@
     
     if (jiuBaM.like_num) {
         int num = jiuBaM.like_num;
-        if(num < 1000){
+        if(num < 10000){
             [_collectButton setTitle:[NSString stringWithFormat:@"%d",jiuBaM.like_num] forState:UIControlStateNormal];
         }else{
             [_collectButton setTitle:[NSString stringWithFormat:@"%dk+",jiuBaM.like_num / 1000] forState:UIControlStateNormal];
@@ -80,7 +80,7 @@
     }
     if (jiuBaM.commentNum) {
         int num = jiuBaM.commentNum;
-        if (num < 1000) {
+        if (num < 10000) {
             [_commentButton setTitle:[NSString stringWithFormat:@"%d",jiuBaM.commentNum] forState:UIControlStateNormal];
         }else{
             [_commentButton setTitle:[NSString stringWithFormat:@"%dk+",jiuBaM.commentNum / 1000] forState:UIControlStateNormal];
