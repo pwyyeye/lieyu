@@ -702,6 +702,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [LYFriendsHttpTool followFriendWithParms:dict complete:^(NSDictionary *dict) {
         [sender setTitle:@"已关注" forState:(UIControlStateNormal)];
         sender.userInteractionEnabled = NO;
+       
     }];
 //    [self.player stop];//关闭播放器
     [[WatchPlayerClient sharedPlayerClient] stopPlayWithUrl:_contentURL];
@@ -747,6 +748,9 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     }
     [self.view addSubview:_anchorDetailView];
     [self.view bringSubviewToFront:_anchorDetailView];
+    
+    _anchorDetailView.starlabel.hidden = YES;
+    _anchorDetailView.tagLabel.hidden = YES;
     
     NSInteger status = [_hostUser[@"friendStatus"] integerValue];
     if (status == 2 || status == 0) {//0 没有关系   1 关注   2 粉丝   3 好友
@@ -821,6 +825,8 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         [LYFriendsHttpTool followFriendWithParms:dict complete:^(NSDictionary *dict) {
             [sender setTitle:@"已关注" forState:(UIControlStateNormal)];
             sender.userInteractionEnabled = NO;
+            [_userView.isFoucsButton setTitle:@"已关注" forState:(UIControlStateNormal)];
+            _userView.isFoucsButton.userInteractionEnabled = NO;
         }];
     }
 }

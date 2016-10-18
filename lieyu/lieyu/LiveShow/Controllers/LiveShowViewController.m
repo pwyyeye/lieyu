@@ -166,7 +166,6 @@ PLStreamingSendingBufferDelegate,UICollectionViewDataSource, UICollectionViewDel
 @property(nonatomic, strong) UIButton *setButton;
 @property(nonatomic, assign) BOOL isShowSetView;
 
-
 @end
 /**
  *  文本cell标示

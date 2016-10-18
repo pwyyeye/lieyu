@@ -154,7 +154,7 @@ static NSString *const rcGiftMessageCellIndentifier = @"rcGiftMessageCellIndenti
     [KxMenu setTitleFont:[UIFont italicSystemFontOfSize:15]];
     
     [KxMenu showMenuInView:self.view
-                  fromRect:CGRectMake(SCREEN_WIDTH-90, 64, 129,0)
+                  fromRect:CGRectMake(SCREEN_WIDTH-90,64, 129,0)
                  menuItems:menuItems];
 }
 
