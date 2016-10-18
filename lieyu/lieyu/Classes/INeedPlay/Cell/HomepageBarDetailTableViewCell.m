@@ -52,7 +52,7 @@
     }
     if (barModel.like_num) {
         int num = barModel.like_num;
-        if(num < 1000){
+        if(num < 10000){
             [_collectButton setTitle:[NSString stringWithFormat:@"%d",barModel.like_num] forState:UIControlStateNormal];
         }else{
             [_collectButton setTitle:[NSString stringWithFormat:@"%dk+",barModel.like_num / 1000] forState:UIControlStateNormal];
@@ -62,7 +62,7 @@
     }
     if (barModel.commentNum) {
         int num = barModel.commentNum;
-        if (num < 1000) {
+        if (num < 10000) {
             [_commentButton setTitle:[NSString stringWithFormat:@"%d",barModel.commentNum] forState:UIControlStateNormal];
         }else{
             [_commentButton setTitle:[NSString stringWithFormat:@"%dk+",barModel.commentNum / 1000] forState:UIControlStateNormal];

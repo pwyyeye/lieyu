@@ -65,8 +65,7 @@
 - (void) getData
 {
     [LYHomePageHttpTool getAllLocationInfoWith:nil complete:^(NSString *locationArr) {
-//        _tempArray = [locationArr componentsSeparatedByString:@","];
-        _tempArray = @[@"成都",@"成庆",@"成阳",@"蚌埠",@"合肥",@"上海",@"北京",@"南京",@"郑州",@"登封",@"成庆",@"成阳",@"蚌埠",@"合肥",@"上海",@"北京",@"南京",@"郑州",@"登封",@"成庆",@"成阳",@"蚌埠",@"合肥",@"上海",@"北京",@"南京",@"郑州",@"登封",@"成庆",@"成阳",@"蚌埠",@"合肥",@"上海",@"北京",@"南京",@"郑州",@"登封"];
+        _tempArray = [locationArr componentsSeparatedByString:@","];
         NSMutableArray *tempCityArray = [[NSMutableArray alloc]init];
         for (NSString *name in _tempArray) {
             CityModel *cityModel = [[CityModel alloc]init];
@@ -142,6 +141,7 @@
         return cell;
     }else{
         LYCityChooseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LYCityChooseTableViewCell" forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         for (int i = 0 ; i < cell.contentView.subviews.count;) {
             [[cell.contentView.subviews objectAtIndex:i] removeFromSuperview];
         }
@@ -213,9 +213,9 @@
     if (_filterArray) {
         self.Location([_filterArray objectAtIndex:indexPath.row]);
         [USER_DEFAULT setObject:[_filterArray objectAtIndex:indexPath.row] forKey:@"ChooseCityLastTime"];
+        [self.navigationController popViewControllerAnimated:YES];
+        [MTA trackCustomEvent:LYCLICK_MTA args:@[@"cityChoose"]];
     }
-    [self.navigationController popViewControllerAnimated:YES];
-    [MTA trackCustomEvent:LYCLICK_MTA args:@[@"cityChoose"]];
 }
 
 #pragma mark - scrollview代理方法

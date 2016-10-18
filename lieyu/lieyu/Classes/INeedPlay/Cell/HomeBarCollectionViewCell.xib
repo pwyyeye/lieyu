@@ -81,7 +81,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="umj-CI-cGh">
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="2" id="tHM-Pu-wIw"/>
+                            <constraint firstAttribute="width" constant="1" id="tHM-Pu-wIw"/>
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XbR-dP-P8Z">
@@ -129,13 +129,13 @@
                 <constraint firstAttribute="trailing" secondItem="nXn-28-ZtA" secondAttribute="trailing" constant="8" id="NBD-Pu-kNn"/>
                 <constraint firstItem="umj-CI-cGh" firstAttribute="leading" secondItem="6gC-J3-rVo" secondAttribute="trailing" constant="4" id="Ov0-vu-AnS"/>
                 <constraint firstItem="SoF-MM-UJL" firstAttribute="centerY" secondItem="cKR-Dc-awm" secondAttribute="centerY" id="PY4-f5-QA3"/>
-                <constraint firstItem="nMG-Ck-CxS" firstAttribute="bottom" secondItem="umj-CI-cGh" secondAttribute="bottom" id="Pq3-1j-H7P"/>
+                <constraint firstItem="nMG-Ck-CxS" firstAttribute="bottom" secondItem="umj-CI-cGh" secondAttribute="bottom" constant="2" id="Pq3-1j-H7P"/>
                 <constraint firstAttribute="trailing" secondItem="dHq-63-51k" secondAttribute="trailing" id="RKE-2t-Aby"/>
                 <constraint firstItem="n7f-eJ-m6q" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="SQC-2I-xcY"/>
                 <constraint firstAttribute="trailing" secondItem="DZK-nU-JlB" secondAttribute="trailing" id="T1a-Na-WAO"/>
                 <constraint firstItem="2MO-hV-vk6" firstAttribute="leading" secondItem="XbR-dP-P8Z" secondAttribute="trailing" constant="30" id="TPG-OY-bOh"/>
                 <constraint firstItem="XbR-dP-P8Z" firstAttribute="top" secondItem="n7f-eJ-m6q" secondAttribute="bottom" id="Wwo-mV-nof"/>
-                <constraint firstItem="nMG-Ck-CxS" firstAttribute="top" secondItem="umj-CI-cGh" secondAttribute="top" id="ZA0-Y1-G0d"/>
+                <constraint firstItem="nMG-Ck-CxS" firstAttribute="top" secondItem="umj-CI-cGh" secondAttribute="top" constant="-2" id="ZA0-Y1-G0d"/>
                 <constraint firstItem="XbR-dP-P8Z" firstAttribute="top" secondItem="cKR-Dc-awm" secondAttribute="bottom" constant="20" id="byo-lc-F08"/>
                 <constraint firstItem="nXn-28-ZtA" firstAttribute="leading" secondItem="SoF-MM-UJL" secondAttribute="trailing" constant="10" id="cl0-Vf-jvh"/>
                 <constraint firstItem="2MO-hV-vk6" firstAttribute="centerY" secondItem="DZK-nU-JlB" secondAttribute="centerY" id="eb6-vH-YNe"/>

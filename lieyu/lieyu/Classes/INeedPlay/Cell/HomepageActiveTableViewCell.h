@@ -13,6 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *topicName;
 @property (weak, nonatomic) IBOutlet UIImageView *topicImage;
+@property (weak, nonatomic) IBOutlet UIImageView *maskImage;
 
 @property (nonatomic, strong) RecommendedTopic *topicModel;
 

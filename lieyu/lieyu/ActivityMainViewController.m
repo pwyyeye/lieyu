@@ -101,9 +101,9 @@
 #pragma mark - 获取数据
 - (void)getData{
     __weak __typeof(self) weakSelf = self;
-    NSDictionary *dict = @{@"start":[NSString stringWithFormat:@"%ld",_start],
+    NSDictionary *dict = @{@"start":[NSString stringWithFormat:@"%d",_start],
                            @"limit":[NSString stringWithFormat:@"%d",LIMIT],
-                           @"topicid":@"1",
+                           @"topicid":[MyUtil isEmptyString:_topicid] ? @"1" : _topicid,
                            @"activityType":[NSString stringWithFormat:@"%ld",_filterType]};
     [LYHomePageHttpTool getNewActivityListWithParam:dict complete:^(NSDictionary *result) {
         if (_start == 0) {

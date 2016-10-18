@@ -20,7 +20,11 @@
 
 - (void)setModel:(JiuBaModel *)model{
     _model = model;
-    [_barImage sd_setImageWithURL:[NSURL URLWithString:model.baricon] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+    if (model.banners.count) {
+        [_barImage sd_setImageWithURL:[NSURL URLWithString:[model.banners objectAtIndex:0]] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+    }else{
+        [_barImage sd_setImageWithURL:[NSURL URLWithString:model.baricon] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
+    }
     [_barNameLabel setText:model.barname];
     [_barDescLabel setText:model.subtitle];
     [_barAddressLabel setText:model.address];

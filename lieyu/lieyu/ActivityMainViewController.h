@@ -10,4 +10,6 @@
 
 @interface ActivityMainViewController : LYBaseViewController
 
+@property (nonatomic, strong) NSString *topicid;
+
 @end
