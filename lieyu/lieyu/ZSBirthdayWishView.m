@@ -7,7 +7,7 @@
 //
 
 #import "ZSBirthdayWishView.h"
-@interface ZSBirthdayWishView()
+@interface ZSBirthdayWishView()<UITextViewDelegate>
 
 @property (nonatomic, strong) NSArray *textArray;
 
@@ -39,7 +39,7 @@
                    @"忙碌的生活带走的只是时间，对朋友的牵挂常留心底，一声问候一个祝福，在这美丽神怡的日子里祝您生日快乐！",
                    @"短短的短信带上我深深的生日祝福，请允许我个人十分荣幸的代表百姓，不用千言万语，只道一句“生日快乐”！",
                    @"日月轮转永不断，情若真挚长相伴，不论您身在天涯海角，我将永远记住这一天。祝您生日快乐！",
-                   @"生日到了！愿您今天有数不完的快乐，收不完的祝福，收不完的礼物，用不完的幸福！在这个美丽的时刻，祝福您生日快乐！"];
+                   @"生日到了！愿您今天有数不完的快乐，收不完的祝福，用不完的幸福！在这个美丽的时刻，祝福您生日快乐！"];
     
     self.layer.cornerRadius = 3;
 }
@@ -53,12 +53,19 @@
     [_sexLabel setText:[bookModel.sex isEqualToString:@"0"] ? @"为她送上生日祝福吧！" : @"为他送上生日祝福吧！"];
     int index =  arc4random() % _textArray.count;
     [_wishTextView setText:[_textArray objectAtIndex:index]];
+    _wishTextView.delegate = self;
     if (_bookModel.mobile.length > 0) {
         _phoneButton.hidden = NO;
         [_phoneButton setTitle:bookModel.mobile forState:UIControlStateNormal];
         [_phoneButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     }else{
         _phoneButton.hidden = YES;
+    }
+}
+
+- (void)textViewDidChange:(UITextView *)textView{
+    if (textView.text.length > 50) {
+        [textView setText:[textView.text substringWithRange:NSMakeRange(0, 50)]];
     }
 }
 

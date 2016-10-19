@@ -44,15 +44,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self getData];
-//    [self initWithStyle:UITableViewStyleGrouped];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-//    self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
-    
     if([[MyUtil deviceString] isEqualToString:@"iPhone 4S"]||
        [[MyUtil deviceString] isEqualToString:@"iPhone 4"]){
         self.tableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-107);
@@ -62,29 +53,7 @@
     self.tableView.backgroundColor=RGB(237, 237, 237);
     self.tableView.tableFooterView=[[UIView alloc]init];//去掉多余的分割线
     self.title=@"支付方式";
-//    if (_isRechargeCoin && _isBalanceEnough) {//充值娱币并且余额足够
-//        _data=@[
-//                @{@"payname":@"余额支付",@"paydetail":@"推荐余额优先支付",@"payicon":@"balanceIcon"},
-//                @{@"payname":@"支付宝支付",@"paydetail":@"推荐有支付宝帐户的用户使用",@"payicon":@"AlipayIcon"},
-//                @{@"payname":@"微信支付",@"paydetail":@"推荐有微信帐户的用户使用",@"payicon":@"TenpayIcon"}
-//                ];
-//        _selectIndex = 0;
-//    }else if (_isRechargeCoin && !_isBalanceEnough) {//充值娱币并且余额不够
-//        _data=@[
-//                @{@"payname":@"余额支付",@"paydetail":@"余额不足",@"payicon":@"balanceIcon"},
-//                @{@"payname":@"支付宝支付",@"paydetail":@"推荐有支付宝帐户的用户使用",@"payicon":@"AlipayIcon"},
-//                @{@"payname":@"微信支付",@"paydetail":@"推荐有微信帐户的用户使用",@"payicon":@"TenpayIcon"}
-//                ];
-//        _selectIndex = 1;
-//    }else{
-//        _data=@[
-//                @{@"payname":@"支付宝支付",@"paydetail":@"推荐有支付宝帐户的用户使用",@"payicon":@"AlipayIcon"},
-//                @{@"payname":@"微信支付",@"paydetail":@"推荐有微信帐户的用户使用",@"payicon":@"TenpayIcon"}
-//                ];
-//        _selectIndex = 1;
-//    }
     _btnArray = [[NSMutableArray alloc]initWithCapacity:0];
-//    _isFaqi=YES;
     [self createPayButton];//创建支付按钮
 }
 
@@ -204,17 +173,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-//
-//-(void)BaseGoBack{
-//    for (UIViewController *controller in self.navigationController.viewControllers) {
-//        if([controller isKindOfClass:[HDDetailViewController class]]){
-//            LYMyOrderManageViewController *detailViewController =[[LYMyOrderManageViewController alloc] initWithNibName:@"LYMyOrderManageViewController" bundle:nil];
-//            [self.navigationController pushViewController:detailViewController animated:YES];
-//            return;
-//        }
-//    }
-//    [self.navigationController popViewControllerAnimated:YES];
-//}
 
 -(void)gotoBack{
     for (UIViewController *controller in self.navigationController.viewControllers) {
