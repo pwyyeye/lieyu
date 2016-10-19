@@ -992,12 +992,8 @@
 		850B32C91D2E49E30080CA6D /* LYGroupPeopleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 850B32C71D2E49E30080CA6D /* LYGroupPeopleTableViewCell.m */; };
 		850B32CA1D2E49E30080CA6D /* LYGroupPeopleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850B32C81D2E49E30080CA6D /* LYGroupPeopleTableViewCell.xib */; };
 		850C45EB1DAB8FC000F79635 /* WatchPlayerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 850C45EA1DAB8FC000F79635 /* WatchPlayerClient.m */; };
-		850C45F41DAC8E5700F79635 /* lianxi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 850C45EC1DAC8E5700F79635 /* lianxi@2x.png */; };
-		850C45F51DAC8E5700F79635 /* lianxi@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 850C45ED1DAC8E5700F79635 /* lianxi@3x.png */; };
 		850C45F61DAC8E5700F79635 /* wantanGW@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 850C45EE1DAC8E5700F79635 /* wantanGW@2x.png */; };
 		850C45F71DAC8E5700F79635 /* wantanGW@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 850C45EF1DAC8E5700F79635 /* wantanGW@3x.png */; };
-		850C45F81DAC8E5700F79635 /* wanyoulist@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 850C45F01DAC8E5700F79635 /* wanyoulist@2x.png */; };
-		850C45F91DAC8E5700F79635 /* wanyoulist@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 850C45F11DAC8E5700F79635 /* wanyoulist@3x.png */; };
 		850C45FA1DAC8E5700F79635 /* xiangwan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 850C45F21DAC8E5700F79635 /* xiangwan@2x.png */; };
 		850C45FB1DAC8E5700F79635 /* xiangwan@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 850C45F31DAC8E5700F79635 /* xiangwan@3x.png */; };
 		850C46061DAE129700F79635 /* redHeart_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 850C45FC1DAE129700F79635 /* redHeart_0.png */; };
@@ -1420,6 +1416,11 @@
 		8565550E1D374CF000318A3B /* LYBlackListGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8565550C1D374CF000318A3B /* LYBlackListGroupViewController.m */; };
 		8565550F1D374CF000318A3B /* LYBlackListGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8565550D1D374CF000318A3B /* LYBlackListGroupViewController.xib */; };
 		856555121D375ACD00318A3B /* BlockListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 856555111D375ACD00318A3B /* BlockListModel.m */; };
+		856EC86F1DB6243000BC4C69 /* ElectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 856EC86E1DB6243000BC4C69 /* ElectionViewController.m */; };
+		856EC8A11DB72C5A00BC4C69 /* lianxi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 856EC89F1DB72C5A00BC4C69 /* lianxi@2x.png */; };
+		856EC8A21DB72C5A00BC4C69 /* lianxi@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 856EC8A01DB72C5A00BC4C69 /* lianxi@3x.png */; };
+		856EC8A51DB72C7700BC4C69 /* wanyoulist@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 856EC8A31DB72C7700BC4C69 /* wanyoulist@2x.png */; };
+		856EC8A61DB72C7700BC4C69 /* wanyoulist@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 856EC8A41DB72C7700BC4C69 /* wanyoulist@3x.png */; };
 		8579680C1CFBDA6500284555 /* FreeOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8579680A1CFBDA6500284555 /* FreeOrderViewController.m */; };
 		8579680D1CFBDA6500284555 /* FreeOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8579680B1CFBDA6500284555 /* FreeOrderViewController.xib */; };
 		857968111CFBE2EB00284555 /* personality_mark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8579680F1CFBE2EB00284555 /* personality_mark@2x.png */; };
@@ -3540,12 +3541,8 @@
 		850B32C81D2E49E30080CA6D /* LYGroupPeopleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYGroupPeopleTableViewCell.xib; sourceTree = "<group>"; };
 		850C45E91DAB8FC000F79635 /* WatchPlayerClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatchPlayerClient.h; sourceTree = "<group>"; };
 		850C45EA1DAB8FC000F79635 /* WatchPlayerClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatchPlayerClient.m; sourceTree = "<group>"; };
-		850C45EC1DAC8E5700F79635 /* lianxi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lianxi@2x.png"; sourceTree = "<group>"; };
-		850C45ED1DAC8E5700F79635 /* lianxi@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lianxi@3x.png"; sourceTree = "<group>"; };
 		850C45EE1DAC8E5700F79635 /* wantanGW@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wantanGW@2x.png"; sourceTree = "<group>"; };
 		850C45EF1DAC8E5700F79635 /* wantanGW@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wantanGW@3x.png"; sourceTree = "<group>"; };
-		850C45F01DAC8E5700F79635 /* wanyoulist@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wanyoulist@2x.png"; sourceTree = "<group>"; };
-		850C45F11DAC8E5700F79635 /* wanyoulist@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wanyoulist@3x.png"; sourceTree = "<group>"; };
 		850C45F21DAC8E5700F79635 /* xiangwan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xiangwan@2x.png"; sourceTree = "<group>"; };
 		850C45F31DAC8E5700F79635 /* xiangwan@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xiangwan@3x.png"; sourceTree = "<group>"; };
 		850C45FC1DAE129700F79635 /* redHeart_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redHeart_0.png; sourceTree = "<group>"; };
@@ -4107,6 +4104,12 @@
 		8565550D1D374CF000318A3B /* LYBlackListGroupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYBlackListGroupViewController.xib; sourceTree = "<group>"; };
 		856555101D375ACD00318A3B /* BlockListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockListModel.h; sourceTree = "<group>"; };
 		856555111D375ACD00318A3B /* BlockListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockListModel.m; sourceTree = "<group>"; };
+		856EC86D1DB6243000BC4C69 /* ElectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectionViewController.h; sourceTree = "<group>"; };
+		856EC86E1DB6243000BC4C69 /* ElectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectionViewController.m; sourceTree = "<group>"; };
+		856EC89F1DB72C5A00BC4C69 /* lianxi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lianxi@2x.png"; sourceTree = "<group>"; };
+		856EC8A01DB72C5A00BC4C69 /* lianxi@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lianxi@3x.png"; sourceTree = "<group>"; };
+		856EC8A31DB72C7700BC4C69 /* wanyoulist@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wanyoulist@2x.png"; sourceTree = "<group>"; };
+		856EC8A41DB72C7700BC4C69 /* wanyoulist@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wanyoulist@3x.png"; sourceTree = "<group>"; };
 		857968091CFBDA6500284555 /* FreeOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeOrderViewController.h; sourceTree = "<group>"; };
 		8579680A1CFBDA6500284555 /* FreeOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreeOrderViewController.m; sourceTree = "<group>"; };
 		8579680B1CFBDA6500284555 /* FreeOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FreeOrderViewController.xib; sourceTree = "<group>"; };
@@ -7938,12 +7941,12 @@
 				85A639051D741EDB000816FD /* baodian@3x.png */,
 				85A639061D741EDB000816FD /* wanyouquan@2x.png */,
 				85A639071D741EDB000816FD /* wanyouquan@3x.png */,
-				850C45EC1DAC8E5700F79635 /* lianxi@2x.png */,
-				850C45ED1DAC8E5700F79635 /* lianxi@3x.png */,
+				856EC89F1DB72C5A00BC4C69 /* lianxi@2x.png */,
+				856EC8A01DB72C5A00BC4C69 /* lianxi@3x.png */,
 				850C45EE1DAC8E5700F79635 /* wantanGW@2x.png */,
 				850C45EF1DAC8E5700F79635 /* wantanGW@3x.png */,
-				850C45F01DAC8E5700F79635 /* wanyoulist@2x.png */,
-				850C45F11DAC8E5700F79635 /* wanyoulist@3x.png */,
+				856EC8A31DB72C7700BC4C69 /* wanyoulist@2x.png */,
+				856EC8A41DB72C7700BC4C69 /* wanyoulist@3x.png */,
 				850C45F21DAC8E5700F79635 /* xiangwan@2x.png */,
 				850C45F31DAC8E5700F79635 /* xiangwan@3x.png */,
 				85A638A11D7407E1000816FD /* wantan_select@3x.png */,
@@ -8904,6 +8907,39 @@
 				855EB3C81CF718AA00609B18 /* LYGuWenListViewController.xib */,
 			);
 			name = "顾问列表";
+			sourceTree = "<group>";
+		};
+		856EC8691DB6231400BC4C69 /* Election */ = {
+			isa = PBXGroup;
+			children = (
+				856EC86C1DB623E600BC4C69 /* Controller */,
+				856EC86B1DB623DD00BC4C69 /* View */,
+				856EC86A1DB623C900BC4C69 /* Model */,
+			);
+			name = Election;
+			sourceTree = "<group>";
+		};
+		856EC86A1DB623C900BC4C69 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		856EC86B1DB623DD00BC4C69 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		856EC86C1DB623E600BC4C69 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				856EC86D1DB6243000BC4C69 /* ElectionViewController.h */,
+				856EC86E1DB6243000BC4C69 /* ElectionViewController.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		857968081CFBDA0500284555 /* 免费预订 */ = {
@@ -10959,6 +10995,7 @@
 				D7A1D41E1BC2689D00BCE47C /* Business */,
 				D794ED031BB77FCF000DC568 /* CustomSegment */,
 				D7A230CA1BA7152000E8B51B /* Cell */,
+				856EC8691DB6231400BC4C69 /* Election */,
 				D7A230C51BA711D200E8B51B /* HomePageINeedPlayViewController.h */,
 				D7A230C61BA711D200E8B51B /* HomePageINeedPlayViewController.m */,
 				AD79E08E1C781C9300C45B97 /* EmptyView.h */,
@@ -11262,7 +11299,6 @@
 			files = (
 				38979ADC1CA6B330002946F5 /* dianzan3.png in Resources */,
 				38979ADA1CA6B320002946F5 /* angry27.png in Resources */,
-				850C45F41DAC8E5700F79635 /* lianxi@2x.png in Resources */,
 				38979ADB1CA6B320002946F5 /* angry29.png in Resources */,
 				38979ACF1CA65ABB002946F5 /* kawayi0.png in Resources */,
 				38EE9D8C1CB4C0AA00201734 /* loading1@2x.png in Resources */,
@@ -11478,7 +11514,6 @@
 				38EDEC661C5B9DE700694758 /* return_white@3x.png in Resources */,
 				38979A7E1CA40919002946F5 /* wow18.png in Resources */,
 				85F5453F1C1408040013B92B /* circleWhiteSelect@2x.png in Resources */,
-				850C45F91DAC8E5700F79635 /* wanyoulist@3x.png in Resources */,
 				15EE51431BA6E32E00464B74 /* ZSMyShopsManageViewController.xib in Resources */,
 				3812C5581C57B76100F4DD6B /* purper_less@2x.png in Resources */,
 				389C01091C1488F000FE9412 /* seeGirls@2x.png in Resources */,
@@ -11514,6 +11549,7 @@
 				85514EA11C75F8BF00E24C78 /* sign@3x.png in Resources */,
 				38B5F4D01CBBC87600AE1BF5 /* gray_add@3x.png in Resources */,
 				152247B91BEB064600E68A2B /* IQKeyboardManager.bundle in Resources */,
+				856EC8A11DB72C5A00BC4C69 /* lianxi@2x.png in Resources */,
 				AD399EB91C940D4D00028F23 /* logo58@2x.jpg in Resources */,
 				38EDEC621C5B9CDC00694758 /* CHshop@3x.png in Resources */,
 				3877821C1C8FEF3F0047088B /* QRCheckOrderHeader.xib in Resources */,
@@ -11659,6 +11695,7 @@
 				ADAFCD291CA0E261008BF959 /* shark2.png in Resources */,
 				38E5D7F11C12DF0C004B49D2 /* call@3x.png in Resources */,
 				383894511D153A8F0014C8E9 /* Fill20520@2x.png in Resources */,
+				856EC8A61DB72C7700BC4C69 /* wanyoulist@3x.png in Resources */,
 				38EE9D921CB4C0AA00201734 /* loading7@2x.png in Resources */,
 				38979A741CA40919002946F5 /* wow0.png in Resources */,
 				850099C41C61EEE700DDE626 /* yuShadow@2x.png in Resources */,
@@ -11903,7 +11940,6 @@
 				850099C91C61EEE700DDE626 /* 剩余@3x.png in Resources */,
 				85416E161C92C1DB0016BF0B /* 关注@3x.png in Resources */,
 				38B11D371C9F916300AD3EB8 /* ChooseTopicViewController.xib in Resources */,
-				850C45F81DAC8E5700F79635 /* wanyoulist@2x.png in Resources */,
 				85F7FEF91D9CFDF000303884 /* ring@3x.png in Resources */,
 				38979A5E1CA40919002946F5 /* kawayi11.png in Resources */,
 				85F7FEEE1D9CFDF000303884 /* gold@2x.png in Resources */,
@@ -11952,6 +11988,7 @@
 				AD8899CD1B9AFE61007BCC7C /* LaunchScreen.xib in Resources */,
 				AD399E9D1C940D4D00028F23 /* logo30@2x.jpg in Resources */,
 				38979A7D1CA40919002946F5 /* wow17.png in Resources */,
+				856EC8A21DB72C5A00BC4C69 /* lianxi@3x.png in Resources */,
 				38979A331CA40919002946F5 /* dianzan18.png in Resources */,
 				38979A941CA40919002946F5 /* sad15.png in Resources */,
 				38E5D7B81C128A74004B49D2 /* 拼客流程@3x.png in Resources */,
@@ -11993,6 +12030,7 @@
 				857AD6A51CA972920032E0C4 /* ZSTiXianTableViewCell.xib in Resources */,
 				851508181CFD67DB002375D4 /* bigBar@2x.png in Resources */,
 				3879D06A1C7B26B4000F5795 /* share_black@2x.png in Resources */,
+				856EC8A51DB72C7700BC4C69 /* wanyoulist@2x.png in Resources */,
 				AD399EA81C940D4D00028F23 /* logo41@2x.jpg in Resources */,
 				85F24AC91D928DB9003CF58B /* DP_like@3x.png in Resources */,
 				38AD5AF31D64078600521150 /* MineGroupIntroViewController.xib in Resources */,
@@ -12201,7 +12239,6 @@
 				855941781C520D20000AA20F /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				3812C5651C57B78800F4DD6B /* gray_star@2x.png in Resources */,
 				AD203BB51CAEA9C70014618A /* coinBackground@2x.png in Resources */,
-				850C45F51DAC8E5700F79635 /* lianxi@3x.png in Resources */,
 				AD399EB01C940D4D00028F23 /* logo49@2x.jpg in Resources */,
 				851508171CFD67DB002375D4 /* bigAddress@3x.png in Resources */,
 				85529C2B1C9058F7005D8F0D /* notificationSystem@2x.png in Resources */,
@@ -13228,6 +13265,7 @@
 				1559DCF51BD9D6AC00F3FE9B /* CHJiuPinDetailViewController.m in Sources */,
 				A20100E21BA94404009283D1 /* WQCalendarLogic.m in Sources */,
 				D7A600591BAC654D0006A768 /* LYAdshowCell.m in Sources */,
+				856EC86F1DB6243000BC4C69 /* ElectionViewController.m in Sources */,
 				850B32BA1D2E46300080CA6D /* BarGroupChatAllPeopleViewController.m in Sources */,
 				D736523C1BAEBB45002541CE /* CheHeModel.m in Sources */,
 				15FD2AA41BD61EC500D66920 /* DWTopInfoView.m in Sources */,

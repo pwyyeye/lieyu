@@ -37,7 +37,7 @@
         NSString *localizedMessage = [RCKitUtility formatMessage:notification];
         [self.tipMessageLabel setTextColor:RGB(0, 199, 140)];
         self.tipMessageLabel.shadowColor = RGBA(150, 150, 150, .5);
-        self.tipMessageLabel.shadowOffset =CGSizeMake(1,1);
+        self.tipMessageLabel.shadowOffset = CGSizeMake(.5,.5);
         NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:localizedMessage];
         [AttributedStr addAttribute:NSForegroundColorAttributeName value:RGB(227, 207, 87) range:NSMakeRange(0, self.model.content.senderUserInfo.name.length + 1)];
         self.tipMessageLabel.attributedText = AttributedStr;

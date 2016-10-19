@@ -103,7 +103,7 @@
             if (_likeMessage.type.integerValue == 2) {//赞
                 [self.messageLabel setTextColor:RGB(37, 235, 255)];
                 self.messageLabel.shadowColor = RGBA(150, 150, 150, .5);
-                self.messageLabel.shadowOffset =CGSizeMake(1,1);
+                self.messageLabel.shadowOffset =CGSizeMake(.5,.5);
                 NSString *dianzanStr = [NSString stringWithFormat:@"%@：给你点赞",_likeMessage.senderUserInfo.name];
                 NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:dianzanStr];
                 [AttributedStr addAttribute:NSForegroundColorAttributeName value:RGB(227, 207, 87) range:NSMakeRange(0, self.model.content.senderUserInfo.name.length + 1)];
@@ -111,7 +111,7 @@
             } else {
                 [self.messageLabel setTextColor:RGB(240, 26, 105)];
                 self.messageLabel.shadowColor = RGBA(150, 150, 150, .5);
-                self.messageLabel.shadowOffset =CGSizeMake(1,1);
+                self.messageLabel.shadowOffset =CGSizeMake(.5,.5);
                 NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:self.messageLabel.text];
                 [AttributedStr addAttribute:NSForegroundColorAttributeName value:RGB(227, 207, 87) range:NSMakeRange(0, self.model.content.senderUserInfo.name.length + 1)];
                 self.messageLabel.attributedText = AttributedStr;
