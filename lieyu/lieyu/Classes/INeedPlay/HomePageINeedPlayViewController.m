@@ -621,8 +621,14 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 }
 
 - (void)registerLiveButtonAction{
-    LiveShowViewController *registerPushRoomVC = [[LiveShowViewController alloc] init];
-    [self presentViewController:registerPushRoomVC animated:YES completion:NULL];
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if (!app.userModel.userid) {
+        LYUserLoginViewController *loginVC = [[LYUserLoginViewController alloc]init];
+        [self.navigationController pushViewController:loginVC animated:YES];
+    }else{
+        LiveShowViewController *registerPushRoomVC = [[LiveShowViewController alloc] init];
+        [self presentViewController:registerPushRoomVC animated:YES completion:NULL];
+    }
 }
 
 #pragma mark - scrollview的代理方法

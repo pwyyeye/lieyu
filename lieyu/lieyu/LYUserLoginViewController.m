@@ -21,6 +21,7 @@
 #import "LYRegistrationViewController.h"
 #import "IQKeyboardManager.h"
 #import "ZSMaintViewController.h"
+#import "LYFriendsRecommendViewController.h"
 #define COLLECTKEY [NSString stringWithFormat:@"%@%@sc",_userid,self.beerBarDetail.barid]
 #define LIKEKEY [NSString stringWithFormat:@"%@%@",_userid,self.beerBarDetail.barid]
 
@@ -170,11 +171,11 @@
         [USER_DEFAULT setObject:[NSString stringWithFormat:@"%d",result.userid] forKey:@"userid"];
         if ([app.userModel.usertype isEqualToString:@"1"]) {
             
-            UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"LYMain" bundle:[NSBundle mainBundle]];
-
-            UINavigationController *nav = (UINavigationController *)[storyBoard instantiateViewControllerWithIdentifier:@"LYNavigationController"];
-            app.navigationController = nav;
-            app.window.rootViewController = nav;
+//            UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"LYMain" bundle:[NSBundle mainBundle]];
+//
+//            UINavigationController *nav = (UINavigationController *)[storyBoard instantiateViewControllerWithIdentifier:@"LYNavigationController"];
+//            app.navigationController = nav;
+//            app.window.rootViewController = nav;
             [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"shanghuban"];
             
             
@@ -186,12 +187,15 @@
         [weakSelf getUserCollectJiuBaList];
         [weakSelf getUserZangJiuBaList];
         
-        [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+//        [weakSelf.navigationController popToRootViewControllerAnimated:YES];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"loginAndLoadData" object:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"loadMyCollectedAndLikeBar" object:nil];
         
         [app startLocation];
+        
+        LYFriendsRecommendViewController *friendsRecommendVC = [[LYFriendsRecommendViewController alloc]init];
+        [self.navigationController pushViewController:friendsRecommendVC animated:YES];
     }];
 }
 
@@ -353,6 +357,9 @@
         NSLog(@"---->%@", _tencentOAuth.accessToken);
         [_tencentOAuth getUserInfo];
         [app startLocation];
+        
+        LYFriendsRecommendViewController *friendsRecommendVC = [[LYFriendsRecommendViewController alloc]init];
+        [self.navigationController pushViewController:friendsRecommendVC animated:YES];
     }
     else
     {
@@ -477,9 +484,12 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"loginAndLoadData" object:nil];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"loadMyCollectedAndLikeBar" object:nil];
-            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+//            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
             
             [app startLocation];
+            
+            LYFriendsRecommendViewController *friendsRecommendVC = [[LYFriendsRecommendViewController alloc]init];
+            [self.navigationController pushViewController:friendsRecommendVC animated:YES];
         }else{//去绑定手机好
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"OPENIDSTR"];
             LYRegistrationViewController *registVC = [[LYRegistrationViewController alloc]init];

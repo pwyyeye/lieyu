@@ -117,10 +117,20 @@
     NSMutableArray *backArray = [[NSMutableArray alloc]init];
     UILocalizedIndexedCollation *theCollation = [UILocalizedIndexedCollation currentCollation];
     for (CustomerModel *addressBook in addressBookTemp) {
-        NSInteger sect = [theCollation sectionForObject:addressBook collationStringSelector:@selector(username)];
-        addressBook.sectionNumber = sect;
-        if ([[addressBook.username substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"沈"]) {
-            addressBook.sectionNumber = 18;
+        if ([MyUtil isEmptyString:addressBook.username]) {
+            NSInteger sect = [theCollation sectionForObject:addressBook collationStringSelector:@selector(usernick)];
+            addressBook.sectionNumber = sect;
+            
+//            if ([[addressBook.usernick substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"沈"]) {
+//                addressBook.sectionNumber = 18;
+//            }
+        }else{
+            NSInteger sect = [theCollation sectionForObject:addressBook collationStringSelector:@selector(username)];
+            addressBook.sectionNumber = sect;
+            
+            if ([[addressBook.username substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"沈"]) {
+                addressBook.sectionNumber = 18;
+            }
         }
     }
     NSInteger highSection = [[theCollation sectionTitles] count];
@@ -145,10 +155,15 @@
     NSMutableArray *backArray = [[NSMutableArray alloc]init];
     UILocalizedIndexedCollation *theCollation = [UILocalizedIndexedCollation currentCollation];
     for (UserModel *addressBook in addressBookTemp) {
-        NSInteger sect = [theCollation sectionForObject:addressBook collationStringSelector:@selector(usernick)];
-        addressBook.sectionNumber = sect;
-        if ([[addressBook.usernick substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"沈"]) {
-            addressBook.sectionNumber = 18;
+        if ([MyUtil isEmptyString:addressBook.usernick]) {
+            NSInteger sect = [theCollation sectionForObject:addressBook collationStringSelector:@selector(username)];
+            addressBook.sectionNumber = sect;
+        }else{
+            NSInteger sect = [theCollation sectionForObject:addressBook collationStringSelector:@selector(usernick)];
+            addressBook.sectionNumber = sect;
+            if ([[addressBook.usernick substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"沈"]) {
+                addressBook.sectionNumber = 18;
+            }
         }
     }
     NSInteger highSection = [[theCollation sectionTitles] count];
@@ -173,10 +188,15 @@
     NSMutableArray *backArray = [[NSMutableArray alloc]init];
     UILocalizedIndexedCollation *theCollation = [UILocalizedIndexedCollation currentCollation];
     for (AddressBookModel *addressBook in addressBookTemp) {
-        NSInteger sect = [theCollation sectionForObject:addressBook collationStringSelector:@selector(name)];
-        addressBook.sectionNumber = sect;
-        if ([[addressBook.name substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"沈"]) {
-            addressBook.sectionNumber = 18;
+        if ([MyUtil isEmptyString:addressBook.name]) {
+            NSInteger sect = [theCollation sectionForObject:addressBook collationStringSelector:@selector(mobile)];
+            addressBook.sectionNumber = sect;
+        }else{
+            NSInteger sect = [theCollation sectionForObject:addressBook collationStringSelector:@selector(name)];
+            addressBook.sectionNumber = sect;
+            if ([[addressBook.name substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"沈"]) {
+                addressBook.sectionNumber = 18;
+            }
         }
     }
     NSInteger highSection = [[theCollation sectionTitles] count];

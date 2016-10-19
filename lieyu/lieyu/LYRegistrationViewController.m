@@ -13,6 +13,7 @@
 #import "HomePageINeedPlayViewController.h"
 #import "IQKeyboardManager.h"
 #import "CheckProtocol.h"
+#import "LYFriendsRecommendViewController.h"
 @interface LYRegistrationViewController (){
     BOOL _isRegisted;
     NSString *_flag;
@@ -201,8 +202,10 @@ static LYRegistrationViewController *_registe;
                             [app getDESKey];
                         }
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
-                        [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+//                        [weakSelf.navigationController popToRootViewControllerAnimated:YES];
                         
+                        LYFriendsRecommendViewController *friendsRecommendVC = [[LYFriendsRecommendViewController alloc]init];
+                        [self.navigationController pushViewController:friendsRecommendVC animated:YES];
                     }];
                 }else{
                     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"OPENIDSTR"];

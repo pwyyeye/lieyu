@@ -66,7 +66,7 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"yyyy-MM-dd"];
     NSString *dateString = [formatter stringFromDate:date];
-//    [USER_DEFAULT setObject:@"" forKey:@"todayBirthdaySendWish"];
+    [USER_DEFAULT setObject:@"" forKey:@"todayBirthdaySendWish"];
     if (![USER_DEFAULT objectForKey:@"todayBirthdaySendWish"] || ![[USER_DEFAULT objectForKey:@"todayBirthdaySendWish"] isEqualToString:dateString]) {
         //没有出现过送祝福的界面
         [[ZSManageHttpTool shareInstance]zsGetTodayFriendBirthdayWithParams:nil complete:^(NSArray *result) {

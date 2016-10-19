@@ -67,6 +67,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     //    _insertBirthday = NO;
     [self.window makeKeyAndVisible];
+    self.window.backgroundColor = [UIColor whiteColor];
     // Override point for customization after application launch.
     //设置电池状态栏为白色
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault] ;
@@ -85,7 +86,6 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
     
     _navigationController= (UINavigationController *)self.window.rootViewController;
     //    _navigationController.delegate = self;
-    self.window.backgroundColor = [UIColor whiteColor];
     
     BOOL shanghuban = [[NSUserDefaults standardUserDefaults] boolForKey:@"shanghuban"];
     
@@ -117,6 +117,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
      if (![[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
          [self showIntroWithCrossDissolve];
          UIViewController *view=[[UIViewController alloc] init];
+         [view.view setBackgroundColor:[UIColor whiteColor]];
          view.view=_intro;
          self.window.rootViewController=view;
      }else{
@@ -927,37 +928,39 @@ didReceiveLocalNotification:(UILocalNotification *)notification {
     //    page1.desc = @"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
     //    page1.bgImage = [UIImage imageNamed:@"1.jpg"];
     
-    EAIntroPage *page1 = [EAIntroPage page];
-    if (isRetina) {
-        page1.bgImage = [UIImage imageNamed:@"1_retina.jpg"];
-    }else{
-        page1.bgImage = [UIImage imageNamed:@"1.jpg"];
-    }
-    
+    EAIntroPage *page1 = [EAIntroPage page]; 
+//    if (isRetina) {
+//        page1.bgImage = [UIImage imageNamed:@"1_retina.jpg"];
+//    }else{
+//        page1.bgImage = [UIImage imageNamed:@"1.jpg"];
+//    }
+    page1.bgImage = [UIImage imageNamed:@"1"];
     
     EAIntroPage *page2 = [EAIntroPage page];
-    if (isRetina) {
-        page2.bgImage = [UIImage imageNamed:@"2_retina.jpg"];
-    }else{
-        page2.bgImage = [UIImage imageNamed:@"2.jpg"];
-    }
-    
+//    if (isRetina) {
+//        page2.bgImage = [UIImage imageNamed:@"2_retina.jpg"];
+//    }else{
+//        page2.bgImage = [UIImage imageNamed:@"2.jpg"];
+//    }
+    page2.bgImage = [UIImage imageNamed:@"2"];
     
     EAIntroPage *page3 = [EAIntroPage page];
     
-    if (isRetina) {
-        page3.bgImage = [UIImage imageNamed:@"3_retina.jpg"];
-    }else{
-        page3.bgImage = [UIImage imageNamed:@"3.jpg"];
-    }
+//    if (isRetina) {
+//        page3.bgImage = [UIImage imageNamed:@"3_retina.jpg"];
+//    }else{
+//        page3.bgImage = [UIImage imageNamed:@"3.jpg"];
+//    }
+    page3.bgImage = [UIImage imageNamed:@"3"];
     
     EAIntroPage *page4 = [EAIntroPage page];
     
-    if (isRetina) {
-        page4.bgImage = [UIImage imageNamed:@"4_retina.jpg"];
-    }else{
-        page4.bgImage = [UIImage imageNamed:@"4.jpg"];
-    }
+//    if (isRetina) {
+//        page4.bgImage = [UIImage imageNamed:@"4_retina.jpg"];
+//    }else{
+//        page4.bgImage = [UIImage imageNamed:@"4.jpg"];
+//    }
+    page4.bgImage = [UIImage imageNamed:@"4"];
     
     //    EAIntroPage *page5 = [EAIntroPage page];
     //
@@ -973,14 +976,14 @@ didReceiveLocalNotification:(UILocalNotification *)notification {
     
     page4.customView=[[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT-122, SCREEN_WIDTH, 40)];
     _intro = [[EAIntroView alloc] initWithFrame:self.window.bounds andPages:@[page1,page2,page3,page4]];
-    
+    [_intro.bgImageView setContentMode:UIViewContentModeScaleAspectFill];
+    _intro.bgImageView.layer.masksToBounds = YES;
+    [_intro setBackgroundColor:[UIColor whiteColor]];
     UIButton *button=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-55, 0, 112, 36)];
     [button setBackgroundImage:[UIImage imageNamed:@"skip-btn"] forState:UIControlStateNormal];
     [button addTarget:_intro action:@selector(skipIntroduction) forControlEvents:UIControlEventTouchUpInside];
     [page4.customView addSubview:button];
     [page4.customView bringSubviewToFront:button];//显示到最前面
-    
-    
     
     
     _intro.skipButton = [[UIButton alloc] initWithFrame:CGRectZero];
