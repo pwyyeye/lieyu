@@ -210,7 +210,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (_filterArray) {
+    if (_isFilter) {
         self.Location([_filterArray objectAtIndex:indexPath.row]);
         [USER_DEFAULT setObject:[_filterArray objectAtIndex:indexPath.row] forKey:@"ChooseCityLastTime"];
         [self.navigationController popViewControllerAnimated:YES];
