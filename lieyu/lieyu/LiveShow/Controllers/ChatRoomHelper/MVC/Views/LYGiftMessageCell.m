@@ -97,7 +97,7 @@
         if(_likeMessage.senderUserInfo){
             if ([_likeMessage.senderUserInfo.userId isEqualToString:[RCIM sharedRCIM].currentUserInfo.userId]) {
                 self.messageLabel.text = [NSString stringWithFormat:@"%@：我赠送了一个%@",_likeMessage.senderUserInfo.name, tiptext];
-            }else{
+            } else {
                 self.messageLabel.text = [NSString stringWithFormat:@"%@：%@赠送了一个%@",_likeMessage.senderUserInfo.name,_likeMessage.senderUserInfo.name,tiptext];
             }
             if (_likeMessage.type.integerValue == 2) {//赞
@@ -118,6 +118,8 @@
             }
         }else{
             self.messageLabel.text = [NSString stringWithFormat:@"神秘人赠送了一个%@", tiptext];
+            
+            //what are you thinking?
         }
     }
     CGSize __textSize = [LYGiftMessageCell getMessageCellSize:self.messageLabel.text  withWidth:self.baseContentView.bounds.size.width];
