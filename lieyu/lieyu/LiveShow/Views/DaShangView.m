@@ -104,8 +104,8 @@ static NSString *daShangCellID = @"dashangCellID";
 //        cellNew.DSChooseImage.hidden = YES;
 //        --_number;
     }
-    NSString *value = [NSString stringWithFormat:@"%ld", sender.tag];
-    NSString *number = [NSString stringWithFormat:@"%ld", _number];
+    NSString *value = [NSString stringWithFormat:@"%ld", (long)sender.tag];
+    NSString *number = [NSString stringWithFormat:@"%ld", (long)_number];
     dispatch_async(dispatch_get_main_queue(), ^{
         //创建一个消息对象
         NSNotification * notice = [NSNotification notificationWithName:@"sendGift" object:nil userInfo:@{@"value":value,@"number":number}];

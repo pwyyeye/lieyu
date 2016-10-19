@@ -122,7 +122,7 @@
     if (_textMessage) {
         [self.textLabel setTextColor:[UIColor whiteColor]];
         self.textLabel.shadowColor = RGBA(150, 150, 150, .5);
-        self.textLabel.shadowOffset =CGSizeMake(1,1);
+        self.textLabel.shadowOffset =CGSizeMake(.5,.5);
         NSMutableString *text = [NSMutableString stringWithFormat:@"%@：%@",userName, _textMessage.content];
         NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:text];
         [AttributedStr addAttribute:NSForegroundColorAttributeName value:RGB(227, 207, 87) range:NSMakeRange(0, userName.length + 1)];

@@ -60,7 +60,7 @@
                         <constraint firstAttribute="height" constant="48" id="LFp-c5-Wpb"/>
                         <constraint firstAttribute="width" constant="52" id="WQC-1U-7md"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.69803921570000005" green="0.14901960780000001" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
