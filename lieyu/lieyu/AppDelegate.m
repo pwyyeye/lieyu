@@ -720,12 +720,9 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         }
     }
     
-    
     if ([USER_DEFAULT objectForKey:@"NOTIFYDIC"]!=nil) {
         [USER_DEFAULT removeObjectForKey:@"NOTIFYDIC"];
-        
     }
-    
 }
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"loadUserInfo" object:nil];
