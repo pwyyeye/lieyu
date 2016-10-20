@@ -54,6 +54,7 @@
     [super viewDidLoad];
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    _shareButton.hidden = YES;
     self.image_layer.alpha = 0.f;
     _bottomView.hidden = YES;
     [self setupTableView];

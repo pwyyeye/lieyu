@@ -252,5 +252,6 @@
 + (void)lyFollowRecommendFriendsWithOarams:(NSDictionary *)dict complete:(void(^)(BOOL result))complete;
 #pragma mark - 进入娱币商城
 + (void)lyEnterCoinShopWithParams:(NSDictionary *)dict complete:(void(^)(NSString *result))complete;
-
+#pragma mark - 获取粉丝数和关注数量
++ (void)lyGetFansAndFollowsNumberWithParams:(NSDictionary *)dict complete:(void(^)(NSDictionary *dict))complete;
 @end

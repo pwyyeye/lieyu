@@ -1819,7 +1819,19 @@
     }];
 }
 
-
+#pragma mark - 获取粉丝数和关注数量
++ (void)lyGetFansAndFollowsNumberWithParams:(NSDictionary *)dict complete:(void(^)(NSDictionary *dict))complete{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_FANSANDFOLLOW_NUMBER baseURL:LY_SERVER params:dict success:^(id response) {
+        NSString *errorCode = [response objectForKey:@"errorcode"];
+        if ([errorCode isEqualToString:@"1"]) {
+            complete([response objectForKey:@"data"]);
+        }else{
+            complete(nil);
+        }
+    } failure:^(NSError *err) {
+        complete(nil);
+    }];
+}
 
 
 
