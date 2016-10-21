@@ -38,7 +38,6 @@ CGRect CGRectMoveToCenter(CGRect rect, CGPoint center)
 	self.frame = newframe;
 }
 
-
 // Retrieve and set the size
 - (CGSize) size
 {

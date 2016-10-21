@@ -495,17 +495,87 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 
 #pragma mark -- 礼物动画
 -(void) showGiftIamgeAnmiationWith:(NSString *) giftImg{
-    UIImage *img = [UIImage imageNamed:giftImg];
-    UIImageView *giftIamge = [[UIImageView alloc] initWithImage:img];
-    giftIamge.center = self.view.center;
-    giftIamge.size = CGSizeMake(90, 90);
-    [self.view addSubview:giftIamge];
-    [self.view bringSubviewToFront:giftIamge];
-    [UIView animateWithDuration:2 delay:2 usingSpringWithDamping:.7f initialSpringVelocity:.3f options:UIViewAnimationOptionOverrideInheritedCurve animations:^{
-        giftIamge.size = CGSizeMake(0, 0);
-    } completion:^(BOOL finished) {
-        [giftIamge removeFromSuperview];
-    }];
+    NSInteger index = 0;
+    for (NSDictionary *dic in _dataArr) {
+        if ([dic[@"giftIamge"] isEqualToString:giftImg] ) {
+            index = [_dataArr indexOfObject:dic];
+        }
+    }
+    switch (index) {
+        case 7:
+            for (int i = 0; i < 30; i ++ ) {
+                UIImage *img = [UIImage imageNamed:giftImg];
+                UIImageView *giftIamge = [[UIImageView alloc] initWithImage:img];
+                giftIamge.contentMode = UIViewContentModeScaleAspectFit;
+                int x = (arc4random() % 10) + 1;
+                CGRect rect = giftIamge.bounds;
+                rect = CGRectMake( -70, 30 * x, 50, 50);
+                giftIamge.frame = rect;
+                [self.view addSubview:giftIamge];
+                [self.view bringSubviewToFront:giftIamge];
+                [UIView animateWithDuration:1.5 delay:0.15 *i options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                    giftIamge.center = CGPointMake(SCREEN_WIDTH + 30, 45 * x);
+                } completion:^(BOOL finished) {
+                    [giftIamge removeFromSuperview];
+                }];
+            }
+            break;
+        case 11:
+            for (int i = 0; i < 30; i ++ ) {
+                UIImage *img = [UIImage imageNamed:giftImg];
+                UIImageView *giftIamge = [[UIImageView alloc] initWithImage:img];
+                giftIamge.contentMode = UIViewContentModeScaleAspectFit;
+                int x = (arc4random() % 10) + 1;
+                CGRect rect = giftIamge.bounds;
+                rect = CGRectMake( SCREEN_WIDTH + 30, 30 * x, 50, 50);
+                giftIamge.frame = rect;
+                [self.view addSubview:giftIamge];
+                [self.view bringSubviewToFront:giftIamge];
+                [UIView animateWithDuration:1.5 delay:0.15 *i options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                    giftIamge.center = CGPointMake(-70, 45 * x);
+                } completion:^(BOOL finished) {
+                    [giftIamge removeFromSuperview];
+                }];
+            }
+            break;
+        case 13:
+            for (int i = 0; i < 30; i ++ ) {
+                UIImage *img = [UIImage imageNamed:giftImg];
+                UIImageView *giftIamge = [[UIImageView alloc] initWithImage:img];
+                giftIamge.contentMode = UIViewContentModeScaleAspectFit;
+                int x = (arc4random() % 10) + 1;
+                CGRect rect = giftIamge.bounds;
+                rect = CGRectMake( SCREEN_WIDTH + 30, 30 * x, 50, 50);
+                giftIamge.frame = rect;
+                [self.view addSubview:giftIamge];
+                [self.view bringSubviewToFront:giftIamge];
+                [UIView animateWithDuration:1.5 delay:0.15 *i options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                    giftIamge.center = CGPointMake(-70, 45 * x);
+                } completion:^(BOOL finished) {
+                    [giftIamge removeFromSuperview];
+                }];
+            }
+            break;
+        default:
+            for (int i = 0; i < 30; i ++ ) {
+                UIImage *img = [UIImage imageNamed:giftImg];
+                UIImageView *giftIamge = [[UIImageView alloc] initWithImage:img];
+                giftIamge.contentMode = UIViewContentModeScaleAspectFit;
+                int x = (arc4random() % 10) + 1;
+                CGRect rect = giftIamge.bounds;
+                rect = CGRectMake(30 * x, - 60, 40, 40);
+                giftIamge.frame = rect;
+                [self.view addSubview:giftIamge];
+                [self.view bringSubviewToFront:giftIamge];
+                [UIView animateWithDuration:1.5 delay:0.15 *i options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                    giftIamge.center = CGPointMake(30 * x, SCREEN_HEIGHT);
+                } completion:^(BOOL finished) {
+                    [giftIamge removeFromSuperview];
+                }];
+            }
+            break;
+    }
+
 }
 
 #pragma mark --- 初始化播放器

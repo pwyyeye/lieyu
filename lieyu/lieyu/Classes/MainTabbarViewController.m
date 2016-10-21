@@ -278,7 +278,7 @@
 
 //跳到发现
 - (void)jumpToforthPage{
-//    self.selectedIndex = 3;
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{

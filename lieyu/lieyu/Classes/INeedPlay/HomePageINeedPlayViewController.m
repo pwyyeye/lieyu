@@ -466,7 +466,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     _keyFrameA.duration = imgArray.count * 0.1;
     _keyFrameA.delegate = self;
     _keyFrameA.values = imgArray;
-    _keyFrameA.repeatCount = 100 ;
+    _keyFrameA.repeatCount = 100;
     
     _refreshView = [[UIView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 44, 31, 20, 20)];
     _animationImageview = [[UIImageView alloc]initWithFrame:_refreshView.bounds];
