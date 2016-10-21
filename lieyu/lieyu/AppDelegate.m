@@ -62,8 +62,6 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
 
 @implementation AppDelegate
 
-
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     //    _insertBirthday = NO;
     [self.window makeKeyAndVisible];
