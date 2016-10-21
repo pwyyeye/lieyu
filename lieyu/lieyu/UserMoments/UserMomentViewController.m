@@ -30,7 +30,7 @@
 
 #define LYFriendsAllCommentCellID @"LYFriendsAllCommentTableViewCell"
 #define LYFriendsLikeCellID @"LYFriendsLikeTableViewCell"
-@interface UserMomentViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,emojiClickDelegate,ImagePickerFinish,UIImagePickerControllerDelegate,UINavigationControllerDelegate,sendBackVedioAndImage,ISEmojiViewDelegate,UITextFieldDelegate>
+@interface UserMomentViewController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,emojiClickDelegate,ImagePickerFinish,UIImagePickerControllerDelegate,UINavigationControllerDelegate,sendBackVedioAndImage,ISEmojiViewDelegate,UITextFieldDelegate,CAAnimationDelegate>
 {
     UIButton *_liveShow;//直播按钮
     UILabel *_myBadge;//我的角标
@@ -64,11 +64,14 @@
     BOOL isDisturb;
     LYFriendsVideoTableViewCell *friendsVedioCell;
     
-    UIImageView *bgIamge;//背景图
+    UIImageView *bgImage;//背景图
     UIImageView *_iconIamge;//头像
     UILabel *_nameLabel;//姓名
     NSInteger _giftNumber;//礼物数量
     NSInteger _giftValue;//礼物价值
+    
+    UIImageView *_animationImageview;//刷新动画
+    CAKeyframeAnimation *_CAkeyAnimation;
 }
 @property (nonatomic, assign) int pagesCount;
 @property (nonatomic, strong) NSString *typeOfImagePicker;
@@ -76,7 +79,7 @@
 
 @end
 
-#define headerHeight SCREEN_WIDTH * 187 / 375
+#define headerHeight SCREEN_WIDTH * 9 / 16
 
 #define iconWidth SCREEN_WIDTH / 5
 
@@ -150,7 +153,7 @@
 
 #pragma mark - 获取最新玩友圈数据
 - (void)getDataWithType:(dataType)type needLoad:(BOOL)need{
-   
+
     NSString *startStr = [NSString stringWithFormat:@"%ld",(long)_pageStartCount * _pageCount];
     NSString *pageCountStr = [NSString stringWithFormat:@"%ld",(long)_pageCount];
     NSDictionary *paraDic = nil;
@@ -158,9 +161,13 @@
     if(type == dataForMine){//我的玩友圈数据
         paraDic = @{@"userId":_useridStr,@"start":startStr,@"limit":pageCountStr,@"frientId":_useridStr};
         [LYFriendsHttpTool friendsGetUserInfoWithParams:paraDic needLoading:need compelte:^(FriendsUserInfoModel*userInfo, NSMutableArray *dataArray) {
+            if (_pageStartCount == 0) {
+                [weakSelf stopLoadingAnimating];
+            }
             _userBgImageUrl = userInfo.friends_img;
             [weakSelf loadDataWith:_userTablewView dataArray:dataArray pageStartCount:_pageStartCount type:type];
-            [weakSelf setupTableForHeaderForUserMomentPage];
+//            [weakSelf setupTableForHeaderForUserMomentPage];
+          
         }];
     } else {
         
@@ -196,14 +203,30 @@
     headerView.backgroundColor = [UIColor whiteColor];
     headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 187 / 375 + 30);
     //背景图
-    bgIamge = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, headerHeight)];
-    [bgIamge setImage:[UIImage imageNamed:@"empyImage16_9"]];
+    bgImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, headerHeight)];
+    [bgImage setImage:[UIImage imageNamed:@"empyImage16_9"]];
     //    [imgView sd_setImageWithURL:[NSURL URLWithString:_headerViewImgLink] placeholderImage:[UIImage imageNamed:@"empyImage16_9"]];
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGesChooseImage)];
-    [bgIamge addGestureRecognizer:tapGes];
-    bgIamge.userInteractionEnabled = YES;
+    [bgImage addGestureRecognizer:tapGes];
+    bgImage.userInteractionEnabled = YES;
     [self setupBackIamgeView];
-    [headerView addSubview:bgIamge];
+    [headerView addSubview:bgImage];
+    
+    //刷新动画
+    NSMutableArray *imgsArray = [[NSMutableArray alloc] init];
+    for (int i = 1; i < 10; i++) {
+        UIImage *img = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"loading%d@2x",i] ofType:@"png"]];
+        [imgsArray addObject:(__bridge UIImage *)img.CGImage];
+    }
+    _CAkeyAnimation = [CAKeyframeAnimation animationWithKeyPath:@"contents"];
+    _CAkeyAnimation.duration = imgsArray.count * 0.1;
+    _CAkeyAnimation.delegate = self;
+    _CAkeyAnimation.values = imgsArray;
+    _CAkeyAnimation.repeatCount = 100;
+    _animationImageview = [[UIImageView alloc] initWithFrame:(CGRectMake(14, 14, 25,25))];
+    [self.view addSubview:_animationImageview];
+    [self.view bringSubviewToFront:_animationImageview];
+    
     //头像和姓名
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     _iconIamge = [[UIImageView alloc] init];
@@ -223,26 +246,33 @@
     _userTablewView.tableHeaderView = headerView;
 }
 
+- (void)startLoadingAnimating{
+    [_animationImageview.layer addAnimation:_CAkeyAnimation forKey:@"loadAnimation"];
+}
+
+- (void)stopLoadingAnimating{
+    [_animationImageview.layer removeAnimationForKey:@"loadAnimation"];
+}
 
 #pragma mark --设置背景图
 -(void)setupBackIamgeView{
     
     NSData *imageData = [[NSUserDefaults standardUserDefaults] objectForKey:@"FriendUserBgImage"];
     if(!_userBgImageUrl){
-        bgIamge.image = [[UIImage alloc]initWithData:imageData];
+        bgImage.image = [[UIImage alloc]initWithData:imageData];
     }else{
         if(imageData){
             //                [_headerView.ImageView_bg sd_setImageWithURL:[NSURL URLWithString:_userBgImageUrl] placeholderImage:[[UIImage alloc]initWithData:imageData]];
-            [bgIamge setImage:[UIImage imageWithData:imageData]];
+            [bgImage setImage:[UIImage imageWithData:imageData]];
         }else{
-            [bgIamge sd_setImageWithURL:[NSURL URLWithString:_userBgImageUrl] placeholderImage:[UIImage imageNamed:@"friendPresentBG.jpg"]];
+            [bgImage sd_setImageWithURL:[NSURL URLWithString:_userBgImageUrl] placeholderImage:[UIImage imageNamed:@"friendPresentBG.jpg"]];
         }
     }
     if(imageData == nil && [MyUtil isEmptyString:_userBgImageUrl]){
-        bgIamge.image = [UIImage imageNamed:@"friendPresentBG.jpg"];
+        bgImage.image = [UIImage imageNamed:@"friendPresentBG.jpg"];
     }
-    bgIamge.userInteractionEnabled = YES;
-    bgIamge.clipsToBounds = YES;
+    bgImage.userInteractionEnabled = YES;
+    bgImage.clipsToBounds = YES;
 }
 #pragma mark - 表头选择背景action
 - (void)tapGesChooseImage{
@@ -260,7 +290,7 @@
         
     }];
     [changeImageVC setPassImage:^(NSString *imageurl,UIImage *image) {
-        bgIamge.image = image;
+        bgImage.image = image;
         _headerView.ImageView_bg.image = image;
         _userBgImageUrl = [MyUtil getQiniuUrl:imageurl width:0 andHeight:0];
         NSData *imageData = UIImagePNGRepresentation(image);
@@ -314,8 +344,6 @@
             effectView.frame = CGRectMake((SCREEN_WIDTH - 60)/2.f, SCREEN_HEIGHT - offset, 60, 60);
         }];
     }];
-    
-    
 }
 
 
@@ -327,6 +355,7 @@
     _userTablewView.scrollsToTop = NO;
     _userTablewView.tag = 1;
     [self.view addSubview:_userTablewView];
+    [self setupTableForHeaderForUserMomentPage];
     [self setupMJRefreshForTableView:_userTablewView i:1];//为表配置上下刷新控件
     NSArray *array = @[LYFriendsNameCellID,LYFriendsAddressCellID,LYFriendsLikeCellID,LYFriendsCommentCellID,LYFriendsAllCommentCellID,LYFriendsVideoCellID,LYFriendsAllLikeCellID];
     for (NSString *cellIdentifer in array) {//注册单元格
@@ -338,7 +367,7 @@
     //表设置代理
         _userTablewView.dataSource = self;
         _userTablewView.delegate = self;
-    [_userTablewView.mj_header beginRefreshing];
+//    [_userTablewView.mj_header beginRefreshing];
 
 }
 
@@ -346,12 +375,14 @@
 #pragma mark - 为表配置上下刷新控件
 - (void)setupMJRefreshForTableView:(UITableView *)tableView i:(NSInteger)i{
     __weak __typeof(self) weakSelf = self;
-    tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
-        _pageStartCount = 0;
-        [weakSelf getDataWithType:i needLoad:NO];
-    }];
-    MJRefreshGifHeader *header = (MJRefreshGifHeader *)tableView.mj_header;
-    [self initMJRefeshHeaderForGif:header];
+//    tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+//        
+//    }];
+    _pageStartCount = 0;
+    [self getDataWithType:i needLoad:NO];
+    [self startLoadingAnimating];
+//    MJRefreshGifHeader *header = (MJRefreshGifHeader *)tableView.mj_header;
+//    [self initMJRefeshHeaderForGif:header];
     
     tableView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
         [weakSelf getDataWithType:i needLoad:NO];
@@ -391,41 +422,24 @@
                 }];
             }
         }
- 
+    
+    if (_userTablewView.contentOffset.y < 0) {
+        CGFloat y = scrollView.contentOffset.y;
+        CGFloat hegiht = headerHeight;
+        bgImage.frame = CGRectMake(- ((hegiht - y) * 16 / 9.f - SCREEN_WIDTH ) /2.f, y, (hegiht - y) * 16 / 9.f, hegiht -y);
+    }
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
         _contentOffSetY = scrollView.contentOffset.y;//拖拽结束获取偏移量
+    if (_userTablewView.contentOffset.y < 0) {
+        _pageStartCount = 0;
+        [self getDataWithType:dataForMine needLoad:NO];
+        [self startLoadingAnimating];
+    }
 }
 
-//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-//    if(scrollView == _scrollViewForTableView){
-//        _index = scrollView.contentOffset.x / SCREEN_WIDTH;
-//        
-//        [_tableViewArray enumerateObjectsUsingBlock:^(UITableView *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//            obj.scrollsToTop = NO;
-//        }];
-//        UITableView *tableView = _tableViewArray[_index];
-//        tableView.scrollsToTop = YES;
-//        
-//        if (_index == 1) {
-//            _myBtn.isFriendsMenuViewSelected = YES;
-//            _friendsBtn.isFriendsMenuViewSelected = NO;
-//            [UIView animateWithDuration:0.1 animations:^{
-//                _lineView.center = CGPointMake(_myBtn.center.x, _lineView.center.y);
-//            }];
-//            NSArray *array = _dataArray[_index];
-//            if(array.count) return;
-//            [self getDataWithType:dataForMine needLoad:YES];//获取我的玩友圈数据
-//        }else{
-//            _myBtn.isFriendsMenuViewSelected = NO;
-//            _friendsBtn.isFriendsMenuViewSelected = YES;
-//            [UIView animateWithDuration:0.1 animations:^{
-//                _lineView.center = CGPointMake(_friendsBtn.center.x, _lineView.center.y);
-//            }];
-//        }
-//    }
-//}
+
 
 #pragma mark - UITableViewDelegate&UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -605,8 +619,8 @@
                     size.height = 20;
                 }
             }
-            CGFloat height = size.height >= 30 ? size.height: 30;//打赏的高度
-            return 70 + height ;
+            CGFloat height = size.height >= 10 ? size.height: 10;//打赏的高度
+            return 60 + height ;
         }
             break;
             

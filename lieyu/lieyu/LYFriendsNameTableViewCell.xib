@@ -92,12 +92,6 @@
                             </mask>
                         </variation>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dashang.png" translatesAutoresizingMaskIntoConstraints="NO" id="ssQ-3f-wRw">
-                        <constraints>
-                            <constraint firstAttribute="width" constant="21" id="TaB-mX-EyC"/>
-                            <constraint firstAttribute="height" constant="21" id="nXF-3b-B6K"/>
-                        </constraints>
-                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="w85-Wu-Jkm" firstAttribute="leading" secondItem="luc-9F-P2m" secondAttribute="trailing" constant="8" id="4Ys-5i-ROP"/>
@@ -105,7 +99,6 @@
                     <constraint firstItem="luc-9F-P2m" firstAttribute="top" secondItem="pH5-Po-Wwa" secondAttribute="bottom" constant="5" id="73s-LP-wYE"/>
                     <constraint firstItem="luc-9F-P2m" firstAttribute="leading" secondItem="mUG-zY-dHD" secondAttribute="trailing" constant="8" id="ADn-Dl-lWm"/>
                     <constraint firstItem="mUG-zY-dHD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="D2S-PB-lbF"/>
-                    <constraint firstItem="ssQ-3f-wRw" firstAttribute="centerX" secondItem="mUG-zY-dHD" secondAttribute="centerX" id="GIc-1g-N9N"/>
                     <constraint firstItem="FEG-lw-pcv" firstAttribute="leading" secondItem="pH5-Po-Wwa" secondAttribute="leading" id="HWf-XL-Uih"/>
                     <constraint firstItem="FEG-lw-pcv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="7" id="HtG-7k-6eO"/>
                     <constraint firstItem="lM4-4y-ffP" firstAttribute="centerY" secondItem="pH5-Po-Wwa" secondAttribute="centerY" id="Kfn-lS-Ddb"/>
@@ -121,9 +114,8 @@
                     <constraint firstItem="mUG-zY-dHD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="khM-s2-mFp"/>
                     <constraint firstItem="7Rw-eO-sKU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="25" id="lQB-Zj-3uX"/>
                     <constraint firstItem="FEG-lw-pcv" firstAttribute="top" secondItem="lM4-4y-ffP" secondAttribute="bottom" constant="8" id="mqS-7C-HcM"/>
-                    <constraint firstItem="ssQ-3f-wRw" firstAttribute="top" secondItem="mUG-zY-dHD" secondAttribute="bottom" constant="3" id="nEW-YM-TtP"/>
                     <constraint firstAttribute="trailing" secondItem="7Rw-eO-sKU" secondAttribute="trailing" id="qPa-oc-FyU"/>
-                    <constraint firstItem="FEG-lw-pcv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="64" id="qs0-JD-e4T"/>
+                    <constraint firstItem="FEG-lw-pcv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="60" id="qs0-JD-e4T"/>
                     <constraint firstItem="lM4-4y-ffP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="tf2-KC-5iH"/>
                     <constraint firstItem="luc-9F-P2m" firstAttribute="leading" secondItem="pH5-Po-Wwa" secondAttribute="leading" id="uKn-rV-0Ix"/>
                     <constraint firstItem="FEG-lw-pcv" firstAttribute="leading" secondItem="dMI-Vc-28l" secondAttribute="leading" id="xXU-fZ-1HE"/>
@@ -148,7 +140,6 @@
                 <outlet property="btn_headerImg" destination="mUG-zY-dHD" id="JyA-Na-UQd"/>
                 <outlet property="btn_name" destination="pH5-Po-Wwa" id="pcs-dU-JVE"/>
                 <outlet property="btn_topic" destination="dMI-Vc-28l" id="NPN-SO-J5E"/>
-                <outlet property="dashangImageView" destination="ssQ-3f-wRw" id="tny-wR-n7p"/>
                 <outlet property="label_constellation" destination="luc-9F-P2m" id="4m4-iv-rYT"/>
                 <outlet property="label_constellation_constraint_width" destination="n0S-eC-rkf" id="yMl-9H-kgu"/>
                 <outlet property="label_content" destination="FEG-lw-pcv" id="f9C-Hy-cXB"/>
@@ -159,7 +150,4 @@
             <point key="canvasLocation" x="247" y="373.5"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="dashang.png" width="22" height="22"/>
-    </resources>
 </document>

@@ -213,7 +213,6 @@
 }
 
 -(void)initMJRefeshFooterForGif:(MJRefreshBackGifFooter *) footer{
-
     // 设置普通状态的动画图片
 //    [footer setImages:@[[UIImage imageNamed:@"更新1"]] forState:MJRefreshStateIdle];
     // 设置即将刷新状态的动画图片（一松开就会刷新的状态）

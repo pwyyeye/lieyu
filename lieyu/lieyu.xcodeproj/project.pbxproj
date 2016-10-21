@@ -764,7 +764,6 @@
 		38D8EA721DB6326600807B27 /* 4@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38D8EA6A1DB6326600807B27 /* 4@3x.png */; };
 		38D8EA731DB6326600807B27 /* 3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38D8EA6B1DB6326600807B27 /* 3@2x.png */; };
 		38D8EA741DB6326600807B27 /* 2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38D8EA6C1DB6326600807B27 /* 2@2x.png */; };
-		38D8EA751DB6326600807B27 /* 2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38D8EA6D1DB6326600807B27 /* 2@3x.png */; };
 		38D8EA761DB6326600807B27 /* 3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38D8EA6E1DB6326600807B27 /* 3@3x.png */; };
 		38DBCD761C585A5F00A1E207 /* detail_collect_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38DBCD721C585A5F00A1E207 /* detail_collect_normal@2x.png */; };
 		38DBCD771C585A5F00A1E207 /* detail_collect_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38DBCD731C585A5F00A1E207 /* detail_collect_normal@3x.png */; };
