@@ -192,7 +192,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"loginAndLoadData" object:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"loadMyCollectedAndLikeBar" object:nil];
         
-        [app startLocation];
+//        [app startLocation];
         
         LYFriendsRecommendViewController *friendsRecommendVC = [[LYFriendsRecommendViewController alloc]init];
         [self.navigationController pushViewController:friendsRecommendVC animated:YES];
@@ -260,7 +260,7 @@
 //                if ([MyUtil isEmptyString:app.desKey] ) {
                     [app getDESKey];
 //                }
-                [app startLocation];
+//                [app startLocation];
                 NSString * hasAddAlias=[USER_DEFAULT objectForKey:@"hasAddAlias"];
                 if ([MyUtil isEmptyString:hasAddAlias]) {
                     [UMessage addAlias:[NSString stringWithFormat:@"%d",userM.userid] type:kUMessageAliasTypeSina response:^(id responseObject, NSError *error) {
@@ -303,7 +303,7 @@
 //        [self addUmengAlias:[NSString stringWithFormat:@"%d",result.userid]];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"OPENIDSTR"];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
-        [app startLocation];
+//        [app startLocation];
     }];
 }
 
@@ -356,7 +356,7 @@
         //  记录登录用户的OpenID、Token以及过期时间
         NSLog(@"---->%@", _tencentOAuth.accessToken);
         [_tencentOAuth getUserInfo];
-        [app startLocation];
+//        [app startLocation];
         
         LYFriendsRecommendViewController *friendsRecommendVC = [[LYFriendsRecommendViewController alloc]init];
         [self.navigationController pushViewController:friendsRecommendVC animated:YES];
@@ -486,7 +486,7 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"loadMyCollectedAndLikeBar" object:nil];
 //            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
             
-            [app startLocation];
+//            [app startLocation];
             
             LYFriendsRecommendViewController *friendsRecommendVC = [[LYFriendsRecommendViewController alloc]init];
             [self.navigationController pushViewController:friendsRecommendVC animated:YES];
@@ -526,116 +526,5 @@
 -(void)dealloc{
     NSLog(@"----pass-pass%@---",@"test dealloc");
 }
-
-#pragma mark - 定位
-//开始定位
--(void)startLocation{
-    NSDate *date = [NSDate date];
-    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"yyyy-MM-dd"];
-    NSString *dateString = [formatter stringFromDate:date];
-    if (![USER_DEFAULT objectForKey:@"LocationTodayPosition"] || ![[USER_DEFAULT objectForKey:@"LocationTodayPosition"] isEqualToString:dateString]) {
-        _locationCertain = NO;
-        if (![USER_DEFAULT objectForKey:@"ChooseCityLastTime"]) {
-            [USER_DEFAULT setObject:@"上海" forKey:@"ChooseCityLastTime"];
-            [USER_DEFAULT setObject:@"1" forKey:@"LastCityHasBar"];
-            [USER_DEFAULT setObject:@"1" forKey:@"LastCityHasNightClub"];
-        }//上次默认不为空，则不进行改变
-        if (![CLLocationManager locationServicesEnabled])
-        {
-            [MyUtil showMessage:@"请开启定位服务!"];
-            //提示开启定位服务
-            [USER_DEFAULT setObject:@"" forKey:@"LocationCityThisTime"];
-            return ;
-        }
-        if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined
-            && [[[UIDevice currentDevice] systemVersion] floatValue] > 8.0)
-        {
-            if (!locationManager)
-            {
-                locationManager = [[CLLocationManager alloc] init];
-            }
-            if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])
-            {
-                [locationManager performSelector:@selector(requestWhenInUseAuthorization)];//用这个方法，plist里要加字段NSLocationWhenInUseUsageDescription
-            }
-        }
-        else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied)
-        {
-            //提示开启当前应用定位服务
-            [MyUtil showMessage:@"请开启定位服务!"];
-            [USER_DEFAULT setObject:@"" forKey:@"LocationCityThisTime"];
-            return ;
-        }
-        if (!locationManager)
-        {
-            locationManager = [[CLLocationManager alloc] init];
-        }
-        locationManager.delegate = self;
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-        locationManager.distanceFilter = 100.0f;
-        [locationManager startUpdatingLocation];
-    }
-}
-
-- (void)locationManager:(CLLocationManager *)manager
-       didFailWithError:(NSError *)error{
-    //    [self showMessage:@"定位失败!"];
-}
-
-//定位代理经纬度回调
--(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-    //    UserModel *userModel = ((AppDelegate *)[UIApplication sharedApplication].delegate).userModel;
-    //    if (!userModel.userid) {
-    //        LPUserLoginViewController *login=[[LPUserLoginViewController alloc] initWithNibName:@"LPUserLoginViewController" bundle:nil];
-    //        [self.navigationController pushViewController:login animated:YES];
-    //    }else{
-    if (!_locationCertain) {
-        //没有确定位置
-        CLGeocoder * geoCoder = [[CLGeocoder alloc] init];
-        [geoCoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error) {
-            if(!_locationCertain){
-                for (CLPlacemark * placemark in placemarks) {
-                    _citystr= placemark.locality;
-                    if (_citystr && !_locationCertain) {
-                        //                        NSDictionary *dict = @{@"city":@"南宁市"};
-                        NSDictionary *dict = @{@"city":_citystr};
-                        _locationCertain = YES;
-                        [LYUserHttpTool lyLocationCityGetStatusWithParams:dict complete:^(NSDictionary *dict) {
-                            if (dict) {
-                                //                        NSDictionary *dict = @{@"city":@"北为",
-                                //                                               @"hasBar":@"0",
-                                //                                               @"hasNightclub":@"1",
-                                //                                               @"cityIsExist":@"1"};
-                                if ([[dict objectForKey:@"cityIsExist"] isEqualToString:@"1"]) {
-                                    [USER_DEFAULT setObject:[dict objectForKey:@"city"] forKey:@"LocationCityThisTime"];
-                                    [USER_DEFAULT setObject:[dict objectForKey:@"hasBar"] forKey:@"ThisTimeHasBar"];
-                                    [USER_DEFAULT setObject:[dict objectForKey:@"hasNightclub"] forKey:@"ThisTimeHasNightClub"];
-                                }else{
-                                    [USER_DEFAULT setObject:@"" forKey:@"LocationCityThisTime"];
-                                }
-                            }
-                            
-                            NSDate *date = [NSDate date];
-                            NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-                            [formatter setDateFormat:@"yyyy-MM-dd"];
-                            NSString *dateString = [formatter stringFromDate:date];
-                            [USER_DEFAULT setObject:dateString forKey:@"LocationTodayPosition"];
-                            
-                            [[NSNotificationCenter defaultCenter]postNotificationName:@"locationCityThisTime" object:nil];
-                        }];
-                        break;
-                    }
-                    break;
-                }
-            }
-        }];
-        
-    }
-    //    }
-}
-
-
-
 
 @end

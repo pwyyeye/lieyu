@@ -54,6 +54,7 @@
     [super viewDidLoad];
     _tableView.delegate = self;
     _tableView.dataSource = self;
+//    _shareButton.hidden = YES;
     self.image_layer.alpha = 0.f;
     _bottomView.hidden = YES;
     [self setupTableView];
@@ -212,8 +213,8 @@
 - (IBAction)shareButtonClick:(UIButton *)sender {
     NSString *string= [NSString stringWithFormat:@"我要推荐下～%@活动!下载猎娱App猎寻更多精彩活动！。",_barActivity.name];
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
-    [UMSocialData defaultData].extConfig.wechatTimelineData.url = @"";
-    [UMSocialData defaultData].extConfig.wechatSessionData.url = @"";
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"%@activities/details?id=%@",LY_SERVER,_barActivity.id];
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@activities/details?id=%@",LY_SERVER,_barActivity.id];
     [UMSocialData defaultData].extConfig.wechatTimelineData.title = string;
     [UMSocialData defaultData].extConfig.wechatSessionData.title = string;
     [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:@"精彩活动，尽在猎娱！" shareImage:_headerCell.imageView.image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];

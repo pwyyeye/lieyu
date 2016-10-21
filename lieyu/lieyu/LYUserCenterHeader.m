@@ -64,17 +64,7 @@
     
     [self.avatar_btn addTarget:self action:@selector(changeAvatar) forControlEvents:UIControlEventTouchUpInside];
     
-//    _img_icon.layer.cornerRadius = CGRectGetHeight(_img_icon.frame)/2.f;
-//    _img_icon.layer.masksToBounds = YES;
-//    
-//    NSLog(@" CGRectGetHeight(_label_constellation.frame)/2.f : %f", CGRectGetHeight(_label_constellation.frame)/2.f)
-//    _label_constellation.layer.cornerRadius = CGRectGetHeight(_label_constellation.frame)/2.f;
-//    _label_constellation.layer.masksToBounds = YES;
-//    
-//    _label_work.layer.cornerRadius = CGRectGetHeight(_label_constellation.frame)/2.f;
-//    _label_work.layer.masksToBounds = YES;
-    
-    
+    [self getFansAndFollowNumber];
 }
 
 - (void)drawRect:(CGRect)rect{
@@ -191,35 +181,42 @@
         }else{
             _businessButton.hidden = YES;
         }
-        //        if ([app.userModel.usertype isEqualToString:@"2"]||[app.userModel.usertype isEqualToString:@"3"]) {
-        //            //专属经理
-        //            //粉丝按钮
-        ////            [_beCareType_ly_Image setImage:[UIImage imageNamed:@"CareNumber"]];
         if (!app.userModel.beCollectNum) {
             [_beCare_ly_button setTitle:@"粉丝：0" forState:UIControlStateNormal];
-            //                [_beCare_ly_Number setText:@"0"];
         } else {
             [_beCare_ly_button setTitle:[NSString stringWithFormat:@"粉丝：%@",app.userModel.beCollectNum] forState:UIControlStateNormal];
-            //                [_beCare_ly_Number setText:app.userModel.beCollectNum];
         }
-        //        }else{//普通用户隐藏粉丝按钮
-        //            _beCare_ly_button.hidden = YES;
-        ////            _beCareType_ly_Image.hidden = YES;
-        //            _beCare_ly_Number.hidden = YES;
-        ////            _beCareType_ly_Name.hidden = YES;
-        //        }
         //关注按钮
         if (!app.userModel.collectNum) {
             [_caresButton setTitle:@"关注：0" forState:UIControlStateNormal];
-            //            [_beCareNumber setText:@"0"];
         } else {
             [_caresButton setTitle:[NSString stringWithFormat:@"关注：%@",app.userModel.collectNum] forState:UIControlStateNormal];
-            //            [_beCareNumber setText:app.userModel.collectNum];
         }
-        //        [_careTypeImage setImage:[UIImage imageNamed:@"collectNumber"]];
     }
-    
-    
+}
+
+- (void)getFansAndFollowNumber{
+    [LYUserHttpTool lyGetFansAndFollowsNumberWithParams:nil complete:^(NSDictionary *dict) {
+        if (dict) {
+            if ([dict objectForKey:@"fans"]) {
+                NSInteger fansNumber = [[dict objectForKey:@"fans"] integerValue];
+                if (fansNumber <= 0) {
+                    [_beCare_ly_button setTitle:@"粉丝：0" forState:UIControlStateNormal];
+                } else {
+                    [_beCare_ly_button setTitle:[NSString stringWithFormat:@"粉丝：%ld",fansNumber] forState:UIControlStateNormal];
+                }
+            }
+            //关注按钮
+            if ([dict objectForKey:@"follow"]) {
+                NSInteger followsNumber = [[dict objectForKey:@"follow"]integerValue];
+                if (followsNumber <= 0) {
+                    [_caresButton setTitle:@"关注：0" forState:UIControlStateNormal];
+                } else {
+                    [_caresButton setTitle:[NSString stringWithFormat:@"关注：%ld",followsNumber] forState:UIControlStateNormal];
+                }
+            }
+        }
+    }];
 }
 
 - (IBAction)hederImgClick:(id)sender {

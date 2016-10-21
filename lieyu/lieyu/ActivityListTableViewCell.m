@@ -25,7 +25,14 @@
     _barActivity = barActivity;
     [_activityImageView sd_setImageWithURL:[NSURL URLWithString:_barActivity.imageUrl] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
     [_activityNameLabel setText:_barActivity.name];
-    [_activityPriceLabel setText:[NSString stringWithFormat:@"门票 ¥%@",barActivity.price]];
+    if ([barActivity.activityType isEqualToString:@"2"]) {
+        _activityPriceLabel.hidden = YES;
+        _activityPriceLabelHeight.constant = 0 ;
+    }else{
+        _activityPriceLabel.hidden = NO;
+        _activityPriceLabelHeight.constant = 17 ;
+        [_activityPriceLabel setText:[NSString stringWithFormat:@"门票 ¥%@",barActivity.price]];
+    }
     NSString *startTime;
     NSString *endTime;
     NSString *time;

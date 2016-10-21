@@ -88,6 +88,9 @@
         }
         for (CityModel *cityModel in tempCityArray) {
             NSInteger sect = [theCollation sectionForObject:cityModel collationStringSelector:@selector(cityName)];
+            if (cityModel.cityName.length && [[cityModel.cityName substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"长"]) {
+                sect = 2 ;
+            }
             [((NSMutableArray *)[sectionArrays objectAtIndex:(sect / 6)]) addObject:cityModel];
         }
         NSArray *tempTitleArray = @[@"ABCDEF",@"GHIJKL",@"MNOPQR",@"STUVWX",@"YZ#"];

@@ -143,15 +143,17 @@
 //娱客帮数据获取
 #define LY_GET_YUKEBANG @"app/api/yukegroup/groupList"
 //娱客帮获取二维码字符串
-#define LY_GET_YUKEBANGQRCODE @"/lieyu//app/api/yukegroup/getShareUrl?1=1"
+#define LY_GET_YUKEBANGQRCODE @"app/api/yukegroup/getShareUrl?1=1"
 //普通用户绑定提现账户
 #define LY_BOUND_ACCOUNT @"dailyCoinAction.do?action=expand"
 //玩友推荐
-#define LY_RECOMMEND_FRIEND @"/lieyu//app/api/user/activeUser?1=1"
+#define LY_RECOMMEND_FRIEND @"app/api/user/activeUser?1=1"
 //关注推荐玩友
-#define LY_FOLLOW_FRIENDS @"/lieyu//app/api/sns/followUserList?1=1"
-//#define LY_FOLLOW_FRIENDS @"/lieyu//app/api/sns/followList?1=1"
+#define LY_FOLLOW_FRIENDS @"app/api/sns/followUserList?1=1"
+//#define LY_FOLLOW_FRIENDS @"app/api/sns/followList?1=1"
 //娱币商城
-#define LY_ENTER_COINSHOP @"/lieyu//app/api/user/coinmall/autologin?1=1"
+#define LY_ENTER_COINSHOP @"app/api/user/coinmall/autologin?1=1"
+//获取粉丝数和关注数
+#define LY_FANSANDFOLLOW_NUMBER @"app/api/sns/snscount?1=1"
 
 #endif

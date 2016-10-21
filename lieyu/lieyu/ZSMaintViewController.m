@@ -64,6 +64,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.title = @"商户中心";
     //    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
@@ -83,7 +84,6 @@
     [super viewWillDisappear:animated];
     UITextField *text = [self.view viewWithTag:123];
     text.text = @"";
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 }
 
 - (void)initRightItem{

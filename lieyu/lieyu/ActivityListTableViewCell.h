@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *activityPriceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *activityTimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *activityPlaceLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *activityPriceLabelHeight;
 
 @property (nonatomic, strong) BarActivityList *barActivity;
 

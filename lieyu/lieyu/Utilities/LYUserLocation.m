@@ -81,4 +81,17 @@
     return kiloMeters;
 }
 
+#pragma mark - 获取实时位置
+- (CLLocation *)getCurrentLocation{
+    //获取当前位置
+    MKMapItem *mylocation = [MKMapItem mapItemForCurrentLocation];
+    
+    //当前经维度
+    float currentLatitude=mylocation.placemark.location.coordinate.latitude;
+    float currentLongitude=mylocation.placemark.location.coordinate.longitude;
+    
+    CLLocation *currentLocation = [[CLLocation alloc]initWithLatitude:currentLatitude longitude:currentLongitude];
+    return currentLocation;
+}
+
 @end

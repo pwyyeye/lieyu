@@ -134,6 +134,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     UIVisualEffectView *_effectView;//开始直播背景
     UIButton *_registerLiveButton;//直播按钮
     int _oldScrollOffectY;//记录旧的偏移量
+    
+    BOOL _firstEnterHomepage;//
 }
 @property (nonatomic,strong) UIButton *cityChooseBtn;//定位城市按钮
 @property(nonatomic,strong)NSMutableArray *bannerList;
@@ -167,6 +169,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     
     [self createNavButton];
+    
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -182,12 +186,13 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    NSString *pngDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-    
+//    NSString *pngDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
     
     [self setupData];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeLocationCity) name:@"locationCityThisTime" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(checkNewCityStatus) name:@"locationCityThisTime" object:nil];
+    AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);
+    [app startLocation];
+    
     //初始化
     //    [self changeLocationCity];
     [self createUI];
@@ -210,6 +215,26 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     _currentPageArray = [[NSMutableArray alloc]initWithArray:@[@1, @1, @1]];
 }
 
+- (void)checkNewCityStatus{
+    __weak __typeof(self)weakSelf = self;
+    if (![MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"LocationCityThisTime"]] && !_firstEnterHomepage) {
+        NSDictionary *dict = @{@"city":[USER_DEFAULT objectForKey:@"LocationCityThisTime"]};
+        [LYUserHttpTool lyLocationCityGetStatusWithParams:dict complete:^(NSDictionary *dict) {
+            if (dict) {
+                if ([[dict objectForKey:@"cityIsExist"] isEqualToString:@"1"]) {
+                    [USER_DEFAULT setObject:[dict objectForKey:@"city"] forKey:@"LocationCityThisTime"];
+                    [USER_DEFAULT setObject:[dict objectForKey:@"hasBar"] forKey:@"ThisTimeHasBar"];
+                    [USER_DEFAULT setObject:[dict objectForKey:@"hasNightclub"] forKey:@"ThisTimeHasNightClub"];
+                }else{
+                    [USER_DEFAULT setObject:@"" forKey:@"LocationCityThisTime"];
+                }
+                [weakSelf changeLocationCity];
+            }
+        }];
+        _firstEnterHomepage = YES;
+    }
+}
+
 #pragma mark - 是否改变城市
 - (void)changeLocationCity{
     [self setupData];
@@ -217,6 +242,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     if (![MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"LocationCityThisTime"]] &&
         ![[USER_DEFAULT objectForKey:@"LocationCityThisTime"] isEqualToString:[USER_DEFAULT objectForKey:@"ChooseCityLastTime"]]) {
         //这次定位到的城市不为空并且和上次选择的城市不一样,让选择是否跳转
+        [USER_DEFAULT setObject:[MyUtil getFormatDayWithDate:[NSDate date]] forKey:@"LocationTodayPosition"];
         [[[AlertBlock alloc]initWithTitle:nil message:[NSString stringWithFormat:@"系统定位到您在%@,需要切换到%@吗？",[USER_DEFAULT objectForKey:@"LocationCityThisTime"],[USER_DEFAULT objectForKey:@"LocationCityThisTime"]] cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex) {
             if(buttonIndex == 0){
                 //不跳转，以上次选择城市获取数据与排界面
@@ -766,8 +792,6 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     }];
 }
 
-
-
 //kvo监听导航的上下改变cell内部collecview的contentInset
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
     UIVisualEffectView *effectView = (UIVisualEffectView *)object;
@@ -780,18 +804,35 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     }
 }
 
+#pragma mark - 是否有活动，是否有热门酒吧
+- (BOOL)RecommendTopicExist:(NSMutableDictionary *)dict{
+    if (((RecommendedTopic *)[dict objectForKey:@"recommendedTopic"]).name) {
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
+- (BOOL)RecommendBarListExist:(NSMutableDictionary *)dict{
+    if (![dict objectForKey:@"recommendBarList"] || ((NSArray *)[dict objectForKey:@"recommendBarList"]).count <= 0){
+        return NO;
+    }else{
+        return YES;
+    }
+}
+
 #pragma mark - tableView的代理事件
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if (tableView.tag == 2) {
         return 2;
     }else if (tableView.tag == 1){
-        if (((RecommendedTopic *)[_barDict objectForKey:@"recommendedTopic"]).name) {
+        if ([self RecommendTopicExist:_barDict]) {
             return 4;
         }else{
             return 3;
         }
     }else if (tableView.tag == 0){
-        if (((RecommendedTopic *)[_ydDict objectForKey:@"recommendedTopic"]).name) {
+        if ([self RecommendTopicExist:_ydDict]) {
             return 4;
         }else{
             return 3;
@@ -811,7 +852,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             return 0;
         }
     }else if (tableView.tag == 1){
-        if (((RecommendedTopic *)[_barDict objectForKey:@"recommendedTopic"]).name) {
+        if ([self RecommendTopicExist:_barDict]) {
             if (section == 0 || section == 1 || section == 2) {
                 return 1;
             }else if (section == 3){
@@ -829,7 +870,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             }
         }
     }else if (tableView.tag == 0){
-        if (((RecommendedTopic *)[_ydDict objectForKey:@"recommendedTopic"]).name) {
+        if ([self RecommendTopicExist:_ydDict]) {
             if (section == 0 || section == 1 || section == 2) {
                 return 1;
             }else if (section == 3){
@@ -880,7 +921,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         }
     }else if (tableView.tag == 1){
         //酒吧
-        if (((RecommendedTopic *)[_barDict objectForKey:@"recommendedTopic"]).name) {
+        if ([self RecommendTopicExist:_barDict]) {
             if (indexPath.section == 0) {
                 HomepageActiveTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomepageActiveTableViewCell" forIndexPath:indexPath];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -897,10 +938,18 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 return cell;
             }else if (indexPath.section == 2){
-                HomepageHotBarsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomepageHotBarsTableViewCell" forIndexPath:indexPath];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                cell.barList = ((NSArray *)[_barDict objectForKey:@"recommendBarList"]);
-                return cell;
+                if ([self RecommendBarListExist:_barDict]) {
+                    HomepageHotBarsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomepageHotBarsTableViewCell" forIndexPath:indexPath];
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    cell.barList = ((NSArray *)[_barDict objectForKey:@"recommendBarList"]);
+                    return cell;
+                }else{
+                    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomepageDefaultCell"];
+                    if (!cell) {
+                        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HomepageDefaultCell"];
+                    }
+                    return cell;
+                }
             }else if (indexPath.section == 3){
                 HomepageBarDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomepageBarDetailTableViewCell" forIndexPath:indexPath];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -922,10 +971,18 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 return cell;
             }else if (indexPath.section == 1){
-                HomepageHotBarsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomepageHotBarsTableViewCell" forIndexPath:indexPath];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                cell.barList = ((NSArray *)[_barDict objectForKey:@"recommendBarList"]);
-                return cell;
+                if ([self RecommendBarListExist:_barDict]) {
+                    HomepageHotBarsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomepageHotBarsTableViewCell" forIndexPath:indexPath];
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    cell.barList = ((NSArray *)[_barDict objectForKey:@"recommendBarList"]);
+                    return cell;
+                }else{
+                    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomepageDefaultCell"];
+                    if (!cell) {
+                        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HomepageDefaultCell"];
+                    }
+                    return cell;
+                }
             }else if (indexPath.section == 2){
                 HomepageBarDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomepageBarDetailTableViewCell" forIndexPath:indexPath];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -939,7 +996,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         }
     }else if (tableView.tag == 0){
         //夜店
-        if (((RecommendedTopic *)[_ydDict objectForKey:@"recommendedTopic"]).name) {
+        if ([self RecommendTopicExist:_ydDict]) {
             if (indexPath.section == 0) {
                 HomepageActiveTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomepageActiveTableViewCell" forIndexPath:indexPath];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -956,10 +1013,18 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 [cell.strategyButton addTarget:self action:@selector(jumpToStrategy) forControlEvents:UIControlEventTouchUpInside];
                 return cell;
             }else if (indexPath.section == 2){
-                HomepageHotBarsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomepageHotBarsTableViewCell" forIndexPath:indexPath];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                cell.barList = ((NSArray *)[_ydDict objectForKey:@"recommendBarList"]);
-                return cell;
+                if ([self RecommendBarListExist:_ydDict]) {
+                    HomepageHotBarsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomepageHotBarsTableViewCell" forIndexPath:indexPath];
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    cell.barList = ((NSArray *)[_ydDict objectForKey:@"recommendBarList"]);
+                    return cell;
+                }else{
+                    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomepageDefaultCell"];
+                    if (!cell) {
+                        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HomepageDefaultCell"];
+                    }
+                    return cell;
+                }
             }else if (indexPath.section == 3){
                 HomepageBarDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomepageBarDetailTableViewCell" forIndexPath:indexPath];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -981,10 +1046,18 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 [cell.strategyButton addTarget:self action:@selector(jumpToStrategy) forControlEvents:UIControlEventTouchUpInside];
                 return cell;
             }else if (indexPath.section == 1){
-                HomepageHotBarsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomepageHotBarsTableViewCell" forIndexPath:indexPath];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                cell.barList = ((NSArray *)[_ydDict objectForKey:@"recommendBarList"]);
-                return cell;
+                if ([self RecommendBarListExist:_ydDict]) {
+                    HomepageHotBarsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomepageHotBarsTableViewCell" forIndexPath:indexPath];
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    cell.barList = ((NSArray *)[_ydDict objectForKey:@"recommendBarList"]);
+                    return cell;
+                }else{
+                    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomepageDefaultCell"];
+                    if (!cell) {
+                        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HomepageDefaultCell"];
+                    }
+                    return cell;
+                }
             }else if (indexPath.section == 2){
                 HomepageBarDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomepageBarDetailTableViewCell" forIndexPath:indexPath];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -1011,13 +1084,17 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             return 0;
         }
     }else if (tableView.tag == 1){
-        if (((RecommendedTopic *)[_barDict objectForKey:@"recommendedTopic"]).name) {
+        if ([self RecommendTopicExist:_barDict]) {
             if (indexPath.section == 0) {
                 return SCREEN_WIDTH / 100 * 43;
             }else if (indexPath.section == 1){
                 return 138;
             }else if (indexPath.section == 2){
-                return 284;
+                if ([self RecommendBarListExist:_barDict]) {
+                    return 284;
+                }else{
+                    return 0;
+                }
             }else if (indexPath.section == 3){
                 return SCREEN_WIDTH / 16 * 9 + 57;
             }else{
@@ -1027,7 +1104,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             if (indexPath.section == 0) {
                 return 138;
             }else if (indexPath.section == 1){
-                return 284;
+                if ([self RecommendBarListExist:_barDict]) {
+                    return 284;
+                }else{
+                    return 0;
+                }
             }else if (indexPath.section == 2){
                 return SCREEN_WIDTH / 16 * 9 + 57;
             }else{
@@ -1035,13 +1116,17 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             }
         }
     }else if (tableView.tag == 0){
-        if (((RecommendedTopic *)[_ydDict objectForKey:@"recommendedTopic"]).name) {
+        if ([self RecommendTopicExist:_ydDict]) {
             if (indexPath.section == 0) {
                 return SCREEN_WIDTH / 100 * 43;
             }else if (indexPath.section == 1){
                 return 138;
             }else if (indexPath.section == 2){
-                return 284;
+                if ([self RecommendBarListExist:_ydDict]) {
+                    return 284;
+                }else{
+                    return 0;
+                }
             }else if (indexPath.section == 3){
                 return SCREEN_WIDTH / 16 * 9 + 57;
             }else{
@@ -1051,7 +1136,11 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             if (indexPath.section == 0) {
                 return 138;
             }else if (indexPath.section == 1){
-                return 284;
+                if ([self RecommendBarListExist:_ydDict]) {
+                    return 284;
+                }else{
+                    return 0;
+                }
             }else if (indexPath.section == 2){
                 return SCREEN_WIDTH / 16 * 9 + 57;
             }else{
@@ -1075,24 +1164,52 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             return 0;
         }
     }else if (tableView.tag == 1){
-        if (((RecommendedTopic *)[_barDict objectForKey:@"recommendedTopic"]).name) {
+        if ([self RecommendTopicExist:_barDict]) {
             if (section == 0) {
                 return 3;
+            }else if (section == 2){
+                if ([self RecommendBarListExist:_barDict]) {
+                    return 6;
+                }else{
+                    return 0;
+                }
             }else{
                 return 6;
             }
         }else{
-            return 6;
+            if (section == 1) {
+                if ([self RecommendBarListExist:_barDict]) {
+                    return 6;
+                }else{
+                    return 0;
+                }
+            }else{
+                return 6;
+            }
         }
     }else if (tableView.tag == 0){
-        if (((RecommendedTopic *)[_ydDict objectForKey:@"recommendedTopic"]).name) {
+        if ([self RecommendTopicExist:_ydDict]) {
             if (section == 0) {
                 return 3;
+            }else if (section == 2){
+                if ([self RecommendBarListExist:_ydDict]) {
+                    return 6;
+                }else{
+                    return 0;
+                }
             }else{
                 return 6;
             }
         }else{
-            return 6;
+            if (section == 1) {
+                if ([self RecommendBarListExist:_ydDict]) {
+                    return 6;
+                }else{
+                    return 0;
+                }
+            }else{
+                return 6;
+            }
         }
     }else{
         return 0;
@@ -1101,7 +1218,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView.tag == 0) {
-        if (((RecommendedTopic *)[_ydDict objectForKey:@"recommendedTopic"]).name) {
+        if ([self RecommendTopicExist:_ydDict]) {
             if (indexPath.section == 0) {//活动
                 //                RecommendedTopic *topic = [_ydDict objectForKey:@"recommendedTopic"];
                 ActivityMainViewController *activityMainVC = [[ActivityMainViewController alloc]init];
@@ -1124,7 +1241,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             }
         }
     }else if (tableView.tag == 1){
-        if (((RecommendedTopic *)[_barDict objectForKey:@"recommendedTopic"]).name) {
+        if ([self RecommendTopicExist:_barDict]) {
             if (indexPath.section == 0) {//活动
                 //                RecommendedTopic *topic = [_barDict objectForKey:@"recommendedTopic"];
                 //                ActionPage *aPage = [[ActionPage alloc]init];
@@ -1226,7 +1343,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 [USER_DEFAULT setObject:@"0" forKey:@"ThisTimeHasNightClub"];
             }
             _index = 0 ;
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"locationCityThisTime" object:nil];
+//            [[NSNotificationCenter defaultCenter]postNotificationName:@"locationCityThisTime" object:nil];
+            [weekSelf changeLocationCity];
             [weekSelf setupData];
         }];
     };

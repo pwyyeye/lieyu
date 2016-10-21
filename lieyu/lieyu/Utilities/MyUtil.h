@@ -48,6 +48,8 @@ typedef enum {
 +(BOOL)isValidateEmail:(NSString *)email;
 
 +(NSString *)getFormatDate:(NSDate *)date;
+#pragma mark - 日期转字符串 yyyy-MM-dd
++ (NSString *)getFormatDayWithDate:(NSDate *)date;
 
 +(NSString *)getNumberFormatDate:(NSDate *)date;
 

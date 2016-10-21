@@ -24,18 +24,34 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="通过扫描你的娱客帮二维码或者通过你分享的链接注册的用户都将成为你的娱客帮成员。你的娱客帮成员日后在猎娱平台的所有交易，包含套餐支付、打赏等，你都可以获得分销佣金。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ce4-md-MZ4">
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1、点击右上角“+”分享链接或将娱客帮二维码分享给好友扩大帮派。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ce4-md-MZ4">
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2、通过扫描您的娱客帮二维码或通过您分享的链接注册后都将成为您的娱客帮成员。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zr7-N5-xDD">
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3、您的娱客帮成员日后在猎娱平台产生的交易，您都可以获得佣金。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNP-o9-2Fg">
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Ce4-md-MZ4" secondAttribute="trailing" constant="33" id="5zb-KH-Ihl"/>
+                <constraint firstItem="zr7-N5-xDD" firstAttribute="top" secondItem="Ce4-md-MZ4" secondAttribute="bottom" constant="8" id="7KI-Ta-2XE"/>
                 <constraint firstItem="nN5-RM-kPN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="33" id="9bB-na-fSQ"/>
+                <constraint firstItem="zr7-N5-xDD" firstAttribute="trailing" secondItem="Ce4-md-MZ4" secondAttribute="trailing" id="BUq-Kj-QIT"/>
+                <constraint firstItem="aNP-o9-2Fg" firstAttribute="trailing" secondItem="Ce4-md-MZ4" secondAttribute="trailing" id="Lte-dP-O7U"/>
                 <constraint firstItem="nN5-RM-kPN" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="34" id="Mdv-eS-WxP"/>
+                <constraint firstItem="aNP-o9-2Fg" firstAttribute="top" secondItem="zr7-N5-xDD" secondAttribute="bottom" constant="8" id="egD-rI-exU"/>
                 <constraint firstItem="Ce4-md-MZ4" firstAttribute="top" secondItem="nN5-RM-kPN" secondAttribute="bottom" constant="20" id="kKe-xH-vgK"/>
+                <constraint firstItem="zr7-N5-xDD" firstAttribute="leading" secondItem="Ce4-md-MZ4" secondAttribute="leading" id="lmw-gf-nh4"/>
+                <constraint firstItem="aNP-o9-2Fg" firstAttribute="leading" secondItem="Ce4-md-MZ4" secondAttribute="leading" id="sLc-uI-5FK"/>
                 <constraint firstItem="Ce4-md-MZ4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="33" id="tnz-c1-0ee"/>
             </constraints>
         </view>
