@@ -53,6 +53,12 @@
     [_btn_tiXian addTarget:self action:@selector(WithdrawCash) forControlEvents:UIControlEventTouchUpInside];
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+}
+
 - (void)WithdrawCash{
         LYWithdrawTypeViewController *WithdrawTypeVC = [[LYWithdrawTypeViewController alloc]initWithNibName:@"LYWithdrawTypeViewController" bundle:nil];
     WithdrawTypeVC.type = _balance.accountType;

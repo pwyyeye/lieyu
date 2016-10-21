@@ -69,7 +69,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
     [self.window makeKeyAndVisible];
     self.window.backgroundColor = [UIColor whiteColor];
     // Override point for customization after application launch.
-    //设置电池状态栏为白色
+    //设置电池状态栏为黑色
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault] ;
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
@@ -97,6 +97,9 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
         _navShangHu = [[UINavigationController alloc]initWithRootViewController:maintViewController];
         app.window.rootViewController = _navShangHu;
     }
+    
+
+    
     if(![MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"desKey"]]){
         self.desKey=[USER_DEFAULT objectForKey:@"desKey"];
     }
@@ -106,12 +109,12 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
     
     _timer=[NSTimer scheduledTimerWithTimeInterval:60*5 target:self selector:@selector(doHeart) userInfo:nil repeats:YES];
     [_timer setFireDate:[NSDate distantFuture]];//暂停
-    
-//    [USER_DEFAULT setObject:@"北京" forKey:@"ChooseCityLastTime"];
-//    [USER_DEFAULT setObject:@"0" forKey:@"LastCityHasBar"];
-//    [USER_DEFAULT setObject:@"0" forKey:@"LastCityHasNightClub"];
-//    [USER_DEFAULT setObject:@"2015-03-21" forKey:@"LocationTodayPosition"];
-    
+    //进行定位预热
+    if ([MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"ChooseCityLastTime"]]) {
+        [USER_DEFAULT setObject:@"上海" forKey:@"ChooseCityLastTime"];
+        [USER_DEFAULT setObject:@"1" forKey:@"LastCityHasBar"];
+        [USER_DEFAULT setObject:@"1" forKey:@"LastCityHasNightClub"];
+    }//上次默认不为空，则不进行改变
     
      //引导页启动
      if (![[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
@@ -123,15 +126,6 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
      }else{
          [self animationWithApp];
      }
-     
-    
-//    NSDate *date = [NSDate date];
-//    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-//    [formatter setDateFormat:@"yyyy-MM-dd"];
-//    NSString *dateString = [formatter stringFromDate:date];
-//    if (![USER_DEFAULT objectForKey:@"LocationTodayPosition"] || ![[USER_DEFAULT objectForKey:@"LocationTodayPosition"] isEqualToString:dateString]) {
-//        [self startLocation];
-//    }
     
     //IM推送
     if ([application
@@ -262,6 +256,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
     [PLStreamingEnv initEnv];
 }
 
+#pragma mark - 闪屏页
 - (void)animationWithApp{
     UIImageView *imgV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"logo90.jpg"]];
     imgV.tag = 10086;
@@ -307,7 +302,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
         [imgV removeFromSuperview];
         
         weakSelf.window.userInteractionEnabled = YES;
-        //        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
+        
     }];
     
 }
@@ -318,23 +313,17 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
 
 //开始定位
 -(void)startLocation{
-    NSDate *date = [NSDate date];
-    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"yyyy-MM-dd"];
-    NSString *dateString = [formatter stringFromDate:date];
-    NSLog(@"%d",_locationCertain);
-    if (![USER_DEFAULT objectForKey:@"LocationTodayPosition"] || ![[USER_DEFAULT objectForKey:@"LocationTodayPosition"] isEqualToString:dateString]) {
+//    NSDate *date = [NSDate date];
+//    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+//    [formatter setDateFormat:@"yyyy-MM-dd"];
+//    NSString *dateString = [formatter stringFromDate:date];
+//    NSLog(@"%d",_locationCertain);
+//    if (![USER_DEFAULT objectForKey:@"LocationTodayPosition"] || ![[USER_DEFAULT objectForKey:@"LocationTodayPosition"] isEqualToString:dateString]) {
         _locationCertain = NO;
-        if (![USER_DEFAULT objectForKey:@"ChooseCityLastTime"]) {
-            [USER_DEFAULT setObject:@"上海" forKey:@"ChooseCityLastTime"];
-            [USER_DEFAULT setObject:@"1" forKey:@"LastCityHasBar"];
-            [USER_DEFAULT setObject:@"1" forKey:@"LastCityHasNightClub"];
-        }//上次默认不为空，则不进行改变
         if (![CLLocationManager locationServicesEnabled])
         {
             [MyUtil showMessage:@"请开启定位服务!"];
             //提示开启定位服务
-            [USER_DEFAULT setObject:@"" forKey:@"LocationCityThisTime"];
             return ;
         }
         if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined
@@ -353,7 +342,6 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
         {
             //提示开启当前应用定位服务
             [MyUtil showMessage:@"请开启定位服务!"];
-            [USER_DEFAULT setObject:@"" forKey:@"LocationCityThisTime"];
             return ;
         }
         if (!locationManager)
@@ -364,7 +352,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
         locationManager.desiredAccuracy = kCLLocationAccuracyBest;
         locationManager.distanceFilter = 100.0f;
         [locationManager startUpdatingLocation];
-    }
+//    }
 }
 
 - (void)locationManager:(CLLocationManager *)manager
@@ -374,56 +362,34 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
 
 //定位代理经纬度回调
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-    //    UserModel *userModel = ((AppDelegate *)[UIApplication sharedApplication].delegate).userModel;
-    //    if (!userModel.userid) {
-    //        LPUserLoginViewController *login=[[LPUserLoginViewController alloc] initWithNibName:@"LPUserLoginViewController" bundle:nil];
-    //        [self.navigationController pushViewController:login animated:YES];
-    //    }else{
-    if (!_locationCertain) {
         //没有确定位置
+//    [USER_DEFAULT setObject:@"" forKey:@"LocationTodayPosition"];
         _userLocation=newLocation;
         NSLog(@"%@",[NSString stringWithFormat:@"经度:%3.5f\n纬度:%3.5f",newLocation.coordinate.latitude,newLocation.coordinate.longitude]);
         [self saveHisData];
-        CLGeocoder * geoCoder = [[CLGeocoder alloc] init];
-        [geoCoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error) {
-            if(!_locationCertain){
-                for (CLPlacemark * placemark in placemarks) {
-                    _citystr= placemark.locality;
-                    if (_citystr && !_locationCertain) {
-                        //                        NSDictionary *dict = @{@"city":@"南宁市"};
-                        NSDictionary *dict = @{@"city":_citystr};
-//                        _locationCertain = YES;
-                        [LYUserHttpTool lyLocationCityGetStatusWithParams:dict complete:^(NSDictionary *dict) {
-                            if (!_locationCertain) {
-                                if (dict) {
-                                    if ([[dict objectForKey:@"cityIsExist"] isEqualToString:@"1"]) {
-                                        [USER_DEFAULT setObject:[dict objectForKey:@"city"] forKey:@"LocationCityThisTime"];
-                                        [USER_DEFAULT setObject:[dict objectForKey:@"hasBar"] forKey:@"ThisTimeHasBar"];
-                                        [USER_DEFAULT setObject:[dict objectForKey:@"hasNightclub"] forKey:@"ThisTimeHasNightClub"];
-                                    }else{
-                                        [USER_DEFAULT setObject:@"" forKey:@"LocationCityThisTime"];
-                                    }
-                                }
-                                
-                                
-                                NSDate *date = [NSDate date];
-                                NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-                                [formatter setDateFormat:@"yyyy-MM-dd"];
-                                NSString *dateString = [formatter stringFromDate:date];
-                                [USER_DEFAULT setObject:dateString forKey:@"LocationTodayPosition"];
-                                [[NSNotificationCenter defaultCenter]postNotificationName:@"locationCityThisTime" object:nil];
-                                _locationCertain = YES;
-                            }
-                        }];
-                        break;
-                    }
+    NSLog(@"%@",[USER_DEFAULT objectForKey:@"LocationTodayPosition"]);
+    if (![[USER_DEFAULT objectForKey:@"LocationTodayPosition"] isEqualToString:[MyUtil getFormatDayWithDate:[NSDate date]]] && !_locationCertain) {
+        [self locationCityWith:newLocation];
+    }
+}
+
+#pragma mark - 定位城市
+- (void)locationCityWith:(CLLocation *)newLocation{
+    CLGeocoder * geoCoder = [[CLGeocoder alloc] init];
+    [geoCoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+        if(!_locationCertain){
+            for (CLPlacemark * placemark in placemarks) {
+                _citystr= placemark.locality;
+                if (_citystr && !_locationCertain) {
+                    [USER_DEFAULT setObject:_citystr forKey:@"LocationCityThisTime"];
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"locationCityThisTime" object:nil];
+                    _locationCertain = YES;
                     break;
                 }
+                break;
             }
-        }];
-        
-    }
-    //    }
+        }
+    }];
 }
 
 #pragma mark 获取历史搜索数据
@@ -732,8 +698,8 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 -(void)doHeart{
     
     if ([[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
-        LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
-        [login autoLogin];
+//        LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
+//        [login autoLogin];
 //        UserModel *userModel = ((AppDelegate *)[UIApplication sharedApplication].delegate).userModel;
         
         [[LYCommonHttpTool shareInstance] getTokenByqiNiuWithParams:nil block:^(NSString *result) {
@@ -743,7 +709,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         [[LYCommonHttpTool shareInstance]   getMediaTokenByqiNiuWithParams:nil block:^(NSString *result) {
             _qiniu_media_token=result;
         }];
-        
+        [self startLocation];
     }
 }
 

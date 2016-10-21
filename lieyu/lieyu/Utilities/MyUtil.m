@@ -135,6 +135,19 @@
     return currentDateStr;
     
 }
+
+#pragma mark - 日期转字符串 yyyy-MM-dd
++ (NSString *)getFormatDayWithDate:(NSDate *)date{
+    //实例化一个NSDateFormatter对象
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //设定时间格式,这里可以设置成自己需要的格式
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    //用[NSDate date]可以获取系统当前时间
+    NSString *currentDateStr = [dateFormatter stringFromDate:date];
+    
+    return currentDateStr;
+}
+
 #pragma --mark 获取格式化日期字符串 yyyyMMddHHmmss
 +(NSString *)getNumberFormatDate:(NSDate *)date
 {
@@ -175,6 +188,7 @@
     return date;
     
 }
+
 
 #pragma --mark 字符串去除空串
 +(NSString *)trim:(NSString *)string{
