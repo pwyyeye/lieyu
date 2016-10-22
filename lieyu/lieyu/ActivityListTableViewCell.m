@@ -46,7 +46,16 @@
         time = [barActivity.endDate substringWithRange:NSMakeRange(11, 5)];
     }
     _activityTimeLabel.text = [NSString stringWithFormat:@"%@ ~ %@  %@开始",startTime,endTime,time];
-    [_activityPlaceLabel setText:((BeerBarOrYzhDetailModel *)barActivity.barInfo).address];
+    if (barActivity.barInfo) {
+        if (![MyUtil isEmptyString:((BeerBarOrYzhDetailModel *)barActivity.barInfo).address]) {
+            [_activityPlaceLabel setText:((BeerBarOrYzhDetailModel *)barActivity.barInfo).address];
+        }else{
+            [_activityPlaceLabel setText:barActivity.address];
+        }
+    }else{
+        
+        [_activityPlaceLabel setText:barActivity.address];
+    }
 }
 
 

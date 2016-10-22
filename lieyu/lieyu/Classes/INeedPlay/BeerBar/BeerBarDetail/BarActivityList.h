@@ -12,6 +12,7 @@
 
 @interface BarActivityList : NSObject
 @property (nonatomic,strong) BeerBarOrYzhDetailModel *barInfo;
+@property (nonatomic, strong) NSString *address;
 @property (nonatomic,copy) NSString *beginDate;
 @property (nonatomic,copy) NSString *contents;
 @property (nonatomic,copy) NSString *createDate;

@@ -292,7 +292,7 @@
 }
 
 - (IBAction)shareButtonClick:(UIButton *)sender {
-    NSString *string= [NSString stringWithFormat:@"我要推荐下～%@攻略!下载猎娱App猎寻更多特色酒吧。",_strategyModel.title];
+    NSString *string= _strategyModel.title;
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"%@strategy/details?id=%@",LY_SERVER,_strategyModel.id];
     [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@strategy/details?id=%@",LY_SERVER,_strategyModel.id];

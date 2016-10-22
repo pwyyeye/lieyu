@@ -696,8 +696,8 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 -(void)doHeart{
     
     if ([[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
-//        LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
-//        [login autoLogin];
+        LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
+        [login autoLogin];
 //        UserModel *userModel = ((AppDelegate *)[UIApplication sharedApplication].delegate).userModel;
         
         [[LYCommonHttpTool shareInstance] getTokenByqiNiuWithParams:nil block:^(NSString *result) {

@@ -166,8 +166,8 @@
     }else if (indexPath.row == 1){
         _infoCell = [tableView dequeueReusableCellWithIdentifier:@"ActivityDetailInfoTableViewCell" forIndexPath:indexPath];
         _infoCell.selectionStyle = UITableViewCellSelectionStyleNone;
-        [_infoCell.activityAddressButton addTarget:self action:@selector(checkAddress) forControlEvents:UIControlEventTouchUpInside];
-        [_infoCell.activityPhoneButton addTarget:self action:@selector(checkPhone) forControlEvents:UIControlEventTouchUpInside];
+//        [_infoCell.activityAddressButton addTarget:self action:@selector(checkAddress) forControlEvents:UIControlEventTouchUpInside];
+//        [_infoCell.activityPhoneButton addTarget:self action:@selector(checkPhone) forControlEvents:UIControlEventTouchUpInside];
         _infoCell.barActivity = _barActivity;
         return _infoCell;
     }else if (indexPath.row == 2){
@@ -211,7 +211,7 @@
 }
 
 - (IBAction)shareButtonClick:(UIButton *)sender {
-    NSString *string= [NSString stringWithFormat:@"我要推荐下～%@活动!下载猎娱App猎寻更多精彩活动！。",_barActivity.name];
+    NSString *string= _barActivity.name;
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"%@activities/details?id=%@",LY_SERVER,_barActivity.id];
     [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@activities/details?id=%@",LY_SERVER,_barActivity.id];

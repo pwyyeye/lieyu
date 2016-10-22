@@ -14,6 +14,8 @@
 #import "HDDetailImageCell.h"
 #import "HDDetailFootCell.h"
 #import "LYwoYaoDinWeiMainViewController.h"
+#import "UMSocial.h"
+
 @interface ActionDetailViewController ()<UITableViewDataSource,UITableViewDelegate,UIWebViewDelegate>
 {
     HDDetailImageCell *DetailImageCell;
@@ -51,7 +53,7 @@
         [self loadWebView];
     }
     [self registerCell];
-//    [self configureRightItem];
+    [self configureRightItem];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -68,6 +70,7 @@
 - (void)configureRightItem{
     UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
     [button setImage:[UIImage imageNamed:@"share_black"] forState:UIControlStateNormal];
+    [button setImageEdgeInsets:UIEdgeInsetsMake(0, 20, 0, 0)];
     [button addTarget:self action:@selector(shareAction) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:button];
     self.navigationItem.rightBarButtonItem = item;
@@ -98,6 +101,14 @@
 #pragma mark - 分享
 - (void)shareAction{
 //微信，微博，朋友圈
+    NSString *string= _barActivity.name;
+    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"%@activities/details?id=%@",LY_SERVER,_barActivity.id];
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@activities/details?id=%@",LY_SERVER,_barActivity.id];
+    [UMSocialData defaultData].extConfig.wechatTimelineData.title = string;
+    [UMSocialData defaultData].extConfig.wechatSessionData.title = string;
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:@"精彩活动，尽在猎娱！" shareImage:DetailImageCell.image.image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
+    [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"分享" pageName:@"活动详情" titleName:_barActivity.name]];
 }
 
 //- (void)viewDidLayoutSubviews{
