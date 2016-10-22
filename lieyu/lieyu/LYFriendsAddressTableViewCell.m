@@ -36,7 +36,19 @@
     _label_address.text = recentM.location;
     if(_label_address.text.length == 0) _imgView_location.hidden = YES;
     else _imgView_location.hidden = NO;
-    
+    if (recentM.lyMomentRewardCount) {
+        if ([recentM.lyMomentRewardCount isEqualToString:@"0"]) {
+            _dashangImageView.hidden = YES;
+            _dashangLabel.hidden = YES;
+        } else {
+            _dashangLabel.hidden = NO;
+            _dashangImageView.hidden = NO;
+            [_dashangLabel setText:[NSString stringWithFormat:@"%@娱币",recentM.lyMomentRewardCount]];
+        }
+    } else {
+        _dashangImageView.hidden = YES;
+        _dashangLabel.hidden = YES;
+    }
     if([MyUtil isEmptyString:recentM.id]){
         self.btn_comment.enabled = NO;
         self.btn_like.enabled = NO;

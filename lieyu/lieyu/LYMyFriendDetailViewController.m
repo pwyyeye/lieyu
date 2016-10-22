@@ -394,8 +394,8 @@
         }
     } else {
         self.liveStatus.hidden = YES;
+        self.zhiboButton.userInteractionEnabled = NO;
     }
-    
 }
 
 -(void)getData{
@@ -603,9 +603,7 @@
 }
 
 - (IBAction)liveSelfList:(UIButton *)sender {
-    if (_liveArray.count == 0) {
-        return;
-    }
+    
     LYMyFriendLiveListViewController *liveListVC = [[LYMyFriendLiveListViewController alloc] init];
     liveListVC.userID = [NSString stringWithFormat:@"%i", _result.userid];
     liveListVC.userName = _result.usernick;

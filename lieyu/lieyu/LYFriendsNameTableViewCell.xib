@@ -123,15 +123,15 @@
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
+                        <exclude reference="e3o-98-IHy"/>
+                        <exclude reference="ADn-Dl-lWm"/>
+                        <exclude reference="U3g-ed-wTL"/>
+                        <exclude reference="i5T-JJ-Xlc"/>
                         <exclude reference="HtG-7k-6eO"/>
                         <exclude reference="OXT-yJ-6be"/>
                         <exclude reference="c2Y-AQ-Lhv"/>
                         <exclude reference="mqS-7C-HcM"/>
                         <exclude reference="tf2-KC-5iH"/>
-                        <exclude reference="ADn-Dl-lWm"/>
-                        <exclude reference="U3g-ed-wTL"/>
-                        <exclude reference="i5T-JJ-Xlc"/>
-                        <exclude reference="e3o-98-IHy"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>

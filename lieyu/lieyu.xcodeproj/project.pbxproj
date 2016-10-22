@@ -1428,7 +1428,7 @@
 		856EC8A21DB72C5A00BC4C69 /* lianxi@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 856EC8A01DB72C5A00BC4C69 /* lianxi@3x.png */; };
 		856EC8A51DB72C7700BC4C69 /* wanyoulist@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 856EC8A31DB72C7700BC4C69 /* wanyoulist@2x.png */; };
 		856EC8A61DB72C7700BC4C69 /* wanyoulist@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 856EC8A41DB72C7700BC4C69 /* wanyoulist@3x.png */; };
-		856EC8D61DBB390C00BC4C69 /* libUMessage_Sdk_1.2.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 856EC8D41DBB390C00BC4C69 /* libUMessage_Sdk_1.2.6.a */; };
+		856EC8DA1DBB3A2400BC4C69 /* libUMessage_Sdk_1.4.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 856EC8D81DBB3A2400BC4C69 /* libUMessage_Sdk_1.4.0.a */; };
 		8579680C1CFBDA6500284555 /* FreeOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8579680A1CFBDA6500284555 /* FreeOrderViewController.m */; };
 		8579680D1CFBDA6500284555 /* FreeOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8579680B1CFBDA6500284555 /* FreeOrderViewController.xib */; };
 		857968111CFBE2EB00284555 /* personality_mark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8579680F1CFBE2EB00284555 /* personality_mark@2x.png */; };
@@ -4114,8 +4114,8 @@
 		856EC8A31DB72C7700BC4C69 /* wanyoulist@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wanyoulist@2x.png"; sourceTree = "<group>"; };
 		856EC8A41DB72C7700BC4C69 /* wanyoulist@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wanyoulist@3x.png"; sourceTree = "<group>"; };
 		856EC8D21DBB324400BC4C69 /* lieyu.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = lieyu.entitlements; sourceTree = "<group>"; };
-		856EC8D41DBB390C00BC4C69 /* libUMessage_Sdk_1.2.6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.2.6.a; sourceTree = "<group>"; };
-		856EC8D51DBB390C00BC4C69 /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
+		856EC8D81DBB3A2400BC4C69 /* libUMessage_Sdk_1.4.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.4.0.a; sourceTree = "<group>"; };
+		856EC8D91DBB3A2400BC4C69 /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 		857968091CFBDA6500284555 /* FreeOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeOrderViewController.h; sourceTree = "<group>"; };
 		8579680A1CFBDA6500284555 /* FreeOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreeOrderViewController.m; sourceTree = "<group>"; };
 		8579680B1CFBDA6500284555 /* FreeOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FreeOrderViewController.xib; sourceTree = "<group>"; };
@@ -5206,6 +5206,7 @@
 				853EF5051D5F2FFE00D4DEDB /* CFNetwork.framework in Frameworks */,
 				853EF5031D5F2F7B00D4DEDB /* AudioToolbox.framework in Frameworks */,
 				85251A5F1D6D4F81005CE01D /* RongIMToolKit.framework in Frameworks */,
+				856EC8DA1DBB3A2400BC4C69 /* libUMessage_Sdk_1.4.0.a in Frameworks */,
 				853EF5011D5F2F6300D4DEDB /* AssetsLibrary.framework in Frameworks */,
 				15844C091BE22A8800247FBC /* QuartzCore.framework in Frameworks */,
 				85653B691C508E100012B718 /* libstdc++.tbd in Frameworks */,
@@ -5234,7 +5235,6 @@
 				ADE103A21BDE4AB800D9EC38 /* libcrypto.a in Frameworks */,
 				15EB35481BD4839D00BA6161 /* libUMSocial_Sdk_Comment_4.2.3.a in Frameworks */,
 				855941541C51C16E000AA20F /* libSocialQQ.a in Frameworks */,
-				856EC8D61DBB390C00BC4C69 /* libUMessage_Sdk_1.2.6.a in Frameworks */,
 				D748BC521BA1C765005AA996 /* CoreTelephony.framework in Frameworks */,
 				15EB356D1BD4840D00BA6161 /* libSocialWechat.a in Frameworks */,
 				C057CE1F83EA87B814A765B9 /* libPods-lieyu.a in Frameworks */,
@@ -8934,13 +8934,13 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
-		856EC8D31DBB390C00BC4C69 /* UMessage_Sdk_1.2.0 */ = {
+		856EC8D71DBB3A2400BC4C69 /* UMessage_Sdk_1.4.0 */ = {
 			isa = PBXGroup;
 			children = (
-				856EC8D41DBB390C00BC4C69 /* libUMessage_Sdk_1.2.6.a */,
-				856EC8D51DBB390C00BC4C69 /* UMessage.h */,
+				856EC8D81DBB3A2400BC4C69 /* libUMessage_Sdk_1.4.0.a */,
+				856EC8D91DBB3A2400BC4C69 /* UMessage.h */,
 			);
-			path = UMessage_Sdk_1.2.0;
+			path = UMessage_Sdk_1.4.0;
 			sourceTree = "<group>";
 		};
 		857968081CFBDA0500284555 /* 免费预订 */ = {
@@ -11074,7 +11074,7 @@
 		D764F0C61BA1BB9D001649D9 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				856EC8D31DBB390C00BC4C69 /* UMessage_Sdk_1.2.0 */,
+				856EC8D71DBB3A2400BC4C69 /* UMessage_Sdk_1.4.0 */,
 				85251A5D1D6D4F81005CE01D /* RongIMToolKit */,
 				852B1D3F1D5D7A260041E243 /* ASValueTrackingSlider */,
 				387781FB1C8D7B320047088B /* libqrencode */,

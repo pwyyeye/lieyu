@@ -215,18 +215,15 @@ static NSString *wantanCellID = @"wantanCellID";
             //统计发现页面的选择
             NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"发现主页面",@"titleName":@"选择最近联系"};
             [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
-            
             LYRecentContactViewController * chat=[[LYRecentContactViewController alloc]init];
             [self.navigationController pushViewController:chat animated:YES];
         } else {//玩友列表
             //统计发现页面的选择
             NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"发现主页面",@"titleName":@"选择玩友列表"};
             [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
-            
             LYMyFriendViewController *myFriendViewController=[[LYMyFriendViewController alloc]initWithNibName:@"LYMyFriendViewController" bundle:nil];
             myFriendViewController.tipNum = 3;
             [self.navigationController pushViewController:myFriendViewController animated:YES];
-            
         }
     } else if(indexPath.section == 2){
         if (indexPath.row == 0) {//大家想玩
@@ -237,7 +234,7 @@ static NSString *wantanCellID = @"wantanCellID";
             guWenListVC.filterSortFlag = 1;
             guWenListVC.filterSexFlag = 2;
             guWenListVC.filterAreaFlag = 0;
-            guWenListVC.cityName = [USER_DEFAULT objectForKey:@"UserChoosedLocation"]==nil?@"上海":(NSString *)[USER_DEFAULT objectForKey:@"UserChoosedLocation"];
+            guWenListVC.cityName = [USER_DEFAULT objectForKey:@"ChooseCityLastTime"]==nil?@"上海":(NSString *)[USER_DEFAULT objectForKey:@"ChooseCityLastTime"];
             guWenListVC.isGuWenListVC = YES;
             guWenListVC.contentTag = 1;
             //        guWenListVC.subidStr = @"2";

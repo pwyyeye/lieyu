@@ -337,6 +337,7 @@ static NSString *CellIdentifier = @"CustomerCell";
         cell.nameLal.text = @"No Name";
     }
     [cell.smallImageView setHidden:YES];
+    
    NSString *imgStr = [MyUtil getQiniuUrl:addressBook.avatar_img width:0 andHeight:0];
     [cell.cusImageView setImageWithURL:[NSURL URLWithString:imgStr]];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
