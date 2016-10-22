@@ -284,6 +284,8 @@
 -(void)viewWillAppear:(BOOL)animated{
 
     [super viewWillAppear:animated];
+    
+    
     //用户退出以后 返回到首页
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     if([MyUtil isEmptyString:app.s_app_id]&&self.selectedIndex!=2&&self.selectedIndex!=1){

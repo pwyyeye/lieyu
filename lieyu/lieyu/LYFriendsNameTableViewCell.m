@@ -48,6 +48,19 @@
     [_btn_name setTitle:recentM.usernick forState:UIControlStateNormal];
     [_label_time setText:[MyUtil calculatedDateFromNowWith:recentM.date]];
     
+//    if (recentM.lyMomentRewardCount) {
+//        if ([recentM.lyMomentRewardCount isEqualToString:@"0"]) {
+//            _dashangImageView.hidden = YES;
+//            _dashangNumLabel.hidden = YES;
+//        } else {
+//            _dashangNumLabel.hidden = NO;
+//            _dashangImageView.hidden = NO;
+//            [_dashangNumLabel setText:recentM.lyMomentRewardCount];
+//        }
+//    } else {
+//        _dashangImageView.hidden = YES;
+//        _dashangNumLabel.hidden = YES;
+//    }
     
     if(![MyUtil isEmptyString:[MyUtil getAstroWithBirthday:recentM.birthday]]){
          CGSize size = [[MyUtil getAstroWithBirthday:recentM.birthday] boundingRectWithSize:CGSizeMake(MAXFLOAT, 15) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:10]} context:nil].size;

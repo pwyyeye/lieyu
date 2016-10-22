@@ -28,6 +28,7 @@
 @property (nonatomic,copy) NSString *likeNum;
 @property (nonatomic,copy) NSString *liked;
 @property (nonatomic,copy) NSString *location;
+@property (nonatomic,copy) NSString *lyMomentRewardCount;
 @property (nonatomic,strong) NSArray *lyMomentsAttachList;
 @property (nonatomic,copy) NSString *message;
 @property (nonatomic,copy) NSString *type;

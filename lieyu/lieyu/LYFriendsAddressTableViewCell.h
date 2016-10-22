@@ -13,7 +13,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *label_address;
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgView_location;
+
+@property (weak, nonatomic) IBOutlet UIImageView *dashangImageView;
+@property (weak, nonatomic) IBOutlet UILabel *dashangLabel;
+
 @property (nonatomic,strong) FriendsRecentModel *recentM;
+
+
 
 @property (weak, nonatomic) IBOutlet UIButton *dianpingButton;
 

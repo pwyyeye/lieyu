@@ -1428,6 +1428,7 @@
 		856EC8A21DB72C5A00BC4C69 /* lianxi@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 856EC8A01DB72C5A00BC4C69 /* lianxi@3x.png */; };
 		856EC8A51DB72C7700BC4C69 /* wanyoulist@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 856EC8A31DB72C7700BC4C69 /* wanyoulist@2x.png */; };
 		856EC8A61DB72C7700BC4C69 /* wanyoulist@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 856EC8A41DB72C7700BC4C69 /* wanyoulist@3x.png */; };
+		856EC8DE1DBB701D00BC4C69 /* libUMessage_Sdk_1.2.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 856EC8DC1DBB701D00BC4C69 /* libUMessage_Sdk_1.2.6.a */; };
 		8579680C1CFBDA6500284555 /* FreeOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8579680A1CFBDA6500284555 /* FreeOrderViewController.m */; };
 		8579680D1CFBDA6500284555 /* FreeOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8579680B1CFBDA6500284555 /* FreeOrderViewController.xib */; };
 		857968111CFBE2EB00284555 /* personality_mark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8579680F1CFBE2EB00284555 /* personality_mark@2x.png */; };
@@ -1974,7 +1975,6 @@
 		AD44F95E1C9D27730030F5C2 /* emojShadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD44F9551C9D27730030F5C2 /* emojShadow@2x.png */; };
 		AD44F95F1C9D27730030F5C2 /* emojShadow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD44F9561C9D27730030F5C2 /* emojShadow@3x.png */; };
 		AD5BEBA71BECC46A00E84C06 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AD5BEBA61BECC46A00E84C06 /* libiconv.tbd */; };
-		AD67DB921CC0C6790005BCEE /* libUMessage_Sdk_1.2.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AD67DB901CC0C6790005BCEE /* libUMessage_Sdk_1.2.6.a */; };
 		AD787ABB1D129D1A007B2093 /* area.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD787AB91D129D1A007B2093 /* area.plist */; };
 		AD787ABC1D129D1A007B2093 /* city.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD787ABA1D129D1A007B2093 /* city.plist */; };
 		AD79E07F1C76EE5000C45B97 /* HuoDongLinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD79E07E1C76EE5000C45B97 /* HuoDongLinkViewController.m */; };
@@ -4113,6 +4113,9 @@
 		856EC8A01DB72C5A00BC4C69 /* lianxi@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lianxi@3x.png"; sourceTree = "<group>"; };
 		856EC8A31DB72C7700BC4C69 /* wanyoulist@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wanyoulist@2x.png"; sourceTree = "<group>"; };
 		856EC8A41DB72C7700BC4C69 /* wanyoulist@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wanyoulist@3x.png"; sourceTree = "<group>"; };
+		856EC8D21DBB324400BC4C69 /* lieyu.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = lieyu.entitlements; sourceTree = "<group>"; };
+		856EC8DC1DBB701D00BC4C69 /* libUMessage_Sdk_1.2.6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.2.6.a; sourceTree = "<group>"; };
+		856EC8DD1DBB701D00BC4C69 /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 		857968091CFBDA6500284555 /* FreeOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreeOrderViewController.h; sourceTree = "<group>"; };
 		8579680A1CFBDA6500284555 /* FreeOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreeOrderViewController.m; sourceTree = "<group>"; };
 		8579680B1CFBDA6500284555 /* FreeOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FreeOrderViewController.xib; sourceTree = "<group>"; };
@@ -4804,8 +4807,6 @@
 		AD44F9551C9D27730030F5C2 /* emojShadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emojShadow@2x.png"; sourceTree = "<group>"; };
 		AD44F9561C9D27730030F5C2 /* emojShadow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emojShadow@3x.png"; sourceTree = "<group>"; };
 		AD5BEBA61BECC46A00E84C06 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
-		AD67DB901CC0C6790005BCEE /* libUMessage_Sdk_1.2.6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.2.6.a; sourceTree = "<group>"; };
-		AD67DB911CC0C6790005BCEE /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 		AD787AB91D129D1A007B2093 /* area.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = area.plist; sourceTree = "<group>"; };
 		AD787ABA1D129D1A007B2093 /* city.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = city.plist; sourceTree = "<group>"; };
 		AD798A361BB99A1F006D08F5 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
@@ -5212,7 +5213,6 @@
 				D748BC541BA1C7A8005AA996 /* SystemConfiguration.framework in Frameworks */,
 				853D3AB31C34CED500B4FEAD /* AMapSearchKit.framework in Frameworks */,
 				ADE2AD771C23AE8E00B0A54B /* Security.framework in Frameworks */,
-				AD67DB921CC0C6790005BCEE /* libUMessage_Sdk_1.2.6.a in Frameworks */,
 				ADE2AD751C23AE6600B0A54B /* libsqlite3.tbd in Frameworks */,
 				ADE2AD731C23AE5500B0A54B /* libz.tbd in Frameworks */,
 				ADF8E1BC1C2141C700943E4D /* CoreData.framework in Frameworks */,
@@ -5234,6 +5234,7 @@
 				ADE103A21BDE4AB800D9EC38 /* libcrypto.a in Frameworks */,
 				15EB35481BD4839D00BA6161 /* libUMSocial_Sdk_Comment_4.2.3.a in Frameworks */,
 				855941541C51C16E000AA20F /* libSocialQQ.a in Frameworks */,
+				856EC8DE1DBB701D00BC4C69 /* libUMessage_Sdk_1.2.6.a in Frameworks */,
 				D748BC521BA1C765005AA996 /* CoreTelephony.framework in Frameworks */,
 				15EB356D1BD4840D00BA6161 /* libSocialWechat.a in Frameworks */,
 				C057CE1F83EA87B814A765B9 /* libPods-lieyu.a in Frameworks */,
@@ -8933,6 +8934,15 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
+		856EC8DB1DBB701D00BC4C69 /* UMessage_Sdk_1.2.0 */ = {
+			isa = PBXGroup;
+			children = (
+				856EC8DC1DBB701D00BC4C69 /* libUMessage_Sdk_1.2.6.a */,
+				856EC8DD1DBB701D00BC4C69 /* UMessage.h */,
+			);
+			path = UMessage_Sdk_1.2.0;
+			sourceTree = "<group>";
+		};
 		857968081CFBDA0500284555 /* 免费预订 */ = {
 			isa = PBXGroup;
 			children = (
@@ -10084,6 +10094,7 @@
 		AD8899B81B9AFE61007BCC7C /* lieyu */ = {
 			isa = PBXGroup;
 			children = (
+				856EC8D21DBB324400BC4C69 /* lieyu.entitlements */,
 				D748BC801BA1CCE0005AA996 /* Classes */,
 				D748BC751BA1CA69005AA996 /* Model */,
 				D748BC331BA1C24B005AA996 /* CoreServices */,
@@ -10246,15 +10257,6 @@
 				ADC3673C1C62402F006C2AE5 /* addUserIcon@3x.png */,
 			);
 			name = "组局";
-			sourceTree = "<group>";
-		};
-		ADCDF7A71BF19A890040E9E3 /* UMessage_Sdk_1.2.0 */ = {
-			isa = PBXGroup;
-			children = (
-				AD67DB901CC0C6790005BCEE /* libUMessage_Sdk_1.2.6.a */,
-				AD67DB911CC0C6790005BCEE /* UMessage.h */,
-			);
-			path = UMessage_Sdk_1.2.0;
 			sourceTree = "<group>";
 		};
 		ADD1B45E1C528E8F00A5237C /* 第三方登陆 */ = {
@@ -11072,6 +11074,7 @@
 		D764F0C61BA1BB9D001649D9 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				856EC8DB1DBB701D00BC4C69 /* UMessage_Sdk_1.2.0 */,
 				85251A5D1D6D4F81005CE01D /* RongIMToolKit */,
 				852B1D3F1D5D7A260041E243 /* ASValueTrackingSlider */,
 				387781FB1C8D7B320047088B /* libqrencode */,
@@ -11082,7 +11085,6 @@
 				ADF88F391C12E5F000CF5DED /* KxMenu */,
 				ADF88E701C1197C400CF5DED /* MJRefresh */,
 				AD106B9C1C0DDEFF007F5FBA /* MJExtension */,
-				ADCDF7A71BF19A890040E9E3 /* UMessage_Sdk_1.2.0 */,
 				152247871BEB05EE00E68A2B /* IQKeyBoardManager */,
 				152247831BEAF7E600E68A2B /* AlertBlock */,
 				ADE103BC1BE0EAAA00D9EC38 /* EAIntroView */,
@@ -11249,6 +11251,9 @@
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
+							};
+							com.apple.Push = {
+								enabled = 1;
 							};
 						};
 					};
@@ -13622,6 +13627,7 @@
 			baseConfigurationReference = 10D675245266E25FB0FA12D2 /* Pods-lieyu.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = lieyu/lieyu.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
@@ -13670,6 +13676,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor/iOS_ChatRoom_SDK",
 					"$(PROJECT_DIR)/lieyu/Vendor/framework",
 					"$(PROJECT_DIR)/lieyu/Vendor/Headers",
+					"$(PROJECT_DIR)/lieyu/Vendor/UMessage_Sdk_1.4.0",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -13752,6 +13759,7 @@
 			baseConfigurationReference = AF4654E41854194C6860C46C /* Pods-lieyu.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = lieyu/lieyu.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
@@ -13800,6 +13808,7 @@
 					"$(PROJECT_DIR)/lieyu/Vendor/iOS_ChatRoom_SDK",
 					"$(PROJECT_DIR)/lieyu/Vendor/framework",
 					"$(PROJECT_DIR)/lieyu/Vendor/Headers",
+					"$(PROJECT_DIR)/lieyu/Vendor/UMessage_Sdk_1.4.0",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",

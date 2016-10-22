@@ -34,7 +34,7 @@ static NSString *CellIdentifier = @"CustomerCell";
     [super viewWillAppear:animated];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    self.title=@"好友列表";
+    self.title = @"好友列表";
     _isOpen = NO;
 }
 
@@ -49,9 +49,6 @@ static NSString *CellIdentifier = @"CustomerCell";
     [button addTarget:self action:@selector(moreAct:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:view];
     self.navigationItem.rightBarButtonItem = item;
-    
-//    rightBtn=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"add5"] style:UIBarButtonItemStylePlain target:self action:@selector(moreAct:)];
-//    [self.navigationItem setRightBarButtonItem:rightBtn];
 
     _listContent = [NSMutableArray new];
     _filteredListContent = [NSMutableArray new];
@@ -59,7 +56,6 @@ static NSString *CellIdentifier = @"CustomerCell";
     self.tableView.tableFooterView=[[UIView alloc]init];//去掉多余的分割线
      _searchBar.barTintColor=[UIColor whiteColor];
     [self getMyCustomerslist];
-    // Do any additional setup after loading the view from its nib.
 }
 
 -(void)getMyCustomerslist{
@@ -320,7 +316,6 @@ static NSString *CellIdentifier = @"CustomerCell";
                     NSArray *nibArray = [[NSBundle mainBundle] loadNibNamed:@"FansCell" owner:self options:nil];
                     fansCell = (FansCell *)[nibArray objectAtIndex:0];
                 }
-                
                 fansCell.selectionStyle = UITableViewCellSelectionStyleNone;
                 fansCell.fansModel = _fansListArray[indexPath.row - 1];
                 [fansCell.focusButton addTarget:self action:@selector(fansFocusButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
@@ -338,11 +333,11 @@ static NSString *CellIdentifier = @"CustomerCell";
     }
     if ([[addressBook.userFriendName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] > 0) {
         cell.nameLal.text = addressBook.userFriendName;
-        
     } else {
         cell.nameLal.text = @"No Name";
     }
     [cell.smallImageView setHidden:YES];
+    
    NSString *imgStr = [MyUtil getQiniuUrl:addressBook.avatar_img width:0 andHeight:0];
     [cell.cusImageView setImageWithURL:[NSURL URLWithString:imgStr]];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

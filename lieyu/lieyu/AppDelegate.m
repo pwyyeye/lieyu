@@ -96,7 +96,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
         app.window.rootViewController = _navShangHu;
     }
     
-
+    
     
     if(![MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"desKey"]]){
         self.desKey=[USER_DEFAULT objectForKey:@"desKey"];
@@ -114,16 +114,16 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
         [USER_DEFAULT setObject:@"1" forKey:@"LastCityHasNightClub"];
     }//上次默认不为空，则不进行改变
     
-     //引导页启动
-     if (![[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
-         [self showIntroWithCrossDissolve];
-         UIViewController *view=[[UIViewController alloc] init];
-         [view.view setBackgroundColor:[UIColor whiteColor]];
-         view.view=_intro;
-         self.window.rootViewController=view;
-     }else{
-         [self animationWithApp];
-     }
+    //引导页启动
+    if (![[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
+        [self showIntroWithCrossDissolve];
+        UIViewController *view=[[UIViewController alloc] init];
+        [view.view setBackgroundColor:[UIColor whiteColor]];
+        view.view=_intro;
+        self.window.rootViewController=view;
+    }else{
+        [self animationWithApp];
+    }
     
     //IM推送
     if ([application
@@ -311,46 +311,46 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
 
 //开始定位
 -(void)startLocation{
-//    NSDate *date = [NSDate date];
-//    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-//    [formatter setDateFormat:@"yyyy-MM-dd"];
-//    NSString *dateString = [formatter stringFromDate:date];
-//    NSLog(@"%d",_locationCertain);
-//    if (![USER_DEFAULT objectForKey:@"LocationTodayPosition"] || ![[USER_DEFAULT objectForKey:@"LocationTodayPosition"] isEqualToString:dateString]) {
-        _locationCertain = NO;
-        if (![CLLocationManager locationServicesEnabled])
-        {
-            [MyUtil showMessage:@"请开启定位服务!"];
-            //提示开启定位服务
-            return ;
-        }
-        if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined
-            && [[[UIDevice currentDevice] systemVersion] floatValue] > 8.0)
-        {
-            if (!locationManager)
-            {
-                locationManager = [[CLLocationManager alloc] init];
-            }
-            if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])
-            {
-                [locationManager performSelector:@selector(requestWhenInUseAuthorization)];//用这个方法，plist里要加字段NSLocationWhenInUseUsageDescription
-            }
-        }
-        else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied)
-        {
-            //提示开启当前应用定位服务
-            [MyUtil showMessage:@"请开启定位服务!"];
-            return ;
-        }
+    //    NSDate *date = [NSDate date];
+    //    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    //    [formatter setDateFormat:@"yyyy-MM-dd"];
+    //    NSString *dateString = [formatter stringFromDate:date];
+    //    NSLog(@"%d",_locationCertain);
+    //    if (![USER_DEFAULT objectForKey:@"LocationTodayPosition"] || ![[USER_DEFAULT objectForKey:@"LocationTodayPosition"] isEqualToString:dateString]) {
+    _locationCertain = NO;
+    if (![CLLocationManager locationServicesEnabled])
+    {
+        [MyUtil showMessage:@"请开启定位服务!"];
+        //提示开启定位服务
+        return ;
+    }
+    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined
+        && [[[UIDevice currentDevice] systemVersion] floatValue] > 8.0)
+    {
         if (!locationManager)
         {
             locationManager = [[CLLocationManager alloc] init];
         }
-        locationManager.delegate = self;
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-        locationManager.distanceFilter = 100.0f;
-        [locationManager startUpdatingLocation];
-//    }
+        if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])
+        {
+            [locationManager performSelector:@selector(requestWhenInUseAuthorization)];//用这个方法，plist里要加字段NSLocationWhenInUseUsageDescription
+        }
+    }
+    else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied)
+    {
+        //提示开启当前应用定位服务
+        [MyUtil showMessage:@"请开启定位服务!"];
+        return ;
+    }
+    if (!locationManager)
+    {
+        locationManager = [[CLLocationManager alloc] init];
+    }
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    locationManager.distanceFilter = 100.0f;
+    [locationManager startUpdatingLocation];
+    //    }
 }
 
 - (void)locationManager:(CLLocationManager *)manager
@@ -360,11 +360,11 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
 
 //定位代理经纬度回调
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-        //没有确定位置
-//    [USER_DEFAULT setObject:@"" forKey:@"LocationTodayPosition"];
-        _userLocation=newLocation;
-        NSLog(@"%@",[NSString stringWithFormat:@"经度:%3.5f\n纬度:%3.5f",newLocation.coordinate.latitude,newLocation.coordinate.longitude]);
-        [self saveHisData];
+    //没有确定位置
+    //    [USER_DEFAULT setObject:@"" forKey:@"LocationTodayPosition"];
+    _userLocation=newLocation;
+    NSLog(@"%@",[NSString stringWithFormat:@"经度:%3.5f\n纬度:%3.5f",newLocation.coordinate.latitude,newLocation.coordinate.longitude]);
+    [self saveHisData];
     NSLog(@"%@",[USER_DEFAULT objectForKey:@"LocationTodayPosition"]);
     if (![[USER_DEFAULT objectForKey:@"LocationTodayPosition"] isEqualToString:[MyUtil getFormatDayWithDate:[NSDate date]]] && !_locationCertain) {
         [self locationCityWith:newLocation];
@@ -557,11 +557,11 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
-
+    
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-
+    
     //    UIApplication *app=[UIApplication sharedApplication];
     //    __block UIBackgroundTaskIdentifier bgTask;
     //    bgTask =[app beginBackgroundTaskWithExpirationHandler:^{
@@ -579,16 +579,16 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
 #warning 干扰直播，暂时注释
     /*
-    NSFileManager *manager = [NSFileManager defaultManager];
-    NSString *pngDir = [NSHomeDirectory() stringByAppendingString:@"/tmp"];
-    NSArray *contents = [manager contentsOfDirectoryAtPath:pngDir error:nil];
-    NSEnumerator *e = [contents objectEnumerator];
-    NSString *filename;
-    while (filename = [e nextObject]) {
-        filename = [NSString stringWithFormat:@"/%@",filename];
-        [manager removeItemAtPath:[pngDir stringByAppendingString:filename] error:nil];
-    }
-    */
+     NSFileManager *manager = [NSFileManager defaultManager];
+     NSString *pngDir = [NSHomeDirectory() stringByAppendingString:@"/tmp"];
+     NSArray *contents = [manager contentsOfDirectoryAtPath:pngDir error:nil];
+     NSEnumerator *e = [contents objectEnumerator];
+     NSString *filename;
+     while (filename = [e nextObject]) {
+     filename = [NSString stringWithFormat:@"/%@",filename];
+     [manager removeItemAtPath:[pngDir stringByAppendingString:filename] error:nil];
+     }
+     */
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -600,7 +600,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     if ([[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
         LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
         [login autoLogin];
-//        UserModel *userModel = ((AppDelegate *)[UIApplication sharedApplication].delegate).userModel;
+        //        UserModel *userModel = ((AppDelegate *)[UIApplication sharedApplication].delegate).userModel;
     }
     
     [_timer setFireDate:[NSDate distantPast]];//开启
@@ -618,8 +618,8 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 }
 
 - (void)getTodayBirthday{
-//    __weak __typeof(self) weakSelf = self;
-//    [USER_DEFAULT setObject:@"" forKey:@"todayBirthdayGet"];
+    //    __weak __typeof(self) weakSelf = self;
+    //    [USER_DEFAULT setObject:@"" forKey:@"todayBirthdayGet"];
     UserModel *userMode = ((AppDelegate *)[UIApplication sharedApplication].delegate).userModel;
     NSDate *date = [NSDate date];
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
@@ -698,7 +698,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     if ([[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
         LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
         [login autoLogin];
-//        UserModel *userModel = ((AppDelegate *)[UIApplication sharedApplication].delegate).userModel;
+        //        UserModel *userModel = ((AppDelegate *)[UIApplication sharedApplication].delegate).userModel;
         
         [[LYCommonHttpTool shareInstance] getTokenByqiNiuWithParams:nil block:^(NSString *result) {
             _qiniu_token=result;
@@ -889,38 +889,38 @@ didReceiveLocalNotification:(UILocalNotification *)notification {
     //    page1.desc = @"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
     //    page1.bgImage = [UIImage imageNamed:@"1.jpg"];
     
-    EAIntroPage *page1 = [EAIntroPage page]; 
-//    if (isRetina) {
-//        page1.bgImage = [UIImage imageNamed:@"1_retina.jpg"];
-//    }else{
-//        page1.bgImage = [UIImage imageNamed:@"1.jpg"];
-//    }
+    EAIntroPage *page1 = [EAIntroPage page];
+    //    if (isRetina) {
+    //        page1.bgImage = [UIImage imageNamed:@"1_retina.jpg"];
+    //    }else{
+    //        page1.bgImage = [UIImage imageNamed:@"1.jpg"];
+    //    }
     page1.bgImage = [UIImage imageNamed:@"1"];
     
     EAIntroPage *page2 = [EAIntroPage page];
-//    if (isRetina) {
-//        page2.bgImage = [UIImage imageNamed:@"2_retina.jpg"];
-//    }else{
-//        page2.bgImage = [UIImage imageNamed:@"2.jpg"];
-//    }
+    //    if (isRetina) {
+    //        page2.bgImage = [UIImage imageNamed:@"2_retina.jpg"];
+    //    }else{
+    //        page2.bgImage = [UIImage imageNamed:@"2.jpg"];
+    //    }
     page2.bgImage = [UIImage imageNamed:@"2"];
     
     EAIntroPage *page3 = [EAIntroPage page];
     
-//    if (isRetina) {
-//        page3.bgImage = [UIImage imageNamed:@"3_retina.jpg"];
-//    }else{
-//        page3.bgImage = [UIImage imageNamed:@"3.jpg"];
-//    }
+    //    if (isRetina) {
+    //        page3.bgImage = [UIImage imageNamed:@"3_retina.jpg"];
+    //    }else{
+    //        page3.bgImage = [UIImage imageNamed:@"3.jpg"];
+    //    }
     page3.bgImage = [UIImage imageNamed:@"3"];
     
     EAIntroPage *page4 = [EAIntroPage page];
     
-//    if (isRetina) {
-//        page4.bgImage = [UIImage imageNamed:@"4_retina.jpg"];
-//    }else{
-//        page4.bgImage = [UIImage imageNamed:@"4.jpg"];
-//    }
+    //    if (isRetina) {
+    //        page4.bgImage = [UIImage imageNamed:@"4_retina.jpg"];
+    //    }else{
+    //        page4.bgImage = [UIImage imageNamed:@"4.jpg"];
+    //    }
     page4.bgImage = [UIImage imageNamed:@"4"];
     
     //    EAIntroPage *page5 = [EAIntroPage page];
