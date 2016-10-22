@@ -38,8 +38,12 @@
         _nameLal.text = @"暂无昵称";
     }
     [_smallImageView setHidden:YES];
-    NSString *imageUrl = [MyUtil getQiniuUrl:infoModel.avatar_img width:0 andHeight:0];
-    [_cusImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+    if ([[infoModel.avatar_img substringWithRange:NSMakeRange(0, 4)] isEqualToString:@"http"]) {
+        [_cusImageView sd_setImageWithURL:[NSURL URLWithString:infoModel.avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+    }else{
+        NSString *imageUrl = [MyUtil getQiniuUrl:infoModel.avatar_img width:0 andHeight:0];
+        [_cusImageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+    }
 }
 
 - (void)setMemberModel:(CustomerModel *)memberModel{
@@ -51,7 +55,11 @@
     }else{
         [_nameLal setText:@"暂无昵称"];
     }
-    [_cusImageView sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:memberModel.avatar_img width:0 andHeight:0]]];
+    if ([[memberModel.avatar_img substringWithRange:NSMakeRange(0, 4)] isEqualToString:@"http"]) {
+        [_cusImageView sd_setImageWithURL:[NSURL URLWithString:memberModel.avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+    }else{
+        [_cusImageView sd_setImageWithURL:[NSURL URLWithString:[MyUtil getQiniuUrl:memberModel.avatar_img width:0 andHeight:0]]];
+    }
 }
 
 @end

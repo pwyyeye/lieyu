@@ -75,12 +75,16 @@
     //    if ([MyUtil isEmptyString:RecommendFriendModel.birthday]) {
     //        [_userFirstTag setText:@"天蝎座"];
     //    }else{
-    [_userFirstTag setText:[MyUtil getAstroWithBirthday:userModel.birthday]];
+    if (userModel.birthday.length >= 10) {
+        [_userFirstTag setText:[MyUtil getAstroWithBirthday:[userModel.birthday substringWithRange:NSMakeRange(0, 10)]]];
+    }else{
+        [_userFirstTag setText:@"天蝎座"];
+    }
     //    }
     if (userModel.userTag.count) {
         [_userSecondTag setText:[userModel.userTag objectAtIndex:0]];
     }else{
-        [_userSecondTag setText:@"首富"];
+//        [_userSecondTag setText:@"首富"];
     }
 }
 

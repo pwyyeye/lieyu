@@ -26,9 +26,12 @@
     if (!_fansModel) {
         _fansModel = fansModel;
     }
-    NSString *imgurl = [MyUtil getQiniuUrl:fansModel.avatar_img width:0 andHeight:0];
-    
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:imgurl]];
+    if ([[fansModel.avatar_img substringWithRange:NSMakeRange(0, 4)] isEqualToString:@"http"]) {
+        [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:fansModel.avatar_img] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+    }else{
+        NSString *imgurl = [MyUtil getQiniuUrl:fansModel.avatar_img width:0 andHeight:0];
+        [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:imgurl] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+    }
     self.nameLabel.text = fansModel.usernick;
     self.firstLabel.text = [MyUtil getAstroWithBirthday:fansModel.birthday];
     self.secondLabel.text = @"互联网";
