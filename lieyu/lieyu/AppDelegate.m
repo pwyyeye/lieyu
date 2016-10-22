@@ -27,7 +27,6 @@
 
 #import <AlipaySDK/AlipaySDK.h>
 #import "UMessage.h"
-#import <UserNotifications/UserNotifications.h>
 #import "WXApi.h"
 #import "UMSocialQQHandler.h"
 #import "SingletonTenpay.h"
@@ -51,7 +50,7 @@
 
 @interface AppDelegate ()
 <
-UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource,UNUserNotificationCenterDelegate
+UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
 >{
     BOOL _insertBirthday;
     BOOL _locationCertain;
@@ -79,7 +78,6 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource,UN
     
     [[RCIM sharedRCIM] setUserInfoDataSource:self];
     [[RCIM sharedRCIM] setGroupInfoDataSource:self];
-    [RCIM sharedRCIM].enableMessageMentioned = YES;    //打开@功能
     [self loadHisData];
     [self setupDataStore];
     
@@ -98,7 +96,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource,UN
         app.window.rootViewController = _navShangHu;
     }
     
-
+    
     
     if(![MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"desKey"]]){
         self.desKey=[USER_DEFAULT objectForKey:@"desKey"];
@@ -116,16 +114,16 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource,UN
         [USER_DEFAULT setObject:@"1" forKey:@"LastCityHasNightClub"];
     }//上次默认不为空，则不进行改变
     
-     //引导页启动
-     if (![[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
-         [self showIntroWithCrossDissolve];
-         UIViewController *view=[[UIViewController alloc] init];
-         [view.view setBackgroundColor:[UIColor whiteColor]];
-         view.view=_intro;
-         self.window.rootViewController=view;
-     }else{
-         [self animationWithApp];
-     }
+    //引导页启动
+    if (![[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
+        [self showIntroWithCrossDissolve];
+        UIViewController *view=[[UIViewController alloc] init];
+        [view.view setBackgroundColor:[UIColor whiteColor]];
+        view.view=_intro;
+        self.window.rootViewController=view;
+    }else{
+        [self animationWithApp];
+    }
     
     //IM推送
     if ([application
@@ -169,22 +167,10 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource,UN
     
     //友盟推送
     [UMessage startWithAppkey:UmengAppkey launchOptions:launchOptions];
-    [UMessage registerForRemoteNotifications];
-    //iOS10必须加下面这段代码。
-    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
-    center.delegate=self;
-    UNAuthorizationOptions types10=UNAuthorizationOptionBadge|UNAuthorizationOptionAlert|UNAuthorizationOptionSound;
-    [center requestAuthorizationWithOptions:types10 completionHandler:^(BOOL granted, NSError * _Nullable error) {
-        if (granted) {
-            //点击允许
-            //这里可以添加一些自己的逻辑
-        } else {
-            //点击不允许
-            //这里可以添加一些自己的逻辑
-        }
-    }];
+    [UMessage setAutoAlert:NO];
     
     [MTA startWithAppkey:@"I9IU4CZP47CE"];
+    
     [[MTAConfig getInstance] setDebugEnable:NO];
     
     //其它SDK内置启动MTA情况下需要调用下面方法,传入MTA_SDK_VERSION,并检 查返回值。
@@ -192,48 +178,48 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource,UN
     //    if([MTA startWithAppkey:@"I9IU4CZP47CE" checkedSdkVersion:MTA_SDK_VERSION]){
     //        NSLog(@"MTA start");
     //    }
-//    
-//#if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE80_
-//    if(UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))
-//    {
-//        //register remoteNotification types
-//        UIMutableUserNotificationAction *action1 = [[UIMutableUserNotificationAction alloc] init];
-//        action1.identifier = @"action1_identifier";
-//        action1.title=@"Accept";
-//        action1.activationMode = UIUserNotificationActivationModeForeground;//当点击的时候启动程序
-//        
-//        UIMutableUserNotificationAction *action2 = [[UIMutableUserNotificationAction alloc] init];  //第二按钮
-//        action2.identifier = @"action2_identifier";
-//        action2.title=@"Reject";
-//        action2.activationMode = UIUserNotificationActivationModeBackground;//当点击的时候不启动程序，在后台处理
-//        action2.authenticationRequired = YES;//需要解锁才能处理，如果action.activationMode = UIUserNotificationActivationModeForeground;则这个属性被忽略；
-//        action2.destructive = YES;
-//        
-//        UIMutableUserNotificationCategory *categorys = [[UIMutableUserNotificationCategory alloc] init];
-//        categorys.identifier = @"category1";//这组动作的唯一标示
-//        [categorys setActions:@[action1,action2] forContext:(UIUserNotificationActionContextDefault)];
-//        
-//        UIUserNotificationSettings *userSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge|UIUserNotificationTypeSound|UIUserNotificationTypeAlert categories:[NSSet setWithObject:categorys]];
-////        [UMessage registerRemoteNotificationAndUserNotificationSettings:userSettings];
-//        [application registerUserNotificationSettings:userSettings];
-//    } else{
-//        //register remoteNotification types
-////        [UMessage registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge
-////         |UIRemoteNotificationTypeSound
-////         |UIRemoteNotificationTypeAlert];
-//[application registerForRemoteNotificationTypes: UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound];    }
-//#else
-//    
-//    //register remoteNotification types
-//    [UMessage registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge
-//     |UIRemoteNotificationTypeSound
-//     |UIRemoteNotificationTypeAlert];
-//    
-//#endif
+    
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE80_
+    if(UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))
+    {
+        //register remoteNotification types
+        UIMutableUserNotificationAction *action1 = [[UIMutableUserNotificationAction alloc] init];
+        action1.identifier = @"action1_identifier";
+        action1.title=@"Accept";
+        action1.activationMode = UIUserNotificationActivationModeForeground;//当点击的时候启动程序
+        
+        UIMutableUserNotificationAction *action2 = [[UIMutableUserNotificationAction alloc] init];  //第二按钮
+        action2.identifier = @"action2_identifier";
+        action2.title=@"Reject";
+        action2.activationMode = UIUserNotificationActivationModeBackground;//当点击的时候不启动程序，在后台处理
+        action2.authenticationRequired = YES;//需要解锁才能处理，如果action.activationMode = UIUserNotificationActivationModeForeground;则这个属性被忽略；
+        action2.destructive = YES;
+        
+        UIMutableUserNotificationCategory *categorys = [[UIMutableUserNotificationCategory alloc] init];
+        categorys.identifier = @"category1";//这组动作的唯一标示
+        [categorys setActions:@[action1,action2] forContext:(UIUserNotificationActionContextDefault)];
+        
+        UIUserNotificationSettings *userSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge|UIUserNotificationTypeSound|UIUserNotificationTypeAlert categories:[NSSet setWithObject:categorys]];
+        [UMessage registerRemoteNotificationAndUserNotificationSettings:userSettings];
+        
+    } else{
+        //register remoteNotification types
+        [UMessage registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge
+         |UIRemoteNotificationTypeSound
+         |UIRemoteNotificationTypeAlert];
+    }
+#else
+    
+    //register remoteNotification types
+    [UMessage registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge
+     |UIRemoteNotificationTypeSound
+     |UIRemoteNotificationTypeAlert];
+    
+#endif
     
     
     //for log
-    [UMessage setLogEnabled:YES];
+    [UMessage setLogEnabled:NO];
     
     NSString *username=[USER_DEFAULT objectForKey:@"username"];
     NSString *password=[USER_DEFAULT objectForKey:@"pass"];
@@ -325,46 +311,46 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource,UN
 
 //开始定位
 -(void)startLocation{
-//    NSDate *date = [NSDate date];
-//    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-//    [formatter setDateFormat:@"yyyy-MM-dd"];
-//    NSString *dateString = [formatter stringFromDate:date];
-//    NSLog(@"%d",_locationCertain);
-//    if (![USER_DEFAULT objectForKey:@"LocationTodayPosition"] || ![[USER_DEFAULT objectForKey:@"LocationTodayPosition"] isEqualToString:dateString]) {
-        _locationCertain = NO;
-        if (![CLLocationManager locationServicesEnabled])
-        {
-            [MyUtil showMessage:@"请开启定位服务!"];
-            //提示开启定位服务
-            return ;
-        }
-        if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined
-            && [[[UIDevice currentDevice] systemVersion] floatValue] > 8.0)
-        {
-            if (!locationManager)
-            {
-                locationManager = [[CLLocationManager alloc] init];
-            }
-            if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])
-            {
-                [locationManager performSelector:@selector(requestWhenInUseAuthorization)];//用这个方法，plist里要加字段NSLocationWhenInUseUsageDescription
-            }
-        }
-        else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied)
-        {
-            //提示开启当前应用定位服务
-            [MyUtil showMessage:@"请开启定位服务!"];
-            return ;
-        }
+    //    NSDate *date = [NSDate date];
+    //    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    //    [formatter setDateFormat:@"yyyy-MM-dd"];
+    //    NSString *dateString = [formatter stringFromDate:date];
+    //    NSLog(@"%d",_locationCertain);
+    //    if (![USER_DEFAULT objectForKey:@"LocationTodayPosition"] || ![[USER_DEFAULT objectForKey:@"LocationTodayPosition"] isEqualToString:dateString]) {
+    _locationCertain = NO;
+    if (![CLLocationManager locationServicesEnabled])
+    {
+        [MyUtil showMessage:@"请开启定位服务!"];
+        //提示开启定位服务
+        return ;
+    }
+    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined
+        && [[[UIDevice currentDevice] systemVersion] floatValue] > 8.0)
+    {
         if (!locationManager)
         {
             locationManager = [[CLLocationManager alloc] init];
         }
-        locationManager.delegate = self;
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-        locationManager.distanceFilter = 100.0f;
-        [locationManager startUpdatingLocation];
-//    }
+        if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)])
+        {
+            [locationManager performSelector:@selector(requestWhenInUseAuthorization)];//用这个方法，plist里要加字段NSLocationWhenInUseUsageDescription
+        }
+    }
+    else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied)
+    {
+        //提示开启当前应用定位服务
+        [MyUtil showMessage:@"请开启定位服务!"];
+        return ;
+    }
+    if (!locationManager)
+    {
+        locationManager = [[CLLocationManager alloc] init];
+    }
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    locationManager.distanceFilter = 100.0f;
+    [locationManager startUpdatingLocation];
+    //    }
 }
 
 - (void)locationManager:(CLLocationManager *)manager
@@ -374,11 +360,11 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource,UN
 
 //定位代理经纬度回调
 -(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-        //没有确定位置
-//    [USER_DEFAULT setObject:@"" forKey:@"LocationTodayPosition"];
-        _userLocation=newLocation;
-        NSLog(@"%@",[NSString stringWithFormat:@"经度:%3.5f\n纬度:%3.5f",newLocation.coordinate.latitude,newLocation.coordinate.longitude]);
-        [self saveHisData];
+    //没有确定位置
+    //    [USER_DEFAULT setObject:@"" forKey:@"LocationTodayPosition"];
+    _userLocation=newLocation;
+    NSLog(@"%@",[NSString stringWithFormat:@"经度:%3.5f\n纬度:%3.5f",newLocation.coordinate.latitude,newLocation.coordinate.longitude]);
+    [self saveHisData];
     NSLog(@"%@",[USER_DEFAULT objectForKey:@"LocationTodayPosition"]);
     if (![[USER_DEFAULT objectForKey:@"LocationTodayPosition"] isEqualToString:[MyUtil getFormatDayWithDate:[NSDate date]]] && !_locationCertain) {
         [self locationCityWith:newLocation];
@@ -423,8 +409,6 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource,UN
     NSString *filename = [Path stringByAppendingPathComponent:@"hisLocation.plist"];
     //    NSString *filename1 = [Path stringByAppendingPathComponent:@"hiscity.plist"];
     [NSKeyedArchiver archiveRootObject:_userLocation toFile:filename];
-    
-    
 }
 
 - (void)setupDataStore
@@ -466,6 +450,7 @@ didRegisterUserNotificationSettings:
     // register to receive notifications
     [application registerForRemoteNotifications];
 }
+
 /**
  * 推送处理3
  */
@@ -480,43 +465,15 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
      withString:@""];
     
     [[RCIMClient sharedRCIMClient] setDeviceToken:token];
+    //打开@功能
+    [RCIM sharedRCIM].enableMessageMentioned = YES;
     [UMessage registerDeviceToken:deviceToken];
 }
+
 /**
  * 推送处理4
  * userInfo内容请参考官网文档
  */
-//iOS10新增：处理前台收到通知的代理方法
--(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler{
-    NSDictionary * userInfo = notification.request.content.userInfo;
-    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
-        //应用处于前台时的远程推送接受
-        //关闭友盟自带的弹出框
-        [UMessage setAutoAlert:NO];
-        //必须加这句代码
-        [UMessage didReceiveRemoteNotification:userInfo];
-        
-    }else{
-        //应用处于前台时的本地推送接受
-    }
-    //当应用处于前台时提示设置，需要哪个可以设置哪一个
-    completionHandler(UNNotificationPresentationOptionSound|UNNotificationPresentationOptionBadge|UNNotificationPresentationOptionAlert);
-}
-
-//iOS10新增：处理后台点击通知的代理方法
--(void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler{
-    NSDictionary * userInfo = response.notification.request.content.userInfo;
-    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
-        //应用处于后台时的远程推送接受
-        //必须加这句代码
-        [UMessage didReceiveRemoteNotification:userInfo];
-        
-    }else{
-        //应用处于后台时的本地推送接受
-    }
-    
-}
-
 - (void)application:(UIApplication *)application
 didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
@@ -598,8 +555,13 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 }
 
 
-- (void)applicationDidEnterBackground:(UIApplication *)application {
 
+- (void)applicationWillResignActive:(UIApplication *)application {
+    
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+    
     //    UIApplication *app=[UIApplication sharedApplication];
     //    __block UIBackgroundTaskIdentifier bgTask;
     //    bgTask =[app beginBackgroundTaskWithExpirationHandler:^{
@@ -617,16 +579,20 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
 #warning 干扰直播，暂时注释
     /*
-    NSFileManager *manager = [NSFileManager defaultManager];
-    NSString *pngDir = [NSHomeDirectory() stringByAppendingString:@"/tmp"];
-    NSArray *contents = [manager contentsOfDirectoryAtPath:pngDir error:nil];
-    NSEnumerator *e = [contents objectEnumerator];
-    NSString *filename;
-    while (filename = [e nextObject]) {
-        filename = [NSString stringWithFormat:@"/%@",filename];
-        [manager removeItemAtPath:[pngDir stringByAppendingString:filename] error:nil];
-    }
-    */
+     NSFileManager *manager = [NSFileManager defaultManager];
+     NSString *pngDir = [NSHomeDirectory() stringByAppendingString:@"/tmp"];
+     NSArray *contents = [manager contentsOfDirectoryAtPath:pngDir error:nil];
+     NSEnumerator *e = [contents objectEnumerator];
+     NSString *filename;
+     while (filename = [e nextObject]) {
+     filename = [NSString stringWithFormat:@"/%@",filename];
+     [manager removeItemAtPath:[pngDir stringByAppendingString:filename] error:nil];
+     }
+     */
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application {
+    
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -634,7 +600,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     if ([[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
         LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
         [login autoLogin];
-//        UserModel *userModel = ((AppDelegate *)[UIApplication sharedApplication].delegate).userModel;
+        //        UserModel *userModel = ((AppDelegate *)[UIApplication sharedApplication].delegate).userModel;
     }
     
     [_timer setFireDate:[NSDate distantPast]];//开启
@@ -652,8 +618,8 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 }
 
 - (void)getTodayBirthday{
-//    __weak __typeof(self) weakSelf = self;
-//    [USER_DEFAULT setObject:@"" forKey:@"todayBirthdayGet"];
+    //    __weak __typeof(self) weakSelf = self;
+    //    [USER_DEFAULT setObject:@"" forKey:@"todayBirthdayGet"];
     UserModel *userMode = ((AppDelegate *)[UIApplication sharedApplication].delegate).userModel;
     NSDate *date = [NSDate date];
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
@@ -732,7 +698,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     if ([[USER_DEFAULT objectForKey:@"firstUseApp"] isEqualToString:@"NO"]) {
         LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
         [login autoLogin];
-//        UserModel *userModel = ((AppDelegate *)[UIApplication sharedApplication].delegate).userModel;
+        //        UserModel *userModel = ((AppDelegate *)[UIApplication sharedApplication].delegate).userModel;
         
         [[LYCommonHttpTool shareInstance] getTokenByqiNiuWithParams:nil block:^(NSString *result) {
             _qiniu_token=result;
@@ -923,38 +889,38 @@ didReceiveLocalNotification:(UILocalNotification *)notification {
     //    page1.desc = @"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
     //    page1.bgImage = [UIImage imageNamed:@"1.jpg"];
     
-    EAIntroPage *page1 = [EAIntroPage page]; 
-//    if (isRetina) {
-//        page1.bgImage = [UIImage imageNamed:@"1_retina.jpg"];
-//    }else{
-//        page1.bgImage = [UIImage imageNamed:@"1.jpg"];
-//    }
+    EAIntroPage *page1 = [EAIntroPage page];
+    //    if (isRetina) {
+    //        page1.bgImage = [UIImage imageNamed:@"1_retina.jpg"];
+    //    }else{
+    //        page1.bgImage = [UIImage imageNamed:@"1.jpg"];
+    //    }
     page1.bgImage = [UIImage imageNamed:@"1"];
     
     EAIntroPage *page2 = [EAIntroPage page];
-//    if (isRetina) {
-//        page2.bgImage = [UIImage imageNamed:@"2_retina.jpg"];
-//    }else{
-//        page2.bgImage = [UIImage imageNamed:@"2.jpg"];
-//    }
+    //    if (isRetina) {
+    //        page2.bgImage = [UIImage imageNamed:@"2_retina.jpg"];
+    //    }else{
+    //        page2.bgImage = [UIImage imageNamed:@"2.jpg"];
+    //    }
     page2.bgImage = [UIImage imageNamed:@"2"];
     
     EAIntroPage *page3 = [EAIntroPage page];
     
-//    if (isRetina) {
-//        page3.bgImage = [UIImage imageNamed:@"3_retina.jpg"];
-//    }else{
-//        page3.bgImage = [UIImage imageNamed:@"3.jpg"];
-//    }
+    //    if (isRetina) {
+    //        page3.bgImage = [UIImage imageNamed:@"3_retina.jpg"];
+    //    }else{
+    //        page3.bgImage = [UIImage imageNamed:@"3.jpg"];
+    //    }
     page3.bgImage = [UIImage imageNamed:@"3"];
     
     EAIntroPage *page4 = [EAIntroPage page];
     
-//    if (isRetina) {
-//        page4.bgImage = [UIImage imageNamed:@"4_retina.jpg"];
-//    }else{
-//        page4.bgImage = [UIImage imageNamed:@"4.jpg"];
-//    }
+    //    if (isRetina) {
+    //        page4.bgImage = [UIImage imageNamed:@"4_retina.jpg"];
+    //    }else{
+    //        page4.bgImage = [UIImage imageNamed:@"4.jpg"];
+    //    }
     page4.bgImage = [UIImage imageNamed:@"4"];
     
     //    EAIntroPage *page5 = [EAIntroPage page];
