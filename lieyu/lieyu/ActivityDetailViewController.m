@@ -190,7 +190,8 @@
     }else if (indexPath.row == 1){
         CGSize timeSize = [_infoCell.activityTime.text boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 58, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]} context:nil].size;
         CGSize placeSize = [_infoCell.activityAddress.text boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 58, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16]} context:nil].size;
-        return 149 + timeSize.height + placeSize.height;
+        CGSize nameSize = [_infoCell.activityName.text boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 20, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18]} context:nil].size;
+        return 127 + timeSize.height + placeSize.height + nameSize.height;
     }else if (indexPath.row == 2){
         return _webView.frame.size.height + 0;
     }else{

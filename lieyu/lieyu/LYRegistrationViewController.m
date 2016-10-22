@@ -150,7 +150,7 @@ static LYRegistrationViewController *_registe;
                 _isRegisted = YES;
             }else{//已注册去绑定
                 _isRegisted = NO;
-                weakSelf.title = @"绑定账户";
+                weakSelf.title = @"绑定手机号";
                 _textField_psw.hidden = YES;
                 _passWordTex.hidden = YES;
                 _textField_psw_third.hidden = YES;
