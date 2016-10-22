@@ -19,7 +19,6 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"回复";
