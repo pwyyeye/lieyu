@@ -18,12 +18,15 @@
 
 -(void)layoutSubviews{
     
+}
+
+- (void)drawRect:(CGRect)rect{
     self.liveTypeView.backgroundColor = [UIColor clearColor];
     
     [self setCornerRadiusView:self.firstTaglabel With:self.firstTaglabel.frame.size.height / 2 and:YES];
     [self setCornerRadiusView:self.secondTagLabel With:self.secondTagLabel.frame.size.height / 2 and:YES];
     [self setCornerRadiusView:self.onlyOneTagLabel With:self.onlyOneTagLabel.frame.size.height / 2 and:YES];
-
+    
     [self setCornerRadiusView:self.liveTypeView With:8.f and:YES];
     [self setCornerRadiusView:self.iconImageView With:self.iconImageView.frame.size.height / 2 and:YES];
     

@@ -150,6 +150,15 @@ static LYRegistrationViewController *_registe;
                 _isRegisted = YES;
             }else{//已注册去绑定
                 _isRegisted = NO;
+                _textField_psw.hidden = YES;
+                _passWordTex.hidden = YES;
+                _textField_psw_third.hidden = YES;
+                _imgView_icon_four.hidden = YES;
+                _againPassWordTex.hidden = YES;
+                _textField_psw_little.hidden = YES;
+                _line_view_three.hidden = YES;
+                _line_view_four.hidden = YES;
+                [_btn_regist setTitle:@"立即绑定" forState:UIControlStateNormal];
             }
             [_yzmTex becomeFirstResponder];
         }];

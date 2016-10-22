@@ -60,10 +60,12 @@
                     <constraint firstItem="xv6-iM-nN7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="j0O-dp-Vos"/>
                     <constraint firstItem="6yb-mm-s62" firstAttribute="top" secondItem="bBJ-de-Qeo" secondAttribute="bottom" id="jHf-PT-eEe"/>
                     <constraint firstAttribute="trailing" secondItem="xv6-iM-nN7" secondAttribute="trailing" id="kUb-Nl-sM8"/>
+                    <constraint firstAttribute="trailing" secondItem="UAd-7g-Lih" secondAttribute="trailing" constant="10" id="llW-OA-Fb4"/>
                     <constraint firstItem="bBJ-de-Qeo" firstAttribute="top" secondItem="UAd-7g-Lih" secondAttribute="bottom" constant="7" id="mxZ-LM-RSR"/>
                     <constraint firstItem="kyP-pS-qiq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="qHI-lb-toL"/>
                     <constraint firstItem="6yb-mm-s62" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="qcy-0T-P3K"/>
                     <constraint firstItem="xv6-iM-nN7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="v4P-cb-eaF"/>
+                    <constraint firstItem="UAd-7g-Lih" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="wlt-Yc-eCY"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

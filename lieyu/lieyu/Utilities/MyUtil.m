@@ -422,41 +422,48 @@
 #pragma --mark 获取7牛访问链接
 
 + (NSString *)getQiniuUrl:(NSString *)key width:(NSInteger)width andHeight:(NSInteger)height{
-    NSString *encodeKey=[key stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    if(width>0&&height>0){
-        return [NSString stringWithFormat:@"http://source.lie98.com/%@?imageView2/0/w/%d/h/%d",encodeKey,width,height];
+    if (key.length >= 4 && [[key substringWithRange:NSMakeRange(0, 4)]isEqualToString:@"http"]) {
+        return key;
     }else{
-        return [NSString stringWithFormat:@"http://source.lie98.com/%@",encodeKey];
+        NSString *encodeKey=[key stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        if(width>0&&height>0){
+            return [NSString stringWithFormat:@"http://source.lie98.com/%@?imageView2/0/w/%ld/h/%ld",encodeKey,width,height];
+        }else{
+            return [NSString stringWithFormat:@"http://source.lie98.com/%@",encodeKey];
+        }
     }
 }
 
 #pragma --mark 获取7牛media访问链接
 
 + (NSString *)getQiniuUrl:(NSString *)key mediaType:(QiNiuUploadTpye)qiNiuUploadTpye width:(NSInteger)width andHeight:(NSInteger)height{
-    NSString *encodeKey=[key stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    switch (qiNiuUploadTpye) {
-        case QiNiuUploadTpyeDefault:
-            if(width>0&&height>0){
-                return [NSString stringWithFormat:@"http://media.lie98.com/%@.jpg?imageView2/0/w/%ld/h/%ld",encodeKey,width,height];
-            }else{
-                return [NSString stringWithFormat:@"http://media.lie98.com/%@.jpg",encodeKey];
-                
-            }
-            break;
-        case QiNiuUploadTpyeMedia:
-            return [NSString stringWithFormat:@"http://media.lie98.com/%@.mp4",encodeKey];
-            break;
-        case QiNiuUploadTpyeSmallMedia:
-            return [NSString stringWithFormat:@"http://media.lie98.com/%@_s.mp4",encodeKey];
-            break;
-        case QiNiuUploadTpyeBigMedia:
-            return [NSString stringWithFormat:@"http://media.lie98.com/%@",encodeKey];
-            break;
-        default:
-            return @"";
-            break;
+    if (key.length >= 4 && [[key substringWithRange:NSMakeRange(0, 4)]isEqualToString:@"http"]) {
+        return key;
+    }else{
+        NSString *encodeKey=[key stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        switch (qiNiuUploadTpye) {
+            case QiNiuUploadTpyeDefault:
+                if(width>0&&height>0){
+                    return [NSString stringWithFormat:@"http://media.lie98.com/%@.jpg?imageView2/0/w/%ld/h/%ld",encodeKey,width,height];
+                }else{
+                    return [NSString stringWithFormat:@"http://media.lie98.com/%@.jpg",encodeKey];
+                    
+                }
+                break;
+            case QiNiuUploadTpyeMedia:
+                return [NSString stringWithFormat:@"http://media.lie98.com/%@.mp4",encodeKey];
+                break;
+            case QiNiuUploadTpyeSmallMedia:
+                return [NSString stringWithFormat:@"http://media.lie98.com/%@_s.mp4",encodeKey];
+                break;
+            case QiNiuUploadTpyeBigMedia:
+                return [NSString stringWithFormat:@"http://media.lie98.com/%@",encodeKey];
+                break;
+            default:
+                return @"";
+                break;
+        }
     }
-    
 }
 
 #pragma --mark 获取设备型号
