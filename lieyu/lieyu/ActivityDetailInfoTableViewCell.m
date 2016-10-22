@@ -38,8 +38,25 @@
         time = [barActivity.endDate substringWithRange:NSMakeRange(11, 5)];
     }
     _activityTime.text = [NSString stringWithFormat:@"%@ ~ %@  %@开始",startTime,endTime,time];
-    [_activityAddress setText:((BeerBarOrYzhDetailModel *)barActivity.barInfo).address];
-    [_activityPhone setText:((BeerBarOrYzhDetailModel *)barActivity.barInfo).telephone];
+    if (barActivity.barInfo) {
+        if (![MyUtil isEmptyString:((BeerBarOrYzhDetailModel *)barActivity.barInfo).address]) {
+            [_activityAddress setText:((BeerBarOrYzhDetailModel *)barActivity.barInfo).address];
+        }else{
+            [_activityAddress setText:barActivity.address];
+        }
+    }else{
+        
+        [_activityAddress setText:barActivity.address];
+    }
+    if (barActivity.barInfo) {
+        if (![MyUtil isEmptyString:((BeerBarOrYzhDetailModel *)barActivity.barInfo).telephone]) {
+            [_activityPhone setText:((BeerBarOrYzhDetailModel *)barActivity.barInfo).telephone];
+        }else{
+            _activityPhone.hidden = YES;
+        }
+    }else{
+        _activityPhone.hidden = YES;
+    }
 }
 
 @end
