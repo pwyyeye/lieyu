@@ -409,8 +409,6 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource
     NSString *filename = [Path stringByAppendingPathComponent:@"hisLocation.plist"];
     //    NSString *filename1 = [Path stringByAppendingPathComponent:@"hiscity.plist"];
     [NSKeyedArchiver archiveRootObject:_userLocation toFile:filename];
-    
-    
 }
 
 - (void)setupDataStore
@@ -452,6 +450,7 @@ didRegisterUserNotificationSettings:
     // register to receive notifications
     [application registerForRemoteNotifications];
 }
+
 /**
  * 推送处理3
  */
@@ -470,6 +469,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     [RCIM sharedRCIM].enableMessageMentioned = YES;
     [UMessage registerDeviceToken:deviceToken];
 }
+
 /**
  * 推送处理4
  * userInfo内容请参考官网文档
