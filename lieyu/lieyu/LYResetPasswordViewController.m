@@ -108,9 +108,6 @@ static LYResetPasswordViewController *_reset;
             [_timer setFireDate:[NSDate distantPast]];
             [weakSelf.delegate resetPassword];
             [weakSelf.navigationController popViewControllerAnimated:YES];
-//            LYSurePassWordViewController *surePassWordViewController=[[LYSurePassWordViewController alloc]initWithNibName:@"LYSurePassWordViewController" bundle:nil];
-//            surePassWordViewController.title=@"确定密码";
-//            [self.navigationController pushViewController:surePassWordViewController animated:YES];
         }
     }];
     
