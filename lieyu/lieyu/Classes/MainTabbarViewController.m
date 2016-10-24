@@ -103,7 +103,6 @@
 -(void)tabbarChagneComplete:(NSNotification*) notification{
     //单独启动新线程
     [NSThread detachNewThreadSelector:@selector(doComplete) toTarget:self withObject:nil];
-
 }
 
 -(void)doComplete{

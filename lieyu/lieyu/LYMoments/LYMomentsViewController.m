@@ -214,12 +214,12 @@
         [_messageButton setTitle:[NSString stringWithFormat:@"%@条新消息",_results] forState:(UIControlStateNormal)];
         [_messageButton addTarget:self action:@selector(messageButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
         _messageButton.backgroundColor = RGB(96, 96, 96);
-        headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 187 / 375 + 50);
+        headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, headerHeight + 50);
         [headerView addSubview:_messageButton];
     }else{
         [_messageButton removeFromSuperview];
         _messageButton = nil;
-        headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 187 / 375 + 30);
+        headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, headerHeight + 30);
     }
     //背景图
     bgImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, headerHeight)];

@@ -201,7 +201,7 @@
 - (void)setupTableForHeaderForUserMomentPage{
     UIView *headerView = [[UIView alloc] init];
     headerView.backgroundColor = [UIColor whiteColor];
-    headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH * 187 / 375 + 30);
+    headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, headerHeight + 30);
     //背景图
     bgImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, headerHeight)];
     [bgImage setImage:[UIImage imageNamed:@"empyImage16_9"]];
@@ -240,7 +240,7 @@
     _nameLabel.textColor = [UIColor whiteColor];
     [_nameLabel setText:app.userModel.usernick];
     [_nameLabel setTextAlignment:NSTextAlignmentRight];
-    _nameLabel.frame =CGRectMake(SCREEN_WIDTH - iconWidth - 10 - 7 - 90, SCREEN_WIDTH * 187 / 375 - 30, 90, 30);
+    _nameLabel.frame =CGRectMake(SCREEN_WIDTH - iconWidth - 10 - 7 - 90, headerHeight - 30, 90, 30);
     _nameLabel.backgroundColor = [UIColor clearColor];
     [headerView addSubview:_nameLabel];
     _userTablewView.tableHeaderView = headerView;
