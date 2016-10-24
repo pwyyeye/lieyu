@@ -328,6 +328,20 @@
         ActivityDetailViewController *activityDetailVC = [[ActivityDetailViewController alloc]initWithNibName:@"ActivityDetailViewController" bundle:nil];
         activityDetailVC.activityID = [NSString stringWithFormat:@"%ld",linkid];
         [self.navigationController pushViewController:activityDetailVC animated:YES];
+    }else if (ad_type == 0){
+        if(![MyUtil isEmptyString:bannerModel.linkurl]){
+            HuoDongLinkViewController *huodong2=[[HuoDongLinkViewController alloc] init];
+            huodong2.linkUrl=bannerModel.linkurl;
+            huodong2.subTitle = bannerModel.title == nil ? @"广告" : bannerModel.title;
+            [self.navigationController pushViewController:huodong2 animated:YES];
+            
+        }else if (bannerModel.content) {
+            HuoDongViewController *huodong=[[HuoDongViewController alloc] init];
+            huodong.content = bannerModel.content;
+            huodong.subTitle = bannerModel.title == nil ? @"广告" : bannerModel.title;
+            [self.navigationController pushViewController:huodong animated:YES];
+        }
+        [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:@"活动列表" titleName:@"活动"]];
     }
 }
 

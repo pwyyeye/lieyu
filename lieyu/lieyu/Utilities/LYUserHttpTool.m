@@ -1712,12 +1712,15 @@
         if ([errorCode isEqualToString:@"1"]) {
             NSArray *yuUser = [CustomerModel mj_objectArrayWithKeyValuesArray:[[response objectForKey:@"data"] objectForKey:@"groupList"]];
             YuKeGroupModel *model = [YuKeGroupModel mj_objectWithKeyValues:[[response objectForKey:@"data"] objectForKey:@"yukegroup"]];
+            NSString *linkeUrl = [MyUtil isEmptyString:[[response objectForKey:@"data"] objectForKey:@"luckdrawUrl"]] ? @"" : [[response objectForKey:@"data"] objectForKey:@"luckdrawUrl"];
             NSDictionary *dict;
             if (model){
                 dict = @{@"groupList":yuUser,
-                         @"yukegroup":model};
+                         @"yukegroup":model,
+                         @"luckdrawUrl":linkeUrl};
             }else{
-                dict = @{@"groupList":yuUser};
+                dict = @{@"groupList":yuUser,
+                         @"luckdrawUrl":linkeUrl};
             }
             complete(dict);
         }else{
