@@ -15,6 +15,7 @@
 #import "CustomerCell.h"
 #import "LYMyFriendDetailViewController.h"
 #import "YuKeGroupModel.h"
+#import "HuoDongLinkViewController.h"
 
 @interface MineGroupViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,UITextFieldDelegate>
 
@@ -72,6 +73,14 @@
     [LYUserHttpTool lyGetYukebangDataWithParams:dict complete:^(NSDictionary *result) {
         NSArray *userArray = [result objectForKey:@"groupList"];
         _groupModel = [result objectForKey:@"yukegroup"];
+//        NSString *linkUrl = @"http://www.lie98.com/lieyu/zhuanti/live/recruit";
+        NSString *linkUrl = [result objectForKey:@"luckdrawUrl"];
+        if (![MyUtil isEmptyString:linkUrl]) {
+            HuoDongLinkViewController *huodong2=[[HuoDongLinkViewController alloc] init];
+            huodong2.linkUrl = linkUrl;
+            huodong2.subTitle = @"抽奖";
+            [weakSelf.navigationController pushViewController:huodong2 animated:YES];
+        }
         if (_groupModel) {
             [_groupNumberLabel setText:[NSString stringWithFormat:@"娱客帮成员：%ld",userArray.count]];
             [_groupBriefLabel setText:[NSString stringWithFormat:@"总收益：%@",_groupModel.amount]];
