@@ -39,14 +39,14 @@ PODS:
   - Qiniu (7.1.0.1):
     - AFNetworking (~> 3)
     - HappyDNS (~> 0.3)
-  - RongCloudIMKit (2.6.10)
+  - RongCloudIMKit (2.7.3)
 
 DEPENDENCIES:
   - HCSStarRatingView (~> 1.4.3)
   - PLCameraStreamingKit
   - PLPlayerKit
   - Qiniu (~> 7.0)
-  - RongCloudIMKit (~> 2.6.10)
+  - RongCloudIMKit (~> 2.7.3)
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -57,8 +57,8 @@ SPEC CHECKSUMS:
   PLPlayerKit: b5182ef942dce71678c9db07c2e1959df91e81cc
   PLStreamingKit: 4b46739689d020b8e2eb755827ec86447c0291b7
   Qiniu: 0e92ff0d1b9afbc55275306671284e4ebeb08d03
-  RongCloudIMKit: 6dd84b468701815012a0d8babd99cef3b19c000f
+  RongCloudIMKit: 0b93700b17d224c7c213815b8a23a9c356fe20e2
 
-PODFILE CHECKSUM: e6dd440bd8cda8705a52cf1bfb2ee512050955c1
+PODFILE CHECKSUM: 4bde6388f7ec7efab61d98bc606b970bffd40f73
 
-COCOAPODS: 1.1.0.beta.1
+COCOAPODS: 1.0.1
