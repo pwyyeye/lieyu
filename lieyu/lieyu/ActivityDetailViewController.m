@@ -218,7 +218,7 @@
     [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@activities/details?id=%@",LY_SERVER,_barActivity.id];
     [UMSocialData defaultData].extConfig.wechatTimelineData.title = string;
     [UMSocialData defaultData].extConfig.wechatSessionData.title = string;
-    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:@"精彩活动，尽在猎娱！" shareImage:_headerCell.imageView.image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:@"精彩活动，尽在猎娱！" shareImage:_tableHeaderImageView.image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"分享" pageName:@"活动详情" titleName:_barActivity.name]];
 }
 

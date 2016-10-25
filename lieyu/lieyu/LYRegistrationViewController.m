@@ -194,7 +194,8 @@ static LYRegistrationViewController *_registe;
             else if([_thirdLoginType isEqualToString:@"2"]) plantType = @"wechat";
             else plantType = @"weibo";
             if(plantType == nil) return;
-            NSDictionary *paraDic = @{@"mobile":self.phoneTex.text,@"captchas":self.yzmTex.text,plantType:[MyUtil encryptUseDES:_userM.openID]};
+//            NSDictionary *paraDic = @{@"mobile":self.phoneTex.text,@"captchas":self.yzmTex.text,plantType:[MyUtil encryptUseDES:_userM.openID]};
+            NSDictionary *paraDic = @{@"mobile":self.phoneTex.text,@"captchas":self.yzmTex.text,plantType:_userM.openID};
             NSLog(@"----pass-pass%@---",_userM.openID);
             __block LYRegistrationViewController *weakSelf = self;
             [LYUserHttpTool tieQQWeixinAndSinaWithPara:paraDic compelte:^(NSInteger flag) {//1 绑定成功 0 绑定失败
@@ -202,7 +203,8 @@ static LYRegistrationViewController *_registe;
                     [[NSUserDefaults standardUserDefaults] setObject:_userM.openID forKey:@"OPENIDSTR"];
                     [MyUtil showPlaceMessage:@"绑定成功"];
                     
-                    NSDictionary *paraDic = @{@"currentSessionId":[MyUtil encryptUseDES:_userM.openID]};
+//                    NSDictionary *paraDic = @{@"currentSessionId":[MyUtil encryptUseDES:_userM.openID]};
+                    NSDictionary *paraDic = @{@"currentSessionId":_userM.openID};
                     [LYUserHttpTool userLoginFromOpenIdWithPara:paraDic compelte:^(UserModel *userModel) {
                         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
                         app.s_app_id=userModel.token;
@@ -238,7 +240,8 @@ static LYRegistrationViewController *_registe;
             return;
         }
         
-        NSDictionary *dic=@{@"mobile":self.phoneTex.text,@"captchas":self.yzmTex.text,@"password":[MyUtil md5HexDigest: self.passWordTex.text],@"confirm":[MyUtil md5HexDigest: self.againPassWordTex.text],@"type":_thirdLoginType,@"openId":[MyUtil encryptUseDES:_userM.openID]};
+//        NSDictionary *dic=@{@"mobile":self.phoneTex.text,@"captchas":self.yzmTex.text,@"password":[MyUtil md5HexDigest: self.passWordTex.text],@"confirm":[MyUtil md5HexDigest: self.againPassWordTex.text],@"type":_thirdLoginType,@"openId":[MyUtil encryptUseDES:_userM.openID]};
+        NSDictionary *dic=@{@"mobile":self.phoneTex.text,@"captchas":self.yzmTex.text,@"password":[MyUtil md5HexDigest: self.passWordTex.text],@"confirm":[MyUtil md5HexDigest: self.againPassWordTex.text],@"type":_thirdLoginType,@"openId":_userM.openID};
         __weak LYRegistrationViewController *weakself=self;
         [[LYUserHttpTool shareInstance] setThirdZhuCe:dic complete:^(BOOL result) {
             if (result) {

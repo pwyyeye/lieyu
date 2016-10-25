@@ -15,7 +15,7 @@
                 <frame key="frameInset" width="317" height="214"/>
                 <autoresizingMask key="autoresizingMask"/>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="451.5" y="294.5"/>
+            <point key="canvasLocation" x="71" y="29"/>
         </tableViewCell>
     </objects>
 </document>

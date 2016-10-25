@@ -298,7 +298,7 @@
     [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@strategy/details?id=%@",LY_SERVER,_strategyModel.id];
     [UMSocialData defaultData].extConfig.wechatTimelineData.title = string;
     [UMSocialData defaultData].extConfig.wechatSessionData.title = string;
-    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:@"怎么玩？问猎娱！" shareImage:_headerCell.imageView.image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:@"怎么玩？问猎娱！" shareImage:_tableHeaderImgView.image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"分享" pageName:@"攻略详情" titleName:_strategyModel.title]];
 }
 
