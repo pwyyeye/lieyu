@@ -358,8 +358,8 @@
         [_tencentOAuth getUserInfo];
 //        [app startLocation];
         
-        LYFriendsRecommendViewController *friendsRecommendVC = [[LYFriendsRecommendViewController alloc]init];
-        [self.navigationController pushViewController:friendsRecommendVC animated:YES];
+//        LYFriendsRecommendViewController *friendsRecommendVC = [[LYFriendsRecommendViewController alloc]init];
+//        [self.navigationController pushViewController:friendsRecommendVC animated:YES];
     }
     else
     {
@@ -374,7 +374,8 @@
 - (void)getUserInfoResponse:(APIResponse *)response{
     NSLog(@"----->%@",response);
     NSDictionary *paraDic = @{@"currentSessionId":[MyUtil encryptUseDES: _tencentOAuth.openId]};
-
+//    AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);
+//NSDictionary *paraDic = @{@"currentSessionId":[MyUtil encryptUseDES: _tencentOAuth.openId withKey:app.desKey]};
     userModel.usernick = response.jsonResponse[@"nickname"];
     userModel.gender = [response.jsonResponse[@"gender"] isEqualToString:@"男"] ? @"1" : @"0";
     userModel.avatar_img=response.jsonResponse[@"figureurl_qq_2"];
