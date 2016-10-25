@@ -150,8 +150,7 @@
                 [tenpay onReq:result];
                 if ([weakSelf.delegate respondsToSelector:@selector(rechargeDelegateRefreshData)] && weakSelf.delegate) {
                     [weakSelf.delegate rechargeDelegateRefreshData];
-                }
-                [weakSelf gotoBack];
+                } 
             }else{
                 [MyUtil showMessage:@"无法调起微信支付！"];
             }
@@ -183,6 +182,12 @@
             return;
         }else if ([controller isKindOfClass:[WatchLiveShowViewController class]]){
             [self.navigationController popToViewController:controller animated:YES];
+            return;
+        }else if([controller isKindOfClass:[MineBalanceViewController class]] || [controller isKindOfClass:[MineYubiViewController class]]){
+            [self.navigationController popViewControllerAnimated:YES];
+//            if ([self.delegate respondsToSelector:@selector(rechargeDelegateRefreshData)] && self.delegate) {
+//                [self.delegate rechargeDelegateRefreshData];
+//            }
             return;
         }
     }

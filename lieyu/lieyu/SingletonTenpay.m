@@ -11,6 +11,15 @@
 #import "LYMyOrderManageViewController.h"
 #import "LPMyOrdersViewController.h"
 #import "PinkerShareController.h"
+#import "HDDetailViewController.h"
+#import "CHDoOrderViewController.h"
+#import "ZujuViewController.h"
+#import "LYwoYaoDinWeiMainViewController.h"
+#import "PTjoinInViewController.h"
+#import "MineBalanceViewController.h"
+#import "MineYubiViewController.h"
+#import "WatchLiveShowViewController.h"
+
 @implementation SingletonTenpay
 //获取支付单例
 +(SingletonTenpay *)singletonTenpay{
@@ -57,14 +66,29 @@
                 
                 [MyUtil showMessage:@"支付成功！"];
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
+                
+                AppDelegate *delegate=(AppDelegate *)[UIApplication sharedApplication].delegate;
                 if (_isPinker && _isFaqi) {
                     PinkerShareController *zujuVC = [[PinkerShareController alloc]initWithNibName:@"PinkerShareController" bundle:nil];
                     zujuVC.sn=_orderNO;
-                    AppDelegate *delegate=(AppDelegate *)[UIApplication sharedApplication].delegate;
                     [delegate.navigationController pushViewController:zujuVC animated:YES];
                     _isPinker=0;
                     _isFaqi=0;
                     return;
+                }else{
+                    for (UIViewController *controller in delegate.navigationController.viewControllers) {
+                        if([controller isKindOfClass:[HDDetailViewController class]] || [controller isKindOfClass:[CHDoOrderViewController class]] || [controller isKindOfClass:[ZujuViewController class]] || [controller isKindOfClass:[LYwoYaoDinWeiMainViewController class]]||[controller isKindOfClass:[PTjoinInViewController class]]){
+                            LPMyOrdersViewController *detailViewController = [[LPMyOrdersViewController alloc]init];
+                            [delegate.navigationController pushViewController:detailViewController animated:YES];
+                            return;
+                        }else if ([controller isKindOfClass:[WatchLiveShowViewController class]]){
+                            [delegate.navigationController popToViewController:controller animated:YES];
+                            return;
+                        }else if([controller isKindOfClass:[MineBalanceViewController class]] || [controller isKindOfClass:[MineYubiViewController class]]){
+                            [delegate.navigationController popViewControllerAnimated:YES];
+                            return;
+                        }
+                    }
                 }
                 if(_isManagerCheck==1){
                     AppDelegate *delegate=(AppDelegate*)[UIApplication sharedApplication].delegate;

@@ -25,7 +25,8 @@
     _barActivity = barActivity;
     [_activityImageView sd_setImageWithURL:[NSURL URLWithString:_barActivity.imageUrl] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
     [_activityNameLabel setText:_barActivity.name];
-    if ([barActivity.activityType isEqualToString:@"2"]) {
+    double price = [barActivity.price doubleValue];
+    if (price <= 0) {
         _activityPriceLabel.hidden = YES;
         _activityPriceLabelHeight.constant = 0 ;
     }else{

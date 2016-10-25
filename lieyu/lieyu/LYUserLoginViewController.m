@@ -249,7 +249,8 @@
     NSString *openID = [[NSUserDefaults standardUserDefaults] objectForKey:@"OPENIDSTR"];
     if(![MyUtil isEmptyString:openID] ){
 //        __block LYUserLoginViewController *weakSelf = self;
-        NSDictionary *paraDic = @{@"currentSessionId":[MyUtil encryptUseDES:openID]};
+//        NSDictionary *paraDic = @{@"currentSessionId":[MyUtil encryptUseDES:openID]};
+        NSDictionary *paraDic = @{@"currentSessionId":openID};
         [LYUserHttpTool userLoginFromQQWeixinAndSinaWithParams:paraDic compelte:^(NSInteger sucess,UserModel *userM) {
             if (sucess) {//登录成功
                 AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -358,8 +359,8 @@
         [_tencentOAuth getUserInfo];
 //        [app startLocation];
         
-        LYFriendsRecommendViewController *friendsRecommendVC = [[LYFriendsRecommendViewController alloc]init];
-        [self.navigationController pushViewController:friendsRecommendVC animated:YES];
+//        LYFriendsRecommendViewController *friendsRecommendVC = [[LYFriendsRecommendViewController alloc]init];
+//        [self.navigationController pushViewController:friendsRecommendVC animated:YES];
     }
     else
     {
@@ -373,8 +374,8 @@
 
 - (void)getUserInfoResponse:(APIResponse *)response{
     NSLog(@"----->%@",response);
-    NSDictionary *paraDic = @{@"currentSessionId":[MyUtil encryptUseDES: _tencentOAuth.openId]};
-
+//    NSDictionary *paraDic = @{@"currentSessionId":[MyUtil encryptUseDES: _tencentOAuth.openId]};
+    NSDictionary *paraDic = @{@"currentSessionId":_tencentOAuth.openId};
     userModel.usernick = response.jsonResponse[@"nickname"];
     userModel.gender = [response.jsonResponse[@"gender"] isEqualToString:@"男"] ? @"1" : @"0";
     userModel.avatar_img=response.jsonResponse[@"figureurl_qq_2"];
@@ -433,7 +434,8 @@
 
 - (void)weiXinLoginWith:(UserModel *)userModel2{
     userModel=userModel2;
-    NSDictionary *paraDic = @{@"currentSessionId":[MyUtil encryptUseDES:userModel.openID]};
+//    NSDictionary *paraDic = @{@"currentSessionId":[MyUtil encryptUseDES:userModel.openID]};
+    NSDictionary *paraDic = @{@"currentSessionId":userModel.openID};
     [self login:paraDic WithType:@"2"];
 }
 
@@ -451,8 +453,8 @@
                 userModel.usernick = snsAccount.userName;
                 userModel.avatar_img = snsAccount.iconURL;
                 userModel.openID = snsAccount.usid;
-                NSDictionary *paraDic = @{@"currentSessionId":[MyUtil encryptUseDES:snsAccount.usid]};
-               
+//                NSDictionary *paraDic = @{@"currentSessionId":[MyUtil encryptUseDES:snsAccount.usid]};
+                NSDictionary *paraDic = @{@"currentSessionId":userModel.openID};
                 [self login:paraDic WithType:@"3"];
                 
             }

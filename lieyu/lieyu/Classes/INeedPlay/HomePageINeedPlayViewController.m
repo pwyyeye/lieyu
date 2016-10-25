@@ -1410,7 +1410,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         NSDictionary *dataDic = ((LYCache *)((NSArray *)[dict objectForKey:@"Live"]).firstObject).lyCacheValue;
         if(dataDic){
             NSArray *array = [HomepageBannerModel mj_objectArrayWithKeyValuesArray:dataDic];
-            [_liveDict setObject:array forKey:@"bannerList"];
+            if (array) {
+                [_liveDict setObject:array forKey:@"bannerList"];
+            }
         }
     }
     if ([dict objectForKey:@"YD"]) {
@@ -1421,9 +1423,15 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             if ([dataDic objectForKey:@"recommendedTopic"]) {
                 activeModel = [BarTopicInfo mj_objectWithKeyValues:[dataDic objectForKey:@"recommendedTopic"]];
             }
-            [_ydDict setObject:arrayBanner forKey:@"bannerList"];
-            [_ydDict setObject:activeModel forKey:@"recommendedTopic"];
-            [_ydDict setObject:[dataDic objectForKey:@"filterImageList"] forKey:@"filterImageList"];
+            if (arrayBanner) {
+                [_ydDict setObject:arrayBanner forKey:@"bannerList"];
+            }
+            if (activeModel) {
+                [_ydDict setObject:activeModel forKey:@"recommendedTopic"];
+            }
+            if ([dataDic objectForKey:@"filterImageList"]) {
+                [_ydDict setObject:[dataDic objectForKey:@"filterImageList"] forKey:@"filterImageList"];
+            }
         }
     }
     if ([dict objectForKey:@"Bar"]) {
@@ -1434,9 +1442,15 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             if ([dataDic objectForKey:@"recommendedTopic"]) {
                 activeModel = [BarTopicInfo mj_objectWithKeyValues:[dataDic objectForKey:@"recommendedTopic"]];
             }
-            [_barDict setObject:arrayBanner forKey:@"bannerList"];
-            [_barDict setObject:activeModel forKey:@"recommendedTopic"];
-            [_barDict setObject:[dataDic objectForKey:@"filterImageList"] forKey:@"filterImageList"];
+            if (arrayBanner) {
+                [_barDict setObject:arrayBanner forKey:@"bannerList"];
+            }
+            if (activeModel) {
+                [_barDict setObject:activeModel forKey:@"recommendedTopic"];
+            }
+            if ([dataDic objectForKey:@"filterImageList"]) {
+                [_barDict setObject:[dataDic objectForKey:@"filterImageList"] forKey:@"filterImageList"];
+            }
             
         }
     }

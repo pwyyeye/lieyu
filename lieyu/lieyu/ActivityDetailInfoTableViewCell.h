@@ -20,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *activityAddressButton;
 @property (weak, nonatomic) IBOutlet UIButton *activityPhoneButton;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constant;
+
 @property (nonatomic, strong) BarActivityList *barActivity;
 
 @end
