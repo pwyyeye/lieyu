@@ -30,11 +30,11 @@
 
 - (void)setDataModel:(RCMessageModel *)model {
     [super setDataModel:model];
-    
     RCMessageContent *content = model.content;
+    NSString *senderName = content.senderUserInfo.name;
     if ([content isMemberOfClass:[RCInformationNotificationMessage class]]) {
         RCInformationNotificationMessage *notification = (RCInformationNotificationMessage *)content;
-        NSString *localizedMessage = [RCKitUtility formatMessage:notification];
+        NSString *localizedMessage = [NSString stringWithFormat:@"%@：%@",senderName,[RCKitUtility formatMessage:notification]];
         [self.tipMessageLabel setTextColor:RGB(0, 199, 140)];
         self.tipMessageLabel.shadowColor = RGBA(150, 150, 150, .5);
         self.tipMessageLabel.shadowOffset = CGSizeMake(.5,.5);

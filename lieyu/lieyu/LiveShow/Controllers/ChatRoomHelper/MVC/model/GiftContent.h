@@ -13,6 +13,6 @@
 @property (nonatomic, strong) NSString *giftUrl;
 @property (nonatomic, strong) NSString *giftLocalUrl;
 @property (nonatomic, assign) BOOL isMsgShow;
-
+@property (nonatomic, strong) NSString *giftAnnimType;
 
 @end

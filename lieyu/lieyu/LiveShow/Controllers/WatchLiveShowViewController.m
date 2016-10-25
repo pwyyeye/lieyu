@@ -92,7 +92,10 @@
     NSTimer *_burstTimer;//延时
     NSInteger _giftNumber;//礼物数量
     NSString *_giftValue;//礼物价值
-    NSArray *_dataArr;//礼物数组
+    NSString *_giftImg;
+    NSString *_gifType;//动画类型
+    NSString *_giftName;
+    NSMutableArray *_dataArr;//礼物数组
     NSInteger _chatuserid;
     BOOL _isActiveNow;//是否是前台
     BOOL _isLiveing;//直播状态
@@ -393,23 +396,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         _shareButton = shareButton;
         [self.view addSubview:_shareButton];
     }
-    _dataArr = @[@{@"giftIamge":@"rose.png",@"giftName":@"玫瑰花",@"giftValue":@"10"},
-                 @{@"giftIamge":@"gold.png",@"giftName":@"元宝",@"giftValue":@"2500"},
-                 @{@"giftIamge":@"biantai.png",@"giftName":@"风油精",@"giftValue":@"50"},
-                 @{@"giftIamge":@"apple.png",@"giftName":@"Iphone10",@"giftValue":@"6666"},
-                 @{@"giftIamge":@"book.png",@"giftName":@"金瓶梅",@"giftValue":@"100"},
-                 @{@"giftIamge":@"watch.png",@"giftName":@"百达翡丽",@"giftValue":@"39999"},
-                 @{@"giftIamge":@"chicken.png",@"giftName":@"烤鸡",@"giftValue":@"200"},
-                 @{@"giftIamge":@"airport.png",@"giftName":@"私人飞机",@"giftValue":@"222222"},
-                 @{@"giftIamge":@"moreRose.png",@"giftName":@"玫瑰",@"giftValue":@"520"},
-                 @{@"giftIamge":@"ring.png",@"giftName":@"钻戒",@"giftValue":@"8888"},
-                 @{@"giftIamge":@"champagne.png",@"giftName":@"香槟",@"giftValue":@"680"},
-                 @{@"giftIamge":@"car.png",@"giftName":@"跑车",@"giftValue":@"88888"},
-                 @{@"giftIamge":@"lafei.png",@"giftName":@"拉菲",@"giftValue":@"1280"},
-                 @{@"giftIamge":@"ship.png",@"giftName":@"游艇",@"giftValue":@"131400"},
-                 @{@"giftIamge":@"huangjia.png",@"giftName":@"皇家礼炮",@"giftValue":@"1880"},
-                 @{@"giftIamge":@"house.png",@"giftName":@"别墅",@"giftValue":@"334400"}
-                 ];
 }
 
 #pragma mark --- 礼物、点赞等事件
@@ -429,18 +415,13 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 }
 
 -(void)sendGiftButtonAction:(UIButton *)sender{
-    NSString *img = nil;
-    for (NSDictionary *dic in _dataArr) {
-        if (_giftValue == dic[@"giftValue"]) {
-            img = dic[@"giftIamge"];
-        }
-    }
+    _dataArr = [NSMutableArray arrayWithCapacity:100];
+    _dataArr = _daShangView.dataArr;
     NSString *tempID = [NSString stringWithFormat:@"%@", _hostUser[@"id"]];
     NSDictionary *dictGift = @{@"amount":_giftValue,
                                @"toUserid":tempID,
                                @"rid":@"2",
                                @"businessid":_chatRoomId};
-    __weak typeof(self) weakSelf = self;
     NSInteger tempValue = _giftValue.integerValue;
     [LYUserHttpTool getMyMoneyBagBalanceAndCoinWithParams:nil complete:^(ZSBalance *balance) {
         NSInteger coin = balance.coin.integerValue;
@@ -455,11 +436,13 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
                     {
                         LYGiftMessage *giftMessage = [[LYGiftMessage alloc]init];
                         giftMessage.type = @"1";
+                        giftMessage.content = [NSString stringWithFormat:@"赠送了一个%@",_giftName];
                         GiftContent *giftContent = [[GiftContent alloc] init];
                         giftContent.giftId = _giftValue;
+                        giftContent.giftUrl = _giftImg;
+                        giftContent.giftAnnimType = _gifType;
                         giftMessage.gift = giftContent;
                         [self sendMessage:giftMessage pushContent:@""];
-                        [weakSelf showGiftIamgeAnmiationWith:img];
                     }
                         break;
                     case 11:
@@ -500,7 +483,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 -(void)playProgressChangeAction:(UISlider *) sender{
     CMTime temp1 = CMTimeMakeWithSeconds(sender.value, _player.totalDuration.timescale);
     [_player seekTo:temp1];
-    
 }
 
 #pragma mark -- 娱币不足是否充值
@@ -518,18 +500,12 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 }
 
 #pragma mark -- 礼物动画
--(void) showGiftIamgeAnmiationWith:(NSString *) giftImg{
-    NSInteger index = 0;
-    for (NSDictionary *dic in _dataArr) {
-        if ([dic[@"giftIamge"] isEqualToString:giftImg] ) {
-            index = [_dataArr indexOfObject:dic];
-        }
-    }
-    switch (index) {
-        case 7:
+-(void)showGiftIamgeAnmiationWith:(NSString *)giftImg With:(NSString *) type{
+    switch (type.integerValue) {
+        case 2://从左往右 飞机
             for (int i = 0; i < 30; i ++ ) {
-                UIImage *img = [UIImage imageNamed:giftImg];
-                UIImageView *giftIamge = [[UIImageView alloc] initWithImage:img];
+                UIImageView *giftIamge = [[UIImageView alloc] init];
+                [giftIamge sd_setImageWithURL:[NSURL URLWithString:giftImg]];
                 giftIamge.contentMode = UIViewContentModeScaleAspectFit;
                 int x = (arc4random() % 10) + 1;
                 CGRect rect = giftIamge.bounds;
@@ -544,14 +520,14 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
                 }];
             }
             break;
-        case 11:
+        case 3://跑车和游艇
             for (int i = 0; i < 30; i ++ ) {
-                UIImage *img = [UIImage imageNamed:giftImg];
-                UIImageView *giftIamge = [[UIImageView alloc] initWithImage:img];
+                UIImageView *giftIamge = [[UIImageView alloc] init];
+                [giftIamge sd_setImageWithURL:[NSURL URLWithString:giftImg]];
                 giftIamge.contentMode = UIViewContentModeScaleAspectFit;
                 int x = (arc4random() % 10) + 1;
                 CGRect rect = giftIamge.bounds;
-                rect = CGRectMake( SCREEN_WIDTH + 30, 30 * x, 50, 50);
+                rect = CGRectMake( SCREEN_WIDTH + 30, 30 * x, 150, 150);
                 giftIamge.frame = rect;
                 [self.view addSubview:giftIamge];
                 [self.view bringSubviewToFront:giftIamge];
@@ -564,8 +540,8 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
             break;
         case 13:
             for (int i = 0; i < 30; i ++ ) {
-                UIImage *img = [UIImage imageNamed:giftImg];
-                UIImageView *giftIamge = [[UIImageView alloc] initWithImage:img];
+                UIImageView *giftIamge = [[UIImageView alloc] init];
+                [giftIamge sd_setImageWithURL:[NSURL URLWithString:giftImg]];
                 giftIamge.contentMode = UIViewContentModeScaleAspectFit;
                 int x = (arc4random() % 10) + 1;
                 CGRect rect = giftIamge.bounds;
@@ -580,10 +556,10 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
                 }];
             }
             break;
-        default:
+        default://默认1
             for (int i = 0; i < 30; i ++ ) {
-                UIImage *img = [UIImage imageNamed:giftImg];
-                UIImageView *giftIamge = [[UIImageView alloc] initWithImage:img];
+                UIImageView *giftIamge = [[UIImageView alloc] init];
+                [giftIamge sd_setImageWithURL:[NSURL URLWithString:giftImg]];;
                 giftIamge.contentMode = UIViewContentModeScaleAspectFit;
                 int x = (arc4random() % 10) + 1;
                 CGRect rect = giftIamge.bounds;
@@ -604,6 +580,9 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 
 -(void)notice:(NSNotification *)notification{
     _giftValue = notification.userInfo[@"value"];
+    _giftImg = notification.userInfo[@"image"];
+    _gifType = notification.userInfo[@"gifType"];
+    _giftName = notification.userInfo[@"giftName"];
 }
 
 -(void)watchdashangCloseViewAction:(UIButton *) sender{
@@ -625,6 +604,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [_likeLabel setText:[NSString stringWithFormat:@"%ld", (long)temp]];
     LYGiftMessage *giftMessage = [[LYGiftMessage alloc]init];
     giftMessage.type = @"2";
+    giftMessage.content = @"给你点赞";
     [self sendMessage:giftMessage pushContent:@""];
 }
 
@@ -1165,9 +1145,14 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
          success:^{
              dispatch_async(dispatch_get_main_queue(), ^{
                  RCInformationNotificationMessage *joinChatroomMessage = [[RCInformationNotificationMessage alloc]init];
-                 joinChatroomMessage.message = [NSString stringWithFormat: @"%@：进入直播室",[RCIM sharedRCIM].currentUserInfo.name];
+                 joinChatroomMessage.message = [NSString stringWithFormat: @"进入直播室"];
                  LYStystemMessage *lyStystem = [[LYStystemMessage alloc] init];
-                 [weakSelf sendMessage:lyStystem pushContent:nil];
+                 RCMessage *message = [[RCMessage alloc] initWithType:weakSelf.conversationType
+                                                             targetId:weakSelf.chatRoomId
+                                                            direction:MessageDirection_SEND
+                                                            messageId:-1
+                                                              content:lyStystem];
+                 [weakSelf appendAndDisplayMessage:message];
                  [weakSelf sendMessage:joinChatroomMessage pushContent:nil];
              });
          }
@@ -1194,7 +1179,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
                          [MyUtil showCleanMessage:@"未知错误"];
                      });
                  }
-                 
              });
          }];
     }
@@ -1607,14 +1591,8 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
             if ([giftMessage.type isEqualToString:@"2"]) {//点赞
                 [self showTheLove];//接受到消息
             } else {// 礼物
-                NSString *img = nil;
-                NSString *giftValue = giftMessage.gift.giftId;
-                for (NSDictionary *dic in _dataArr) {
-                    if ([giftValue isEqualToString:dic[@"giftValue"]]) {
-                        img = dic[@"giftIamge"];
-                    }
-                }
-                [self showGiftIamgeAnmiationWith:img];
+               
+                [self showGiftIamgeAnmiationWith:giftMessage.gift.giftUrl With:giftMessage.gift.giftAnnimType];
             }
             break;
         }

@@ -25,5 +25,6 @@
 
 @property (nonatomic ,strong) GiftContent *gift;
 
+@property (nonatomic, strong) NSString *content;
 
 @end

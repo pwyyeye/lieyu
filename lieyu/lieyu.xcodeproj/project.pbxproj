@@ -1516,6 +1516,7 @@
 		85C4417E1D73D67900299C17 /* yubiIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85C441761D73D67900299C17 /* yubiIcon@2x.png */; };
 		85C4417F1D73D67900299C17 /* yubiIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85C441771D73D67900299C17 /* yubiIcon@3x.png */; };
 		85C8F2341C3A4DE700288844 /* FriendsUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C8F2331C3A4DE700288844 /* FriendsUserInfoModel.m */; };
+		85D700D91DBF2B3500652514 /* DaShangGiftModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D700D81DBF2B3500652514 /* DaShangGiftModel.m */; };
 		85E32A3C1D93FCD8007AF71F /* LYSystemTextMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E32A3B1D93FCD8007AF71F /* LYSystemTextMessageCell.m */; };
 		85E32A3F1D93FF7C007AF71F /* LYStystemMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E32A3E1D93FF7C007AF71F /* LYStystemMessage.m */; };
 		85E32A421D95013A007AF71F /* live_setBG@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85E32A401D95013A007AF71F /* live_setBG@3x.png */; };
@@ -4227,6 +4228,8 @@
 		85C441771D73D67900299C17 /* yubiIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yubiIcon@3x.png"; sourceTree = "<group>"; };
 		85C8F2321C3A4DE700288844 /* FriendsUserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsUserInfoModel.h; sourceTree = "<group>"; };
 		85C8F2331C3A4DE700288844 /* FriendsUserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsUserInfoModel.m; sourceTree = "<group>"; };
+		85D700D71DBF2B3500652514 /* DaShangGiftModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaShangGiftModel.h; sourceTree = "<group>"; };
+		85D700D81DBF2B3500652514 /* DaShangGiftModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaShangGiftModel.m; sourceTree = "<group>"; };
 		85E32A3A1D93FCD8007AF71F /* LYSystemTextMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYSystemTextMessageCell.h; sourceTree = "<group>"; };
 		85E32A3B1D93FCD8007AF71F /* LYSystemTextMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYSystemTextMessageCell.m; sourceTree = "<group>"; };
 		85E32A3D1D93FF7C007AF71F /* LYStystemMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYStystemMessage.h; sourceTree = "<group>"; };
@@ -7837,6 +7840,8 @@
 				8541070B1D800D1D0083AF04 /* LiveroomPeopleDetailModel.m */,
 				85FE546C1D77E77200B262EA /* ChatUseres.h */,
 				85FE546D1D77E77200B262EA /* ChatUseres.m */,
+				85D700D71DBF2B3500652514 /* DaShangGiftModel.h */,
+				85D700D81DBF2B3500652514 /* DaShangGiftModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -13306,6 +13311,7 @@
 				15E2409A1BB296CF0090D240 /* OrderDetailCell.m in Sources */,
 				15ED327E1BE336C400E086A1 /* YaoSettingViewController.m in Sources */,
 				15EB351C1BD26D5900BA6161 /* PTzsjlCell.m in Sources */,
+				85D700D91DBF2B3500652514 /* DaShangGiftModel.m in Sources */,
 				85251A5A1D6D4F07005CE01D /* LYTextMessageCell.m in Sources */,
 				15013AFE1BBA33BF00061FAF /* UIButton+WebCache.m in Sources */,
 				15EB7C791BD0DB9400756153 /* LYPlayTogetherMainViewController.m in Sources */,

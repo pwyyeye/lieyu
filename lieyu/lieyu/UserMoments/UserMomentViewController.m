@@ -154,8 +154,8 @@
 #pragma mark - 获取最新玩友圈数据
 - (void)getDataWithType:(dataType)type needLoad:(BOOL)need{
 
-    NSString *startStr = [NSString stringWithFormat:@"%ld",(long)_pageStartCount * _pageCount];
-    NSString *pageCountStr = [NSString stringWithFormat:@"%ld",(long)_pageCount];
+    NSString *startStr = [NSString stringWithFormat:@"%ld",(long) _pageStartCount];
+    NSString *pageCountStr = @"10";
     NSDictionary *paraDic = nil;
     __weak __typeof(self) weakSelf = self;
     if(type == dataForMine){//我的玩友圈数据
@@ -180,15 +180,13 @@
         if (dataArray.count == 1 && [str isKindOfClass:[NSString class]]) {
             [_userTablewView.mj_footer endRefreshing];
         }else{
-            if(pageStartCount == 0){//下啦刷新时
+            if(_pageStartCount == 0){//下啦刷新时
                 [_dataArray removeAllObjects];
                 [_dataArray addObjectsFromArray:dataArray];
             }else {//上拉加载时
-                NSMutableArray *muArr = [NSMutableArray arrayWithArray:_dataArray].mutableCopy;
-                [muArr addObjectsFromArray:dataArray];
+                [_dataArray addObjectsFromArray:dataArray];
+                [_userTablewView.mj_footer endRefreshing];
             }
-            _pageStartCount ++;
-            [_userTablewView.mj_footer endRefreshing];
         }
     }else{
         [_userTablewView.mj_footer endRefreshingWithNoMoreData];
@@ -385,6 +383,7 @@
 //    [self initMJRefeshHeaderForGif:header];
     
     tableView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
+        _pageStartCount +=1;
         [weakSelf getDataWithType:i needLoad:NO];
     }];
 }
@@ -863,7 +862,6 @@
 -(void)sendGiftButtonAction:(UIButton *)sender{
     switch (_giftNumber) {
         case 0:
-            
             break;
         case 1://单个送
             [MyUtil showMessage:[NSString stringWithFormat:@"%ld",_giftValue]];

@@ -494,18 +494,12 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 }
 
 #pragma mark -- 礼物动画
--(void) showGiftIamgeAnmiationWith:(NSString *) giftImg{
-    NSInteger index = 0;
-    for (NSDictionary *dic in _dataArr) {
-        if ([dic[@"giftIamge"] isEqualToString:giftImg] ) {
-            index = [_dataArr indexOfObject:dic];
-        }
-    }
-    switch (index) {
-        case 7:
+-(void) showGiftIamgeAnmiationWith:(NSString *) giftImg With:(NSString *) type{
+    switch (type.integerValue) {
+        case 2:
             for (int i = 0; i < 30; i ++ ) {
-                UIImage *img = [UIImage imageNamed:giftImg];
-                UIImageView *giftIamge = [[UIImageView alloc] initWithImage:img];
+                UIImageView *giftIamge = [[UIImageView alloc] init];
+                [giftIamge sd_setImageWithURL:[NSURL URLWithString:giftImg]];
                 giftIamge.contentMode = UIViewContentModeScaleAspectFit;
                 int x = (arc4random() % 10) + 1;
                 CGRect rect = giftIamge.bounds;
@@ -520,14 +514,14 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
                 }];
             }
             break;
-        case 11:
+        case 3:
             for (int i = 0; i < 30; i ++ ) {
-                UIImage *img = [UIImage imageNamed:giftImg];
-                UIImageView *giftIamge = [[UIImageView alloc] initWithImage:img];
+                UIImageView *giftIamge = [[UIImageView alloc] init];
+                [giftIamge sd_setImageWithURL:[NSURL URLWithString:giftImg]];
                 giftIamge.contentMode = UIViewContentModeScaleAspectFit;
                 int x = (arc4random() % 10) + 1;
                 CGRect rect = giftIamge.bounds;
-                rect = CGRectMake( SCREEN_WIDTH + 30, 30 * x, 50, 50);
+                rect = CGRectMake( SCREEN_WIDTH + 30, 30 * x, 150, 150);
                 giftIamge.frame = rect;
                 [self.view addSubview:giftIamge];
                 [self.view bringSubviewToFront:giftIamge];
@@ -540,8 +534,8 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
             break;
         case 13:
             for (int i = 0; i < 30; i ++ ) {
-                UIImage *img = [UIImage imageNamed:giftImg];
-                UIImageView *giftIamge = [[UIImageView alloc] initWithImage:img];
+                UIImageView *giftIamge = [[UIImageView alloc] init];
+                [giftIamge sd_setImageWithURL:[NSURL URLWithString:giftImg]];
                 giftIamge.contentMode = UIViewContentModeScaleAspectFit;
                 int x = (arc4random() % 10) + 1;
                 CGRect rect = giftIamge.bounds;
@@ -558,8 +552,8 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
             break;
         default:
             for (int i = 0; i < 30; i ++ ) {
-                UIImage *img = [UIImage imageNamed:giftImg];
-                UIImageView *giftIamge = [[UIImageView alloc] initWithImage:img];
+                UIImageView *giftIamge = [[UIImageView alloc] init];
+                [giftIamge sd_setImageWithURL:[NSURL URLWithString:giftImg]];
                 giftIamge.contentMode = UIViewContentModeScaleAspectFit;
                 int x = (arc4random() % 10) + 1;
                 CGRect rect = giftIamge.bounds;
@@ -581,17 +575,17 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 #pragma mark --- 初始化播放器
 -(void) initPLplayer {
     // 预先设定几组编码质量，之后可以切换
-    CGSize videoSize = CGSizeMake(720 , 1280);
+    CGSize videoSize = CGSizeMake(1080 , 1920);
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
     if (orientation <= AVCaptureVideoOrientationLandscapeLeft) {
         if (orientation > AVCaptureVideoOrientationPortraitUpsideDown) {
-            videoSize = CGSizeMake(1280 , 720);
+            videoSize = CGSizeMake(1920 , 1080);
         }
     }
     self.videoStreamingConfigurations = @[
-                                          [[PLVideoStreamingConfiguration alloc] initWithVideoSize:videoSize expectedSourceVideoFrameRate:15 videoMaxKeyframeInterval:45 averageVideoBitRate:800 * 1000 videoProfileLevel:AVVideoProfileLevelH264Baseline31],
-                                          [[PLVideoStreamingConfiguration alloc] initWithVideoSize:CGSizeMake(800 , 480) expectedSourceVideoFrameRate:24 videoMaxKeyframeInterval:72 averageVideoBitRate:800 * 1000 videoProfileLevel:AVVideoProfileLevelH264Baseline31],
-                                          [[PLVideoStreamingConfiguration alloc] initWithVideoSize:videoSize expectedSourceVideoFrameRate:30 videoMaxKeyframeInterval:90 averageVideoBitRate:800 * 1000 videoProfileLevel:AVVideoProfileLevelH264Baseline31],
+                                          [[PLVideoStreamingConfiguration alloc] initWithVideoSize:videoSize expectedSourceVideoFrameRate:15 videoMaxKeyframeInterval:45 averageVideoBitRate:800 * 1000 videoProfileLevel:AVVideoProfileLevelH264Baseline41],
+                                          [[PLVideoStreamingConfiguration alloc] initWithVideoSize:CGSizeMake(800 , 480) expectedSourceVideoFrameRate:24 videoMaxKeyframeInterval:72 averageVideoBitRate:800 * 1000 videoProfileLevel:AVVideoProfileLevelH264Baseline41],
+                                          [[PLVideoStreamingConfiguration alloc] initWithVideoSize:videoSize expectedSourceVideoFrameRate:30 videoMaxKeyframeInterval:90 averageVideoBitRate:800 * 1000 videoProfileLevel:AVVideoProfileLevelH264Baseline41],
                                           ];
     self.videoCaptureConfigurations = @[
                                         [[PLVideoCaptureConfiguration alloc] initWithVideoFrameRate:15 sessionPreset:AVCaptureSessionPresetiFrame960x540 previewMirrorFrontFacing:YES previewMirrorRearFacing:NO streamMirrorFrontFacing:YES streamMirrorRearFacing:NO cameraPosition:AVCaptureDevicePositionFront videoOrientation:AVCaptureVideoOrientationPortrait],
@@ -1691,31 +1685,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
                 _likeNum += 1;
                 _likeLabel.text = [NSString stringWithFormat:@"%ld",(long)_likeNum];
             } else {// 礼物
-                NSString *img = nil;
-                NSString *giftValue = giftMessage.gift.giftId;
-                _dataArr = @[@{@"giftIamge":@"rose.png",@"giftName":@"玫瑰花",@"giftValue":@"10"},
-                             @{@"giftIamge":@"gold.png",@"giftName":@"元宝",@"giftValue":@"2500"},
-                             @{@"giftIamge":@"biantai.png",@"giftName":@"风油精",@"giftValue":@"50"},
-                             @{@"giftIamge":@"apple.png",@"giftName":@"Iphone10",@"giftValue":@"6666"},
-                             @{@"giftIamge":@"book.png",@"giftName":@"金瓶梅",@"giftValue":@"100"},
-                             @{@"giftIamge":@"watch.png",@"giftName":@"百达翡丽",@"giftValue":@"39999"},
-                             @{@"giftIamge":@"chicken.png",@"giftName":@"烤鸡",@"giftValue":@"200"},
-                             @{@"giftIamge":@"airport.png",@"giftName":@"私人飞机",@"giftValue":@"222222"},
-                             @{@"giftIamge":@"moreRose.png",@"giftName":@"玫瑰",@"giftValue":@"520"},
-                             @{@"giftIamge":@"ring.png",@"giftName":@"钻戒",@"giftValue":@"8888"},
-                             @{@"giftIamge":@"champagne.png",@"giftName":@"香槟",@"giftValue":@"680"},
-                             @{@"giftIamge":@"car.png",@"giftName":@"跑车",@"giftValue":@"88888"},
-                             @{@"giftIamge":@"lafei.png",@"giftName":@"拉菲",@"giftValue":@"1280"},
-                             @{@"giftIamge":@"ship.png",@"giftName":@"游艇",@"giftValue":@"131400"},
-                             @{@"giftIamge":@"huangjia.png",@"giftName":@"皇家礼炮",@"giftValue":@"1880"},
-                             @{@"giftIamge":@"house.png",@"giftName":@"别墅",@"giftValue":@"334400"}
-                             ];
-                for (NSDictionary *dic in _dataArr) {
-                    if ([giftValue isEqualToString:dic[@"giftValue"]]) {
-                        img = dic[@"giftIamge"];
-                    }
-                }
-                [self showGiftIamgeAnmiationWith:img];
+                [self showGiftIamgeAnmiationWith:giftMessage.gift.giftUrl With:giftMessage.gift.giftAnnimType];
             }
             break;
         }

@@ -17,10 +17,7 @@ typedef NS_ENUM(NSInteger, textType) {
 @property (weak, nonatomic) IBOutlet UIButton *sendGiftButton;
 
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
-
-
-@property (strong, nonatomic) NSArray *dataArr;
-
+@property (strong, nonatomic) NSMutableArray *dataArr;
 @property (strong, nonatomic) UIButton *giftButton;
 @property (assign, nonatomic) NSInteger chooseTag;
 @property (assign, nonatomic) NSInteger number;

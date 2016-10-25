@@ -88,6 +88,7 @@
 
 #pragma mark ---- 打赏
 +(void) daShangWithParms:(NSDictionary *) parms complete: (void(^)(NSDictionary *))complete;
-
+#pragma mark --- 打赏列表
++(void) getDaShangListParms: (NSDictionary *) parms complete: (void(^)(NSArray *)) complete;
 
 @end
