@@ -27,11 +27,12 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.title = @"娱币充值";
+    [self getData];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self getData];
+//    [self getData];
     [self initRightItem];
     
     [self initItems];
@@ -170,10 +171,10 @@
 }
 
 - (void)rechargeDelegateRefreshData{
-    [self getData];
-    if ([self.delegate respondsToSelector:@selector(MineYubiWithdrawDelegate:)]) {
-        [self.delegate MineYubiWithdrawDelegate:0];
-    }
+//    [self getData];
+//    if ([self.delegate respondsToSelector:@selector(MineYubiWithdrawDelegate:)]) {
+//        [self.delegate MineYubiWithdrawDelegate:0];
+//    }
 }
 
 - (void)rechargeCoinDelegate:(double)amount{

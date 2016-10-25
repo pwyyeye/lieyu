@@ -35,6 +35,7 @@
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     [_collectionView registerNib:[UINib nibWithNibName:@"MineMoneyBagCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"MineMoneyBagCollectionViewCell"];
+    [self getData];
 }
 
 - (void)getData{
@@ -49,7 +50,7 @@
     [super viewDidLoad];
 //    [self initRightItem];
     
-    [self getData];
+//    [self getData];
 }
 
 - (void)initRightItem{
@@ -138,7 +139,7 @@
 }
 
 - (void)MineBalanceDelegateRefreshData{
-    [self getData];
+//    [self getData];
 }
 
 - (IBAction)yubiClick:(UIButton *)sender {
@@ -150,11 +151,11 @@
 }
 
 - (void)MineYubiWithdrawDelegate:(double)amount{
-    [self getData];
+//    [self getData];
 }
 
 - (void)coinShopQuitDelegate{
-    [self getData];
+//    [self getData];
 }
 
 @end

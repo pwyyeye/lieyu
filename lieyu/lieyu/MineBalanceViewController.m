@@ -22,11 +22,12 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.title = @"余额";
+    [self getData];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self getData];
+//    [self getData];
     [self initRightItem];
     
     _rechargeButton.layer.cornerRadius = 19;
@@ -110,7 +111,7 @@
 
 #pragma mark - 绑定账户的代理方法
 - (void)mineBoundAccountWithType:(NSString *)type Account:(NSString *)account{
-    [self getData];
+//    [self getData];
 }
 
 #pragma mark - alertview的代理事件
@@ -129,11 +130,11 @@
             [LYUserHttpTool rechargeMoneyBagWithParams:dict complete:^(NSString *result) {
                 ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
                 detailViewController.orderNo=result;
+                detailViewController.delegate = weakSelf;
                 detailViewController.payAmount=[textField.text doubleValue];
-                detailViewController.productName=@"钱包余额充值";
+                detailViewController.productName=@"余额充值";
                 detailViewController.productDescription=@"暂无";
                 detailViewController.isRechargeBalance = YES;
-                detailViewController.delegate = weakSelf;
                 [weakSelf.navigationController pushViewController:detailViewController animated:YES];
             }];
         }else{
@@ -144,15 +145,18 @@
 
 #pragma mark - 充值后的代理方法
 - (void)rechargeDelegateRefreshData{
-    [self refreshBalanceViewControllerData];
+//    [self getData];
+//    if (self.delegate && [self.delegate respondsToSelector:@selector(MineBalanceDelegateRefreshData)]) {
+//        [self.delegate MineBalanceDelegateRefreshData];
+//    }
 }
 
 #pragma mark - 刷新数据
 - (void)refreshBalanceViewControllerData{
-    [self getData];
-    if (self.delegate && [self.delegate respondsToSelector:@selector(MineBalanceDelegateRefreshData)]) {
-        [self.delegate MineBalanceDelegateRefreshData];
-    }
+//    [self getData];
+//    if (self.delegate && [self.delegate respondsToSelector:@selector(MineBalanceDelegateRefreshData)]) {
+//        [self.delegate MineBalanceDelegateRefreshData];
+//    }
 }
 
 @end
