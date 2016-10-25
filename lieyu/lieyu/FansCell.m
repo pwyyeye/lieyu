@@ -35,7 +35,7 @@
     self.nameLabel.text = fansModel.usernick;
     self.firstLabel.text = [MyUtil getAstroWithBirthday:fansModel.birthday];
     self.secondLabel.text = @"互联网";
-    if ([fansModel.friendStatus isEqualToString:@"3"] || [fansModel.friendStatus isEqualToString:@"1"]) {//好友
+    if ([fansModel.friendStatus isEqualToString:@"3"] || [fansModel.friendStatus isEqualToString:@"1"]) {//关注
         [self.focusButton setTitle:@"已关注" forState:(UIControlStateNormal)];
         self.focusButton.userInteractionEnabled = NO;
     } else {//粉丝

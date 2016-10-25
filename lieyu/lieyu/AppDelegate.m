@@ -193,47 +193,41 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource,UN
     //        NSLog(@"MTA start");
     //    }
     //
-    //#if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE80_
-    //    if(UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))
-    //    {
-    //        //register remoteNotification types
-    //        UIMutableUserNotificationAction *action1 = [[UIMutableUserNotificationAction alloc] init];
-    //        action1.identifier = @"action1_identifier";
-    //        action1.title=@"Accept";
-    //        action1.activationMode = UIUserNotificationActivationModeForeground;//当点击的时候启动程序
-    //
-    //        UIMutableUserNotificationAction *action2 = [[UIMutableUserNotificationAction alloc] init];  //第二按钮
-    //        action2.identifier = @"action2_identifier";
-    //        action2.title=@"Reject";
-    //        action2.activationMode = UIUserNotificationActivationModeBackground;//当点击的时候不启动程序，在后台处理
-    //        action2.authenticationRequired = YES;//需要解锁才能处理，如果action.activationMode = UIUserNotificationActivationModeForeground;则这个属性被忽略；
-    //        action2.destructive = YES;
-    //
-    //        UIMutableUserNotificationCategory *categorys = [[UIMutableUserNotificationCategory alloc] init];
-    //        categorys.identifier = @"category1";//这组动作的唯一标示
-    //        [categorys setActions:@[action1,action2] forContext:(UIUserNotificationActionContextDefault)];
-    //
-    //        UIUserNotificationSettings *userSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge|UIUserNotificationTypeSound|UIUserNotificationTypeAlert categories:[NSSet setWithObject:categorys]];
-    ////        [UMessage registerRemoteNotificationAndUserNotificationSettings:userSettings];
-    //        [application registerUserNotificationSettings:userSettings];
-    //    } else{
-    //        //register remoteNotification types
-    ////        [UMessage registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge
-    ////         |UIRemoteNotificationTypeSound
-    ////         |UIRemoteNotificationTypeAlert];
-    //[application registerForRemoteNotificationTypes: UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound];    }
-    //#else
-    //
-    //    //register remoteNotification types
-    //    [UMessage registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge
-    //     |UIRemoteNotificationTypeSound
-    //     |UIRemoteNotificationTypeAlert];
-    //
-    //#endif
+    //如果你期望使用交互式(只有iOS 8.0及以上有)的通知，请参考下面注释部分的初始化代码
+    UIMutableUserNotificationAction *action1 = [[UIMutableUserNotificationAction alloc] init];
+    action1.identifier = @"action1_identifier";
+    action1.title=@"打开应用";
+    action1.activationMode = UIUserNotificationActivationModeForeground;//当点击的时候启动程序
     
+    UIMutableUserNotificationAction *action2 = [[UIMutableUserNotificationAction alloc] init];  //第二按钮
+    action2.identifier = @"action2_identifier";
+    action2.title=@"忽略";
+    action2.activationMode = UIUserNotificationActivationModeBackground;//当点击的时候不启动程序，在后台处理
+    action2.authenticationRequired = YES;//需要解锁才能处理，如果action.activationMode = UIUserNotificationActivationModeForeground;则这个属性被忽略；
+    action2.destructive = YES;
+    UIMutableUserNotificationCategory *actionCategory1 = [[UIMutableUserNotificationCategory alloc] init];
+    actionCategory1.identifier = @"category1";//这组动作的唯一标示
+    [actionCategory1 setActions:@[action1,action2] forContext:(UIUserNotificationActionContextDefault)];
+    NSSet *categories = [NSSet setWithObjects:actionCategory1, nil];
+    
+    //如果要在iOS10显示交互式的通知，必须注意实现以下代码
+    if ([[[UIDevice currentDevice] systemVersion]intValue]>=10) {
+        UNNotificationAction *action1_ios10 = [UNNotificationAction actionWithIdentifier:@"action1_ios10_identifier" title:@"打开应用" options:UNNotificationActionOptionForeground];
+        UNNotificationAction *action2_ios10 = [UNNotificationAction actionWithIdentifier:@"action2_ios10_identifier" title:@"忽略" options:UNNotificationActionOptionForeground];
+        
+        //UNNotificationCategoryOptionNone
+        //UNNotificationCategoryOptionCustomDismissAction  清除通知被触发会走通知的代理方法
+        //UNNotificationCategoryOptionAllowInCarPlay       适用于行车模式
+        UNNotificationCategory *category1_ios10 = [UNNotificationCategory categoryWithIdentifier:@"category101" actions:@[action1_ios10,action2_ios10]   intentIdentifiers:@[] options:UNNotificationCategoryOptionCustomDismissAction];
+        NSSet *categories_ios10 = [NSSet setWithObjects:category1_ios10, nil];
+        [center setNotificationCategories:categories_ios10];
+    }else
+    {
+        [UMessage registerForRemoteNotifications:categories];
+    }
     
     //for log
-    [UMessage setLogEnabled:YES];
+    [UMessage setLogEnabled:NO];
     
     NSString *username=[USER_DEFAULT objectForKey:@"username"];
     NSString *password=[USER_DEFAULT objectForKey:@"pass"];
@@ -242,7 +236,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource,UN
     if((([MyUtil isEmptyString:username] || [MyUtil isEmptyString:password]) && [MyUtil isEmptyString:openID])){
         LPUserLoginViewController *login=[[LPUserLoginViewController alloc] initWithNibName:@"LPUserLoginViewController" bundle:nil];
         [self.navigationController pushViewController:login animated:YES];
-        //         self.window.roxotViewController=login;
+        //self.window.roxotViewController=login;
     }
     
     //处理消息推送
@@ -494,8 +488,9 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
         //关闭友盟自带的弹出框
         [UMessage setAutoAlert:NO];
         //必须加这句代码
-        [UMessage didReceiveRemoteNotification:userInfo];
-        
+//        [UMessage didReceiveRemoteNotification:userInfo];
+        UIApplication *application = [UIApplication sharedApplication];
+        [self takeNotification:userInfo andApplicationStatus:application.applicationState];
     }else{
         //应用处于前台时的本地推送接受
     }
@@ -509,8 +504,10 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         //应用处于后台时的远程推送接受
         //必须加这句代码
-        [UMessage didReceiveRemoteNotification:userInfo];
-        
+//        [UMessage didReceiveRemoteNotification:userInfo];
+        UIApplication *application = [UIApplication sharedApplication];
+        [self takeNotification:userInfo andApplicationStatus:application.applicationState];
+
     }else{
         //应用处于后台时的本地推送接受
     }
@@ -533,22 +530,6 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
      p = 0;
      }*/
     
-    
-    if (application.applicationState == UIApplicationStateActive) {
-        NSLog(@"active");
-        //程序当前正处于前台
-    }
-    else if(application.applicationState == UIApplicationStateInactive)
-    {
-        NSLog(@"inactive");
-        //程序处于后台
-        
-    } else if(application.applicationState == UIApplicationStateBackground)
-    {
-        NSLog(@"background");
-        //程序处于后台
-        
-    }
     [self takeNotification:userInfo andApplicationStatus:application.applicationState];
     
 }
@@ -567,9 +548,6 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
                 huodong.linkid=linkid.integerValue;
                 [self.navigationController pushViewController:huodong animated:YES];
             }
-            
-            
-            
             if ([dic objectForKey:@"type"] == nil || [dic objectForKey:@"bzId"] ==nil ) {
                 return;
             }
@@ -588,7 +566,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         if (![MyUtil isEmptyString:count]) {
             [USER_DEFAULT setObject:[NSString stringWithFormat:@"%d",count.intValue<99?count.intValue+1:99]  forKey:@"badgeValue"];
             [UIApplication sharedApplication].applicationIconBadgeNumber=count.intValue;
-        }else{
+        } else {
             [USER_DEFAULT setObject:@"1" forKey:@"badgeValue"];
             [UIApplication sharedApplication].applicationIconBadgeNumber=1;
         }

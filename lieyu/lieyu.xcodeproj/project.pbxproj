@@ -1522,8 +1522,6 @@
 		85E32A431D95013A007AF71F /* live_setBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85E32A411D95013A007AF71F /* live_setBG@2x.png */; };
 		85E6262B1D9E06BD0026E433 /* Group 16@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85E626291D9E06BD0026E433 /* Group 16@2x.png */; };
 		85E6262C1D9E06BD0026E433 /* Group 16@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85E6262A1D9E06BD0026E433 /* Group 16@3x.png */; };
-		85E6262F1D9E36220026E433 /* barChatroomMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E6262E1D9E36220026E433 /* barChatroomMoreView.m */; };
-		85E626311D9E363C0026E433 /* barChatroomMoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85E626301D9E363C0026E433 /* barChatroomMoreView.xib */; };
 		85E6263A1D9E38200026E433 /* chatMoreBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85E626321D9E38200026E433 /* chatMoreBG@2x.png */; };
 		85E6263B1D9E38200026E433 /* chatMoreBG@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85E626331D9E38200026E433 /* chatMoreBG@3x.png */; };
 		85E6263C1D9E38200026E433 /* chatNotification@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85E626341D9E38200026E433 /* chatNotification@2x.png */; };
@@ -4237,9 +4235,6 @@
 		85E32A411D95013A007AF71F /* live_setBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "live_setBG@2x.png"; sourceTree = "<group>"; };
 		85E626291D9E06BD0026E433 /* Group 16@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Group 16@2x.png"; sourceTree = "<group>"; };
 		85E6262A1D9E06BD0026E433 /* Group 16@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Group 16@3x.png"; sourceTree = "<group>"; };
-		85E6262D1D9E36220026E433 /* barChatroomMoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = barChatroomMoreView.h; sourceTree = "<group>"; };
-		85E6262E1D9E36220026E433 /* barChatroomMoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = barChatroomMoreView.m; sourceTree = "<group>"; };
-		85E626301D9E363C0026E433 /* barChatroomMoreView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = barChatroomMoreView.xib; sourceTree = "<group>"; };
 		85E626321D9E38200026E433 /* chatMoreBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chatMoreBG@2x.png"; sourceTree = "<group>"; };
 		85E626331D9E38200026E433 /* chatMoreBG@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chatMoreBG@3x.png"; sourceTree = "<group>"; };
 		85E626341D9E38200026E433 /* chatNotification@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chatNotification@2x.png"; sourceTree = "<group>"; };
@@ -5118,7 +5113,7 @@
 		D73652461BAEBF60002541CE /* TaoCanModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaoCanModel.m; sourceTree = "<group>"; };
 		D74436151BC1577200958046 /* libcorecrypto.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcorecrypto.tbd; path = usr/lib/system/libcorecrypto.tbd; sourceTree = SDKROOT; };
 		D74714291BAD151400611579 /* MainTabbarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainTabbarViewController.h; path = Classes/MainTabbarViewController.h; sourceTree = "<group>"; };
-		D747142A1BAD151400611579 /* MainTabbarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainTabbarViewController.m; path = Classes/MainTabbarViewController.m; sourceTree = "<group>"; };
+		D747142A1BAD151400611579 /* MainTabbarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = MainTabbarViewController.m; path = Classes/MainTabbarViewController.m; sourceTree = "<group>"; usesTabs = 0; };
 		D748BC351BA1C24B005AA996 /* HttpOperatorProvider+backend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HttpOperatorProvider+backend.h"; sourceTree = "<group>"; };
 		D748BC361BA1C24B005AA996 /* HttpOperatorProvider+backend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HttpOperatorProvider+backend.m"; sourceTree = "<group>"; };
 		D748BC371BA1C24B005AA996 /* HttpOperatorProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpOperatorProvider.h; sourceTree = "<group>"; };
@@ -10094,7 +10089,6 @@
 		AD8899B81B9AFE61007BCC7C /* lieyu */ = {
 			isa = PBXGroup;
 			children = (
-				856EC8D21DBB324400BC4C69 /* lieyu.entitlements */,
 				D748BC801BA1CCE0005AA996 /* Classes */,
 				D748BC751BA1CA69005AA996 /* Model */,
 				D748BC331BA1C24B005AA996 /* CoreServices */,
@@ -10109,6 +10103,7 @@
 				ADC66CE01C1EC38E00E597D9 /* LYMain.storyboard */,
 				15571BC01BE8E6EC006F73D0 /* NewMain.storyboard */,
 				AD8899CB1B9AFE61007BCC7C /* LaunchScreen.xib */,
+				856EC8D21DBB324400BC4C69 /* lieyu.entitlements */,
 				AD8899C01B9AFE61007BCC7C /* lieyu.xcdatamodeld */,
 				AD8899B91B9AFE61007BCC7C /* Supporting Files */,
 			);
@@ -10820,9 +10815,6 @@
 				D71E1D851BAE87E600915F37 /* BeerBarDetailCell.m */,
 				D71E1D841BAE87E600915F37 /* BeerBarDetailCell.h */,
 				D74C608D1BB6F64F00A49598 /* HomePageEntryConstant.h */,
-				85E6262D1D9E36220026E433 /* barChatroomMoreView.h */,
-				85E6262E1D9E36220026E433 /* barChatroomMoreView.m */,
-				85E626301D9E363C0026E433 /* barChatroomMoreView.xib */,
 			);
 			path = BeerBarDetail;
 			sourceTree = "<group>";
@@ -11757,7 +11749,6 @@
 				38979A711CA40919002946F5 /* kawayi7.png in Resources */,
 				38979A2A1CA40919002946F5 /* dianzan1.png in Resources */,
 				855783CD1CBBC46F0044497B /* shopMyNotification@2x.png in Resources */,
-				85E626311D9E363C0026E433 /* barChatroomMoreView.xib in Resources */,
 				85251A841D6ED414005CE01D /* live_B_momo@3x.png in Resources */,
 				AD203BE21CB0C4F30014618A /* tb_1.gif in Resources */,
 				854107041D7E93A70083AF04 /* BackImage.png in Resources */,
@@ -13064,7 +13055,6 @@
 				15EB35231BD3395800BA6161 /* EScrollerView.m in Sources */,
 				85479FAB1CDD9B920073AFEE /* LYFriendsAMessageDetailViewController.m in Sources */,
 				15EB35191BD26D2F00BA6161 /* PTAddressCell.m in Sources */,
-				85E6262F1D9E36220026E433 /* barChatroomMoreView.m in Sources */,
 				85F545161C13DE000013B92B /* LYUserDetailInfoViewController.m in Sources */,
 				850B32C41D2E490F0080CA6D /* GroupLeaderRegisterViewController.m in Sources */,
 				D748BC3E1BA1C24B005AA996 /* HttpOperatorProvider+backend.m in Sources */,

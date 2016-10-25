@@ -622,10 +622,6 @@ static NSString *CellIdentifier = @"CustomerCell";
     }];
 }
 
--(void)setFrameForCell{
-    
-}
-
 -(void)addFriendAct:(id)sender{
     LYSearchFriendViewController *searchFriendViewController=[[LYSearchFriendViewController alloc]initWithNibName:@"LYSearchFriendViewController" bundle:nil];
     [self.navigationController pushViewController:searchFriendViewController animated:YES];

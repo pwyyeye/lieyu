@@ -14,8 +14,6 @@
 #import <RongIMKit/RCIM.h>
 #import "RCMessageContent.h"
 #import "RCIM.h"
-#import "barChatroomMoreView.h"
-
 /**
  *  文本cell标示
  */
@@ -38,7 +36,6 @@ static NSString *const rcGiftMessageCellIndentifier = @"rcGiftMessageCellIndenti
     NSString *_userId_RM;
     BOOL _isGroupManage;
     BOOL _notificationStatus;//通知状态
-    barChatroomMoreView *_barcahtMoreView;//选项菜单
 }
 
 @property(assign,nonatomic) BOOL isShow;//顶部
@@ -104,17 +101,6 @@ static NSString *const rcGiftMessageCellIndentifier = @"rcGiftMessageCellIndenti
 }
 
 #pragma mark ---- 顶部按钮
-
-//-(void)moreAct:(id)sender {
-//    if (_isShow) {
-//        [_barcahtMoreView removeFromSuperview];
-//        _barcahtMoreView = nil;
-//    }
-//    _barcahtMoreView = [[[NSBundle mainBundle] loadNibNamed:@"barChatroomMoreView" owner:self options:nil] lastObject];
-//    _barcahtMoreView.frame = CGRectMake(SCREEN_WIDTH - 125, 64, 119, 149);
-//    _barcahtMoreView.backgroundColor = [UIColor clearColor];
-//    [self .view addSubview:_barcahtMoreView];
-//}
 
 - (void)moreAct:(id)sender{
     if (_isShow) {

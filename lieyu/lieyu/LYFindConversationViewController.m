@@ -74,37 +74,36 @@
     NSArray *menuItems =
     @[
       [KxMenuItem menuItem:@"老司机列表"
-                     image:[UIImage imageNamed:@"列表"]
+                     image:[UIImage imageNamed:@"chatPerson"]
                     target:self
                     action:@selector(checkAllPeople)],
       _notificationStatus?
       [KxMenuItem menuItem:@"关闭通知"
-                     image:[UIImage imageNamed:@"关闭通知"]
+                     image:[UIImage imageNamed:@"chatNotification"]
                     target:self
                     action:@selector(notificationChoose)]:[KxMenuItem menuItem:@"打开通知"
-                                                                         image:[UIImage imageNamed:@"打开通知"]
+                                                                         image:[UIImage imageNamed:@"chatNotification"]
                                                                         target:self
                                                                         action:@selector(notificationChoose)],
-      
       [KxMenuItem menuItem:@"退出群组"
-                     image:[UIImage imageNamed:@"退出"]
+                     image:[UIImage imageNamed:@"quitChat"]
                     target:self
                     action:@selector(quitFromGroup)]
-      
       ];
     for (KxMenuItem *item in menuItems) {
-        item.foreColor = [UIColor blackColor];
+        item.foreColor = [UIColor whiteColor];
     }
     //    KxMenuItem *first = menuItems[0];
     
     //    first.alignment = NSTextAlignmentCenter;
     
-    [KxMenu setTintColor:RGBA(246, 246, 246, 1)];
-    [KxMenu setTitleFont:[UIFont italicSystemFontOfSize:13]];
+    [KxMenu setTintColor:RGBA(72, 70, 70, 1)];
+    [KxMenu setTitleFont:[UIFont italicSystemFontOfSize:15]];
     
     [KxMenu showMenuInView:self.view
-                  fromRect:CGRectMake(SCREEN_WIDTH-75, 64, 100,0)
+                  fromRect:CGRectMake(SCREEN_WIDTH-90,64, 129,0)
                  menuItems:menuItems];
+
 }
 
 
@@ -222,11 +221,9 @@
 
 #pragma mark - 踢人（已废弃）
 - (void)removePersonFromChatRoom{
-//   121.40.229.133:80/portal/friendAction.do?action=expand&chatroomId=150&imuserId=130615&minute=1&SEM_LOGIN_TOKEN=g6hccy5yqo78xk3yarls7888
-    
     NSDictionary *paraDic = @{@"chatroomId":self.targetId,@"imuserId":_userId_RM,@"minute":@"43200"};
     [LYYUHttpTool yuRemoveUserFromeChatRoomWith:paraDic complete:^(BOOL result) {
-        
+        [MyUtil showCleanMessage:@"禁言成功"];
     }];
 }
 
