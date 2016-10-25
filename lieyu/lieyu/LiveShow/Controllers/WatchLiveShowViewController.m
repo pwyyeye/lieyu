@@ -611,15 +611,13 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 
 #pragma mark -- 分享
 -(void)liveShareButtonAction{
-    NSString *string= [NSString stringWithFormat:@"猎娱直播间"];
+    NSString *string = [NSString stringWithFormat:@"【前方高能，直播来袭】%@正在赤裸裸地直播~",_hostUser[@"usernick"]];
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"%@%@%@",LY_SERVER,LY_LIVE_share,self.chatRoomId];
     [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@%@%@",LY_SERVER,LY_LIVE_share,self.chatRoomId];
     [UMSocialData defaultData].extConfig.qqData.url = [NSString stringWithFormat:@"%@%@%@",LY_SERVER,LY_LIVE_share,self.chatRoomId];
-
     [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:_shareIamge shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
 }
-
 
 #pragma mark --- 初始化播放器
 -(void) initPLplayer{
@@ -735,6 +733,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [self.view bringSubviewToFront:_closeView];
     _closeView.shareImage = self.shareIamge;
     _closeView.chatRoomID = _chatRoomId;
+    _closeView.shareName = _hostUser[@"usernick"];
     [_closeView.backButton addTarget:self action:@selector(closebackButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
     [_closeView.focusButton addTarget:self action:@selector(closeFocusButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
 }

@@ -270,25 +270,34 @@
     [UMSocialData defaultData].extConfig.wechatSessionData.title = @"猎娱直播间";
     [UMSocialData defaultData].extConfig.wechatTimelineData.title = @"猎娱直播间";
     [UMSocialData defaultData].extConfig.qqData.title = @"猎娱直播间";
+    
+    NSString *content = [NSString stringWithFormat:@"【前方高能，直播来袭】%@正在赤裸裸地直播~",app.userModel.usernick];
     //分享的链接
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = liveStr;
     [UMSocialData defaultData].extConfig.wechatSessionData.url = liveStr;
     [UMSocialData defaultData].extConfig.qqData.url = liveStr;
+    UIImage *image = nil;
+    if ([MyUtil isEmptyString:_imgUrl]) {
+        NSData *dat = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://source.lie98.com/lieyu_ios_20160918110927_HWnD4jLL.jpg"]];
+        image = [UIImage imageWithData:dat];
+    } else {
+        image = _LiveImageView.image;
+    }
      switch (_shareType) {
      case 0://分享微信好友
-         {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatSession] content:@"猎娱直播间" image:_LiveImageView.image location:location urlResource:urlResource presentedController:selfVC completion:^(UMSocialResponseEntity *response){
+         {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatSession] content:content image:image location:location urlResource:urlResource presentedController:selfVC completion:^(UMSocialResponseEntity *response){
          }];
              [self openLiveShowRoom];
          }
      break;
      case 1://分享到QQ
-         {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToQQ] content:@"猎娱直播间" image:_LiveImageView.image location:location urlResource:urlResource presentedController:selfVC completion:^(UMSocialResponseEntity *response){
+         {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToQQ] content:content image:image location:location urlResource:urlResource presentedController:selfVC completion:^(UMSocialResponseEntity *response){
      }];
              [self openLiveShowRoom];
          }
      break;
      case 2://分享到微博
-         {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToSina] content:@"猎娱直播间" image:_LiveImageView.image location:location urlResource:urlResource presentedController:selfVC completion:^(UMSocialResponseEntity *response){
+         {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToSina] content:content image:image location:location urlResource:urlResource presentedController:selfVC completion:^(UMSocialResponseEntity *response){
      if (response.responseCode == UMSResponseCodeSuccess) {
      NSLog(@"分享成功！");
      }
@@ -297,7 +306,7 @@
          }
      break;
      case 3://分享到微信朋友圈
-         {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatTimeline] content:@"猎娱直播间" image:_LiveImageView.image location:location urlResource:urlResource presentedController:selfVC completion:^(UMSocialResponseEntity *response){
+         {[[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatTimeline] content:content image:image location:location urlResource:urlResource presentedController:selfVC completion:^(UMSocialResponseEntity *response){
      if (response.responseCode == UMSResponseCodeSuccess) {
      NSLog(@"分享成功！");
      }

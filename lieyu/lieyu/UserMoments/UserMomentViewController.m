@@ -383,7 +383,7 @@
 //    [self initMJRefeshHeaderForGif:header];
     
     tableView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
-        _pageStartCount +=1;
+        _pageStartCount +=10;
         [weakSelf getDataWithType:i needLoad:NO];
     }];
 }

@@ -30,5 +30,7 @@
 
 @property (nonatomic, strong) NSString *chatRoomID;//直播间id
 @property (nonatomic, strong) UIImage *shareImage;//分享的图片
+@property (nonatomic, strong) NSString *shareName;
+
 
 @end
