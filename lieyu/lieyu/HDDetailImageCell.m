@@ -13,12 +13,16 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
+//    _image.clipsToBounds = YES;
+}
+
+- (void)drawRect:(CGRect)rect{
+    
     _image.layer.cornerRadius = 2;
     _image.layer.masksToBounds = YES;
     _image.contentMode=UIViewContentModeScaleAspectFit;
     self.layer.cornerRadius = 2;
     self.layer.masksToBounds = YES;
-//    _image.clipsToBounds = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

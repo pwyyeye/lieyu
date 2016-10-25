@@ -151,6 +151,7 @@
                 if ([weakSelf.delegate respondsToSelector:@selector(rechargeDelegateRefreshData)] && weakSelf.delegate) {
                     [weakSelf.delegate rechargeDelegateRefreshData];
                 }
+                [weakSelf gotoBack];
             }else{
                 [MyUtil showMessage:@"无法调起微信支付！"];
             }
@@ -161,7 +162,7 @@
             if (result) {
                 if ([weakSelf.delegate respondsToSelector:@selector(rechargeDelegateRefreshData)] && weakSelf.delegate) {
                 [weakSelf.delegate rechargeDelegateRefreshData];
-            }
+                }
                 [weakSelf gotoBack];
             }
         }];
@@ -413,17 +414,18 @@
             zujuVC.sn=_orderNo;
             [self.navigationController pushViewController:zujuVC animated:YES];
         }else{
-            for (UIViewController *controller in self.navigationController.viewControllers) {
-                if([controller isKindOfClass:[MineBalanceViewController class]] || [controller isKindOfClass:[MineYubiViewController class]]){
+//            for (UIViewController *controller in self.navigationController.viewControllers) {
+//                if([controller isKindOfClass:[MineBalanceViewController class]] || [controller isKindOfClass:[MineYubiViewController class]]){
 //                    [self.navigationController popViewControllerAnimated:YES];
-                    return;
-                }
-            }
-            LPMyOrdersViewController *detailViewController = [[LPMyOrdersViewController alloc]init];
-            UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
-            self.navigationItem.leftBarButtonItem = left;
-            
-            [self.navigationController pushViewController:detailViewController animated:YES];
+//                }else{
+//                    LPMyOrdersViewController *detailViewController = [[LPMyOrdersViewController alloc]init];
+//                    UIBarButtonItem *left = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"return"] style:UIBarButtonItemStylePlain target:self action:@selector(gotoBack)];
+//                    self.navigationItem.leftBarButtonItem = left;
+//                    
+//                    [self.navigationController pushViewController:detailViewController animated:YES];
+//                }
+//            }
+            [self gotoBack];
         }
         
     }else if([[resultDic objectForKey:@"resultStatus"] longLongValue]==6001){

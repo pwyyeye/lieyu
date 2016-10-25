@@ -250,9 +250,9 @@
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"]];
         NSString *message=[NSString stringWithFormat:@"%@",response[@"message"]];
         if ([code isEqualToString:@"1"]) {
-            dispatch_async(dispatch_get_main_queue(), ^(void) {
+//            dispatch_async(dispatch_get_main_queue(), ^(void) {
                 result(YES);
-            });
+//            });
             [app stopLoading];
         }else{
             result(NO);

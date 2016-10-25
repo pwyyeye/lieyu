@@ -101,7 +101,7 @@
 #pragma mark - 获取数据
 - (void)getData{
     __weak __typeof(self) weakSelf = self;
-    NSDictionary *dict = @{@"start":[NSString stringWithFormat:@"%d",_start],
+    NSDictionary *dict = @{@"start":[NSString stringWithFormat:@"%ld",_start],
                            @"limit":[NSString stringWithFormat:@"%d",LIMIT],
                            @"topicid":[MyUtil isEmptyString:_topicid] ? @"1" : _topicid,
                            @"activityType":[NSString stringWithFormat:@"%ld",_filterType]};
@@ -259,13 +259,13 @@
         if(![MyUtil isEmptyString:bannerModel.linkurl]){
             HuoDongLinkViewController *huodong2=[[HuoDongLinkViewController alloc] init];
             huodong2.linkUrl=bannerModel.linkurl;
-            huodong2.title = bannerModel.title == nil ? @"活动详情" : bannerModel.title;
+            huodong2.subTitle = bannerModel.title == nil ? @"活动详情" : bannerModel.title;
             [self.navigationController pushViewController:huodong2 animated:YES];
             
         }else if (bannerModel.content) {
             HuoDongViewController *huodong=[[HuoDongViewController alloc] init];
             huodong.content = bannerModel.content;
-            huodong.title = bannerModel.title == nil ? @"活动详情" : bannerModel.title;
+            huodong.subTitle = bannerModel.title == nil ? @"活动详情" : bannerModel.title;
             [self.navigationController pushViewController:huodong animated:YES];
         }
         [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"跳转" pageName:@"活动列表" titleName:@"活动"]];

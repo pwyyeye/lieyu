@@ -118,7 +118,7 @@
         titleLabel2.font=[UIFont systemFontOfSize:14.0];
         titleLabel2.text=isBingding;
         titleLabel2.textAlignment=NSTextAlignmentRight;
-        titleLabel2.textColor=RGB(101, 11, 138);
+        titleLabel2.textColor=COMMON_PURPLE;
         [cell.contentView addSubview:titleLabel2];
         
         CALayer *layerShadow=[[CALayer alloc]init];
