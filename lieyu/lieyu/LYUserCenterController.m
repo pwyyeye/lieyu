@@ -38,7 +38,7 @@
 #import "AddressBookModel.h"
 #import "LYFriendsRecommendViewController.h"
 
-@interface LYUserCenterController ()<TencentSessionDelegate>{
+@interface LYUserCenterController ()<TencentSessionDelegate,UMSocialUIDelegate>{
     NSInteger num,orderNum,freeOrderNum;
     LYUserCenterHeader *_headerView;
 }
@@ -350,8 +350,14 @@ static NSString * const reuseIdentifier = @"userCenterCell";
             [UMSocialData defaultData].extConfig.wechatSessionData.url = @"http://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653";
             [UMSocialData defaultData].extConfig.wechatTimelineData.title = string;
             [UMSocialData defaultData].extConfig.wechatSessionData.title = string;
-            [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:@"猎娱，猎享精彩！" shareImage:[UIImage imageNamed:@"CommonIcon"] shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
+            [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:@"猎娱，猎享精彩！" shareImage:[UIImage imageNamed:@"CommonIcon"] shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:self];
         }
+    }
+}
+
+- (void)didSelectSocialPlatform:(NSString *)platformName withSocialData:(UMSocialData *)socialData{
+    if (platformName == UMShareToSina || platformName == UMShareToSms) {
+        socialData.shareText = [NSString stringWithFormat:@"猎娱 | 中高端玩咖美女帅哥社交圈，轻奢夜生活娱乐！http://a.app.qq.com/o/simple.jsp?pkgname=com.zq.xixili&g_f=991653"];
     }
 }
 

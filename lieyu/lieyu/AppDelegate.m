@@ -170,6 +170,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource,UN
     //友盟推送
     [UMessage startWithAppkey:UmengAppkey launchOptions:launchOptions];
     [UMessage registerForRemoteNotifications];
+    
     //iOS10必须加下面这段代码。
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
     center.delegate=self;

@@ -17,7 +17,7 @@
 #import "YuKeGroupModel.h"
 #import "HuoDongLinkViewController.h"
 
-@interface MineGroupViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,UITextFieldDelegate>
+@interface MineGroupViewController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,UITextFieldDelegate,UMSocialUIDelegate>
 
 @property (nonatomic, strong) NSMutableArray *dataList;
 @property (nonatomic, strong) YuKeGroupModel *groupModel;
@@ -295,13 +295,19 @@
     [UMSocialData defaultData].extConfig.wechatTimelineData.title = string;
     [UMSocialData defaultData].extConfig.wechatSessionData.title = string;
     @try {
-        [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.userModel.avatar_img]]] shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
+        [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.userModel.avatar_img]]] shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:self];
     }
     @catch (NSException *exception) {
         [MyUtil showCleanMessage:@"无法分享！"];
     }
     @finally {
         
+    }
+}
+
+- (void)didSelectSocialPlatform:(NSString *)platformName withSocialData:(UMSocialData *)socialData{
+    if (platformName == UMShareToSina || platformName == UMShareToSms) {
+        socialData.shareText = [NSString stringWithFormat:@"猎娱 | 快来加入我的娱客帮！%@",_shareString];
     }
 }
 

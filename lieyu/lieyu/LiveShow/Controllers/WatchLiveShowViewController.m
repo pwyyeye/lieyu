@@ -75,7 +75,7 @@
 //距离底部
 #define distanceOfBottom CGRectGetMaxY(self.view.bounds) - 20
 
-@interface WatchLiveShowViewController () <PLPlayerDelegate,ISEmojiViewDelegate>
+@interface WatchLiveShowViewController () <PLPlayerDelegate,ISEmojiViewDelegate,UMSocialUIDelegate>
 
 {
     NSTimer *_timer;//定时器
@@ -616,7 +616,13 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"%@%@%@",LY_SERVER,LY_LIVE_share,self.chatRoomId];
     [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@%@%@",LY_SERVER,LY_LIVE_share,self.chatRoomId];
     [UMSocialData defaultData].extConfig.qqData.url = [NSString stringWithFormat:@"%@%@%@",LY_SERVER,LY_LIVE_share,self.chatRoomId];
-    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:_shareIamge shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:_shareIamge shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:self];
+}
+
+- (void)didSelectSocialPlatform:(NSString *)platformName withSocialData:(UMSocialData *)socialData{
+    if (platformName == UMShareToSina || platformName == UMShareToSms) {
+        socialData.shareText = [NSString stringWithFormat:@"【前方高能，直播来袭】%@正在赤裸裸地直播~%@%@%@",_hostUser[@"usernick"],LY_SERVER,LY_LIVE_share,self.chatRoomId];
+    }
 }
 
 #pragma mark --- 初始化播放器

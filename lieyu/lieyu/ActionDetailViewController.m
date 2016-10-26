@@ -16,7 +16,7 @@
 #import "LYwoYaoDinWeiMainViewController.h"
 #import "UMSocial.h"
 
-@interface ActionDetailViewController ()<UITableViewDataSource,UITableViewDelegate,UIWebViewDelegate>
+@interface ActionDetailViewController ()<UITableViewDataSource,UITableViewDelegate,UIWebViewDelegate,UMSocialUIDelegate>
 {
     HDDetailImageCell *DetailImageCell;
     HDDetailFootCell *DetailFootCell;
@@ -107,9 +107,16 @@
     [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@activities/details?id=%@",LY_SERVER,_barActivity.id];
     [UMSocialData defaultData].extConfig.wechatTimelineData.title = string;
     [UMSocialData defaultData].extConfig.wechatSessionData.title = string;
-    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:@"精彩活动，尽在猎娱！" shareImage:DetailImageCell.image.image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:@"精彩活动，尽在猎娱！" shareImage:DetailImageCell.image.image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:self];
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"分享" pageName:@"活动详情" titleName:_barActivity.name]];
 }
+
+- (void)didSelectSocialPlatform:(NSString *)platformName withSocialData:(UMSocialData *)socialData{
+    if (platformName == UMShareToSina || platformName == UMShareToSms) {
+        socialData.shareText = [NSString stringWithFormat:@"精彩活动，尽在猎娱！%@activities/details?id=%@",LY_SERVER,_barActivity.id];
+    }
+}
+
 
 //- (void)viewDidLayoutSubviews{
 //    [super viewDidLayoutSubviews];

@@ -28,7 +28,7 @@
 #import "LYMyFriendDetailViewController.h"
 #import "LPMyOrdersViewController.h"
 
-@interface HDDetailViewController ()<UITableViewDataSource,UITableViewDelegate,LPAlertViewDelegate,showImageInPreview>
+@interface HDDetailViewController ()<UITableViewDataSource,UITableViewDelegate,LPAlertViewDelegate,showImageInPreview,UMSocialUIDelegate>
 {
     YUOrderInfo *orderInfo;
     YUPinkerinfo *pinkeModel;
@@ -131,13 +131,19 @@
                                           shareText:@"精彩活动，尽在猎娱！"
                                          shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:orderInfo.pinkerinfo.linkUrl]]]
                                     shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,UMShareToEmail,nil]
-                                           delegate:nil];
+                                           delegate:self];
     }
     @catch (NSException *exception) {
         [MyUtil showCleanMessage:@"无法分享！"];
     }
     @finally {
         
+    }
+}
+
+- (void)didSelectSocialPlatform:(NSString *)platformName withSocialData:(UMSocialData *)socialData{
+    if (platformName == UMShareToSina || platformName == UMShareToSms) {
+        socialData.shareText = [NSString stringWithFormat:@"你的好友%@邀请你一起来%@玩~%@inPinkerWebAction.do?id=%@",app.userModel.usernick,orderInfo.barinfo.barname,LY_SERVER,orderInfo.id];
     }
 }
 
