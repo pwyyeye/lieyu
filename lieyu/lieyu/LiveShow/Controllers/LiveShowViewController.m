@@ -835,9 +835,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
             }
         }];
     });
-    
-    
-    
 }
 
 #pragma mark --- 展示用户详情以及交互

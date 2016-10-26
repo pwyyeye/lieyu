@@ -779,6 +779,10 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 
 #pragma mark -- 点击主播头像事件
 -(void)anchorDetail{
+    if (_anchorDetailView.hidden == NO) {
+        [_anchorDetailView removeFromSuperview];
+        _anchorDetailView = nil;
+    }
     _anchorDetailView = [[[NSBundle mainBundle] loadNibNamed:@"AnchorDetailView" owner:self options:nil] lastObject];
     _anchorDetailView.frame = CGRectMake(0, 0, 260,210);
     _anchorDetailView.center = self.view.center;
