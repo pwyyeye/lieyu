@@ -48,7 +48,7 @@
     [_searchBar setBackgroundImage:[UIImage new]];
     _searchBar.delegate = self;
     _dataArray = [[NSMutableArray alloc] init];
-    _titleArray = [[NSMutableArray alloc]initWithArray:@[@"定位城市",@"热门城市"]];
+    _titleArray = [[NSMutableArray alloc]initWithArray:@[@"选择城市",@"热门城市"]];
     
     width = ( SCREEN_WIDTH - 75 ) / 3 ;
     height = 35;
