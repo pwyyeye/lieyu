@@ -39,66 +39,13 @@
 - (void)updateUI {
     
     LYGiftMessage *_likeMessage = (LYGiftMessage *)self.model.content;
-    
-    NSString *tiptext = @"";
-        switch (_likeMessage.gift.giftId.integerValue) {
-            case 10:
-                tiptext = @"玫瑰花";
-                break;
-            case 50:
-                tiptext = @"风油精";
-                break;
-            case 100:
-                tiptext = @"金瓶梅";
-                break;
-            case 200:
-                tiptext = @"烤鸡";
-                break;
-            case 520:
-                tiptext = @"一束玫瑰";
-                break;
-            case 680:
-                tiptext = @"香槟";
-                break;
-            case 1280:
-                tiptext = @"拉菲";
-                break;
-            case 1880:
-                tiptext = @"皇家礼炮";
-                break;
-            case 8888:
-                tiptext = @"钻戒";
-                break;
-            case 2500:
-                tiptext = @"元宝";
-                break;
-            case 6666:
-                tiptext = @"Iphone10";
-                break;
-            case 88888:
-                tiptext = @"跑车";
-                break;
-            case 131400:
-                tiptext = @"游艇";
-                break;
-            case 334400:
-                tiptext = @"别墅";
-                break;
-            case 39999:
-                tiptext = @"百达翡丽";
-                break;
-            case 222222:
-                tiptext = @"私人飞机";
-                break;
-            default:
-                break;
-        }
+    NSString *tiptext = _likeMessage.content;
     if (_likeMessage) {
         if(_likeMessage.senderUserInfo){
             if ([_likeMessage.senderUserInfo.userId isEqualToString:[RCIM sharedRCIM].currentUserInfo.userId]) {
-                self.messageLabel.text = [NSString stringWithFormat:@"%@：我赠送了一个%@",_likeMessage.senderUserInfo.name, tiptext];
+                self.messageLabel.text = [NSString stringWithFormat:@"%@：%@",_likeMessage.senderUserInfo.name, tiptext];
             } else {
-                self.messageLabel.text = [NSString stringWithFormat:@"%@：%@赠送了一个%@",_likeMessage.senderUserInfo.name,_likeMessage.senderUserInfo.name,tiptext];
+                self.messageLabel.text = [NSString stringWithFormat:@"%@：%@",_likeMessage.senderUserInfo.name,tiptext];
             }
             if (_likeMessage.type.integerValue == 2) {//赞
                 [self.messageLabel setTextColor:RGB(37, 235, 255)];

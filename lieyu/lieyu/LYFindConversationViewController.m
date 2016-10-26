@@ -52,7 +52,7 @@
     } else if (self.conversationType == ConversationType_GROUP) {//群组
         UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
         UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(10, 0, 44, 44)];
-        [button setImage:[UIImage imageNamed:@"more1"] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"more2"] forState:UIControlStateNormal];
         [view addSubview:button];
         [button addTarget:self action:@selector(moreAct:) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:view];

@@ -24,6 +24,7 @@
     NSDictionary *dict = [[NSDictionary alloc] initWithDictionary:dictionary];
     if (!__error && dict) {
         self.type = [dict objectForKey:@"type"];
+        self.content = [dict objectForKey:@"content"];
         NSDictionary *userinfoDic = [dict objectForKey:@"user"];
         [self decodeUserInfo:userinfoDic];
 //        self.gift = [dict objectForKey:@"gift"];
@@ -39,9 +40,9 @@
     giftTemp.giftId = [dict objectForKey:@"giftId"];
     giftTemp.giftUrl = [dict objectForKey:@"giftUrl"];
     giftTemp.giftLocalUrl = [dict objectForKey:@"giftLocalUrl"];
+    giftTemp.giftAnnimType = [dict objectForKey:@"giftAnnimType"];
     self.gift = giftTemp;
 }
-
 
 - (NSData *)encode {
     
@@ -49,7 +50,9 @@
     if (self.type) {
         [dict setObject:self.type forKey:@"type"];
     }
-    
+    if (self.content) {
+        [dict setObject:self.content forKey:@"content"];
+    }
     if (self.senderUserInfo) {
         NSMutableDictionary *__dic = [[NSMutableDictionary alloc] init];
         if (self.senderUserInfo.name) {
@@ -73,6 +76,9 @@
         }
         if (self.gift.giftLocalUrl) {
             [_dict setObject:self.gift.giftLocalUrl forKeyedSubscript:@"giftLocalUrl"];
+        }
+        if (self.gift.giftAnnimType) {
+            [_dict setObject:self.gift.giftAnnimType forKeyedSubscript:@"giftAnnimType"];
         }
         [dict setObject:_dict forKey:@"gift"];
     }

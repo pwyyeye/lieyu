@@ -49,9 +49,12 @@ static NSString *daShangCellID = @"dashangCellID";
     NSString *jubaoMomentID;//要删除的动态ID
     UIView *_bigView;//评论的背景view
     DaShangView *_daShangView;//打赏View
-    NSArray *_dataArr;
+    NSMutableArray *_dataArr;
     NSInteger _giftNumber;//礼物数量
     NSString *_giftValue;//礼物价值
+    NSString *_giftImg;
+    NSString *_gifType;//动画类型
+    NSString *_giftName;//礼物名称
     NSString *_toUserId;//打赏对象id
     NSString *_businessid;//业务id
     UIView *_backgroudView;//背景
@@ -1136,6 +1139,9 @@ static NSString *daShangCellID = @"dashangCellID";
 
 -(void)notice:(NSNotification *)notification{
     _giftValue = notification.userInfo[@"value"];
+    _giftImg = notification.userInfo[@"image"];
+    _gifType = notification.userInfo[@"gifType"];
+    _giftName = notification.userInfo[@"giftName"];
 }
 
 -(void)dashangMomentCloseViewAction:(UIButton *)sender{
@@ -1144,30 +1150,9 @@ static NSString *daShangCellID = @"dashangCellID";
 }
 
 -(void)sendGiftMomentButtonAction:(UIButton *)sender{//7 , 11, 13
-    _dataArr = @[@{@"giftIamge":@"rose.png",@"giftName":@"玫瑰花",@"giftValue":@"10"},
-                 @{@"giftIamge":@"gold.png",@"giftName":@"元宝",@"giftValue":@"2500"},
-                 @{@"giftIamge":@"biantai.png",@"giftName":@"风油精",@"giftValue":@"50"},
-                 @{@"giftIamge":@"apple.png",@"giftName":@"Iphone10",@"giftValue":@"6666"},
-                 @{@"giftIamge":@"book.png",@"giftName":@"金瓶梅",@"giftValue":@"100"},
-                 @{@"giftIamge":@"watch.png",@"giftName":@"百达翡丽",@"giftValue":@"39999"},
-                 @{@"giftIamge":@"chicken.png",@"giftName":@"烤鸡",@"giftValue":@"200"},
-                 @{@"giftIamge":@"airport.png",@"giftName":@"私人飞机",@"giftValue":@"222222"},
-                 @{@"giftIamge":@"moreRose.png",@"giftName":@"玫瑰",@"giftValue":@"520"},
-                 @{@"giftIamge":@"ring.png",@"giftName":@"钻戒",@"giftValue":@"8888"},
-                 @{@"giftIamge":@"champagne.png",@"giftName":@"香槟",@"giftValue":@"680"},
-                 @{@"giftIamge":@"car.png",@"giftName":@"跑车",@"giftValue":@"88888"},
-                 @{@"giftIamge":@"lafei.png",@"giftName":@"拉菲",@"giftValue":@"1280"},
-                 @{@"giftIamge":@"ship.png",@"giftName":@"游艇",@"giftValue":@"131400"},
-                 @{@"giftIamge":@"huangjia.png",@"giftName":@"皇家礼炮",@"giftValue":@"1880"},
-                 @{@"giftIamge":@"house.png",@"giftName":@"别墅",@"giftValue":@"334400"}
-                 ];
+    _dataArr = [NSMutableArray arrayWithCapacity:100];
+    _dataArr = _daShangView.dataArr;
     __weak typeof (self) WeakSelf = self;
-    NSString *img = nil;
-    for (NSDictionary *dic in _dataArr) {
-        if (_giftValue == dic[@"giftValue"]) {
-            img = dic[@"giftIamge"];
-        }
-    }
     NSDictionary *dictGift = @{@"amount":[NSString stringWithFormat:@"%@",_giftValue],
                                @"toUserid":_toUserId,
                                @"rid":@"1",
@@ -1183,7 +1168,7 @@ static NSString *daShangCellID = @"dashangCellID";
                         [MyUtil showMessage:@"服务器异常"];
                         break;
                     case 1://成功
-                        [WeakSelf showGiftIamgeAnmiationWith:img];
+                        [WeakSelf showGiftIamgeAnmiationWith:_giftImg With:_gifType];
                         break;
                     case 11:
                         [MyUtil showMessage:@"请指定礼物"];
@@ -1232,18 +1217,12 @@ static NSString *daShangCellID = @"dashangCellID";
 }
 
 #pragma mark -- 打赏动画
--(void) showGiftIamgeAnmiationWith:(NSString *) giftImg{
-    NSInteger index = 0;
-    for (NSDictionary *dic in _dataArr) {
-        if ([dic[@"giftIamge"] isEqualToString:giftImg] ) {
-            index = [_dataArr indexOfObject:dic];
-        }
-    }
-    switch (index) {
-        case 7:
+-(void) showGiftIamgeAnmiationWith:(NSString *) giftImg With:(NSString *) type{
+    switch (type.integerValue) {
+        case 2:
             for (int i = 0; i < 30; i ++ ) {
-                UIImage *img = [UIImage imageNamed:giftImg];
-                UIImageView *giftIamge = [[UIImageView alloc] initWithImage:img];
+                UIImageView *giftIamge = [[UIImageView alloc] init];
+                [giftIamge sd_setImageWithURL:[NSURL URLWithString:giftImg]];
                 giftIamge.contentMode = UIViewContentModeScaleAspectFit;
                 int x = (arc4random() % 10) + 1;
                 CGRect rect = giftIamge.bounds;
@@ -1258,14 +1237,14 @@ static NSString *daShangCellID = @"dashangCellID";
                 }];
             }
             break;
-        case 11:
+        case 3:
             for (int i = 0; i < 30; i ++ ) {
-                UIImage *img = [UIImage imageNamed:giftImg];
-                UIImageView *giftIamge = [[UIImageView alloc] initWithImage:img];
+                UIImageView *giftIamge = [[UIImageView alloc] init];
+                [giftIamge sd_setImageWithURL:[NSURL URLWithString:giftImg]];
                 giftIamge.contentMode = UIViewContentModeScaleAspectFit;
                 int x = (arc4random() % 10) + 1;
                 CGRect rect = giftIamge.bounds;
-                rect = CGRectMake( SCREEN_WIDTH + 30, 30 * x, 50, 50);
+                rect = CGRectMake( SCREEN_WIDTH + 30, 30 * x, 150, 150);
                 giftIamge.frame = rect;
                 [self.view addSubview:giftIamge];
                 [self.view bringSubviewToFront:giftIamge];
@@ -1278,8 +1257,8 @@ static NSString *daShangCellID = @"dashangCellID";
             break;
         case 13:
             for (int i = 0; i < 30; i ++ ) {
-                UIImage *img = [UIImage imageNamed:giftImg];
-                UIImageView *giftIamge = [[UIImageView alloc] initWithImage:img];
+                UIImageView *giftIamge = [[UIImageView alloc] init];
+                [giftIamge sd_setImageWithURL:[NSURL URLWithString:giftImg]];
                 giftIamge.contentMode = UIViewContentModeScaleAspectFit;
                 int x = (arc4random() % 10) + 1;
                 CGRect rect = giftIamge.bounds;
@@ -1296,8 +1275,8 @@ static NSString *daShangCellID = @"dashangCellID";
             break;
         default:
             for (int i = 0; i < 30; i ++ ) {
-                UIImage *img = [UIImage imageNamed:giftImg];
-                UIImageView *giftIamge = [[UIImageView alloc] initWithImage:img];
+                UIImageView *giftIamge = [[UIImageView alloc] init];
+                [giftIamge sd_setImageWithURL:[NSURL URLWithString:giftImg]];
                 giftIamge.contentMode = UIViewContentModeScaleAspectFit;
                 int x = (arc4random() % 10) + 1;
                 CGRect rect = giftIamge.bounds;

@@ -99,4 +99,6 @@
 #pragma mark --- 打赏
 #define LY_DaShang @"dailyCoinAction.do?action=custom"
 
+#define LY_DaShangList  @"app/api/reward/rewardTypeList?1=1"
+
 #endif /* LYFriendsPageUrl_h */

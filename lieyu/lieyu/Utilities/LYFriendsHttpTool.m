@@ -18,6 +18,7 @@
 #import "ChatUseres.h"
 #import "FriendsListModel.h"
 #import "FansModel.h"
+#import "DaShangGiftModel.h"
 
 
 #import "AFNetworking.h"//主要用于网络请求方法
@@ -499,6 +500,23 @@
         
     }];
 }
+
+#pragma mark --- 打赏列表
++(void) getDaShangListParms: (NSDictionary *) parms complete: (void(^)(NSArray *))complete
+{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_DaShangList baseURL:LY_SERVER params:parms success:^(id response) {
+        if ([response[@"errorcode"] isEqualToString:@"1"]) {
+            NSDictionary *tempDic = response[@"data"];
+            NSArray *giftList = [DaShangGiftModel mj_objectArrayWithKeyValuesArray:tempDic[@"rewardTypeList"]];
+            complete(giftList);
+        } else {
+            
+        }
+    } failure:^(NSError *err) {
+        
+    }];
+}
+
 
 
 @end

@@ -8,6 +8,8 @@
 
 #import "DaShangView.h"
 #import "DaShangViewCell.h"
+#import "LYFriendsHttpTool.h"
+#import "DaShangGiftModel.h"
 
 static NSString *daShangCellID = @"dashangCellID";
 
@@ -34,29 +36,19 @@ static NSString *daShangCellID = @"dashangCellID";
     self.giftCollectionView.dataSource = self;
     self.giftCollectionView.backgroundColor = [UIColor clearColor];
     [self.giftCollectionView registerNib:[UINib nibWithNibName:@"DaShangViewCell" bundle:nil] forCellWithReuseIdentifier:daShangCellID];
-    _dataArr = @[@{@"giftIamge":@"rose.png",@"giftName":@"玫瑰花",@"giftValue":@"10"},
-                 @{@"giftIamge":@"gold.png",@"giftName":@"元宝",@"giftValue":@"2500"},
-                 @{@"giftIamge":@"biantai.png",@"giftName":@"风油精",@"giftValue":@"50"},
-                 @{@"giftIamge":@"apple.png",@"giftName":@"Iphone10",@"giftValue":@"6666"},
-                 @{@"giftIamge":@"book.png",@"giftName":@"金瓶梅",@"giftValue":@"100"},
-                 @{@"giftIamge":@"watch.png",@"giftName":@"百达翡丽",@"giftValue":@"39999"},
-                 @{@"giftIamge":@"chicken.png",@"giftName":@"烤鸡",@"giftValue":@"200"},
-                 @{@"giftIamge":@"airport.png",@"giftName":@"私人飞机",@"giftValue":@"222222"},
-  @{@"giftIamge":@"moreRose.png",@"giftName":@"玫瑰",@"giftValue":@"520"},
-                 @{@"giftIamge":@"ring.png",@"giftName":@"钻戒",@"giftValue":@"8888"},
-                 @{@"giftIamge":@"champagne.png",@"giftName":@"香槟",@"giftValue":@"680"},
-                 @{@"giftIamge":@"car.png",@"giftName":@"跑车",@"giftValue":@"88888"},
-                 @{@"giftIamge":@"lafei.png",@"giftName":@"拉菲",@"giftValue":@"1280"},
-                 @{@"giftIamge":@"ship.png",@"giftName":@"游艇",@"giftValue":@"131400"},
-                 @{@"giftIamge":@"huangjia.png",@"giftName":@"皇家礼炮",@"giftValue":@"1880"},
-                 @{@"giftIamge":@"house.png",@"giftName":@"别墅",@"giftValue":@"334400"}
-                 ];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        //创建一个消息对象
-        NSNotification * notice = [NSNotification notificationWithName:@"sendGift" object:nil userInfo:@{@"value":@"10"}];
-        //发送消息
-        [[NSNotificationCenter defaultCenter]postNotification:notice];
-    });
+    _dataArr = [NSMutableArray arrayWithCapacity:100];
+    [LYFriendsHttpTool getDaShangListParms:nil complete:^(NSArray *giftArray) {
+        _dataArr = [NSMutableArray arrayWithArray:giftArray];
+        [self.giftCollectionView reloadData];
+        DaShangGiftModel *model = _dataArr[0];
+        NSString *reward = [NSString stringWithFormat:@"%ld",model.rewardValue];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //创建一个消息对象
+            NSNotification * notice = [NSNotification notificationWithName:@"sendGift" object:nil userInfo:@{@"value":reward,@"image":model.rewardImg,@"gifType":model.rewordType,@"giftName":model.rewardName}];
+            //发送消息
+            [[NSNotificationCenter defaultCenter]postNotification:notice];
+        });
+    }];
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return _dataArr.count;
@@ -65,12 +57,12 @@ static NSString *daShangCellID = @"dashangCellID";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     DaShangViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:daShangCellID forIndexPath:indexPath];
     cell.backgroundColor = [UIColor whiteColor];
-    NSDictionary *giftDic = _dataArr[indexPath.row];
-    cell.giftImageView.image = [UIImage imageNamed:giftDic[@"giftIamge"]];
+    DaShangGiftModel *model = _dataArr[indexPath.row];
+    [cell.giftImageView sd_setImageWithURL:[NSURL URLWithString:model.rewardImg]];
     cell.giftImageView.contentMode = UIViewContentModeScaleAspectFit;
     cell.giftImageView.userInteractionEnabled = YES;
-    cell.giftNameLabel.text = giftDic[@"giftName"];
-    cell.YuBiLabel.text = [NSString stringWithFormat:@"%@娱币", giftDic[@"giftValue"]];
+    cell.giftNameLabel.text = model.rewardName;
+    cell.YuBiLabel.text = [NSString stringWithFormat:@"%ld娱币", (long)model.rewardValue];
     if (indexPath.row == 0) {
         cell.DSChooseImage.hidden = NO;
     } else {
@@ -80,39 +72,12 @@ static NSString *daShangCellID = @"dashangCellID";
     _giftButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
     _giftButton.frame = cell.bounds;
     _giftButton.backgroundColor = [UIColor clearColor];
-    _giftButton.tag = [giftDic[@"giftValue"] integerValue];
+    _giftButton.tag = model.rewardValue;
     if (_type == textTypeWhite) {
         cell.giftNameLabel.textColor = [UIColor whiteColor];
         cell.YuBiLabel.textColor = [UIColor whiteColor];
     }
     return cell;
-}
-
--(void)giftButtonAction:(UIButton *)sender{
-    DaShangViewCell *cellNew = (DaShangViewCell *)[sender superview];
-    if (cellNew.DSChooseImage.hidden) {
-        cellNew.DSChooseImage.hidden = NO;
-        if (_chooseTag == sender.tag) {
-            
-        } else {
-            DaShangViewCell *cellOld = (DaShangViewCell *)[_giftCollectionView viewWithTag:_chooseTag];
-            cellOld.DSChooseImage.hidden = YES;
-            _chooseTag = sender.tag;
-        }
-//        ++_number;
-    } else {
-//        cellNew.DSChooseImage.hidden = YES;
-//        --_number;
-    }
-    NSString *value = [NSString stringWithFormat:@"%ld", (long)sender.tag];
-    NSString *number = [NSString stringWithFormat:@"%ld", (long)_number];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        //创建一个消息对象
-        NSNotification * notice = [NSNotification notificationWithName:@"sendGift" object:nil userInfo:@{@"value":value,@"number":number}];
-        //发送消息
-        [[NSNotificationCenter defaultCenter]postNotification:notice];
-    });
-    
 }
 
 
@@ -140,12 +105,13 @@ static NSString *daShangCellID = @"dashangCellID";
         DaShangViewCell *cell_old = (DaShangViewCell *)[collectionView cellForItemAtIndexPath:temp];
         cell_old.DSChooseImage.hidden = YES;
     }
-    NSDictionary *giftDic = _dataArr[indexPath.row];
+    DaShangGiftModel *model = _dataArr[indexPath.row];
+    NSString *reward = [NSString stringWithFormat:@"%ld",model.rewardValue];
     dispatch_async(dispatch_get_main_queue(), ^{
         //创建一个消息对象
-        NSNotification * notice = [NSNotification notificationWithName:@"sendGift" object:nil userInfo:@{@"value":giftDic[@"giftValue"]}];
+            NSNotification * notice = [NSNotification notificationWithName:@"sendGift" object:nil userInfo:@{@"value":reward,@"image":model.rewardImg,@"gifType":model.rewordType,@"giftName":model.rewardName}];
         //发送消息
-        [[NSNotificationCenter defaultCenter]postNotification:notice];
+        [[NSNotificationCenter defaultCenter] postNotification:notice];
     });
 }
 
