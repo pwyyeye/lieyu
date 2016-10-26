@@ -26,14 +26,10 @@
     [_activityName setText:barActivity.name];
     double price = [barActivity.price doubleValue];
     if (price <= 0) {
-        _activityPrice.hidden = YES;
-        _constant.constant = -20;
+        [_activityPrice setText:@"免费"];
     }else{
-        _activityPrice.hidden = NO;
-        _constant.constant = 14;
         [_activityPrice setText:[NSString stringWithFormat:@"门票 ¥%@",barActivity.price]];
     }
-    [_activityPrice setText:[NSString stringWithFormat:@"门票 ¥%@",barActivity.price]];
     NSString *startTime;
     NSString *endTime;
     NSString *time;
