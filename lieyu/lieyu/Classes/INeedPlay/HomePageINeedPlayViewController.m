@@ -430,8 +430,16 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [_cityChooseBtn setTitle:[USER_DEFAULT objectForKey:@"ChooseCityLastTime"] forState:UIControlStateNormal];
     [_cityChooseBtn setTitleColor:RGBA(1, 1, 1, 1) forState:UIControlStateNormal];
     _cityChooseBtn.titleLabel.font = [UIFont systemFontOfSize:12 weight:UIFontWeightLight];
-    [_cityChooseBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -38, 0, 0)];
-    [_cityChooseBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 30, 0, 0)];
+    if (_cityChooseBtn.titleLabel.text.length <= 2) {
+        [_cityChooseBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -38, 0, 0)];
+        [_cityChooseBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 30, 0, 0)];
+    }else if (_cityChooseBtn.titleLabel.text.length == 3){
+        [_cityChooseBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -35, 0, 0)];
+        [_cityChooseBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 40, 0, 0)];
+    }else if (_cityChooseBtn.titleLabel.text.length == 4){
+        [_cityChooseBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -30, 0, 0)];
+        [_cityChooseBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 45, 0, 0)];
+    }
     [_cityChooseBtn addTarget:self action:@selector(cityChangeClick:) forControlEvents:UIControlEventTouchUpInside];
     [_menuView addSubview:_cityChooseBtn];
     
