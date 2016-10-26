@@ -10,4 +10,6 @@
 
 @interface LYFriendsRecommendViewController : LYBaseViewController
 
+@property (nonatomic, strong) NSMutableArray *dataList;
+
 @end

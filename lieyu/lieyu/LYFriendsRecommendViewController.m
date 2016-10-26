@@ -18,7 +18,6 @@
 @property (nonatomic, strong) UIButton *bottomButton;
 @property (nonatomic, strong) UIButton *allSelectButton;
 
-@property (nonatomic, strong) NSMutableArray *dataList;
 @property (nonatomic, strong) NSMutableArray *selectedArray;
 
 @property (nonatomic, assign) NSInteger selectedNumber;
@@ -34,12 +33,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self getData];
     [self.view setBackgroundColor:COMMON_GRAY];
     [self initKongLabel];
     [self initTableView];
     [self initRightButton];
     [self initBottomButton];
-    [self getData];
 }
 
 #pragma mark - 顶部右侧按钮
@@ -91,9 +90,9 @@
 #pragma mark - getData
 - (void)getData{
     _selectedArray = [[NSMutableArray alloc]init];
-    [LYUserHttpTool lyRecommendFriendsWithParams:nil complete:^(NSArray *dataList) {
-        if (dataList && dataList.count) {
-            _dataList = [[NSMutableArray alloc]initWithArray:dataList];
+//    [LYUserHttpTool lyRecommendFriendsWithParams:nil complete:^(NSArray *dataList) {
+        if (_dataList && _dataList.count) {
+//            _dataList = [[NSMutableArray alloc]initWithArray:dataList];
             for (int i = 0 ; i < _dataList.count; i ++) {
                 [_selectedArray addObject:@"1"];
             }
@@ -103,7 +102,7 @@
             _allSelectButton.hidden = YES;
             [_tableView removeFromSuperview];
         }
-    }];
+//    }];
 }
 
 #pragma mark - tableview的代理方法

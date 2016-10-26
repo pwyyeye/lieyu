@@ -295,8 +295,6 @@ static NSString * const reuseIdentifier = @"userCenterCell";
         SaoYiSaoViewController *saoYiSaoViewController=[[SaoYiSaoViewController alloc]initWithNibName:@"SaoYiSaoViewController" bundle:nil];
         saoYiSaoViewController.title=@"扫一扫";
         [self.navigationController pushViewController:saoYiSaoViewController  animated:YES];
-//        LYFriendsRecommendViewController *view = [[LYFriendsRecommendViewController alloc]init];
-//        [self.navigationController pushViewController:view animated:YES];
     }else if (indexPath.section == 1){
         if (indexPath.row == 0) {
             //订单

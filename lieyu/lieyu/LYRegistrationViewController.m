@@ -215,9 +215,15 @@ static LYRegistrationViewController *_registe;
                         }
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
 //                        [weakSelf.navigationController popToRootViewControllerAnimated:YES];
-                        
-                        LYFriendsRecommendViewController *friendsRecommendVC = [[LYFriendsRecommendViewController alloc]init];
-                        [self.navigationController pushViewController:friendsRecommendVC animated:YES];
+                        [LYUserHttpTool lyRecommendFriendsWithParams:nil complete:^(NSArray *dataList) {
+                            if (dataList && dataList.count) {
+                                LYFriendsRecommendViewController *friendsRecommendVC = [[LYFriendsRecommendViewController alloc]init];
+                                friendsRecommendVC.dataList = [NSMutableArray arrayWithArray:dataList];
+                                [weakSelf.navigationController pushViewController:friendsRecommendVC animated:YES];
+                            }else{
+                                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+                            }
+                        }];
                     }];
                 }else{
                     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"OPENIDSTR"];

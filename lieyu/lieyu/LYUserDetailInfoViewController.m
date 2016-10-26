@@ -529,9 +529,16 @@
     [self savaUserInfo:userinfo needReload:YES];
     
 //    [self.navigationController popToRootViewControllerAnimated:YES];
-    LYFriendsRecommendViewController *friendsRecommendVC = [[LYFriendsRecommendViewController alloc]init];
-    [self.navigationController pushViewController:friendsRecommendVC animated:YES];
-
+    __weak __typeof(self)weakSelf = self;
+    [LYUserHttpTool lyRecommendFriendsWithParams:nil complete:^(NSArray *dataList) {
+        if (dataList && dataList.count) {
+            LYFriendsRecommendViewController *friendsRecommendVC = [[LYFriendsRecommendViewController alloc]init];
+            friendsRecommendVC.dataList = [NSMutableArray arrayWithArray:dataList];
+            [weakSelf.navigationController pushViewController:friendsRecommendVC animated:YES];
+        }else{
+            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+        }
+    }];
 }
 
 

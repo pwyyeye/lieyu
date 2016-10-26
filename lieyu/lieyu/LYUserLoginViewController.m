@@ -194,8 +194,15 @@
         
 //        [app startLocation];
         
-        LYFriendsRecommendViewController *friendsRecommendVC = [[LYFriendsRecommendViewController alloc]init];
-        [self.navigationController pushViewController:friendsRecommendVC animated:YES];
+        [LYUserHttpTool lyRecommendFriendsWithParams:nil complete:^(NSArray *dataList) {
+            if (dataList && dataList.count) {
+                LYFriendsRecommendViewController *friendsRecommendVC = [[LYFriendsRecommendViewController alloc]init];
+                friendsRecommendVC.dataList = [NSMutableArray arrayWithArray:dataList];
+                [weakSelf.navigationController pushViewController:friendsRecommendVC animated:YES];
+            }else{
+                [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+            }
+        }];
     }];
 }
 
@@ -357,10 +364,6 @@
         //  记录登录用户的OpenID、Token以及过期时间
         NSLog(@"---->%@", _tencentOAuth.accessToken);
         [_tencentOAuth getUserInfo];
-//        [app startLocation];
-        
-//        LYFriendsRecommendViewController *friendsRecommendVC = [[LYFriendsRecommendViewController alloc]init];
-//        [self.navigationController pushViewController:friendsRecommendVC animated:YES];
     }
     else
     {
@@ -490,8 +493,16 @@
             
 //            [app startLocation];
             
-            LYFriendsRecommendViewController *friendsRecommendVC = [[LYFriendsRecommendViewController alloc]init];
-            [self.navigationController pushViewController:friendsRecommendVC animated:YES];
+            __weak __typeof(self)weakSelf = self;
+            [LYUserHttpTool lyRecommendFriendsWithParams:nil complete:^(NSArray *dataList) {
+                if (dataList && dataList.count) {
+                    LYFriendsRecommendViewController *friendsRecommendVC = [[LYFriendsRecommendViewController alloc]init];
+                    friendsRecommendVC.dataList = [NSMutableArray arrayWithArray:dataList];
+                    [weakSelf.navigationController pushViewController:friendsRecommendVC animated:YES];
+                }else{
+                    [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+                }
+            }];
         }else{//去绑定手机好
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"OPENIDSTR"];
             LYRegistrationViewController *registVC = [[LYRegistrationViewController alloc]init];
