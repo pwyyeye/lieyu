@@ -212,8 +212,7 @@
 }
 
 -(void)bangding:(NSString *)openid and:(NSInteger) type{
-//    NSString *string= [MyUtil encryptUseDES:openid];
-    NSString *string= openid;
+    NSString *string= [MyUtil encryptUseDES:openid];
     NSLog(@"----pass-pass%@---",string);
     
     NSString *plantType = nil;

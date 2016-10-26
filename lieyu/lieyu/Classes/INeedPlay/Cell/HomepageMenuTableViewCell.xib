@@ -94,7 +94,7 @@
                 <outletCollection property="filterArray" destination="3xk-bf-NIT" id="BqE-1g-NJd"/>
                 <outletCollection property="filterArray" destination="Bql-n9-KmT" id="bWT-g8-XaD"/>
             </connections>
-            <point key="canvasLocation" x="332" y="246"/>
+            <point key="canvasLocation" x="38" y="98"/>
         </tableViewCell>
     </objects>
     <resources>

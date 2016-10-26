@@ -1217,77 +1217,83 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (tableView.tag == 0) {
-        if ([self RecommendTopicExist:_ydDict]) {
-            if (indexPath.section == 0) {//活动
-                //                RecommendedTopic *topic = [_ydDict objectForKey:@"recommendedTopic"];
-                ActivityMainViewController *activityMainVC = [[ActivityMainViewController alloc]init];
-                activityMainVC.topicid = ((RecommendedTopic *)[_ydDict objectForKey:@"recommendedTopic"]).id;
-                [self.navigationController pushViewController:activityMainVC animated:YES];
-            }else if (indexPath.section == 3){//酒吧
-                JiuBaModel *model = [((NSMutableArray *)[_ydDict objectForKey:@"barList"]) objectAtIndex:indexPath.row];
-                BeerNewBarViewController * controller = [[BeerNewBarViewController alloc] initWithNibName:@"BeerNewBarViewController" bundle:nil];
-                if(!model.barid) return;
-                controller.beerBarId = @(model.barid);
-                [self.navigationController pushViewController:controller animated:YES];
-            }
-        }else{
-            if (indexPath.section == 2) {//酒吧
-                JiuBaModel *model = [((NSMutableArray *)[_ydDict objectForKey:@"barList"]) objectAtIndex:indexPath.row];
-                BeerNewBarViewController * controller = [[BeerNewBarViewController alloc] initWithNibName:@"BeerNewBarViewController" bundle:nil];
-                if(!model.barid) return;
-                controller.beerBarId = @(model.barid);
-                [self.navigationController pushViewController:controller animated:YES];
-            }
-        }
-    }else if (tableView.tag == 1){
-        if ([self RecommendTopicExist:_barDict]) {
-            if (indexPath.section == 0) {//活动
-                //                RecommendedTopic *topic = [_barDict objectForKey:@"recommendedTopic"];
-                //                ActionPage *aPage = [[ActionPage alloc]init];
-                //                aPage.ActionImage = ((HomepageActiveTableViewCell *)[tableView cellForRowAtIndexPath:indexPath]).topicImage.image;
-                //                if(!topic.id) return;
-                //                aPage.topicid = topic.id;
-                //                [self.navigationController pushViewController:aPage animated:YES];
-                ActivityMainViewController *activityMainVC = [[ActivityMainViewController alloc]init];
-                activityMainVC.topicid = ((RecommendedTopic *)[_barDict objectForKey:@"recommendedTopic"]).id;
-                [self.navigationController pushViewController:activityMainVC animated:YES];
-            }else if (indexPath.section == 3){//酒吧
-                JiuBaModel *model = [((NSMutableArray *)[_barDict objectForKey:@"barList"]) objectAtIndex:indexPath.row];
-                BeerNewBarViewController * controller = [[BeerNewBarViewController alloc] initWithNibName:@"BeerNewBarViewController" bundle:nil];
-                if(!model.barid) return;
-                controller.beerBarId = @(model.barid);
-                [self.navigationController pushViewController:controller animated:YES];
-            }
-        }else{
-            if (indexPath.section == 2) {//酒吧
-                JiuBaModel *model = [((NSMutableArray *)[_barDict objectForKey:@"barList"]) objectAtIndex:indexPath.row];
-                BeerNewBarViewController * controller = [[BeerNewBarViewController alloc] initWithNibName:@"BeerNewBarViewController" bundle:nil];
-                if(!model.barid) return;
-                controller.beerBarId = @(model.barid);
-                [self.navigationController pushViewController:controller animated:YES];
-            }
-        }
-    }else if (tableView.tag == 2){
-        if (indexPath.section == 1) {
-            LYLiveShowListModel *model = [[_liveDict objectForKey:@"liveList"] objectAtIndex:indexPath.row];
-            WatchLiveShowViewController *watchLiveVC = [[WatchLiveShowViewController alloc] init];
-            NSString *roomId = [NSString stringWithFormat:@"%d",model.roomId];
-            NSDictionary *dict = @{@"roomid":roomId};
-            __weak __typeof(self) weakSelf = self;
-            [LYFriendsHttpTool getLiveShowRoomWithParams:dict complete:^(NSDictionary *Arr) {
-                if ([Arr[@"roomType"] isEqualToString:@"live"]) {
-                    watchLiveVC.contentURL = Arr[@"liveRtmpUrl"];
-                    watchLiveVC.chatRoomId = Arr[@"chatroomid"];
-                } else {
-                    watchLiveVC.contentURL = Arr[@"playbackURL"];
-                    watchLiveVC.chatRoomId = nil;
+    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if (!app.userModel.userid) {
+        LYUserLoginViewController *loginVC = [[LYUserLoginViewController alloc]init];
+        [self.navigationController pushViewController:loginVC animated:YES];
+    }else{
+        if (tableView.tag == 0) {
+            if ([self RecommendTopicExist:_ydDict]) {
+                if (indexPath.section == 0) {//活动
+                    //                RecommendedTopic *topic = [_ydDict objectForKey:@"recommendedTopic"];
+                    ActivityMainViewController *activityMainVC = [[ActivityMainViewController alloc]init];
+                    activityMainVC.topicid = ((RecommendedTopic *)[_ydDict objectForKey:@"recommendedTopic"]).id;
+                    [self.navigationController pushViewController:activityMainVC animated:YES];
+                }else if (indexPath.section == 3){//酒吧
+                    JiuBaModel *model = [((NSMutableArray *)[_ydDict objectForKey:@"barList"]) objectAtIndex:indexPath.row];
+                    BeerNewBarViewController * controller = [[BeerNewBarViewController alloc] initWithNibName:@"BeerNewBarViewController" bundle:nil];
+                    if(!model.barid) return;
+                    controller.beerBarId = @(model.barid);
+                    [self.navigationController pushViewController:controller animated:YES];
                 }
-                watchLiveVC.hostUser = Arr[@"roomHostUser"];
-                NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:model.roomImg]];
-                watchLiveVC.shareIamge = [UIImage imageWithData:data];
-                [weakSelf.navigationController pushViewController:watchLiveVC animated:YES];
-            }];
+            }else{
+                if (indexPath.section == 2) {//酒吧
+                    JiuBaModel *model = [((NSMutableArray *)[_ydDict objectForKey:@"barList"]) objectAtIndex:indexPath.row];
+                    BeerNewBarViewController * controller = [[BeerNewBarViewController alloc] initWithNibName:@"BeerNewBarViewController" bundle:nil];
+                    if(!model.barid) return;
+                    controller.beerBarId = @(model.barid);
+                    [self.navigationController pushViewController:controller animated:YES];
+                }
+            }
+        }else if (tableView.tag == 1){
+            if ([self RecommendTopicExist:_barDict]) {
+                if (indexPath.section == 0) {//活动
+                    //                RecommendedTopic *topic = [_barDict objectForKey:@"recommendedTopic"];
+                    //                ActionPage *aPage = [[ActionPage alloc]init];
+                    //                aPage.ActionImage = ((HomepageActiveTableViewCell *)[tableView cellForRowAtIndexPath:indexPath]).topicImage.image;
+                    //                if(!topic.id) return;
+                    //                aPage.topicid = topic.id;
+                    //                [self.navigationController pushViewController:aPage animated:YES];
+                    ActivityMainViewController *activityMainVC = [[ActivityMainViewController alloc]init];
+                    activityMainVC.topicid = ((RecommendedTopic *)[_barDict objectForKey:@"recommendedTopic"]).id;
+                    [self.navigationController pushViewController:activityMainVC animated:YES];
+                }else if (indexPath.section == 3){//酒吧
+                    JiuBaModel *model = [((NSMutableArray *)[_barDict objectForKey:@"barList"]) objectAtIndex:indexPath.row];
+                    BeerNewBarViewController * controller = [[BeerNewBarViewController alloc] initWithNibName:@"BeerNewBarViewController" bundle:nil];
+                    if(!model.barid) return;
+                    controller.beerBarId = @(model.barid);
+                    [self.navigationController pushViewController:controller animated:YES];
+                }
+            }else{
+                if (indexPath.section == 2) {//酒吧
+                    JiuBaModel *model = [((NSMutableArray *)[_barDict objectForKey:@"barList"]) objectAtIndex:indexPath.row];
+                    BeerNewBarViewController * controller = [[BeerNewBarViewController alloc] initWithNibName:@"BeerNewBarViewController" bundle:nil];
+                    if(!model.barid) return;
+                    controller.beerBarId = @(model.barid);
+                    [self.navigationController pushViewController:controller animated:YES];
+                }
+            }
+        }else if (tableView.tag == 2){
+            if (indexPath.section == 1) {
+                LYLiveShowListModel *model = [[_liveDict objectForKey:@"liveList"] objectAtIndex:indexPath.row];
+                WatchLiveShowViewController *watchLiveVC = [[WatchLiveShowViewController alloc] init];
+                NSString *roomId = [NSString stringWithFormat:@"%d",model.roomId];
+                NSDictionary *dict = @{@"roomid":roomId};
+                __weak __typeof(self) weakSelf = self;
+                [LYFriendsHttpTool getLiveShowRoomWithParams:dict complete:^(NSDictionary *Arr) {
+                    if ([Arr[@"roomType"] isEqualToString:@"live"]) {
+                        watchLiveVC.contentURL = Arr[@"liveRtmpUrl"];
+                        watchLiveVC.chatRoomId = Arr[@"chatroomid"];
+                    } else {
+                        watchLiveVC.contentURL = Arr[@"playbackURL"];
+                        watchLiveVC.chatRoomId = nil;
+                    }
+                    watchLiveVC.hostUser = Arr[@"roomHostUser"];
+                    NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:model.roomImg]];
+                    watchLiveVC.shareIamge = [UIImage imageWithData:data];
+                    [weakSelf.navigationController pushViewController:watchLiveVC animated:YES];
+                }];
+            }
         }
     }
 }
