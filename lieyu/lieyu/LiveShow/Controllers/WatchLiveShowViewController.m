@@ -636,6 +636,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [self.view addSubview:self.player.playerView];
     [self.view sendSubviewToBack:self.player.playerView];
     
+    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
 }
 
 #pragma mark ---- 开始直播时才能添加进度条

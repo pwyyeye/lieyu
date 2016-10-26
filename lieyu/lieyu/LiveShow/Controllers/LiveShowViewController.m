@@ -70,7 +70,7 @@ const char *networkStatus[] = {
 
 #define bottomContaristont CGRectGetMaxY(self.view.bounds) - SCREEN_WIDTH /8 + 15 ;
 
-#define kReloadConfigurationEnable  0
+#define kReloadConfigurationEnable  1
 
 // 假设在 videoFPS 低于预期 50% 的情况下就触发降低推流质量的操作，这里的 40% 是一个假定数值，你可以更改数值来尝试不同的策略
 #define kMaxVideoFPSPercent 0.5
@@ -576,17 +576,17 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 #pragma mark --- 初始化播放器
 -(void) initPLplayer {
     // 预先设定几组编码质量，之后可以切换
-    CGSize videoSize = CGSizeMake(1080 , 1920);
+    CGSize videoSize = CGSizeMake(720 , 1280);
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
     if (orientation <= AVCaptureVideoOrientationLandscapeLeft) {
         if (orientation > AVCaptureVideoOrientationPortraitUpsideDown) {
-            videoSize = CGSizeMake(1920 , 1080);
+            videoSize = CGSizeMake(1280 , 720);
         }
     }
     self.videoStreamingConfigurations = @[
-                                          [[PLVideoStreamingConfiguration alloc] initWithVideoSize:videoSize expectedSourceVideoFrameRate:15 videoMaxKeyframeInterval:45 averageVideoBitRate:800 * 1000 videoProfileLevel:AVVideoProfileLevelH264Baseline41],
-                                          [[PLVideoStreamingConfiguration alloc] initWithVideoSize:CGSizeMake(800 , 480) expectedSourceVideoFrameRate:24 videoMaxKeyframeInterval:72 averageVideoBitRate:800 * 1000 videoProfileLevel:AVVideoProfileLevelH264Baseline41],
-                                          [[PLVideoStreamingConfiguration alloc] initWithVideoSize:videoSize expectedSourceVideoFrameRate:30 videoMaxKeyframeInterval:90 averageVideoBitRate:800 * 1000 videoProfileLevel:AVVideoProfileLevelH264Baseline41],
+                                          [[PLVideoStreamingConfiguration alloc] initWithVideoSize:videoSize expectedSourceVideoFrameRate:15 videoMaxKeyframeInterval:45 averageVideoBitRate:800 * 1000 videoProfileLevel:AVVideoProfileLevelH264Baseline31],
+                                          [[PLVideoStreamingConfiguration alloc] initWithVideoSize:videoSize expectedSourceVideoFrameRate:24 videoMaxKeyframeInterval:72 averageVideoBitRate:800 * 1000 videoProfileLevel:AVVideoProfileLevelH264Baseline31],
+                                          [[PLVideoStreamingConfiguration alloc] initWithVideoSize:videoSize expectedSourceVideoFrameRate:30 videoMaxKeyframeInterval:90 averageVideoBitRate:800 * 1000 videoProfileLevel:AVVideoProfileLevelH264Baseline31],
                                           ];
     self.videoCaptureConfigurations = @[
                                         [[PLVideoCaptureConfiguration alloc] initWithVideoFrameRate:15 sessionPreset:AVCaptureSessionPresetiFrame960x540 previewMirrorFrontFacing:YES previewMirrorRearFacing:NO streamMirrorFrontFacing:YES streamMirrorRearFacing:NO cameraPosition:AVCaptureDevicePositionFront videoOrientation:AVCaptureVideoOrientationPortrait],
@@ -615,10 +615,10 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         PLStream *stream = [PLStream streamWithJSON:streamJSON];
         void (^permissionBlock)(void) = ^{
             dispatch_async(self.sessionQueue, ^{
-                PLVideoCaptureConfiguration *videoCaptureConfiguration = [self.videoCaptureConfigurations lastObject];
+                PLVideoCaptureConfiguration *videoCaptureConfiguration = self.videoCaptureConfigurations[0];
                 PLAudioCaptureConfiguration *audioCaptureConfiguration = [PLAudioCaptureConfiguration defaultConfiguration];
                 // 视频编码配置
-                PLVideoStreamingConfiguration *videoStreamingConfiguration = [self.videoStreamingConfigurations lastObject];
+                PLVideoStreamingConfiguration *videoStreamingConfiguration = self.videoStreamingConfigurations[0];
                 // 音频编码配置
                 PLAudioStreamingConfiguration *audioStreamingConfiguration = [PLAudioStreamingConfiguration defaultConfiguration];
                 AVCaptureVideoOrientation orientation = (AVCaptureVideoOrientation)(([[UIDevice currentDevice] orientation] <= UIDeviceOrientationLandscapeRight && [[UIDevice currentDevice] orientation] != UIDeviceOrientationUnknown) ? [[UIDevice currentDevice] orientation]: UIDeviceOrientationPortrait);
