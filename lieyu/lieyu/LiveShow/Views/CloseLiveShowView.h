@@ -19,6 +19,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lookNumLabel;
 
+@property (nonatomic, strong) NSString *shareText;//分享文字
 @property (strong, nonatomic) NSString *chatRoomID;
 @property (strong, nonatomic) UIImage *begainImage;
 @end

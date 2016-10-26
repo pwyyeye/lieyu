@@ -611,6 +611,7 @@ static NSString *liveShowListID = @"liveShowListID";
             watchLiveVC.contentURL = Arr[@"playbackURL"];
             watchLiveVC.chatRoomId = nil;
         }
+        watchLiveVC.shareText = Arr[@"shareTitle"];
         watchLiveVC.hostUser = Arr[@"roomHostUser"];
         watchLiveVC.joinNum = [NSString stringWithFormat:@"%d",model.joinNum];
         NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:model.roomImg]];

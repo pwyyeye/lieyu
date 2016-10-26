@@ -23,4 +23,6 @@
 
 @property (nonatomic, strong) NSString *roomId;//生成直播间ID
 
+@property (nonatomic, strong) NSString *shareText;//分享文字
+
 @end
