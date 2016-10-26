@@ -23,7 +23,7 @@
 #import "LYOrderDetailViewController.h"
 #import "MainTabbarViewController.h"
 
-@interface LPMyOrdersViewController ()<LPOrdersFootDelegate>
+@interface LPMyOrdersViewController ()<LPOrdersFootDelegate,UMSocialUIDelegate>
 {
     UIVisualEffectView *effectView;
     NSArray *titleArray;
@@ -36,6 +36,7 @@
     UILabel *kongLabel;
     UIButton *kongButton;
     OrderTTL *_orderTTL;
+    OrderInfoModel *_shareOrderInfoModel;
 }
 @end
 
@@ -616,6 +617,7 @@
             zujuVC.orderid=orderInfoModel.id;
             [weakSelf.navigationController pushViewController:zujuVC animated:YES];
         }else if (buttonIndex == 1){
+            _shareOrderInfoModel = orderInfoModel;
             NSDictionary *dict = @{@"actionName":@"跳转",@"pageName":@"订单详情",@"titleName":@"分享",@"value":@"分享到其他平台"};
             [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
             //http://121.40.229.133:8001/lieyu/inPinkerWebAction.do?id=77
@@ -630,8 +632,8 @@
                                                      appKey:UmengAppkey
                                                   shareText:@"精彩活动，尽在猎娱！"
                                                  shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:orderInfoModel.pinkerinfo.linkUrl]]]
-                                            shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,UMShareToEmail,nil]
-                                                   delegate:nil];
+                                            shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil]
+                                                   delegate:self];
             }
             @catch (NSException *exception) {
                 [MyUtil showCleanMessage:@"无法分享！"];
@@ -643,6 +645,16 @@
         
     }];
     [alert show];
+}
+
+- (void)didSelectSocialPlatform:(NSString *)platformName withSocialData:(UMSocialData *)socialData{
+    if (platformName == UMShareToSina || platformName == UMShareToSms) {
+        if (_shareOrderInfoModel) {
+            socialData.shareText = [NSString stringWithFormat:@"你的好友%@邀请你一起来%@玩～%@inPinkerWebAction.do?id=%d",self.userModel.usernick,_shareOrderInfoModel.barinfo.barname,LY_SERVER,_shareOrderInfoModel.id];
+        }else{
+            socialData.shareText = [NSString stringWithFormat:@"你的好友%@邀请你一起来%@玩～http://www.lie98.com",self.userModel.usernick,_shareOrderInfoModel.barinfo.barname];
+        }
+    }
 }
 
 //删除参与的订单

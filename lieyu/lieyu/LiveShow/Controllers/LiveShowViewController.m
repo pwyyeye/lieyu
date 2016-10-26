@@ -85,7 +85,7 @@ const char *networkStatus[] = {
 #define distanceOfBottom CGRectGetMaxY(self.view.bounds) - 20
 
 @interface LiveShowViewController () <PLCameraStreamingSessionDelegate,
-PLStreamingSendingBufferDelegate,UICollectionViewDataSource, UICollectionViewDelegate ,UICollectionViewDelegateFlowLayout,UITextFieldDelegate,ISEmojiViewDelegate,AVAudioPlayerDelegate>
+PLStreamingSendingBufferDelegate,UICollectionViewDataSource, UICollectionViewDelegate ,UICollectionViewDelegateFlowLayout,UITextFieldDelegate,ISEmojiViewDelegate,AVAudioPlayerDelegate,UMSocialUIDelegate>
 
 {
     CGFloat _beautify;//美颜值
@@ -468,9 +468,16 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"%@%@%@",LY_SERVER,LY_LIVE_share,self.chatRoomId];
     [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@%@%@",LY_SERVER,LY_LIVE_share,self.chatRoomId];
     [UMSocialData defaultData].extConfig.qqData.url = [NSString stringWithFormat:@"%@%@%@",LY_SERVER,LY_LIVE_share,self.chatRoomId];
-    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:_begainImage shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,nil] delegate:nil];
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:_begainImage shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,nil] delegate:self];
     _backgroudView.hidden = YES;
     _backgroudView.frame = self.setButton.frame;
+}
+
+- (void)didSelectSocialPlatform:(NSString *)platformName withSocialData:(UMSocialData *)socialData{
+    if (platformName == UMShareToSina || platformName == UMShareToSms) {
+        AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        socialData.shareText = [NSString stringWithFormat:@"【前方高能，直播来袭】%@正在赤裸裸地直播~%@%@%@",app.userModel.usernick,LY_SERVER,LY_LIVE_share,self.chatRoomId];
+    }
 }
 
 -(void)shiftButtonAction{

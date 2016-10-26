@@ -25,7 +25,7 @@
 #import "LYUserLocation.h"
 #import "IQKeyboardManager.h"
 
-@interface LPPlayTogetherViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,UITextFieldDelegate,UMSocialUIDelegate>
+@interface LPPlayTogetherViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate,UITextFieldDelegate>
 
 @property (nonatomic, strong) BarInfoTableViewCell *barinfoCell;
 @property (nonatomic, strong) TaocanTableViewCell *taocanCell;
@@ -468,8 +468,7 @@
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
     [UMSocialData defaultData].extConfig.wechatTimelineData.title = string;
     [UMSocialData defaultData].extConfig.wechatSessionData.title = string;
-    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:self.barinfoCell.barImage.image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatTimeline,UMShareToWechatSession,UMShareToSina,UMShareToSms,nil] delegate:self];
-    
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:self.barinfoCell.barImage.image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatTimeline,UMShareToWechatSession,UMShareToSina,UMShareToSms,nil] delegate:nil];
 }
 
 - (BOOL)isDirectShareInIconActionSheet{

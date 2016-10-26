@@ -23,7 +23,7 @@
 #import "LYFindConversationViewController.h"
 
 
-@interface LPOrderDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface LPOrderDetailViewController ()<UITableViewDataSource,UITableViewDelegate,UMSocialUIDelegate>
 {
     RCPublicServiceChatViewController *_conversationVC;
 }
@@ -491,7 +491,7 @@
                                                   shareText:@"精彩活动，尽在猎娱！"
                                                  shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_orderInfoModel.pinkerinfo.linkUrl]]]
                                             shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,UMShareToEmail,nil]
-                                                   delegate:nil];
+                                                   delegate:self];
             }
             @catch (NSException *exception) {
                 [MyUtil showCleanMessage:@"无法分享！"];
@@ -503,6 +503,12 @@
         
     }];
     [alert show];
+}
+
+- (void)didSelectSocialPlatform:(NSString *)platformName withSocialData:(UMSocialData *)socialData{
+    if (platformName == UMShareToSina || platformName == UMShareToSms) {
+        socialData.shareText = [NSString stringWithFormat:@"你的好友%@邀请你一起来%@玩～%@inPinkerWebAction.do?id=%d",self.userModel.usernick,_orderInfoModel.barinfo.barname,LY_SERVER,_orderInfoModel.id];
+    }
 }
 
 - (void)messageHurtingFun:(UIButton *)button{

@@ -17,7 +17,7 @@
 
 #define banner_height SCREEN_WIDTH / 4 * 3 
 
-@interface StrategyDetailViewController ()<UITableViewDelegate,UITableViewDataSource,UIWebViewDelegate,StrategyCommentSendDelegate>
+@interface StrategyDetailViewController ()<UITableViewDelegate,UITableViewDataSource,UIWebViewDelegate,StrategyCommentSendDelegate,UMSocialUIDelegate>
 {
     LYHeaderTableViewCell *_headerCell;//表的第一个cell图片
     StrategyDetailInfoTableViewCell *_infoCell;
@@ -298,8 +298,14 @@
     [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@strategy/details?id=%@",LY_SERVER,_strategyModel.id];
     [UMSocialData defaultData].extConfig.wechatTimelineData.title = string;
     [UMSocialData defaultData].extConfig.wechatSessionData.title = string;
-    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:@"怎么玩？问猎娱！" shareImage:_tableHeaderImgView.image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:@"怎么玩？问猎娱！" shareImage:_tableHeaderImgView.image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:self];
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"分享" pageName:@"攻略详情" titleName:_strategyModel.title]];
+}
+
+- (void)didSelectSocialPlatform:(NSString *)platformName withSocialData:(UMSocialData *)socialData{
+    if (platformName == UMShareToSina || platformName == UMShareToSms) {
+        socialData.shareText = [NSString stringWithFormat:@"怎么玩？问猎娱！%@strategy/details?id=%@",LY_SERVER,_strategyModel.id];
+    }
 }
 
 

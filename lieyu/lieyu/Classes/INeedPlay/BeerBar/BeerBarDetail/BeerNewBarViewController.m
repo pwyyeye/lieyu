@@ -49,7 +49,7 @@
 
 #define banner_height SCREEN_WIDTH / 4 * 3
 
-@interface BeerNewBarViewController ()<UIWebViewDelegate,UIScrollViewDelegate,UIActionSheetDelegate,LYBarCommentSuccessDelegate>
+@interface BeerNewBarViewController ()<UIWebViewDelegate,UIScrollViewDelegate,UIActionSheetDelegate,LYBarCommentSuccessDelegate,UMSocialUIDelegate>
 {
     NSManagedObjectContext *_context;
     NSString *_userid;//用户id
@@ -991,8 +991,14 @@
     [UMSocialData defaultData].extConfig.wechatSessionData.title = string;
     
     //shareText是副标题
-    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:self.beerBarDetail.address shareImage:_barTitleCell.imageView_header.image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:nil];
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:self.beerBarDetail.address shareImage:_barTitleCell.imageView_header.image shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:self];
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"分享" pageName:BEERBARDETAIL_MTA titleName:self.beerBarDetail.barname]];
+}
+
+- (void)didSelectSocialPlatform:(NSString *)platformName withSocialData:(UMSocialData *)socialData{
+    if (platformName == UMShareToSina || platformName == UMShareToSms) {
+        socialData.shareText = [NSString stringWithFormat:@"我要推荐下～%@酒吧!下载猎娱App猎寻更多特色酒吧。http://www.lie98.com/lieyu/toPlayAction.do?action=login&barid=%@",self.beerBarDetail.barname,self.beerBarDetail.barid];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
