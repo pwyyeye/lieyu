@@ -87,6 +87,8 @@
         }else{
             [_commentButton setTitle:[NSString stringWithFormat:@"%dk+",jiuBaM.commentNum / 1000] forState:UIControlStateNormal];
         }
+    }else{
+        [_commentButton setTitle:@"0" forState:UIControlStateNormal];
     }
     
     [_collectButton addTarget:self action:@selector(collectBar) forControlEvents:UIControlEventTouchUpInside];
