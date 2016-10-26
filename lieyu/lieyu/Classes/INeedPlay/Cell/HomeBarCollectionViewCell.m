@@ -14,6 +14,8 @@
 #import "LYYUHttpTool.h"
 #import "BarGroupChatViewController.h"
 #import "IQKeyboardManager.h"
+#import "LYUserHttpTool.h"
+#import "TopicModel.h"
 
 @interface HomeBarCollectionViewCell()<LYBarCommentSuccessDelegate>
 
@@ -150,15 +152,25 @@
         LYUserLoginViewController *loginVC = [[LYUserLoginViewController alloc]init];
         [app.navigationController pushViewController:loginVC animated:YES];
     }else{
-        if(_jiuBaM.topicTypeId.length){
-            LYFriendsTopicsViewController *friendTopicVC = [[LYFriendsTopicsViewController alloc]init];
-            friendTopicVC.topicTypeId = _jiuBaM.topicTypeId;
-            friendTopicVC.topicName = _jiuBaM.topicTypeName;
-            friendTopicVC.commentDelegate = self;
-            friendTopicVC.isFriendsTopic = NO;
-            friendTopicVC.isFriendToUserMessage = YES;
-            friendTopicVC.isTopic = YES;
-            [app.navigationController pushViewController:friendTopicVC animated:YES];
+        if(_jiuBaM.barid > 0){
+            NSDictionary *dict = @{@"type":@"1",
+                                   @"barid":[NSString stringWithFormat:@"%d",_jiuBaM.barid]};
+            __weak __typeof(self)weakSelf = self;
+            [LYUserHttpTool getTopicList:dict complete:^(NSArray *dataList) {
+                if (dataList.count) {
+                    TopicModel *topicModel = [dataList objectAtIndex:0];
+                    if (topicModel.id.length) {
+                        LYFriendsTopicsViewController *friendTopicVC = [[LYFriendsTopicsViewController alloc]init];
+                        friendTopicVC.topicTypeId = topicModel.id;
+                        friendTopicVC.topicName = topicModel.name;
+                        friendTopicVC.commentDelegate = weakSelf;
+                        friendTopicVC.isFriendsTopic = NO;
+                        friendTopicVC.isFriendToUserMessage = YES;
+                        friendTopicVC.isTopic = YES;
+                        [app.navigationController pushViewController:friendTopicVC animated:YES];
+                    }
+                }
+            }];
         }
     }
 }

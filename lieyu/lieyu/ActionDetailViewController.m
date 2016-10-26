@@ -185,10 +185,15 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-//        NSLog(@"%@",NSStringFromCGRect(DetailImageCell.image.frame));
-//        return DetailImageCell.image.frame.size.height;
-        return UITableViewAutomaticDimension;
-//        return 100;
+        UIImage *image = [[SDImageCache sharedImageCache]imageFromDiskCacheForKey:_barActivity.imageUrl];
+        if (!image) {
+            image = [UIImage imageNamed:@"empyImage300"];
+        }
+        // 通过CGSize找到image里面的图片的尺寸
+        CGSize picSize= image.size;
+        // 计算行高
+        CGFloat rowHeight =picSize.height*self.view.frame.size.width/picSize.width;
+        return rowHeight;
     }else
     if (indexPath.section == 2) {
         return WebView.frame.size.height + 50;
