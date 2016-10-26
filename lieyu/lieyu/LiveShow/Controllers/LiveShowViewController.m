@@ -854,33 +854,19 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     if (imgStr.length < 50) {
         imgStr = [MyUtil getQiniuUrl:chatuser.avatar_img width:0 andHeight:0];
     }
-    
     [_anchorDetailView.anchorIcon sd_setImageWithURL:[NSURL URLWithString:imgStr] placeholderImage:[UIImage imageNamed:@"lieyu_default_head"]];
-    
     if (chatuser.gender == 0) {
         _anchorDetailView.genderIamge.image=[UIImage imageNamed:@"woman"];
     }else{
         _anchorDetailView.genderIamge.image=[UIImage imageNamed:@"manIcon"];
     }
-    
     NSString *astro = [MyUtil getAstroWithBirthday:chatuser.birthday];
     [_anchorDetailView.starlabel setText:astro];
     
     NSString *tagText = chatuser.tag;
     [_anchorDetailView.tagLabel setText:tagText];
-    
     [self.view addSubview:_anchorDetailView];
     [self.view bringSubviewToFront:_anchorDetailView];
-    
-    //    NSInteger status = [_hostUser[@"friendStatus"] integerValue];
-    //    if (status == 2 || status == 0) {//0 没有关系   1 关注   2 粉丝   3 好友
-    //        _anchorDetailView.focusButton.tag = 2;
-    //        [_anchorDetailView.focusButton setTitle:@"关注" forState:(UIControlStateNormal)];
-    //    } else if (status == 1 || status == 3) {
-    //        _anchorDetailView.focusButton.tag = 1;
-    //        [_anchorDetailView.focusButton setTitle:@"已关注" forState:(UIControlStateNormal)];
-    //        _anchorDetailView.focusButton.userInteractionEnabled = NO;
-    //    }
     [_anchorDetailView.focusButton addTarget:self action:@selector(anchorFocusButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
     _anchorDetailView.focusButton.tag = chatuser.id;
     [_anchorDetailView.mainViewButton addTarget:self action:@selector(mainViewButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
@@ -1066,6 +1052,10 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         user.birthday = model.birthday;
         NSDictionary *tempDic = [model.tags lastObject];
         user.tag = [NSString stringWithFormat:@"%@",tempDic[@"tagname"]];
+        if (_anchorDetailView.hidden == NO) {
+            [_anchorDetailView removeFromSuperview];
+            _anchorDetailView = nil;
+        }
         [weakSlef showWatchDetailWith:user];
     }];
     

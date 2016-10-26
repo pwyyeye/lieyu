@@ -982,6 +982,10 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         user.birthday = model.birthday;
         NSDictionary *tempDic = [model.tags lastObject];
         user.tag = [NSString stringWithFormat:@"%@",tempDic[@"tagname"]];
+        if (_anchorDetailView.hidden == NO) {
+            [_anchorDetailView removeFromSuperview];
+            _anchorDetailView = nil;
+        }
         [weakSlef showWatchDetailWith:user];
     }];
 }
