@@ -20,6 +20,11 @@
 @property (nonatomic,strong) FriendsRecentModel *recentM;
 
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *centerConstraint;
+
+@property (weak, nonatomic) IBOutlet UIView *rightView;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *moreViewWidth;
 
 @property (weak, nonatomic) IBOutlet UIButton *dianpingButton;
 

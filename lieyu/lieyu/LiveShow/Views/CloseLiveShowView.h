@@ -17,6 +17,11 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *moneyNumLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *moneyLabelLeft;
+
+@property (weak, nonatomic) IBOutlet UILabel *moneyLabelRight;
+
+
 @property (weak, nonatomic) IBOutlet UILabel *lookNumLabel;
 
 @property (nonatomic, strong) NSString *shareText;//分享文字

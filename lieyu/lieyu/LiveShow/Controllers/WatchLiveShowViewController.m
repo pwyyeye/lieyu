@@ -367,12 +367,15 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         [_CAEmitterView addSubview:_audienceCollectionView];
         
         //礼物按钮
-        UIButton *giftButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        giftButton.frame = CGRectMake(SCREEN_WIDTH / 49, distanceOfBottom - SCREEN_WIDTH / 8, SCREEN_WIDTH / 8 , SCREEN_WIDTH / 8);
-        [giftButton setImage:[UIImage imageNamed:@"live_gift.png"] forState:(UIControlStateNormal)];
-        [giftButton addTarget:self action:@selector(giftButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
-        _giftButton = giftButton;
-        [self.view addSubview:_giftButton];
+        if (_isCoin) {
+            UIButton *giftButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+            giftButton.frame = CGRectMake(SCREEN_WIDTH / 49, distanceOfBottom - SCREEN_WIDTH / 8, SCREEN_WIDTH / 8 , SCREEN_WIDTH / 8);
+            [giftButton setImage:[UIImage imageNamed:@"live_gift.png"] forState:(UIControlStateNormal)];
+            [giftButton addTarget:self action:@selector(giftButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
+            _giftButton = giftButton;
+            [self.view addSubview:_giftButton];
+        }
+        
         //点赞按钮
         UIButton *likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         likeButton.size = CGSizeMake(SCREEN_WIDTH / 8,  SCREEN_WIDTH /8);

@@ -126,13 +126,13 @@
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
-                        <exclude reference="71i-qe-ddG"/>
                         <exclude reference="NVd-X6-W2a"/>
                         <exclude reference="NhX-CR-rFE"/>
                         <exclude reference="RIq-7P-nnV"/>
                         <exclude reference="w9G-Y8-Y56"/>
                         <exclude reference="CdB-j7-xzK"/>
                         <exclude reference="IZp-a7-IJU"/>
+                        <exclude reference="71i-qe-ddG"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
@@ -140,12 +140,15 @@
                 <outlet property="btn_comment" destination="hD0-IZ-Aze" id="kNP-bQ-ggC"/>
                 <outlet property="btn_dashang" destination="tiI-4v-Zr9" id="xSZ-LN-gkJ"/>
                 <outlet property="btn_like" destination="v46-BG-Lsl" id="RgQ-uz-l8H"/>
+                <outlet property="centerConstraint" destination="wq0-3i-zP9" id="Lt6-Ks-EhR"/>
                 <outlet property="dashangImageView" destination="Whp-sE-O01" id="92J-gk-rEl"/>
                 <outlet property="dashangLabel" destination="9c6-cT-Xnh" id="qa5-8c-bIE"/>
                 <outlet property="dianpingButton" destination="XXC-df-mSU" id="0Xg-9p-d0j"/>
                 <outlet property="imgView_location" destination="vZ1-l2-3kw" id="l2C-Ll-gRJ"/>
                 <outlet property="label_address" destination="DFq-hw-xAl" id="oyG-CH-XvP"/>
                 <outlet property="moreView" destination="f3j-nk-PcS" id="1I4-7Q-ezh"/>
+                <outlet property="moreViewWidth" destination="WNV-My-ZdO" id="9wa-Tb-08T"/>
+                <outlet property="rightView" destination="nbV-Yr-SKR" id="yMs-Lo-Ec1"/>
             </connections>
             <point key="canvasLocation" x="375.5" y="271.5"/>
         </tableViewCell>

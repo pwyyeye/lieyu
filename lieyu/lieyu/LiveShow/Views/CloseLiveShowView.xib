@@ -170,6 +170,8 @@
             <connections>
                 <outlet property="backButton" destination="ccQ-1Y-HAU" id="KkL-Ar-m19"/>
                 <outlet property="lookNumLabel" destination="QPQ-VU-7QA" id="ItG-EG-aOb"/>
+                <outlet property="moneyLabelLeft" destination="jzt-n5-HEb" id="bON-yo-613"/>
+                <outlet property="moneyLabelRight" destination="xJj-Lk-wgs" id="UwS-BA-ns9"/>
                 <outlet property="moneyNumLabel" destination="CRf-6i-qDd" id="mKY-Qj-L2Y"/>
                 <outlet property="notSaveButton" destination="SeM-eN-ub9" id="Hq1-Od-CuM"/>
                 <outlet property="qqButton" destination="DDU-5n-9MR" id="BSu-Rj-CvJ"/>
@@ -177,7 +179,7 @@
                 <outlet property="weChatButton" destination="ciV-0L-Gfd" id="jVc-Pl-saN"/>
                 <outlet property="weChatMonmentButton" destination="vqk-9Z-H09" id="gup-O8-0r3"/>
             </connections>
-            <point key="canvasLocation" x="40" y="174"/>
+            <point key="canvasLocation" x="115" y="153"/>
         </view>
     </objects>
     <resources>
