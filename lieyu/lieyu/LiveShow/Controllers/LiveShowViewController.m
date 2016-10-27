@@ -933,10 +933,13 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
             _reward = [NSString stringWithFormat:@"%@",dict[@"rewardNum"]];
             _closeView.moneyNumLabel.text = _reward;
         }];
-    } else {
         _closeView.moneyNumLabel.hidden = NO;
         _closeView.moneyLabelLeft.hidden = NO;
         _closeView.moneyLabelRight.hidden = NO;
+    } else {
+        _closeView.moneyNumLabel.hidden = YES;
+        _closeView.moneyLabelLeft.hidden = YES;
+        _closeView.moneyLabelRight.hidden = YES;
     }
     _closeView.frame = self.view.bounds;
     [self.view addSubview:_closeView];
