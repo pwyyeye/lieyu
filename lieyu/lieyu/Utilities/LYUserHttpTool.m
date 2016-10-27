@@ -1632,6 +1632,8 @@
                     }else{
                         balanceStr = [NSString stringWithFormat:@"%@.00",[balanceArray objectAtIndex:0]];
                     }
+                }else{
+                    balanceStr = [NSString stringWithFormat:@"%@.00",[balanceArray objectAtIndex:0]];
                 }
                 NSString *coinStrEncry = [[response objectForKey:@"data"] objectForKey:@"coin"];
                 NSString *coinStr = [MyUtil decryptUseDES:coinStrEncry withKey:app.desKey];
@@ -1639,7 +1641,7 @@
                 ZSBalance *balance = [ZSBalance mj_objectWithKeyValues:[response objectForKey:@"data"]];
                 balance.balances = ![MyUtil isEmptyString:balanceStr] ? balanceStr : @"0";
                 balance.coin = ![MyUtil isEmptyString:coinStr] ? coinStr : @"0";
-                
+                balance.coinBoolean = [[[response objectForKey:@"data"] objectForKey:@"coinBoolean"] boolValue];
                 complete(balance);
             }
         }else{

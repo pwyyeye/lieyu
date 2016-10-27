@@ -30,19 +30,45 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.title = @"我的钱包";
-    _dataArray = @[@{@"title":@"娱币商城",@"image":@"shopIcon",@"color":[UIColor blackColor]},
-                   @{@"title":@"猎娱VIP",@"image":@"vipIconGray",@"color":RGB(210,210,210)}];
+    [self hideCoinViews];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     [_collectionView registerNib:[UINib nibWithNibName:@"MineMoneyBagCollectionViewCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"MineMoneyBagCollectionViewCell"];
     [self getData];
 }
 
+- (void)hideCoinViews{
+    _dataArray = @[@{@"title":@"娱币商城",@"image":@"shopIconGray",@"color":RGB(210,210,210)},
+                   @{@"title":@"猎娱VIP",@"image":@"vipIconGray",@"color":RGB(210,210,210)}];
+    _coinButton.hidden = YES;
+    _coinImage.hidden = YES;
+    _coinLabel.hidden = YES;
+    _coinDefault.hidden = YES;
+    _seperateLabel.hidden = YES;
+    _seperaterConstant.constant = SCREEN_WIDTH / 2 ;
+}
+
+- (void)showCoinViews{
+    _dataArray = @[@{@"title":@"娱币商城",@"image":@"shopIcon",@"color":[UIColor blackColor]},
+                   @{@"title":@"猎娱VIP",@"image":@"vipIconGray",@"color":RGB(210,210,210)}];
+    _coinButton.hidden = NO;
+    _coinImage.hidden = NO;
+    _coinLabel.hidden = NO;
+    _coinDefault.hidden = NO;
+    _seperateLabel.hidden = NO;
+    _seperaterConstant.constant = 0 ;
+}
+
 - (void)getData{
+    __weak __typeof(self)weakSelf = self;
     [LYUserHttpTool getMyMoneyBagBalanceAndCoinWithParams:nil complete:^(ZSBalance *balance) {
         _balanceModel = balance;
         [_balanceLabel setText:[NSString stringWithFormat:@"¥%.2f",[_balanceModel.balances floatValue]]];
-        [_yubiLabel setText:[NSString stringWithFormat:@"%@娱币",_balanceModel.coin]];
+        if (balance.coinBoolean) {
+            [weakSelf showCoinViews];
+            [_yubiLabel setText:[NSString stringWithFormat:@"%@娱币",_balanceModel.coin]];
+            [_collectionView reloadData];
+        }
     }];
 }
 
@@ -112,18 +138,20 @@
     if (indexPath.section == 0 && indexPath.item == 0) {
         //进入娱币商城
         __weak __typeof(self)weakSelf = self;
-        [LYUserHttpTool lyEnterCoinShopWithParams:nil complete:^(NSString *result) {
-            if ([MyUtil isEmptyString:result]) {
-                [MyUtil showPlaceMessage:@"娱币商城敬请期待！"];
-            }else{
-//                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.baidu.com"]];
-//                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:result]];
-                LYCoinShopViewController *coinShopVC = [[LYCoinShopViewController alloc]init];
-                coinShopVC.urlString = [NSURL URLWithString:result];
-                coinShopVC.delegate = self;
-                [weakSelf.navigationController pushViewController:coinShopVC animated:YES];
-            }
-        }];
+        if (_balanceModel.coinBoolean) {
+            [LYUserHttpTool lyEnterCoinShopWithParams:nil complete:^(NSString *result) {
+                if ([MyUtil isEmptyString:result]) {
+                    [MyUtil showPlaceMessage:@"娱币商城敬请期待！"];
+                }else{
+                    LYCoinShopViewController *coinShopVC = [[LYCoinShopViewController alloc]init];
+                    coinShopVC.urlString = [NSURL URLWithString:result];
+                    coinShopVC.delegate = self;
+                    [weakSelf.navigationController pushViewController:coinShopVC animated:YES];
+                }
+            }];
+        }else{
+            [MyUtil showPlaceMessage:@"娱币商城敬请期待！"];
+        }
     }else if (indexPath.section == 0 && indexPath.item == 1){
         //进入猎娱VIP
         [MyUtil showPlaceMessage:@"猎娱VIP敬请期待！"];

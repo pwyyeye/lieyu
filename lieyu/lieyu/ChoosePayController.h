@@ -36,7 +36,8 @@
 
 @property(assign,nonatomic) BOOL isFaqi;
 
-@property (assign, nonatomic) BOOL isRechargeBalance;
+@property (assign, nonatomic) BOOL isRechargeBalance;//为了充值余额
+@property (assign, nonatomic) BOOL isRechargeCoin;//为了充值娱币
 
 @property (nonatomic, assign) id<RechargeDelegate> delegate;
 

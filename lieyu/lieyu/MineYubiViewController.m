@@ -162,6 +162,7 @@
     [LYUserHttpTool rechargeMoneyBagWithParams:dict complete:^(NSString *result) {
         ChoosePayController *detailViewController =[[ChoosePayController alloc] init];
         detailViewController.orderNo=result;
+        detailViewController.isRechargeCoin = YES;
         detailViewController.delegate = weakSelf;
         detailViewController.payAmount=[money doubleValue];
         detailViewController.productName=@"钱包余额充值";

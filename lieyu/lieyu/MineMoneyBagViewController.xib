@@ -9,7 +9,13 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MineMoneyBagViewController">
             <connections>
                 <outlet property="balanceLabel" destination="0Or-OU-MIe" id="0nH-iO-rMC"/>
+                <outlet property="coinButton" destination="ahg-zV-scD" id="9FT-BF-DRr"/>
+                <outlet property="coinDefault" destination="8jF-sJ-GyP" id="zpr-iN-frP"/>
+                <outlet property="coinImage" destination="smd-dW-QS6" id="w3g-m8-GJj"/>
+                <outlet property="coinLabel" destination="1rf-Ez-dw9" id="6wf-70-N8G"/>
                 <outlet property="collectionView" destination="mhj-ye-rLd" id="hrn-yW-bxi"/>
+                <outlet property="seperateLabel" destination="YNS-Xb-32A" id="ISe-io-9hs"/>
+                <outlet property="seperaterConstant" destination="FNt-78-mt4" id="dQG-et-i3R"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="yubiLabel" destination="1rf-Ez-dw9" id="Nqz-gG-lzD"/>
             </connections>
@@ -47,16 +53,16 @@
                                 <action selector="yubiClick:" destination="-1" eventType="touchUpInside" id="hN1-vP-nu6"/>
                             </connections>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="balanceIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="9uL-bH-vx8">
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="JgV-vZ-UNM"/>
-                                <constraint firstAttribute="width" constant="34" id="opc-Ab-Nho"/>
-                            </constraints>
-                        </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yubiIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="smd-dW-QS6">
                             <constraints>
                                 <constraint firstAttribute="width" constant="34" id="CHI-wu-JWF"/>
                                 <constraint firstAttribute="height" constant="34" id="UJ1-Yk-D0Q"/>
+                            </constraints>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="balanceIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="9uL-bH-vx8">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="JgV-vZ-UNM"/>
+                                <constraint firstAttribute="width" constant="34" id="opc-Ab-Nho"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Or-OU-MIe">
