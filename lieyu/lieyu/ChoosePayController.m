@@ -62,6 +62,7 @@
     [LYUserHttpTool getMyMoneyBagBalanceAndCoinWithParams:nil complete:^(ZSBalance *balance) {
         _balanceModel = balance;
         if (_payAmount > [_balanceModel.balances doubleValue] || _isRechargeBalance) {
+            //余额不足或者是充值余额
             _isBalanceEnough = NO;
             if (_isRechargeBalance) {
                 _data=@[
@@ -77,14 +78,24 @@
                         ];
             }
             _selectIndex = 1;
-        }else{
-            _isBalanceEnough = YES;
-            _data=@[
-                    @{@"payname":@"余额支付",@"paydetail":@"推荐余额优先支付",@"payicon":@"balanceIcon"},
-                    @{@"payname":@"支付宝支付",@"paydetail":@"推荐有支付宝帐户的用户使用",@"payicon":@"AlipayIcon"},
-                    @{@"payname":@"微信支付",@"paydetail":@"推荐有微信帐户的用户使用",@"payicon":@"TenpayIcon"}
-                    ];
-            _selectIndex = 0;
+        }else{//余额足够并且不是充值余额
+            if(_isRechargeCoin){
+                //充值娱币
+                _isBalanceEnough = YES;
+                _data=@[
+                        @{@"payname":@"余额支付",@"paydetail":@"推荐余额优先支付",@"payicon":@"balanceIcon"},
+                        @{@"payname":@"支付宝支付",@"paydetail":@"推荐有支付宝帐户的用户使用",@"payicon":@"AlipayIcon"},
+                        @{@"payname":@"微信支付",@"paydetail":@"推荐有微信帐户的用户使用",@"payicon":@"TenpayIcon"}
+                        ];
+                _selectIndex = 0;
+            }else{
+                _data=@[
+                        @{@"payname":@"余额支付",@"paydetail":@"余额暂不支持该项业务",@"payicon":@"balanceIcon"},
+                        @{@"payname":@"支付宝支付",@"paydetail":@"推荐有支付宝帐户的用户使用",@"payicon":@"AlipayIcon"},
+                        @{@"payname":@"微信支付",@"paydetail":@"推荐有微信帐户的用户使用",@"payicon":@"TenpayIcon"}
+                        ];
+                _selectIndex = 1;
+            }
         }
         [weakSelf.tableView reloadData];
     }];

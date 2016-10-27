@@ -374,6 +374,8 @@
 		3838944E1D15369B0014C8E9 /* free_order_icon@3x@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3838944C1D15369B0014C8E9 /* free_order_icon@3x@3x.png */; };
 		383894511D153A8F0014C8E9 /* Fill20520@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3838944F1D153A8F0014C8E9 /* Fill20520@2x.png */; };
 		383894521D153A8F0014C8E9 /* Fill20520@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 383894501D153A8F0014C8E9 /* Fill20520@3x.png */; };
+		383FB4681DC1B56200435B40 /* shopIconGray@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 383FB4661DC1B56200435B40 /* shopIconGray@3x.png */; };
+		383FB4691DC1B56200435B40 /* shopIconGray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 383FB4671DC1B56200435B40 /* shopIconGray@2x.png */; };
 		38406F501D9688D3005B3042 /* LYFriendsRecommendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38406F4E1D9688D3005B3042 /* LYFriendsRecommendTableViewCell.m */; };
 		38406F511D9688D3005B3042 /* LYFriendsRecommendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38406F4F1D9688D3005B3042 /* LYFriendsRecommendTableViewCell.xib */; };
 		384A54901CF5A8B6008825ED /* LYChooseBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 384A548E1CF5A8B6008825ED /* LYChooseBarViewController.xib */; };
@@ -2787,6 +2789,8 @@
 		3838944C1D15369B0014C8E9 /* free_order_icon@3x@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "free_order_icon@3x@3x.png"; sourceTree = "<group>"; };
 		3838944F1D153A8F0014C8E9 /* Fill20520@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Fill20520@2x.png"; sourceTree = "<group>"; };
 		383894501D153A8F0014C8E9 /* Fill20520@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Fill20520@3x.png"; sourceTree = "<group>"; };
+		383FB4661DC1B56200435B40 /* shopIconGray@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shopIconGray@3x.png"; sourceTree = "<group>"; };
+		383FB4671DC1B56200435B40 /* shopIconGray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shopIconGray@2x.png"; sourceTree = "<group>"; };
 		38406F4D1D9688D3005B3042 /* LYFriendsRecommendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYFriendsRecommendTableViewCell.h; sourceTree = "<group>"; };
 		38406F4E1D9688D3005B3042 /* LYFriendsRecommendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYFriendsRecommendTableViewCell.m; sourceTree = "<group>"; };
 		38406F4F1D9688D3005B3042 /* LYFriendsRecommendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYFriendsRecommendTableViewCell.xib; sourceTree = "<group>"; };
@@ -9165,6 +9169,8 @@
 				85C441711D73D67900299C17 /* balanceIcon@3x.png */,
 				85C441721D73D67900299C17 /* shopIcon@2x.png */,
 				85C441731D73D67900299C17 /* shopIcon@3x.png */,
+				383FB4661DC1B56200435B40 /* shopIconGray@3x.png */,
+				383FB4671DC1B56200435B40 /* shopIconGray@2x.png */,
 				85C441741D73D67900299C17 /* VIPIcon@2x.png */,
 				85C441751D73D67900299C17 /* VIPIcon@3x.png */,
 				85C441761D73D67900299C17 /* yubiIcon@2x.png */,
@@ -11317,6 +11323,7 @@
 				850099C51C61EEE700DDE626 /* yuShadow@3x.png in Resources */,
 				AD44F9581C9D27730030F5C2 /* biaoqing_icon_keybo@3x.png in Resources */,
 				15844BBF1BE1C70600247FBC /* LYSearchFriendViewController.xib in Resources */,
+				383FB4681DC1B56200435B40 /* shopIconGray@3x.png in Resources */,
 				38D8764B1C1703B600E2F284 /* purper_fanli@3x.png in Resources */,
 				386AE3A91C5B6F2B0062105F /* banner_us@3x.png in Resources */,
 				38B5F4C81CBBC6BB00AE1BF5 /* PayNow.png in Resources */,
@@ -11458,6 +11465,7 @@
 				525CA0EC1C5C68AD009ED9DA /* biaobai_iconBlack@2x.png in Resources */,
 				85FE553F1D7AB8D900B262EA /* HomePageLike@3x.png in Resources */,
 				85F66E511C525E51005D1CD8 /* xitongtongzhi@2x.png in Resources */,
+				383FB4691DC1B56200435B40 /* shopIconGray@2x.png in Resources */,
 				AD399ECC1C940D4D00028F23 /* logo77@2x.jpg in Resources */,
 				854CF48F1CA3BF1900F7F95B /* beerBarPoint@2x.png in Resources */,
 				38679E501D817520003C868A /* MineBoundAccountViewController.xib in Resources */,
