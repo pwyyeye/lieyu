@@ -49,8 +49,12 @@
 //    NSDictionary *paraDic =
     __weak __typeof(self) weakSelf = self;
     [LYHomePageHttpTool getGameFromWith:nil complete:^(NSArray *gameListArray) {
-        _gameListArray = gameListArray;
-        [weakSelf.collectionView reloadData];
+        if (gameListArray.count <= 0) {
+            _collectionView.hidden = YES;
+        }else{
+            _gameListArray = gameListArray;
+            [weakSelf.collectionView reloadData];
+        }
     }];
 }
 
