@@ -215,6 +215,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 {
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
+    _dataArray = [NSMutableArray arrayWithCapacity:123];
     [RCIM sharedRCIM].disableMessageAlertSound = YES;//关闭融云的提示音
 }
 
@@ -267,8 +268,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 
 #pragma mark -- 定时获取直播室人员和点赞数 或者回放时的播放进度
 -(void)timerUpdataAction {
-    NSDictionary *dictionary = @{@"chatNum":[NSString stringWithFormat:@"%d",_takeNum],@"liveChatId":_chatRoomId};
-    [self.dataArray removeAllObjects];
+    NSDictionary *dictionary = @{@"chatNum":[NSString stringWithFormat:@"0"],@"liveChatId":_chatRoomId};
     [LYFriendsHttpTool requestListWithParms:dictionary complete:^(NSDictionary *dict) {
         _likeLabel.text = [NSString stringWithFormat:@"%@",dict[@"likeNum"]];
         if ([dict valueForKey:@"total"]) {
@@ -276,15 +276,17 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         } else {
             _userView.numberLabel.text = @"";
         }
-        if ([dict valueForKey:@"users"]) {
-            self.dataArray = dict[@"users"];
-            for (ChatUseres *model  in _dataArray) {
-                NSString *tempID = [NSString stringWithFormat:@"%@", _hostUser[@"id"]];
-                if (model.id == tempID.integerValue) {
-                    [_dataArray removeObject:model];
-                }
-            }
-        }
+//        if ([dict valueForKey:@"users"]) {
+        [self.dataArray removeAllObjects];
+        self.dataArray = dict[@"users"];
+//            for (ChatUseres *model  in _dataArray) {
+//                NSString *tempID = [NSString stringWithFormat:@"%@", _hostUser[@"id"]];
+//                if (model.id == tempID.integerValue) {
+//                    [_dataArray removeObject:model];
+//                    break;
+//                }
+//            }
+//        }
         [_audienceCollectionView reloadData];
     }];
     NSDictionary *watchDict = @{@"liveChatId":_chatRoomId};
@@ -812,6 +814,13 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [self.view addSubview:_anchorDetailView];
     [self.view bringSubviewToFront:_anchorDetailView];
     
+    UIButton *jubaoButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+    jubaoButton.frame = CGRectMake(20, 15, 40, 23);
+    [jubaoButton setTitle:@"举报" forState:(UIControlStateNormal)];
+    [jubaoButton setTitleColor:COMMON_PURPLE forState:(UIControlStateNormal)];
+    [jubaoButton addTarget:self action:@selector(jubaoButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
+    [_anchorDetailView addSubview:jubaoButton];
+    
     _anchorDetailView.starlabel.hidden = YES;
     _anchorDetailView.tagLabel.hidden = YES;
     
@@ -830,7 +839,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     _anchorDetailView.mainViewButton.tag = [self.hostUser[@"userid"] integerValue];
 }
 
-//点击聊天室
+//点击聊天室的观众
 -(void)showWatchDetailWith:(ChatUseres *) chatuser{
     _anchorDetailView = [[[NSBundle mainBundle] loadNibNamed:@"AnchorDetailView" owner:self options:nil] lastObject];
     _anchorDetailView.frame = CGRectMake(0, 0, 260,210);
@@ -890,6 +899,33 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
             sender.userInteractionEnabled = NO;
             [_userView.isFoucsButton setTitle:@"已关注" forState:(UIControlStateNormal)];
             _userView.isFoucsButton.userInteractionEnabled = NO;
+        }];
+    }
+}
+
+-(void)jubaoButtonAction:(UIButton *)sender{
+     UIActionSheet *reportAction = [[UIActionSheet alloc]initWithTitle:@"选择举报原因" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"污秽色情",@"垃圾广告",@"其他原因", nil];
+    [reportAction showInView:_anchorDetailView];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSString *message;
+    if (buttonIndex == 0) {
+        message = @"污秽色情";
+    }else if (buttonIndex == 1){
+        message = @"垃圾广告";
+    }else if (buttonIndex == 2){
+        message = @"其他原因";
+    }
+    if (buttonIndex != 3) {
+        UserModel *userModel = ((AppDelegate *)[UIApplication sharedApplication].delegate).userModel;
+        NSDictionary *dict = @{
+                               @"reportedUserid":self.hostUser[@"userid"],
+                               @"momentId":_chatRoomId,
+                               @"message":message,
+                               @"userid":[NSNumber numberWithInt:userModel.userid]};
+        [LYFriendsHttpTool friendsJuBaoWithParams:dict complete:^(NSString *message) {
+            [MyUtil showPlaceMessage:@"举报成功"];
         }];
     }
 }

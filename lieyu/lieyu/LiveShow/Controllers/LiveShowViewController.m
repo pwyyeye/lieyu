@@ -197,7 +197,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     self.navigationController.navigationBarHidden = YES;
     [self.conversationMessageCollectionView reloadData];
     _takeNum = 0;
-    
+    _dataArray = [NSMutableArray arrayWithCapacity:123];
     [RCIM sharedRCIM].disableMessageAlertSound = YES;//关闭融云的提示音
 }
 
@@ -315,16 +315,15 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [self initUI];
     [self beginLiveShow];
     [self joinChatRoom];
-    _timer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(livetimerUpdataAction) userInfo:nil repeats:YES];
+    _timer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(livetimerUpdataAction) userInfo:nil repeats:YES];
     [_timer fire];
     [self livetimerUpdataAction];
 }
 
 #pragma mark -- 定时获取直播室人员和点赞数
--(void)livetimerUpdataAction{
+-(void)livetimerUpdataAction {
     NSDictionary *dictionary = @{@"chatNum":[NSString stringWithFormat:@"%d",_takeNum],@"liveChatId":_chatRoomId};
-    [self.dataArray removeAllObjects];
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+//    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [LYFriendsHttpTool requestListWithParms:dictionary complete:^(NSDictionary *dict) {
         if ([dict valueForKey:@"total"]) {
             _userView.numberLabel.text = [NSString stringWithFormat:@"%@",dict[@"total"]];
@@ -332,18 +331,17 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         } else {
             _userView.numberLabel.text = @"";
         }
-        if ([dict valueForKey:@"users"]) {
-            self.dataArray = dict[@"users"];
-            for (ChatUseres *model  in _dataArray) {
-                if (model.id == app.userModel.userid) {
-                    [_dataArray removeObject:model];
-                }
-            }
-        }
+//        if ([dict valueForKey:@"users"]) {
+        [self.dataArray removeAllObjects];
+        self.dataArray = dict[@"users"];
+//            for (ChatUseres *model  in _dataArray) {
+//                if (model.id == app.userModel.userid) {
+//                    [_dataArray removeObject:model];
+//                }
+//            }
+//        }
         [_audienceCollectionView reloadData];
     }];
-    
-   
 }
 
 #pragma mark --- 初始化页面
@@ -1683,6 +1681,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
  */
 - (BOOL)appendMessageModel:(RCMessageModel *)model {
     long newId = model.messageId;
+     _takeNum +=1;//记录聊天数
     for (RCMessageModel *__item in self.conversationDataRepository) {
         /*
          * 当id为－1时，不检查是否重复，直接插入
@@ -1836,7 +1835,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
  *  @param notification
  */
 - (void)didReceiveMessageNotification:(NSNotification *)notification {
-    ++_takeNum ;//记录聊天数
 
     __block RCMessage *rcMessage = notification.object;
     RCMessageModel *model = [[RCMessageModel alloc] initWithMessage:rcMessage];
