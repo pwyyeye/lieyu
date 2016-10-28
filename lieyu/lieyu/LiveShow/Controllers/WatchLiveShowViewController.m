@@ -367,12 +367,15 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         [_CAEmitterView addSubview:_audienceCollectionView];
         
         //礼物按钮
-        UIButton *giftButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        giftButton.frame = CGRectMake(SCREEN_WIDTH / 49, distanceOfBottom - SCREEN_WIDTH / 8, SCREEN_WIDTH / 8 , SCREEN_WIDTH / 8);
-        [giftButton setImage:[UIImage imageNamed:@"live_gift.png"] forState:(UIControlStateNormal)];
-        [giftButton addTarget:self action:@selector(giftButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
-        _giftButton = giftButton;
-        [self.view addSubview:_giftButton];
+        if (_isCoin) {
+            UIButton *giftButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+            giftButton.frame = CGRectMake(SCREEN_WIDTH / 49, distanceOfBottom - SCREEN_WIDTH / 8, SCREEN_WIDTH / 8 , SCREEN_WIDTH / 8);
+            [giftButton setImage:[UIImage imageNamed:@"live_gift.png"] forState:(UIControlStateNormal)];
+            [giftButton addTarget:self action:@selector(giftButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
+            _giftButton = giftButton;
+            [self.view addSubview:_giftButton];
+        }
+        
         //点赞按钮
         UIButton *likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         likeButton.size = CGSizeMake(SCREEN_WIDTH / 8,  SCREEN_WIDTH /8);
@@ -611,12 +614,11 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 
 #pragma mark -- 分享
 -(void)liveShareButtonAction{
-    NSString *string = [NSString stringWithFormat:@"【前方高能，直播来袭】%@正在赤裸裸地直播~",_hostUser[@"usernick"]];
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"%@%@%@",LY_SERVER,LY_LIVE_share,self.chatRoomId];
     [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@%@%@",LY_SERVER,LY_LIVE_share,self.chatRoomId];
     [UMSocialData defaultData].extConfig.qqData.url = [NSString stringWithFormat:@"%@%@%@",LY_SERVER,LY_LIVE_share,self.chatRoomId];
-    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:_shareIamge shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:self];
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:_shareText shareImage:_shareIamge shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:self];
 }
 
 - (void)didSelectSocialPlatform:(NSString *)platformName withSocialData:(UMSocialData *)socialData{
@@ -740,6 +742,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [self.view bringSubviewToFront:_closeView];
     _closeView.shareImage = self.shareIamge;
     _closeView.chatRoomID = _chatRoomId;
+    _closeView.shareText = _shareText;
     _closeView.shareName = _hostUser[@"usernick"];
     [_closeView.backButton addTarget:self action:@selector(closebackButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
     [_closeView.focusButton addTarget:self action:@selector(closeFocusButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];

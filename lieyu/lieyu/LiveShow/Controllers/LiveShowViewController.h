@@ -28,6 +28,8 @@ UIScrollViewDelegate, UINavigationControllerDelegate,RCInputBarControlDelegate,R
 @property (nonatomic, strong) NSString *streamId;//直播ID
 @property (nonatomic, strong) NSString *chatRoomId;//聊天室ID
 @property (nonatomic, strong) NSString *roomid;//直播室ID
+@property (nonatomic, strong) NSString *shareText;//分享文字
+@property (nonatomic, assign) BOOL isCoin;//是否打赏
 #pragma mark - 会话属性
 
 /*!

@@ -234,6 +234,12 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     //
     [LYFriendsHttpTool getStreamWithParms:roomDict complete:^(NSDictionary *dict) {
         _stream = dict[@"stream"];
+        _shareText = dict[@"shareTitle"];
+        if ([dict[@"coinBoolean"] isEqualToString:@"0"]) {
+            _isCoin = NO;
+        } else {
+            _isCoin = YES;
+        }
         NSString *jsonString = _stream;
         NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
         NSError *err;
@@ -250,6 +256,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         [weakSelf.view bringSubviewToFront:_registerView];
         _registerView.streamID = _streamId;//将streamid和roomid配置给开始界面
         _registerView.roomId = _roomid;
+        _registerView.shareText = _shareText;
         [_registerView.backButton addTarget:weakSelf action:@selector(registerbackButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
         [_registerView.shiftCamreButton addTarget:weakSelf action:@selector(shiftButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
         [_registerView setBegainImage:^(UIImage *img) {
@@ -462,13 +469,11 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 }
 
 -(void)shareButtonAction{
-    AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    NSString *string = [NSString stringWithFormat:@"【前方高能，直播来袭】%@正在赤裸裸地直播~",app.userModel.usernick];
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"%@%@%@",LY_SERVER,LY_LIVE_share,self.chatRoomId];
     [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@%@%@",LY_SERVER,LY_LIVE_share,self.chatRoomId];
     [UMSocialData defaultData].extConfig.qqData.url = [NSString stringWithFormat:@"%@%@%@",LY_SERVER,LY_LIVE_share,self.chatRoomId];
-    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:_begainImage shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,nil] delegate:self];
+    [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:_shareText shareImage:_begainImage shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToQQ,nil] delegate:self];
     _backgroudView.hidden = YES;
     _backgroudView.frame = self.setButton.frame;
 }
@@ -922,19 +927,30 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [self.view bringSubviewToFront:_backImage];
     _backImage.userInteractionEnabled = YES;
     _closeView = [[[NSBundle mainBundle] loadNibNamed:@"CloseLiveShowView" owner:self options:nil] lastObject];
+    if (_isCoin) {
+        NSDictionary *paramsDic = @{@"roomid":_chatRoomId};
+        [LYFriendsHttpTool getLiveMoneyWithParams:paramsDic complete:^(NSDictionary *dict) {
+            _reward = [NSString stringWithFormat:@"%@",dict[@"rewardNum"]];
+            _closeView.moneyNumLabel.text = _reward;
+        }];
+        _closeView.moneyNumLabel.hidden = NO;
+        _closeView.moneyLabelLeft.hidden = NO;
+        _closeView.moneyLabelRight.hidden = NO;
+    } else {
+        _closeView.moneyNumLabel.hidden = YES;
+        _closeView.moneyLabelLeft.hidden = YES;
+        _closeView.moneyLabelRight.hidden = YES;
+    }
     _closeView.frame = self.view.bounds;
     [self.view addSubview:_closeView];
     [self.view bringSubviewToFront:_closeView];
     [_closeView.backButton addTarget:self action:@selector(backButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
     [_closeView.notSaveButton addTarget:self action:@selector(notSaveBackButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
-    NSDictionary *paramsDic = @{@"roomid":_chatRoomId};
-    [LYFriendsHttpTool getLiveMoneyWithParams:paramsDic complete:^(NSDictionary *dict) {
-        _reward = [NSString stringWithFormat:@"%@",dict[@"rewardNum"]];
-        _closeView.moneyNumLabel.text = _reward;
-    }];
+    
     _closeView.lookNumLabel.text = _lookNum;
     _closeView.begainImage = _begainImage;
     _closeView.chatRoomID = _chatRoomId;
+    _closeView.shareText = _shareText;
     dispatch_sync(self.sessionQueue, ^{
         [self.session destroy];
     });
