@@ -107,6 +107,7 @@ PLStreamingSendingBufferDelegate,UICollectionViewDataSource, UICollectionViewDel
     NSInteger _chatuserid;
     NSArray *_dataArr;//礼物数组
     NSString *_reward;//获得的打赏
+    BOOL _isActive;//是否在前台
 }
 
 //配置信息
@@ -197,6 +198,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     self.navigationController.navigationBarHidden = YES;
     [self.conversationMessageCollectionView reloadData];
     _takeNum = 0;
+    _isActive = YES;
     _dataArray = [NSMutableArray arrayWithCapacity:123];
     [RCIM sharedRCIM].disableMessageAlertSound = YES;//关闭融云的提示音
 }
@@ -283,41 +285,70 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(notice:) name:@"kobe24" object:nil];
     
-//    [center addObserver:self selector:@selector(stopLiveNow) name:UIApplicationWillResignActiveNotification object:nil];
-//    [center addObserver:self selector:@selector(startLiveNow) name:UIApplicationDidBecomeActiveNotification object:nil];
+    [center addObserver:self selector:@selector(stopLiveShowNow) name:UIApplicationDidEnterBackgroundNotification object:nil];
+    [center addObserver:self selector:@selector(startLiveShowNow) name:UIApplicationDidBecomeActiveNotification object:nil];
     
     [IQKeyboardManager sharedManager].enable = NO;
     [IQKeyboardManager sharedManager].isAdd = YES;
-    
 }
 
+-(void)stopLiveShowNow{
+    if ([self.session isRunning]) {
+        if (_isActive) {
+            [self stopSession];
+            _isActive = NO;
+        }
+    }
+}
+
+//分享回来
+-(void)startLiveShowNow{
+    if (_isActive) {//从开始界面分享回来配置界面以及加入聊天室
+        [_registerView  removeFromSuperview];
+        _registerView = nil;
+        [self initUI];
+        [self beginLiveShow];
+        [self joinChatRoom];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(livetimerUpdataAction) userInfo:nil repeats:YES];
+        [_timer fire];
+        [self livetimerUpdataAction];
+    } else {//中间过程回到前台仅重新直播
+        [self beginLiveShow];
+        _isActive = YES;
+    }
+}
+
+
+//不分享直接开始
 -(void)notice:(NSNotification *)sender{
-//    __weak typeof(self) weakSelf = self;
     _stream = sender.userInfo[@"stream"];
-    
-//    NSString *jsonString = _stream;
-//    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-//    NSError *err;
-//    NSDictionary *streamJSON = [NSJSONSerialization JSONObjectWithData:jsonData
-//                                                               options:NSJSONReadingMutableContainers
-//                                                                 error:&err];
-//    NSDictionary *hosts = streamJSON[@"hosts"];
-//    NSString *rtmp = [NSString stringWithFormat:@"%@",hosts[@"publish"][@"rtmp"]];
-//    NSString *hub = streamJSON[@"hub"];
-//    NSString *idStr = streamJSON[@"title"];
-//    NSString *key = streamJSON[@"publishKey"];
-//    _contentURL = [NSString stringWithFormat:@"rtmp://%@/%@/%@?key=%@",rtmp,hub,idStr,key];
     _chatRoomId = sender.userInfo[@"chatroomid"];
     _roomid = sender.userInfo[@"roomid"];
-//    [self initPLplayer];//初始化摄像头
-    [_registerView  removeFromSuperview];
-    _registerView = nil;
-    [self initUI];
-    [self beginLiveShow];
-    [self joinChatRoom];
-    _timer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(livetimerUpdataAction) userInfo:nil repeats:YES];
-    [_timer fire];
-    [self livetimerUpdataAction];
+    NSString *shareType = sender.userInfo[@"shareType"];
+    if (shareType.integerValue == -1) {
+//        __weak typeof(self) weakSelf = self;
+                //    NSString *jsonString = _stream;
+        //    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+        //    NSError *err;
+        //    NSDictionary *streamJSON = [NSJSONSerialization JSONObjectWithData:jsonData
+        //                                                               options:NSJSONReadingMutableContainers
+        //                                                                 error:&err];
+        //    NSDictionary *hosts = streamJSON[@"hosts"];
+        //    NSString *rtmp = [NSString stringWithFormat:@"%@",hosts[@"publish"][@"rtmp"]];
+        //    NSString *hub = streamJSON[@"hub"];
+        //    NSString *idStr = streamJSON[@"title"];
+        //    NSString *key = streamJSON[@"publishKey"];
+        //    _contentURL = [NSString stringWithFormat:@"rtmp://%@/%@/%@?key=%@",rtmp,hub,idStr,key];
+        //    [self initPLplayer];//初始化摄像头
+        [_registerView  removeFromSuperview];
+        _registerView = nil;
+        [self initUI];
+        [self beginLiveShow];
+        [self joinChatRoom];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(livetimerUpdataAction) userInfo:nil repeats:YES];
+        [_timer fire];
+        [self livetimerUpdataAction];
+    }
 }
 
 #pragma mark -- 定时获取直播室人员和点赞数

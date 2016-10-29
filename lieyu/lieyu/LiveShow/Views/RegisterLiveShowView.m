@@ -48,7 +48,7 @@
 
 @property (nonatomic, strong) NSString *imgUrl;//图片地址
 @property (nonatomic, strong) NSString *titleText;//标题
-@property (nonatomic, assign) BOOL _isSecret;//私密
+@property (nonatomic, assign) BOOL _isSecret;//是否分享
 
 @end
 
@@ -344,7 +344,7 @@
                 _roomid = dict[@"roomId"];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     //创建一个消息对象
-                    NSNotification * notice = [NSNotification notificationWithName:@"kobe24" object:nil userInfo:@{@"stream":_stream,@"chatroomid":_chatroomid,@"roomid":_roomid}];
+                    NSNotification * notice = [NSNotification notificationWithName:@"kobe24" object:nil userInfo:@{@"stream":_stream,@"chatroomid":_chatroomid,@"roomid":_roomid,@"shareType":[NSString stringWithFormat:@"%d",_shareType]}];
                     //发送消息
                     [[NSNotificationCenter defaultCenter]postNotification:notice];
                 });
