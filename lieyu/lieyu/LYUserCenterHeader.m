@@ -181,13 +181,13 @@
         }else{
             _businessButton.hidden = YES;
         }
-        if (!app.userModel.beCollectNum) {
+        if (!app.userModel.beCollectNum || [app.userModel.beCollectNum integerValue] <= 0) {
             [_beCare_ly_button setTitle:@"粉丝：0" forState:UIControlStateNormal];
         } else {
             [_beCare_ly_button setTitle:[NSString stringWithFormat:@"粉丝：%@",app.userModel.beCollectNum] forState:UIControlStateNormal];
         }
         //关注按钮
-        if (!app.userModel.collectNum) {
+        if (!app.userModel.collectNum || [app.userModel.collectNum integerValue] <= 0) {
             [_caresButton setTitle:@"关注：0" forState:UIControlStateNormal];
         } else {
             [_caresButton setTitle:[NSString stringWithFormat:@"关注：%@",app.userModel.collectNum] forState:UIControlStateNormal];

@@ -318,6 +318,7 @@
 		380659E61C56562D003094C9 /* ManagerChooseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 380659E51C56562D003094C9 /* ManagerChooseButton.m */; };
 		380659E81C565646003094C9 /* ManagerChooseButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380659E71C565646003094C9 /* ManagerChooseButton.xib */; };
 		3807B3331C7DB4BE001C5323 /* LPLoginInView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3807B3321C7DB4BE001C5323 /* LPLoginInView.m */; };
+		380F4FB21DC72E5A002F4BA8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 380F4FB11DC72E5A002F4BA8 /* StoreKit.framework */; };
 		381156531D8699C9003FA828 /* businessSuhe@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 381156511D8699C9003FA828 /* businessSuhe@2x.png */; };
 		381156541D8699C9003FA828 /* businessSuhe@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 381156521D8699C9003FA828 /* businessSuhe@3x.png */; };
 		381156C61D88EF56003FA828 /* ScanBackGround@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 381156C41D88EF56003FA828 /* ScanBackGround@2x.png */; };
@@ -2726,6 +2727,7 @@
 		380659E71C565646003094C9 /* ManagerChooseButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManagerChooseButton.xib; sourceTree = "<group>"; };
 		3807B3311C7DB4BE001C5323 /* LPLoginInView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPLoginInView.h; sourceTree = "<group>"; };
 		3807B3321C7DB4BE001C5323 /* LPLoginInView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPLoginInView.m; sourceTree = "<group>"; };
+		380F4FB11DC72E5A002F4BA8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		381156511D8699C9003FA828 /* businessSuhe@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "businessSuhe@2x.png"; sourceTree = "<group>"; };
 		381156521D8699C9003FA828 /* businessSuhe@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "businessSuhe@3x.png"; sourceTree = "<group>"; };
 		381156C41D88EF56003FA828 /* ScanBackGround@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ScanBackGround@2x.png"; sourceTree = "<group>"; };
@@ -5200,6 +5202,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				380F4FB21DC72E5A002F4BA8 /* StoreKit.framework in Frameworks */,
 				853EF50B1D5F305A00D4DEDB /* Photos.framework in Frameworks */,
 				15844C071BE22A8100247FBC /* CoreVideo.framework in Frameworks */,
 				15844C051BE22A7500247FBC /* CoreMedia.framework in Frameworks */,
@@ -9865,6 +9868,7 @@
 		A5ADC49822ABDD17FA75BEBB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				380F4FB11DC72E5A002F4BA8 /* StoreKit.framework */,
 				853EF50A1D5F305A00D4DEDB /* Photos.framework */,
 				853EF5081D5F302200D4DEDB /* CoreLocation.framework */,
 				853EF5061D5F301200D4DEDB /* CoreAudio.framework */,

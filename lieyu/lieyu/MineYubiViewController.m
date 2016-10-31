@@ -11,14 +11,18 @@
 #import "ChoosePayController.h"
 #import "LYUserHttpTool.h"
 #import "MineCoinRecordViewController.h"
+#import <StoreKit/StoreKit.h>
 
-@interface MineYubiViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate,RechargeDelegate>
+
+@interface MineYubiViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate,RechargeDelegate,SKPaymentTransactionObserver,SKProductsRequestDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UILabel *yubiAmountLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *rechargeButton;
 @property (weak, nonatomic) IBOutlet UIButton *withdrawButton;
 
+
+@property (strong, nonatomic) NSString *productID;
 
 @end
 
@@ -28,6 +32,11 @@
     [super viewWillAppear:animated];
     self.title = @"娱币充值";
     [self getData];
+    [[SKPaymentQueue defaultQueue]addTransactionObserver:self];
+}
+
+- (void)dealloc{
+    [[SKPaymentQueue defaultQueue]removeTransactionObserver:self];
 }
 
 - (void)viewDidLoad {
@@ -111,9 +120,6 @@
 #pragma mark - 按钮事件
 
 - (void)withdrawListClick:(UIButton *)button{
-    //    MineWithdrawListViewController *mineWithdrawListVC = [[MineWithdrawListViewController alloc]init];
-//    MineYubiRecordViewController *mineYubiRecordVC = [[MineYubiRecordViewController alloc]init];
-//    [self.navigationController pushViewController:mineYubiRecordVC animated:YES];
     MineCoinRecordViewController *coinRecordVC = [[MineCoinRecordViewController alloc]init];
     [self.navigationController pushViewController:coinRecordVC animated:YES];
 }
@@ -131,12 +137,6 @@
         message = @"88";
         [self rechargeWithAmount:@"88"];
     }
-//    __weak __typeof(self) weakSelf = self;
-//    [[[AlertBlock alloc]initWithTitle:@"提示" message:[NSString stringWithFormat:@"确认充值？即将消费%@元",message] cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex) {
-//        if (buttonIndex == 1) {
-//            [weakSelf rechargeWithAmount:message];
-//        }
-//    }]show];
 }
 
 - (void)rechargeCustomClick{
@@ -224,5 +224,37 @@
         }
     }
 }
+
+#pragma mark - IAP代理
+//收到产品返回信息
+- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response{
+    
+}
+
+- (void)requestDidFinish:(SKRequest *)request{
+    
+}
+
+//请求失败
+- (void)request:(SKRequest *)request didFailWithError:(NSError *)error{
+    
+}
+
+//监听购买结果
+- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(nonnull NSArray<SKPaymentTransaction *> *)transactions{
+}
+
+
+//交易结束
+// Sent when all transactions from the user's purchase history have successfully been added back to the queue.
+- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue{
+    
+}
+
+// Sent when an error is encountered while adding transactions from the user's purchase history back to the queue.
+-(void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error{
+    
+}
+
 
 @end
