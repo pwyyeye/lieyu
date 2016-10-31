@@ -1296,7 +1296,14 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                         watchLiveVC.contentURL = Arr[@"playbackURL"];
                         watchLiveVC.chatRoomId = nil;
                     }
+                    if ([Arr[@"coinBoolean"] isEqualToString:@"0"]) {
+                        watchLiveVC.isCoin = NO;
+                    } else {
+                        watchLiveVC.isCoin = YES;
+                    }
+                    watchLiveVC.shareText = Arr[@"shareTitle"];
                     watchLiveVC.hostUser = Arr[@"roomHostUser"];
+                    watchLiveVC.joinNum = [NSString stringWithFormat:@"%d",model.joinNum];
                     NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:model.roomImg]];
                     watchLiveVC.shareIamge = [UIImage imageWithData:data];
                     [weakSelf.navigationController pushViewController:watchLiveVC animated:YES];
@@ -1688,7 +1695,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     HomepageBannerModel *bannerModel = [bannerArray objectAtIndex:index];
     NSInteger ad_type = [bannerModel.ad_type integerValue];
     NSInteger linkid = [bannerModel.linkid integerValue];
-    //    "ad_type": 1,//banner图片类别 0广告，1：酒吧/3：套餐/2：活动/4：拼客 5：专题 6:酒吧活动  7:  8:  9:演出派对
+    //    "ad_type": 1,//banner图片类别 1、酒吧详情 2、广告（H5） 3、套餐 4、拼客 5、专题 6、酒吧活动 7、吃喝专场 8、组局 10、演出派对 0、广告
     //    "linkid": 1 //对应的id  比如酒吧 就是对应酒吧id  套餐就是对应套餐id 活动就对应活动页面的id
     if(ad_type ==1){
         //酒吧
