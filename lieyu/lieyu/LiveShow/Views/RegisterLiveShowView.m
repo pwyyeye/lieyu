@@ -126,7 +126,6 @@
                 _shareType = -1;//不分享
                 [self.weChatSessionButton setImage:[UIImage imageNamed:@"live_B_wechat.png"] forState:(UIControlStateNormal)];
             }
-            
             break;
         case 102://QQ
             if (_shareType != 1) {

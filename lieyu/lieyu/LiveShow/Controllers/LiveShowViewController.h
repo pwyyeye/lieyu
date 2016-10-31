@@ -21,14 +21,18 @@
 #define PLUGIN_BOARD_ITEM_VOIP_TAG     1004
 #endif
 
+
+
 @interface LiveShowViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate, UIScrollViewDelegate,RCMessageCellDelegate, UIGestureRecognizerDelegate,
 UIScrollViewDelegate, UINavigationControllerDelegate,RCInputBarControlDelegate,RCIMConnectionStatusDelegate>
+
 
 @property (nonatomic, strong) NSString *stream;//直播流
 @property (nonatomic, strong) NSString *streamId;//直播ID
 @property (nonatomic, strong) NSString *chatRoomId;//聊天室ID
 @property (nonatomic, strong) NSString *roomid;//直播室ID
 @property (nonatomic, strong) NSString *shareText;//分享文字
+@property (nonatomic, strong) NSString *shareType;//分享类型
 @property (nonatomic, assign) BOOL isCoin;//是否打赏
 #pragma mark - 会话属性
 

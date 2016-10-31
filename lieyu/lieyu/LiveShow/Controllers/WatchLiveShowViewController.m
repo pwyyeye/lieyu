@@ -217,6 +217,9 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     self.navigationController.navigationBarHidden = YES;
     _dataArray = [NSMutableArray arrayWithCapacity:123];
     [RCIM sharedRCIM].disableMessageAlertSound = YES;//关闭融云的提示音
+    if (_chatRoomId != nil) {
+        [self timerUpdataAction];
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -258,11 +261,11 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 
 #pragma mark --- 判断是否进入后台
 -(void)LieYuStauts:(NSNotification *) sender{
-    if (sender.name == UIApplicationDidBecomeActiveNotification) {
-        [self.player resume];
-    } else {
-        [self.player pause];
-    }
+        if (sender.name == UIApplicationDidBecomeActiveNotification) {
+            [self.player resume];
+        } else if (sender.name == UIApplicationWillResignActiveNotification) {
+            [self.player pause];
+        }
 }
 
 
@@ -719,6 +722,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
             [self.navigationController popViewControllerAnimated:YES];
         }
     } else {
+        [[WatchPlayerClient sharedPlayerClient] stopPlayWithUrl:_contentURL];
         [MyUtil showMessage:@"直播结束"];
         [self.navigationController popViewControllerAnimated:YES];
     }
@@ -934,8 +938,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     LYMyFriendDetailViewController *myFriendVC = [[LYMyFriendDetailViewController  alloc] init];
     myFriendVC.userID = [NSString stringWithFormat:@"%ld", (long)sender.tag];
     [self.navigationController pushViewController:myFriendVC animated:YES];
-//    [self.player stop];//关闭播放器
-    [self quitChatroom];
+//    [self quitChatroom];
 }
 
 #pragma mark -- UICollectionViewDataSource
@@ -962,17 +965,17 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 -( UICollectionViewCell *)collectionView:( UICollectionView *)collectionView cellForItemAtIndexPath:( NSIndexPath *)indexPath
 {
     if (collectionView.tag == 188) {
-        AudienceCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier : _CELL forIndexPath :indexPath];
-        ChatUseres *user = [[ChatUseres alloc] init];
-        user = _dataArray[indexPath.row];
-        NSString *imgStr = user.avatar_img;
-        if (imgStr.length < 50) {
-            imgStr = [MyUtil getQiniuUrl:user.avatar_img width:0 andHeight:0];
-        }
-        [cell.iconButton sd_setImageWithURL:[NSURL URLWithString:imgStr] placeholderImage:[UIImage imageNamed:@"lieyu_default_head"]];
-        [cell.detailButton addTarget:self action:@selector(detailViewShow:) forControlEvents:(UIControlEventTouchUpInside)];
-        cell.detailButton.tag = indexPath.row;
-        return cell;
+            AudienceCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier : _CELL forIndexPath :indexPath];
+            ChatUseres *user = [[ChatUseres alloc] init];
+            user = _dataArray[indexPath.row];
+            NSString *imgStr = user.avatar_img;
+            if (imgStr.length < 50) {
+                imgStr = [MyUtil getQiniuUrl:user.avatar_img width:0 andHeight:0];
+            }
+            [cell.iconButton sd_setImageWithURL:[NSURL URLWithString:imgStr] placeholderImage:[UIImage imageNamed:@"lieyu_default_head"]];
+            [cell.detailButton addTarget:self action:@selector(detailViewShow:) forControlEvents:(UIControlEventTouchUpInside)];
+            cell.detailButton.tag = indexPath.row;
+            return cell;
     } else {
         RCMessageModel *model =
         [self.conversationDataRepository objectAtIndex:indexPath.row];
@@ -1184,12 +1187,15 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     user.userId = app.userModel.imuserId;
     user.name = app.userModel.usernick;
     [RCIM sharedRCIM].currentUserInfo = user;
-    
     //初始化UI
     [self initializedSubViews];
     __weak WatchLiveShowViewController *weakSelf = self;
     self.isFullScreen = YES;
     self.conversationType = ConversationType_CHATROOM;
+    //设置免打扰模式
+    [[RCIMClient sharedRCIMClient] setConversationNotificationStatus:self.conversationType targetId:self.chatRoomId isBlocked:YES success:^(RCConversationNotificationStatus nStatus) {
+    } error:^(RCErrorCode status) {
+    }];
     //聊天室类型进入时需要调用加入聊天室接口，退出时需要调用退出聊天室接口
     if (ConversationType_CHATROOM == self.conversationType) {
         [[RCIMClient sharedRCIMClient]

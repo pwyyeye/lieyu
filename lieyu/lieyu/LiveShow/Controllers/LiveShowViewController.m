@@ -65,6 +65,18 @@ const char *networkStatus[] = {
     "Reachable via CELL"
 };
 
+typedef NS_ENUM(NSInteger, LiveShowStatus) {
+    
+    LiveShowStatus_UNKNOWN = -1,
+    
+    LiveShowStatus_doNothing = 0,//未知表示从后台回来不做任何处理
+    
+    LiveShowStatus_afterShare = 1,//表示注册界面分享出去后回来开始推流
+    
+    LiveShowStatus_isLiveing = 2,//表示直播过程中进入后台暂停，回来之后继续推流
+    
+};
+
 //输入框的高度
 #define MinHeight_InputView SCREEN_WIDTH /8
 
@@ -108,6 +120,8 @@ PLStreamingSendingBufferDelegate,UICollectionViewDataSource, UICollectionViewDel
     NSArray *_dataArr;//礼物数组
     NSString *_reward;//获得的打赏
     BOOL _isActive;//是否在前台
+    BOOL _isFirstTime;//判断是否是刚加载注册页面没有推流（不然在注册页面进入后台回来无法判断）
+    LiveShowStatus liveshowStatusNow;
 }
 
 //配置信息
@@ -199,6 +213,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [self.conversationMessageCollectionView reloadData];
     _takeNum = 0;
     _isActive = YES;
+    _isFirstTime = NO;
     _dataArray = [NSMutableArray arrayWithCapacity:123];
     [RCIM sharedRCIM].disableMessageAlertSound = YES;//关闭融云的提示音
 }
@@ -206,7 +221,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 -(void)viewWillDisappear:(BOOL)animated
 {
     [RCIM sharedRCIM].disableMessageAlertSound = NO;//打开提示音
-    
     [super viewWillDisappear:animated];
     self.navigationController.navigationBarHidden = NO;
     [[NSNotificationCenter defaultCenter]
@@ -242,6 +256,10 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         } else {
             _isCoin = YES;
         }
+        
+        _isFirstTime = YES;//标志加载注册页面
+        liveshowStatusNow  = LiveShowStatus_doNothing;
+        
         NSString *jsonString = _stream;
         NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
         NSError *err;
@@ -294,28 +312,63 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 
 -(void)stopLiveShowNow{
     if ([self.session isRunning]) {
-        if (_isActive) {
             [self stopSession];
-            _isActive = NO;
-        }
+            liveshowStatusNow = LiveShowStatus_isLiveing;
     }
 }
 
 //分享回来
 -(void)startLiveShowNow{
-    if (_isActive) {//从开始界面分享回来配置界面以及加入聊天室
-        [_registerView  removeFromSuperview];
-        _registerView = nil;
-        [self initUI];
-        [self beginLiveShow];
-        [self joinChatRoom];
-        _timer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(livetimerUpdataAction) userInfo:nil repeats:YES];
-        [_timer fire];
-        [self livetimerUpdataAction];
-    } else {//中间过程回到前台仅重新直播
-        [self beginLiveShow];
-        _isActive = YES;
+    switch (liveshowStatusNow) {
+        case LiveShowStatus_doNothing:
+            break;
+        case LiveShowStatus_isLiveing:
+            [self beginLiveShow];
+            break;
+        case LiveShowStatus_afterShare:
+            [_registerView  removeFromSuperview];
+            _registerView = nil;
+            [self initUI];
+            [self beginLiveShow];
+            [self joinChatRoom];
+            _timer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(livetimerUpdataAction) userInfo:nil repeats:YES];
+            [_timer fire];
+            [self livetimerUpdataAction];
+            break;
+        case LiveShowStatus_UNKNOWN:
+            
+            break;
+        default:
+            break;
     }
+//        if (_isActive) {//从开始界面分享回来配置界面以及加入聊天室
+//            [_registerView  removeFromSuperview];
+//            _registerView = nil;
+//            [self initUI];
+//            [self beginLiveShow];
+//            [self joinChatRoom];
+//            _timer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(livetimerUpdataAction) userInfo:nil repeats:YES];
+//            [_timer fire];
+//            [self livetimerUpdataAction];
+//        } else {//中间过程回到前台仅重新直播
+//            [self beginLiveShow];
+//            _isActive = YES;
+//        }
+//    } else {//此时判断两种情况：1、没有点击开始直播进入后台；2、点击了分享并开始直播进入后台
+//       
+//        NSInteger num = _shareType.integerValue;
+//        if (num >= 0 && num <= 3) {
+//            if (![self.session isRunning]) return;//结束界面
+//            [_registerView  removeFromSuperview];
+//            _registerView = nil;
+//            [self initUI];
+//            [self beginLiveShow];
+//            [self joinChatRoom];
+//            _timer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(livetimerUpdataAction) userInfo:nil repeats:YES];
+//            [_timer fire];
+//            [self livetimerUpdataAction];
+//        }
+//    }
 }
 
 
@@ -324,8 +377,8 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     _stream = sender.userInfo[@"stream"];
     _chatRoomId = sender.userInfo[@"chatroomid"];
     _roomid = sender.userInfo[@"roomid"];
-    NSString *shareType = sender.userInfo[@"shareType"];
-    if (shareType.integerValue == -1) {
+    _shareType = sender.userInfo[@"shareType"];
+    if (_shareType.integerValue == -1) {
 //        __weak typeof(self) weakSelf = self;
                 //    NSString *jsonString = _stream;
         //    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
@@ -348,6 +401,8 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         _timer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(livetimerUpdataAction) userInfo:nil repeats:YES];
         [_timer fire];
         [self livetimerUpdataAction];
+    } else {
+        liveshowStatusNow = LiveShowStatus_afterShare;
     }
 }
 
@@ -729,7 +784,15 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     if (NotReachable == status) {
         // 对断网情况做处理
         [self stopSession];
-        [MyUtil showMessage:@"无法连接网络,请检查网络设置"];
+        UIAlertController *alertCloseView = [UIAlertController alertControllerWithTitle:@"无法连接网络,请检查网络设置" message:@"" preferredStyle:(UIAlertControllerStyleAlert)];
+        __weak typeof(self) weakSelf = self;
+        UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"返回" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+            [weakSelf.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
+        }];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:nil];
+        [alertCloseView addAction:cancelAction];
+        [alertCloseView addAction:sureAction];
+        [self presentViewController:alertCloseView animated:YES completion:nil];
     }
     NSString *log = [NSString stringWithFormat:@"Networkt Status: %s", networkStatus[status]];
     NSLog(@"%@", log);
@@ -926,7 +989,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     }
 }
 
--(void)mainViewButtonAction:(UIButton *) sender{
+-(void)mainViewButtonAction:(UIButton *) sender {
 //    LYMyFriendDetailViewController *myFriendVC = [[LYMyFriendDetailViewController  alloc] init];
 //    myFriendVC.isChatroom = 4;
 //    myFriendVC.userID = [NSString stringWithFormat:@"%ld", sender.tag];
@@ -950,6 +1013,9 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 }
 //结束画面
 -(void)initCloseView{
+    
+    liveshowStatusNow = LiveShowStatus_doNothing;
+    
     _backImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"BackImage.png"]];
     _backImage.frame = self.view.bounds;
     [self.view addSubview:_backImage];
