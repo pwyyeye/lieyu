@@ -26,7 +26,9 @@
 @interface WatchLiveShowViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate, UIScrollViewDelegate,RCMessageCellDelegate, UIGestureRecognizerDelegate,UITextFieldDelegate,
 UIScrollViewDelegate, UINavigationControllerDelegate,RCInputBarControlDelegate,RCIMConnectionStatusDelegate,UIActionSheetDelegate>
 
-@property (nonatomic, strong) NSString *chatRoomId;
+@property (nonatomic, strong) NSString *chatRoomId;//直播的ID
+
+@property (nonatomic, strong) NSString *playbackRoomId;//回放的ID
 
 @property (nonatomic, strong) NSString *stream;//直播流
 

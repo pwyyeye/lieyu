@@ -441,16 +441,10 @@ static NSString *liveShowListID = @"liveShowListID";
             [self hideEmptyView];
             if (newTempArray.count == 0) {
                 if (_rencentDataArray.count == 0) {
-                   
                         [self initKongView];
                         [newTableView.mj_header endRefreshing];
-                    
                 } else {
-                    if(_currentHotPage == 1){
-                        [newTableView.mj_header endRefreshing];
-                    }else{
                         [newTableView.mj_footer endRefreshingWithNoMoreData];
-                    }
                 }
             } else {
                 if (_currentRencentPage == 1) {
@@ -609,7 +603,7 @@ static NSString *liveShowListID = @"liveShowListID";
             watchLiveVC.chatRoomId = Arr[@"chatroomid"];
         } else {
             watchLiveVC.contentURL = Arr[@"playbackURL"];
-            watchLiveVC.chatRoomId = nil;
+            watchLiveVC.playbackRoomId = Arr[@"chatroomid"];
         }
         if ([Arr[@"coinBoolean"] isEqualToString:@"0"]) {
             watchLiveVC.isCoin = NO;

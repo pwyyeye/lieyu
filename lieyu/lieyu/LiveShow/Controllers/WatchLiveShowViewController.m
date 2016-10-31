@@ -692,7 +692,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
             NSLog(@"4");
             break;
         case PLPlayerStatusPaused:
-//            [MyUtil showMessage:@"直播暂停中..."];
             NSLog(@"5");
             break;
         case PLPlayerStatusStopped:
@@ -717,7 +716,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 - (void)player:(nonnull PLPlayer *)player stoppedWithError:(nullable NSError *)error{
     if (_isLiveing) {//有直播但是获取失败
         if (![_contentURL isEqual: [NSNull null]] || _contentURL != nil) {
-            //        [app stopLoading];
             [MyUtil showMessage:@"链接失败！"];
             [self.navigationController popViewControllerAnimated:YES];
         }
@@ -747,7 +745,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [self.view addSubview:_closeView];
     [self.view bringSubviewToFront:_closeView];
     _closeView.shareImage = self.shareIamge;
-    _closeView.chatRoomID = _chatRoomId;
+    _closeView.chatRoomID = _playbackRoomId;
     _closeView.shareText = _shareText;
     _closeView.shareName = _hostUser[@"usernick"];
     [_closeView.backButton addTarget:self action:@selector(closebackButtonAction) forControlEvents:(UIControlEventTouchUpInside)];

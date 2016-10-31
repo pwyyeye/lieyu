@@ -1294,7 +1294,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                         watchLiveVC.chatRoomId = Arr[@"chatroomid"];
                     } else {
                         watchLiveVC.contentURL = Arr[@"playbackURL"];
-                        watchLiveVC.chatRoomId = nil;
+                        watchLiveVC.playbackRoomId = Arr[@"chatroomid"];
                     }
                     if ([Arr[@"coinBoolean"] isEqualToString:@"0"]) {
                         watchLiveVC.isCoin = NO;
