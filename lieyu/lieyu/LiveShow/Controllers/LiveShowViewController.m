@@ -786,10 +786,10 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         [self stopSession];
         UIAlertController *alertCloseView = [UIAlertController alertControllerWithTitle:@"无法连接网络,请检查网络设置" message:@"" preferredStyle:(UIAlertControllerStyleAlert)];
         __weak typeof(self) weakSelf = self;
-        UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"返回" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"关闭直播" style:(UIAlertActionStyleDefault) handler:^(UIAlertAction * _Nonnull action) {
             [weakSelf.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
         }];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:(UIAlertActionStyleCancel) handler:nil];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"再等等" style:(UIAlertActionStyleCancel) handler:nil];
         [alertCloseView addAction:cancelAction];
         [alertCloseView addAction:sureAction];
         [self presentViewController:alertCloseView animated:YES completion:nil];
