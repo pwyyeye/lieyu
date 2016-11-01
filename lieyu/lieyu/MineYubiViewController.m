@@ -107,9 +107,15 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    UIButton *button = [[UIButton alloc]init];
-    button.tag = indexPath.row;
-    [self rechargeButtonClick:button];
+//    UIButton *button = [[UIButton alloc]init];
+//    button.tag = indexPath.row;
+//    [self rechargeButtonClick:button];
+    if ([SKPaymentQueue canMakePayments]) {
+        // 执行下面提到的第5步：
+        [self requestProductData:@"df"];
+    } else {
+        NSLog(@"失败，用户禁止应用内付费购买.");
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -225,10 +231,27 @@
     }
 }
 
+//请求商品
+- (void)requestProductData:(NSString *)type{
+    NSLog(@"-------------请求对应的产品信息----------------");
+    NSArray *product = [[NSArray alloc] initWithObjects:type, nil];
+    
+    NSSet *nsset = [NSSet setWithArray:product];
+    SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:nsset];
+    request.delegate = self;
+    [request start];
+    
+}
+
 #pragma mark - IAP代理
 //收到产品返回信息
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response{
-    
+    NSLog(@"--------------收到产品反馈消息---------------------");
+    NSArray *product = response.products;
+    if([product count] == 0){
+        NSLog(@"--------------没有商品------------------");
+        return;
+    }
 }
 
 - (void)requestDidFinish:(SKRequest *)request{
