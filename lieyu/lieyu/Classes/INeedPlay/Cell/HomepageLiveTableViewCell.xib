@@ -90,7 +90,7 @@
                 <outlet property="hotButton" destination="gJE-TV-dXX" id="E7S-Q7-bRO"/>
                 <outlet property="recentButton" destination="nd3-NF-wa6" id="eOA-cA-5VI"/>
             </connections>
-            <point key="canvasLocation" x="330" y="128.5"/>
+            <point key="canvasLocation" x="99" y="4"/>
         </tableViewCell>
     </objects>
     <resources>

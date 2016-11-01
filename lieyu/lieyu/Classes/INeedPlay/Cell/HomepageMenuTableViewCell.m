@@ -46,8 +46,12 @@
 
 - (void)setImagesArray:(NSArray *)imagesArray{
     int i = 0 ;
-    for (UIImageView *imageView in _filterArray) {
-        [imageView sd_setImageWithURL:[NSURL URLWithString:[imagesArray objectAtIndex:i]] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+//    for (UIImageView *imageView in _filterArray) {
+//        [imageView sd_setImageWithURL:[NSURL URLWithString:[imagesArray objectAtIndex:i]] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
+//        i ++ ;
+//    }
+    for (NSString *imageUrl in imagesArray) {
+        [((UIImageView *)[_filterArray objectAtIndex:i]) sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
         i ++ ;
     }
 }
