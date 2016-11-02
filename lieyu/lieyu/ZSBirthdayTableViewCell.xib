@@ -93,7 +93,7 @@
                 <outlet property="userPhoneLabel" destination="8LD-Ff-xTR" id="exJ-9x-jtH"/>
                 <outlet property="usernameLabel" destination="RcI-il-Q2c" id="3YC-Mq-YX7"/>
             </connections>
-            <point key="canvasLocation" x="300" y="232.5"/>
+            <point key="canvasLocation" x="94" y="-41"/>
         </tableViewCell>
     </objects>
     <resources>

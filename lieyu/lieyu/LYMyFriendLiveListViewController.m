@@ -118,16 +118,17 @@ static NSString *liveShowListID = @"liveShowListID";
         model = _liveArray[indexPath.row];
         cell.listModel = model;
     }
-    if ([_userID intValue] == self.userModel.userid) {
-        UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT / 5 * 2 - 35, 50, 25)];
-        button.tag = indexPath.row;
-        [button addTarget:self action:@selector(deleteLiveRecord:) forControlEvents:UIControlEventTouchUpInside];
-        [button setTitle:@"删除" forState:UIControlStateNormal];
-        [button.titleLabel setFont:[UIFont systemFontOfSize:13]];
-        button.titleLabel.shadowColor = RGBA(0, 0, 0, 1);
-        button.titleLabel.shadowOffset = CGSizeMake(0, -1);
-        [cell addSubview:button];
-    }
+//    if ([_userID intValue] == self.userModel.userid) {
+//        UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT / 5 * 2 - 35, 50, 25)];
+//        button.tag = indexPath.row;
+//        [button addTarget:self action:@selector(deleteLiveRecord:) forControlEvents:UIControlEventTouchUpInside];
+//        [button setTitle:@"删除" forState:UIControlStateNormal];
+//        [button.titleLabel setFont:[UIFont systemFontOfSize:13]];
+//        button.titleLabel.shadowColor = RGBA(0, 0, 0, 1);
+//        button.titleLabel.shadowOffset = CGSizeMake(0, -1);
+//        [cell addSubview:button];
+//    }
+    
 //    [cell sendSubviewToBack:cell.backImageView];
     return cell;
 }
@@ -186,29 +187,32 @@ static NSString *liveShowListID = @"liveShowListID";
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([_userID intValue] == self.userModel.userid && editingStyle == UITableViewCellEditingStyleDelete) {
 //        editingStyle = UITableViewCellEditingStyleDelete;
-        LYLiveShowListModel *model = [LYLiveShowListModel new];
-        model = _liveArray[indexPath.row];
-        NSDictionary *dict = @{@"roomid":[NSString stringWithFormat:@"%d",model.roomId]};
-        __weak __typeof(self)weakSelf = self;
-        [LYFriendsHttpTool deleteMyLiveRecord:dict complete:^(BOOL result) {
-            if (result == YES) {
-//                [_liveArray removeObjectAtIndex:indexPath.row];
-//                [_mytableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-                [weakSelf refreshData];
-            }else{
-                [MyUtil showPlaceMessage:@"删除失败，请稍后重试！"];
+        [[[AlertBlock alloc]initWithTitle:nil message:@"确认删除该直播？" cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex) {
+            if ([_userID intValue] == self.userModel.userid && buttonIndex == 1) {
+                //        editingStyle = UITableViewCellEditingStyleDelete;
+                LYLiveShowListModel *model = [LYLiveShowListModel new];
+                model = _liveArray[indexPath.row];
+                NSDictionary *dict = @{@"roomid":[NSString stringWithFormat:@"%d",model.roomId]};
+                __weak __typeof(self)weakSelf = self;
+                [LYFriendsHttpTool deleteMyLiveRecord:dict complete:^(BOOL result) {
+                    if (result == YES) {
+                        [weakSelf refreshData];
+                    }else{
+                        [MyUtil showPlaceMessage:@"删除失败，请稍后重试！"];
+                    }
+                }];
             }
-        }];
+        }] show];
     }
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if ([_userID intValue] == self.userModel.userid) {
-//        return YES;
-//    }else{
-//        return NO;
-//    }
-    return NO;
+    if ([_userID intValue] == self.userModel.userid) {
+        return YES;
+    }else{
+        return NO;
+    }
+//    return NO;
 }
 
 //- (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{

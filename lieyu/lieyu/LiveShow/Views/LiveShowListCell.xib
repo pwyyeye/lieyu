@@ -180,7 +180,7 @@
                 <outlet property="textLabel" destination="Pro-LG-a2V" id="iYz-dV-xTQ"/>
                 <outlet property="titleLabel" destination="h5d-Ka-kNE" id="Zwv-3Q-6Jl"/>
             </connections>
-            <point key="canvasLocation" x="550.5" y="367.5"/>
+            <point key="canvasLocation" x="487" y="317"/>
         </tableViewCell>
     </objects>
     <resources>

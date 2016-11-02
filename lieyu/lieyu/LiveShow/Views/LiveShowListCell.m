@@ -16,10 +16,6 @@
     // Initialization code
 }
 
--(void)layoutSubviews{
-    
-}
-
 - (void)drawRect:(CGRect)rect{
     self.liveTypeView.backgroundColor = [UIColor clearColor];
     
@@ -47,6 +43,7 @@
 
 - (void)setListModel:(LYLiveShowListModel *)listModel{
     _listModel = listModel;
+    self.contentView.center = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
     [_backImageView sd_setImageWithURL:[NSURL URLWithString:listModel.roomImg] placeholderImage:[UIImage imageNamed:@"empyImage300"]];
     NSString *imgStr = [NSString stringWithFormat:@"%@",((roomHostUser *)listModel.roomHostUser).avatar_img];
     if (imgStr.length < 50) {
