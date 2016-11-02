@@ -137,4 +137,6 @@ typedef enum {
 
 + (BOOL)isMoreThaniOSTen;
 
+#pragma mark -  获取push的当前页面
++ (UIViewController *)getCurrentPushViewController;
 @end

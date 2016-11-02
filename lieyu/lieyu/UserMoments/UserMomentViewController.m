@@ -233,6 +233,8 @@
     _iconIamge.userInteractionEnabled = YES;
     _iconIamge.layer.cornerRadius = _iconIamge.frame.size.height / 2;
     _iconIamge.layer.masksToBounds = YES;
+    UIGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(iconIamgeAction)];
+    [_iconIamge addGestureRecognizer:tapGesture];
     [headerView addSubview:_iconIamge];
     _nameLabel = [[UILabel alloc] init];
     _nameLabel.textColor = [UIColor whiteColor];
@@ -242,6 +244,12 @@
     _nameLabel.backgroundColor = [UIColor clearColor];
     [headerView addSubview:_nameLabel];
     _userTablewView.tableHeaderView = headerView;
+}
+
+- (void)iconIamgeAction{
+    LYMyFriendDetailViewController *myFriendVC = [[LYMyFriendDetailViewController  alloc]initWithNibName:@"LYMyFriendDetailViewController" bundle:nil];
+    myFriendVC.userID = [NSString stringWithFormat:@"%d",self.userModel.userid];
+    [self.navigationController pushViewController:myFriendVC animated:YES];
 }
 
 - (void)startLoadingAnimating{

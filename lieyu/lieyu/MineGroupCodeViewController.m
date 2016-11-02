@@ -9,6 +9,7 @@
 #import "MineGroupCodeViewController.h"
 #import "qrencode.h"
 #import "LYUserHttpTool.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface MineGroupCodeViewController ()
 
@@ -146,7 +147,7 @@
     if (!error) {
         [MyUtil showPlaceMessage:@"下载成功！请进入相册查看"];
     }else{
-        [MyUtil showPlaceMessage:@"下载失败，请稍后重试！"];
+        [MyUtil showMessage:@"您已关闭相册权限，请进入设置－隐私－照片打开！"];
     }
 }
 

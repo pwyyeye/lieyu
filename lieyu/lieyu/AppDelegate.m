@@ -954,7 +954,11 @@ didReceiveLocalNotification:(UILocalNotification *)notification {
     _intro.bgImageView.layer.masksToBounds = YES;
     [_intro setBackgroundColor:[UIColor whiteColor]];
     UIButton *button=[[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH/2-55, 0, 112, 36)];
-    [button setBackgroundImage:[UIImage imageNamed:@"skip-btn"] forState:UIControlStateNormal];
+    [button setTitle:@"开始体验" forState:UIControlStateNormal];
+    button.layer.cornerRadius = 18;
+    button.layer.masksToBounds = YES;
+    [button setBackgroundColor:COMMON_PURPLE];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [button addTarget:_intro action:@selector(skipIntroduction) forControlEvents:UIControlEventTouchUpInside];
     [page4.customView addSubview:button];
     [page4.customView bringSubviewToFront:button];//显示到最前面

@@ -75,9 +75,13 @@
 @property (weak, nonatomic) IBOutlet UIImageView *liveImageView_4;
 @property (weak, nonatomic) IBOutlet UIImageView *advangeView;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollerViewBottomConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *setBgLabelConstraint;
+@property (weak, nonatomic) IBOutlet UILabel *setBgLabel;
 
 //聊天
 - (IBAction)sendMessageAct:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet UIButton *chatRoomButton;
 
 
 @property (weak, nonatomic) IBOutlet UIButton *setBtn;

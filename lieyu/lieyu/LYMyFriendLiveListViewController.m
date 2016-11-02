@@ -39,14 +39,17 @@ static NSString *liveShowListID = @"liveShowListID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    _currentHotPage = 1 ;
+    [_mytableView registerNib:[UINib nibWithNibName:@"LiveShowListCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:liveShowListID];
 }
 
 #pragma mark -- 配置表
 -(void)setTableView{
-    _mytableView = [[UITableView alloc] initWithFrame:self.view.bounds style:(UITableViewStylePlain)];
+    _mytableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:(UITableViewStylePlain)];
     _mytableView.dataSource = self;
     _mytableView.delegate = self;
+    _mytableView.contentInset = UIEdgeInsetsMake(0, 0, 65, 0);
+    _mytableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [_mytableView registerNib:[UINib nibWithNibName:@"LiveShowListCell" bundle:nil] forCellReuseIdentifier:liveShowListID];
     [self.view addSubview:_mytableView];
 }
@@ -73,7 +76,7 @@ static NSString *liveShowListID = @"liveShowListID";
 }
 
 -(void)getMoreData{
-    _currentHotPage +=1;
+    _currentHotPage ++;
     [self getDataWithUserID:_userID andPage:[NSString stringWithFormat:@"%ld",(long)_currentHotPage]];
 }
 
@@ -81,24 +84,15 @@ static NSString *liveShowListID = @"liveShowListID";
 -(void) getDataWithUserID: (NSString *)userID andPage:(NSString *)pages{
     NSDictionary *dictionary = @{@"cityCode":@"310000",@"livetype":@"",@"sort":@"",@"page":pages,@"userid":userID};
     [LYFriendsHttpTool getLiveShowlistWithParams:dictionary complete:^(NSArray *Arr) {
-        [self.liveArray addObjectsFromArray:Arr];
-        if (_liveArray.count <= 0) {
-            if (_liveArray.count <= 0) {
-                [_mytableView.mj_header endRefreshing];
-            }else{
-                if(_currentHotPage == 1){
-                    [_mytableView.mj_header endRefreshing];
-                }else{
-                    [_mytableView.mj_footer endRefreshingWithNoMoreData];
-                }
-            }
+        if (Arr.count <= 0) {
+            [_mytableView.mj_header endRefreshing];
+            [_mytableView.mj_footer endRefreshingWithNoMoreData];
         }else{
+            [self.liveArray addObjectsFromArray:Arr];
             [_mytableView.mj_footer endRefreshing];
             [_mytableView.mj_header endRefreshing];
         }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [_mytableView reloadData];
-        });
+        [_mytableView reloadData];
     }];
 }
 
@@ -112,20 +106,35 @@ static NSString *liveShowListID = @"liveShowListID";
 }
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    LiveShowListCell *cell = [tableView dequeueReusableCellWithIdentifier:liveShowListID forIndexPath:indexPath];
-    if (!cell) {
-        cell = [[LiveShowListCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:liveShowListID];
-    }
+//    LiveShowListCell *cell = [tableView dequeueReusableCellWithIdentifier:liveShowListID forIndexPath:indexPath];
+//    if (!cell) {
+//        cell = [[LiveShowListCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:liveShowListID];
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    }
+    LiveShowListCell *cell = [_mytableView dequeueReusableCellWithIdentifier:liveShowListID forIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     LYLiveShowListModel *model = [LYLiveShowListModel new];
-    model = _liveArray[indexPath.row];
-    cell.listModel = model;
-    
-    [cell sendSubviewToBack:cell.backImageView];
+    if (_liveArray.count > indexPath.row) {
+        model = _liveArray[indexPath.row];
+        cell.listModel = model;
+    }
+    if ([_userID intValue] == self.userModel.userid) {
+        UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT / 5 * 2 - 35, 50, 25)];
+        button.tag = indexPath.row;
+        [button addTarget:self action:@selector(deleteLiveRecord:) forControlEvents:UIControlEventTouchUpInside];
+        [button setTitle:@"删除" forState:UIControlStateNormal];
+        [button.titleLabel setFont:[UIFont systemFontOfSize:13]];
+        button.titleLabel.shadowColor = RGBA(0, 0, 0, 1);
+        button.titleLabel.shadowOffset = CGSizeMake(0, -1);
+        [cell addSubview:button];
+    }
+//    [cell sendSubviewToBack:cell.backImageView];
     return cell;
 }
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return SCREEN_HEIGHT / 5 * 2;
+//    return 50;
 }
 
 #pragma mark ---- TableViewDelegate
@@ -153,6 +162,77 @@ static NSString *liveShowListID = @"liveShowListID";
     }];
     
 }
+
+- (void)deleteLiveRecord:(UIButton *)button{
+    [[[AlertBlock alloc]initWithTitle:nil message:@"确认删除该直播？" cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex) {
+        if ([_userID intValue] == self.userModel.userid && buttonIndex == 1) {
+            //        editingStyle = UITableViewCellEditingStyleDelete;
+            LYLiveShowListModel *model = [LYLiveShowListModel new];
+            model = _liveArray[button.tag];
+            NSDictionary *dict = @{@"roomid":[NSString stringWithFormat:@"%d",model.roomId]};
+            __weak __typeof(self)weakSelf = self;
+            [LYFriendsHttpTool deleteMyLiveRecord:dict complete:^(BOOL result) {
+                if (result == YES) {
+                    [weakSelf refreshData];
+                }else{
+                    [MyUtil showPlaceMessage:@"删除失败，请稍后重试！"];
+                }
+            }];
+        }
+    }] show];
+}
+
+#pragma mark - 定义cell的左滑事件
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([_userID intValue] == self.userModel.userid && editingStyle == UITableViewCellEditingStyleDelete) {
+//        editingStyle = UITableViewCellEditingStyleDelete;
+        LYLiveShowListModel *model = [LYLiveShowListModel new];
+        model = _liveArray[indexPath.row];
+        NSDictionary *dict = @{@"roomid":[NSString stringWithFormat:@"%d",model.roomId]};
+        __weak __typeof(self)weakSelf = self;
+        [LYFriendsHttpTool deleteMyLiveRecord:dict complete:^(BOOL result) {
+            if (result == YES) {
+//                [_liveArray removeObjectAtIndex:indexPath.row];
+//                [_mytableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                [weakSelf refreshData];
+            }else{
+                [MyUtil showPlaceMessage:@"删除失败，请稍后重试！"];
+            }
+        }];
+    }
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+//    if ([_userID intValue] == self.userModel.userid) {
+//        return YES;
+//    }else{
+//        return NO;
+//    }
+    return NO;
+}
+
+//- (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    if ([_userID intValue] == self.userModel.userid) {
+//        UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+//            LYLiveShowListModel *model = [LYLiveShowListModel new];
+//            model = _liveArray[indexPath.row];
+//            NSDictionary *dict = @{@"roomid":[NSString stringWithFormat:@"%d",model.roomId]};
+//            __weak __typeof(self)weakSelf = self;
+//            [LYFriendsHttpTool deleteMyLiveRecord:dict complete:^(BOOL result) {
+//                if (result == YES) {
+//                    [_mytableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//                    [weakSelf refreshData];
+//                }else{
+//                    [MyUtil showPlaceMessage:@"删除失败，请稍后重试！"];
+//                }
+//            }];
+//        }];
+//        return @[deleteAction];
+//    }else{
+//        return nil;
+//    }
+//}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

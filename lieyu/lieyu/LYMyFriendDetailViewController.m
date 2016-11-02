@@ -52,11 +52,13 @@
 //    NSLog(@"%@",self.navigationController.viewControllers);
     UIViewController *VC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count - 2];
     if([VC isKindOfClass:[LYFindConversationViewController class]] && _isChatroom == 0){
-        self.setBtn.hidden = YES;
-        self.setBG.hidden = YES;
+        _chatRoomButton.hidden = YES;
+        _setBgLabelConstraint.constant = (SCREEN_WIDTH - 1) / 2;
+        _setBgLabel.hidden = YES;
     }else{
-        self.setBtn.hidden = NO;
-        self.setBG.hidden = NO;
+        _chatRoomButton.hidden = NO;
+        _setBgLabelConstraint.constant = 0;
+        _setBgLabel.hidden = NO;
     }
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     _liveArray = [NSMutableArray arrayWithCapacity:1];
@@ -257,7 +259,7 @@
                 button.selected = YES;
             }
         }
-        _scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, 315);
+        _scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, 395);
         //酒吧名字
         if(_result.barid == -1){
             _bigBarImage.hidden = YES;

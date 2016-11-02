@@ -81,7 +81,7 @@
     
     [self createFilterView];
     
-    filterBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 46, 33, 32, 22)];
+    filterBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 49, 33, 35, 22)];
     [filterBtn setTitle:@"筛选" forState:UIControlStateNormal];
     filterBtn.titleLabel.font = [UIFont systemFontOfSize:16];
     [filterBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -112,7 +112,7 @@
     for (int i = 0;i < sexTitleArr.count; i++) {
         NSString *sexTitle = sexTitleArr[i];
         HotMenuButton *btn = [[HotMenuButton alloc]init];
-        btn.frame = CGRectMake(72 + i % 3 * (56 + margin), i / 3 * 35 + 20, 56, 20);
+        btn.frame = CGRectMake(72 + i % 3 * (58 + margin), i / 3 * 35 + 20, 58, 20);
         [btn setTitle:sexTitle forState:UIControlStateNormal];
         if(i == 2){
             btn.isGuWenSelected = YES;
@@ -140,7 +140,7 @@
     for (int i = 0; i < placeTitleArr.count; i ++) {
         NSString *placeTitle = placeTitleArr[i];
         HotMenuButton *btn = [[HotMenuButton alloc]init];
-        btn.frame = CGRectMake(72 + i % 3 * (56 + margin), startHeight + 35 + i / 3 * 35, 56, 20);
+        btn.frame = CGRectMake(72 + i % 3 * (58 + margin), startHeight + 35 + i / 3 * 35, 58, 20);
         [btn setTitle:placeTitle forState:UIControlStateNormal];
         if(i == 0){
             btn.isGuWenSelected = YES;
