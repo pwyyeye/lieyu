@@ -112,7 +112,7 @@
 //    [self rechargeButtonClick:button];
     if ([SKPaymentQueue canMakePayments]) {
         // 执行下面提到的第5步：
-        [self requestProductData:@"df"];
+        [self requestProductData:@"lieyuIcon800"];
     } else {
         NSLog(@"失败，用户禁止应用内付费购买.");
     }

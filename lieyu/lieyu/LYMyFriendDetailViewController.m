@@ -257,7 +257,7 @@
                 button.selected = YES;
             }
         }
-        _scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, 315);
+        _scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, 395);
         //酒吧名字
         if(_result.barid == -1){
             _bigBarImage.hidden = YES;
