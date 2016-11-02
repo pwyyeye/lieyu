@@ -27,6 +27,13 @@
     
 }
 
+//-(void)setImageUrl:(NSString *)imageUrl
+//{
+//    if (!_imageUrl) {
+//        _imageUrl = imageUrl;
+//        [_iconButton sd_setImageWithURL:[NSURL URLWithString:imageUrl]];
+//    }
+//}
 
 -(void)setCornerRadiusView:(UIView *) maskView With:(CGFloat) size and:(BOOL) mask{
     maskView.layer.cornerRadius = size;

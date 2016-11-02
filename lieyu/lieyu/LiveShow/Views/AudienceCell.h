@@ -14,4 +14,6 @@
 
 @property (strong, nonatomic) UIButton *detailButton;
 
+@property (strong, nonatomic) NSString *imageUrl;
+
 @end

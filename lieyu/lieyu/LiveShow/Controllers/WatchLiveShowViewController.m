@@ -420,6 +420,18 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         [shareButton addTarget:self action:@selector(liveShareButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
         _shareButton = shareButton;
         [self.view addSubview:_shareButton];
+        
+        if ([_livestatusNow isEqualToString:@"800"]) {
+            pauseLable = [[UILabel alloc] init];
+            pauseLable.size = CGSizeMake(230, 30);
+            pauseLable.center = CGPointMake(SCREEN_WIDTH / 2, self.view.center.y);
+            pauseLable.backgroundColor = [UIColor blackColor];
+            pauseLable.text = @"主播离开，直播暂停中...";
+            pauseLable.textAlignment =  NSTextAlignmentCenter;
+            pauseLable.textColor = [UIColor whiteColor];
+            [self.view addSubview:pauseLable];
+            [self.view bringSubviewToFront:pauseLable];
+        }
     }
 }
 
@@ -731,41 +743,80 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 }
 
 - (void)player:(nonnull PLPlayer *)player stoppedWithError:(nullable NSError *)error{
-    switch (_isLiveing) {
-        case LiveStateLiveing:
-        {
-            if (![_contentURL isEqual: [NSNull null]] || _contentURL != nil) {
-                [MyUtil showMessage:@"链接失败！"];
-                [self.navigationController popViewControllerAnimated:YES];
+    NSDictionary *watchDict = @{@"liveChatId":_chatRoomId};
+    [LYFriendsHttpTool getLiveStatusWithParms:watchDict complete:^(NSDictionary *dict) {
+        NSInteger num = [NSString stringWithFormat:@"%@",dict[@"livestatus"]].integerValue;
+        switch (num) {
+            case 200:
+            {
+                if (_isLiveing == LiveStatePause && pauseLable) {
+                    self.player = [[WatchPlayerClient sharedPlayerClient] playWithUrl:_contentURL];
+                    [pauseLable removeFromSuperview];
+                    pauseLable = nil;
+                }
             }
-        }
-            break;
-        case LiveStatePause:
-        {
-            if (!pauseLable) {
-                pauseLable = [[UILabel alloc] init];
-                pauseLable.size = CGSizeMake(230, 30);
-                pauseLable.center = CGPointMake(SCREEN_WIDTH / 2, self.view.center.y);
-                pauseLable.backgroundColor = [UIColor blackColor];
-                pauseLable.text = @"主播离开，直播暂停中...";
-                pauseLable.textAlignment =  NSTextAlignmentCenter;
-                pauseLable.textColor = [UIColor whiteColor];
-                [self.view addSubview:pauseLable];
-                [self.view bringSubviewToFront:pauseLable];
+                break;
+            case 800:
+            {
+                if (!pauseLable) {
+                    pauseLable = [[UILabel alloc] init];
+                    pauseLable.size = CGSizeMake(230, 30);
+                    pauseLable.center = CGPointMake(SCREEN_WIDTH / 2, self.view.center.y);
+                    pauseLable.backgroundColor = [UIColor blackColor];
+                    pauseLable.text = @"主播离开，直播暂停中...";
+                    pauseLable.textAlignment =  NSTextAlignmentCenter;
+                    pauseLable.textColor = [UIColor whiteColor];
+                    [self.view addSubview:pauseLable];
+                    [self.view bringSubviewToFront:pauseLable];
+                }
             }
+                break;
+            default:
+            {
+                if (![_contentURL isEqual: [NSNull null]] || _contentURL != nil) {
+                    [MyUtil showPlaceMessage:@"直播结束！"];
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+            }
+                break;
         }
-            break;
-        case LiveStateUnkown:
-        {
-            [[WatchPlayerClient sharedPlayerClient] stopPlayWithUrl:_contentURL];
-            [MyUtil showMessage:@"直播结束"];
-            [self.navigationController popViewControllerAnimated:YES];
-        }
-            break;
-        
-        default:
-            break;
-    }
+    }];
+
+//    switch (_isLiveing) {
+//        case LiveStateLiveing:
+//        {
+//            if (![_contentURL isEqual: [NSNull null]] || _contentURL != nil) {
+//                [MyUtil showMessage:@"链接失败！"];
+//                [self.navigationController popViewControllerAnimated:YES];
+//            }
+//        }
+//            break;
+//        case LiveStatePause:
+//        {
+//            if (!pauseLable) {
+//                pauseLable = [[UILabel alloc] init];
+//                pauseLable.size = CGSizeMake(230, 30);
+//                pauseLable.center = CGPointMake(SCREEN_WIDTH / 2, self.view.center.y);
+//                pauseLable.backgroundColor = [UIColor blackColor];
+//                pauseLable.text = @"主播离开，直播暂停中...";
+//                pauseLable.textAlignment =  NSTextAlignmentCenter;
+//                pauseLable.textColor = [UIColor whiteColor];
+//                [self.view addSubview:pauseLable];
+//                [self.view bringSubviewToFront:pauseLable];
+//            }
+//        }
+//            break;
+//        case LiveStateUnkown:
+//        {
+//            [[WatchPlayerClient sharedPlayerClient] stopPlayWithUrl:_contentURL];
+//            [MyUtil showMessage:@"直播结束"];
+//            [self.navigationController popViewControllerAnimated:YES];
+//        }
+//            break;
+//        
+//        default:
+//            break;
+//    }
 //    if (_isLiveing) {//有直播但是获取失败
 //        if (![_contentURL isEqual: [NSNull null]] || _contentURL != nil) {
 //            [MyUtil showMessage:@"链接失败！"];
@@ -1017,14 +1068,14 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     if (collectionView.tag == 188) {
             AudienceCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier : _CELL forIndexPath :indexPath];
             ChatUseres *user = [[ChatUseres alloc] init];
-            user = _dataArray[indexPath.row];
+            user = _dataArray[indexPath.item];
             NSString *imgStr = user.avatar_img;
             if (imgStr.length < 50) {
                 imgStr = [MyUtil getQiniuUrl:user.avatar_img width:0 andHeight:0];
             }
             [cell.iconButton sd_setImageWithURL:[NSURL URLWithString:imgStr] placeholderImage:[UIImage imageNamed:@"lieyu_default_head"]];
             [cell.detailButton addTarget:self action:@selector(detailViewShow:) forControlEvents:(UIControlEventTouchUpInside)];
-            cell.detailButton.tag = indexPath.row;
+            cell.detailButton.tag = indexPath.item;
             return cell;
     } else {
         RCMessageModel *model =

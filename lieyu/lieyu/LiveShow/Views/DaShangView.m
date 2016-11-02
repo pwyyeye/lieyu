@@ -76,8 +76,6 @@ static NSString *daShangCellID = @"dashangCellID";
     if (_type == textTypeWhite) {
         cell.giftNameLabel.textColor = [UIColor whiteColor];
         cell.YuBiLabel.textColor = [UIColor whiteColor];
-        cell.layer.borderWidth = 1.0f;
-        cell.layer.borderColor = [UIColor blackColor].CGColor;
     }
     return cell;
 }

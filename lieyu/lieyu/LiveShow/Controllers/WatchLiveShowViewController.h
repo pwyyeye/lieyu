@@ -61,6 +61,7 @@ UIScrollViewDelegate, UINavigationControllerDelegate,RCInputBarControlDelegate,R
 @property (nonatomic, strong) NSString *joinNum;//回放时主播标签显示总共观看的人数
 @property (nonatomic, strong) NSString *shareText;//分享文字
 @property (nonatomic, assign) BOOL isCoin;//是否打赏
+@property (nonatomic, strong) NSString *livestatusNow;//直播状态
 #pragma mark - 聊天界面属性
 
 /*!
