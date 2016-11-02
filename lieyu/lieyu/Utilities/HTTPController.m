@@ -42,9 +42,12 @@
                      NSString *code = [NSString stringWithFormat:@"%@",responseObj[@"errorcode"]];
 //                     NSLog(@"---->%@",responseObj);
                      if ([code isEqualToString:@"-1"]) {
-                         LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
-                         UINavigationController * nav = (UINavigationController *)app.window.rootViewController;
-                         [nav pushViewController:login animated:YES];
+                         UIViewController *VC = [app.navigationController.viewControllers objectAtIndex:app.navigationController.viewControllers.count - 1];
+                         if (![VC isKindOfClass:[LYUserLoginViewController class]]) {
+                             LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
+                             UINavigationController * nav = (UINavigationController *)app.window.rootViewController;
+                             [nav pushViewController:login animated:YES];
+                         }
                          [app stopLoading];
                          return;
                      }
@@ -71,9 +74,12 @@
                   if (success) {
                       NSString *code = [NSString stringWithFormat:@"%@",responseObj[@"errorcode"]];
                       if ([code isEqualToString:@"-1"]) {
-                          LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
-                          UINavigationController * nav = (UINavigationController *)app.window.rootViewController;
-                          [nav pushViewController:login animated:YES];
+                          UIViewController *VC = [app.navigationController.viewControllers objectAtIndex:app.navigationController.viewControllers.count - 1];
+                          if (![VC isKindOfClass:[LYUserLoginViewController class]]) {
+                              LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
+                              UINavigationController * nav = (UINavigationController *)app.window.rootViewController;
+                              [nav pushViewController:login animated:YES];
+                          }
                           [app stopLoading];
                           return;
                       }
@@ -122,9 +128,12 @@
         if (success) {
             NSString *code = [NSString stringWithFormat:@"%@",responseObject[@"errorcode"]];
             if ([code isEqualToString:@"-1"]) {
-                LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
-                UINavigationController * nav = (UINavigationController *)app.window.rootViewController;
-                [nav pushViewController:login animated:YES];
+                UIViewController *VC = [app.navigationController.viewControllers objectAtIndex:app.navigationController.viewControllers.count - 1];
+                if (![VC isKindOfClass:[LYUserLoginViewController class]]) {
+                    LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
+                    UINavigationController * nav = (UINavigationController *)app.window.rootViewController;
+                    [nav pushViewController:login animated:YES];
+                }
                 [app stopLoading];
                 return;
             }

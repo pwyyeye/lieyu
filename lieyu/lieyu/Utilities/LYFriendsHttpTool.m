@@ -517,6 +517,20 @@
     }];
 }
 
-
+#pragma mark - 删除直播
++ (void)deleteMyLiveRecord:(NSDictionary *)params complete:(void (^)(BOOL))complete{
+    AppDelegate *appDelegate = ((AppDelegate *)[UIApplication sharedApplication].delegate);
+    [appDelegate startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_LIVE_DELETE baseURL:LY_SERVER params:params success:^(id response) {
+        if ([[response objectForKey:@"errorcode"]isEqualToString:@"1"]) {
+            complete(YES);
+        }else{
+            [MyUtil showMessage:[response objectForKey:@"message"]];
+        }
+        [appDelegate stopLoading];
+    } failure:^(NSError *err) {
+        [appDelegate stopLoading];
+    }];
+}
 
 @end

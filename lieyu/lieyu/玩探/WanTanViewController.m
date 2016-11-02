@@ -63,10 +63,11 @@ static NSString *wantanCellID = @"wantanCellID";
     [self.tableView registerNib:[UINib nibWithNibName:@"WanTanCell" bundle:nil] forCellReuseIdentifier:wantanCellID];
     self.tableView.showsHorizontalScrollIndicator=NO;
     self.tableView.showsVerticalScrollIndicator=NO;
-    self.tableView.separatorColor= RGB(241, 241, 241);
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    self.tableView.backgroundColor = COMMON_GRAY;
+    self.tableView.separatorColor = COMMON_GRAY;
+//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.contentInset = UIEdgeInsetsMake(70, 0, 0, 0);
-    [self.view setBackgroundColor:RGB(241, 241, 241)];
+    [self.view setBackgroundColor:COMMON_GRAY];
 }
 
 - (void)setuptitle{
@@ -145,10 +146,10 @@ static NSString *wantanCellID = @"wantanCellID";
                 cell.redTiPot.hidden = YES;
             }
             [cell setIamge:[UIImage imageNamed:@"lianxi.png"] andLabel:@"最近联系"];
-            UIView *lineView = [[UIView alloc] initWithFrame:(CGRectMake(0, cell.height - 1, SCREEN_WIDTH, 1))];
-            lineView.alpha = .1f;
-            lineView.backgroundColor = [UIColor darkGrayColor];
-            [cell addSubview:lineView];
+//            UIView *lineView = [[UIView alloc] initWithFrame:(CGRectMake(0, cell.height - 1, SCREEN_WIDTH, 1))];
+//            lineView.alpha = .1f;
+//            lineView.backgroundColor = [UIColor darkGrayColor];
+//            [cell addSubview:lineView];
         } else {
             cell.redTiPot.hidden = YES;
             [cell setIamge:[UIImage imageNamed:@"wanyoulist.png"] andLabel:@"玩友列表"];
@@ -157,10 +158,10 @@ static NSString *wantanCellID = @"wantanCellID";
         if (indexPath.row == 0) {
             cell.redTiPot.hidden = YES;
             [cell setIamge:[UIImage imageNamed:@"xiangwan.png"] andLabel:@"大家想玩"];
-            UIView *lineView = [[UIView alloc] initWithFrame:(CGRectMake(0, cell.height - 1, SCREEN_WIDTH, 1))];
-            lineView.alpha = .1f;
-            lineView.backgroundColor = [UIColor darkGrayColor];
-            [cell addSubview:lineView];
+//            UIView *lineView = [[UIView alloc] initWithFrame:(CGRectMake(0, cell.height - 1, SCREEN_WIDTH, 1))];
+//            lineView.alpha = .1f;
+//            lineView.backgroundColor = [UIColor darkGrayColor];
+//            [cell addSubview:lineView];
         } else if(indexPath.row == 1){
             cell.redTiPot.hidden = YES;
             [cell setIamge:[UIImage imageNamed:@"wantanGW.png"] andLabel:@"娱乐顾问"];
@@ -185,7 +186,7 @@ static NSString *wantanCellID = @"wantanCellID";
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 14)];
-    view.backgroundColor=RGB(239, 239, 244);
+    view.backgroundColor=COMMON_GRAY;
     return view;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -193,13 +194,13 @@ static NSString *wantanCellID = @"wantanCellID";
     if (section) {
         return SCREEN_HEIGHT / 60;
     } else {
-        return 3;
+        return 0;
     }
 }
-//-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-//{
-//    return SCREEN_HEIGHT / 62;
-//}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.0000001;
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     

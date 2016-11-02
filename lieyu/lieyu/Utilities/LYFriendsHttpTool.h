@@ -90,5 +90,7 @@
 +(void) daShangWithParms:(NSDictionary *) parms complete: (void(^)(NSDictionary *))complete;
 #pragma mark --- 打赏列表
 +(void) getDaShangListParms: (NSDictionary *) parms complete: (void(^)(NSArray *)) complete;
+#pragma mark - 删除直播
++ (void)deleteMyLiveRecord:(NSDictionary *)params complete:(void(^)(BOOL result))complete;
 
 @end
