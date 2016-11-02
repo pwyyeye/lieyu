@@ -14,16 +14,7 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="101" height="91"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nh3-ia-J14"/>
-                </subviews>
             </view>
-            <constraints>
-                <constraint firstAttribute="bottom" secondItem="nh3-ia-J14" secondAttribute="bottom" id="Ldf-pH-Q4S"/>
-                <constraint firstItem="nh3-ia-J14" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="YgA-vG-dKJ"/>
-                <constraint firstItem="nh3-ia-J14" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="m7c-ri-RK8"/>
-                <constraint firstAttribute="trailing" secondItem="nh3-ia-J14" secondAttribute="trailing" id="pAx-PX-ViB"/>
-            </constraints>
             <size key="customSize" width="101" height="91"/>
             <point key="canvasLocation" x="36" y="245"/>
         </collectionViewCell>

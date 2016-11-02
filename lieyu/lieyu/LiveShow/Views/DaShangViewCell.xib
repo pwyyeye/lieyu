@@ -33,7 +33,7 @@
                     </label>
                     <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="200000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rki-Ua-e2f">
                         <constraints>
-                            <constraint firstAttribute="width" constant="70" id="jri-G5-Vhm"/>
+                            <constraint firstAttribute="width" constant="72" id="jri-G5-Vhm"/>
                             <constraint firstAttribute="height" constant="14" id="wLJ-fC-oXC"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>

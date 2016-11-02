@@ -275,8 +275,10 @@
     [UMSocialData defaultData].extConfig.qqData.url = liveStr;
     UIImage *image = nil;
     if ([MyUtil isEmptyString:_imgUrl]) {
-        NSData *dat = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://source.lie98.com/lieyu_ios_20160918110927_HWnD4jLL.jpg"]];
-        image = [UIImage imageWithData:dat];
+//        NSData *dat = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://source.lie98.com/lieyu_ios_20160918110927_HWnD4jLL.jpg"]];
+//        image = [UIImage imageWithData:dat];
+        [MyUtil showPlaceMessage:@"请选择直播封面"];
+        return;
     } else {
         image = _LiveImageView.image;
     }
@@ -327,10 +329,12 @@
 -(void)openLiveShowRoom{
     
     if (!_imgUrl) {
-        _imgUrl = @"http://source.lie98.com/lieyu_ios_20160918110927_HWnD4jLL.jpg";
-        NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:_imgUrl]];
-       UIImage *result = [UIImage imageWithData:data];
-        _begainImage(result);
+//        _imgUrl = @"http://source.lie98.com/lieyu_ios_20160918110927_HWnD4jLL.jpg";
+//        NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:_imgUrl]];
+//       UIImage *result = [UIImage imageWithData:data];
+//        _begainImage(result);
+        [MyUtil showPlaceMessage:@"请选择直播封面"];
+        return;
     }
     if ([_titleTextFiled.text  isEqualToString: @""]) {
         AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;

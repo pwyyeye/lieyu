@@ -11,21 +11,22 @@
 @implementation AudienceCell
 
 -(void)layoutSubviews
-{
+{ 
     _iconButton = [[UIImageView alloc] init];
     _iconButton.frame = self.bounds;
     _iconButton.backgroundColor = [UIColor clearColor];
-    [self addSubview:_iconButton];
+    [_iconButton setImage:[UIImage imageNamed:@"lieyu_default_head"]];
+    [self.contentView addSubview:_iconButton];
     [self setCornerRadiusView:self.iconButton With:self.iconButton.frame.size.height / 2  and:YES];
-//    self.iconButton.layer.borderColor = COMMON_PURPLE.CGColor;
-//    self.iconButton.layer.borderWidth = 1.f;
     self.iconButton.userInteractionEnabled = NO;
     
     self.detailButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
     self.detailButton.backgroundColor = [UIColor clearColor];
     self.detailButton.frame = self.bounds;
-    [self addSubview:self.detailButton];
+    [self.contentView addSubview:self.detailButton];
+    
 }
+
 
 -(void)setCornerRadiusView:(UIView *) maskView With:(CGFloat) size and:(BOOL) mask{
     maskView.layer.cornerRadius = size;

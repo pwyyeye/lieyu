@@ -23,6 +23,13 @@
 #define PLUGIN_BOARD_ITEM_VOIP_TAG     1004
 #endif
 
+typedef NS_ENUM(NSInteger, LiveStates) {
+    LiveStateLiveing    = 0,
+    LiveStatePause      = 1,
+    LiveStateDone       = 2,
+    LiveStateUnkown   = 3
+};
+
 @interface WatchLiveShowViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate, UIScrollViewDelegate,RCMessageCellDelegate, UIGestureRecognizerDelegate,UITextFieldDelegate,
 UIScrollViewDelegate, UINavigationControllerDelegate,RCInputBarControlDelegate,RCIMConnectionStatusDelegate,UIActionSheetDelegate>
 

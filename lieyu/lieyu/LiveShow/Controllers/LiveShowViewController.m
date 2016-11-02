@@ -304,7 +304,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [center addObserver:self selector:@selector(notice:) name:@"kobe24" object:nil];
     
     [center addObserver:self selector:@selector(stopLiveShowNow) name:UIApplicationDidEnterBackgroundNotification object:nil];
-    [center addObserver:self selector:@selector(startLiveShowNow) name:UIApplicationDidBecomeActiveNotification object:nil];
+    [center addObserver:self selector:@selector(startLiveShowNow) name:UIApplicationWillEnterForegroundNotification object:nil];
     
     [IQKeyboardManager sharedManager].enable = NO;
     [IQKeyboardManager sharedManager].isAdd = YES;
@@ -333,7 +333,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
             [self joinChatRoom];
             _timer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(livetimerUpdataAction) userInfo:nil repeats:YES];
             [_timer fire];
-            [self livetimerUpdataAction];
+//            [self livetimerUpdataAction];
             break;
         case LiveShowStatus_UNKNOWN:
             
@@ -341,34 +341,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         default:
             break;
     }
-//        if (_isActive) {//从开始界面分享回来配置界面以及加入聊天室
-//            [_registerView  removeFromSuperview];
-//            _registerView = nil;
-//            [self initUI];
-//            [self beginLiveShow];
-//            [self joinChatRoom];
-//            _timer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(livetimerUpdataAction) userInfo:nil repeats:YES];
-//            [_timer fire];
-//            [self livetimerUpdataAction];
-//        } else {//中间过程回到前台仅重新直播
-//            [self beginLiveShow];
-//            _isActive = YES;
-//        }
-//    } else {//此时判断两种情况：1、没有点击开始直播进入后台；2、点击了分享并开始直播进入后台
-//       
-//        NSInteger num = _shareType.integerValue;
-//        if (num >= 0 && num <= 3) {
-//            if (![self.session isRunning]) return;//结束界面
-//            [_registerView  removeFromSuperview];
-//            _registerView = nil;
-//            [self initUI];
-//            [self beginLiveShow];
-//            [self joinChatRoom];
-//            _timer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(livetimerUpdataAction) userInfo:nil repeats:YES];
-//            [_timer fire];
-//            [self livetimerUpdataAction];
-//        }
-//    }
+
 }
 
 
@@ -400,7 +373,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         [self joinChatRoom];
         _timer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(livetimerUpdataAction) userInfo:nil repeats:YES];
         [_timer fire];
-        [self livetimerUpdataAction];
+//        [self livetimerUpdataAction];
     } else {
         liveshowStatusNow = LiveShowStatus_afterShare;
     }
@@ -414,19 +387,15 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         if ([dict valueForKey:@"total"]) {
             _userView.numberLabel.text = [NSString stringWithFormat:@"%@",dict[@"total"]];
             _lookNum = [NSString stringWithFormat:@"%@",dict[@"total"]];
+            _likeLabel.text = [NSString stringWithFormat:@"%@",dict[@"likeNum"]];
         } else {
             _userView.numberLabel.text = @"";
         }
-//        if ([dict valueForKey:@"users"]) {
-        [self.dataArray removeAllObjects];
-        self.dataArray = dict[@"users"];
-//            for (ChatUseres *model  in _dataArray) {
-//                if (model.id == app.userModel.userid) {
-//                    [_dataArray removeObject:model];
-//                }
-//            }
-//        }
-        [_audienceCollectionView reloadData];
+        NSArray *tempArr = dict[@"users"];
+            self.dataArray = [NSMutableArray arrayWithArray:tempArr];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_audienceCollectionView reloadData];
+            });
     }];
 }
 
@@ -466,7 +435,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     UICollectionViewFlowLayout *layout=[[ UICollectionViewFlowLayout alloc ] init ];
     [layout setScrollDirection:(UICollectionViewScrollDirectionHorizontal)];
     _audienceCollectionView = [[ UICollectionView alloc ] initWithFrame : CGRectMake(SCREEN_WIDTH / 50, 70 + 10, SCREEN_WIDTH - 20, 50) collectionViewLayout :layout];
-    [_audienceCollectionView registerClass :[AudienceCell class ] forCellWithReuseIdentifier : _CELL ];
+    [_audienceCollectionView registerNib:[UINib nibWithNibName:@"AudienceCell" bundle:nil] forCellWithReuseIdentifier:_CELL];
     _audienceCollectionView.tag = 199;
     _audienceCollectionView.showsHorizontalScrollIndicator = NO;
     _audienceCollectionView.backgroundColor =[UIColor clearColor];
@@ -494,7 +463,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     _likeLabel.size = CGSizeMake(SCREEN_WIDTH / 12, 15);
     _likeLabel.center = CGPointMake(CGRectGetMidX(_likeButton.bounds), CGRectGetMidY(_likeButton.bounds) + 11);
     _likeLabel.textAlignment = NSTextAlignmentCenter;
-    _likeLabel.font = [UIFont systemFontOfSize:11];
+    _likeLabel.font = [UIFont systemFontOfSize:9];
     _likeLabel.textColor = [UIColor whiteColor];
     [_likeButton addSubview:_likeLabel];
     
@@ -1099,15 +1068,15 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 -( UICollectionViewCell *)collectionView:( UICollectionView *)collectionView cellForItemAtIndexPath:( NSIndexPath *)indexPath
 {
     if (collectionView.tag == 199) {
-        AudienceCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier : _CELL forIndexPath :indexPath];
-        ChatUseres *user = _dataArray[indexPath.row];
+        AudienceCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier : _CELL forIndexPath :indexPath];
+        ChatUseres *user = _dataArray[indexPath.item];
         NSString *imgStr = user.avatar_img;
         if (imgStr.length < 50) {
             imgStr = [MyUtil getQiniuUrl:user.avatar_img width:0 andHeight:0];
         }
         [cell.iconButton sd_setImageWithURL:[NSURL URLWithString:imgStr] placeholderImage:[UIImage imageNamed:@"lieyu_default_head"]];
         [cell.detailButton addTarget:self action:@selector(detailViewShow:) forControlEvents:(UIControlEventTouchUpInside)];
-        cell.detailButton.tag = indexPath.row;
+        cell.detailButton.tag = indexPath.item;
         return cell;
     } else {
         RCMessageModel *model =
