@@ -576,6 +576,14 @@ static NSString *liveShowListID = @"liveShowListID";
     
     cell.listModel = model;
     
+    if (model.roomHostId == self.userModel.userid) {
+        cell.deleteButton.tag = indexPath.row;
+        [cell.deleteButton addTarget:self action:@selector(deleteLiveRecord:) forControlEvents:UIControlEventTouchUpInside];
+        cell.deleteButton.hidden = NO;
+    }else{
+        cell.deleteButton.hidden = YES;
+    }
+    
     [cell sendSubviewToBack:cell.backImageView];
     return cell;
 }
@@ -584,6 +592,30 @@ static NSString *liveShowListID = @"liveShowListID";
 {
     return SCREEN_HEIGHT / 5 * 2;
 }
+
+#pragma mark - 删除直播记录
+- (void)deleteLiveRecord:(UIButton *)button{
+    [[[AlertBlock alloc]initWithTitle:nil message:@"确认删除该直播？" cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex) {
+        LYLiveShowListModel *model = [LYLiveShowListModel new];
+        if (_index == 0) {//热门
+            model = _hotDataArray[button.tag];
+        } else {
+            model = _rencentDataArray[button.tag];
+        }
+        if (model.roomHostId == self.userModel.userid && buttonIndex == 1) {
+            NSDictionary *dict = @{@"roomid":[NSString stringWithFormat:@"%d",model.roomId]};
+            __weak __typeof(self)weakSelf = self;
+            [LYFriendsHttpTool deleteMyLiveRecord:dict complete:^(BOOL result) {
+                if (result == YES) {
+                    [weakSelf refreshData];
+                }else{
+                    [MyUtil showPlaceMessage:@"删除失败，请稍后重试！"];
+                }
+            }];
+        }
+    }] show];
+}
+
 #pragma mark ---- TableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     WatchLiveShowViewController *watchLiveVC = [[WatchLiveShowViewController alloc] init];
