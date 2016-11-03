@@ -136,6 +136,10 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     int _oldScrollOffectY;//记录旧的偏移量
     
     BOOL _firstEnterHomepage;//
+    
+    UIWindow *blackWindow;
+    UIImageView *blackWindowImage;
+    UIButton *blackWindowButton;
 }
 @property (nonatomic,strong) UIButton *cityChooseBtn;//定位城市按钮
 @property(nonatomic,strong)NSMutableArray *bannerList;
@@ -169,8 +173,6 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     
     [self createNavButton];
-    
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -183,18 +185,23 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [super viewDidDisappear:animated];
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    if (_menuBtnArray.count) {
+        HotMenuButton *button = [_menuBtnArray objectAtIndex:_menuBtnArray.count - 1];
+        [self LiveShowGuideView:button];
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    NSString *pngDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-    
     [self setupData];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(checkNewCityStatus) name:@"locationCityThisTime" object:nil];
     AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);
     [app startLocation];
     
     //初始化
-    //    [self changeLocationCity];
     [self createUI];
     [self getDataLocalAndReload];
     [self removeNavButtonAndImageView];
@@ -233,6 +240,50 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         }];
         _firstEnterHomepage = YES;
     }
+}
+
+#pragma mark - 第一次下载应用，直播引导
+- (void)LiveShowGuideView:(HotMenuButton *)button{
+    if (![USER_DEFAULT objectForKey:@"FirstIntoLiveShowPage"]) {
+        //FirstIntoLiveShowPage 这个key没有value
+        CGRect buttonFrame = button.frame;
+        blackWindow = [[UIWindow alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        [blackWindow setBackgroundColor:RGBA(20, 20, 20, 0.5)];
+        blackWindowImage = [[UIImageView alloc]initWithFrame:CGRectMake(buttonFrame.size.width / 2 + buttonFrame.origin.x - 76, buttonFrame.origin.y + buttonFrame.size.height + 5, 100, 87)];
+        [blackWindowImage setImage:[UIImage imageNamed:@"HomepageUpArrow"]];
+        [blackWindow addSubview:blackWindowImage];
+        blackWindowButton = [[UIButton alloc]initWithFrame:CGRectMake(blackWindowImage.frame.origin.x + 3, blackWindowImage.frame.origin.y + blackWindowImage.frame.size.height + 35, 97, 46)];
+        blackWindowButton.tag = button.tag;
+        [blackWindowButton addTarget:self action:@selector(jumpToLivePage) forControlEvents:UIControlEventTouchUpInside];
+        [blackWindowButton setImage:[UIImage imageNamed:@"HomepageKonwButton"] forState:UIControlStateNormal];
+        [blackWindow addSubview:blackWindowButton];
+        [blackWindow setWindowLevel:MAXFLOAT - 1];
+        [blackWindow makeKeyAndVisible];
+    }
+}
+
+// 按钮事件
+- (void)jumpToLivePage{
+    [self choosePageByIndex:blackWindowButton.tag];
+    UIButton *cameraButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 129, 60, 60)];
+    [cameraButton setImage:[UIImage imageNamed:@"HomepageCamera"] forState:UIControlStateNormal];
+    [blackWindow addSubview:cameraButton];
+    [cameraButton addTarget:self action:@selector(hideBlackWindow) forControlEvents:UIControlEventTouchUpInside];
+    [blackWindowImage setFrame:CGRectMake(SCREEN_WIDTH / 2 - 80, SCREEN_HEIGHT - 213, 160, 69)];
+    [blackWindowImage setImage:[UIImage imageNamed:@"HomepageDownArrow"]];
+    [blackWindowButton setFrame:CGRectMake(SCREEN_WIDTH / 2 - 60, SCREEN_HEIGHT - 300, 120, 35)];
+    [blackWindowButton setImage:[UIImage imageNamed:@"HomepageLiveButton"] forState:UIControlStateNormal];
+    [blackWindowButton addTarget:self action:@selector(hideBlackWindow) forControlEvents:UIControlEventTouchUpInside];
+}
+
+//进入直播 ，隐藏window
+- (void)hideBlackWindow{
+    [blackWindow removeFromSuperview];
+    blackWindow = nil;
+    blackWindowButton = nil;
+    blackWindowImage = nil;
+    [USER_DEFAULT setObject:@"NO" forKey:@"FirstIntoLiveShowPage"];
+    [self registerLiveButtonAction];
 }
 
 #pragma mark - 是否改变城市
@@ -526,7 +577,6 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         
         _lineView.center = CGPointMake(btn.center.x, _lineView.center.y);
     }
-    //    [_menuView addObserver:self forKeyPath:@"center" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 -(void)dealloc{
@@ -923,6 +973,15 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             LYLiveShowListModel *model = [((NSMutableArray *)[_liveDict objectForKey:@"liveList"]) objectAtIndex:indexPath.row];
             cell.listModel = model;
+            
+            if (model.roomHostId == self.userModel.userid) {
+                cell.deleteButton.tag = indexPath.row;
+                [cell.deleteButton addTarget:self action:@selector(deleteLiveRecord:) forControlEvents:UIControlEventTouchUpInside];
+                cell.deleteButton.hidden = NO;
+            }else{
+                cell.deleteButton.hidden = YES;
+            }
+            
             return cell;
         }else{
             return nil;
@@ -1326,9 +1385,10 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 #pragma mark - 菜单点击事件
 - (void)menuClick:(HotMenuButton *)button{
-    [_bgScrollView setContentOffset:CGPointMake(SCREEN_WIDTH * button.tag, 0)];
-    _index = button.tag;
-    [self lineViewAnimation];
+//    [_bgScrollView setContentOffset:CGPointMake(SCREEN_WIDTH * button.tag, 0)];
+//    _index = button.tag;
+//    [self lineViewAnimation];
+    [self choosePageByIndex:button.tag];
     [MTA trackCustomKeyValueEvent:LYCLICK_MTA props:[self createMTADctionaryWithActionName:@"筛选" pageName:HOMEPAGE_MTA titleName:button.currentTitle]];
     //    if (_dataArray.count) {
     //        NSArray *array = _dataArray[button.tag];
@@ -1336,6 +1396,12 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     //            [self getDataWith];
     //        }
     //    }
+}
+
+- (void)choosePageByIndex:(NSInteger)tag{
+    [_bgScrollView setContentOffset:CGPointMake(SCREEN_WIDTH * tag, 0)];
+    _index = tag;
+    [self lineViewAnimation];
 }
 
 #pragma mark 选择城市action
@@ -1896,6 +1962,24 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 }
 
 #pragma mark - cell里的点击按钮事件
+//删除直播记录
+- (void)deleteLiveRecord:(UIButton *)button{
+    [[[AlertBlock alloc]initWithTitle:nil message:@"确认删除该直播？" cancelButtonTitle:@"取消" otherButtonTitles:@"确定" block:^(NSInteger buttonIndex) {
+        LYLiveShowListModel *model = [((NSMutableArray *)[_liveDict objectForKey:@"liveList"]) objectAtIndex:button.tag];
+        if (model.roomHostId == self.userModel.userid && buttonIndex == 1) {
+            NSDictionary *dict = @{@"roomid":[NSString stringWithFormat:@"%d",model.roomId]};
+            __weak __typeof(self)weakSelf = self;
+            [LYFriendsHttpTool deleteMyLiveRecord:dict complete:^(BOOL result) {
+                if (result == YES) {
+                    [weakSelf getDataArray:2 subids:nil];
+                }else{
+                    [MyUtil showPlaceMessage:@"删除失败，请稍后重试！"];
+                }
+            }];
+        }
+    }] show];
+}
+
 - (void)collectBar:(UIButton *)button{
     //    NSLog(@"%ld",button.tag);
     __weak __typeof(self)weakSelf = self;
