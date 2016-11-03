@@ -86,7 +86,7 @@
                             <color key="textColor" red="0.6705882353" green="0.6705882353" blue="0.6705882353" alpha="0.45000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="因此娱币兑现需扣除平台服务费30%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7d-vi-deT">
+                        <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="因此娱币兑现需扣除平台服务费50%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7d-vi-deT">
                             <constraints>
                                 <constraint firstAttribute="height" constant="15" id="lzV-Tn-Vdz"/>
                             </constraints>
@@ -135,7 +135,7 @@
                 <constraint firstAttribute="trailing" secondItem="lXO-HE-jXg" secondAttribute="trailing" id="tjM-P1-xSh"/>
                 <constraint firstItem="2I3-5A-mAq" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="zxW-yP-kGC"/>
             </constraints>
-            <point key="canvasLocation" x="269" y="261"/>
+            <point key="canvasLocation" x="99" y="93"/>
         </view>
     </objects>
     <resources>

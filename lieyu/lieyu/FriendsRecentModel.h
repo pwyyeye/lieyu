@@ -29,7 +29,7 @@
 @property (nonatomic,copy) NSString *liked;
 @property (nonatomic,copy) NSString *location;
 @property (nonatomic,copy) NSString *lyMomentRewardCount;
-@property (nonatomic, assign) BOOL coinBoolean;//是否打赏
+@property (nonatomic, copy) NSString *coinBooleanStr;//是否打赏
 @property (nonatomic,strong) NSArray *lyMomentsAttachList;
 @property (nonatomic,copy) NSString *message;
 @property (nonatomic,copy) NSString *type;
