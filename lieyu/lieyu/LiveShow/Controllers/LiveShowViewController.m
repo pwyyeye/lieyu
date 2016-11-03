@@ -432,7 +432,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     UICollectionViewFlowLayout *layout=[[ UICollectionViewFlowLayout alloc ] init ];
     [layout setScrollDirection:(UICollectionViewScrollDirectionHorizontal)];
     _audienceCollectionView = [[ UICollectionView alloc ] initWithFrame : CGRectMake(SCREEN_WIDTH / 50, 70 + 10, SCREEN_WIDTH - 20, 50) collectionViewLayout :layout];
-//    [_audienceCollectionView registerNib:[UINib nibWithNibName:@"AudienceCell" bundle:nil] forCellWithReuseIdentifier:_CELL];
     [_audienceCollectionView registerClass:[AudienceCell class] forCellWithReuseIdentifier:_CELL];
     _audienceCollectionView.tag = 199;
     _audienceCollectionView.showsHorizontalScrollIndicator = NO;
@@ -483,7 +482,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [_livesetView.shiftButton addTarget:self action:@selector(shiftButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
     [_livesetView.beautifulButton addTarget:self action:@selector(beautifulButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
     
-    _beaSlider = [[UISlider alloc] initWithFrame:(CGRectMake(SCREEN_WIDTH / 8 , 17, SCREEN_WIDTH / 4 * 3, 40))];
+    _beaSlider = [[UISlider alloc] initWithFrame:(CGRectMake(SCREEN_WIDTH / 8, 17, SCREEN_WIDTH / 4 * 3, 40))];
     _beaSlider.value = _beautify;
     _beaSlider.minimumTrackTintColor = RGB(178, 38, 217);
     _beaSlider.maximumTrackTintColor = [UIColor whiteColor];

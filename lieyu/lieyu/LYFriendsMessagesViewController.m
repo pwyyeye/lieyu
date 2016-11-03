@@ -959,13 +959,10 @@ static NSString *daShangCellID = @"dashangCellID";
             paragraphStyle.lineSpacing = 5;
             
             NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:14], NSParagraphStyleAttributeName:paragraphStyle};
-            
-            
-            
             NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc]initWithString:str];
             [attributedStr addAttributes:attributes range:NSMakeRange(0, attributedStr.length)];
             CGSize size = [attributedStr boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 70, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
-            return size.height ;
+            return size.height + 5;
         }
             break;
     }

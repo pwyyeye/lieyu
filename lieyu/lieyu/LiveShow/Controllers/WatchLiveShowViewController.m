@@ -944,9 +944,9 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         _anchorDetailView.focusButton.userInteractionEnabled = NO;
     }
     [_anchorDetailView.focusButton addTarget:self action:@selector(anchorFocusButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
-    _anchorDetailView.focusButton.tag = [self.hostUser[@"userid"] integerValue];
+    _anchorDetailView.focusButton.tag = [self.hostUser[@"id"] integerValue];
     [_anchorDetailView.mainViewButton addTarget:self action:@selector(mainViewButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
-    _anchorDetailView.mainViewButton.tag = [self.hostUser[@"userid"] integerValue];
+    _anchorDetailView.mainViewButton.tag = [self.hostUser[@"id"] integerValue];
 }
 
 //点击聊天室的观众

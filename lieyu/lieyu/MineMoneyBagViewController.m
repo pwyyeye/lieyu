@@ -138,7 +138,7 @@
     if (indexPath.section == 0 && indexPath.item == 0) {
         //进入娱币商城
         __weak __typeof(self)weakSelf = self;
-        if (_balanceModel.coinBoolean) {
+        if (![_balanceModel.coinBooleanStr isEqualToString:@"2"]) {
             [LYUserHttpTool lyEnterCoinShopWithParams:nil complete:^(NSString *result) {
                 if ([MyUtil isEmptyString:result]) {
                     [MyUtil showPlaceMessage:@"娱币商城敬请期待！"];
