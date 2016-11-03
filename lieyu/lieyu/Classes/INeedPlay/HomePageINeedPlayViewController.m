@@ -257,7 +257,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         [blackWindowButton addTarget:self action:@selector(jumpToLivePage) forControlEvents:UIControlEventTouchUpInside];
         [blackWindowButton setImage:[UIImage imageNamed:@"HomepageKonwButton"] forState:UIControlStateNormal];
         [blackWindow addSubview:blackWindowButton];
-        [blackWindow setWindowLevel:MAXFLOAT - 1];
+        [blackWindow setWindowLevel:UIWindowLevelAlert];
         [blackWindow makeKeyAndVisible];
     }
 }
@@ -278,6 +278,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
 
 //进入直播 ，隐藏window
 - (void)hideBlackWindow{
+    blackWindow.hidden = YES;
     [blackWindow removeFromSuperview];
     blackWindow = nil;
     blackWindowButton = nil;

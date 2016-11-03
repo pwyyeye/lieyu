@@ -1642,6 +1642,7 @@
                 balance.balances = ![MyUtil isEmptyString:balanceStr] ? balanceStr : @"0";
                 balance.coin = ![MyUtil isEmptyString:coinStr] ? coinStr : @"0";
                 balance.coinBoolean = [[[response objectForKey:@"data"] objectForKey:@"coinBoolean"] boolValue];
+                balance.coinBooleanStr = [[response objectForKey:@"data"] objectForKey:@"coinBooleanStr"];
                 complete(balance);
             }
         }else{
