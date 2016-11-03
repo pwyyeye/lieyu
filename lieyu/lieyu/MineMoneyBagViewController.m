@@ -64,7 +64,7 @@
     [LYUserHttpTool getMyMoneyBagBalanceAndCoinWithParams:nil complete:^(ZSBalance *balance) {
         _balanceModel = balance;
         [_balanceLabel setText:[NSString stringWithFormat:@"¥%.2f",[_balanceModel.balances floatValue]]];
-        if (balance.coinBoolean) {
+        if (![balance.coinBooleanStr isEqualToString:@"2"]) {
             [weakSelf showCoinViews];
             [_yubiLabel setText:[NSString stringWithFormat:@"%@娱币",_balanceModel.coin]];
             [_collectionView reloadData];

@@ -20,4 +20,5 @@
 @property (nonatomic,copy) NSString *userid;
 @property (nonatomic,copy) NSString *withdrawalsSum;
 @property (nonatomic, assign) BOOL coinBoolean;
+@property (nonatomic, strong) NSString *coinBooleanStr;
 @end
