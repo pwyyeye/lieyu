@@ -43,4 +43,6 @@
 
 @property (weak, nonatomic) IBOutlet UIView *secondView;
 
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
+
 @end
