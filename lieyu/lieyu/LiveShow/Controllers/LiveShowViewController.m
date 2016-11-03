@@ -249,7 +249,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [LYFriendsHttpTool getStreamWithParms:roomDict complete:^(NSDictionary *dict) {
         _stream = dict[@"stream"];
         _shareText = dict[@"shareTitle"];
-        if ([dict[@"coinBoolean"] isEqualToString:@"2"]) {
+        if ([dict[@"coinBoolean"] isEqualToString:@"3"]) {
             _isCoin = NO;
         } else {
             _isCoin = YES;
