@@ -1356,7 +1356,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                         watchLiveVC.contentURL = Arr[@"playbackURL"];
                         watchLiveVC.playbackRoomId = Arr[@"chatroomid"];
                     }
-                    if ([Arr[@"coinBoolean"] isEqualToString:@"0"]) {
+                    if ([Arr[@"coinBoolean"] isEqualToString:@"2"]) {
                         watchLiveVC.isCoin = NO;
                     } else {
                         watchLiveVC.isCoin = YES;

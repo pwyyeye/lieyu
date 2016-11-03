@@ -239,7 +239,9 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.emitterLayer setHidden:NO];
-    [self initPLplayer];
+    if (_contentURL) {
+        [self initPLplayer];
+    }
     [self initUI];
     if (_chatRoomId != nil) {
         [self joinChatRoom];
@@ -743,6 +745,9 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 }
 
 - (void)player:(nonnull PLPlayer *)player stoppedWithError:(nullable NSError *)error{
+    if (_chatRoomId == nil) {
+        
+    }
     NSDictionary *watchDict = @{@"liveChatId":_chatRoomId};
     [LYFriendsHttpTool getLiveStatusWithParms:watchDict complete:^(NSDictionary *dict) {
         NSInteger num = [NSString stringWithFormat:@"%@",dict[@"livestatus"]].integerValue;
