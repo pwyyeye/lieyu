@@ -1351,6 +1351,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                     if ([Arr[@"roomType"] isEqualToString:@"live"]) {
                         watchLiveVC.contentURL = Arr[@"liveRtmpUrl"];
                         watchLiveVC.chatRoomId = Arr[@"chatroomid"];
+                        watchLiveVC.livestatusNow = Arr[@"livestatus"];
                     } else {
                         watchLiveVC.contentURL = Arr[@"playbackURL"];
                         watchLiveVC.playbackRoomId = Arr[@"chatroomid"];

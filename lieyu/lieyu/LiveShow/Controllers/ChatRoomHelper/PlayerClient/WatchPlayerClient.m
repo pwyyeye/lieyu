@@ -57,6 +57,9 @@ static WatchPlayerClient *PlayerClient = nil;
         _oldUrl = url;
     } else {
         if ([_oldUrl isEqualToString:url]) {//检测是否一致
+            if (![_player isPlaying]) {
+                [_player play];
+            }
             return _player;
         } else {//不一致就把之前的关闭
             [self stopPlayWithUrl:_oldUrl];
@@ -74,6 +77,8 @@ static WatchPlayerClient *PlayerClient = nil;
 -(void)stopPlayWithUrl: (NSString *) url{
     if ([_player isPlaying]) {
         [_player stop];
+        _oldUrl = nil;
+    } else {
         _oldUrl = nil;
     }
 }

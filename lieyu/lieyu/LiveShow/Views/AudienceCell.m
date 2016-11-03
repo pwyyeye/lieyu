@@ -10,21 +10,29 @@
 
 @implementation AudienceCell
 
--(void)layoutSubviews
+- (instancetype)initWithFrame:(CGRect)frame
 {
+    self = [super initWithFrame:frame];
+    if (self) {
+    }
+    return self;
+}
+
+
+-(void)setImageUrl:(NSString *)imageUrl
+{
+    _imageUrl = imageUrl;
     _iconButton = [[UIImageView alloc] init];
     _iconButton.frame = self.bounds;
-    _iconButton.backgroundColor = [UIColor clearColor];
-    [self addSubview:_iconButton];
+        _iconButton.backgroundColor = [UIColor clearColor];
     [self setCornerRadiusView:self.iconButton With:self.iconButton.frame.size.height / 2  and:YES];
-//    self.iconButton.layer.borderColor = COMMON_PURPLE.CGColor;
-//    self.iconButton.layer.borderWidth = 1.f;
+    [_iconButton sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     self.iconButton.userInteractionEnabled = NO;
-    
+    [self addSubview:_iconButton];
     self.detailButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
     self.detailButton.backgroundColor = [UIColor clearColor];
     self.detailButton.frame = self.bounds;
-    [self addSubview:self.detailButton];
+    [self.contentView addSubview:self.detailButton];
 }
 
 -(void)setCornerRadiusView:(UIView *) maskView With:(CGFloat) size and:(BOOL) mask{

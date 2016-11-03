@@ -321,9 +321,8 @@ static NSString *CellIdentifier = @"CustomerCell";
                 [fansCell.focusButton addTarget:self action:@selector(fansFocusButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
                 return fansCell;
             }
-            
         } else if (indexPath.section == 1){
-            cell.cusImageView.image = [UIImage imageNamed:@"lianxiren"];
+            cell.cusImageView.image = [UIImage imageNamed:@"wanyoulist.png"];
             cell.nameLal.text = @"添加手机通讯录";
             cell.smallImageView.image = [UIImage imageNamed:@"arrowRitht"];
             return cell;
@@ -437,17 +436,17 @@ static NSString *CellIdentifier = @"CustomerCell";
     FansCell *cell = (FansCell *)[[sender superview] superview];
     NSIndexPath *index=[_tableView indexPathForCell:cell];
     FansModel *model = _fansListArray[index.row - 1];
-    if ([model.friendStatus isEqualToString:@"2"] || [model.friendStatus isEqualToString:@"1"]) {
+    if ([model.friendStatus isEqualToString:@"3"] || [model.friendStatus isEqualToString:@"1"]) {
         NSDictionary *dict = @{@"followid":[NSString stringWithFormat:@"%d",model.id]};
         [LYFriendsHttpTool unFollowFriendWithParms:dict complete:^(NSDictionary *dict) {
-            sender.titleLabel.text = @"关注";
+            [sender setTitle:@"关注" forState:(UIControlStateNormal)];
         }];
-    } else if([model.friendStatus isEqualToString:@"3"] || [model.friendStatus isEqualToString:@"0"]) {//不是改为关注
+    } else if([model.friendStatus isEqualToString:@"2"] || [model.friendStatus isEqualToString:@"0"]) {//不是改为关注
         NSDictionary *dict = @{@"followid":[NSString stringWithFormat:@"%d",model.id]};
         [LYFriendsHttpTool followFriendWithParms:dict complete:^(NSDictionary *dict) {
 //        [_fansListArray removeObject:model];
 //        [_tableView deleteRowsAtIndexPaths:[NSMutableArray arrayWithObject:index] withRowAnimation:UITableViewRowAnimationAutomatic];
-            sender.titleLabel.text = @"已关注";
+            [sender setTitle:@"已关注" forState:(UIControlStateNormal)];
             sender.userInteractionEnabled  = NO;
         }];
     }

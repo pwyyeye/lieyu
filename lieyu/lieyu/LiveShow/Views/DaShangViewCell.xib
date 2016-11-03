@@ -33,7 +33,7 @@
                     </label>
                     <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="200000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rki-Ua-e2f">
                         <constraints>
-                            <constraint firstAttribute="width" constant="70" id="jri-G5-Vhm"/>
+                            <constraint firstAttribute="width" constant="72" id="jri-G5-Vhm"/>
                             <constraint firstAttribute="height" constant="14" id="wLJ-fC-oXC"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -62,7 +62,7 @@
                 <outlet property="giftImageView" destination="Kwj-E6-OH4" id="mst-4O-7EE"/>
                 <outlet property="giftNameLabel" destination="Y9z-eC-GhI" id="AE3-sW-mP3"/>
             </connections>
-            <point key="canvasLocation" x="389" y="279"/>
+            <point key="canvasLocation" x="388.5" y="279"/>
         </collectionViewCell>
     </objects>
     <resources>

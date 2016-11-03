@@ -80,7 +80,6 @@ static NSString *daShangCellID = @"dashangCellID";
     return cell;
 }
 
-
 - (BOOL) collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return YES;
