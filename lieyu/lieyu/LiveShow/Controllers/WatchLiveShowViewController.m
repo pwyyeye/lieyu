@@ -380,7 +380,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         UICollectionViewFlowLayout *layout=[[ UICollectionViewFlowLayout alloc ] init ];
         [layout setScrollDirection:(UICollectionViewScrollDirectionHorizontal)];
         _audienceCollectionView = [[ UICollectionView alloc ] initWithFrame : CGRectMake(SCREEN_WIDTH / 50, 70 + 10, SCREEN_WIDTH - 20, 50) collectionViewLayout :layout];
-        [_audienceCollectionView registerNib:[UINib nibWithNibName:@"AudienceCell" bundle:nil] forCellWithReuseIdentifier:_CELL];
+        [_audienceCollectionView registerClass:[AudienceCell class] forCellWithReuseIdentifier:_CELL];
         _audienceCollectionView.showsHorizontalScrollIndicator = NO;
         _audienceCollectionView. backgroundColor =[ UIColor clearColor];
         _audienceCollectionView. delegate = self ;
@@ -1073,10 +1073,10 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
             if (imgStr.length < 50) {
                 imgStr = [MyUtil getQiniuUrl:user.avatar_img width:0 andHeight:0];
             }
-            [cell.iconButton sd_setImageWithURL:[NSURL URLWithString:imgStr] placeholderImage:[UIImage imageNamed:@"lieyu_default_head"]];
-            [cell.detailButton addTarget:self action:@selector(detailViewShow:) forControlEvents:(UIControlEventTouchUpInside)];
-            cell.detailButton.tag = indexPath.item;
-            return cell;
+        cell.imageUrl = imgStr;
+        [cell.detailButton addTarget:self action:@selector(detailViewShow:) forControlEvents:(UIControlEventTouchUpInside)];
+        cell.detailButton.tag = indexPath.item;
+        return cell;
     } else {
         RCMessageModel *model =
         [self.conversationDataRepository objectAtIndex:indexPath.row];

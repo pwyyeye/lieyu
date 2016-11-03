@@ -10,30 +10,30 @@
 
 @implementation AudienceCell
 
--(void)layoutSubviews
-{ 
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+    }
+    return self;
+}
+
+
+-(void)setImageUrl:(NSString *)imageUrl
+{
+    _imageUrl = imageUrl;
     _iconButton = [[UIImageView alloc] init];
     _iconButton.frame = self.bounds;
-    _iconButton.backgroundColor = [UIColor clearColor];
-    [_iconButton setImage:[UIImage imageNamed:@"lieyu_default_head"]];
-    [self.contentView addSubview:_iconButton];
+        _iconButton.backgroundColor = [UIColor clearColor];
     [self setCornerRadiusView:self.iconButton With:self.iconButton.frame.size.height / 2  and:YES];
+    [_iconButton sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     self.iconButton.userInteractionEnabled = NO;
-    
+    [self addSubview:_iconButton];
     self.detailButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
     self.detailButton.backgroundColor = [UIColor clearColor];
     self.detailButton.frame = self.bounds;
     [self.contentView addSubview:self.detailButton];
-    
 }
-
-//-(void)setImageUrl:(NSString *)imageUrl
-//{
-//    if (!_imageUrl) {
-//        _imageUrl = imageUrl;
-//        [_iconButton sd_setImageWithURL:[NSURL URLWithString:imageUrl]];
-//    }
-//}
 
 -(void)setCornerRadiusView:(UIView *) maskView With:(CGFloat) size and:(BOOL) mask{
     maskView.layer.cornerRadius = size;

@@ -236,7 +236,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 - (void)viewDidLoad {
     [super viewDidLoad];
     _likeNum = 0;
-    // Do any additional setup after loading the view.
     self.dataArray = [NSMutableArray array];
     AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
     NSDate* dat = [NSDate date];
@@ -256,7 +255,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         } else {
             _isCoin = YES;
         }
-        
         _isFirstTime = YES;//标志加载注册页面
         liveshowStatusNow  = LiveShowStatus_doNothing;
         
@@ -333,15 +331,15 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
             [self joinChatRoom];
             _timer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(livetimerUpdataAction) userInfo:nil repeats:YES];
             [_timer fire];
-//            [self livetimerUpdataAction];
+            for (NSInteger i = 0; i < 3; i++) {
+                [self livetimerUpdataAction];
+            }
             break;
         case LiveShowStatus_UNKNOWN:
-            
             break;
         default:
             break;
     }
-
 }
 
 
@@ -371,9 +369,9 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         [self initUI];
         [self beginLiveShow];
         [self joinChatRoom];
-        _timer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(livetimerUpdataAction) userInfo:nil repeats:YES];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:7 target:self selector:@selector(livetimerUpdataAction) userInfo:nil repeats:YES];
         [_timer fire];
-//        [self livetimerUpdataAction];
+        [self livetimerUpdataAction];
     } else {
         liveshowStatusNow = LiveShowStatus_afterShare;
     }
@@ -381,8 +379,8 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 
 #pragma mark -- 定时获取直播室人员和点赞数
 -(void)livetimerUpdataAction {
+    __weak typeof(self) weakSelf = self;
     NSDictionary *dictionary = @{@"chatNum":[NSString stringWithFormat:@"%d",_takeNum],@"liveChatId":_chatRoomId};
-//    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [LYFriendsHttpTool requestListWithParms:dictionary complete:^(NSDictionary *dict) {
         if ([dict valueForKey:@"total"]) {
             _userView.numberLabel.text = [NSString stringWithFormat:@"%@",dict[@"total"]];
@@ -392,9 +390,10 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
             _userView.numberLabel.text = @"";
         }
         NSArray *tempArr = dict[@"users"];
-            self.dataArray = [NSMutableArray arrayWithArray:tempArr];
+        [self.dataArray removeAllObjects];
+        [self.dataArray addObjectsFromArray:tempArr];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [_audienceCollectionView reloadData];
+                [weakSelf.audienceCollectionView reloadData];
             });
     }];
 }
@@ -407,7 +406,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     CAEmitterView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:CAEmitterView];
     _heartSize = 36;
-
     //返回按钮
     _backButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
     _backButton.frame = CGRectMake(SCREEN_WIDTH - 50, 30, 40, 40);
@@ -435,7 +433,8 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     UICollectionViewFlowLayout *layout=[[ UICollectionViewFlowLayout alloc ] init ];
     [layout setScrollDirection:(UICollectionViewScrollDirectionHorizontal)];
     _audienceCollectionView = [[ UICollectionView alloc ] initWithFrame : CGRectMake(SCREEN_WIDTH / 50, 70 + 10, SCREEN_WIDTH - 20, 50) collectionViewLayout :layout];
-    [_audienceCollectionView registerNib:[UINib nibWithNibName:@"AudienceCell" bundle:nil] forCellWithReuseIdentifier:_CELL];
+//    [_audienceCollectionView registerNib:[UINib nibWithNibName:@"AudienceCell" bundle:nil] forCellWithReuseIdentifier:_CELL];
+    [_audienceCollectionView registerClass:[AudienceCell class] forCellWithReuseIdentifier:_CELL];
     _audienceCollectionView.tag = 199;
     _audienceCollectionView.showsHorizontalScrollIndicator = NO;
     _audienceCollectionView.backgroundColor =[UIColor clearColor];
@@ -1068,13 +1067,14 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 -( UICollectionViewCell *)collectionView:( UICollectionView *)collectionView cellForItemAtIndexPath:( NSIndexPath *)indexPath
 {
     if (collectionView.tag == 199) {
-        AudienceCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier : _CELL forIndexPath :indexPath];
-        ChatUseres *user = _dataArray[indexPath.item];
-        NSString *imgStr = user.avatar_img;
-        if (imgStr.length < 50) {
-            imgStr = [MyUtil getQiniuUrl:user.avatar_img width:0 andHeight:0];
+        AudienceCell *cell = [_audienceCollectionView dequeueReusableCellWithReuseIdentifier : _CELL forIndexPath :indexPath];
+        if (!cell) {
+            cell = [[AudienceCell alloc] init];
         }
-        [cell.iconButton sd_setImageWithURL:[NSURL URLWithString:imgStr] placeholderImage:[UIImage imageNamed:@"lieyu_default_head"]];
+        ChatUseres *user = _dataArray[indexPath.item];
+        NSString *imgStr = nil;
+        imgStr = [MyUtil getQiniuUrl:user.avatar_img width:0 andHeight:0];
+        cell.imageUrl = imgStr;
         [cell.detailButton addTarget:self action:@selector(detailViewShow:) forControlEvents:(UIControlEventTouchUpInside)];
         cell.detailButton.tag = indexPath.item;
         return cell;
@@ -1429,7 +1429,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [self registerClass:[LYTipMessageCell class]forCellWithReuseIdentifier:rcTipMessageCellIndentifier];
     [self registerClass:[LYGiftMessageCell class]forCellWithReuseIdentifier:rcGiftMessageCellIndentifier];
     [self registerClass:[LYSystemTextMessageCell class] forCellWithReuseIdentifier:rcStystemMessageCellIndentifier];
-    
 }
 
 #pragma mark --- 键盘监听事件

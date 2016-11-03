@@ -321,9 +321,8 @@ static NSString *CellIdentifier = @"CustomerCell";
                 [fansCell.focusButton addTarget:self action:@selector(fansFocusButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
                 return fansCell;
             }
-            
         } else if (indexPath.section == 1){
-            cell.cusImageView.image = [UIImage imageNamed:@"lianxiren"];
+            cell.cusImageView.image = [UIImage imageNamed:@"wanyoulist.png"];
             cell.nameLal.text = @"添加手机通讯录";
             cell.smallImageView.image = [UIImage imageNamed:@"arrowRitht"];
             return cell;

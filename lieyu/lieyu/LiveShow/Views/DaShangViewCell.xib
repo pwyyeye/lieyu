@@ -62,7 +62,7 @@
                 <outlet property="giftImageView" destination="Kwj-E6-OH4" id="mst-4O-7EE"/>
                 <outlet property="giftNameLabel" destination="Y9z-eC-GhI" id="AE3-sW-mP3"/>
             </connections>
-            <point key="canvasLocation" x="389" y="279"/>
+            <point key="canvasLocation" x="388.5" y="279"/>
         </collectionViewCell>
     </objects>
     <resources>
