@@ -288,14 +288,15 @@
     NSDictionary *dict = @{@"actionName":@"跳转",@"pageName":@"我的娱客帮",@"titleName":@"分享",@"value":@"分享到其他平台"};
     [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict];
     
-    NSString *string= [NSString stringWithFormat:@"猎娱 | 快来加入我的娱客帮！"];
+    NSString *keyString = @"我的小伙伴们快加入我的娱客帮一起去抢Iphone7，宝宝们速度……";
+    NSString *submitString= [NSString stringWithFormat:@"猎娱 | 快来加入我的娱客帮！"];
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = _shareString;
     [UMSocialData defaultData].extConfig.wechatSessionData.url = _shareString;
-    [UMSocialData defaultData].extConfig.wechatTimelineData.title = string;
-    [UMSocialData defaultData].extConfig.wechatSessionData.title = string;
+    [UMSocialData defaultData].extConfig.wechatTimelineData.title = keyString;
+    [UMSocialData defaultData].extConfig.wechatSessionData.title = keyString;
     @try {
-        [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:string shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.userModel.avatar_img]]] shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:self];
+        [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:submitString shareImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.userModel.avatar_img]]] shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:self];
     }
     @catch (NSException *exception) {
         [MyUtil showCleanMessage:@"无法分享！"];
