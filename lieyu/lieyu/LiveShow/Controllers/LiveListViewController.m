@@ -648,7 +648,6 @@ static NSString *liveShowListID = @"liveShowListID";
         watchLiveVC.joinNum = [NSString stringWithFormat:@"%d",model.joinNum];
         NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:model.roomImg]];
         watchLiveVC.shareIamge = [UIImage imageWithData:data];
-//        [weakSelf presentViewController:watchLiveVC animated:YES completion:NULL];
         [weakSelf.navigationController pushViewController:watchLiveVC animated:YES];
     }];
 }
