@@ -845,7 +845,8 @@
 
 #pragma mark - 打赏
 -(void)dashangAction{
-    _daShangView = [[[NSBundle mainBundle] loadNibNamed:@"DaShangView" owner:self options:nil] lastObject];
+    _daShangView = [[DaShangView alloc] init];
+
     _daShangView.frame = CGRectMake(10, SCREEN_HEIGHT / 4, SCREEN_WIDTH - 20, 300);
     _daShangView.backgroundColor = [UIColor whiteColor];
     _daShangView.layer.cornerRadius = 3.f;
@@ -854,17 +855,12 @@
     _daShangView.giftCollectionView.tag = 888;
     [self.view addSubview:_daShangView];
     [self.view bringSubviewToFront:_daShangView];
-    [_daShangView.closeButton addTarget:self action:@selector(dashangCloseViewAction:) forControlEvents:(UIControlEventTouchUpInside)];
+    _daShangView.sendGiftButton = [UIButton buttonWithType:(UIButtonTypeSystem)];
+    _daShangView.sendGiftButton.backgroundColor = COMMON_PURPLE;
     [_daShangView.sendGiftButton addTarget:self action:@selector(sendGiftButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
     //获取通知中心单例对象
     NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(notice:) name:@"sendGift" object:nil];
-}
-
--(void)dashangCloseViewAction:(UIButton *)sender{
-    [_daShangView removeFromSuperview];
-    _daShangView = nil;
-    
 }
 
 -(void)sendGiftButtonAction:(UIButton *)sender{

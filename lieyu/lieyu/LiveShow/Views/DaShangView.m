@@ -13,18 +13,31 @@
 
 static NSString *daShangCellID = @"dashangCellID";
 
+@interface DaShangView ()
+
+@property (nonatomic, strong) UIImage *chooseImage;
+
+@end
+
 @implementation DaShangView 
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
+
 - (void)drawRect:(CGRect)rect {
-    // Drawing code
+    if (_type == textType_Live) {
+        _chooseImage = [UIImage imageNamed:@""];
+    } else {
+        _chooseImage = [UIImage imageNamed:@""];
+        CGFloat x = CGRectGetMidX(self.frame);
+        CGFloat y = _sendGiftButton.center.y;
+        _sendGiftButton.center = CGPointMake(x, y);
+    }
+    self.sendGiftButton.layer.cornerRadius = self.sendGiftButton.frame.size.height / 2;
+    self.sendGiftButton.layer.masksToBounds = YES;
 }
-*/
 
 -(void) layoutSubviews{
     [self setupSubviews];
+    
     self.sendGiftButton.layer.borderColor = RGB(187, 40, 217).CGColor;
     self.sendGiftButton.layer.borderWidth = 1.f;
 }
@@ -32,9 +45,20 @@ static NSString *daShangCellID = @"dashangCellID";
 -(void)setupSubviews{
     _number = 0;
     _chooseTag = 10;
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    flowLayout.minimumLineSpacing = 1;
+    flowLayout.minimumInteritemSpacing = 0;
+    flowLayout.itemSize = CGSizeMake(self.frame.size.width / 4, (self.frame.size.height - 70) / 2);
+    flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    self.giftCollectionView  = [[UICollectionView alloc] initWithFrame:(CGRectMake(0, 0, self.frame.size.width, self.frame.size.height - 70)) collectionViewLayout:flowLayout];
+    self.giftCollectionView.backgroundColor = [UIColor clearColor];
+    self.giftCollectionView.pagingEnabled = YES;
+    self.giftCollectionView.directionalLockEnabled = YES;
+    self.giftCollectionView.showsHorizontalScrollIndicator = NO;
     self.giftCollectionView.delegate = self;
     self.giftCollectionView.dataSource = self;
-    self.giftCollectionView.backgroundColor = [UIColor clearColor];
+    [self addSubview: self.giftCollectionView];
     [self.giftCollectionView registerNib:[UINib nibWithNibName:@"DaShangViewCell" bundle:nil] forCellWithReuseIdentifier:daShangCellID];
     _dataArr = [NSMutableArray arrayWithCapacity:100];
     [LYFriendsHttpTool getDaShangListParms:nil complete:^(NSArray *giftArray) {
@@ -49,7 +73,41 @@ static NSString *daShangCellID = @"dashangCellID";
             [[NSNotificationCenter defaultCenter]postNotification:notice];
         });
     }];
+    
+    
+    _pageControl = [[UIPageControl alloc] init];
+    _pageControl.backgroundColor = [UIColor clearColor];
+    _pageControl.numberOfPages = 2;
+    _pageControl.currentPage = 0;
+    _pageControl.pageIndicatorTintColor = COMMON_PURPLE_HALF;
+    _pageControl.currentPageIndicatorTintColor = COMMON_PURPLE;
+    CGFloat w = 50.f;
+    CGFloat h = 23.f;
+    CGFloat x = self.center.x - 25.f;
+    CGFloat y = self.frame.size.height - 67.f;
+    _pageControl.frame = CGRectMake(x, y, w, h);
+    [self addSubview:_pageControl];
+    
+    [_sendGiftButton setTitle:@"赏" forState:(UIControlStateNormal)];
+    [_sendGiftButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
+    CGFloat w_1 = 65.f;
+    CGFloat h_1 = 28.f;
+    CGFloat x_1 = self.frame.size.width - 75.f;
+    CGFloat y_1 = self.frame.size.height - 47.f;
+    _sendGiftButton.frame = CGRectMake(x_1, y_1, w_1, h_1);
+    [self addSubview:_sendGiftButton];
+    
+    [self.timeButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
+    [self.timeButton setTitle:@"30" forState:(UIControlStateNormal)];
+    CGFloat x_2 = self.frame.size.width - 100;
+    CGFloat y_2 = self.frame.size.height - 70;
+    self.timeButton.frame = CGRectMake(x_2, y_2, 65, 65);
+    self.timeButton.layer.cornerRadius = 30.25;
+    self.timeButton.layer.masksToBounds = YES;
+    self.timeButton.hidden = YES;
+    [self addSubview:self.timeButton];
 }
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return _dataArr.count;
 }
@@ -69,14 +127,16 @@ static NSString *daShangCellID = @"dashangCellID";
         cell.DSChooseImage.hidden = YES;
     }
     cell.backgroundColor = [UIColor clearColor];
-    _giftButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    _giftButton.frame = cell.bounds;
-    _giftButton.backgroundColor = [UIColor clearColor];
-    _giftButton.tag = model.rewardValue;
-    if (_type == textTypeWhite) {
+    cell.YuBiLabel.textColor = [UIColor darkGrayColor];
+    if (_type == textType_Live) {
         cell.giftNameLabel.textColor = [UIColor whiteColor];
-        cell.YuBiLabel.textColor = [UIColor whiteColor];
+    } else {
+        cell.giftNameLabel.textColor = [UIColor blackColor];
     }
+//    NSMutableString *text = [NSMutableString stringWithFormat:@"%ld", (long)model.rewardValue];
+//    NSMutableAttributedString *AttributedStr = [[NSMutableAttributedString alloc]initWithString:text];
+//    [AttributedStr addAttribute:NSForegroundColorAttributeName value:RGB(227, 207, 87) range:NSMakeRange(0, userName.length + 1)];
+//    self.textLabel.attributedText = AttributedStr;
     return cell;
 }
 
@@ -87,11 +147,17 @@ static NSString *daShangCellID = @"dashangCellID";
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(self.frame.size.width / 4 - 10 , self.frame.size.height / 3 - 10);
+    return CGSizeMake(self.frame.size.width / 4, (self.frame.size.height - 70) / 2);
 }
+
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(5, 5, 5, 5);
+    return UIEdgeInsetsMake(0, 0, 0, 0);
+}
+
+-(CGFloat )collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 0.f;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{

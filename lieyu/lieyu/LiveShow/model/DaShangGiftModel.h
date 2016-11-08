@@ -17,4 +17,9 @@
 @property (nonatomic, assign) NSString *sorting;
 @property (nonatomic, copy) NSString *rewordType;
 
+-(instancetype)modelWithrewardName:(NSString *)rewardName
+                         rewardImg:(NSString *)rewardImg
+                       rewardValue:(NSInteger)rewardValue
+                        rewardType:(NSString *)rewardType;
+
 @end

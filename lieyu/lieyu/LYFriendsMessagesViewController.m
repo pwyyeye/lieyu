@@ -1119,19 +1119,22 @@ static NSString *daShangCellID = @"dashangCellID";
     
     _backgroudView = [[UIView alloc] initWithFrame:self.view.bounds];
     _backgroudView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.4f];
+    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dashangMomentCloseViewAction)];
+    [_backgroudView addGestureRecognizer:tapGes];
     [self.view addSubview:_backgroudView];
     [self.view bringSubviewToFront:_backgroudView];
     
-    _daShangView = [[[NSBundle mainBundle] loadNibNamed:@"DaShangView" owner:self options:nil] lastObject];
+    _daShangView = [[DaShangView alloc] init];
     _daShangView.frame = CGRectMake(SCREEN_WIDTH / 30, SCREEN_HEIGHT / 5, SCREEN_WIDTH / 15 * 14 , 300);
-    
+    _daShangView.type = textType_Moment;
     _daShangView.backgroundColor = [UIColor whiteColor];
     _daShangView.alpha = 1.f;
     _daShangView.layer.cornerRadius = 6.f;
     _daShangView.layer.masksToBounds = YES;
-    [_backgroudView addSubview:_daShangView];
-    [_daShangView.closeButton addTarget:self action:@selector(dashangMomentCloseViewAction:) forControlEvents:(UIControlEventTouchUpInside)];
+    _daShangView.sendGiftButton = [UIButton buttonWithType:(UIButtonTypeSystem)];
+    _daShangView.sendGiftButton.backgroundColor = COMMON_PURPLE;
     [_daShangView.sendGiftButton addTarget:self action:@selector(sendGiftMomentButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.view addSubview:_daShangView];
 }
 
 -(void)notice:(NSNotification *)notification{
@@ -1141,9 +1144,11 @@ static NSString *daShangCellID = @"dashangCellID";
     _giftName = notification.userInfo[@"giftName"];
 }
 
--(void)dashangMomentCloseViewAction:(UIButton *)sender{
+-(void)dashangMomentCloseViewAction{
     [_backgroudView removeFromSuperview];
     _backgroudView = nil;
+    [_daShangView removeFromSuperview];
+    _daShangView = nil;
 }
 
 -(void)sendGiftMomentButtonAction:(UIButton *)sender{//7 , 11, 13
@@ -1194,8 +1199,10 @@ static NSString *daShangCellID = @"dashangCellID";
             [self vaconeyAmount];//娱币不足
         }
     }];
-        [_backgroudView removeFromSuperview];
+    [_backgroudView removeFromSuperview];
     _backgroudView = nil;
+    [_daShangView removeFromSuperview];
+    _daShangView = nil;
 }
 
 

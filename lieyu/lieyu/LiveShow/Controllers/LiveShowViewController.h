@@ -21,7 +21,10 @@
 #define PLUGIN_BOARD_ITEM_VOIP_TAG     1004
 #endif
 
-
+typedef NS_ENUM(NSUInteger, AnimationGift) {
+    AnimationNone = 0,
+    AnimationShowing,
+};
 
 @interface LiveShowViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate, UIScrollViewDelegate,RCMessageCellDelegate, UIGestureRecognizerDelegate,
 UIScrollViewDelegate, UINavigationControllerDelegate,RCInputBarControlDelegate,RCIMConnectionStatusDelegate>

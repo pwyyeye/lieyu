@@ -10,7 +10,15 @@
 
 @implementation DaShangGiftModel
 
-
+-(instancetype)modelWithrewardName:(NSString *)rewardName rewardImg:(NSString *)rewardImg rewardValue:(NSInteger)rewardValue rewardType:(NSString *)rewardType
+{
+    DaShangGiftModel *model = [DaShangGiftModel new];
+    model.rewardName = rewardName;
+    model.rewardImg = rewardImg;
+    model.rewardValue = rewardValue;
+    model.rewordType = rewardType;
+    return model;
+}
 
 
 @end

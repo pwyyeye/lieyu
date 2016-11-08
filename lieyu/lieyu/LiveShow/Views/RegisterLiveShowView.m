@@ -337,8 +337,7 @@
         return;
     }
     if ([_titleTextFiled.text  isEqualToString: @""]) {
-        AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        _titleTextFiled.text = [NSString stringWithFormat:@"%@正在直播...",app.userModel.usernick];
+        _titleTextFiled.text = [NSString stringWithFormat:@"宝宝这是在玩神马?"];
     }
             NSDictionary *dic = @{@"cityCode":@"310000",@"liveimg":_imgUrl,@"livename":_titleTextFiled.text,@"liveChatId":_roomId,@"streamId":_streamID};
             [LYFriendsHttpTool beginToLiveShowWithParams:dic complete:^(NSDictionary *dict) {
