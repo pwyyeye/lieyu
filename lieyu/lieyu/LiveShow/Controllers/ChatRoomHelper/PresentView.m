@@ -72,7 +72,7 @@
     self.showTime = 3;
     
     //添加cell
-    self.cellHeight = self.cellHeight ? self.cellHeight : 40;
+    self.cellHeight = self.cellHeight ? self.cellHeight : 50;
     _rows           = (int)floor(rect.size.height / (self.cellHeight + Margin));
     CGFloat inset   = rect.size.height - (self.cellHeight + Margin) * _rows + Margin;
     inset           = MAX(0, inset) * 0.5;

@@ -8,7 +8,7 @@
 
 #import "PresentViewCell.h"
 
-#define Duration 0.3
+#define Duration 0.2
 
 @interface PresentViewCell ()
 
@@ -62,9 +62,8 @@
 {
     PresentLable *lable   = [[PresentLable alloc] init];
     lable.backgroundColor = [UIColor clearColor];
-    lable.borderColor     = [UIColor yellowColor];
-    lable.textColor       = [UIColor greenColor];
-    lable.font            = [UIFont systemFontOfSize:17.0];
+    lable.textColor       = [UIColor yellowColor];
+    lable.font            = [UIFont systemFontOfSize:22.0];
     lable.textAlignment   = NSTextAlignmentCenter;
     lable.alpha           = 0.0;
     CGFloat w             = 60;
@@ -195,39 +194,40 @@
 
 @implementation PresentLable
 
-- (void)drawTextInRect:(CGRect)rect
-{
-    UIColor *textColor = self.textColor;
-    
-    CGContextRef c = UIGraphicsGetCurrentContext();
-    CGContextSetLineWidth(c, 5);
-    CGContextSetLineJoin(c, kCGLineJoinRound);
-    
-    CGContextSetTextDrawingMode(c, kCGTextStroke);
-    self.textColor = self.borderColor;
-    [super drawTextInRect:rect];
-    
-    CGContextSetTextDrawingMode(c, kCGTextFill);
-    self.textColor = textColor;
-    self.shadowOffset = CGSizeMake(0, 0);
-    [super drawTextInRect:rect];
-}
+#pragma mark -- 数字描边
+//- (void)drawTextInRect:(CGRect)rect
+//{
+//    UIColor *textColor = self.textColor;
+//    
+//    CGContextRef c = UIGraphicsGetCurrentContext();
+//    CGContextSetLineWidth(c, 5);
+//    CGContextSetLineJoin(c, kCGLineJoinRound);
+//    
+//    CGContextSetTextDrawingMode(c, kCGTextStroke);
+//    self.textColor = self.borderColor;
+//    [super drawTextInRect:rect];
+//    
+//    CGContextSetTextDrawingMode(c, kCGTextFill);
+//    self.textColor = textColor;
+//    self.shadowOffset = CGSizeMake(0, 0);
+//    [super drawTextInRect:rect];
+//}
 
 - (void)startAnimationDuration:(NSTimeInterval)interval completion:(void (^)(BOOL finish))completion
 {
     [UIView animateKeyframesWithDuration:interval delay:0 options:0 animations:^{
         
-        [UIView addKeyframeWithRelativeStartTime:0 relativeDuration:1/2.0 animations:^{
+        [UIView addKeyframeWithRelativeStartTime:0 relativeDuration:1/4.0 animations:^{
             self.transform = CGAffineTransformMakeScale(4, 4);
         }];
-        [UIView addKeyframeWithRelativeStartTime:1/2.0 relativeDuration:1/2.0 animations:^{
-            self.transform = CGAffineTransformMakeScale(1.0, 1.0);
+        [UIView addKeyframeWithRelativeStartTime:1/4.0 relativeDuration:1/4.0 animations:^{
+            self.transform = CGAffineTransformMakeScale(1.7, 1.7);
         }];
         
     } completion:^(BOOL finished) {
         
         [UIView animateWithDuration:0.25 delay:0 usingSpringWithDamping:0.4 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            self.transform = CGAffineTransformMakeScale(1.0, 1.0);
+            self.transform = CGAffineTransformMakeScale(1.7, 1.7);
         } completion:^(BOOL finished) {
             if (completion) {
                 completion(finished);

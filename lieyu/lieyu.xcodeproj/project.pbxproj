@@ -1011,6 +1011,8 @@
 		850B32C51D2E490F0080CA6D /* GroupLeaderRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850B32C31D2E490F0080CA6D /* GroupLeaderRegisterViewController.xib */; };
 		850B32C91D2E49E30080CA6D /* LYGroupPeopleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 850B32C71D2E49E30080CA6D /* LYGroupPeopleTableViewCell.m */; };
 		850B32CA1D2E49E30080CA6D /* LYGroupPeopleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850B32C81D2E49E30080CA6D /* LYGroupPeopleTableViewCell.xib */; };
+		850BED4B1DD300A900EC2092 /* left_firework.png in Resources */ = {isa = PBXBuildFile; fileRef = 850BED491DD300A900EC2092 /* left_firework.png */; };
+		850BED4C1DD300A900EC2092 /* right_firework.png in Resources */ = {isa = PBXBuildFile; fileRef = 850BED4A1DD300A900EC2092 /* right_firework.png */; };
 		850C45EB1DAB8FC000F79635 /* WatchPlayerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 850C45EA1DAB8FC000F79635 /* WatchPlayerClient.m */; };
 		850C45F61DAC8E5700F79635 /* wantanGW@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 850C45EE1DAC8E5700F79635 /* wantanGW@2x.png */; };
 		850C45F71DAC8E5700F79635 /* wantanGW@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 850C45EF1DAC8E5700F79635 /* wantanGW@3x.png */; };
@@ -3570,6 +3572,8 @@
 		850B32C61D2E49E30080CA6D /* LYGroupPeopleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYGroupPeopleTableViewCell.h; sourceTree = "<group>"; };
 		850B32C71D2E49E30080CA6D /* LYGroupPeopleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYGroupPeopleTableViewCell.m; sourceTree = "<group>"; };
 		850B32C81D2E49E30080CA6D /* LYGroupPeopleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYGroupPeopleTableViewCell.xib; sourceTree = "<group>"; };
+		850BED491DD300A900EC2092 /* left_firework.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left_firework.png; sourceTree = "<group>"; };
+		850BED4A1DD300A900EC2092 /* right_firework.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right_firework.png; sourceTree = "<group>"; };
 		850C45E91DAB8FC000F79635 /* WatchPlayerClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatchPlayerClient.h; sourceTree = "<group>"; };
 		850C45EA1DAB8FC000F79635 /* WatchPlayerClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatchPlayerClient.m; sourceTree = "<group>"; };
 		850C45EE1DAC8E5700F79635 /* wantanGW@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wantanGW@2x.png"; sourceTree = "<group>"; };
@@ -7948,6 +7952,8 @@
 			children = (
 				85F7FEBF1D9CFDF000303884 /* GiftIamge */,
 				854107031D7E93A70083AF04 /* BackImage.png */,
+				850BED491DD300A900EC2092 /* left_firework.png */,
+				850BED4A1DD300A900EC2092 /* right_firework.png */,
 				850C45FC1DAE129700F79635 /* redHeart_0.png */,
 				850C45FD1DAE129700F79635 /* redHeart_1.png */,
 				850C45FE1DAE129700F79635 /* redHeart_2.png */,
@@ -11985,6 +11991,7 @@
 				85FE54FB1D7AA9E100B262EA /* HomepageBarDetailTableViewCell.xib in Resources */,
 				38C98CF51C60EC950084E6BD /* add5@3x.png in Resources */,
 				850C460B1DAE129700F79635 /* redHeart_5.png in Resources */,
+				850BED4B1DD300A900EC2092 /* left_firework.png in Resources */,
 				38B5F4CF1CBBC87600AE1BF5 /* gray_add@2x.png in Resources */,
 				38D876451C16E97500E2F284 /* ChooseNumber.xib in Resources */,
 				85A639491D7677D7000816FD /* dashang@2x.png in Resources */,
@@ -12290,6 +12297,7 @@
 				15FD2AA61BD61EE000D66920 /* DWTopInfoView.xib in Resources */,
 				85F625911C0BF282002858C8 /* LYHorMenuViewController.xib in Resources */,
 				854CCA841C918E2700368C72 /* sina_weibo_s2@3x.png in Resources */,
+				850BED4C1DD300A900EC2092 /* right_firework.png in Resources */,
 				38EAA52E1CCDB1D00080A6D6 /* YU_pujie@3x.png in Resources */,
 				38EAA57E1CCF5B910080A6D6 /* YU_tipImage@3x.png in Resources */,
 				38FE0B9C1D9CC5A400CA6D3A /* addCareIcon@2x.png in Resources */,

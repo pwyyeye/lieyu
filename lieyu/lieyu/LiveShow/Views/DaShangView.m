@@ -27,7 +27,7 @@ static NSString *daShangCellID = @"dashangCellID";
         _chooseImage = [UIImage imageNamed:@""];
     } else {
         _chooseImage = [UIImage imageNamed:@""];
-        CGFloat x = CGRectGetMidX(self.frame);
+        CGFloat x = CGRectGetMidX(self.superview.frame) - SCREEN_WIDTH / 30;
         CGFloat y = _sendGiftButton.center.y;
         _sendGiftButton.center = CGPointMake(x, y);
     }
@@ -46,7 +46,7 @@ static NSString *daShangCellID = @"dashangCellID";
     _number = 0;
     _chooseTag = 10;
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    flowLayout.minimumLineSpacing = 1;
+    flowLayout.minimumLineSpacing = 0;
     flowLayout.minimumInteritemSpacing = 0;
     flowLayout.itemSize = CGSizeMake(self.frame.size.width / 4, (self.frame.size.height - 70) / 2);
     flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
@@ -83,7 +83,12 @@ static NSString *daShangCellID = @"dashangCellID";
     _pageControl.currentPageIndicatorTintColor = COMMON_PURPLE;
     CGFloat w = 50.f;
     CGFloat h = 23.f;
-    CGFloat x = self.center.x - 25.f;
+    CGFloat x;
+    if (_type == textType_Live) {
+        x = self.superview.center.x-25.f;
+    } else {
+        x = self.superview.center.x-25.f - SCREEN_WIDTH /30;
+    }
     CGFloat y = self.frame.size.height - 67.f;
     _pageControl.frame = CGRectMake(x, y, w, h);
     [self addSubview:_pageControl];
@@ -99,10 +104,11 @@ static NSString *daShangCellID = @"dashangCellID";
     
     [self.timeButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
     [self.timeButton setTitle:@"30" forState:(UIControlStateNormal)];
-    CGFloat x_2 = self.frame.size.width - 100;
-    CGFloat y_2 = self.frame.size.height - 70;
-    self.timeButton.frame = CGRectMake(x_2, y_2, 65, 65);
-    self.timeButton.layer.cornerRadius = 30.25;
+    [self.timeButton.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:18]];
+    CGFloat x_2 = self.frame.size.width - 50;
+    CGFloat y_2 = self.frame.size.height - 50;
+    self.timeButton.frame = CGRectMake(x_2, y_2, 45, 45);
+    self.timeButton.layer.cornerRadius = 22.5;
     self.timeButton.layer.masksToBounds = YES;
     self.timeButton.hidden = YES;
     [self addSubview:self.timeButton];
@@ -130,6 +136,9 @@ static NSString *daShangCellID = @"dashangCellID";
     cell.YuBiLabel.textColor = [UIColor darkGrayColor];
     if (_type == textType_Live) {
         cell.giftNameLabel.textColor = [UIColor whiteColor];
+        cell.layer.borderColor = [UIColor blackColor].CGColor;
+        cell.layer.borderWidth = 0.3f;
+        [cell.layer addSublayer:[self shadowAsInverse]];
     } else {
         cell.giftNameLabel.textColor = [UIColor blackColor];
     }
@@ -150,15 +159,16 @@ static NSString *daShangCellID = @"dashangCellID";
     return CGSizeMake(self.frame.size.width / 4, (self.frame.size.height - 70) / 2);
 }
 
--(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
-{
-    return UIEdgeInsetsMake(0, 0, 0, 0);
-}
+//-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+//{
+//    return UIEdgeInsetsMake(0, 0, 0, 0);
+//}
+//
+//-(CGFloat )collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+//{
+//    return 0.f;
+//}
 
--(CGFloat )collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
-{
-    return 0.f;
-}
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     DaShangViewCell *cell = (DaShangViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
@@ -180,10 +190,12 @@ static NSString *daShangCellID = @"dashangCellID";
     });
 }
 
+
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath{
     DaShangViewCell *cell = (DaShangViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
     cell.DSChooseImage.hidden = YES;
 }
+
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
@@ -204,4 +216,30 @@ static NSString *daShangCellID = @"dashangCellID";
     } while (next != nil);
     return nil;
 }
+
+
+//
+- (CAGradientLayer *)shadowAsInverse
+{
+    CAGradientLayer *gradientLayer = [[CAGradientLayer alloc] init];
+    CGRect newGradientLayerFrame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+    gradientLayer.frame = newGradientLayerFrame;
+    
+    //添加渐变的颜色组合
+    gradientLayer.colors = [NSArray arrayWithObjects:(id)[[[UIColor blackColor] colorWithAlphaComponent:0]CGColor],
+                            (id)[[[UIColor blackColor] colorWithAlphaComponent:0.1]CGColor],
+                            (id)[[[UIColor blackColor] colorWithAlphaComponent:0.2] CGColor],
+                            (id)[[UIColor blackColor] CGColor],
+                            nil];
+    gradientLayer.locations = [NSArray arrayWithObjects:[NSNumber numberWithFloat:0.0],
+                               [NSNumber numberWithFloat:0.2],
+                               [NSNumber numberWithFloat:0.4],
+                               [NSNumber numberWithFloat:0.9],
+                               nil];
+    
+    gradientLayer.startPoint = CGPointMake(1,0);
+    gradientLayer.endPoint = CGPointMake(0,1);
+    return gradientLayer;
+}
+
 @end

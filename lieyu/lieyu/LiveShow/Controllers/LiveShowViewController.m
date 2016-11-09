@@ -460,7 +460,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [CAEmitterView addSubview:_userView];
     
     //礼物区域
-    self.presentView = [[PresentView alloc] initWithFrame:(CGRectMake(0, 140, SCREEN_WIDTH / 3 * 2, SCREEN_HEIGHT / 4))];
+    self.presentView = [[PresentView alloc] initWithFrame:(CGRectMake(0, 140, 230, 150))];
     self.presentView.backgroundColor = [UIColor clearColor];
     self.presentView.delegate = self;
     [CAEmitterView addSubview:_presentView];
@@ -619,10 +619,10 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
             _animationImageView = [[UIImageView alloc] init];
             _animationImageView.backgroundColor = [UIColor clearColor];
             [_animationImageView sd_setImageWithURL:[NSURL URLWithString:giftImg]];
-            _animationImageView.frame = CGRectMake(SCREEN_WIDTH - 70, 70, 5, 5);
+            _animationImageView.frame = CGRectMake(SCREEN_WIDTH - 30, 70, 5, 5);
             [self.view addSubview:_animationImageView];
             [UIView animateWithDuration:3 animations:^{
-                _animationImageView.frame = CGRectMake(5, SCREEN_HEIGHT - 160, 220, 220);
+                _animationImageView.frame = CGRectMake(5, SCREEN_HEIGHT / 2, 220, 220);
             } completion:^(BOOL finished) {
                 [_animationImageView removeFromSuperview];
                 _animationImageView = nil;
@@ -1809,7 +1809,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
             } else {// 礼物
                 if ([giftMessage.gift.giftAnnimType isEqualToString:@"1"]) {
                     NSMutableArray *presentArr = [NSMutableArray array];
-                    int number = giftMessage.gift.giftNumber;
+                    NSInteger number = [giftMessage.gift.giftNumber integerValue];
                     for (int i = 0; i < number; i++) {
                         PresentModel *present = [PresentModel modelWithSender:giftMessage.senderUserInfo.name giftName:giftMessage.content icon:@"empyImage120" giftImageName:giftMessage.gift.giftUrl];
                         [presentArr addObject:present];

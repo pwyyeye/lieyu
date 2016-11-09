@@ -29,7 +29,7 @@
                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="prop_b" translatesAutoresizingMaskIntoConstraints="NO" id="juV-WY-T8x">
                     <constraints>
                         <constraint firstAttribute="width" secondItem="juV-WY-T8x" secondAttribute="height" multiplier="1:1" id="Jj9-Ln-moE"/>
-                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="WDg-4W-WCh"/>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="80" id="WDg-4W-WCh"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="送了一个皇家礼炮" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XYz-hh-ign">
@@ -42,7 +42,7 @@
                 </label>
             </subviews>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="juV-WY-T8x" secondAttribute="trailing" id="9fs-Hx-Wec"/>
+                <constraint firstAttribute="trailing" secondItem="juV-WY-T8x" secondAttribute="trailing" constant="-10" id="9fs-Hx-Wec"/>
                 <constraint firstItem="Pu4-LU-rNS" firstAttribute="leading" secondItem="8oB-Xh-ksz" secondAttribute="trailing" constant="5" id="Dx9-kG-BhJ"/>
                 <constraint firstItem="juV-WY-T8x" firstAttribute="centerY" secondItem="1B1-IG-BxC" secondAttribute="centerY" id="Gpy-PY-19X"/>
                 <constraint firstAttribute="bottom" secondItem="Xwz-lU-TCC" secondAttribute="bottom" id="LNN-2k-ZS9"/>
