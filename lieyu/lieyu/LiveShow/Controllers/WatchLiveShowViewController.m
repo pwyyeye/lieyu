@@ -425,7 +425,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         [_CAEmitterView addSubview:_audienceCollectionView];
         
         //礼物区域
-        self.presentView = [[PresentView alloc] initWithFrame:(CGRectMake(0, 140, 230 , SCREEN_HEIGHT / 3))];
+        self.presentView = [[PresentView alloc] initWithFrame:(CGRectMake(0, 140, 230 , 150))];
         self.presentView.backgroundColor = [UIColor clearColor];
         self.presentView.delegate = self;
         [_CAEmitterView addSubview:_presentView];
@@ -540,7 +540,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
             _daShangView.sendGiftButton.hidden = YES;
             
             //计时器
-            _daShangTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(changeTimebuttonTitle) userInfo:nil repeats:YES];
+            _daShangTimer = [NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(changeTimebuttonTitle) userInfo:nil repeats:YES];
             [_daShangTimer fire];
         }
     } else {
@@ -755,9 +755,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
                 _animationImageView = nil;
                 _animation = AnimationNone_watch;
             }];
-
         }
-            
             break;
         default:
         {
