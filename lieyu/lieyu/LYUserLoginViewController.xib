@@ -32,7 +32,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="47" id="bZc-9N-buq"/>
                     </constraints>
-                    <color key="textColor" red="0.29803921568627451" green="0.29803921568627451" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                     <connections>
@@ -51,7 +51,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="47" id="3b5-dn-mqK"/>
                     </constraints>
-                    <color key="textColor" red="0.29803921568627451" green="0.29803921568627451" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                     <connections>
