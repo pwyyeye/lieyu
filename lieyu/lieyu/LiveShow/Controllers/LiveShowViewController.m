@@ -166,6 +166,9 @@ PLStreamingSendingBufferDelegate,UICollectionViewDataSource, UICollectionViewDel
 @property (strong, nonatomic) NSMutableArray *presentDataArray;
 @property (strong, nonatomic)NSTimer *giftTimer;//礼物定时检测
 @property (strong, nonatomic) UIImageView *animationImageView;
+@property (nonatomic, strong) UIImageView *firework_left_ImageView;
+@property (nonatomic, strong) UIImageView *firework_right_ImageView;
+@property (nonatomic, strong) UIImageView *firework_middle_ImageView;
 
 @property(nonatomic, strong)RCCollectionViewHeader *collectionViewHeader;
 
@@ -650,15 +653,67 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         case 13://别墅
         {
             _animation = AnimationShowing;
+            
+            _firework_left_ImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"left_firework"]];
+            _firework_left_ImageView.backgroundColor = [UIColor clearColor];
+            _firework_left_ImageView.frame = CGRectMake(100, 100, 40,130 );
+            CGFloat y_left = self.view.center.y - 40;
+            _firework_left_ImageView.center = CGPointMake(self.view.center.x, y_left);
+            _firework_left_ImageView.alpha = 0.f;
+            [self.view addSubview:_firework_left_ImageView];
+            
+            _firework_right_ImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"right_firework"]];
+            _firework_right_ImageView.backgroundColor = [UIColor clearColor];
+            _firework_right_ImageView.frame = CGRectMake(100, 100, 60,200 );
+            CGFloat y_right = self.view.center.y + 40;
+            _firework_right_ImageView.center = CGPointMake(self.view.center.x, y_right);
+            _firework_right_ImageView.alpha = 0.f;
+            [self.view addSubview:_firework_right_ImageView];
+            
+            _firework_middle_ImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"right_firework"]];
+            _firework_middle_ImageView.backgroundColor = [UIColor clearColor];
+            _firework_middle_ImageView.frame = CGRectMake(100, 100, 40,170 );
+            _firework_middle_ImageView.center = self.view.center;
+            _firework_middle_ImageView.alpha = 0.f;
+            [self.view addSubview:_firework_middle_ImageView];
+            
             _animationImageView = [[UIImageView alloc] init];
             _animationImageView.backgroundColor = [UIColor clearColor];
             [_animationImageView sd_setImageWithURL:[NSURL URLWithString:giftImg]];
             _animationImageView.frame = CGRectMake(100, 100, SCREEN_WIDTH / 50, SCREEN_WIDTH / 50);
             _animationImageView.center = self.view.center;
             [self.view addSubview:_animationImageView];
-            [UIView animateWithDuration:5 delay:0 usingSpringWithDamping:0.6 initialSpringVelocity:2 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            [UIView animateWithDuration:10 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 _animationImageView.transform = CGAffineTransformMakeScale(45, 45);
+                [UIView animateWithDuration:5 delay:5 usingSpringWithDamping:1 initialSpringVelocity:1 options:UIViewAnimationOptionCurveLinear animations:^{
+                    
+                    _firework_left_ImageView.alpha = 1.f;
+                    _firework_left_ImageView.frame = CGRectMake(100, 100, 40,130 );
+                    CGFloat x_1 = self.view.center.x - 50;
+                    CGFloat y_1 = self.view.center.y - 150;
+                    _firework_left_ImageView.center = CGPointMake(x_1, y_1);
+                    
+                    _firework_right_ImageView.alpha = 1.f;
+                    _firework_right_ImageView.frame = CGRectMake(100, 100, 60,200 );
+                    CGFloat x_2 = self.view.center.x + 70;
+                    CGFloat y_2 = self.view.center.y - 70;
+                    _firework_right_ImageView.center = CGPointMake(x_2, y_2);
+                    
+                    _firework_middle_ImageView.alpha = 1.f;
+                    _firework_middle_ImageView.frame = CGRectMake(100, 100, 40,170 );
+                    CGFloat x_3 = self.view.center.x;
+                    CGFloat y_3 = self.view.center.y - 70;
+                    _firework_middle_ImageView.center = CGPointMake(x_3, y_3);
+                } completion:^(BOOL finished) {
+                    
+                }];
             } completion:^(BOOL finished) {
+                [_firework_middle_ImageView removeFromSuperview];
+                _firework_middle_ImageView = nil;
+                [_firework_right_ImageView removeFromSuperview];
+                _firework_right_ImageView = nil;
+                [_firework_left_ImageView removeFromSuperview];
+                _firework_left_ImageView = nil;
                 [_animationImageView removeFromSuperview];
                 _animationImageView = nil;
                 _animation = AnimationNone;
@@ -1814,6 +1869,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
                         PresentModel *present = [PresentModel modelWithSender:giftMessage.senderUserInfo.name giftName:giftMessage.content icon:@"empyImage120" giftImageName:giftMessage.gift.giftUrl];
                         [presentArr addObject:present];
                     }
+                    _presentModel = giftMessage;
                     [self.presentView insertPresentMessages:presentArr showShakeAnimation:YES];
                 } else {
                     DaShangGiftModel *model = [[DaShangGiftModel alloc] modelWithrewardName:nil rewardImg:giftMessage.gift.giftUrl rewardValue:0 rewardType:giftMessage.gift.giftAnnimType];

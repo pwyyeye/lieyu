@@ -16,6 +16,8 @@ static NSString *daShangCellID = @"dashangCellID";
 @interface DaShangView ()
 
 @property (nonatomic, strong) UIImage *chooseImage;
+@property (nonatomic, assign) BOOL isFirstTime;
+
 
 @end
 
@@ -45,6 +47,9 @@ static NSString *daShangCellID = @"dashangCellID";
 -(void)setupSubviews{
     _number = 0;
     _chooseTag = 10;
+    
+    _isFirstTime = YES;
+    
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     flowLayout.minimumLineSpacing = 0;
     flowLayout.minimumInteritemSpacing = 0;
@@ -65,7 +70,7 @@ static NSString *daShangCellID = @"dashangCellID";
         _dataArr = [NSMutableArray arrayWithArray:giftArray];
         [self.giftCollectionView reloadData];
         DaShangGiftModel *model = _dataArr[0];
-        NSString *reward = [NSString stringWithFormat:@"%ld",model.rewardValue];
+        NSString *reward = [NSString stringWithFormat:@"%ld",(long)model.rewardValue];
         dispatch_async(dispatch_get_main_queue(), ^{
             //创建一个消息对象
             NSNotification * notice = [NSNotification notificationWithName:@"sendGift" object:nil userInfo:@{@"value":reward,@"image":model.rewardImg,@"gifType":model.rewordType,@"giftName":model.rewardName}];
@@ -138,7 +143,12 @@ static NSString *daShangCellID = @"dashangCellID";
         cell.giftNameLabel.textColor = [UIColor whiteColor];
         cell.layer.borderColor = [UIColor blackColor].CGColor;
         cell.layer.borderWidth = 0.3f;
-        [cell.layer addSublayer:[self shadowAsInverse]];
+        if (cell.layer.sublayers.count == 1) {
+            [cell.layer addSublayer:[self shadowAsInverse]];
+        } else {
+//            CALayer *shadowLayer = (CALayer *)cell.layer.sublayers[1];
+//            [shadowLayer removeFromSuperlayer];
+        }
     } else {
         cell.giftNameLabel.textColor = [UIColor blackColor];
     }
