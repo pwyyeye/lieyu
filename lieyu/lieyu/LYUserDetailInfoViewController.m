@@ -27,7 +27,7 @@
     LYUserDetailTableViewCell *_nickCell;
     LYUserDetailSexTableViewCell *_sexCell;
     LYUserDetailTableViewCell *_birthCell;
-     LYUserDetailTableViewCell *_tagCell;
+    LYUserDetailTableViewCell *_tagCell;
     NSString *_keyStr;
     NSDate *_chooseBirthDate;
     NSString *_tagNames;
@@ -57,12 +57,7 @@
     [self setSeparator];//设置tableView分割线
     UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapGes)];
     [_selectcedCell addGestureRecognizer:tapGes];
-    
-//    if (_isAutoLogin) {
-//        LYUserLoginViewController *loginVC = [[LYUserLoginViewController alloc]init];
-//        _isAutoLogin = NO;
-//        [loginVC autoLogin];
-//    }
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)tapGes{
@@ -105,6 +100,8 @@
     return 6;
 }
 
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = nil;
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -125,22 +122,11 @@
     }else if(indexPath.row == 1){//昵称
         _nickCell = [tableView dequeueReusableCellWithIdentifier:@"LYUserDetailTableViewCell" forIndexPath:indexPath];
             _nickCell.image_arrow.hidden = YES;
-//        if (mod.usernick.length){
-//            _nickCell.textF_content.text = mod.usernick;
-//            _nickCell.textF_content.textColor = RGBA(114, 5, 145, 1);
-//        }
         _nickCell.textF_content.text = _userM.usernick;
         _nickCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return _nickCell;
-        
     }else if(indexPath.row == 2){//性别
         _sexCell = [tableView dequeueReusableCellWithIdentifier:@"LYUserDetailSexTableViewCell" forIndexPath:indexPath];
-//            if (!mod.gender.integerValue) {
-//                [_sexCell.btn_man setImage:[UIImage imageNamed:@"circleWhiteSelect"] forState:UIControlStateNormal];
-//                [_sexCell.btn_women setImage:[UIImage imageNamed:@"circleWhite"] forState:UIControlStateNormal];
-//                _sexCell.btn_women.tag = 0;
-//                _sexCell.btn_man.tag = 3;
-//            }
         _sexCell.selectionStyle = UITableViewCellSelectionStyleNone;
          return _sexCell;
     }else if(indexPath.row == 3){//生日
@@ -183,13 +169,13 @@
         return _tagCell;
     }else {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-        UIButton *sureBtn = [[UIButton alloc]initWithFrame:CGRectMake(10, 47, SCREEN_WIDTH - 20, 52)];
-        [sureBtn setTitle:@"确定" forState:UIControlStateNormal];
+        UIButton *sureBtn = [[UIButton alloc]initWithFrame:CGRectMake(22, 55, SCREEN_WIDTH - 44, 37)];
+        [sureBtn setTitle:@"进入" forState:UIControlStateNormal];
         [sureBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [sureBtn.titleLabel setFont:[UIFont systemFontOfSize:16]];
-        sureBtn.layer.cornerRadius = 4;
+        sureBtn.layer.cornerRadius = 7;
         sureBtn.layer.masksToBounds = YES;
-        [sureBtn setBackgroundImage:[UIImage imageNamed:@"purpleBtnBG"] forState:UIControlStateNormal];
+        [sureBtn setBackgroundColor:COMMON_PURPLE];
         [sureBtn addTarget:self action:@selector(sureClick) forControlEvents:UIControlEventTouchUpInside];
         [cell addSubview:sureBtn];
     }

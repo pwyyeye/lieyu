@@ -87,7 +87,8 @@
 //            AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
             
 //            if([MyUtil isEmptyString:app.s_app_id]){
-                LPUserLoginViewController *login=[[LPUserLoginViewController alloc] initWithNibName:@"LPUserLoginViewController" bundle:nil];
+//                LPUserLoginViewController *login=[[LPUserLoginViewController alloc] initWithNibName:@"LPUserLoginViewController" bundle:nil];
+            LYUserLoginViewController *login = [[LYUserLoginViewController alloc]init];
                 [weakSelf.navigationController pushViewController:login animated:YES];
                 
 //            

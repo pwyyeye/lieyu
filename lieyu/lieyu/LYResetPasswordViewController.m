@@ -30,20 +30,8 @@ static LYResetPasswordViewController *_reset;
     _timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(captchaWait) userInfo:nil repeats:YES];
     [_timer setFireDate:[NSDate distantFuture]];
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
-      // CGSize imageSize = CGSizeMake(self.getYzmBtn.width, self.getYzmBtn.height);
-//    UIGraphicsBeginImageContextWithOptions(imageSize, 0, [UIScreen mainScreen].scale);
-//    [RGB(35, 166, 116) set];
-//    UIRectFill(CGRectMake(0, 0, imageSize.width, imageSize.height));
-//    UIImage *normalImg = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
-//    [self.getYzmBtn setBackgroundImage:normalImg  forState:UIControlStateNormal];
-//    UIGraphicsBeginImageContextWithOptions(imageSize, 0, [UIScreen mainScreen].scale);
-//    [RGB(199, 199, 199) set];
-//    UIRectFill(CGRectMake(0, 0, imageSize.width, imageSize.height));
-//    UIImage *selectedImg = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
-   // [self.getYzmBtn setBackgroundImage:selectedImg  forState:UIControlStateDisabled];
-    // Do any additional setup after loading the view from its nib.
+    _submitButton.layer.masksToBounds = YES;
+    _submitButton.layer.cornerRadius = 7;
 }
 
 - (void)backForword{

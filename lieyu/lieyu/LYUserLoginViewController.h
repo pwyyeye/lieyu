@@ -20,6 +20,9 @@
 
 @property(strong,nonatomic) id<LoginDelegate> delegate;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *userNameTopConstrant;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *submitBottomConstrant;
+
 - (IBAction)forgetPassWordAct:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UIButton *btn_submit;
 - (IBAction)loginAct:(UIButton *)sender;

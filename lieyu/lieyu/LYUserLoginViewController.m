@@ -48,7 +48,6 @@
     [super viewDidLoad];
     
     self.automaticallyAdjustsScrollViewInsets=NO;
-    // Do any additional setup after loading the view from its nib.
     
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
     
@@ -67,24 +66,28 @@
         btn_login_cons_top.constant = 53;
         [self updateViewConstraints];
     }
+    if (SCREEN_HEIGHT < 580) {
+        _userNameTopConstrant.constant = 50;
+        _submitBottomConstrant.constant = 50;
+    }
 
     //设置微信，QQ，微博登陆按钮
-    CGFloat _qqBtnWidth = 44;
-    _qqBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2.f - _qqBtnWidth/2.f, SCREEN_HEIGHT - 90 - _qqBtnWidth, _qqBtnWidth, _qqBtnWidth)];
+    CGFloat _qqBtnWidth = 48;
+    _qqBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2.f - _qqBtnWidth/2.f, SCREEN_HEIGHT - _qqBtnWidth, _qqBtnWidth, _qqBtnWidth)];
 
     [_qqBtn setImage:[UIImage imageNamed:@"qq_s2"] forState:UIControlStateNormal];
 
     [self.view addSubview:_qqBtn];
     [_qqBtn addTarget:self action:@selector(qqLogin) forControlEvents:UIControlEventTouchUpInside];
     
-    _weixinBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/4.f - _qqBtnWidth/2.f, SCREEN_HEIGHT - 90 - _qqBtnWidth, _qqBtnWidth, _qqBtnWidth)];
+    _weixinBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/4.f - _qqBtnWidth/2.f, SCREEN_HEIGHT- _qqBtnWidth, _qqBtnWidth, _qqBtnWidth)];
 
     [_weixinBtn setImage:[UIImage imageNamed:@"wechat_s2"] forState:UIControlStateNormal];
 
     [self.view addSubview:_weixinBtn];
     [_weixinBtn addTarget:self action:@selector(weixinLogin) forControlEvents:UIControlEventTouchUpInside];
     
-    _weiboBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/4.f * 3 - _qqBtnWidth/2.f, SCREEN_HEIGHT - 90 - _qqBtnWidth, _qqBtnWidth, _qqBtnWidth)];
+    _weiboBtn = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/4.f * 3 - _qqBtnWidth/2.f, SCREEN_HEIGHT - _qqBtnWidth, _qqBtnWidth, _qqBtnWidth)];
     [_weiboBtn setImage:[UIImage imageNamed:@"sina_weibo_s2"] forState:UIControlStateNormal];
 
     [self.view addSubview:_weiboBtn];
@@ -94,10 +97,10 @@
     if(![TencentOAuth iphoneQQInstalled]) _qqBtn.hidden = YES;
     
     _btn_submit.layer.masksToBounds=YES;
-    _btn_submit.layer.cornerRadius=3;
+    _btn_submit.layer.cornerRadius=7;
     
     //初始化
-     userModel = [[UserModel alloc]init];
+    userModel = [[UserModel alloc]init];
     
 }
 
@@ -107,18 +110,13 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO];
-    
-    self.title = @"登录";
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 
-- (void)viewWillLayoutSubviews
-{
-    [super viewWillLayoutSubviews];
-    [self.navigationController setNavigationBarHidden:NO];
-    
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
-
 
 - (IBAction)goBackClick:(id)sender {
     for (UIViewController *controller in self.navigationController.viewControllers) {

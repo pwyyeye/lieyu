@@ -334,11 +334,6 @@
         }else */            //扫一扫
             
             //统计发现页面的选择
-            
-            
-//            LPUserLoginViewController *loginVC = [[LPUserLoginViewController alloc]initWithNibName:@"LPUserLoginViewController" bundle:nil];
-//            [self.navigationController pushViewController:loginVC animated:YES];
-            
          if(indexPath.row == 0){
 //            统计发现页面的选择
             NSDictionary *dict1 = @{@"actionName":@"选择",@"pageName":@"发现主页面",@"titleName":@"娱乐宝典"};

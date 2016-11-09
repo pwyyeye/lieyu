@@ -235,7 +235,9 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource,UN
     NSString *openID = [[NSUserDefaults standardUserDefaults] objectForKey:@"OPENIDSTR"];
     
     if((([MyUtil isEmptyString:username] || [MyUtil isEmptyString:password]) && [MyUtil isEmptyString:openID])){
-        LPUserLoginViewController *login=[[LPUserLoginViewController alloc] initWithNibName:@"LPUserLoginViewController" bundle:nil];
+//        LPUserLoginViewController *login=[[LPUserLoginViewController alloc] initWithNibName:@"LPUserLoginViewController" bundle:nil];
+        
+        LYUserLoginViewController *login = [[LYUserLoginViewController alloc]init];
         [self.navigationController pushViewController:login animated:YES];
         //self.window.roxotViewController=login;
     }

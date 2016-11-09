@@ -61,6 +61,9 @@ static LYRegistrationViewController *_registe;
         _line_view_three.hidden = YES;
         _line_view_four.hidden = YES;
     }
+    
+    _btn_regist.layer.masksToBounds = YES;
+    _btn_regist.layer.cornerRadius = 7;
 }
 
 - (void)backForword{
@@ -175,6 +178,13 @@ static LYRegistrationViewController *_registe;
 }
 #pragma mark - 密码
 - (IBAction)zcAct:(UIButton *)sender {
+    LYUserDetailInfoViewController *detailVC = [[LYUserDetailInfoViewController alloc]init];
+    detailVC.userM = _userM;
+    detailVC.thirdLoginType = _thirdLoginType;
+    detailVC.isAutoLogin = YES;
+    
+    [self.navigationController pushViewController:detailVC animated:YES];
+    /*
     if(![MyUtil isValidateTelephone:self.phoneTex.text]){
         [MyUtil showMessage:@"请输入正确的手机格式!"];
         return;
@@ -212,7 +222,7 @@ static LYRegistrationViewController *_registe;
                             [app getDESKey];
                         }
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"loadUserInfo" object:nil];
-//                        [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+                        
                         [LYUserHttpTool lyRecommendFriendsWithParams:nil complete:^(NSArray *dataList) {
                             if (dataList && dataList.count) {
                                 LYFriendsRecommendViewController *friendsRecommendVC = [[LYFriendsRecommendViewController alloc]init];
@@ -301,7 +311,7 @@ static LYRegistrationViewController *_registe;
             }
         }];
 
-    }
+    }*/
 }
 
 
