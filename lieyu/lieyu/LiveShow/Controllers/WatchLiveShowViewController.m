@@ -54,6 +54,10 @@
 #import <RongIMToolKit/RCInputBarControl.h>
 #import <RongIMToolKit/RCInputBarTheme.h>
 
+#import "PresentView.h"
+#import "PresentModel.h"
+#import "CustonCell.h"
+#import "DaShangGiftModel.h"
 
 
 //输入框的高度
@@ -75,7 +79,7 @@
 //距离底部
 #define distanceOfBottom CGRectGetMaxY(self.view.bounds) - 20
 
-@interface WatchLiveShowViewController () <PLPlayerDelegate,ISEmojiViewDelegate,UMSocialUIDelegate>
+@interface WatchLiveShowViewController () <PLPlayerDelegate,ISEmojiViewDelegate,UMSocialUIDelegate,PresentViewDelegate>
 
 {
     NSTimer *_timer;//定时器
@@ -90,18 +94,22 @@
     CGFloat _heartSize;//红心的大小
     UILabel *_likeLabel;//
     NSTimer *_burstTimer;//延时
-    NSInteger _giftNumber;//礼物数量
+    int _giftNumber;//礼物数量
     NSString *_giftValue;//礼物价值
     NSString *_giftImg;
     NSString *_gifType;//动画类型
     NSString *_giftName;
-    NSMutableArray *_dataArr;//礼物数组
+    UIView *_backgroudView;//背景
     NSInteger _chatuserid;
     BOOL _isActiveNow;//是否是前台
     LiveStates _isLiveing;//直播状态
     UILabel *pauseLable;//暂停视图
     BOOL _isfirstPlay;//回放时加载进度条判断
     UISlider *_slider;//进度条
+    LYGiftMessage *_presentModel;//收到的礼物
+    NSTimer *_daShangTimer;
+    
+    AnimationGift_watch _animation;
 }
 @property (nonatomic, strong) NSMutableArray *giftValueArray;
 
@@ -189,6 +197,13 @@
 
 @property (nonatomic, strong) UIView *CAEmitterView;
 
+@property (strong, nonatomic)  PresentView *presentView;
+@property (strong, nonatomic) NSMutableArray *presentDataArray;
+@property (strong, nonatomic)NSTimer *giftTimer;//礼物定时检测
+@property (strong, nonatomic) UIImageView *animationImageView;
+
+
+
 @end
 /**
  *  文本cell标示
@@ -210,6 +225,14 @@ static NSString *const rcGiftMessageCellIndentifier = @"LYGiftMessageCellIndenti
 static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellIndentifier";
 #define _CELL @ "audienceCellID"
 @implementation WatchLiveShowViewController
+
+-(NSMutableArray *)presentDataArray
+{
+    if (!_presentDataArray) {
+        _presentDataArray = [NSMutableArray array];
+    }
+    return _presentDataArray;
+}
 
 
 -(void)viewWillAppear:(BOOL)animated
@@ -321,6 +344,15 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     }];
 }
 
+//定时获取礼物动画
+-(void)watchGiftTimerUpdataAction{
+    if (self.presentDataArray.count && _animation == AnimationNone_watch) {
+        DaShangGiftModel *model = self.presentDataArray[0];
+        [self showGiftIamgeAnmiationWith:model.rewardImg With:model.rewordType];
+        [self.presentDataArray removeObjectAtIndex:0];
+    }
+}
+
 -(void) updateProgress{
     float value = CMTimeGetSeconds(_player.currentTime);
     [_slider setValue:value animated:YES];
@@ -390,6 +422,12 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         _audienceCollectionView.tag = 188;
         [_CAEmitterView addSubview:_audienceCollectionView];
         
+        //礼物区域
+        self.presentView = [[PresentView alloc] initWithFrame:(CGRectMake(0, 140, 234, SCREEN_HEIGHT / 4))];
+        self.presentView.backgroundColor = [UIColor clearColor];
+        self.presentView.delegate = self;
+        [_CAEmitterView addSubview:_presentView];
+        
         //礼物按钮
         if (_isCoin) {
             UIButton *giftButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
@@ -439,32 +477,86 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 
 #pragma mark --- 礼物、点赞等事件
 -(void) giftButtonAction{
-    _daShangView = [[[NSBundle mainBundle] loadNibNamed:@"DaShangView" owner:self options:nil] lastObject];
+    _backgroudView = [[UIView alloc] initWithFrame:self.view.bounds];
+    _backgroudView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.4f];
+    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(watchdashangCloseViewAction)];
+    [_backgroudView addGestureRecognizer:tapGes];
+    [self.view addSubview:_backgroudView];
+    [self.view bringSubviewToFront:_backgroudView];
+    
+    _daShangView = [[DaShangView alloc] init];
     _daShangView.frame = CGRectMake(0, SCREEN_HEIGHT- 300, SCREEN_WIDTH, 300);
     _daShangView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.5f];
-    _daShangView.type = textTypeWhite;
-    _daShangView.giftCollectionView.tag = 888;
-    _daShangView.giftCollectionView.delegate = self;
-    _daShangView.giftCollectionView.dataSource = self;
-    [self.view addSubview:_daShangView];
-    [self.view bringSubviewToFront:_daShangView];
-    [_daShangView.closeButton addTarget:self action:@selector(watchdashangCloseViewAction:) forControlEvents:(UIControlEventTouchUpInside)];
+    _daShangView.type = textType_Live;
+    _daShangView.sendGiftButton = [UIButton buttonWithType:(UIButtonTypeSystem)];
+    _daShangView.sendGiftButton.backgroundColor = COMMON_PURPLE;
     [_daShangView.sendGiftButton addTarget:self action:@selector(sendGiftButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.view addSubview:_daShangView];
+    
     self.contentView.hidden = YES;
+    //倒计时按钮
+    _daShangView.timeButton = [UIButton buttonWithType:(UIButtonTypeSystem)];
+    _daShangView.timeButton.backgroundColor = COMMON_PURPLE;
+    [_daShangView.timeButton addTarget:self action:@selector(sendGiftTimeButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
+    
+    _giftNumber = 0;
 }
 
+//打赏定时方法
+-(void)changeTimebuttonTitle
+{
+    NSInteger number = [_daShangView.timeButton.titleLabel.text integerValue];
+    number--;
+    
+    [_daShangView.timeButton setTitle:[NSString stringWithFormat:@"%ld",number] forState:(UIControlStateNormal)];
+    
+    if (number == 0) {
+        [_daShangTimer invalidate];
+        _timer = nil;
+        _daShangView.timeButton.hidden = YES;
+        _daShangView.sendGiftButton.hidden = NO;
+        [_daShangView.timeButton setTitle:@"30" forState:(UIControlStateNormal)];
+        
+    }
+}
+
+//点击打赏按钮--(直接加 1 )
 -(void)sendGiftButtonAction:(UIButton *)sender{
-    _dataArr = [NSMutableArray arrayWithCapacity:100];
-    _dataArr = _daShangView.dataArr;
+    _giftNumber = 1;
+    if (_daShangView.timeButton.hidden) {
+        _daShangView.timeButton.hidden = NO;
+        [_daShangView.timeButton setTitle:@"30" forState:(UIControlStateNormal)];
+        [_daShangView bringSubviewToFront:_daShangView.timeButton];
+        _daShangView.sendGiftButton.hidden = YES;
+        
+        //计时器
+        _daShangTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(changeTimebuttonTitle) userInfo:nil repeats:YES];
+        [_daShangTimer fire];
+    }
+}
+
+//点击连乘打赏--(当前的数字)
+-(void)sendGiftTimeButtonAction:(UIButton *) sender{
+    int number = (int)sender.titleLabel.text.integerValue;
+    _giftNumber = number;
+    [self sendGiftWith:_giftNumber];
+    _daShangView.timeButton.hidden = YES;
+    _daShangView.sendGiftButton.hidden = NO;
+    [_daShangTimer invalidate];
+    _timer = nil;
+}
+
+-(void)sendGiftWith:(int)giftNumber{
+    NSInteger temp = _giftValue.integerValue * giftNumber;
+    NSString *totalValue = [NSString stringWithFormat:@"%ld",temp];
     NSString *tempID = [NSString stringWithFormat:@"%@", _hostUser[@"id"]];
-    NSDictionary *dictGift = @{@"amount":_giftValue,
+    NSDictionary *dictGift = @{@"amount":totalValue,
                                @"toUserid":tempID,
                                @"rid":@"2",
                                @"businessid":_chatRoomId};
-    NSInteger tempValue = _giftValue.integerValue;
     [LYUserHttpTool getMyMoneyBagBalanceAndCoinWithParams:nil complete:^(ZSBalance *balance) {
         NSInteger coin = balance.coin.integerValue;
-        if (coin >= tempValue) {//娱币足够
+        if (coin >= temp) {//娱币足够
             [LYFriendsHttpTool daShangWithParms:dictGift complete:^(NSDictionary *dic) {
                 NSInteger temp = [dic[@"errorcode"] integerValue];
                 switch (temp) {
@@ -475,11 +567,12 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
                     {
                         LYGiftMessage *giftMessage = [[LYGiftMessage alloc]init];
                         giftMessage.type = @"1";
-                        giftMessage.content = [NSString stringWithFormat:@"赠送了一个%@",_giftName];
+                        giftMessage.content = [NSString stringWithFormat:@"赠送了%d个%@",_giftNumber ,_giftName];
                         GiftContent *giftContent = [[GiftContent alloc] init];
                         giftContent.giftId = _giftValue;
                         giftContent.giftUrl = _giftImg;
                         giftContent.giftAnnimType = _gifType;
+                        giftContent.giftNumber = giftNumber;
                         giftMessage.gift = giftContent;
                         [self sendMessage:giftMessage pushContent:@""];
                     }
@@ -510,18 +603,9 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         } else {
             [self vaconeyAmount];//娱币不足
         }
+        _giftNumber = 0;
     }];
-
-    [_daShangView removeFromSuperview];
-    _daShangView = nil;
-    if (_contentView.hidden) {
-        _contentView.hidden = NO;
-    }
-}
-
--(void)playProgressChangeAction:(UISlider *) sender{
-    CMTime temp1 = CMTimeMakeWithSeconds(sender.value, _player.totalDuration.timescale);
-    [_player seekTo:temp1];
+    
 }
 
 #pragma mark -- 娱币不足是否充值
@@ -541,92 +625,130 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 #pragma mark -- 礼物动画
 -(void)showGiftIamgeAnmiationWith:(NSString *)giftImg With:(NSString *) type{
     switch (type.integerValue) {
-        case 2://从左往右 飞机
-            for (int i = 0; i < 30; i ++ ) {
-                UIImageView *giftIamge = [[UIImageView alloc] init];
-                [giftIamge sd_setImageWithURL:[NSURL URLWithString:giftImg]];
-                giftIamge.contentMode = UIViewContentModeScaleAspectFit;
-                int x = (arc4random() % 10) + 1;
-                CGRect rect = giftIamge.bounds;
-                rect = CGRectMake( -70, 30 * x, 50, 50);
-                giftIamge.frame = rect;
-                [self.view addSubview:giftIamge];
-                [self.view bringSubviewToFront:giftIamge];
-                [UIView animateWithDuration:1.5 delay:0.15 *i options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                    giftIamge.center = CGPointMake(SCREEN_WIDTH + 30, 45 * x);
-                } completion:^(BOOL finished) {
-                    [giftIamge removeFromSuperview];
-                }];
-            }
+        case 2://飞机
+        {
+            _animation = AnimationShowing_watch;
+            _animationImageView = [[UIImageView alloc] init];
+            _animationImageView.backgroundColor = [UIColor clearColor];
+            [_animationImageView sd_setImageWithURL:[NSURL URLWithString:giftImg]];
+            _animationImageView.frame = CGRectMake(SCREEN_WIDTH / 2 *3, 150, SCREEN_WIDTH/2, 300);
+            [self.view addSubview:_animationImageView];
+            [UIView animateWithDuration:3 animations:^{
+                _animationImageView.frame = CGRectMake(-SCREEN_WIDTH /2, 230, SCREEN_WIDTH /2, 300);
+            } completion:^(BOOL finished) {
+                [_animationImageView removeFromSuperview];
+                _animationImageView = nil;
+                _animation = AnimationNone_watch;
+            }];
+        }
             break;
-        case 3://跑车和游艇
-            for (int i = 0; i < 30; i ++ ) {
-                UIImageView *giftIamge = [[UIImageView alloc] init];
-                [giftIamge sd_setImageWithURL:[NSURL URLWithString:giftImg]];
-                giftIamge.contentMode = UIViewContentModeScaleAspectFit;
-                int x = (arc4random() % 10) + 1;
-                CGRect rect = giftIamge.bounds;
-                rect = CGRectMake( SCREEN_WIDTH + 30, 30 * x, 150, 150);
-                giftIamge.frame = rect;
-                [self.view addSubview:giftIamge];
-                [self.view bringSubviewToFront:giftIamge];
-                [UIView animateWithDuration:1.5 delay:0.15 *i options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                    giftIamge.center = CGPointMake(-70, 45 * x);
-                } completion:^(BOOL finished) {
-                    [giftIamge removeFromSuperview];
-                }];
-            }
+        case 3://跑车
+        {
+            _animation = AnimationShowing_watch;
+            _animationImageView = [[UIImageView alloc] init];
+            _animationImageView.backgroundColor = [UIColor clearColor];
+            [_animationImageView sd_setImageWithURL:[NSURL URLWithString:giftImg]];
+            _animationImageView.frame = CGRectMake(SCREEN_WIDTH - 70, 70, 5, 5);
+            [self.view addSubview:_animationImageView];
+            [UIView animateWithDuration:3 animations:^{
+                _animationImageView.frame = CGRectMake(5, SCREEN_HEIGHT - 160, 220, 220);
+            } completion:^(BOOL finished) {
+                [_animationImageView removeFromSuperview];
+                _animationImageView = nil;
+                _animation = AnimationNone_watch;
+            }];
+        }
             break;
-        case 13:
-            for (int i = 0; i < 30; i ++ ) {
-                UIImageView *giftIamge = [[UIImageView alloc] init];
-                [giftIamge sd_setImageWithURL:[NSURL URLWithString:giftImg]];
-                giftIamge.contentMode = UIViewContentModeScaleAspectFit;
-                int x = (arc4random() % 10) + 1;
-                CGRect rect = giftIamge.bounds;
-                rect = CGRectMake( SCREEN_WIDTH + 30, 30 * x, 50, 50);
-                giftIamge.frame = rect;
-                [self.view addSubview:giftIamge];
-                [self.view bringSubviewToFront:giftIamge];
-                [UIView animateWithDuration:1.5 delay:0.15 *i options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                    giftIamge.center = CGPointMake(-70, 45 * x);
-                } completion:^(BOOL finished) {
-                    [giftIamge removeFromSuperview];
-                }];
-            }
+        case 4://游艇
+        {
+            _animation = AnimationShowing_watch;
+            _animationImageView = [[UIImageView alloc] init];
+            _animationImageView.backgroundColor = [UIColor clearColor];
+            [_animationImageView sd_setImageWithURL:[NSURL URLWithString:giftImg]];
+            _animationImageView.frame = CGRectMake(-SCREEN_WIDTH/2, 170, SCREEN_WIDTH/2, 300);
+            [self.view addSubview:_animationImageView];
+            [UIView animateWithDuration:4 animations:^{
+                _animationImageView.frame = CGRectMake(SCREEN_WIDTH /2 * 3, 170, SCREEN_WIDTH/ 2, 300);
+            } completion:^(BOOL finished) {
+                [_animationImageView removeFromSuperview];
+                _animationImageView = nil;
+                _animation = AnimationNone_watch;
+            }];
+        }
             break;
-        default://默认1
-            for (int i = 0; i < 30; i ++ ) {
-                UIImageView *giftIamge = [[UIImageView alloc] init];
-                [giftIamge sd_setImageWithURL:[NSURL URLWithString:giftImg]];;
-                giftIamge.contentMode = UIViewContentModeScaleAspectFit;
-                int x = (arc4random() % 10) + 1;
-                CGRect rect = giftIamge.bounds;
-                rect = CGRectMake(30 * x, - 60, 40, 40);
-                giftIamge.frame = rect;
-                [self.view addSubview:giftIamge];
-                [self.view bringSubviewToFront:giftIamge];
-                [UIView animateWithDuration:1.5 delay:0.15 *i options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                    giftIamge.center = CGPointMake(30 * x, SCREEN_HEIGHT);
-                } completion:^(BOOL finished) {
-                    [giftIamge removeFromSuperview];
-                }];
-            }
+        case 13://别墅
+        {
+            _animation = AnimationShowing_watch;
+            _animationImageView = [[UIImageView alloc] init];
+            _animationImageView.backgroundColor = [UIColor clearColor];
+            [_animationImageView sd_setImageWithURL:[NSURL URLWithString:giftImg]];
+            _animationImageView.frame = CGRectMake(100, 100, SCREEN_WIDTH / 50, SCREEN_WIDTH / 50);
+            _animationImageView.center = self.view.center;
+            [self.view addSubview:_animationImageView];
+            [UIView animateWithDuration:5 delay:0 usingSpringWithDamping:0.6 initialSpringVelocity:2 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                _animationImageView.transform = CGAffineTransformMakeScale(45, 45);
+            } completion:^(BOOL finished) {
+                [_animationImageView removeFromSuperview];
+                _animationImageView = nil;
+                _animation = AnimationNone_watch;
+            }];
+        }
+            break;
+        default:
+        {
+            
+        }
             break;
     }
-
 }
+
+
+#pragma mark - PresentViewDelegate
+- (PresentViewCell *)presentView:(PresentView *)presentView cellOfRow:(NSInteger)row
+{
+    return [[CustonCell alloc] initWithRow:row];
+}
+
+- (void)presentView:(PresentView *)presentView configCell:(PresentViewCell *)cell sender:(NSString *)sender giftName:(NSString *)name
+{
+    CustonCell *customCell = (CustonCell *)cell;
+    PresentModel *present = [PresentModel modelWithSender:_presentModel.senderUserInfo.name giftName:_presentModel.content icon:@"empyImage120" giftImageName:_presentModel.gift.giftUrl];
+    customCell.model = present;
+}
+
 
 -(void)notice:(NSNotification *)notification{
+    
     _giftValue = notification.userInfo[@"value"];
     _giftImg = notification.userInfo[@"image"];
-    _gifType = notification.userInfo[@"gifType"];
     _giftName = notification.userInfo[@"giftName"];
+    
+    if ([_giftName isEqualToString:@"跑车"]) {
+        _gifType = @"3";
+    } else if ([_giftName isEqualToString:@"游艇"]) {
+        _gifType = @"4";
+    } else if ([_giftName isEqualToString:@"私人飞机"]) {
+        _gifType = @"2";
+    } else if ([_giftName isEqualToString:@"别墅"])  {
+        _gifType = @"13";
+    } else {
+        _gifType = notification.userInfo[@"gifType"];
+    }
+    
+    
 }
 
--(void)watchdashangCloseViewAction:(UIButton *) sender{
+-(void)watchdashangCloseViewAction{
+    
+    if (_giftNumber == 1) {
+        [self sendGiftWith:1];
+    }
     [_daShangView removeFromSuperview];
     _daShangView = nil;
+    [_backgroudView removeFromSuperview];
+    _backgroudView = nil;
+    [_daShangTimer invalidate];
+    _daShangTimer = nil;
     if (_contentView.hidden) {
         _contentView.hidden = NO;
     }
@@ -697,6 +819,11 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [self.view addSubview:_slider];
     _timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(updateProgress) userInfo:nil repeats:YES];
     [_timer fire];
+}
+
+-(void)playProgressChangeAction:(UISlider *) sender{
+    CMTime temp1 = CMTimeMakeWithSeconds(sender.value, _player.totalDuration.timescale);
+    [_player seekTo:temp1];
 }
 
 #pragma mark ---- 检测播放状态改变
@@ -1319,6 +1446,9 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
                                                               content:lyStystem];
                  [weakSelf appendAndDisplayMessage:message];
                  [weakSelf sendMessage:joinChatroomMessage pushContent:nil];
+                 _giftTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(watchGiftTimerUpdataAction) userInfo:nil repeats:YES];
+                 [_giftTimer fire];
+                 _animation = AnimationNone_watch;
              });
          }
          error:^(RCErrorCode status) {
@@ -1756,8 +1886,21 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
             if ([giftMessage.type isEqualToString:@"2"]) {//点赞
                 [self showTheLove];//接受到消息
             } else {// 礼物
-               
-                [self showGiftIamgeAnmiationWith:giftMessage.gift.giftUrl With:giftMessage.gift.giftAnnimType];
+                if ([giftMessage.gift.giftAnnimType isEqualToString:@"1"]) {
+                    NSMutableArray *presentArr = [NSMutableArray array];
+                    int number = giftMessage.gift.giftNumber;
+                    for (int i = 0; i < number; i++) {
+                        PresentModel *present = [PresentModel modelWithSender:giftMessage.senderUserInfo.name giftName:giftMessage.content icon:@"empyImage120" giftImageName:giftMessage.gift.giftUrl];
+                        [presentArr addObject:present];
+                    }
+                    _presentModel = giftMessage;
+                    [self.presentView insertPresentMessages:presentArr showShakeAnimation:YES];
+                } else {
+                    DaShangGiftModel *model = [[DaShangGiftModel alloc] modelWithrewardName:nil rewardImg:giftMessage.gift.giftUrl rewardValue:0 rewardType:giftMessage.gift.giftAnnimType];
+                    [self.presentDataArray addObject:model];
+                }
+                
+//                [self showGiftIamgeAnmiationWith:giftMessage.gift.giftUrl With:giftMessage.gift.giftAnnimType];
             }
             break;
         }

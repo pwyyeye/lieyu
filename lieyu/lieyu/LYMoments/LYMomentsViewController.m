@@ -247,7 +247,7 @@
     [_nameLabel setText:app.userModel.usernick];
     [_nameLabel.font fontWithSize:18];
     [_nameLabel setTextAlignment:NSTextAlignmentRight];
-    _nameLabel.frame =CGRectMake(SCREEN_WIDTH - iconWidth - 10 - 15 - 90, SCREEN_WIDTH * 187 / 375 - 30, 90, 30);
+    _nameLabel.frame =CGRectMake(SCREEN_WIDTH - iconWidth - 10 - 15 - 90, headerHeight - 30, 90, 30);
     _nameLabel.backgroundColor = [UIColor clearColor];
     [headerView addSubview:_nameLabel];
     tableView.tableHeaderView = headerView;

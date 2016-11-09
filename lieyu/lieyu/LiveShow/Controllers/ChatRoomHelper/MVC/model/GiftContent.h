@@ -14,5 +14,7 @@
 @property (nonatomic, strong) NSString *giftLocalUrl;
 @property (nonatomic, assign) BOOL isMsgShow;
 @property (nonatomic, strong) NSString *giftAnnimType;
+@property (nonatomic, assign) int giftNumber;
+
 
 @end

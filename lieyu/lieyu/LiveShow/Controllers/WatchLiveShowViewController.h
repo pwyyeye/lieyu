@@ -30,6 +30,11 @@ typedef NS_ENUM(NSInteger, LiveStates) {
     LiveStateUnkown   = 3
 };
 
+typedef NS_ENUM(NSUInteger, AnimationGift_watch) {
+    AnimationNone_watch = 0,
+    AnimationShowing_watch,
+};
+
 @interface WatchLiveShowViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate, UIScrollViewDelegate,RCMessageCellDelegate, UIGestureRecognizerDelegate,UITextFieldDelegate,
 UIScrollViewDelegate, UINavigationControllerDelegate,RCInputBarControlDelegate,RCIMConnectionStatusDelegate,UIActionSheetDelegate>
 

@@ -618,6 +618,9 @@ static NSString *liveShowListID = @"liveShowListID";
 
 #pragma mark ---- TableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    LiveShowListCell *cell = (LiveShowListCell *)[tableView cellForRowAtIndexPath:indexPath];
+    cell.selected = YES;
     WatchLiveShowViewController *watchLiveVC = [[WatchLiveShowViewController alloc] init];
     LYLiveShowListModel *model = [LYLiveShowListModel new];
     

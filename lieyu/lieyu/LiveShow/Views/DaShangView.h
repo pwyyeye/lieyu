@@ -8,17 +8,17 @@
 
 #import <UIKit/UIKit.h>
 typedef NS_ENUM(NSInteger, textType) {
-    textTypeBlack  = 0,
-    textTypeWhite     = 1,
+    textType_Moment  = 0,
+    textType_Live     = 1,
 };
-@interface DaShangView : UIView <UICollectionViewDelegate,UICollectionViewDataSource>
-@property (weak, nonatomic) IBOutlet UIButton *closeButton;
-@property (weak, nonatomic) IBOutlet UICollectionView *giftCollectionView;
-@property (weak, nonatomic) IBOutlet UIButton *sendGiftButton;
+@interface DaShangView : UIView <UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@property (strong, nonatomic)  UIButton *closeButton;
+@property (strong, nonatomic)  UICollectionView *giftCollectionView;
+@property (strong, nonatomic)  UIButton *sendGiftButton;
+@property (strong, nonatomic)  UIPageControl *pageControl;
+@property (strong, nonatomic) UIButton *timeButton;//倒计时
 
-@property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (strong, nonatomic) NSMutableArray *dataArr;
-@property (strong, nonatomic) UIButton *giftButton;
 @property (assign, nonatomic) NSInteger chooseTag;
 @property (assign, nonatomic) NSInteger number;
 

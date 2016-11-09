@@ -1519,7 +1519,6 @@
 		85A639241D744F4D000816FD /* LYMomentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A639221D744F4D000816FD /* LYMomentsViewController.m */; };
 		85A6392E1D756DA7000816FD /* dianping@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A6392C1D756DA7000816FD /* dianping@3x.png */; };
 		85A6392F1D756DA7000816FD /* dianping@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A6392D1D756DA7000816FD /* dianping@2x.png */; };
-		85A639421D758542000816FD /* DaShangView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85A639411D758542000816FD /* DaShangView.xib */; };
 		85A639451D75872F000816FD /* DaShangView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A639441D75872F000816FD /* DaShangView.m */; };
 		85A639481D7677D7000816FD /* dashang@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A639461D7677D7000816FD /* dashang@3x.png */; };
 		85A639491D7677D7000816FD /* dashang@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A639471D7677D7000816FD /* dashang@2x.png */; };
@@ -1535,6 +1534,11 @@
 		85C4417E1D73D67900299C17 /* yubiIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85C441761D73D67900299C17 /* yubiIcon@2x.png */; };
 		85C4417F1D73D67900299C17 /* yubiIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85C441771D73D67900299C17 /* yubiIcon@3x.png */; };
 		85C8F2341C3A4DE700288844 /* FriendsUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C8F2331C3A4DE700288844 /* FriendsUserInfoModel.m */; };
+		85D20C4A1DCC746800F64E21 /* CustonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D20C461DCC746800F64E21 /* CustonCell.m */; };
+		85D20C4B1DCC746800F64E21 /* CustonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85D20C471DCC746800F64E21 /* CustonCell.xib */; };
+		85D20C4C1DCC746800F64E21 /* PresentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D20C491DCC746800F64E21 /* PresentModel.m */; };
+		85D20C521DCC747500F64E21 /* PresentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D20C4F1DCC747500F64E21 /* PresentView.m */; };
+		85D20C531DCC747500F64E21 /* PresentViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D20C511DCC747500F64E21 /* PresentViewCell.m */; };
 		85D700D91DBF2B3500652514 /* DaShangGiftModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D700D81DBF2B3500652514 /* DaShangGiftModel.m */; };
 		85E32A3C1D93FCD8007AF71F /* LYSystemTextMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E32A3B1D93FCD8007AF71F /* LYSystemTextMessageCell.m */; };
 		85E32A3F1D93FF7C007AF71F /* LYStystemMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E32A3E1D93FF7C007AF71F /* LYStystemMessage.m */; };
@@ -4245,7 +4249,6 @@
 		85A639221D744F4D000816FD /* LYMomentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYMomentsViewController.m; sourceTree = "<group>"; };
 		85A6392C1D756DA7000816FD /* dianping@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dianping@3x.png"; sourceTree = "<group>"; };
 		85A6392D1D756DA7000816FD /* dianping@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dianping@2x.png"; sourceTree = "<group>"; };
-		85A639411D758542000816FD /* DaShangView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DaShangView.xib; sourceTree = "<group>"; };
 		85A639431D75872F000816FD /* DaShangView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaShangView.h; sourceTree = "<group>"; };
 		85A639441D75872F000816FD /* DaShangView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaShangView.m; sourceTree = "<group>"; };
 		85A639461D7677D7000816FD /* dashang@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dashang@3x.png"; sourceTree = "<group>"; };
@@ -4265,6 +4268,16 @@
 		85C441771D73D67900299C17 /* yubiIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yubiIcon@3x.png"; sourceTree = "<group>"; };
 		85C8F2321C3A4DE700288844 /* FriendsUserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsUserInfoModel.h; sourceTree = "<group>"; };
 		85C8F2331C3A4DE700288844 /* FriendsUserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsUserInfoModel.m; sourceTree = "<group>"; };
+		85D20C451DCC746800F64E21 /* CustonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustonCell.h; sourceTree = "<group>"; };
+		85D20C461DCC746800F64E21 /* CustonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustonCell.m; sourceTree = "<group>"; };
+		85D20C471DCC746800F64E21 /* CustonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustonCell.xib; sourceTree = "<group>"; };
+		85D20C481DCC746800F64E21 /* PresentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresentModel.h; sourceTree = "<group>"; };
+		85D20C491DCC746800F64E21 /* PresentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresentModel.m; sourceTree = "<group>"; };
+		85D20C4D1DCC747500F64E21 /* PresentModelAble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresentModelAble.h; sourceTree = "<group>"; };
+		85D20C4E1DCC747500F64E21 /* PresentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresentView.h; sourceTree = "<group>"; };
+		85D20C4F1DCC747500F64E21 /* PresentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresentView.m; sourceTree = "<group>"; };
+		85D20C501DCC747500F64E21 /* PresentViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresentViewCell.h; sourceTree = "<group>"; };
+		85D20C511DCC747500F64E21 /* PresentViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresentViewCell.m; sourceTree = "<group>"; };
 		85D700D71DBF2B3500652514 /* DaShangGiftModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaShangGiftModel.h; sourceTree = "<group>"; };
 		85D700D81DBF2B3500652514 /* DaShangGiftModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaShangGiftModel.m; sourceTree = "<group>"; };
 		85E32A3A1D93FCD8007AF71F /* LYSystemTextMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYSystemTextMessageCell.h; sourceTree = "<group>"; };
@@ -7889,6 +7902,7 @@
 		851F03A21D645A44006BAA47 /* ChatRoomHelper */ = {
 			isa = PBXGroup;
 			children = (
+				85D20C441DCC73F800F64E21 /* PresentView */,
 				850C45E81DAB8F8D00F79635 /* PlayerClient */,
 				85251A331D6D4F07005CE01D /* MVC */,
 			);
@@ -7928,7 +7942,6 @@
 				8537D4C81D71387400636229 /* InputTextFieldView.m */,
 				85A639431D75872F000816FD /* DaShangView.h */,
 				85A639441D75872F000816FD /* DaShangView.m */,
-				85A639411D758542000816FD /* DaShangView.xib */,
 				8528AB741D73C76100B809CE /* DaShangViewCell.h */,
 				8528AB751D73C76100B809CE /* DaShangViewCell.m */,
 				8528AB761D73C76100B809CE /* DaShangViewCell.xib */,
@@ -9240,6 +9253,31 @@
 				85C441771D73D67900299C17 /* yubiIcon@3x.png */,
 			);
 			path = "钱包";
+			sourceTree = "<group>";
+		};
+		85D20C441DCC73F800F64E21 /* PresentView */ = {
+			isa = PBXGroup;
+			children = (
+				85D20C541DCC748800F64E21 /* Present */,
+				85D20C451DCC746800F64E21 /* CustonCell.h */,
+				85D20C461DCC746800F64E21 /* CustonCell.m */,
+				85D20C471DCC746800F64E21 /* CustonCell.xib */,
+				85D20C481DCC746800F64E21 /* PresentModel.h */,
+				85D20C491DCC746800F64E21 /* PresentModel.m */,
+			);
+			name = PresentView;
+			sourceTree = "<group>";
+		};
+		85D20C541DCC748800F64E21 /* Present */ = {
+			isa = PBXGroup;
+			children = (
+				85D20C4D1DCC747500F64E21 /* PresentModelAble.h */,
+				85D20C4E1DCC747500F64E21 /* PresentView.h */,
+				85D20C4F1DCC747500F64E21 /* PresentView.m */,
+				85D20C501DCC747500F64E21 /* PresentViewCell.h */,
+				85D20C511DCC747500F64E21 /* PresentViewCell.m */,
+			);
+			name = Present;
 			sourceTree = "<group>";
 		};
 		85DB124C1CA00DA2002D6042 /* 话题动态 */ = {
@@ -12623,6 +12661,7 @@
 				85FE54751D79151D00B262EA /* DaShangChoose@2x.png in Resources */,
 				38B11C091C92AFC200AD3EB8 /* QRCode@3x.png in Resources */,
 				854CCA7A1C918BDB00368C72 /* LoginNew@3x.png in Resources */,
+				85D20C4B1DCC746800F64E21 /* CustonCell.xib in Resources */,
 				38979AAB1CA40919002946F5 /* angry13.png in Resources */,
 				38C738721D6DCB270006A088 /* LYAddFriendByAddressBookViewController.xib in Resources */,
 				AD399EA41C940D4D00028F23 /* logo37@2x.jpg in Resources */,
@@ -12632,7 +12671,6 @@
 				38B2B2721D7E7133008BC63E /* MineYubiRechargeTableViewCell.xib in Resources */,
 				15A4CF521BD7865000C22C01 /* DWIsGoToViewController.xib in Resources */,
 				38979A3C1CA40919002946F5 /* dianzan4.png in Resources */,
-				85A639421D758542000816FD /* DaShangView.xib in Resources */,
 				38AD5B0A1D6433C200521150 /* MineMoneyBagCollectionViewCell.xib in Resources */,
 				855C88A01CCB40A60055E8B0 /* yu_money_yugu@2x.png in Resources */,
 				855EB3BA1CF70A2600609B18 /* GuWenHua@3x.png in Resources */,
@@ -13174,6 +13212,7 @@
 				852B1D451D5D7A260041E243 /* ASValueTrackingSlider.m in Sources */,
 				A2F9DA911BABD611009DEAF3 /* OrderBottomForCCView.m in Sources */,
 				85FE54FA1D7AA9E100B262EA /* HomepageBarDetailTableViewCell.m in Sources */,
+				85D20C521DCC747500F64E21 /* PresentView.m in Sources */,
 				851508331D012E83002375D4 /* LYAdviserComment.m in Sources */,
 				8545385F1C2D3E1B0020AC2C /* LYFriendsMessageViewController.m in Sources */,
 				8565550E1D374CF000318A3B /* LYBlackListGroupViewController.m in Sources */,
@@ -13183,6 +13222,7 @@
 				AD106B9A1C0BE898007F5FBA /* LYUserCenterFooter.m in Sources */,
 				85FE54EA1D7AA98500B262EA /* HomepageLiveTableViewCell.m in Sources */,
 				38EE9DDA1CB6482A00201734 /* LPMyOrdersViewController.m in Sources */,
+				85D20C4A1DCC746800F64E21 /* CustonCell.m in Sources */,
 				3807B3331C7DB4BE001C5323 /* LPLoginInView.m in Sources */,
 				855397301C8DA01C00289D18 /* qrinput.c in Sources */,
 				85529C271C9047B5005D8F0D /* FindNewMessageList.m in Sources */,
@@ -13302,6 +13342,7 @@
 				15EA6DC51BBFC80700620C9E /* LYUserHttpTool.m in Sources */,
 				ADF88E9F1C1197C400CF5DED /* MJRefreshComponent.m in Sources */,
 				15E240D61BB3E8610090D240 /* MyPKfriendCell.m in Sources */,
+				85D20C4C1DCC746800F64E21 /* PresentModel.m in Sources */,
 				38EAA5311CCDB7FA0080A6D6 /* LYYuAllWishesViewController.m in Sources */,
 				854538641C2D5B430020AC2C /* FriendsRecentModel.m in Sources */,
 				851508241CFEBB81002375D4 /* LYAdviserManagerBriefInfo.m in Sources */,
@@ -13337,6 +13378,7 @@
 				A20100E21BA94404009283D1 /* WQCalendarLogic.m in Sources */,
 				D7A600591BAC654D0006A768 /* LYAdshowCell.m in Sources */,
 				856EC86F1DB6243000BC4C69 /* ElectionViewController.m in Sources */,
+				85D20C531DCC747500F64E21 /* PresentViewCell.m in Sources */,
 				850B32BA1D2E46300080CA6D /* BarGroupChatAllPeopleViewController.m in Sources */,
 				D736523C1BAEBB45002541CE /* CheHeModel.m in Sources */,
 				15FD2AA41BD61EC500D66920 /* DWTopInfoView.m in Sources */,

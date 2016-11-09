@@ -49,6 +49,10 @@
 #import <RongIMToolKit/RCInputBarControl.h>
 #import <RongIMToolKit/RCInputBarTheme.h>
 
+#import "PresentView.h"
+#import "PresentModel.h"
+#import "CustonCell.h"
+#import "DaShangGiftModel.h"
 
 const char *stateNames[] = {
     "Unknow",
@@ -97,7 +101,7 @@ typedef NS_ENUM(NSInteger, LiveShowStatus) {
 #define distanceOfBottom CGRectGetMaxY(self.view.bounds) - 20
 
 @interface LiveShowViewController () <PLCameraStreamingSessionDelegate,
-PLStreamingSendingBufferDelegate,UICollectionViewDataSource, UICollectionViewDelegate ,UICollectionViewDelegateFlowLayout,UITextFieldDelegate,ISEmojiViewDelegate,AVAudioPlayerDelegate,UMSocialUIDelegate>
+PLStreamingSendingBufferDelegate,UICollectionViewDataSource, UICollectionViewDelegate ,UICollectionViewDelegateFlowLayout,UITextFieldDelegate,ISEmojiViewDelegate,AVAudioPlayerDelegate,UMSocialUIDelegate,PresentViewDelegate>
 
 {
     CGFloat _beautify;//美颜值
@@ -122,6 +126,9 @@ PLStreamingSendingBufferDelegate,UICollectionViewDataSource, UICollectionViewDel
     BOOL _isActive;//是否在前台
     BOOL _isFirstTime;//判断是否是刚加载注册页面没有推流（不然在注册页面进入后台回来无法判断）
     LiveShowStatus liveshowStatusNow;
+    LYGiftMessage *_presentModel;//收到的礼物
+    
+    AnimationGift _animation;
 }
 
 //配置信息
@@ -155,6 +162,10 @@ PLStreamingSendingBufferDelegate,UICollectionViewDataSource, UICollectionViewDel
 @property (nonatomic, strong) UICollectionView *audienceCollectionView;
 @property(nonatomic, strong) NSMutableArray *dataArray;//聊天室
 
+@property (strong, nonatomic)  PresentView *presentView;
+@property (strong, nonatomic) NSMutableArray *presentDataArray;
+@property (strong, nonatomic)NSTimer *giftTimer;//礼物定时检测
+@property (strong, nonatomic) UIImageView *animationImageView;
 
 @property(nonatomic, strong)RCCollectionViewHeader *collectionViewHeader;
 
@@ -206,6 +217,15 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 
 @implementation LiveShowViewController
 
+-(NSMutableArray *)presentDataArray
+{
+    if (!_presentDataArray) {
+        _presentDataArray = [NSMutableArray array];
+    }
+    return _presentDataArray;
+}
+
+
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -215,7 +235,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     _isActive = YES;
     _isFirstTime = NO;
     _dataArray = [NSMutableArray arrayWithCapacity:123];
-    [RCIM sharedRCIM].disableMessageAlertSound = YES;//关闭融云的提示音
+    [RCIM sharedRCIM].disableMessageAlertSound = YES;//关闭融云的提示音(抢夺麦克风资源)
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -231,6 +251,8 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [IQKeyboardManager sharedManager].isAdd = NO;
     [_timer invalidate];
     _timer = nil;
+    [_giftTimer invalidate];
+    _giftTimer = nil;
 }
 
 - (void)viewDidLoad {
@@ -384,6 +406,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         if ([dict valueForKey:@"total"]) {
             _userView.numberLabel.text = [NSString stringWithFormat:@"%@",dict[@"total"]];
             _lookNum = [NSString stringWithFormat:@"%@",dict[@"total"]];
+            _likeNum = [dict[@"likeNum"] integerValue];
             _likeLabel.text = [NSString stringWithFormat:@"%@",dict[@"likeNum"]];
         } else {
             _userView.numberLabel.text = @"";
@@ -395,6 +418,15 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
                 [weakSelf.audienceCollectionView reloadData];
             });
     }];
+}
+
+//定时获取礼物动画
+- (void)liveGiftTimerUpdataAction{
+    if (self.presentDataArray.count && _animation == AnimationNone) {
+        DaShangGiftModel *model = self.presentDataArray[0];
+        [self showGiftIamgeAnmiationWith:model.rewardImg With:model.rewordType];
+        [self.presentDataArray removeObjectAtIndex:0];
+    }
 }
 
 #pragma mark --- 初始化页面
@@ -427,6 +459,11 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     _userView.isFoucsButton.hidden = YES;
     [CAEmitterView addSubview:_userView];
     
+    //礼物区域
+    self.presentView = [[PresentView alloc] initWithFrame:(CGRectMake(0, 140, SCREEN_WIDTH / 3 * 2, SCREEN_HEIGHT / 4))];
+    self.presentView.backgroundColor = [UIColor clearColor];
+    self.presentView.delegate = self;
+    [CAEmitterView addSubview:_presentView];
     
     //观众列表
     UICollectionViewFlowLayout *layout=[[ UICollectionViewFlowLayout alloc ] init ];
@@ -559,80 +596,95 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 #pragma mark -- 礼物动画
 -(void) showGiftIamgeAnmiationWith:(NSString *) giftImg With:(NSString *) type{
     switch (type.integerValue) {
-        case 2:
-            for (int i = 0; i < 30; i ++ ) {
-                UIImageView *giftIamge = [[UIImageView alloc] init];
-                [giftIamge sd_setImageWithURL:[NSURL URLWithString:giftImg]];
-                giftIamge.contentMode = UIViewContentModeScaleAspectFit;
-                int x = (arc4random() % 10) + 1;
-                CGRect rect = giftIamge.bounds;
-                rect = CGRectMake( -70, 30 * x, 50, 50);
-                giftIamge.frame = rect;
-                [self.view addSubview:giftIamge];
-                [self.view bringSubviewToFront:giftIamge];
-                [UIView animateWithDuration:1.5 delay:0.15 *i options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                    giftIamge.center = CGPointMake(SCREEN_WIDTH + 30, 45 * x);
-                } completion:^(BOOL finished) {
-                    [giftIamge removeFromSuperview];
-                }];
-            }
+        case 2://飞机(从右往左飞)
+        {
+            _animation = AnimationShowing;
+            _animationImageView = [[UIImageView alloc] init];
+            _animationImageView.backgroundColor = [UIColor clearColor];
+            [_animationImageView sd_setImageWithURL:[NSURL URLWithString:giftImg]];
+            _animationImageView.frame = CGRectMake(SCREEN_WIDTH / 2 *3, 150, SCREEN_WIDTH/2, 300);
+            [self.view addSubview:_animationImageView];
+            [UIView animateWithDuration:3 animations:^{
+                _animationImageView.frame = CGRectMake(-SCREEN_WIDTH /2, 230, SCREEN_WIDTH /2, 300);
+            } completion:^(BOOL finished) {
+                [_animationImageView removeFromSuperview];
+                _animationImageView = nil;
+                _animation = AnimationNone;
+            }];
+        }
             break;
-        case 3:
-            for (int i = 0; i < 30; i ++ ) {
-                UIImageView *giftIamge = [[UIImageView alloc] init];
-                [giftIamge sd_setImageWithURL:[NSURL URLWithString:giftImg]];
-                giftIamge.contentMode = UIViewContentModeScaleAspectFit;
-                int x = (arc4random() % 10) + 1;
-                CGRect rect = giftIamge.bounds;
-                rect = CGRectMake( SCREEN_WIDTH + 30, 30 * x, 150, 150);
-                giftIamge.frame = rect;
-                [self.view addSubview:giftIamge];
-                [self.view bringSubviewToFront:giftIamge];
-                [UIView animateWithDuration:1.5 delay:0.15 *i options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                    giftIamge.center = CGPointMake(-70, 45 * x);
-                } completion:^(BOOL finished) {
-                    [giftIamge removeFromSuperview];
-                }];
-            }
+        case 3://跑车
+        {
+            _animation = AnimationShowing;
+            _animationImageView = [[UIImageView alloc] init];
+            _animationImageView.backgroundColor = [UIColor clearColor];
+            [_animationImageView sd_setImageWithURL:[NSURL URLWithString:giftImg]];
+            _animationImageView.frame = CGRectMake(SCREEN_WIDTH - 70, 70, 5, 5);
+            [self.view addSubview:_animationImageView];
+            [UIView animateWithDuration:3 animations:^{
+                _animationImageView.frame = CGRectMake(5, SCREEN_HEIGHT - 160, 220, 220);
+            } completion:^(BOOL finished) {
+                [_animationImageView removeFromSuperview];
+                _animationImageView = nil;
+                _animation = AnimationNone;
+            }];
+        }
             break;
-        case 13:
-            for (int i = 0; i < 30; i ++ ) {
-                UIImageView *giftIamge = [[UIImageView alloc] init];
-                [giftIamge sd_setImageWithURL:[NSURL URLWithString:giftImg]];
-                giftIamge.contentMode = UIViewContentModeScaleAspectFit;
-                int x = (arc4random() % 10) + 1;
-                CGRect rect = giftIamge.bounds;
-                rect = CGRectMake( SCREEN_WIDTH + 30, 30 * x, 50, 50);
-                giftIamge.frame = rect;
-                [self.view addSubview:giftIamge];
-                [self.view bringSubviewToFront:giftIamge];
-                [UIView animateWithDuration:1.5 delay:0.15 *i options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                    giftIamge.center = CGPointMake(-70, 45 * x);
-                } completion:^(BOOL finished) {
-                    [giftIamge removeFromSuperview];
-                }];
-            }
+            case 4://游轮
+        {
+            _animation = AnimationShowing;
+            _animationImageView = [[UIImageView alloc] init];
+            _animationImageView.backgroundColor = [UIColor clearColor];
+            [_animationImageView sd_setImageWithURL:[NSURL URLWithString:giftImg]];
+            _animationImageView.frame = CGRectMake(-SCREEN_WIDTH/2, 170, SCREEN_WIDTH/2, 300);
+            [self.view addSubview:_animationImageView];
+            [UIView animateWithDuration:4 animations:^{
+                _animationImageView.frame = CGRectMake(SCREEN_WIDTH /2 * 3, 170, SCREEN_WIDTH/ 2, 300);
+            } completion:^(BOOL finished) {
+                [_animationImageView removeFromSuperview];
+                _animationImageView = nil;
+                _animation = AnimationNone;
+            }];
+        }
+            break;
+        case 13://别墅
+        {
+            _animation = AnimationShowing;
+            _animationImageView = [[UIImageView alloc] init];
+            _animationImageView.backgroundColor = [UIColor clearColor];
+            [_animationImageView sd_setImageWithURL:[NSURL URLWithString:giftImg]];
+            _animationImageView.frame = CGRectMake(100, 100, SCREEN_WIDTH / 50, SCREEN_WIDTH / 50);
+            _animationImageView.center = self.view.center;
+            [self.view addSubview:_animationImageView];
+            [UIView animateWithDuration:5 delay:0 usingSpringWithDamping:0.6 initialSpringVelocity:2 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                _animationImageView.transform = CGAffineTransformMakeScale(45, 45);
+            } completion:^(BOOL finished) {
+                [_animationImageView removeFromSuperview];
+                _animationImageView = nil;
+                _animation = AnimationNone;
+            }];
+        }
             break;
         default:
-            for (int i = 0; i < 30; i ++ ) {
-                UIImageView *giftIamge = [[UIImageView alloc] init];
-                [giftIamge sd_setImageWithURL:[NSURL URLWithString:giftImg]];
-                giftIamge.contentMode = UIViewContentModeScaleAspectFit;
-                int x = (arc4random() % 10) + 1;
-                CGRect rect = giftIamge.bounds;
-                rect = CGRectMake(30 * x, - 60, 40, 40);
-                giftIamge.frame = rect;
-                [self.view addSubview:giftIamge];
-                [self.view bringSubviewToFront:giftIamge];
-                [UIView animateWithDuration:1.5 delay:0.15 *i options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                    giftIamge.center = CGPointMake(30 * x, SCREEN_HEIGHT);
-                } completion:^(BOOL finished) {
-                    [giftIamge removeFromSuperview];
-                }];
-            }
+        {
+            
+        }
             break;
     }
+}
 
+#pragma mark - PresentViewDelegate
+
+- (PresentViewCell *)presentView:(PresentView *)presentView cellOfRow:(NSInteger)row
+{
+    return [[CustonCell alloc] initWithRow:row];
+}
+
+- (void)presentView:(PresentView *)presentView configCell:(PresentViewCell *)cell sender:(NSString *)sender giftName:(NSString *)name
+{
+    CustonCell *customCell = (CustonCell *)cell;
+    PresentModel *present = [PresentModel modelWithSender:_presentModel.senderUserInfo.name giftName:_presentModel.content icon:@"empyImage120" giftImageName:_presentModel.gift.giftUrl];
+    customCell.model = present;
 }
 
 #pragma mark --- 初始化播放器
@@ -717,8 +769,8 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
             });
         };
         void (^noAccessBlock)(void) = ^{
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"No Access", nil)
-                                                                message:NSLocalizedString(@"!", nil)
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"您没有打开摄像头的授权", nil)
+                                                                message:NSLocalizedString(@"请到手机隐私中设置摄像头和麦克风权限!", nil)
                                                                delegate:nil
                                                       cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
                                                       otherButtonTitles:nil];
@@ -773,7 +825,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
             // the facetime iOS 9 has a bug: 1 does not send interrupt end 2 you can use application become active, and repeat set audio session acitve until success.  ref http://blog.corywiles.com/broken-facetime-audio-interruptions-in-ios-9
             NSLog(@"InterruptionTypeEnded");
             AVAudioSession *session = [AVAudioSession sharedInstance];
-            
             [session setActive:YES error:nil];
         }
     }
@@ -1310,8 +1361,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     user.userId = app.userModel.imuserId;
     user.name = app.userModel.usernick;
     [RCIM sharedRCIM].currentUserInfo = user;
-    
-    
 
     //初始化UI
     [self initializedSubViews];
@@ -1325,12 +1374,12 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
          messageCount:-1
          success:^{
              dispatch_async(dispatch_get_main_queue(), ^{
-                 
                  LYStystemMessage *lyStystem = [[LYStystemMessage alloc] init];
                  [weakSelf sendMessage:lyStystem pushContent:nil];
-//                 [weakSelf sendMessage:joinChatroomMessage pushContent:nil];
+                 _giftTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(liveGiftTimerUpdataAction) userInfo:nil repeats:YES];
+                 [_giftTimer fire];
+                 _animation = AnimationNone;
              });
-             
          }
          error:^(RCErrorCode status) {
              dispatch_async(dispatch_get_main_queue(), ^{
@@ -1758,7 +1807,19 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
                 _likeNum += 1;
                 _likeLabel.text = [NSString stringWithFormat:@"%ld",(long)_likeNum];
             } else {// 礼物
-                [self showGiftIamgeAnmiationWith:giftMessage.gift.giftUrl With:giftMessage.gift.giftAnnimType];
+                if ([giftMessage.gift.giftAnnimType isEqualToString:@"1"]) {
+                    NSMutableArray *presentArr = [NSMutableArray array];
+                    int number = giftMessage.gift.giftNumber;
+                    for (int i = 0; i < number; i++) {
+                        PresentModel *present = [PresentModel modelWithSender:giftMessage.senderUserInfo.name giftName:giftMessage.content icon:@"empyImage120" giftImageName:giftMessage.gift.giftUrl];
+                        [presentArr addObject:present];
+                    }
+                    [self.presentView insertPresentMessages:presentArr showShakeAnimation:YES];
+                } else {
+                    DaShangGiftModel *model = [[DaShangGiftModel alloc] modelWithrewardName:nil rewardImg:giftMessage.gift.giftUrl rewardValue:0 rewardType:giftMessage.gift.giftAnnimType];
+                    [self.presentDataArray addObject:model];
+                }
+//                [self showGiftIamgeAnmiationWith:giftMessage.gift.giftUrl With:giftMessage.gift.giftAnnimType];
             }
             break;
         }
