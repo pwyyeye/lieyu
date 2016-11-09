@@ -201,7 +201,9 @@
 @property (strong, nonatomic) NSMutableArray *presentDataArray;
 @property (strong, nonatomic)NSTimer *giftTimer;//礼物定时检测
 @property (strong, nonatomic) UIImageView *animationImageView;
-
+@property (nonatomic, strong) UIImageView *firework_left_ImageView;
+@property (nonatomic, strong) UIImageView *firework_right_ImageView;
+@property (nonatomic, strong) UIImageView *firework_middle_ImageView;
 
 
 @end
@@ -423,7 +425,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         [_CAEmitterView addSubview:_audienceCollectionView];
         
         //礼物区域
-        self.presentView = [[PresentView alloc] initWithFrame:(CGRectMake(0, 140, 234, SCREEN_HEIGHT / 4))];
+        self.presentView = [[PresentView alloc] initWithFrame:(CGRectMake(0, 140, 230 , SCREEN_HEIGHT / 3))];
         self.presentView.backgroundColor = [UIColor clearColor];
         self.presentView.delegate = self;
         [_CAEmitterView addSubview:_presentView];
@@ -478,8 +480,8 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 #pragma mark --- 礼物、点赞等事件
 -(void) giftButtonAction{
     _backgroudView = [[UIView alloc] initWithFrame:self.view.bounds];
-    _backgroudView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.4f];
-    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(watchdashangCloseViewAction)];
+    _backgroudView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:.01f];
+    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchBackgroud)];
     [_backgroudView addGestureRecognizer:tapGes];
     [self.view addSubview:_backgroudView];
     [self.view bringSubviewToFront:_backgroudView];
@@ -499,39 +501,50 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     _daShangView.timeButton.backgroundColor = COMMON_PURPLE;
     [_daShangView.timeButton addTarget:self action:@selector(sendGiftTimeButtonAction:) forControlEvents:(UIControlEventTouchUpInside)];
     
+    //隐藏背后按钮
+    _shareButton.alpha = 0.0f;
+    _likeButton.alpha = 0.0f;
+    _commentView.alpha = 0.0f;
+    _giftButton.alpha = 0.0f;
     _giftNumber = 0;
 }
 
 //打赏定时方法
 -(void)changeTimebuttonTitle
 {
+    
     NSInteger number = [_daShangView.timeButton.titleLabel.text integerValue];
     number--;
-    
-    [_daShangView.timeButton setTitle:[NSString stringWithFormat:@"%ld",number] forState:(UIControlStateNormal)];
-    
+    _daShangView.timeButton.titleLabel.text = [NSString stringWithFormat:@"%ld",(long)number];
+    [_daShangView.timeButton setTitle:[NSString stringWithFormat:@"%ld",(long)number] forState:(UIControlStateNormal)];
+    [_daShangView.timeButton setTitle:[NSString stringWithFormat:@"%ld",(long)number] forState:(UIControlStateDisabled)];
     if (number == 0) {
         [_daShangTimer invalidate];
         _timer = nil;
         _daShangView.timeButton.hidden = YES;
         _daShangView.sendGiftButton.hidden = NO;
+        _daShangView.timeButton.titleLabel.text = @"30";
         [_daShangView.timeButton setTitle:@"30" forState:(UIControlStateNormal)];
-        
+        [_daShangView.timeButton setTitle:@"30" forState:(UIControlStateDisabled)];
     }
 }
 
 //点击打赏按钮--(直接加 1 )
 -(void)sendGiftButtonAction:(UIButton *)sender{
     _giftNumber = 1;
-    if (_daShangView.timeButton.hidden) {
-        _daShangView.timeButton.hidden = NO;
-        [_daShangView.timeButton setTitle:@"30" forState:(UIControlStateNormal)];
-        [_daShangView bringSubviewToFront:_daShangView.timeButton];
-        _daShangView.sendGiftButton.hidden = YES;
-        
-        //计时器
-        _daShangTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(changeTimebuttonTitle) userInfo:nil repeats:YES];
-        [_daShangTimer fire];
+    if ([_gifType isEqualToString:@"1"]) {
+        if (_daShangView.timeButton.hidden) {
+            _daShangView.timeButton.hidden = NO;
+            [_daShangView.timeButton setTitle:@"30" forState:(UIControlStateNormal)];
+            [_daShangView bringSubviewToFront:_daShangView.timeButton];
+            _daShangView.sendGiftButton.hidden = YES;
+            
+            //计时器
+            _daShangTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(changeTimebuttonTitle) userInfo:nil repeats:YES];
+            [_daShangTimer fire];
+        }
+    } else {
+        [self sendGiftWith:1];
     }
 }
 
@@ -540,15 +553,12 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     int number = (int)sender.titleLabel.text.integerValue;
     _giftNumber = number;
     [self sendGiftWith:_giftNumber];
-    _daShangView.timeButton.hidden = YES;
-    _daShangView.sendGiftButton.hidden = NO;
-    [_daShangTimer invalidate];
-    _timer = nil;
+    [self watchdashangCloseViewAction];
 }
 
 -(void)sendGiftWith:(int)giftNumber{
     NSInteger temp = _giftValue.integerValue * giftNumber;
-    NSString *totalValue = [NSString stringWithFormat:@"%ld",temp];
+    NSString *totalValue = [NSString stringWithFormat:@"%ld",(long)temp];
     NSString *tempID = [NSString stringWithFormat:@"%@", _hostUser[@"id"]];
     NSDictionary *dictGift = @{@"amount":totalValue,
                                @"toUserid":tempID,
@@ -567,12 +577,12 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
                     {
                         LYGiftMessage *giftMessage = [[LYGiftMessage alloc]init];
                         giftMessage.type = @"1";
-                        giftMessage.content = [NSString stringWithFormat:@"赠送了%d个%@",_giftNumber ,_giftName];
+                        giftMessage.content = [NSString stringWithFormat:@"赠送了%d个%@",giftNumber ,_giftName];
                         GiftContent *giftContent = [[GiftContent alloc] init];
                         giftContent.giftId = _giftValue;
                         giftContent.giftUrl = _giftImg;
                         giftContent.giftAnnimType = _gifType;
-                        giftContent.giftNumber = giftNumber;
+                        giftContent.giftNumber = [NSString stringWithFormat:@"%d",giftNumber];
                         giftMessage.gift = giftContent;
                         [self sendMessage:giftMessage pushContent:@""];
                     }
@@ -604,6 +614,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
             [self vaconeyAmount];//娱币不足
         }
         _giftNumber = 0;
+        [self watchdashangCloseViewAction];
     }];
     
 }
@@ -648,10 +659,10 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
             _animationImageView = [[UIImageView alloc] init];
             _animationImageView.backgroundColor = [UIColor clearColor];
             [_animationImageView sd_setImageWithURL:[NSURL URLWithString:giftImg]];
-            _animationImageView.frame = CGRectMake(SCREEN_WIDTH - 70, 70, 5, 5);
+            _animationImageView.frame = CGRectMake(SCREEN_WIDTH - 30, 70, 5, 5);
             [self.view addSubview:_animationImageView];
             [UIView animateWithDuration:3 animations:^{
-                _animationImageView.frame = CGRectMake(5, SCREEN_HEIGHT - 160, 220, 220);
+                _animationImageView.frame = CGRectMake(5, SCREEN_HEIGHT / 2, 220, 220);
             } completion:^(BOOL finished) {
                 [_animationImageView removeFromSuperview];
                 _animationImageView = nil;
@@ -679,20 +690,74 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         case 13://别墅
         {
             _animation = AnimationShowing_watch;
+            
+            _firework_left_ImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"left_firework"]];
+            _firework_left_ImageView.backgroundColor = [UIColor clearColor];
+            _firework_left_ImageView.frame = CGRectMake(100, 100, 40,130 );
+            CGFloat y_left = self.view.center.y - 40;
+            _firework_left_ImageView.center = CGPointMake(self.view.center.x, y_left);
+            _firework_left_ImageView.alpha = 0.f;
+            [self.view addSubview:_firework_left_ImageView];
+            
+            _firework_right_ImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"right_firework"]];
+            _firework_right_ImageView.backgroundColor = [UIColor clearColor];
+            _firework_right_ImageView.frame = CGRectMake(100, 100, 60,200 );
+            CGFloat y_right = self.view.center.y + 40;
+            _firework_right_ImageView.center = CGPointMake(self.view.center.x, y_right);
+            _firework_right_ImageView.alpha = 0.f;
+            [self.view addSubview:_firework_right_ImageView];
+            
+            _firework_middle_ImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"right_firework"]];
+            _firework_middle_ImageView.backgroundColor = [UIColor clearColor];
+            _firework_middle_ImageView.frame = CGRectMake(100, 100, 40,170 );
+            _firework_middle_ImageView.center = self.view.center;
+            _firework_middle_ImageView.alpha = 0.f;
+            [self.view addSubview:_firework_middle_ImageView];
+            
             _animationImageView = [[UIImageView alloc] init];
             _animationImageView.backgroundColor = [UIColor clearColor];
             [_animationImageView sd_setImageWithURL:[NSURL URLWithString:giftImg]];
             _animationImageView.frame = CGRectMake(100, 100, SCREEN_WIDTH / 50, SCREEN_WIDTH / 50);
             _animationImageView.center = self.view.center;
             [self.view addSubview:_animationImageView];
-            [UIView animateWithDuration:5 delay:0 usingSpringWithDamping:0.6 initialSpringVelocity:2 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            [UIView animateWithDuration:10 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:1 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 _animationImageView.transform = CGAffineTransformMakeScale(45, 45);
+                [UIView animateWithDuration:5 delay:5 usingSpringWithDamping:1 initialSpringVelocity:1 options:UIViewAnimationOptionCurveLinear animations:^{
+                    
+                    _firework_left_ImageView.alpha = 1.f;
+                    _firework_left_ImageView.frame = CGRectMake(100, 100, 40,130 );
+                    CGFloat x_1 = self.view.center.x - 50;
+                    CGFloat y_1 = self.view.center.y - 150;
+                    _firework_left_ImageView.center = CGPointMake(x_1, y_1);
+                    
+                    _firework_right_ImageView.alpha = 1.f;
+                    _firework_right_ImageView.frame = CGRectMake(100, 100, 60,200 );
+                    CGFloat x_2 = self.view.center.x + 70;
+                    CGFloat y_2 = self.view.center.y - 70;
+                    _firework_right_ImageView.center = CGPointMake(x_2, y_2);
+                    
+                    _firework_middle_ImageView.alpha = 1.f;
+                    _firework_middle_ImageView.frame = CGRectMake(100, 100, 40,170 );
+                    CGFloat x_3 = self.view.center.x;
+                    CGFloat y_3 = self.view.center.y - 70;
+                    _firework_middle_ImageView.center = CGPointMake(x_3, y_3);
+                } completion:^(BOOL finished) {
+                    
+                }];
             } completion:^(BOOL finished) {
+                [_firework_middle_ImageView removeFromSuperview];
+                _firework_middle_ImageView = nil;
+                [_firework_right_ImageView removeFromSuperview];
+                _firework_right_ImageView = nil;
+                [_firework_left_ImageView removeFromSuperview];
+                _firework_left_ImageView = nil;
                 [_animationImageView removeFromSuperview];
                 _animationImageView = nil;
                 _animation = AnimationNone_watch;
             }];
+
         }
+            
             break;
         default:
         {
@@ -734,15 +799,21 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     } else {
         _gifType = notification.userInfo[@"gifType"];
     }
-    
-    
 }
 
--(void)watchdashangCloseViewAction{
-    
+-(void)touchBackgroud{
     if (_giftNumber == 1) {
         [self sendGiftWith:1];
     }
+    [self watchdashangCloseViewAction];
+}
+
+-(void)watchdashangCloseViewAction{
+    _shareButton.alpha = 1.0f;
+    _likeButton.alpha = 1.0f;
+    _commentView.alpha = 1.0f;
+    _giftButton.alpha = 1.0f;
+    
     [_daShangView removeFromSuperview];
     _daShangView = nil;
     [_backgroudView removeFromSuperview];
@@ -1888,7 +1959,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
             } else {// 礼物
                 if ([giftMessage.gift.giftAnnimType isEqualToString:@"1"]) {
                     NSMutableArray *presentArr = [NSMutableArray array];
-                    int number = giftMessage.gift.giftNumber;
+                    NSInteger number = [giftMessage.gift.giftNumber integerValue];
                     for (int i = 0; i < number; i++) {
                         PresentModel *present = [PresentModel modelWithSender:giftMessage.senderUserInfo.name giftName:giftMessage.content icon:@"empyImage120" giftImageName:giftMessage.gift.giftUrl];
                         [presentArr addObject:present];

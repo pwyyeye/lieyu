@@ -10,13 +10,13 @@
 
 @implementation GiftContent
 
-
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.giftId forKey:@"giftId"];
     [aCoder encodeObject:self.giftUrl forKey:@"giftUrl"];
     [aCoder encodeObject:self.giftLocalUrl forKey:@"giftLocalUrl"];
     [aCoder encodeObject:self.giftAnnimType forKey:@"giftAnnimType"];
+    [aCoder encodeObject:self.giftNumber forKey:@"giftNumber"];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -28,6 +28,7 @@
         self.giftUrl = [aDecoder decodeObjectForKey:@"giftUrl"];
         self.giftLocalUrl = [aDecoder decodeObjectForKey:@"giftLocalUrl"];
         self.giftAnnimType = [aDecoder decodeObjectForKey:@"giftAnnimType"];
+        self.giftNumber = [aDecoder decodeObjectForKey:@"giftNumber"];
     }
     return self;
 }
@@ -39,6 +40,7 @@
     item.giftUrl = [self.giftUrl copyWithZone:zone];
     item.giftLocalUrl = [self.giftLocalUrl copyWithZone:zone];
     item.giftAnnimType = [self.giftAnnimType copyWithZone:zone];
+    item.giftNumber = [self.giftNumber copyWithZone:zone];
 //    item.strPrice   = [[self.strPrice copyWithZone:zone] autorelease];
     return item;
 }

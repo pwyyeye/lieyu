@@ -81,11 +81,10 @@
             huodong2.subTitle = @"抽奖";
             [weakSelf.navigationController pushViewController:huodong2 animated:YES];
         }
+        [_groupNumberLabel setText:[NSString stringWithFormat:@"娱客帮成员：%ld",userArray.count]];
         if (_groupModel) {
-            [_groupNumberLabel setText:[NSString stringWithFormat:@"娱客帮成员：%ld",userArray.count]];
             [_groupBriefLabel setText:[NSString stringWithFormat:@"总收益：%@",_groupModel.amount]];
         }else{
-            [_groupNumberLabel setText:[NSString stringWithFormat:@"娱客帮成员：0"]];
             [_groupBriefLabel setText:[NSString stringWithFormat:@"总收益：0"]];
         }
         if (userArray.count <= 0) {

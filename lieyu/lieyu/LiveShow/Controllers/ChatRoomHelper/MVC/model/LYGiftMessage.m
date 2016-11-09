@@ -41,6 +41,7 @@
     giftTemp.giftUrl = [dict objectForKey:@"giftUrl"];
     giftTemp.giftLocalUrl = [dict objectForKey:@"giftLocalUrl"];
     giftTemp.giftAnnimType = [dict objectForKey:@"giftAnnimType"];
+    giftTemp.giftNumber = [dict objectForKey:@"giftNumber"];
     self.gift = giftTemp;
 }
 
@@ -79,6 +80,9 @@
         }
         if (self.gift.giftAnnimType) {
             [_dict setObject:self.gift.giftAnnimType forKeyedSubscript:@"giftAnnimType"];
+        }
+        if (self.gift.giftNumber) {
+            [_dict setObject:self.gift.giftNumber forKeyedSubscript:@"giftNumber"];
         }
         [dict setObject:_dict forKey:@"gift"];
     }
