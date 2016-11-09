@@ -232,13 +232,9 @@
     if (self.selectedIndex==1||self.selectedIndex==2) {
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         if([MyUtil isEmptyString:app.s_app_id]){
-//            LYUserLoginViewController *login=[[LYUserLoginViewController alloc] initWithNibName:@"LYUserLoginViewController" bundle:nil];
-            LPUserLoginViewController *login=[[LPUserLoginViewController alloc] initWithNibName:@"LPUserLoginViewController" bundle:nil];
             
-//            [self.navigationController presentViewController:login animated:YES completion:^{
-//               
-//            }];
-//            login.delegate=self;
+//            LPUserLoginViewController *login=[[LPUserLoginViewController alloc] initWithNibName:@"LPUserLoginViewController" bundle:nil];
+            LYUserLoginViewController *login = [[LYUserLoginViewController alloc]init];
             [self.navigationController pushViewController:login animated:YES];
         }
     }

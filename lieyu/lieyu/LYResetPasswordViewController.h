@@ -12,6 +12,7 @@
 
 @end
 @interface LYResetPasswordViewController : LYBaseViewController
+@property (weak, nonatomic) IBOutlet UIButton *submitButton;
 - (IBAction)nextAct:(UIButton *)sender;
 - (IBAction)getYZMAct:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UITextField *getPassWordTypeTex;
