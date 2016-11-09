@@ -62,6 +62,9 @@
     _btn_submit.frame=CGRectMake(10, SCREEN_HEIGHT-62, SCREEN_WIDTH-20, 52);
     _step=1;
     
+    [_userNameTex setValue:RGB(145, 145, 145) forKeyPath:@"_placeholderLabel.textColor"];
+    [_passWordTex setValue:RGB(145, 145, 145)  forKeyPath:@"_placeholderLabel.textColor"];
+    
     if([[MyUtil deviceString]isEqualToString:@"iPhone 4"] || [[MyUtil deviceString]isEqualToString:@"iPhone 4S"]){
         btn_login_cons_top.constant = 53;
         [self updateViewConstraints];
