@@ -52,9 +52,9 @@
                 <constraint firstItem="8oB-Xh-ksz" firstAttribute="top" secondItem="1B1-IG-BxC" secondAttribute="top" id="aQf-4a-tmC"/>
                 <constraint firstItem="XYz-hh-ign" firstAttribute="leading" secondItem="Pu4-LU-rNS" secondAttribute="leading" id="bRt-W1-mFx"/>
                 <constraint firstAttribute="trailing" secondItem="Xwz-lU-TCC" secondAttribute="trailing" id="hxR-OH-8Q9"/>
-                <constraint firstAttribute="bottom" secondItem="XYz-hh-ign" secondAttribute="bottom" constant="3" id="kHe-TW-di4"/>
+                <constraint firstAttribute="bottom" secondItem="XYz-hh-ign" secondAttribute="bottom" constant="7" id="kHe-TW-di4"/>
                 <constraint firstItem="Xwz-lU-TCC" firstAttribute="top" secondItem="1B1-IG-BxC" secondAttribute="top" id="kZj-Mf-Dg4"/>
-                <constraint firstItem="Pu4-LU-rNS" firstAttribute="top" secondItem="1B1-IG-BxC" secondAttribute="top" id="z22-zn-6vu"/>
+                <constraint firstItem="Pu4-LU-rNS" firstAttribute="top" secondItem="1B1-IG-BxC" secondAttribute="top" constant="3" id="z22-zn-6vu"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

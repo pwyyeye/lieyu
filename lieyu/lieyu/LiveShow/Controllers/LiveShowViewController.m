@@ -274,7 +274,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [LYFriendsHttpTool getStreamWithParms:roomDict complete:^(NSDictionary *dict) {
         _stream = dict[@"stream"];
         _shareText = dict[@"shareTitle"];
-        if ([dict[@"coinBoolean"] isEqualToString:@"3"]) {
+        if ([dict[@"coinBoolean"] isEqualToString:@"4"]) {
             _isCoin = NO;
         } else {
             _isCoin = YES;
@@ -650,7 +650,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
             }];
         }
             break;
-        case 13://别墅
+        case 5://别墅
         {
             _animation = AnimationShowing;
             
@@ -1862,7 +1862,11 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
                 _likeNum += 1;
                 _likeLabel.text = [NSString stringWithFormat:@"%ld",(long)_likeNum];
             } else {// 礼物
-                if ([giftMessage.gift.giftAnnimType isEqualToString:@"1"]) {
+                NSInteger numbertype = [giftMessage.gift.giftAnnimType integerValue];
+                if (2 <= numbertype && numbertype <= 5) {
+                    DaShangGiftModel *model = [[DaShangGiftModel alloc] modelWithrewardName:nil rewardImg:giftMessage.gift.giftUrl rewardValue:0 rewardType:giftMessage.gift.giftAnnimType];
+                    [self.presentDataArray addObject:model];
+                } else {
                     NSMutableArray *presentArr = [NSMutableArray array];
                     NSInteger number = [giftMessage.gift.giftNumber integerValue];
                     for (int i = 0; i < number; i++) {
@@ -1871,9 +1875,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
                     }
                     _presentModel = giftMessage;
                     [self.presentView insertPresentMessages:presentArr showShakeAnimation:YES];
-                } else {
-                    DaShangGiftModel *model = [[DaShangGiftModel alloc] modelWithrewardName:nil rewardImg:giftMessage.gift.giftUrl rewardValue:0 rewardType:giftMessage.gift.giftAnnimType];
-                    [self.presentDataArray addObject:model];
                 }
 //                [self showGiftIamgeAnmiationWith:giftMessage.gift.giftUrl With:giftMessage.gift.giftAnnimType];
             }

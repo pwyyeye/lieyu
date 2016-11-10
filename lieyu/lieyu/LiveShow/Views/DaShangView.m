@@ -138,7 +138,7 @@ static NSString *daShangCellID = @"dashangCellID";
         cell.DSChooseImage.hidden = YES;
     }
     cell.backgroundColor = [UIColor clearColor];
-    cell.YuBiLabel.textColor = [UIColor darkGrayColor];
+    cell.YuBiLabel.textColor = [UIColor lightGrayColor];
     if (_type == textType_Live) {
         cell.giftNameLabel.textColor = [UIColor whiteColor];
         cell.layer.borderColor = [UIColor blackColor].CGColor;
@@ -191,7 +191,7 @@ static NSString *daShangCellID = @"dashangCellID";
         cell_old.DSChooseImage.hidden = YES;
     }
     DaShangGiftModel *model = _dataArr[indexPath.row];
-    NSString *reward = [NSString stringWithFormat:@"%ld",model.rewardValue];
+    NSString *reward = [NSString stringWithFormat:@"%ld",(long)model.rewardValue];
     dispatch_async(dispatch_get_main_queue(), ^{
         //创建一个消息对象
             NSNotification * notice = [NSNotification notificationWithName:@"sendGift" object:nil userInfo:@{@"value":reward,@"image":model.rewardImg,@"gifType":model.rewordType,@"giftName":model.rewardName}];
