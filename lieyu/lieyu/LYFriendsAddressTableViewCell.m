@@ -34,7 +34,7 @@
 - (void)setRecentM:(FriendsRecentModel *)recentM{
     _recentM = recentM;
     _label_address.text = recentM.location;
-    if (![_recentM.coinBooleanStr isEqualToString:@"3"]) {//判断是否显示
+    if (![_recentM.coinBooleanStr isEqualToString:@"4"]) {//判断是否显示
         self.centerConstraint.constant = 0;
         self.btn_dashang.hidden = NO;
         self.rightView.hidden = NO;
@@ -60,8 +60,13 @@
         self.dashangLabel.hidden = YES;
         self.dashangImageView.hidden = YES;
     }
-    if(_label_address.text.length == 0) _imgView_location.hidden = YES;
-    else _imgView_location.hidden = NO;
+    if(_label_address.text.length == 0){
+        _imgView_location.hidden = YES;
+        _leftConstraint.constant = 60;
+    } else {
+        _imgView_location.hidden = NO;
+        _leftConstraint.constant = 149;
+    }
     
     if([MyUtil isEmptyString:recentM.id]){
         self.btn_comment.enabled = NO;

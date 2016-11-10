@@ -687,7 +687,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
             }];
         }
             break;
-        case 13://别墅
+        case 5://别墅
         {
             _animation = AnimationShowing_watch;
             
@@ -793,7 +793,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     } else if ([_giftName isEqualToString:@"私人飞机"]) {
         _gifType = @"2";
     } else if ([_giftName isEqualToString:@"别墅"])  {
-        _gifType = @"13";
+        _gifType = @"5";
     } else {
         _gifType = notification.userInfo[@"gifType"];
     }
@@ -1955,7 +1955,11 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
             if ([giftMessage.type isEqualToString:@"2"]) {//点赞
                 [self showTheLove];//接受到消息
             } else {// 礼物
-                if ([giftMessage.gift.giftAnnimType isEqualToString:@"1"]) {
+                NSInteger numbertype = [giftMessage.gift.giftAnnimType integerValue];
+                if (2 <= numbertype && numbertype <= 5) {
+                    DaShangGiftModel *model = [[DaShangGiftModel alloc] modelWithrewardName:nil rewardImg:giftMessage.gift.giftUrl rewardValue:0 rewardType:giftMessage.gift.giftAnnimType];
+                    [self.presentDataArray addObject:model];
+                } else {
                     NSMutableArray *presentArr = [NSMutableArray array];
                     NSInteger number = [giftMessage.gift.giftNumber integerValue];
                     for (int i = 0; i < number; i++) {
@@ -1964,11 +1968,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
                     }
                     _presentModel = giftMessage;
                     [self.presentView insertPresentMessages:presentArr showShakeAnimation:YES];
-                } else {
-                    DaShangGiftModel *model = [[DaShangGiftModel alloc] modelWithrewardName:nil rewardImg:giftMessage.gift.giftUrl rewardValue:0 rewardType:giftMessage.gift.giftAnnimType];
-                    [self.presentDataArray addObject:model];
                 }
-                
 //                [self showGiftIamgeAnmiationWith:giftMessage.gift.giftUrl With:giftMessage.gift.giftAnnimType];
             }
             break;

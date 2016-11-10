@@ -19,6 +19,7 @@
 
 @property (nonatomic,strong) FriendsRecentModel *recentM;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftConstraint;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *centerConstraint;
 
