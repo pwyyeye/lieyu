@@ -56,8 +56,10 @@
 - (void)setModel:(PresentModel *)model
 {
     _model = model;
-    
-    self.icon.image         = [UIImage imageNamed:model.icon];
+    if (self.icon.image) {
+        [self.icon setImage:nil];
+    }
+    [self.icon sd_setImageWithURL:[NSURL URLWithString:model.icon] placeholderImage:[UIImage imageNamed:@"empyImage120"]];
     self.senderName.text    = model.sender;
     self.giftNameLable.text = [NSString stringWithFormat:@"%@", model.giftName];
     if (self.gift.image) {

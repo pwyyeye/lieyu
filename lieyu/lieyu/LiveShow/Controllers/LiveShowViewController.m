@@ -729,7 +729,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 }
 
 #pragma mark - PresentViewDelegate
-
 - (PresentViewCell *)presentView:(PresentView *)presentView cellOfRow:(NSInteger)row
 {
     return [[CustonCell alloc] initWithRow:row];
@@ -738,7 +737,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 - (void)presentView:(PresentView *)presentView configCell:(PresentViewCell *)cell sender:(NSString *)sender giftName:(NSString *)name
 {
     CustonCell *customCell = (CustonCell *)cell;
-    PresentModel *present = [PresentModel modelWithSender:_presentModel.senderUserInfo.name giftName:_presentModel.content icon:@"empyImage120" giftImageName:_presentModel.gift.giftUrl];
+    PresentModel *present = [PresentModel modelWithSender:_presentModel.senderUserInfo.name giftName:_presentModel.content icon:_presentModel.senderUserInfo.portraitUri giftImageName:_presentModel.gift.giftUrl];
     customCell.model = present;
 }
 
@@ -1870,7 +1869,8 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
                     NSMutableArray *presentArr = [NSMutableArray array];
                     NSInteger number = [giftMessage.gift.giftNumber integerValue];
                     for (int i = 0; i < number; i++) {
-                        PresentModel *present = [PresentModel modelWithSender:giftMessage.senderUserInfo.name giftName:giftMessage.content icon:@"empyImage120" giftImageName:giftMessage.gift.giftUrl];
+                        
+                        PresentModel *present = [PresentModel modelWithSender:giftMessage.senderUserInfo.name giftName:giftMessage.content icon:giftMessage.senderUserInfo.portraitUri giftImageName:giftMessage.gift.giftUrl];
                         [presentArr addObject:present];
                     }
                     _presentModel = giftMessage;
