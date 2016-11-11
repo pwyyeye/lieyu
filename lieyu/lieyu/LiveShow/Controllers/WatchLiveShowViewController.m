@@ -411,6 +411,31 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     
     [_CAEmitterView addSubview:_userView];
     
+    //礼物区域
+    self.presentView = [[PresentView alloc] initWithFrame:(CGRectMake(0, 140, 230 , 150))];
+    self.presentView.backgroundColor = [UIColor clearColor];
+    self.presentView.delegate = self;
+    [_CAEmitterView addSubview:_presentView];
+    
+    //礼物按钮
+    if (_isCoin) {
+        UIButton *giftButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+        giftButton.frame = CGRectMake(SCREEN_WIDTH / 49, distanceOfBottom - SCREEN_WIDTH / 8, SCREEN_WIDTH / 8 , SCREEN_WIDTH / 8);
+        [giftButton setImage:[UIImage imageNamed:@"live_gift.png"] forState:(UIControlStateNormal)];
+        [giftButton addTarget:self action:@selector(giftButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
+        _giftButton = giftButton;
+        [self.view addSubview:_giftButton];
+    }
+    
+    //分享按钮
+    UIButton *shareButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+    shareButton.size = CGSizeMake(MinHeight_InputView, MinHeight_InputView);
+    shareButton.center = CGPointMake(self.view.frame.size.width - SCREEN_WIDTH / 10,distanceOfBottom - MinHeight_InputView / 2);
+    [shareButton setImage:[UIImage imageNamed:@"live_watchShare.png"] forState:(UIControlStateNormal)];
+    [shareButton addTarget:self action:@selector(liveShareButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
+    _shareButton = shareButton;
+    [self.view addSubview:_shareButton];
+    
     if (_chatRoomId) {//有chatroomid就是直播间否则为回放
         //观众列表
         UICollectionViewFlowLayout *layout=[[ UICollectionViewFlowLayout alloc ] init ];
@@ -419,26 +444,11 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         [_audienceCollectionView registerClass:[AudienceCell class] forCellWithReuseIdentifier:_CELL];
         _audienceCollectionView.showsHorizontalScrollIndicator = NO;
         _audienceCollectionView. backgroundColor =[ UIColor clearColor];
-        _audienceCollectionView. delegate = self ;
-        _audienceCollectionView. dataSource = self ;
+        _audienceCollectionView. delegate = self;
+        _audienceCollectionView. dataSource = self;
         _audienceCollectionView.tag = 188;
         [_CAEmitterView addSubview:_audienceCollectionView];
         
-        //礼物区域
-        self.presentView = [[PresentView alloc] initWithFrame:(CGRectMake(0, 140, 230 , 150))];
-        self.presentView.backgroundColor = [UIColor clearColor];
-        self.presentView.delegate = self;
-        [_CAEmitterView addSubview:_presentView];
-        
-        //礼物按钮
-        if (_isCoin) {
-            UIButton *giftButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-            giftButton.frame = CGRectMake(SCREEN_WIDTH / 49, distanceOfBottom - SCREEN_WIDTH / 8, SCREEN_WIDTH / 8 , SCREEN_WIDTH / 8);
-            [giftButton setImage:[UIImage imageNamed:@"live_gift.png"] forState:(UIControlStateNormal)];
-            [giftButton addTarget:self action:@selector(giftButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
-            _giftButton = giftButton;
-            [self.view addSubview:_giftButton];
-        }
         
         //点赞按钮
         UIButton *likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -455,13 +465,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         _likeLabel.font = [UIFont systemFontOfSize:9];
         _likeLabel.textColor = [UIColor whiteColor];
         [_likeButton addSubview:_likeLabel];
-        UIButton *shareButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        shareButton.size = CGSizeMake(MinHeight_InputView, MinHeight_InputView);
-        shareButton.center = CGPointMake(self.view.frame.size.width - SCREEN_WIDTH / 10,distanceOfBottom - MinHeight_InputView / 2);
-        [shareButton setImage:[UIImage imageNamed:@"live_watchShare.png"] forState:(UIControlStateNormal)];
-        [shareButton addTarget:self action:@selector(liveShareButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
-        _shareButton = shareButton;
-        [self.view addSubview:_shareButton];
         
         if ([_livestatusNow isEqualToString:@"800"]) {
             pauseLable = [[UILabel alloc] init];
@@ -560,10 +563,11 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     NSInteger temp = _giftValue.integerValue * giftNumber;
     NSString *totalValue = [NSString stringWithFormat:@"%ld",(long)temp];
     NSString *tempID = [NSString stringWithFormat:@"%@", _hostUser[@"id"]];
+    NSString *roomid = _chatRoomId == nil ? _playbackRoomId : _chatRoomId;
     NSDictionary *dictGift = @{@"amount":totalValue,
                                @"toUserid":tempID,
                                @"rid":@"2",
-                               @"businessid":_chatRoomId};
+                               @"businessid":roomid};
     [LYUserHttpTool getMyMoneyBagBalanceAndCoinWithParams:nil complete:^(ZSBalance *balance) {
         NSInteger coin = balance.coin.integerValue;
         if (coin >= temp) {//娱币足够
@@ -575,16 +579,49 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
                         break;
                     case 1://成功
                     {
-                        LYGiftMessage *giftMessage = [[LYGiftMessage alloc]init];
-                        giftMessage.type = @"1";
-                        giftMessage.content = [NSString stringWithFormat:@"赠送了%d个%@",giftNumber ,_giftName];
-                        GiftContent *giftContent = [[GiftContent alloc] init];
-                        giftContent.giftId = _giftValue;
-                        giftContent.giftUrl = _giftImg;
-                        giftContent.giftAnnimType = _gifType;
-                        giftContent.giftNumber = [NSString stringWithFormat:@"%d",giftNumber];
-                        giftMessage.gift = giftContent;
-                        [self sendMessage:giftMessage pushContent:@""];
+                        if (_chatRoomId) {
+                            /*直播发消息*/
+                            LYGiftMessage *giftMessage = [[LYGiftMessage alloc]init];
+                            giftMessage.type = @"1";
+                            giftMessage.content = [NSString stringWithFormat:@"赠送了%d个%@",giftNumber ,_giftName];
+                            GiftContent *giftContent = [[GiftContent alloc] init];
+                            giftContent.giftId = _giftValue;
+                            giftContent.giftUrl = _giftImg;
+                            giftContent.giftAnnimType = _gifType;
+                            giftContent.giftNumber = [NSString stringWithFormat:@"%d",giftNumber];
+                            giftMessage.gift = giftContent;
+                            [self sendMessage:giftMessage pushContent:@""];
+                        } else {
+                            /*回放时直接显示动画*/
+                            NSInteger numbertype = [_gifType integerValue];
+                            if (2 <= numbertype && numbertype <= 5) {
+                                DaShangGiftModel *model = [[DaShangGiftModel alloc] modelWithrewardName:nil rewardImg:_giftImg rewardValue:0 rewardType:_gifType];
+                                [self.presentDataArray addObject:model];
+                            } else {
+                                AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
+                                NSMutableArray *presentArr = [NSMutableArray array];
+                                NSString *content = [NSString stringWithFormat:@"赠送了%d个%@",giftNumber ,_giftName];
+                                LYGiftMessage *giftMessage = [[LYGiftMessage alloc] init];
+                                
+                                RCUserInfo *senderInfo = [[RCUserInfo alloc] initWithUserId:nil name:app.userModel.usernick portrait:app.userModel.avatar_img];
+                                giftMessage.senderUserInfo = senderInfo;
+                               
+                                GiftContent *giftContent = [[GiftContent alloc] init];
+                                giftContent.giftId = _giftValue;
+                                giftContent.giftUrl = _giftImg;
+                                giftContent.giftAnnimType = _gifType;
+                                giftContent.giftNumber = [NSString stringWithFormat:@"%d",giftNumber];
+                                giftMessage.gift = giftContent;
+                                
+                                giftMessage.content = content;
+                                for (int i = 0; i < giftNumber; i++) {
+                                PresentModel *present = [PresentModel modelWithSender:giftMessage.senderUserInfo.name giftName:giftMessage.content icon:giftMessage.senderUserInfo.portraitUri giftImageName:giftMessage.gift.giftUrl];
+                                    [presentArr addObject:present];
+                                }
+                                _presentModel = giftMessage;
+                                [self.presentView insertPresentMessages:presentArr showShakeAnimation:YES];
+                            }
+                        }
                     }
                         break;
                     case 11:
@@ -775,8 +812,8 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 - (void)presentView:(PresentView *)presentView configCell:(PresentViewCell *)cell sender:(NSString *)sender giftName:(NSString *)name
 {
     CustonCell *customCell = (CustonCell *)cell;
-    PresentModel *present = [PresentModel modelWithSender:_presentModel.senderUserInfo.name giftName:_presentModel.content icon:_presentModel.senderUserInfo.portraitUri giftImageName:_presentModel.gift.giftUrl];
-    customCell.model = present;
+        PresentModel *present = [PresentModel modelWithSender:_presentModel.senderUserInfo.name giftName:_presentModel.content icon:_presentModel.senderUserInfo.portraitUri giftImageName:_presentModel.gift.giftUrl];
+        customCell.model = present;
 }
 
 
@@ -841,10 +878,11 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 
 #pragma mark -- 分享
 -(void)liveShareButtonAction{
+    NSString *roomid = _chatRoomId == nil ? _playbackRoomId : _chatRoomId;
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeWeb;
-    [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"%@%@%@",LY_SERVER,LY_LIVE_share,self.chatRoomId];
-    [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@%@%@",LY_SERVER,LY_LIVE_share,self.chatRoomId];
-    [UMSocialData defaultData].extConfig.qqData.url = [NSString stringWithFormat:@"%@%@%@",LY_SERVER,LY_LIVE_share,self.chatRoomId];
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = [NSString stringWithFormat:@"%@%@%@",LY_SERVER,LY_LIVE_share,roomid];
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = [NSString stringWithFormat:@"%@%@%@",LY_SERVER,LY_LIVE_share,roomid];
+    [UMSocialData defaultData].extConfig.qqData.url = [NSString stringWithFormat:@"%@%@%@",LY_SERVER,LY_LIVE_share,roomid];
     [UMSocialSnsService presentSnsIconSheetView:self appKey:UmengAppkey shareText:_shareText shareImage:_shareIamge shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,UMShareToSina,UMShareToSms,nil] delegate:self];
 }
 
@@ -876,7 +914,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 
 #pragma mark ---- 开始直播时才能添加进度条
 -(void) setProgressSlider{
-    _slider = [[UISlider alloc] initWithFrame:(CGRectMake(SCREEN_WIDTH / 8, distanceOfBottom - SCREEN_WIDTH / 8, SCREEN_WIDTH / 4 * 3 , 40))];
+    _slider = [[UISlider alloc] initWithFrame:(CGRectMake(SCREEN_WIDTH / 6, distanceOfBottom - SCREEN_WIDTH / 8, SCREEN_WIDTH / 3 * 2 , 40))];
     _slider.value = 0;
     CMTime time = _player.totalDuration;
     float seconds = CMTimeGetSeconds(time);
