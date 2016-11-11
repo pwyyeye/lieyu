@@ -661,7 +661,9 @@
                 compelete(tempArr);
             });
         }else{
-            [MyUtil showCleanMessage:message];
+            if (![MyUtil isEmptyString:message]) {
+                [MyUtil showCleanMessage:message];
+            }
         }
         [app stopLoading];
     } failure:^(NSError *err) {
@@ -682,7 +684,9 @@
                 compelete(tempArr);
             });
         }else{
-            [MyUtil showCleanMessage:message];
+            if (![MyUtil isEmptyString:message]) {
+                [MyUtil showCleanMessage:message];
+            }
         }
     } failure:^(NSError *err) {
         [MyUtil showCleanMessage:@"获取数据失败！"];
@@ -722,7 +726,9 @@
                 complete(tempArr);
             });
         }else{
-            [MyUtil showCleanMessage:message];
+            if (![MyUtil isEmptyString:message]) {
+                [MyUtil showCleanMessage:message];
+            }
         }
     } failure:^(NSError *err) {
         //        [MyUtil showCleanMessage:@"获取数据失败"];
@@ -742,7 +748,9 @@
                 complete(actionDetail);
             });
         }else{
-            [MyUtil showCleanMessage:response[@"message"]];
+            if (![MyUtil isEmptyString:[response objectForKey:@"message"]]) {
+                [MyUtil showCleanMessage:[response objectForKey:@"message"]];
+            }
         }
         [app stopLoading];
     } failure:^(NSError *err) {
@@ -768,7 +776,6 @@
 + (void)signWith:(NSDictionary *)paraDic complete:(void(^)(bool))complete{
     [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_GOTOSIGN baseURL:LY_SERVER params:paraDic success:^(id response) {
         NSString *code = [NSString stringWithFormat:@"%@",response[@"errorcode"] ];
-        [MyUtil showCleanMessage:response[@"message"]];
         if ([code isEqualToString:@"1"]) {
             complete(YES);
         }else{
