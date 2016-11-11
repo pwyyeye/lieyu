@@ -73,12 +73,11 @@ static NSString *daShangCellID = @"dashangCellID";
         NSString *reward = [NSString stringWithFormat:@"%ld",(long)model.rewardValue];
         dispatch_async(dispatch_get_main_queue(), ^{
             //创建一个消息对象
-            NSNotification * notice = [NSNotification notificationWithName:@"sendGift" object:nil userInfo:@{@"value":reward,@"image":model.rewardImg,@"gifType":model.rewordType,@"giftName":model.rewardName}];
+            NSNotification *notice = [NSNotification notificationWithName:@"sendGift" object:nil userInfo:@{@"value":reward,@"image":model.rewardImg,@"gifType":[NSString stringWithFormat:@"%ld",(long)model.rewardId],@"giftName":model.rewardName}];
             //发送消息
             [[NSNotificationCenter defaultCenter]postNotification:notice];
         });
     }];
-    
     
     _pageControl = [[UIPageControl alloc] init];
     _pageControl.backgroundColor = [UIColor clearColor];

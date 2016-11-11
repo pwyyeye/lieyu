@@ -775,7 +775,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 - (void)presentView:(PresentView *)presentView configCell:(PresentViewCell *)cell sender:(NSString *)sender giftName:(NSString *)name
 {
     CustonCell *customCell = (CustonCell *)cell;
-    PresentModel *present = [PresentModel modelWithSender:_presentModel.senderUserInfo.name giftName:_presentModel.content icon:@"empyImage120" giftImageName:_presentModel.gift.giftUrl];
+    PresentModel *present = [PresentModel modelWithSender:_presentModel.senderUserInfo.name giftName:_presentModel.content icon:_presentModel.senderUserInfo.portraitUri giftImageName:_presentModel.gift.giftUrl];
     customCell.model = present;
 }
 
@@ -785,17 +785,17 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     _giftValue = notification.userInfo[@"value"];
     _giftImg = notification.userInfo[@"image"];
     _giftName = notification.userInfo[@"giftName"];
-    
-    if ([_giftName isEqualToString:@"跑车"]) {
+    NSString *typeNum = notification.userInfo[@"gifType"];
+    if ([typeNum isEqualToString:@"14"]) {//跑车
         _gifType = @"3";
-    } else if ([_giftName isEqualToString:@"游艇"]) {
+    } else if ([typeNum isEqualToString:@"15"]) {//游艇
         _gifType = @"4";
-    } else if ([_giftName isEqualToString:@"私人飞机"]) {
+    } else if ([typeNum isEqualToString:@"12"]) {//私人飞机
         _gifType = @"2";
-    } else if ([_giftName isEqualToString:@"别墅"])  {
+    } else if ([typeNum isEqualToString:@"16"])  {//别墅
         _gifType = @"5";
-    } else {
-        _gifType = notification.userInfo[@"gifType"];
+    } else {//默认类型
+        _gifType = @"1";
     }
 }
 
@@ -1488,6 +1488,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     RCUserInfo *user = [[RCUserInfo alloc]init];
     user.userId = app.userModel.imuserId;
     user.name = app.userModel.usernick;
+    user.portraitUri = app.userModel.avatar_img;
     [RCIM sharedRCIM].currentUserInfo = user;
     //初始化UI
     [self initializedSubViews];
@@ -1963,7 +1964,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
                     NSMutableArray *presentArr = [NSMutableArray array];
                     NSInteger number = [giftMessage.gift.giftNumber integerValue];
                     for (int i = 0; i < number; i++) {
-                        PresentModel *present = [PresentModel modelWithSender:giftMessage.senderUserInfo.name giftName:giftMessage.content icon:@"empyImage120" giftImageName:giftMessage.gift.giftUrl];
+                        PresentModel *present = [PresentModel modelWithSender:giftMessage.senderUserInfo.name giftName:giftMessage.content icon:giftMessage.senderUserInfo.portraitUri giftImageName:giftMessage.gift.giftUrl];
                         [presentArr addObject:present];
                     }
                     _presentModel = giftMessage;
