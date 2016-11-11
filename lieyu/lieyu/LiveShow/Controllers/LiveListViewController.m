@@ -21,6 +21,7 @@ static NSString *liveShowListID = @"liveShowListID";
 @interface LiveListViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 
 {
+    BOOL _isChoosen;//防止cell连点
     BOOL _friendsBtnSelect;//按钮选择状态
     HotMenuButton *_hotBtn,*_newBtn;//最热按钮 最新按钮
     UIView *_lineView;//导航按钮下划线
@@ -66,6 +67,7 @@ static NSString *liveShowListID = @"liveShowListID";
     [self setMenuView];
     [self initReleaseWishButton];
     [self refreshData];
+    _isChoosen = NO;//
 }
 
 - (void)viewDidLoad {
@@ -619,8 +621,6 @@ static NSString *liveShowListID = @"liveShowListID";
 #pragma mark ---- TableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    LiveShowListCell *cell = (LiveShowListCell *)[tableView cellForRowAtIndexPath:indexPath];
-    cell.selected = YES;
     WatchLiveShowViewController *watchLiveVC = [[WatchLiveShowViewController alloc] init];
     LYLiveShowListModel *model = [LYLiveShowListModel new];
     
@@ -651,7 +651,10 @@ static NSString *liveShowListID = @"liveShowListID";
         watchLiveVC.joinNum = [NSString stringWithFormat:@"%d",model.joinNum];
         NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:model.roomImg]];
         watchLiveVC.shareIamge = [UIImage imageWithData:data];
-        [weakSelf.navigationController pushViewController:watchLiveVC animated:YES];
+        if (!_isChoosen) {
+            [weakSelf.navigationController pushViewController:watchLiveVC animated:YES];
+            _isChoosen = YES;
+        }
     }];
 }
 

@@ -12325,7 +12325,6 @@
 				851F04131D645A44006BAA47 /* LiveShowListCell.xib in Resources */,
 				15FD2AA61BD61EE000D66920 /* DWTopInfoView.xib in Resources */,
 				85F625911C0BF282002858C8 /* LYHorMenuViewController.xib in Resources */,
-				854CCA841C918E2700368C72 /* sina_weibo_s2@3x.png in Resources */,
 				850BED4C1DD300A900EC2092 /* right_firework.png in Resources */,
 				38EAA52E1CCDB1D00080A6D6 /* YU_pujie@3x.png in Resources */,
 				38EAA57E1CCF5B910080A6D6 /* YU_tipImage@3x.png in Resources */,
