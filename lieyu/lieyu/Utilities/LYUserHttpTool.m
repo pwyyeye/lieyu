@@ -1395,8 +1395,12 @@
             BOOL b=NO;
             //对比班底
             if (![MyUtil isEmptyString:remote_version]) {
-                if (![version isEqualToString:remote_version] ) {
-                    b=YES;
+//                if (![version isEqualToString:remote_version] ) {
+//                    b=YES;
+//                }
+                if ([version compare:remote_version options:NSNumericSearch] == NSOrderedAscending)
+                {
+                    b = YES;
                 }
             }
             if (![MyUtil isEmptyString:forced_update]&&forced_update.intValue==1 &&b) {
