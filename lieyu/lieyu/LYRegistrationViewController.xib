@@ -27,7 +27,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="设置登陆密码（密码不少于6位）" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dyr-sn-p1K">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="设置登录密码（密码不少于6位）" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dyr-sn-p1K">
                     <rect key="frame" x="38" y="161" width="299" height="47"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="47" id="hGz-RQ-ZIh"/>
@@ -39,7 +39,7 @@
                         <action selector="exitEdit:" destination="-1" eventType="editingDidEndOnExit" id="cpR-Mi-YSN"/>
                     </connections>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="确认登陆密码（请重复登陆密码）" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6M5-7o-vSY">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="确认登录密码（请重复登录密码）" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6M5-7o-vSY">
                     <rect key="frame" x="38" y="218.5" width="299" height="47"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="47" id="rQw-l2-jyv"/>
