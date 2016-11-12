@@ -369,6 +369,8 @@
 		382B41691D6FE98E00CB902C /* LYPrivateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 382B41681D6FE98E00CB902C /* LYPrivateViewController.m */; };
 		382B416F1D6FF5F300CB902C /* LYBlackListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 382B416E1D6FF5F300CB902C /* LYBlackListViewController.m */; };
 		382FB47A1CD496BB001ABC49 /* LYDateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 382FB4791CD496BB001ABC49 /* LYDateUtil.m */; };
+		38333DDD1DD7115400AA6BD4 /* SpotLightAPIUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 38333DDC1DD7115400AA6BD4 /* SpotLightAPIUtil.m */; };
+		38333DDF1DD71A9A00AA6BD4 /* CoreSpotlight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38333DDE1DD71A9A00AA6BD4 /* CoreSpotlight.framework */; };
 		383894451D1291D20014C8E9 /* Bitmap@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 383894431D1291D20014C8E9 /* Bitmap@2x.png */; };
 		383894461D1291D20014C8E9 /* Bitmap@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 383894441D1291D20014C8E9 /* Bitmap@3x.png */; };
 		3838944D1D15369B0014C8E9 /* free_order_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3838944B1D15369B0014C8E9 /* free_order_icon@2x.png */; };
@@ -2806,6 +2808,9 @@
 		382B416E1D6FF5F300CB902C /* LYBlackListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYBlackListViewController.m; sourceTree = "<group>"; };
 		382FB4781CD496BB001ABC49 /* LYDateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LYDateUtil.h; path = Apple/LYDateUtil.h; sourceTree = "<group>"; };
 		382FB4791CD496BB001ABC49 /* LYDateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LYDateUtil.m; path = Apple/LYDateUtil.m; sourceTree = "<group>"; };
+		38333DDB1DD7115400AA6BD4 /* SpotLightAPIUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotLightAPIUtil.h; sourceTree = "<group>"; };
+		38333DDC1DD7115400AA6BD4 /* SpotLightAPIUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotLightAPIUtil.m; sourceTree = "<group>"; };
+		38333DDE1DD71A9A00AA6BD4 /* CoreSpotlight.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreSpotlight.framework; path = System/Library/Frameworks/CoreSpotlight.framework; sourceTree = SDKROOT; };
 		383894431D1291D20014C8E9 /* Bitmap@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Bitmap@2x.png"; sourceTree = "<group>"; };
 		383894441D1291D20014C8E9 /* Bitmap@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Bitmap@3x.png"; sourceTree = "<group>"; };
 		3838944B1D15369B0014C8E9 /* free_order_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "free_order_icon@2x.png"; sourceTree = "<group>"; };
@@ -5249,6 +5254,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38333DDF1DD71A9A00AA6BD4 /* CoreSpotlight.framework in Frameworks */,
 				380F4FB21DC72E5A002F4BA8 /* StoreKit.framework in Frameworks */,
 				853EF50B1D5F305A00D4DEDB /* Photos.framework in Frameworks */,
 				15844C071BE22A8100247FBC /* CoreVideo.framework in Frameworks */,
@@ -6536,6 +6542,13 @@
 				381FEFF81C1672EF002A47BA /* DanPinCell.xib */,
 			);
 			name = cell;
+			sourceTree = "<group>";
+		};
+		38333DE01DD7250D00AA6BD4 /* Widget */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Widget;
 			sourceTree = "<group>";
 		};
 		384A54911D10FB4A008825ED /* 免费订台 */ = {
@@ -9973,6 +9986,7 @@
 		A5ADC49822ABDD17FA75BEBB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				38333DDE1DD71A9A00AA6BD4 /* CoreSpotlight.framework */,
 				380F4FB11DC72E5A002F4BA8 /* StoreKit.framework */,
 				853EF50A1D5F305A00D4DEDB /* Photos.framework */,
 				853EF5081D5F302200D4DEDB /* CoreLocation.framework */,
@@ -11217,6 +11231,7 @@
 		D764F0C71BA1BBCF001649D9 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				38333DE01DD7250D00AA6BD4 /* Widget */,
 				38E5D7AF1C1144C4004B49D2 /* CommonShow.h */,
 				38E5D7B01C1144C4004B49D2 /* CommonShow.m */,
 				AD106BC41C0ED0E9007F5FBA /* ColorFontStandard.h */,
@@ -11259,6 +11274,8 @@
 				D73652381BAEB2BF002541CE /* LYTableViewCellLayout.h */,
 				D7A1D41B1BC266CD00BCE47C /* LYUserLocation.h */,
 				D7A1D41C1BC266CD00BCE47C /* LYUserLocation.m */,
+				38333DDB1DD7115400AA6BD4 /* SpotLightAPIUtil.h */,
+				38333DDC1DD7115400AA6BD4 /* SpotLightAPIUtil.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -13087,6 +13104,7 @@
 				3879F25C1C0D32D100B72629 /* BitianTableViewCell.m in Sources */,
 				38FE0B8C1D9A5E9400CA6D3A /* LYCoinShopViewController.m in Sources */,
 				15E184A01BB8D20700681BB2 /* MyUtil.m in Sources */,
+				38333DDD1DD7115400AA6BD4 /* SpotLightAPIUtil.m in Sources */,
 				15E2408E1BB283BA0090D240 /* LYOrderBottomView.m in Sources */,
 				AD106BBD1C0DDEFF007F5FBA /* NSObject+MJProperty.m in Sources */,
 				D748BC7F1BA1CB35005AA996 /* LYCoreDataObject.m in Sources */,

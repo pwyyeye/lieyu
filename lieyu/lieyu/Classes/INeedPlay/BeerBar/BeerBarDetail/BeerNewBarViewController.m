@@ -194,8 +194,9 @@
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [_timer setFireDate:[NSDate distantFuture]];
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [effectView removeFromSuperview];
+    
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
 }
 
 #pragma mart --约束

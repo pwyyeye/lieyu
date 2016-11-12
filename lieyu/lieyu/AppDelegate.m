@@ -45,6 +45,7 @@
 #import "LYToPlayRestfulBusiness.h"
 #import "ZSBirthdayManagerViewController.h"
 #import "LYGiftMessage.h"
+#import "BeerNewBarViewController.h"
 
 #import "ZSManageHttpTool.h"
 #import "AddressBookModel.h"
@@ -97,7 +98,6 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource,UN
         _navShangHu = [[UINavigationController alloc]initWithRootViewController:maintViewController];
         app.window.rootViewController = _navShangHu;
     }
-    
     
     
     if(![MyUtil isEmptyString:[USER_DEFAULT objectForKey:@"desKey"]]){
@@ -256,6 +256,19 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource,UN
     
     [self initqiniuZhiBo];
     
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray * _Nullable))restorationHandler{
+    NSString *identifier = [userActivity.userInfo objectForKey:@"kCSSearchableItemActivityIdentifier"];
+    UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
+    [navigationController popToRootViewControllerAnimated:YES];
+    BeerNewBarViewController * controller = [[BeerNewBarViewController alloc] initWithNibName:@"BeerNewBarViewController" bundle:nil];
+    if([MyUtil isEmptyString:identifier]){
+        return NO;
+    }
+    controller.beerBarId = [NSNumber numberWithInt:[identifier intValue]];
+    [self.navigationController pushViewController:controller animated:YES];
     return YES;
 }
 

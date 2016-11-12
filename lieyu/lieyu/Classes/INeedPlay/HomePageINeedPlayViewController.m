@@ -71,6 +71,7 @@
 #import "ActivityDetailViewController.h"
 #import "LiveShowViewController.h"
 #import "BarTopicInfo.h"
+#import "SpotLightAPIUtil.h"
 
 #define PAGESIZE 20
 #define HOMEPAGE_MTA @"HOMEPAGE"
@@ -172,6 +173,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     [self createNavButton];
 }
 
@@ -1418,6 +1420,9 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         [LYUserHttpTool lyLocationCityGetStatusWithParams:dict complete:^(NSDictionary *dict) {
             if (dict) {
                 if ([[dict objectForKey:@"cityIsExist"] isEqualToString:@"1"]) {
+                    //城市更改以后，将apotlight搜索中的数据删除
+                    [[SpotLightAPIUtil shareInstance]deleteSpotLightItems];
+                    
                     [USER_DEFAULT setObject:[dict objectForKey:@"city"] forKey:@"LocationCityThisTime"];
                     [USER_DEFAULT setObject:[dict objectForKey:@"hasBar"] forKey:@"ThisTimeHasBar"];
                     [USER_DEFAULT setObject:[dict objectForKey:@"hasNightclub"] forKey:@"ThisTimeHasNightClub"];

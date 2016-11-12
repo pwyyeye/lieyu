@@ -20,6 +20,7 @@
 #import "HomepageBannerModel.h"
 #import "StrategyCommentModel.h"
 #import "ActivityModel.h"
+#import "SpotLightAPIUtil.h"
 
 @implementation LYHomePageHttpTool
 + (LYHomePageHttpTool *)shareInstance
@@ -898,6 +899,8 @@
         if ([errorCode isEqualToString:@"1"]) {
             NSArray *arrayRec = [JiuBaModel mj_objectArrayWithKeyValuesArray:[[response objectForKey:@"data"] objectForKey:@"recommendBarList"]];
             NSArray *arrayBar = [JiuBaModel mj_objectArrayWithKeyValuesArray:[[response objectForKey:@"data"] objectForKey:@"barList"]];
+            [[SpotLightAPIUtil shareInstance]addSearchItemsArray:arrayRec];
+            [[SpotLightAPIUtil shareInstance]addSearchItemsArray:arrayBar];
             NSDictionary *result = @{@"recommendBarList":arrayRec,
                                      @"barList":arrayBar};
             complete(result);
