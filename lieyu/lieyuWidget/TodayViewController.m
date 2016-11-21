@@ -177,10 +177,10 @@
 }
 
 - (void)getStrategyData{
-    NSDictionary *dict = @{@"start":[NSString stringWithFormat:@"%d",1],
-                           @"limit":[NSString stringWithFormat:@"%d",4]};
+    NSDictionary *dict = @{@"page":@1};
     _dataIndex = 2 ;
-    [self PostGetData:LY_GET_STRATEGYLIST Params:dict];
+//    [self PostGetData:LY_GET_STRATEGYLIST Params:dict];
+    [self PostGetData:@"app/api/strategy/list" Params:dict];
 }
 
 - (void)initLiveshowButton{
@@ -245,6 +245,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString *identifier;
+    NSString *joinNum;
+    NSString *roomImage;
     if (_dataIndex == 0 || _dataIndex == 1) {
         if (_dataArray.count > indexPath.row) {
             identifier = [[_dataArray objectAtIndex:indexPath.row] objectForKey:@"barid"];
@@ -256,18 +258,25 @@
     }else if (_dataIndex == 3){
         if (_dataArray.count > indexPath.row) {
             identifier = [[_dataArray objectAtIndex:indexPath.row] objectForKey:@"roomId"];
+            joinNum = [[_dataArray objectAtIndex:indexPath.row] objectForKey:@"joinNum"];
+            roomImage = [[_dataArray objectAtIndex:indexPath.row] objectForKey:@"roomImg"];
         }
     }
-    [self openURLContainingAPP];
+    [self openURLContainingAPPWith:identifier joinNum:joinNum image:roomImage];
 }
 
 //通过openURL的方式启动Containing APP
-- (void)openURLContainingAPP
+- (void)openURLContainingAPPWith:(NSString *)identifier joinNum:(NSString *)joinNum image:(NSString *)roomImg
 {
-    [self.extensionContext openURL:[NSURL URLWithString:[NSString stringWithFormat:@"lieyu://todayWidget?dataIndex=%ld&identifier=123456",_dataIndex]]
-                 completionHandler:^(BOOL success) {
-                     NSLog(@"open url result:%d",success);
-                 }];
+    if (joinNum.length > 0 && roomImg.length > 0) {
+        [self.extensionContext openURL:[NSURL URLWithString:[NSString stringWithFormat:@"lieyu://todayWidget?dataIndex=%ld&identifier=%@&joinNum=%@&roomImg=%@",_dataIndex,identifier,joinNum,roomImg]] completionHandler:^(BOOL success) {
+            
+        }];
+    }else{
+        [self.extensionContext openURL:[NSURL URLWithString:[NSString stringWithFormat:@"lieyu://todayWidget?dataIndex=%ld&identifier=%@",_dataIndex,identifier]] completionHandler:^(BOOL success) {
+            
+        }];
+    }
 }
 
 #pragma mark - widget展示
@@ -349,6 +358,9 @@
         NSData *bodyData = [bodyStr dataUsingEncoding:NSUTF8StringEncoding];
         //设置请求体
         [request setHTTPBody:bodyData];
+    }else{
+        [request setHTTPBody:nil];
+    }
         NSURLSession *session = [NSURLSession sharedSession];
         //4.task
         NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -360,7 +372,6 @@
         }];
         //5.
         [task resume];
-    }
 }
 
 - (void)setViewWithData:(NSDictionary *)dict{
@@ -381,7 +392,7 @@
                 });
             }
         }else if (_dataIndex == 2) {
-            _dataArray = [NSArray arrayWithArray:[dict objectForKey:@"data"]];
+            _dataArray = [NSArray arrayWithArray:[[dict objectForKey:@"data"] objectForKey:@"strategyList"]];
             if (_dataArray.count > 0) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     _tableView.hidden = NO;

@@ -51,7 +51,6 @@
 #import "AlertBlock.h"
 #import "EScrollerView.h"
 #import "HomepageLiveTableViewCell.h"
-#import "LiveShowListCell.h"
 #import "HomepageHotBarsTableViewCell.h"
 #import "HomePageCollectionViewCell.h"
 #import "HomepageBarDetailTableViewCell.h"
@@ -72,6 +71,7 @@
 #import "LiveShowViewController.h"
 #import "BarTopicInfo.h"
 #import "SpotLightAPIUtil.h"
+#import "LiveListCell.h"
 
 #define PAGESIZE 20
 #define HOMEPAGE_MTA @"HOMEPAGE"
@@ -399,7 +399,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             tableView.tag = 2;
         }
         //为tableview注册好cell      ＊＊＊＊＊＊＊＊＊待写＊＊＊＊＊＊＊＊＊＊
-        [tableView registerNib:[UINib nibWithNibName:@"LiveShowListCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"liveShowListID"];
+        [tableView registerNib:[UINib nibWithNibName:@"LiveListCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"LiveListCellID"];
         [tableView registerNib:[UINib nibWithNibName:@"HomepageLiveTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"HomepageLiveTableViewCell"];
         if (_tableViewAmount > 1){
             //有酒吧或夜店列表
@@ -972,7 +972,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
             [cell.recentButton addTarget:self action:@selector(gotoLiveList:) forControlEvents:UIControlEventTouchUpInside];
             return cell;
         }else if (indexPath.section == 1) {
-            LiveShowListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"liveShowListID" forIndexPath:indexPath];
+            LiveListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LiveListCellID" forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             LYLiveShowListModel *model = [((NSMutableArray *)[_liveDict objectForKey:@"liveList"]) objectAtIndex:indexPath.row];
             cell.listModel = model;

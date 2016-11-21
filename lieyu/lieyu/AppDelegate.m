@@ -46,6 +46,8 @@
 #import "ZSBirthdayManagerViewController.h"
 #import "LYGiftMessage.h"
 #import "BeerNewBarViewController.h"
+#import "StrategyDetailViewController.h"
+#import "WatchLiveShowViewController.h"
 
 #import "ZSManageHttpTool.h"
 #import "AddressBookModel.h"
@@ -851,6 +853,8 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         if ([[[url absoluteString]substringWithRange:NSMakeRange(0, 20)] containsString:@"lieyu://todayWidget?"]) {
             NSString *dataIndex;
             NSString *identifier;
+            NSString *joinNum;
+            NSString *roomImage;
             NSArray *array1 = [[url absoluteString] componentsSeparatedByString:@"?"];
             if (array1.count > 1) {
                 NSArray *array2 = [[array1 objectAtIndex:1]componentsSeparatedByString:@"&"];
@@ -866,15 +870,67 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
                         identifier = [pairArray objectAtIndex:1];
                     }
                 }
-                [self startAppWith:dataIndex id:identifier];
+                if (array2.count > 2) {
+                    NSArray *pairArray = [[array2 objectAtIndex:2]componentsSeparatedByString:@"="];
+                    if (pairArray.count > 1) {
+                        joinNum = [pairArray objectAtIndex:1];
+                    }
+                }
+                if (array2.count > 3) {
+                    NSArray *pairArray = [[array2 objectAtIndex:3]componentsSeparatedByString:@"="];
+                    if (pairArray.count > 2) {
+                        roomImage = [pairArray objectAtIndex:1];
+                    }
+                }
+                [self startAppWith:dataIndex id:identifier number:joinNum image:roomImage];
             }
         }
     }
     return YES;
 }
 
-- (void)startAppWith:(NSString *)dataIndex id:(NSString *)identifier{
-    NSLog(@"dataIndex:%@-----identifier:%@",dataIndex,identifier);
+- (void)startAppWith:(NSString *)dataIndex id:(NSString *)identifier number:(NSString *)joinNum image:(NSString *)roomImg{
+    if ([dataIndex isEqualToString:@"0"] || [dataIndex isEqualToString:@"1"]) {
+        BeerNewBarViewController * controller = [[BeerNewBarViewController alloc] initWithNibName:@"BeerNewBarViewController" bundle:nil];
+        if(![MyUtil isEmptyString:identifier]){
+            controller.beerBarId = [NSNumber numberWithInt:[identifier intValue]];
+            [self.navigationController pushViewController:controller animated:YES];
+        }
+    }else if ([dataIndex isEqualToString:@"2"]){
+        StrategyDetailViewController *strategyDetailVC = [[StrategyDetailViewController alloc]initWithNibName:@"StrategyDetailViewController" bundle:nil];
+        strategyDetailVC.strategyID = identifier;
+        [self.navigationController pushViewController:strategyDetailVC animated:YES];
+    }else if ([dataIndex isEqualToString:@"3"]){
+        WatchLiveShowViewController *watchLiveVC = [[WatchLiveShowViewController alloc] init];
+        NSDictionary *dict = @{@"roomid":identifier};
+        __weak __typeof(self) weakSelf = self;
+        [LYFriendsHttpTool getLiveShowRoomWithParams:dict complete:^(NSDictionary *Arr) {
+            if ([Arr[@"roomType"] isEqualToString:@"live"]) {
+                watchLiveVC.contentURL = Arr[@"liveRtmpUrl"];
+                watchLiveVC.chatRoomId = Arr[@"chatroomid"];
+                watchLiveVC.livestatusNow = Arr[@"livestatus"];
+            } else {
+                watchLiveVC.contentURL = Arr[@"playbackURL"];
+                watchLiveVC.playbackRoomId = Arr[@"chatroomid"];
+            }
+            if ([Arr[@"coinBoolean"] isEqualToString:@"4"]) {
+                watchLiveVC.isCoin = NO;
+            } else {
+                watchLiveVC.isCoin = YES;
+            }
+            //可能还缺了一些东西
+            watchLiveVC.shareText = Arr[@"shareTitle"];
+            watchLiveVC.hostUser = Arr[@"roomHostUser"];
+            if (![MyUtil isEmptyString:joinNum]) {
+                watchLiveVC.joinNum = joinNum;
+            }
+            if (![MyUtil isEmptyString:roomImg]) {
+                NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:roomImg]];
+                watchLiveVC.shareIamge = [UIImage imageWithData:data];
+            }
+            [weakSelf.navigationController pushViewController:watchLiveVC animated:YES];
+        }];
+    }
 }
 
 - (BOOL)application:(UIApplication *)application
