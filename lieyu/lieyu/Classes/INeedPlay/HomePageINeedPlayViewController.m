@@ -203,6 +203,8 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);
     [app startLocation];
     
+    [[[NSUserDefaults alloc]initWithSuiteName:@"group.lyGroup"] setObject:[USER_DEFAULT objectForKey:@"ChooseCityLastTime"] forKey:@"group.ChooseCityLastTime"];
+    
     //初始化
     [self createUI];
     [self getDataLocalAndReload];
@@ -306,6 +308,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                 [USER_DEFAULT setObject:[USER_DEFAULT objectForKey:@"LocationCityThisTime"] forKey:@"ChooseCityLastTime"];
                 [USER_DEFAULT setObject:[USER_DEFAULT objectForKey:@"ThisTimeHasBar"] forKey:@"LastCityHasBar"];
                 [USER_DEFAULT setObject:[USER_DEFAULT objectForKey:@"ThisTimeHasNightClub"] forKey:@"LastCityHasNightClub"];
+                [[[NSUserDefaults alloc]initWithSuiteName:@"group.lyGroup"] setObject:[USER_DEFAULT objectForKey:@"ChooseCityLastTime"] forKey:@"group.ChooseCityLastTime"];
                 //跳转。获取数据&&排布页面根据当前页面
                 [weakSelf emptyUserDefault];
                 [weakSelf createUI];
@@ -1426,6 +1429,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
                     [USER_DEFAULT setObject:[dict objectForKey:@"city"] forKey:@"LocationCityThisTime"];
                     [USER_DEFAULT setObject:[dict objectForKey:@"hasBar"] forKey:@"ThisTimeHasBar"];
                     [USER_DEFAULT setObject:[dict objectForKey:@"hasNightclub"] forKey:@"ThisTimeHasNightClub"];
+                    [[[NSUserDefaults alloc]initWithSuiteName:@"group.lyGroup"] setObject:[dict objectForKey:@"city"] forKey:@"group.ChooseCityLastTime"];
                 }else{
                     [USER_DEFAULT setObject:@"" forKey:@"LocationCityThisTime"];
                     [USER_DEFAULT setObject:@"0" forKey:@"ThisTimeHasBar"];
