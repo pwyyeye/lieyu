@@ -8,16 +8,16 @@
 
 #import "LiveListViewController.h"
 #import "LiveShowListCell.h"
+#import "LiveListCell.h"
 #import "LiveShowViewController.h"
 #import "WatchLiveShowViewController.h"
 #import "LYFriendsHttpTool.h"
 #import "LYLiveShowListModel.h"
 #import "roomHostUser.h"
 #import "HotMenuButton.h"
-#import "LiveShowListCell.h"
 
-
-static NSString *liveShowListID = @"liveShowListID";
+static NSString *liveListCellID = @"LiveListCellID";
+//static NSString *liveShowListID = @"liveShowListID";
 @interface LiveListViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 
 {
@@ -279,7 +279,9 @@ static NSString *liveShowListID = @"liveShowListID";
     [_scrollViewForTableView addSubview:_hotTableView];
     _hotTableView.delegate = self;
     _hotTableView.dataSource  = self;
-    [_hotTableView registerNib:[UINib nibWithNibName:@"LiveShowListCell" bundle:nil] forCellReuseIdentifier:liveShowListID];
+//    [_hotTableView registerNib:[UINib nibWithNibName:@"LiveShowListCell" bundle:nil] forCellReuseIdentifier:liveShowListID];
+    [_hotTableView registerNib:[UINib nibWithNibName:@"LiveListCell" bundle:nil] forCellReuseIdentifier:liveListCellID];
+
     _newTablwView = [[UITableView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:UITableViewStylePlain];
     _newTablwView.tag = 1;
     _newTablwView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -289,8 +291,9 @@ static NSString *liveShowListID = @"liveShowListID";
     [_scrollViewForTableView addSubview:_newTablwView];
     _newTablwView.delegate = self;
     _newTablwView.dataSource  = self;
-    [_newTablwView registerNib:[UINib nibWithNibName:@"LiveShowListCell" bundle:nil] forCellReuseIdentifier:liveShowListID];
-    
+//    [_newTablwView registerNib:[UINib nibWithNibName:@"LiveShowListCell" bundle:nil] forCellReuseIdentifier:liveShowListID];
+    [_newTablwView registerNib:[UINib nibWithNibName:@"LiveListCell" bundle:nil] forCellReuseIdentifier:liveListCellID];
+
     
 }
 
@@ -564,10 +567,11 @@ static NSString *liveShowListID = @"liveShowListID";
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    LiveShowListCell *cell = [tableView dequeueReusableCellWithIdentifier:liveShowListID forIndexPath:indexPath];
-    
+//    LiveShowListCell *cell = [tableView dequeueReusableCellWithIdentifier:liveShowListID forIndexPath:indexPath];
+    LiveListCell *cell = [tableView dequeueReusableCellWithIdentifier:liveListCellID forIndexPath:indexPath];
+
     if (!cell) {
-        cell = [[LiveShowListCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:liveShowListID];
+        cell = [[LiveListCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:liveListCellID];
     }
     LYLiveShowListModel *model = [LYLiveShowListModel new];
     if (tableView == (UITableView *)_tableViewArray[0]) {//热门
@@ -586,7 +590,7 @@ static NSString *liveShowListID = @"liveShowListID";
         cell.deleteButton.hidden = YES;
     }
     
-    [cell sendSubviewToBack:cell.backImageView];
+//    [cell sendSubviewToBack:cell.backImageView];
     return cell;
 }
 

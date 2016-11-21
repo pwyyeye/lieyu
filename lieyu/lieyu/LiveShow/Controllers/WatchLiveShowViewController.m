@@ -366,7 +366,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     _CAEmitterView = [[UIView alloc] initWithFrame:self.view.bounds];
     _CAEmitterView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:_CAEmitterView];
-    _heartSize = 36;
+    _heartSize = 46;
     //返回按钮
     _backButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
     _backButton.frame = CGRectMake(SCREEN_WIDTH - 50, 30, 40, 40);

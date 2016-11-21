@@ -14,7 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *userImageView;
 @property (weak, nonatomic) IBOutlet UIButton *userimageBtn;
 
-@property (weak, nonatomic) IBOutlet UIButton *liveStatus;//正在直播
+@property (weak, nonatomic) IBOutlet UIButton *commitInformation;//编辑资料
 
 @property (weak, nonatomic) IBOutlet UIButton *checkCollectButton;
 @property (weak, nonatomic) IBOutlet UIImageView *careNumberImage;

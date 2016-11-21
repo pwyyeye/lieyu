@@ -27,6 +27,7 @@
 #import "checkUnpassedViewController.h"
 #import "LYFriendsHttpTool.h"
 #import "LYUserDetailController.h"
+#import "LYMyFriendDetailViewController.h"
 
 @implementation LYUserCenterHeader{
     UIVisualEffectView *_effctView ;
@@ -465,11 +466,13 @@
 #pragma mark - 按钮事件
 - (IBAction)gotoSetting:(id)sender {
     //统计我的页面的选择
-    NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"修改信息"};
+    NSDictionary *dict1 = @{@"actionName":@"跳转",@"pageName":@"我的主页面",@"titleName":@"个人信息"};
     [MTA trackCustomKeyValueEvent:@"LYClickEvent" props:dict1];
     
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    LYUserDetailController *detailViewController = [[LYUserDetailController alloc]init];
+//    LYUserDetailController *detailViewController = [[LYUserDetailController alloc]init];
+    LYMyFriendDetailViewController *detailViewController = [[LYMyFriendDetailViewController alloc]init];
+    detailViewController.userID = [NSString stringWithFormat:@"%d",app.userModel.userid];
     [app.navigationController pushViewController:detailViewController animated:YES];
 }
 
