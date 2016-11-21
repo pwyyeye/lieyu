@@ -1152,7 +1152,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
         if (indexPath.section == 0) {
             return 67;
         }else if (indexPath.section == 1){
-            return SCREEN_WIDTH * 0.71;
+            return SCREEN_HEIGHT * 0.67;
         }else{
             return 0;
         }
