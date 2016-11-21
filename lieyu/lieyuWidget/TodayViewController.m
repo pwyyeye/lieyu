@@ -58,6 +58,7 @@
     }else{
         self.preferredContentSize = CGSizeMake(SCREEN_WIDTH, 360);
     }
+    NSLog(@"%@",[[[NSUserDefaults alloc]initWithSuiteName:@"group.lyGroup"]objectForKey:@"group.ChooseCityLastTime"]);
         _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 400) style:UITableViewStyleGrouped];
         _tableView.delegate = self;
         _tableView.dataSource = self;
@@ -142,7 +143,7 @@
     NSDictionary *dict = @{@"p":@1,
                            @"subids":@"2",
                            @"per":@4,
-                           @"city":[[[NSUserDefaults standardUserDefaults] objectForKey:@"ChooseCityLastTime"] length] > 0 ? [[NSUserDefaults standardUserDefaults] objectForKey:@"ChooseCityLastTime"] : @"上海"};
+                           @"city":[[[[NSUserDefaults alloc]initWithSuiteName:@"group.lyGroup"]objectForKey:@"group.ChooseCityLastTime"] length] > 0 ? [[[NSUserDefaults alloc]initWithSuiteName:@"group.lyGroup"]objectForKey:@"group.ChooseCityLastTime"] : @"上海"};
     _dataIndex = 0 ;
     [self PostGetData:kHttpAPI_LY_TOPLAY_HOMELIST Params:dict];
 }
@@ -161,7 +162,7 @@
     NSDictionary *dict = @{@"p":@1,
                            @"subids":@"1,6,7",
                            @"per":@4,
-                           @"city":[[[NSUserDefaults standardUserDefaults] objectForKey:@"ChooseCityLastTime"] length] > 0 ? [[NSUserDefaults standardUserDefaults] objectForKey:@"ChooseCityLastTime"] : @"上海"};
+                           @"city":[[[[NSUserDefaults alloc]initWithSuiteName:@"group.lyGroup"]objectForKey:@"group.ChooseCityLastTime"] length] > 0 ? [[[NSUserDefaults alloc]initWithSuiteName:@"group.lyGroup"]objectForKey:@"group.ChooseCityLastTime"] : @"上海"};
     _dataIndex = 1 ;
     [self PostGetData:kHttpAPI_LY_TOPLAY_HOMELIST Params:dict];
 }
