@@ -16,7 +16,6 @@
 #import "LYFriendsHttpTool.h"
 #import "LPUserLoginViewController.h"
 
-
 @interface MainTabbarViewController ()
 <
     UITabBarControllerDelegate,
@@ -160,8 +159,8 @@
 {
 //    NSArray * aryImages = @[@"iNeedPlay_normal",@"PlayTogether_normal",@"wanyouquan_normal",@"Find_normal",@"Mine_normal"];
 //    NSArray * selectedImages = @[@"iNeedPlay_selected",@"PlayTogether_selected",@"wanyouquan_selected",@"Find_selected",@"Mine_selected"];
-    NSArray * aryImages = @[@"iNeedPlay_normal",@"wantan_normal",@"Mine_normal"];
-    NSArray * selectedImages = @[@"iNeedPlay_selected",@"wantan_select",@"Mine_selected"];
+    NSArray * aryImages = @[@"iNeedPlay_normal",@"wanyouquan_normal",@"Mine_normal"];
+    NSArray * selectedImages = @[@"iNeedPlay_selected",@"wanyouquan_selected",@"Mine_selected"];
 
     
     [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:RGBA(153, 50, 204, 1.0), NSForegroundColorAttributeName,[UIFont systemFontOfSize:10],NSFontAttributeName,nil] forState:UIControlStateSelected];

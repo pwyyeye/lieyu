@@ -26,6 +26,7 @@
 #import "LYFriendsHttpTool.h"
 #import "LYLiveShowListModel.h"
 #import "LYMyFriendLiveListViewController.h"
+#import "LYUserDetailController.h"
 
 @interface LYMyFriendDetailViewController ()
 {
@@ -83,6 +84,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _scrollView.hidden = YES;
+    _commitInformation.hidden = YES;
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.userImageView.layer.masksToBounds =YES;
@@ -385,19 +387,28 @@
             image.clipsToBounds = YES;
         }
     }
-    [_liveStatus addTarget:self action:@selector(liveSelfList:) forControlEvents:(UIControlEventTouchUpInside)];
-    if (_liveArray.count != 0) {
-        for (LYLiveShowListModel *model in _liveArray) {
-            if ([model.roomType isEqualToString:@"playback"]) {
-                self.liveStatus.hidden = YES;
-            } else {
-                self.liveStatus.hidden = NO;
-            }
-        }
-    } else {
-        self.liveStatus.hidden = YES;
+    if (_liveArray.count == 0) {
         self.zhiboButton.userInteractionEnabled = NO;
     }
+    [_commitInformation addTarget:self action:@selector(commitInformationClick) forControlEvents:UIControlEventTouchUpInside];
+    if ([MyUtil isEmptyString:self.imUserId]) {
+        if ([self.userID intValue] == self.userModel.userid) {
+            _commitInformation.hidden = NO;
+        }else{
+            _commitInformation.hidden = YES;
+        }
+    }else{
+        if ([self.imUserId isEqualToString:self.userModel.imuserId]) {
+            _commitInformation.hidden = NO;
+        }else{
+            _commitInformation.hidden = YES;
+        }
+    }
+}
+
+- (void)commitInformationClick{
+    LYUserDetailController *detailVC = [[LYUserDetailController alloc]init];
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 
 -(void)getData{

@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -25,6 +25,7 @@
                 <outlet property="checkCollectButton" destination="gqn-OR-sbi" id="vjY-IL-aVr"/>
                 <outlet property="checkTrendsBtn" destination="ObI-ra-EL8" id="MMU-M4-yZE"/>
                 <outlet property="collectButton" destination="y4b-ZI-d8D" id="rXd-um-1aL"/>
+                <outlet property="commitInformation" destination="Ham-GD-Tz7" id="N0E-cc-Tb1"/>
                 <outlet property="fansOrCaresLabel" destination="Dwv-sk-Lye" id="b1M-9Q-z9S"/>
                 <outlet property="fansOrCaresNumLabel" destination="pBP-8P-Gbn" id="z4f-Jn-A9l"/>
                 <outlet property="freeBookButton" destination="F2p-fM-a4N" id="ThM-1d-SkR"/>
@@ -37,7 +38,6 @@
                 <outlet property="liveImageView_2" destination="h46-0i-Gk9" id="bCs-Vv-aFv"/>
                 <outlet property="liveImageView_3" destination="d0I-OJ-jja" id="X1b-YY-niz"/>
                 <outlet property="liveImageView_4" destination="UnX-FW-dDg" id="5ol-QP-pB4"/>
-                <outlet property="liveStatus" destination="Ham-GD-Tz7" id="KtO-Ed-yKI"/>
                 <outlet property="namelal" destination="7jR-Td-yoH" id="I8H-lo-x5s"/>
                 <outlet property="onlineBookButton" destination="k7k-WX-ciI" id="8UX-gf-X4D"/>
                 <outlet property="popularityNumberLabel" destination="b3G-mX-QUX" id="f6G-QJ-V3w"/>
@@ -200,7 +200,7 @@
                                     <constraint firstAttribute="width" constant="70" id="iNY-hK-UsM"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <state key="normal" title="正在直播">
+                                <state key="normal" title="编辑资料">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>

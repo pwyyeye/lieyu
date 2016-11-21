@@ -8,11 +8,12 @@
 
 #import "LYMyFriendLiveListViewController.h"
 #import "LiveShowListCell.h"
+#import "LiveListCell.h"
 #import "LYFriendsHttpTool.h"
 #import "WatchLiveShowViewController.h"
 
 static NSString *liveShowListID = @"liveShowListID";
-
+static NSString *liveListCellID = @"livelistCellID";
 @interface LYMyFriendLiveListViewController () <UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *_mytableView;
@@ -40,7 +41,9 @@ static NSString *liveShowListID = @"liveShowListID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     _currentHotPage = 1 ;
-    [_mytableView registerNib:[UINib nibWithNibName:@"LiveShowListCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:liveShowListID];
+//    [_mytableView registerNib:[UINib nibWithNibName:@"LiveShowListCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:liveShowListID];
+    [_mytableView registerNib:[UINib nibWithNibName:@"LiveListCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:liveListCellID];
+
 }
 
 #pragma mark -- 配置表
@@ -50,7 +53,9 @@ static NSString *liveShowListID = @"liveShowListID";
     _mytableView.delegate = self;
     _mytableView.contentInset = UIEdgeInsetsMake(0, 0, 65, 0);
     _mytableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [_mytableView registerNib:[UINib nibWithNibName:@"LiveShowListCell" bundle:nil] forCellReuseIdentifier:liveShowListID];
+//    [_mytableView registerNib:[UINib nibWithNibName:@"LiveShowListCell" bundle:nil] forCellReuseIdentifier:liveShowListID];
+    [_mytableView registerNib:[UINib nibWithNibName:@"LiveListCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:liveListCellID];
+
     [self.view addSubview:_mytableView];
 }
 
@@ -106,12 +111,7 @@ static NSString *liveShowListID = @"liveShowListID";
 }
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    LiveShowListCell *cell = [tableView dequeueReusableCellWithIdentifier:liveShowListID forIndexPath:indexPath];
-//    if (!cell) {
-//        cell = [[LiveShowListCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:liveShowListID];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//    }
-    LiveShowListCell *cell = [_mytableView dequeueReusableCellWithIdentifier:liveShowListID forIndexPath:indexPath];
+    LiveListCell *cell = [_mytableView dequeueReusableCellWithIdentifier:liveListCellID forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     LYLiveShowListModel *model = [LYLiveShowListModel new];
     if (_liveArray.count > indexPath.row) {
