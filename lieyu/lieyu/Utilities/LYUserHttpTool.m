@@ -191,9 +191,9 @@
                 
                 //                mobile
                 //                password
-                [[NSUserDefaults standardUserDefaults] setObject:params[@"mobile"] forKey:@"username"];
-                [[NSUserDefaults standardUserDefaults] setObject:params[@"password"] forKey:@"password"];
-                [[NSUserDefaults standardUserDefaults] synchronize];
+                [USER_DEFAULT setObject:params[@"mobile"] forKey:@"username"];
+                [USER_DEFAULT setObject:params[@"password"] forKey:@"password"];
+                [USER_DEFAULT synchronize];
             });
             [app stopLoading];
         }else{
@@ -1195,8 +1195,8 @@
         if ([code isEqualToString:@"1"]) {
             NSArray *jiubaArray = [JiuBaModel mj_objectArrayWithKeyValuesArray:[response objectForKey:@"data"]];
             compelte(jiubaArray);
-            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"NEEDGETLIKE"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
+            [USER_DEFAULT setBool:NO forKey:@"NEEDGETLIKE"];
+            [USER_DEFAULT synchronize];
         }
     } failure:^(NSError *err) {
         
@@ -1210,8 +1210,8 @@
         if ([code isEqualToString:@"1"]) {
             NSArray *jiubaArray = [JiuBaModel mj_objectArrayWithKeyValuesArray:[response objectForKey:@"data"]];
             compelte(jiubaArray);
-            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"NEEDGETCOLLECT"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
+            [USER_DEFAULT setBool:NO forKey:@"NEEDGETCOLLECT"];
+            [USER_DEFAULT synchronize];
         }
     } failure:^(NSError *err) {
         

@@ -88,7 +88,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource,UN
     _navigationController= (UINavigationController *)self.window.rootViewController;
     //    _navigationController.delegate = self;
     
-    BOOL shanghuban = [[NSUserDefaults standardUserDefaults] boolForKey:@"shanghuban"];
+    BOOL shanghuban = [USER_DEFAULT boolForKey:@"shanghuban"];
     
     if(shanghuban){
         AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -232,7 +232,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource,UN
     
     NSString *username=[USER_DEFAULT objectForKey:@"username"];
     NSString *password=[USER_DEFAULT objectForKey:@"pass"];
-    NSString *openID = [[NSUserDefaults standardUserDefaults] objectForKey:@"OPENIDSTR"];
+    NSString *openID = [USER_DEFAULT objectForKey:@"OPENIDSTR"];
     
     if((([MyUtil isEmptyString:username] || [MyUtil isEmptyString:password]) && [MyUtil isEmptyString:openID])){
 //        LPUserLoginViewController *login=[[LPUserLoginViewController alloc] initWithNibName:@"LPUserLoginViewController" bundle:nil];
@@ -841,8 +841,40 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 
 
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
-    
+    NSLog(@"%@",url);
     return [WXApi handleOpenURL:url delegate:[SingletonTenpay singletonTenpay]];
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options{
+//    lieyu://todayWidget?     20
+    if ([url absoluteString].length > 20) {
+        if ([[[url absoluteString]substringWithRange:NSMakeRange(0, 20)] containsString:@"lieyu://todayWidget?"]) {
+            NSString *dataIndex;
+            NSString *identifier;
+            NSArray *array1 = [[url absoluteString] componentsSeparatedByString:@"?"];
+            if (array1.count > 1) {
+                NSArray *array2 = [[array1 objectAtIndex:1]componentsSeparatedByString:@"&"];
+                if (array2.count) {
+                    NSArray *pairArray = [[array2 objectAtIndex:0] componentsSeparatedByString:@"="];
+                    if (pairArray.count > 1) {
+                        dataIndex = [pairArray objectAtIndex:1];
+                    }
+                }
+                if (array2.count > 1) {
+                    NSArray *pairArray = [[array2 objectAtIndex:1] componentsSeparatedByString:@"="];
+                    if (pairArray.count > 1) {
+                        identifier = [pairArray objectAtIndex:1];
+                    }
+                }
+                [self startAppWith:dataIndex id:identifier];
+            }
+        }
+    }
+    return YES;
+}
+
+- (void)startAppWith:(NSString *)dataIndex id:(NSString *)identifier{
+    NSLog(@"dataIndex:%@-----identifier:%@",dataIndex,identifier);
 }
 
 - (BOOL)application:(UIApplication *)application
@@ -850,10 +882,6 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation
 {
-    NSLog(@"sourceApplication: %@", sourceApplication);
-    NSLog(@"URL scheme:%@", [url scheme]);
-    NSLog(@"URL query: %@", [url query]);
-    
     if([sourceApplication isEqualToString:@"com.tencent.mqq"]){
         return [TencentOAuth HandleOpenURL:url];
     }
@@ -885,8 +913,8 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         if([MyUtil isEmptyString:[url query]]){
             return NO;
         }else if(![MyUtil isEmptyString:code]){
-            [[NSUserDefaults standardUserDefaults] setObject:code forKey:@"weixinCode"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
+            [USER_DEFAULT setObject:code forKey:@"weixinCode"];
+            [USER_DEFAULT synchronize];
             [ [NSNotificationCenter defaultCenter] postNotificationName:@"weixinCode" object:nil];
             return [WXApi handleOpenURL:url delegate:self];
         }else{//如果是微信支付回来 带参数
@@ -1043,7 +1071,7 @@ didReceiveLocalNotification:(UILocalNotification *)notification {
         if (buttonIndex == 1) {
             //去看看
             ZSBirthdayManagerViewController *birthdayManagerVC =[[ZSBirthdayManagerViewController alloc] init];
-            BOOL shanghuban = [[NSUserDefaults standardUserDefaults] boolForKey:@"shanghuban"];
+            BOOL shanghuban = [USER_DEFAULT boolForKey:@"shanghuban"];
             if(shanghuban){
                 [_navShangHu pushViewController:birthdayManagerVC animated:YES];
             }else{

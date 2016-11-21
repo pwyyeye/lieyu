@@ -318,7 +318,6 @@
 		380659E61C56562D003094C9 /* ManagerChooseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 380659E51C56562D003094C9 /* ManagerChooseButton.m */; };
 		380659E81C565646003094C9 /* ManagerChooseButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380659E71C565646003094C9 /* ManagerChooseButton.xib */; };
 		3807B3331C7DB4BE001C5323 /* LPLoginInView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3807B3321C7DB4BE001C5323 /* LPLoginInView.m */; };
-		380F4FB21DC72E5A002F4BA8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 380F4FB11DC72E5A002F4BA8 /* StoreKit.framework */; };
 		381156531D8699C9003FA828 /* businessSuhe@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 381156511D8699C9003FA828 /* businessSuhe@2x.png */; };
 		381156541D8699C9003FA828 /* businessSuhe@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 381156521D8699C9003FA828 /* businessSuhe@3x.png */; };
 		381156C61D88EF56003FA828 /* ScanBackGround@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 381156C41D88EF56003FA828 /* ScanBackGround@2x.png */; };
@@ -371,6 +370,13 @@
 		382FB47A1CD496BB001ABC49 /* LYDateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 382FB4791CD496BB001ABC49 /* LYDateUtil.m */; };
 		38333DDD1DD7115400AA6BD4 /* SpotLightAPIUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 38333DDC1DD7115400AA6BD4 /* SpotLightAPIUtil.m */; };
 		38333DDF1DD71A9A00AA6BD4 /* CoreSpotlight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38333DDE1DD71A9A00AA6BD4 /* CoreSpotlight.framework */; };
+		38333DE71DD7275600AA6BD4 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38333DE61DD7275600AA6BD4 /* NotificationCenter.framework */; };
+		38333DEB1DD7275600AA6BD4 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38333DEA1DD7275600AA6BD4 /* TodayViewController.m */; };
+		38333DEE1DD7275600AA6BD4 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38333DEC1DD7275600AA6BD4 /* MainInterface.storyboard */; };
+		38333DF21DD7275600AA6BD4 /* lieyuWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 38333DE51DD7275600AA6BD4 /* lieyuWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		38333DF71DD729BA00AA6BD4 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38333DE61DD7275600AA6BD4 /* NotificationCenter.framework */; };
+		38333DFB1DD95FF000AA6BD4 /* TodayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38333DF91DD95FF000AA6BD4 /* TodayTableViewCell.m */; };
+		38333DFC1DD95FF000AA6BD4 /* TodayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38333DFA1DD95FF000AA6BD4 /* TodayTableViewCell.xib */; };
 		383894451D1291D20014C8E9 /* Bitmap@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 383894431D1291D20014C8E9 /* Bitmap@2x.png */; };
 		383894461D1291D20014C8E9 /* Bitmap@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 383894441D1291D20014C8E9 /* Bitmap@3x.png */; };
 		3838944D1D15369B0014C8E9 /* free_order_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3838944B1D15369B0014C8E9 /* free_order_icon@2x.png */; };
@@ -2168,6 +2174,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		38333DF01DD7275600AA6BD4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AD8899AE1B9AFE61007BCC7C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 38333DE41DD7275600AA6BD4;
+			remoteInfo = lieyuWidget;
+		};
 		AD8899D31B9AFE62007BCC7C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AD8899AE1B9AFE61007BCC7C /* Project object */;
@@ -2176,6 +2189,20 @@
 			remoteInfo = lieyu;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		38333DF61DD7275600AA6BD4 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				38333DF21DD7275600AA6BD4 /* lieyuWidget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		10D675245266E25FB0FA12D2 /* Pods-lieyu.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lieyu.debug.xcconfig"; path = "Pods/Target Support Files/Pods-lieyu/Pods-lieyu.debug.xcconfig"; sourceTree = "<group>"; };
@@ -2714,7 +2741,6 @@
 		380659E71C565646003094C9 /* ManagerChooseButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ManagerChooseButton.xib; sourceTree = "<group>"; };
 		3807B3311C7DB4BE001C5323 /* LPLoginInView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPLoginInView.h; sourceTree = "<group>"; };
 		3807B3321C7DB4BE001C5323 /* LPLoginInView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPLoginInView.m; sourceTree = "<group>"; };
-		380F4FB11DC72E5A002F4BA8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		381156511D8699C9003FA828 /* businessSuhe@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "businessSuhe@2x.png"; sourceTree = "<group>"; };
 		381156521D8699C9003FA828 /* businessSuhe@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "businessSuhe@3x.png"; sourceTree = "<group>"; };
 		381156C41D88EF56003FA828 /* ScanBackGround@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ScanBackGround@2x.png"; sourceTree = "<group>"; };
@@ -2775,6 +2801,16 @@
 		38333DDB1DD7115400AA6BD4 /* SpotLightAPIUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotLightAPIUtil.h; sourceTree = "<group>"; };
 		38333DDC1DD7115400AA6BD4 /* SpotLightAPIUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotLightAPIUtil.m; sourceTree = "<group>"; };
 		38333DDE1DD71A9A00AA6BD4 /* CoreSpotlight.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreSpotlight.framework; path = System/Library/Frameworks/CoreSpotlight.framework; sourceTree = SDKROOT; };
+		38333DE51DD7275600AA6BD4 /* lieyuWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = lieyuWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		38333DE61DD7275600AA6BD4 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		38333DE91DD7275600AA6BD4 /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
+		38333DEA1DD7275600AA6BD4 /* TodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
+		38333DED1DD7275600AA6BD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		38333DEF1DD7275600AA6BD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		38333DF81DD95FF000AA6BD4 /* TodayTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayTableViewCell.h; sourceTree = "<group>"; };
+		38333DF91DD95FF000AA6BD4 /* TodayTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayTableViewCell.m; sourceTree = "<group>"; };
+		38333DFA1DD95FF000AA6BD4 /* TodayTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TodayTableViewCell.xib; sourceTree = "<group>"; };
+		38333DFD1DD9C5CF00AA6BD4 /* lieyuWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = lieyuWidget.entitlements; sourceTree = "<group>"; };
 		383894431D1291D20014C8E9 /* Bitmap@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Bitmap@2x.png"; sourceTree = "<group>"; };
 		383894441D1291D20014C8E9 /* Bitmap@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Bitmap@3x.png"; sourceTree = "<group>"; };
 		3838944B1D15369B0014C8E9 /* free_order_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "free_order_icon@2x.png"; sourceTree = "<group>"; };
@@ -5178,12 +5214,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		38333DE21DD7275600AA6BD4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38333DE71DD7275600AA6BD4 /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AD8899B31B9AFE61007BCC7C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38333DF71DD729BA00AA6BD4 /* NotificationCenter.framework in Frameworks */,
 				38333DDF1DD71A9A00AA6BD4 /* CoreSpotlight.framework in Frameworks */,
-				380F4FB21DC72E5A002F4BA8 /* StoreKit.framework in Frameworks */,
 				853EF50B1D5F305A00D4DEDB /* Photos.framework in Frameworks */,
 				15844C071BE22A8100247FBC /* CoreVideo.framework in Frameworks */,
 				15844C051BE22A7500247FBC /* CoreMedia.framework in Frameworks */,
@@ -6477,6 +6521,21 @@
 			children = (
 			);
 			name = Widget;
+			sourceTree = "<group>";
+		};
+		38333DE81DD7275600AA6BD4 /* lieyuWidget */ = {
+			isa = PBXGroup;
+			children = (
+				38333DFD1DD9C5CF00AA6BD4 /* lieyuWidget.entitlements */,
+				38333DE91DD7275600AA6BD4 /* TodayViewController.h */,
+				38333DEA1DD7275600AA6BD4 /* TodayViewController.m */,
+				38333DEC1DD7275600AA6BD4 /* MainInterface.storyboard */,
+				38333DEF1DD7275600AA6BD4 /* Info.plist */,
+				38333DF81DD95FF000AA6BD4 /* TodayTableViewCell.h */,
+				38333DF91DD95FF000AA6BD4 /* TodayTableViewCell.m */,
+				38333DFA1DD95FF000AA6BD4 /* TodayTableViewCell.xib */,
+			);
+			path = lieyuWidget;
 			sourceTree = "<group>";
 		};
 		384A54911D10FB4A008825ED /* 免费订台 */ = {
@@ -9871,7 +9930,6 @@
 			isa = PBXGroup;
 			children = (
 				38333DDE1DD71A9A00AA6BD4 /* CoreSpotlight.framework */,
-				380F4FB11DC72E5A002F4BA8 /* StoreKit.framework */,
 				853EF50A1D5F305A00D4DEDB /* Photos.framework */,
 				853EF5081D5F302200D4DEDB /* CoreLocation.framework */,
 				853EF5061D5F301200D4DEDB /* CoreAudio.framework */,
@@ -9901,6 +9959,7 @@
 				D748BC531BA1C7A8005AA996 /* SystemConfiguration.framework */,
 				D748BC511BA1C765005AA996 /* CoreTelephony.framework */,
 				5B098FA54813B8973C899A01 /* libPods-lieyu.a */,
+				38333DE61DD7275600AA6BD4 /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -10089,6 +10148,7 @@
 			children = (
 				AD8899B81B9AFE61007BCC7C /* lieyu */,
 				AD8899D51B9AFE62007BCC7C /* lieyuTests */,
+				38333DE81DD7275600AA6BD4 /* lieyuWidget */,
 				AD8899B71B9AFE61007BCC7C /* Products */,
 				A5ADC49822ABDD17FA75BEBB /* Frameworks */,
 				D6A104411BA2771A6F7241AC /* Pods */,
@@ -10100,6 +10160,7 @@
 			children = (
 				AD8899B61B9AFE61007BCC7C /* lieyu.app */,
 				AD8899D21B9AFE62007BCC7C /* lieyuTests.xctest */,
+				38333DE51DD7275600AA6BD4 /* lieyuWidget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -11210,6 +11271,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		38333DE41DD7275600AA6BD4 /* lieyuWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 38333DF51DD7275600AA6BD4 /* Build configuration list for PBXNativeTarget "lieyuWidget" */;
+			buildPhases = (
+				38333DE11DD7275600AA6BD4 /* Sources */,
+				38333DE21DD7275600AA6BD4 /* Frameworks */,
+				38333DE31DD7275600AA6BD4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = lieyuWidget;
+			productName = lieyuWidget;
+			productReference = 38333DE51DD7275600AA6BD4 /* lieyuWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		AD8899B51B9AFE61007BCC7C /* lieyu */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AD8899DC1B9AFE62007BCC7C /* Build configuration list for PBXNativeTarget "lieyu" */;
@@ -11220,10 +11298,12 @@
 				AD8899B41B9AFE61007BCC7C /* Resources */,
 				0A917922ED519CFD6B2178D1 /* [CP] Embed Pods Frameworks */,
 				AC06C7E6F60E0B5133624A96 /* [CP] Copy Pods Resources */,
+				38333DF61DD7275600AA6BD4 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				38333DF11DD7275600AA6BD4 /* PBXTargetDependency */,
 			);
 			name = lieyu;
 			productName = lieyu;
@@ -11258,12 +11338,28 @@
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "狼族（上海）网络科技有限公司";
 				TargetAttributes = {
+					38333DE41DD7275600AA6BD4 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = HTBQ4BN66Y;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 					AD8899B51B9AFE61007BCC7C = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = HTBQ4BN66Y;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+							com.apple.InAppPurchase = {
 								enabled = 0;
 							};
 							com.apple.Push = {
@@ -11294,11 +11390,21 @@
 			targets = (
 				AD8899B51B9AFE61007BCC7C /* lieyu */,
 				AD8899D11B9AFE62007BCC7C /* lieyuTests */,
+				38333DE41DD7275600AA6BD4 /* lieyuWidget */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		38333DE31DD7275600AA6BD4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38333DEE1DD7275600AA6BD4 /* MainInterface.storyboard in Resources */,
+				38333DFC1DD95FF000AA6BD4 /* TodayTableViewCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AD8899B41B9AFE61007BCC7C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -12791,6 +12897,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		38333DE11DD7275600AA6BD4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38333DEB1DD7275600AA6BD4 /* TodayViewController.m in Sources */,
+				38333DFB1DD95FF000AA6BD4 /* TodayTableViewCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AD8899B21B9AFE61007BCC7C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -13497,6 +13612,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		38333DF11DD7275600AA6BD4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 38333DE41DD7275600AA6BD4 /* lieyuWidget */;
+			targetProxy = 38333DF01DD7275600AA6BD4 /* PBXContainerItemProxy */;
+		};
 		AD8899D41B9AFE62007BCC7C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = AD8899B51B9AFE61007BCC7C /* lieyu */;
@@ -13512,6 +13632,14 @@
 				15EB35451BD4839D00BA6161 /* zh-Hans */,
 			);
 			name = UMSocialLocalizable.strings;
+			sourceTree = "<group>";
+		};
+		38333DEC1DD7275600AA6BD4 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				38333DED1DD7275600AA6BD4 /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 		AD8899CB1B9AFE61007BCC7C /* LaunchScreen.xib */ = {
@@ -13534,6 +13662,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		38333DF31DD7275600AA6BD4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_ENTITLEMENTS = lieyuWidget/lieyuWidget.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = HTBQ4BN66Y;
+				ENABLE_TESTABILITY = YES;
+				INFOPLIST_FILE = lieyuWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.langzu.lieyu.lieyuWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		38333DF41DD7275600AA6BD4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_ENTITLEMENTS = lieyuWidget/lieyuWidget.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = HTBQ4BN66Y;
+				INFOPLIST_FILE = lieyuWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.langzu.lieyu.lieyuWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		AD8899DA1B9AFE62007BCC7C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -13936,6 +14106,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		38333DF51DD7275600AA6BD4 /* Build configuration list for PBXNativeTarget "lieyuWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				38333DF31DD7275600AA6BD4 /* Debug */,
+				38333DF41DD7275600AA6BD4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		AD8899B11B9AFE61007BCC7C /* Build configuration list for PBXProject "lieyu" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

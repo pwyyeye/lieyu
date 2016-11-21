@@ -142,4 +142,6 @@
 + (void)deleteStrategyCommentWithParam:(NSDictionary *)param complete:(void(^)(BOOL))complete;
 #pragma mark - 获取活动列表
 + (void)getNewActivityListWithParam:(NSDictionary *)param complete:(void(^)(NSDictionary *))complete;
+#pragma mark - 获取热门酒吧／夜店列表
++ (void)getHotBarDetailsWithParams:(NSDictionary *)dict complete:(void (^)(NSArray *result))complete;
 @end

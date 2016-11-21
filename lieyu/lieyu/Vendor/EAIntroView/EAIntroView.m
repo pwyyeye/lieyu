@@ -374,11 +374,11 @@
     }
     
     [self hideWithFadeOutDuration:0.3];
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NEEDGETLIKE"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [USER_DEFAULT setBool:YES forKey:@"NEEDGETLIKE"];
+    [USER_DEFAULT synchronize];
     
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NEEDGETCOLLECT"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [USER_DEFAULT setBool:YES forKey:@"NEEDGETCOLLECT"];
+    [USER_DEFAULT synchronize];
     
 }
 

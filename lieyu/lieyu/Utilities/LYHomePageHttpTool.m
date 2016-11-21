@@ -21,6 +21,7 @@
 #import "StrategyCommentModel.h"
 #import "ActivityModel.h"
 #import "SpotLightAPIUtil.h"
+#import "RestfulConstant.h"
 
 @implementation LYHomePageHttpTool
 + (LYHomePageHttpTool *)shareInstance
@@ -606,34 +607,34 @@
     //        NSLog(@"----->%@---------%@",response,[[NSString  alloc]initWithData:data encoding:NSUTF8StringEncoding]);
     //    }];
     
-    [[NSUserDefaults standardUserDefaults] setObject:dic[@"access_token"] forKey:@"weixinGetAccessToken"];
-    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"weixinDate"];
+    [USER_DEFAULT setObject:dic[@"access_token"] forKey:@"weixinGetAccessToken"];
+    [USER_DEFAULT setObject:[NSDate date] forKey:@"weixinDate"];
     compelete(dic[@"access_token"]);
     NSString *refreshAccessTokenStr = dic[@"refresh_token"];
-    [[NSUserDefaults standardUserDefaults] setObject:refreshAccessTokenStr forKey:@"weixinRefresh_token"];
-    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"weixinReDate"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [USER_DEFAULT setObject:refreshAccessTokenStr forKey:@"weixinRefresh_token"];
+    [USER_DEFAULT setObject:[NSDate date] forKey:@"weixinReDate"];
+    [USER_DEFAULT synchronize];
     
 }
 
 + (void)getWeixinNewAccessTokenWithRefreshToken:(NSString *)RefreshToken compelete:(void (^)(NSString *))compelete{
     
-    NSLog(@"---->%@------------>%@",[[NSUserDefaults standardUserDefaults] valueForKey:@"weixinRefresh_token"],RefreshToken );
+    NSLog(@"---->%@------------>%@",[USER_DEFAULT valueForKey:@"weixinRefresh_token"],RefreshToken );
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=wxb1f5e1de5d4778b9&grant_type=refresh_token&refresh_token=%@",RefreshToken]]];
     NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:nil error:nil];
     NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
     
-    [[NSUserDefaults standardUserDefaults] setObject:dic[@"access_token"] forKey:@"weixinGetAccessToken"];
-    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"weixinDate"];
-    [[NSUserDefaults standardUserDefaults] setObject:dic[@"openid"] forKey:@"weixinOpenid"];
-    [[NSUserDefaults standardUserDefaults] setObject:dic[@"refresh_token"] forKey:@"weixinRefresh_token"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [USER_DEFAULT setObject:dic[@"access_token"] forKey:@"weixinGetAccessToken"];
+    [USER_DEFAULT setObject:[NSDate date] forKey:@"weixinDate"];
+    [USER_DEFAULT setObject:dic[@"openid"] forKey:@"weixinOpenid"];
+    [USER_DEFAULT setObject:dic[@"refresh_token"] forKey:@"weixinRefresh_token"];
+    [USER_DEFAULT synchronize];
     compelete(dic[@"access_token"]);
     NSLog(@"--%@",dic);
 }
 
 + (void)getWeixinUserInfoWithAccessToken:(NSString *)accessToken compelete:(void(^)(UserModel *))compelete{
-    NSString *openIdStr = [[NSUserDefaults standardUserDefaults] objectForKey:@"weixinOpenid"];
+    NSString *openIdStr = [USER_DEFAULT objectForKey:@"weixinOpenid"];
     
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.weixin.qq.com/sns/userinfo?access_token=%@&openid=%@",accessToken,openIdStr]]];
     NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:nil error:nil];
@@ -1076,7 +1077,16 @@
     }];
 }
 
-
+#pragma mark - 获取热门酒吧／夜店列表
++ (void)getHotBarDetailsWithParams:(NSDictionary *)dict complete:(void (^)(NSArray *result))complete{
+    AppDelegate *app = ((AppDelegate *)[UIApplication sharedApplication].delegate);
+    [app startLoading];
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:kHttpAPI_LY_TOPLAY_HOMELIST baseURL:LY_SERVER params:dict success:^(id response) {
+        NSLog(@"%@",response);
+    } failure:^(NSError *err) {
+        
+    }];
+}
 
 
 @end

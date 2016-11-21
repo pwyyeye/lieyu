@@ -280,7 +280,7 @@
             QNUploadManager *upManager = [[QNUploadManager alloc] init];
             QNUploadOption *op=[[QNUploadOption alloc] initWithMime:nil progressHandler:nil params:nil checkCrc:NO cancellationSignal:nil];
             //看是否有缓存的key
-            NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+            NSUserDefaults *userDef = USER_DEFAULT;
             NSMutableArray *keyBenDiArr;
             if (userDef) {
                 NSArray *arr=[userDef objectForKey:@"QINIUKEY"];
@@ -312,7 +312,7 @@
                 taoCanView.imageAddlal.text=[NSString stringWithFormat:@"你选中了%d张图片",(int)keyArr.count];
             } option:op];
             if(newKey.count>0){
-                NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+                NSUserDefaults *userDef = USER_DEFAULT;
                 NSMutableArray *keyBenDiArr;
                 if (userDef) {
                     NSArray *arr=[userDef objectForKey:@"QINIUKEY"];
@@ -346,7 +346,7 @@
         QNUploadManager *upManager = [[QNUploadManager alloc] init];
         QNUploadOption *op=[[QNUploadOption alloc] initWithMime:nil progressHandler:nil params:nil checkCrc:NO cancellationSignal:nil];
         //看是否有缓存的key
-        NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+        NSUserDefaults *userDef = USER_DEFAULT;
         NSMutableArray *keyBenDiArr;
         if (userDef) {
             NSArray *arr=[userDef objectForKey:@"QINIUKEY"];
@@ -386,7 +386,7 @@
             } option:op];
         }
         if(newKey.count>0){
-            NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+            NSUserDefaults *userDef = USER_DEFAULT;
             NSMutableArray *keyBenDiArr;
             if (userDef) {
                 NSArray *arr=[userDef objectForKey:@"QINIUKEY"];
@@ -560,7 +560,7 @@
     [[ZSManageHttpTool shareInstance] addTaoCanWithParams:dic complete:^(BOOL result) {
         if (result) {
             //看缓存中是否有数据 有去掉
-            NSUserDefaults *userDef = [NSUserDefaults standardUserDefaults];
+            NSUserDefaults *userDef = USER_DEFAULT;
             NSMutableArray *keyBenDiArr;
             if (userDef) {
                 NSArray *arr=[userDef objectForKey:@"QINIUKEY"];
