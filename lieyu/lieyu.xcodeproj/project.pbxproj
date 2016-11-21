@@ -1542,6 +1542,8 @@
 		85C4417E1D73D67900299C17 /* yubiIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85C441761D73D67900299C17 /* yubiIcon@2x.png */; };
 		85C4417F1D73D67900299C17 /* yubiIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85C441771D73D67900299C17 /* yubiIcon@3x.png */; };
 		85C8F2341C3A4DE700288844 /* FriendsUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C8F2331C3A4DE700288844 /* FriendsUserInfoModel.m */; };
+		85D1DC041DE2DB78006E4DEB /* StartLiveShow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85D1DC021DE2DB78006E4DEB /* StartLiveShow@2x.png */; };
+		85D1DC051DE2DB78006E4DEB /* StartLiveShow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85D1DC031DE2DB78006E4DEB /* StartLiveShow@3x.png */; };
 		85D20C4A1DCC746800F64E21 /* CustonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D20C461DCC746800F64E21 /* CustonCell.m */; };
 		85D20C4B1DCC746800F64E21 /* CustonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85D20C471DCC746800F64E21 /* CustonCell.xib */; };
 		85D20C4C1DCC746800F64E21 /* PresentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D20C491DCC746800F64E21 /* PresentModel.m */; };
@@ -4278,6 +4280,8 @@
 		85C441771D73D67900299C17 /* yubiIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yubiIcon@3x.png"; sourceTree = "<group>"; };
 		85C8F2321C3A4DE700288844 /* FriendsUserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsUserInfoModel.h; sourceTree = "<group>"; };
 		85C8F2331C3A4DE700288844 /* FriendsUserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsUserInfoModel.m; sourceTree = "<group>"; };
+		85D1DC021DE2DB78006E4DEB /* StartLiveShow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StartLiveShow@2x.png"; sourceTree = "<group>"; };
+		85D1DC031DE2DB78006E4DEB /* StartLiveShow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StartLiveShow@3x.png"; sourceTree = "<group>"; };
 		85D20C451DCC746800F64E21 /* CustonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustonCell.h; sourceTree = "<group>"; };
 		85D20C461DCC746800F64E21 /* CustonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustonCell.m; sourceTree = "<group>"; };
 		85D20C471DCC746800F64E21 /* CustonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustonCell.xib; sourceTree = "<group>"; };
@@ -7983,6 +7987,8 @@
 		852519EF1D6BFA61005CE01D /* 玩探最新 */ = {
 			isa = PBXGroup;
 			children = (
+				85D1DC021DE2DB78006E4DEB /* StartLiveShow@2x.png */,
+				85D1DC031DE2DB78006E4DEB /* StartLiveShow@3x.png */,
 				854107031D7E93A70083AF04 /* BackImage.png */,
 				8548A7E11DDC54990095790E /* likeNum.png */,
 				8548A7BA1DDC34790095790E /* watchlike_0@2x.png */,
@@ -11474,6 +11480,7 @@
 				A20100E91BA94423009283D1 /* weeklyTitle@2x.png in Resources */,
 				AD203BB01CAEA9C70014618A /* CoinBack@2x.png in Resources */,
 				8500AC3A1D30EE0F00B48E2D /* Group 4 @2x.png in Resources */,
+				85D1DC041DE2DB78006E4DEB /* StartLiveShow@2x.png in Resources */,
 				85251A851D6ED414005CE01D /* live_addImage@3x.png in Resources */,
 				8550E7211C302A33001FF2DE /* daohang_fabu@2x.png in Resources */,
 				85416E1B1C92EB100016BF0B /* 订单通知@2x.png in Resources */,
@@ -11527,6 +11534,7 @@
 				85411CB81CBC94FE0057004F /* empyImage300.png in Resources */,
 				38DBCD791C585A5F00A1E207 /* detail_collect_selected@3x.png in Resources */,
 				38D8EA761DB6326600807B27 /* 3@3x.png in Resources */,
+				85D1DC051DE2DB78006E4DEB /* StartLiveShow@3x.png in Resources */,
 				8503514A1D9683380035EEA3 /* detailChat@2x.png in Resources */,
 				858B3A2F1C7A0629000C6589 /* 地址YUD@3x.png in Resources */,
 				853D3AC11C35347A00B4FEAD /* dabofangqi_icon@2x.png in Resources */,
@@ -13690,6 +13698,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.langzu.lieyu.lieyuWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -13710,6 +13720,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.langzu.lieyu.lieyuWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -14123,6 +14135,7 @@
 				38333DF41DD7275600AA6BD4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AD8899B11B9AFE61007BCC7C /* Build configuration list for PBXProject "lieyu" */ = {
 			isa = XCConfigurationList;

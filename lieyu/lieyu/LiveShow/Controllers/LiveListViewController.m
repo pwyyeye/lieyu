@@ -596,7 +596,7 @@ static NSString *liveListCellID = @"LiveListCellID";
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return SCREEN_HEIGHT / 5 * 2;
+    return SCREEN_HEIGHT / 3 * 2;
 }
 
 #pragma mark - 删除直播记录
@@ -672,8 +672,8 @@ static NSString *liveListCellID = @"LiveListCellID";
     [self.view addSubview:_effectView];
     [self.view bringSubviewToFront:_effectView];
     
-    _registerLiveButton = [[UIButton alloc]initWithFrame:CGRectMake(12, 15, 36, 30)];
-    [_registerLiveButton setBackgroundImage:[UIImage imageNamed:@"daohang_xiangji"] forState:UIControlStateNormal];
+    _registerLiveButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 60)];
+    [_registerLiveButton setBackgroundImage:[UIImage imageNamed:@"StartLiveShow"] forState:UIControlStateNormal];
     [_registerLiveButton addTarget:self action:@selector(registerLiveButtonAction) forControlEvents:UIControlEventTouchUpInside];
     [_effectView addSubview:_registerLiveButton];
     

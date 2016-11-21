@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,19 +17,26 @@
                 <frame key="frameInset" width="360" height="249"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kps-V2-t9E">
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="s7G-8i-YXm">
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="JAl-7z-bzT"/>
                             <constraint firstAttribute="height" constant="40" id="XYR-bL-hFo"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="w0C-4U-Wce"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="w0C-4U-Wce">
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="w0C-4U-Wce" secondAttribute="height" multiplier="86:37" id="15s-Sm-z6U"/>
+                        </constraints>
+                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="直播中" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I6K-NY-eh0">
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="3W3-a8-xs7"/>
                             <constraint firstAttribute="width" constant="35.5" id="s4e-hR-2YF"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="8"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -104,10 +112,12 @@
                         </state>
                     </button>
                 </subviews>
+                <color key="backgroundColor" red="0.82352941176470584" green="0.82352941176470584" blue="0.82352941176470584" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="Gex-P4-LKW" firstAttribute="trailing" secondItem="yVr-Q0-yQ2" secondAttribute="trailing" id="4xR-ty-jw2"/>
                     <constraint firstItem="ELo-ew-zbX" firstAttribute="centerY" secondItem="yE4-xd-wtG" secondAttribute="centerY" id="5SU-c0-V2s"/>
                     <constraint firstItem="8jc-65-WLI" firstAttribute="height" secondItem="C1f-DP-zyh" secondAttribute="height" id="9P1-bC-cMq"/>
+                    <constraint firstItem="Kps-V2-t9E" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="An5-Ld-Pvq"/>
                     <constraint firstItem="w0C-4U-Wce" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Bqg-Jj-pfQ"/>
                     <constraint firstItem="zgh-dY-P4Z" firstAttribute="leading" secondItem="yE4-xd-wtG" secondAttribute="leading" id="Bua-z6-8Cn"/>
                     <constraint firstItem="C1f-DP-zyh" firstAttribute="leading" secondItem="yE4-xd-wtG" secondAttribute="trailing" constant="5" id="EjO-FB-uNW"/>
@@ -117,12 +127,13 @@
                     <constraint firstItem="8jc-65-WLI" firstAttribute="leading" secondItem="C1f-DP-zyh" secondAttribute="trailing" constant="3" id="Q5d-my-bpH"/>
                     <constraint firstItem="Gex-P4-LKW" firstAttribute="leading" secondItem="01g-fI-nE8" secondAttribute="trailing" id="Tqa-jJ-dGa"/>
                     <constraint firstItem="I6K-NY-eh0" firstAttribute="trailing" secondItem="w0C-4U-Wce" secondAttribute="trailing" constant="-10" id="UZL-5z-QhA"/>
+                    <constraint firstAttribute="trailing" secondItem="Kps-V2-t9E" secondAttribute="trailing" id="Uiv-iC-M19"/>
                     <constraint firstItem="1E9-UN-0JS" firstAttribute="centerY" secondItem="V64-Xg-j7f" secondAttribute="centerY" id="Vcs-Yq-LHN"/>
                     <constraint firstItem="8jc-65-WLI" firstAttribute="centerY" secondItem="yE4-xd-wtG" secondAttribute="centerY" id="WyA-fm-1wQ"/>
                     <constraint firstItem="s7G-8i-YXm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="9" id="YM0-0a-iOB"/>
-                    <constraint firstItem="V64-Xg-j7f" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" constant="5" id="bHC-2V-Kdl"/>
+                    <constraint firstItem="V64-Xg-j7f" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" constant="1" id="bHC-2V-Kdl"/>
                     <constraint firstItem="zgh-dY-P4Z" firstAttribute="bottom" secondItem="s7G-8i-YXm" secondAttribute="bottom" id="fLy-rY-FHa"/>
-                    <constraint firstItem="V64-Xg-j7f" firstAttribute="top" secondItem="w0C-4U-Wce" secondAttribute="bottom" constant="10" id="gS6-Ys-5kf"/>
+                    <constraint firstItem="V64-Xg-j7f" firstAttribute="top" secondItem="w0C-4U-Wce" secondAttribute="bottom" constant="7" id="gS6-Ys-5kf"/>
                     <constraint firstItem="yVr-Q0-yQ2" firstAttribute="centerY" secondItem="ELo-ew-zbX" secondAttribute="centerY" id="hYH-3T-qU5"/>
                     <constraint firstItem="yE4-xd-wtG" firstAttribute="top" secondItem="s7G-8i-YXm" secondAttribute="top" id="iGj-qT-7of"/>
                     <constraint firstItem="01g-fI-nE8" firstAttribute="centerY" secondItem="zgh-dY-P4Z" secondAttribute="centerY" id="l2F-yk-mEb"/>
@@ -130,8 +141,10 @@
                     <constraint firstItem="yE4-xd-wtG" firstAttribute="leading" secondItem="s7G-8i-YXm" secondAttribute="trailing" constant="5" id="q10-bb-E7s"/>
                     <constraint firstItem="Gex-P4-LKW" firstAttribute="centerY" secondItem="zgh-dY-P4Z" secondAttribute="centerY" id="saP-Nm-y2Z"/>
                     <constraint firstItem="w0C-4U-Wce" firstAttribute="top" secondItem="zgh-dY-P4Z" secondAttribute="bottom" constant="10" id="tNL-TL-fOt"/>
+                    <constraint firstItem="Kps-V2-t9E" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="u2l-KA-3D1"/>
                     <constraint firstItem="s7G-8i-YXm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="9" id="vw7-AB-TWR"/>
                     <constraint firstItem="yVr-Q0-yQ2" firstAttribute="leading" secondItem="ELo-ew-zbX" secondAttribute="trailing" id="xIw-ai-8sg"/>
+                    <constraint firstAttribute="bottom" secondItem="Kps-V2-t9E" secondAttribute="bottom" constant="6" id="xNw-lc-nUq"/>
                     <constraint firstItem="I6K-NY-eh0" firstAttribute="top" secondItem="w0C-4U-Wce" secondAttribute="top" constant="10" id="yJs-Kl-GsS"/>
                     <constraint firstItem="8jc-65-WLI" firstAttribute="width" secondItem="C1f-DP-zyh" secondAttribute="width" id="z6b-KC-K8a"/>
                     <constraint firstItem="V64-Xg-j7f" firstAttribute="leading" secondItem="s7G-8i-YXm" secondAttribute="leading" id="zga-ly-N1u"/>
