@@ -449,7 +449,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         _audienceCollectionView.tag = 188;
         [_CAEmitterView addSubview:_audienceCollectionView];
         
-        
+
         //点赞按钮
         UIButton *likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         likeButton.size = CGSizeMake(SCREEN_WIDTH / 8,  SCREEN_WIDTH /8);

@@ -672,7 +672,7 @@ static NSString *liveListCellID = @"LiveListCellID";
     [self.view addSubview:_effectView];
     [self.view bringSubviewToFront:_effectView];
     
-    _registerLiveButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 60)];
+    _registerLiveButton = [[UIButton alloc]initWithFrame:CGRectMake(12, 15, 36, 30)];
     [_registerLiveButton setBackgroundImage:[UIImage imageNamed:@"daohang_xiangji"] forState:UIControlStateNormal];
     [_registerLiveButton addTarget:self action:@selector(registerLiveButtonAction) forControlEvents:UIControlEventTouchUpInside];
     [_effectView addSubview:_registerLiveButton];
