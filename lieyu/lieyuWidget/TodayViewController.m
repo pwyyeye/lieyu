@@ -329,7 +329,7 @@
 //通过openURL的方式启动Containing APP
 - (void)openURLContainingAPPWith:(NSString *)identifier joinNum:(NSString *)joinNum image:(NSString *)roomImg
 {
-    if (joinNum.length > 0 && roomImg.length > 0) {
+    if (roomImg.length > 0) {
         [self.extensionContext openURL:[NSURL URLWithString:[NSString stringWithFormat:@"lieyu://todayWidget?dataIndex=%ld&identifier=%@&joinNum=%@&roomImg=%@",_dataIndex,identifier,joinNum,roomImg]] completionHandler:^(BOOL success) {
             
         }];
