@@ -34,6 +34,8 @@
 @property (nonatomic, strong) NSMutableArray *buttonsArray;
 
 @property (nonatomic, strong) NSArray *dataArray;
+
+@property (nonatomic, strong) UIView *refreshView;
 @end
 
 @implementation TodayViewController
@@ -52,6 +54,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory,NSUserDomainMask, YES) firstObject];
+    NSString *filePath = [cachePath stringByAppendingPathComponent:@"WidgetCache.plist"];
+    NSArray *fileArray = [NSArray arrayWithContentsOfFile:filePath];
+    if (fileArray) {
+        _dataArray = [[NSArray alloc]initWithArray:fileArray];
+    }
     _buttonsArray = [[NSMutableArray alloc]init];
     [self setUpKongLabel];
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 10) {
@@ -59,16 +67,23 @@
     }else{
         self.preferredContentSize = CGSizeMake(SCREEN_WIDTH, 360);
     }
-//    NSLog(@"%@",[[[NSUserDefaults alloc]initWithSuiteName:@"group.lyGroup"]objectForKey:@"group.ChooseCityLastTime"]);
+    if (!_tableView) {
         _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 400) style:UITableViewStyleGrouped];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-//        [_tableView registerClass:[TodayTableViewCell class] forCellReuseIdentifier:CellIdentifier];
-    [_tableView registerNib:[UINib nibWithNibName:@"TodayTableViewCell" bundle:nil] forCellReuseIdentifier:CellIdentifier];
-//    });
-    
-    
-    [self.view addSubview:self.tableView];
+        [_tableView registerNib:[UINib nibWithNibName:@"TodayTableViewCell" bundle:nil] forCellReuseIdentifier:CellIdentifier];
+        [self.view addSubview:self.tableView];
+        
+        _refreshView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        [_refreshView setBackgroundColor:RGBA(0, 0, 0, 0.5)];
+        UILabel *refreshLabel = [[UILabel alloc]initWithFrame:CGRectMake(_refreshView.frame.size.width / 2 - 60, 170, 100, 20)];
+//        UILabel *refreshLabel = [[UILabel alloc]initWithFrame:CGRectMake(50,50, 100, 20)];
+        [refreshLabel setTextAlignment:NSTextAlignmentCenter];
+        [refreshLabel setText:@"...正在加载..."];
+        [refreshLabel setTextColor:[UIColor whiteColor]];
+        [refreshLabel setFont:[UIFont systemFontOfSize:14]];
+        [_refreshView addSubview:refreshLabel];
+    }
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [self setupButtonsView];
@@ -86,7 +101,6 @@
 }
 
 - (void)setupButtonsView{
-    
     
     _buttonWidth = (SCREEN_WIDTH - 20) / 4 ;
     
@@ -135,8 +149,6 @@
 - (void)initYdButton{
     if (!_ydButton) {
         _ydButton = [[UIButton alloc]initWithFrame:CGRectMake(_originPointX, 320, _buttonWidth, 40)];
-        [_ydButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        //    [_ydButton setTitleColor:COMMON_PURPLE forState:UIControlStateSelected];
         [_ydButton setTitle:@"夜店" forState:UIControlStateNormal];
         [_ydButton addTarget:self action:@selector(getYdData:) forControlEvents:UIControlEventTouchUpInside];
         [_ydButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
@@ -148,12 +160,6 @@
 
 - (void)getYdData:(UIButton *)button{
     [self setButtonStatus:button];
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        [_ydButton setTitleColor:COMMON_PURPLE forState:UIControlStateNormal];
-//        [_barButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//        [_strategyButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//        [_liveshowButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//    });
     NSDictionary *dict = @{@"p":@1,
                            @"subids":@"2",
                            @"per":@4,
@@ -165,8 +171,6 @@
 - (void)initBarButton{
     if (!_barButton) {
         _barButton = [[UIButton alloc]initWithFrame:CGRectMake(_originPointX, 320, _buttonWidth, 40)];
-        [_barButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        //    [_barButton setTitleColor:COMMON_PURPLE forState:UIControlStateSelected];
         [_barButton setTitle:@"酒吧" forState:UIControlStateNormal];
         [_barButton addTarget:self action:@selector(getBarData:) forControlEvents:UIControlEventTouchUpInside];
         [_barButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
@@ -178,12 +182,6 @@
 
 - (void)getBarData:(UIButton *)button{
     [self setButtonStatus:button];
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        [_barButton setTitleColor:COMMON_PURPLE forState:UIControlStateNormal];
-//        [_ydButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//        [_strategyButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//        [_liveshowButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//    });
     NSDictionary *dict = @{@"p":@1,
                            @"subids":@"1,6,7",
                            @"per":@4,
@@ -195,8 +193,6 @@
 - (void)initStrategyButton{
     if (!_strategyButton) {
         _strategyButton = [[UIButton alloc]initWithFrame:CGRectMake(_originPointX, 320, _buttonWidth, 40)];
-        [_strategyButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        //    [_strategyButton setTitleColor:COMMON_PURPLE forState:UIControlStateSelected];
         [_strategyButton setTitle:@"攻略" forState:UIControlStateNormal];
         [_strategyButton addTarget:self action:@selector(getStrategyData:) forControlEvents:UIControlEventTouchUpInside];
         [_strategyButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
@@ -208,23 +204,14 @@
 
 - (void)getStrategyData:(UIButton *)button{
     [self setButtonStatus:button];
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        [_strategyButton setTitleColor:COMMON_PURPLE forState:UIControlStateNormal];
-//        [_barButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//        [_ydButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//        [_liveshowButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//    });
     NSDictionary *dict = @{@"page":@1};
     _dataIndex = 2 ;
-//    [self PostGetData:LY_GET_STRATEGYLIST Params:dict];
     [self PostGetData:@"app/api/strategy/list" Params:dict];
 }
 
 - (void)initLiveshowButton{
     if (!_liveshowButton) {
         _liveshowButton = [[UIButton alloc]initWithFrame:CGRectMake(_originPointX, 320, _buttonWidth, 40)];
-        [_liveshowButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        //    [_liveshowButton setTitleColor:COMMON_PURPLE forState:UIControlStateSelected];
         [_liveshowButton setTitle:@"直播" forState:UIControlStateNormal];
         [_liveshowButton addTarget:self action:@selector(getLiveshowData:) forControlEvents:UIControlEventTouchUpInside];
         [_liveshowButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
@@ -236,12 +223,6 @@
 
 - (void)getLiveshowData:(UIButton *)button{
     [self setButtonStatus:button];
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        [_liveshowButton setTitleColor:COMMON_PURPLE forState:UIControlStateNormal];
-//        [_barButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//        [_strategyButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//        [_ydButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//    });
     NSDictionary *dict = @{@"cityCode":@"310000",
                            @"livetype":@"live",
                            @"sort":@"hot",
@@ -330,12 +311,10 @@
 - (void)openURLContainingAPPWith:(NSString *)identifier joinNum:(NSString *)joinNum image:(NSString *)roomImg
 {
     if (roomImg.length > 0) {
-        [self.extensionContext openURL:[NSURL URLWithString:[NSString stringWithFormat:@"lieyu://todayWidget?dataIndex=%ld&identifier=%@&joinNum=%@&roomImg=%@",_dataIndex,identifier,joinNum,roomImg]] completionHandler:^(BOOL success) {
-            
+        [self.extensionContext openURL:[NSURL URLWithString:[NSString stringWithFormat:@"lieyu://todayWidget?dataIndex=%ld&identifier=%@&joinNum=%@&roomImg=%@",(long)_dataIndex,identifier,joinNum,roomImg]] completionHandler:^(BOOL success) {
         }];
     }else{
-        [self.extensionContext openURL:[NSURL URLWithString:[NSString stringWithFormat:@"lieyu://todayWidget?dataIndex=%ld&identifier=%@",_dataIndex,identifier]] completionHandler:^(BOOL success) {
-            
+        [self.extensionContext openURL:[NSURL URLWithString:[NSString stringWithFormat:@"lieyu://todayWidget?dataIndex=%ld&identifier=%@",(long)_dataIndex,identifier]] completionHandler:^(BOOL success) {
         }];
     }
 }
@@ -346,10 +325,6 @@
         self.preferredContentSize = CGSizeMake(SCREEN_WIDTH, 110);
     }else{
         self.preferredContentSize = CGSizeMake(SCREEN_WIDTH, 360);
-//        __weak __typeof(self)weakSelf = self;
-////        dispatch_async(dispatch_get_main_queue(), ^{
-            [self setupButtonsView];
-//        });
     }
 }
 
@@ -386,6 +361,9 @@
         //解析json数据
         NSLog(@"dictionary:%@",dictionary);
     }*/
+    
+    [self.view addSubview:_refreshView];
+    
     //1.构造URL
     NSURL *urlString = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",LY_SERVER,url]];
     //2.构造Request
@@ -411,7 +389,6 @@
     [dict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
         if (stop) {
             [bodyStr appendFormat:@"%@", [NSString stringWithFormat:@"%@=%@&",key,obj]];
-            
         }
     }];
     if (bodyStr.length > 1) {
@@ -439,16 +416,32 @@
     if (dict) {
         if (_dataIndex == 0 || _dataIndex == 1) {
             _dataArray = [NSArray arrayWithArray:[[dict objectForKey:@"data"] objectForKey:@"barlist"]];
+            if (_dataIndex == 0) {
+                //如果是获取的酒吧数据，那么将数据缓存
+                NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory,NSUserDomainMask, YES) firstObject];
+                NSString *filePath = [cachePath stringByAppendingPathComponent:@"WidgetCache.plist"];
+                NSMutableArray *mutableArray = [[NSMutableArray alloc]init];
+                for (NSDictionary *dict in _dataArray) {
+                    NSDictionary *newDict = @{@"baricon":[dict objectForKey:@"baricon"],
+                                       @"barname":[dict objectForKey:@"barname"],
+                                       @"subtitle":[dict objectForKey:@"subtitle"],
+                                       @"addressabb":[dict objectForKey:@"addressabb"]};
+                    [mutableArray addObject:newDict];
+                }
+                [mutableArray writeToFile:filePath atomically:YES];
+            }
             if (_dataArray.count > 0) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     _tableView.hidden = NO;
                     _kongLabel.hidden = YES;
                     [_tableView reloadData];
+                    [_refreshView removeFromSuperview];
                 });
             }else{
                 dispatch_async(dispatch_get_main_queue(), ^{
                     _tableView.hidden = YES;
                     _kongLabel.hidden = NO;
+                    [_refreshView removeFromSuperview];
                 });
             }
         }else if (_dataIndex == 2) {
@@ -458,11 +451,13 @@
                     _tableView.hidden = NO;
                     _kongLabel.hidden = YES;
                     [_tableView reloadData];
+                    [_refreshView removeFromSuperview];
                 });
             }else{
                 dispatch_async(dispatch_get_main_queue(), ^{
                     _tableView.hidden = YES;
                     _kongLabel.hidden = NO;
+                    [_refreshView removeFromSuperview];
                 });
             }
         }else if (_dataIndex == 3){
@@ -472,11 +467,13 @@
                     _tableView.hidden = NO;
                     _kongLabel.hidden = YES;
                     [_tableView reloadData];
+                    [_refreshView removeFromSuperview];
                 });
             }else{
                 dispatch_async(dispatch_get_main_queue(), ^{
                     _tableView.hidden = YES;
                     _kongLabel.hidden = NO;
+                    [_refreshView removeFromSuperview];
                 });
             }
         }
@@ -484,6 +481,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             _tableView.hidden = YES;
             _kongLabel.hidden = NO;
+            [_refreshView removeFromSuperview];
         });
     }
 }
