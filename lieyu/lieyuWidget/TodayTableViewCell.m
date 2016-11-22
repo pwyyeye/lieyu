@@ -47,7 +47,7 @@
     }else{
         NSString *encodeKey=[key stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         if(width>0&&height>0){
-            return [NSString stringWithFormat:@"http://source.lie98.com/%@?imageView2/0/w/%ld/h/%ld",encodeKey,width,height];
+            return [NSString stringWithFormat:@"http://source.lie98.com/%@?imageView2/0/w/%ld/h/%ld",encodeKey,(long)width,height];
         }else{
             return [NSString stringWithFormat:@"http://source.lie98.com/%@",encodeKey];
         }
