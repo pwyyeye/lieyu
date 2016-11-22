@@ -143,7 +143,7 @@ static NSString *liveListCellID = @"LiveListCellID";
         butt.tag = 99 +i;//100全部
         [butt setTitle:array[i] forState:(UIControlStateNormal)];
         [butt setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
-        butt.backgroundColor = [UIColor whiteColor];
+        butt.backgroundColor = [UIColor lightGrayColor];
         if (!i) {
             butt.titleLabel.font = [UIFont systemFontOfSize:17];
             butt.userInteractionEnabled = NO;
@@ -156,8 +156,8 @@ static NSString *liveListCellID = @"LiveListCellID";
         }
         [_chooseView addSubview:butt];
     }
-    _chooseView.backgroundColor = [UIColor whiteColor];
-    _chooseView.alpha = 0.6f;
+    _chooseView.backgroundColor = [UIColor blackColor];
+    _chooseView.alpha = 0.68f;
     [self.view addSubview:_chooseView];
     _chooseView.hidden = YES;
 }
@@ -673,7 +673,7 @@ static NSString *liveListCellID = @"LiveListCellID";
     [self.view bringSubviewToFront:_effectView];
     
     _registerLiveButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 60)];
-    [_registerLiveButton setBackgroundImage:[UIImage imageNamed:@"StartLiveShow"] forState:UIControlStateNormal];
+    [_registerLiveButton setBackgroundImage:[UIImage imageNamed:@"daohang_xiangji"] forState:UIControlStateNormal];
     [_registerLiveButton addTarget:self action:@selector(registerLiveButtonAction) forControlEvents:UIControlEventTouchUpInside];
     [_effectView addSubview:_registerLiveButton];
     
