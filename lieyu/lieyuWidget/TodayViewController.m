@@ -31,6 +31,8 @@
 @property (nonatomic, strong) UIButton *strategyButton;
 @property (nonatomic, strong) UIButton *liveshowButton;
 
+@property (nonatomic, strong) NSMutableArray *buttonsArray;
+
 @property (nonatomic, strong) NSArray *dataArray;
 @end
 
@@ -49,16 +51,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    __weak __typeof(self)weakSelf = self;
-//    dispatch_async(dispatch_get_main_queue(), ^{
     
+    _buttonsArray = [[NSMutableArray alloc]init];
     [self setUpKongLabel];
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 10) {
         self.preferredContentSize = CGSizeMake(SCREEN_WIDTH, 110);
     }else{
         self.preferredContentSize = CGSizeMake(SCREEN_WIDTH, 360);
     }
-    NSLog(@"%@",[[[NSUserDefaults alloc]initWithSuiteName:@"group.lyGroup"]objectForKey:@"group.ChooseCityLastTime"]);
+//    NSLog(@"%@",[[[NSUserDefaults alloc]initWithSuiteName:@"group.lyGroup"]objectForKey:@"group.ChooseCityLastTime"]);
         _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 400) style:UITableViewStyleGrouped];
         _tableView.delegate = self;
         _tableView.dataSource = self;
@@ -68,7 +69,6 @@
     
     
     [self.view addSubview:self.tableView];
-    [self getYdData];
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [self setupButtonsView];
@@ -94,6 +94,9 @@
     [self initBarButton];
     [self initStrategyButton];
     [self initLiveshowButton];
+
+    [self getYdData:_ydButton];
+    
     /*
     NSUserDefaults* userDefault = [[NSUserDefaults alloc] initWithSuiteName:@"group.huijia"];
     NSString* ChooseCityLastTime = [userDefault objectForKey:@"ChooseCityLastTime"];
@@ -130,16 +133,27 @@
 }
 
 - (void)initYdButton{
-    _ydButton = [[UIButton alloc]initWithFrame:CGRectMake(_originPointX, 320, _buttonWidth, 40)];
-    [_ydButton setTitleColor:COMMON_PURPLE forState:UIControlStateNormal];
-    [_ydButton setTitle:@"夜店" forState:UIControlStateNormal];
-    [_ydButton addTarget:self action:@selector(getYdData) forControlEvents:UIControlEventTouchUpInside];
-    [_ydButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
-    [self.view addSubview:_ydButton];
-    _originPointX += _buttonWidth;
+    if (!_ydButton) {
+        _ydButton = [[UIButton alloc]initWithFrame:CGRectMake(_originPointX, 320, _buttonWidth, 40)];
+        [_ydButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        //    [_ydButton setTitleColor:COMMON_PURPLE forState:UIControlStateSelected];
+        [_ydButton setTitle:@"夜店" forState:UIControlStateNormal];
+        [_ydButton addTarget:self action:@selector(getYdData:) forControlEvents:UIControlEventTouchUpInside];
+        [_ydButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [self.view addSubview:_ydButton];
+        [_buttonsArray addObject:_ydButton];
+        _originPointX += _buttonWidth;
+    }
 }
 
-- (void)getYdData{
+- (void)getYdData:(UIButton *)button{
+    [self setButtonStatus:button];
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        [_ydButton setTitleColor:COMMON_PURPLE forState:UIControlStateNormal];
+//        [_barButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//        [_strategyButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//        [_liveshowButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    });
     NSDictionary *dict = @{@"p":@1,
                            @"subids":@"2",
                            @"per":@4,
@@ -149,16 +163,27 @@
 }
 
 - (void)initBarButton{
-    _barButton = [[UIButton alloc]initWithFrame:CGRectMake(_originPointX, 320, _buttonWidth, 40)];
-    [_barButton setTitleColor:COMMON_PURPLE forState:UIControlStateNormal];
-    [_barButton setTitle:@"酒吧" forState:UIControlStateNormal];
-    [_barButton addTarget:self action:@selector(getBarData) forControlEvents:UIControlEventTouchUpInside];
-    [_barButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
-    [self.view addSubview:_barButton];
-    _originPointX += _buttonWidth;
+    if (!_barButton) {
+        _barButton = [[UIButton alloc]initWithFrame:CGRectMake(_originPointX, 320, _buttonWidth, 40)];
+        [_barButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        //    [_barButton setTitleColor:COMMON_PURPLE forState:UIControlStateSelected];
+        [_barButton setTitle:@"酒吧" forState:UIControlStateNormal];
+        [_barButton addTarget:self action:@selector(getBarData:) forControlEvents:UIControlEventTouchUpInside];
+        [_barButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [self.view addSubview:_barButton];
+        [_buttonsArray addObject:_barButton];
+        _originPointX += _buttonWidth;
+    }
 }
 
-- (void)getBarData{
+- (void)getBarData:(UIButton *)button{
+    [self setButtonStatus:button];
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        [_barButton setTitleColor:COMMON_PURPLE forState:UIControlStateNormal];
+//        [_ydButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//        [_strategyButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//        [_liveshowButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    });
     NSDictionary *dict = @{@"p":@1,
                            @"subids":@"1,6,7",
                            @"per":@4,
@@ -168,16 +193,27 @@
 }
 
 - (void)initStrategyButton{
-    _strategyButton = [[UIButton alloc]initWithFrame:CGRectMake(_originPointX, 320, _buttonWidth, 40)];
-    [_strategyButton setTitleColor:COMMON_PURPLE forState:UIControlStateNormal];
-    [_strategyButton setTitle:@"攻略" forState:UIControlStateNormal];
-    [_strategyButton addTarget:self action:@selector(getStrategyData) forControlEvents:UIControlEventTouchUpInside];
-    [_strategyButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
-    [self.view addSubview:_strategyButton];
-    _originPointX += _buttonWidth;
+    if (!_strategyButton) {
+        _strategyButton = [[UIButton alloc]initWithFrame:CGRectMake(_originPointX, 320, _buttonWidth, 40)];
+        [_strategyButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        //    [_strategyButton setTitleColor:COMMON_PURPLE forState:UIControlStateSelected];
+        [_strategyButton setTitle:@"攻略" forState:UIControlStateNormal];
+        [_strategyButton addTarget:self action:@selector(getStrategyData:) forControlEvents:UIControlEventTouchUpInside];
+        [_strategyButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [self.view addSubview:_strategyButton];
+        [_buttonsArray addObject:_strategyButton];
+        _originPointX += _buttonWidth;
+    }
 }
 
-- (void)getStrategyData{
+- (void)getStrategyData:(UIButton *)button{
+    [self setButtonStatus:button];
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        [_strategyButton setTitleColor:COMMON_PURPLE forState:UIControlStateNormal];
+//        [_barButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//        [_ydButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//        [_liveshowButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    });
     NSDictionary *dict = @{@"page":@1};
     _dataIndex = 2 ;
 //    [self PostGetData:LY_GET_STRATEGYLIST Params:dict];
@@ -185,22 +221,47 @@
 }
 
 - (void)initLiveshowButton{
-    _liveshowButton = [[UIButton alloc]initWithFrame:CGRectMake(_originPointX, 320, _buttonWidth, 40)];
-    [_liveshowButton setTitleColor:COMMON_PURPLE forState:UIControlStateNormal];
-    [_liveshowButton setTitle:@"直播" forState:UIControlStateNormal];
-    [_liveshowButton addTarget:self action:@selector(getLiveshowData) forControlEvents:UIControlEventTouchUpInside];
-    [_liveshowButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
-    [self.view addSubview:_liveshowButton];
-    _originPointX += _buttonWidth;
+    if (!_liveshowButton) {
+        _liveshowButton = [[UIButton alloc]initWithFrame:CGRectMake(_originPointX, 320, _buttonWidth, 40)];
+        [_liveshowButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        //    [_liveshowButton setTitleColor:COMMON_PURPLE forState:UIControlStateSelected];
+        [_liveshowButton setTitle:@"直播" forState:UIControlStateNormal];
+        [_liveshowButton addTarget:self action:@selector(getLiveshowData:) forControlEvents:UIControlEventTouchUpInside];
+        [_liveshowButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [self.view addSubview:_liveshowButton];
+        [_buttonsArray addObject:_liveshowButton];
+        _originPointX += _buttonWidth;
+    }
 }
 
-- (void)getLiveshowData{
+- (void)getLiveshowData:(UIButton *)button{
+    [self setButtonStatus:button];
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        [_liveshowButton setTitleColor:COMMON_PURPLE forState:UIControlStateNormal];
+//        [_barButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//        [_strategyButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//        [_ydButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    });
     NSDictionary *dict = @{@"cityCode":@"310000",
                            @"livetype":@"live",
                            @"sort":@"hot",
                            @"page":@1};
     _dataIndex = 3;
     [self PostGetData:LY_Live_getList Params:dict];
+}
+
+- (void)setButtonStatus:(UIButton *)button{
+    for (UIButton *btn in _buttonsArray) {
+        if (button == btn) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [btn setTitleColor:COMMON_PURPLE forState:UIControlStateNormal];
+            });
+        }else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            });
+        }
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -216,7 +277,6 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"开始布局cell %ld-------%ld",_dataIndex,indexPath.row);
     TodayTableViewCell *cell = [_tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (_dataArray.count > indexPath.row) {
@@ -376,7 +436,6 @@
 }
 
 - (void)setViewWithData:(NSDictionary *)dict{
-    NSLog(@"!!!!!!!!!!!!!!!!!!!获取数据成果！！！！！！！！！！！！！！！");
     if (dict) {
         if (_dataIndex == 0 || _dataIndex == 1) {
             _dataArray = [NSArray arrayWithArray:[[dict objectForKey:@"data"] objectForKey:@"barlist"]];

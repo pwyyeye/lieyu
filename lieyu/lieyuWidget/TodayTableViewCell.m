@@ -56,7 +56,7 @@
 
 - (void)setLiveshowModel:(NSDictionary *)liveshowModel{
     _liveshowModel = liveshowModel;
-    [_avatarImage setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[liveshowModel objectForKey:@"roomHostUser"] objectForKey:@"avatar_img"]]]]];
+    [_avatarImage setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[liveshowModel objectForKey:@"roomImg"]]]]];
     [_titleLabel setText:[[liveshowModel objectForKey:@"roomHostUser"] objectForKey:@"usernick"] ? [[liveshowModel objectForKey:@"roomHostUser"] objectForKey:@"usernick"] : [[liveshowModel objectForKey:@"roomHostUser"] objectForKey:@"username"]];
     [_subTitleLabel setText:[liveshowModel objectForKey:@"roomName"]];
     [_detailLabel setText:[NSString stringWithFormat:@"%@人看过",[liveshowModel objectForKey:@"joinNum"]]];

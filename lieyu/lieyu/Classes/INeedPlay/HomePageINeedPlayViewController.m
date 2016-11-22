@@ -704,7 +704,7 @@ UITextFieldDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollec
     [self.view addSubview:_effectView];
     
     _registerLiveButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 60)];
-    [_registerLiveButton setBackgroundImage:[UIImage imageNamed:@"StartLiveShow"] forState:UIControlStateNormal];
+    [_registerLiveButton setBackgroundImage:[UIImage imageNamed:@"daohang_xiangji"] forState:UIControlStateNormal];
     [_registerLiveButton addTarget:self action:@selector(registerLiveButtonAction) forControlEvents:UIControlEventTouchUpInside];
     [_effectView addSubview:_registerLiveButton];
     
