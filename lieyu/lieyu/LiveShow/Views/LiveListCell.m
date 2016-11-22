@@ -69,9 +69,7 @@
         _firstTagLabel.text = astro;
         _secondTagLabel.text = tagStr;
     }
-    
-    _liveTypeLabel.textAlignment = kCTCenterTextAlignment;
-    
+        
     if ([listModel.roomType isEqualToString:@"live"]) {//直播
         _liveTypeLabel.text = @"直播中";
         _liveTypeLabel.backgroundColor = RGB(119, 119, 119);

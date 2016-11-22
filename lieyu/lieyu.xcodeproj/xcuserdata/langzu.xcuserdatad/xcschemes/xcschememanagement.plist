@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>lieyuWidget.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
 		<key>test.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -17,6 +22,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>38333DE41DD7275600AA6BD4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>AD8899B51B9AFE61007BCC7C</key>
 		<dict>
 			<key>primary</key>
