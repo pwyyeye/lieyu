@@ -12,6 +12,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *balanceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *yubiLabel;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UILabel *serviceLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *coinButton;
 @property (weak, nonatomic) IBOutlet UIImageView *coinImage;

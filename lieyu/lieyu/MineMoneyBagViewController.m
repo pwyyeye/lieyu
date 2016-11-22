@@ -65,9 +65,14 @@
         _balanceModel = balance;
         [_balanceLabel setText:[NSString stringWithFormat:@"¥%.2f",[_balanceModel.balances floatValue]]];
         if (![balance.coinBooleanStr isEqualToString:@"4"]) {
+            _collectionView.hidden = NO;
+            _serviceLabel.hidden = NO;
             [weakSelf showCoinViews];
             [_yubiLabel setText:[NSString stringWithFormat:@"%@娱币",_balanceModel.coin]];
             [_collectionView reloadData];
+        }else{
+            _collectionView.hidden = YES;
+            _serviceLabel.hidden = YES;
         }
     }];
 }
