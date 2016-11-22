@@ -7,15 +7,15 @@
 //
 
 #import "LYMyFriendLiveListViewController.h"
-#import "LiveShowListCell.h"
 #import "LiveListCell.h"
 #import "LYFriendsHttpTool.h"
 #import "WatchLiveShowViewController.h"
 
-static NSString *liveShowListID = @"liveShowListID";
-static NSString *liveListCellID = @"livelistCellID";
+//static NSString *liveShowListID = @"liveShowListID";
+static NSString *liveCellID = @"LiveListCellID";
 @interface LYMyFriendLiveListViewController () <UITableViewDelegate,UITableViewDataSource>
 {
+    BOOL _isChoosen;//防止cell连点
     UITableView *_mytableView;
     NSInteger _currentHotPage;
 }
@@ -34,16 +34,13 @@ static NSString *liveListCellID = @"livelistCellID";
     [self setTableView];
     [self initMJFooterAndHeader];
     [self refreshData];
-    
+    _isChoosen = NO;
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     _currentHotPage = 1 ;
-//    [_mytableView registerNib:[UINib nibWithNibName:@"LiveShowListCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:liveShowListID];
-    [_mytableView registerNib:[UINib nibWithNibName:@"LiveListCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:liveListCellID];
-
 }
 
 #pragma mark -- 配置表
@@ -54,7 +51,7 @@ static NSString *liveListCellID = @"livelistCellID";
     _mytableView.contentInset = UIEdgeInsetsMake(0, 0, 65, 0);
     _mytableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 //    [_mytableView registerNib:[UINib nibWithNibName:@"LiveShowListCell" bundle:nil] forCellReuseIdentifier:liveShowListID];
-    [_mytableView registerNib:[UINib nibWithNibName:@"LiveListCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:liveListCellID];
+    [_mytableView registerNib:[UINib nibWithNibName:@"LiveListCell" bundle:nil] forCellReuseIdentifier:liveCellID];
 
     [self.view addSubview:_mytableView];
 }
@@ -111,7 +108,8 @@ static NSString *liveListCellID = @"livelistCellID";
 }
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    LiveListCell *cell = [_mytableView dequeueReusableCellWithIdentifier:liveListCellID forIndexPath:indexPath];
+    LiveListCell *cell = [tableView dequeueReusableCellWithIdentifier:liveCellID forIndexPath:indexPath];
+
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     LYLiveShowListModel *model = [LYLiveShowListModel new];
     if (_liveArray.count > indexPath.row) {
@@ -134,7 +132,7 @@ static NSString *liveListCellID = @"livelistCellID";
 }
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return SCREEN_HEIGHT / 5 * 2;
+    return SCREEN_HEIGHT / 3 * 2;
 //    return 50;
 }
 
@@ -150,16 +148,26 @@ static NSString *liveListCellID = @"livelistCellID";
         if ([Arr[@"roomType"] isEqualToString:@"live"]) {
             watchLiveVC.contentURL = Arr[@"liveRtmpUrl"];
             watchLiveVC.chatRoomId = Arr[@"chatroomid"];
+            watchLiveVC.livestatusNow = Arr[@"livestatus"];
         } else {
             watchLiveVC.contentURL = Arr[@"playbackURL"];
-            watchLiveVC.chatRoomId = nil;
+            watchLiveVC.playbackRoomId = Arr[@"chatroomid"];
         }
+        if ([Arr[@"coinBoolean"] isEqualToString:@"4"]) {
+            watchLiveVC.isCoin = NO;
+        } else {
+            watchLiveVC.isCoin = YES;
+        }
+        watchLiveVC.shareText = Arr[@"shareTitle"];
         watchLiveVC.hostUser = Arr[@"roomHostUser"];
         watchLiveVC.joinNum = [NSString stringWithFormat:@"%d",model.joinNum];
         NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:model.roomImg]];
         watchLiveVC.shareIamge = [UIImage imageWithData:data];
-        //        [weakSelf presentViewController:watchLiveVC animated:YES completion:NULL];
-        [weakSelf.navigationController pushViewController:watchLiveVC animated:YES];
+        
+        if (!_isChoosen) {
+            [weakSelf.navigationController pushViewController:watchLiveVC animated:YES];
+            _isChoosen = YES;
+        }
     }];
     
 }
