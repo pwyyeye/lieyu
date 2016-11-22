@@ -425,6 +425,11 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         [giftButton addTarget:self action:@selector(giftButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
         _giftButton = giftButton;
         [self.view addSubview:_giftButton];
+        
+        _giftTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(watchGiftTimerUpdataAction) userInfo:nil repeats:YES];
+        [_giftTimer fire];
+        _animation = AnimationNone_watch;
+        
     }
     
     //分享按钮
@@ -1554,9 +1559,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
                                                               content:lyStystem];
                  [weakSelf appendAndDisplayMessage:message];
                  [weakSelf sendMessage:joinChatroomMessage pushContent:nil];
-                 _giftTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(watchGiftTimerUpdataAction) userInfo:nil repeats:YES];
-                 [_giftTimer fire];
-                 _animation = AnimationNone_watch;
              });
          }
          error:^(RCErrorCode status) {
