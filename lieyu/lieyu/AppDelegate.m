@@ -283,7 +283,7 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource,UN
 #pragma mark - 闪屏页
 - (void)animationWithApp{
     UIImageView *imgV = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"logo90.jpg"]];
-    imgV.tag = 10086;
+    imgV.tag = 541111;
     imgV.userInteractionEnabled = NO;
     imgV.frame = CGRectMake(0, -100, SCREEN_WIDTH, SCREEN_HEIGHT + 100);
     imgV.backgroundColor = RGBA(5, 5, 5, 1);
@@ -317,14 +317,13 @@ UINavigationControllerDelegate,RCIMUserInfoDataSource,RCIMGroupInfoDataSource,UN
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
     __weak __typeof(self)weakSelf = self;
-    UIImageView *imgV = (UIImageView *)[self.window viewWithTag:10086];
+    UIImageView *imgV = (UIImageView *)[self.window viewWithTag:541111];
     [UIView animateWithDuration:.5 animations:^{
         imgV.alpha = 0.0;
         [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
     }completion:^(BOOL finished) {
         [imgV.layer removeAllAnimations];
         [imgV removeFromSuperview];
-        
         weakSelf.window.userInteractionEnabled = YES;
         
     }];
