@@ -41,7 +41,7 @@
     return self;
 }
 
-static CGFloat PI = M_PI;
+//static CGFloat PI = M_PI;
 -(void)animateInView:(UIView *)view{
     NSTimeInterval totalAnimationDuration = 6;
     CGFloat heartSize = CGRectGetWidth(self.bounds);
@@ -70,7 +70,7 @@ static CGFloat PI = M_PI;
     [heartTravelPath moveToPoint:self.center];
     
     //random end point
-    CGPoint endPoint = CGPointMake(heartCenterX + (rotationDirection) * arc4random_uniform(2*heartSize), viewHeight/10.0 + arc4random_uniform(viewHeight/2.0));
+    CGPoint endPoint = CGPointMake(heartCenterX + (rotationDirection) * arc4random_uniform(2*heartSize), viewHeight/20.0 + arc4random_uniform(viewHeight/2.0));
     
     //random Control Points
 //    NSInteger j = arc4random_uniform(2);

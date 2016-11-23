@@ -1364,7 +1364,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 -(void)showTheLove{
     DMHeartFlyView* heart = [[DMHeartFlyView alloc]initWithFrame:CGRectMake(0, 0, _heartSize, _heartSize)];
     [self.view addSubview:heart];
-    CGPoint fountainSource = CGPointMake(SCREEN_WIDTH - 20 - _heartSize/2.0, SCREEN_HEIGHT - 60);
+    CGPoint fountainSource = CGPointMake(SCREEN_WIDTH - 20 - _heartSize/2.0, SCREEN_HEIGHT - SCREEN_WIDTH / 4 - 35 );
     heart.center = fountainSource;
     [heart animateInView:self.view];
 }
