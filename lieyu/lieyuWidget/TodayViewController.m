@@ -23,6 +23,8 @@
     NSInteger _dataIndex;
     
     UILabel *_kongLabel;
+    
+    //    BOOL _canConnect;
 }
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -53,7 +55,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    //    _canConnect = YES;
     NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory,NSUserDomainMask, YES) firstObject];
     NSString *filePath = [cachePath stringByAppendingPathComponent:@"WidgetCache.plist"];
     NSArray *fileArray = [NSArray arrayWithContentsOfFile:filePath];
@@ -75,20 +77,23 @@
         [self.view addSubview:self.tableView];
         
         _refreshView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        _refreshView.userInteractionEnabled = YES;
         [_refreshView setBackgroundColor:RGBA(0, 0, 0, 0.5)];
         UILabel *refreshLabel = [[UILabel alloc]initWithFrame:CGRectMake(_refreshView.frame.size.width / 2 - 60, 170, 100, 20)];
-//        UILabel *refreshLabel = [[UILabel alloc]initWithFrame:CGRectMake(50,50, 100, 20)];
+        //        UILabel *refreshLabel = [[UILabel alloc]initWithFrame:CGRectMake(50,50, 100, 20)];
         [refreshLabel setTextAlignment:NSTextAlignmentCenter];
-        [refreshLabel setText:@"...正在加载..."];
+        [refreshLabel setText:@"正在加载..."];
         [refreshLabel setTextColor:[UIColor whiteColor]];
         [refreshLabel setFont:[UIFont systemFontOfSize:14]];
         [_refreshView addSubview:refreshLabel];
     }
-    
+    __weak __typeof(self)weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self setupButtonsView];
+        [weakSelf setupButtonsView];
     });
 }
+
+
 
 - (void)setUpKongLabel{
     _kongLabel = [[UILabel alloc]initWithFrame:CGRectMake((SCREEN_WIDTH - 220) / 2, 45, 200, 20)];
@@ -108,42 +113,42 @@
     [self initBarButton];
     [self initStrategyButton];
     [self initLiveshowButton];
-
+    
     [self getYdData:_ydButton];
     
     /*
-    NSUserDefaults* userDefault = [[NSUserDefaults alloc] initWithSuiteName:@"group.huijia"];
-    NSString* ChooseCityLastTime = [userDefault objectForKey:@"ChooseCityLastTime"];
-    if (ChooseCityLastTime) {
-    }
-    NSLog(@"%@",[USER_DEFAULT objectForKey:@"ChooseCityLastTime"]);
-    NSLog(@"%@",[USER_DEFAULT objectForKey:@"LastCityHasNightClub"]);
-    NSLog(@"%@",[USER_DEFAULT objectForKey:@"LastCityHasBar"]);
-    if (![[[NSUserDefaults alloc] initWithSuiteName:@"group.lyGroup"] objectForKey:@"ChooseCityLastTime"]) {
-        _buttonWidth = (SCREEN_WIDTH - 20) / 4 ;
-        [self initYdButton];
-        [self initBarButton];
-        [self initStrategyButton];
-        [self initLiveshowButton];
-    }else{
-        int buttonsNumber = 4;
-        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"LastCityHasNightClub"] isEqualToString:@"0"]) {
-            buttonsNumber --;
-        }
-        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"LastCityHasBar"] isEqualToString:@"0"]) {
-            buttonsNumber --;
-        }
-        _buttonWidth = (SCREEN_WIDTH - 20) / buttonsNumber;
-        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"LastCityHasNightClub"] isEqualToString:@"1"]) {
-            [self initYdButton];
-        }
-        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"LastCityHasBar"] isEqualToString:@"1"]) {
-            [self initBarButton];
-        }
-        [self initStrategyButton];
-        [self initLiveshowButton];
-    }
-    */
+     NSUserDefaults* userDefault = [[NSUserDefaults alloc] initWithSuiteName:@"group.huijia"];
+     NSString* ChooseCityLastTime = [userDefault objectForKey:@"ChooseCityLastTime"];
+     if (ChooseCityLastTime) {
+     }
+     NSLog(@"%@",[USER_DEFAULT objectForKey:@"ChooseCityLastTime"]);
+     NSLog(@"%@",[USER_DEFAULT objectForKey:@"LastCityHasNightClub"]);
+     NSLog(@"%@",[USER_DEFAULT objectForKey:@"LastCityHasBar"]);
+     if (![[[NSUserDefaults alloc] initWithSuiteName:@"group.lyGroup"] objectForKey:@"ChooseCityLastTime"]) {
+     _buttonWidth = (SCREEN_WIDTH - 20) / 4 ;
+     [self initYdButton];
+     [self initBarButton];
+     [self initStrategyButton];
+     [self initLiveshowButton];
+     }else{
+     int buttonsNumber = 4;
+     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"LastCityHasNightClub"] isEqualToString:@"0"]) {
+     buttonsNumber --;
+     }
+     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"LastCityHasBar"] isEqualToString:@"0"]) {
+     buttonsNumber --;
+     }
+     _buttonWidth = (SCREEN_WIDTH - 20) / buttonsNumber;
+     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"LastCityHasNightClub"] isEqualToString:@"1"]) {
+     [self initYdButton];
+     }
+     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"LastCityHasBar"] isEqualToString:@"1"]) {
+     [self initBarButton];
+     }
+     [self initStrategyButton];
+     [self initLiveshowButton];
+     }
+     */
 }
 
 - (void)initYdButton{
@@ -165,6 +170,7 @@
                            @"per":@4,
                            @"city":[[[[NSUserDefaults alloc]initWithSuiteName:@"group.lyGroup"]objectForKey:@"group.ChooseCityLastTime"] length] > 0 ? [[[NSUserDefaults alloc]initWithSuiteName:@"group.lyGroup"]objectForKey:@"group.ChooseCityLastTime"] : @"上海"};
     _dataIndex = 0 ;
+    [button setUserInteractionEnabled:NO];
     [self PostGetData:kHttpAPI_LY_TOPLAY_HOMELIST Params:dict];
 }
 
@@ -187,6 +193,7 @@
                            @"per":@4,
                            @"city":[[[[NSUserDefaults alloc]initWithSuiteName:@"group.lyGroup"]objectForKey:@"group.ChooseCityLastTime"] length] > 0 ? [[[NSUserDefaults alloc]initWithSuiteName:@"group.lyGroup"]objectForKey:@"group.ChooseCityLastTime"] : @"上海"};
     _dataIndex = 1 ;
+    [button setUserInteractionEnabled:NO];
     [self PostGetData:kHttpAPI_LY_TOPLAY_HOMELIST Params:dict];
 }
 
@@ -204,8 +211,10 @@
 
 - (void)getStrategyData:(UIButton *)button{
     [self setButtonStatus:button];
-    NSDictionary *dict = @{@"page":@1};
+    NSDictionary *dict = @{@"start":@1,
+                           @"rows":@4};
     _dataIndex = 2 ;
+    [button setUserInteractionEnabled:NO];
     [self PostGetData:@"app/api/strategy/list" Params:dict];
 }
 
@@ -228,6 +237,7 @@
                            @"sort":@"hot",
                            @"page":@1};
     _dataIndex = 3;
+    [button setUserInteractionEnabled:NO];
     [self PostGetData:LY_Live_getList Params:dict];
 }
 
@@ -240,11 +250,13 @@
         }else{
             dispatch_async(dispatch_get_main_queue(), ^{
                 [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                [btn setUserInteractionEnabled:YES];
             });
         }
     }
 }
 
+#pragma mark - tableview代理
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
@@ -339,28 +351,16 @@
 
 #pragma mark -  post获取数据
 - (void)PostGetData:(NSString *)url Params:(NSDictionary *)dict{
-    /*
-    NSString *strHttp = [NSString stringWithFormat:@"%@%@",LY_SERVER,url];
-    NSString *strPost = [NSString stringWithFormat:@"%@",dict];
-    NSURL *urlHttp = [NSURL URLWithString:strHttp];
-    //创建request对象
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc]init];
-    [request setHTTPMethod:@"POST"];
-    [request setURL:urlHttp];
-    //将post传递的参数进行编码
-    NSData *dataPost = [strPost dataUsingEncoding:NSUTF8StringEncoding];
-    [request setHTTPBody:dataPost];
-    //发出访问请求
-    NSError *error;
-    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
-    if (error) {
-        NSLog(@"error:%@",error);
-    }else{
-        //转换json数据
-        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
-        //解析json数据
-        NSLog(@"dictionary:%@",dictionary);
-    }*/
+    //(3)设置请求头
+    //[request setAllHTTPHeaderFields:nil];
+    
+    //(4)设置请求体
+    //发新浪微博
+    //请求体里需要包含至少两个参数
+    //指定用户的令牌 微博正文
+    //access_token status
+    //这里的 access_token 大家可以用自己的微博来测试 access_token->是通过自己的微博账号密码生成的 具体流程可以参照 http://www.cnblogs.com/ok-lanyan/archive/2012/07/15/2592070.html
+    //    if (_canConnect) {
     
     [self.view addSubview:_refreshView];
     
@@ -372,25 +372,27 @@
     [request setHTTPMethod:@"POST"];
     //(2)超时
     [request setTimeoutInterval:60];
-    //(3)设置请求头
-    //[request setAllHTTPHeaderFields:nil];
-    
-    //(4)设置请求体
-    //发新浪微博
-    //请求体里需要包含至少两个参数
-    //指定用户的令牌 微博正文
-    //access_token status
-    //这里的 access_token 大家可以用自己的微博来测试 access_token->是通过自己的微博账号密码生成的 具体流程可以参照 http://www.cnblogs.com/ok-lanyan/archive/2012/07/15/2592070.html
+    //        _canConnect = NO;
     NSMutableString *bodyStr = [[NSMutableString alloc]init];
-//    = [NSString stringWithFormat:@"%@",dict];
-//    NSData *bodyData = [bodyStr dataUsingEncoding:NSUTF8StringEncoding];
-    
     __weak __typeof(self)weakSelf = self;
-    [dict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-        if (stop) {
-            [bodyStr appendFormat:@"%@", [NSString stringWithFormat:@"%@=%@&",key,obj]];
+    int i = 0 , j = 0 ;
+    for (NSString *key in [dict allKeys]) {
+        j = 0 ;
+        for (NSString *value in [dict allValues]) {
+            if (i == j) {
+                [bodyStr appendFormat:@"%@", [NSString stringWithFormat:@"%@=%@&",key,value]];
+                break;
+            }else{
+                j ++;
+            }
         }
-    }];
+        i ++;
+    }
+    //        [dict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+    //            if (stop) {
+    //                [bodyStr appendFormat:@"%@", [NSString stringWithFormat:@"%@=%@&",key,obj]];
+    //            }
+    //        }];
     if (bodyStr.length > 1) {
         [bodyStr substringWithRange:NSMakeRange(0, bodyStr.length - 1)];
         NSData *bodyData = [bodyStr dataUsingEncoding:NSUTF8StringEncoding];
@@ -399,17 +401,19 @@
     }else{
         [request setHTTPBody:nil];
     }
-        NSURLSession *session = [NSURLSession sharedSession];
-        //4.task
-        NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-            if (error) {
-            }else{
-                NSDictionary *dataDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-                [weakSelf setViewWithData:dataDict];
-            }
-        }];
-        //5.
-        [task resume];
+    NSURLSession *session = [NSURLSession sharedSession];
+    //4.task
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        //            _canConnect = YES;
+        if (error) {
+        }else{
+            NSDictionary *dataDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+            [weakSelf setViewWithData:dataDict];
+        }
+    }];
+    //5.
+    [task resume];
+    //    }
 }
 
 - (void)setViewWithData:(NSDictionary *)dict{
@@ -423,9 +427,9 @@
                 NSMutableArray *mutableArray = [[NSMutableArray alloc]init];
                 for (NSDictionary *dict in _dataArray) {
                     NSDictionary *newDict = @{@"baricon":[dict objectForKey:@"baricon"],
-                                       @"barname":[dict objectForKey:@"barname"],
-                                       @"subtitle":[dict objectForKey:@"subtitle"],
-                                       @"addressabb":[dict objectForKey:@"addressabb"]};
+                                              @"barname":[dict objectForKey:@"barname"],
+                                              @"subtitle":[dict objectForKey:@"subtitle"],
+                                              @"addressabb":[dict objectForKey:@"addressabb"]};
                     [mutableArray addObject:newDict];
                 }
                 [mutableArray writeToFile:filePath atomically:YES];
@@ -436,6 +440,9 @@
                     _kongLabel.hidden = YES;
                     [_tableView reloadData];
                     [_refreshView removeFromSuperview];
+                    for (UIButton *button in _buttonsArray) {
+                        [button setUserInteractionEnabled:YES];
+                    }
                 });
             }else{
                 dispatch_async(dispatch_get_main_queue(), ^{
