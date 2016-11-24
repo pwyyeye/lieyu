@@ -1581,9 +1581,10 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
                      });
                  }else{
                      dispatch_async(dispatch_get_main_queue(), ^{
-                         [MyUtil showCleanMessage:@"未知错误"];
                          if (!app.im_token) {
                              [MyUtil gotoLogin];
+                         } else {
+                             [MyUtil showCleanMessage:@"聊天会话错误!"];
                          }
                      });
                  }
