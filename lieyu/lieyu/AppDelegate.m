@@ -846,47 +846,48 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     return [WXApi handleOpenURL:url delegate:[SingletonTenpay singletonTenpay]];
 }
 
-- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options{
-//    lieyu://todayWidget?     20
-    if ([url absoluteString].length > 20) {
-        if ([[[url absoluteString]substringWithRange:NSMakeRange(0, 20)] containsString:@"lieyu://todayWidget?"]) {
-            NSString *dataIndex;
-            NSString *identifier;
-            NSString *joinNum;
-            NSString *roomImage;
-            NSArray *array1 = [[url absoluteString] componentsSeparatedByString:@"?"];
-            if (array1.count > 1) {
-                NSArray *array2 = [[array1 objectAtIndex:1]componentsSeparatedByString:@"&"];
-                if (array2.count) {
-                    NSArray *pairArray = [[array2 objectAtIndex:0] componentsSeparatedByString:@"="];
-                    if (pairArray.count > 1) {
-                        dataIndex = [pairArray objectAtIndex:1];
-                    }
-                }
-                if (array2.count > 1) {
-                    NSArray *pairArray = [[array2 objectAtIndex:1] componentsSeparatedByString:@"="];
-                    if (pairArray.count > 1) {
-                        identifier = [pairArray objectAtIndex:1];
-                    }
-                }
-                if (array2.count > 2) {
-                    NSArray *pairArray = [[array2 objectAtIndex:2]componentsSeparatedByString:@"="];
-                    if (pairArray.count > 1) {
-                        joinNum = [pairArray objectAtIndex:1];
-                    }
-                }
-                if (array2.count > 3) {
-                    NSArray *pairArray = [[array2 objectAtIndex:3]componentsSeparatedByString:@"="];
-                    if (pairArray.count > 2) {
-                        roomImage = [pairArray objectAtIndex:1];
-                    }
-                }
-                [self startAppWith:dataIndex id:identifier number:joinNum image:roomImage];
-            }
-        }
-    }
-    return YES;
-}
+//- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options{
+//    NSLog(@"%@",url);
+//    if ([url absoluteString].length > 20) {
+//        if ([[[url absoluteString]substringWithRange:NSMakeRange(0, 20)] containsString:@"lieyu://todayWidget?"]) {
+//            NSString *dataIndex;
+//            NSString *identifier;
+//            NSString *joinNum;
+//            NSString *roomImage;
+//            NSArray *array1 = [[url absoluteString] componentsSeparatedByString:@"?"];
+//            if (array1.count > 1) {
+//                NSArray *array2 = [[array1 objectAtIndex:1]componentsSeparatedByString:@"&"];
+//                if (array2.count) {
+//                    NSArray *pairArray = [[array2 objectAtIndex:0] componentsSeparatedByString:@"="];
+//                    if (pairArray.count > 1) {
+//                        dataIndex = [pairArray objectAtIndex:1];
+//                    }
+//                }
+//                if (array2.count > 1) {
+//                    NSArray *pairArray = [[array2 objectAtIndex:1] componentsSeparatedByString:@"="];
+//                    if (pairArray.count > 1) {
+//                        identifier = [pairArray objectAtIndex:1];
+//                    }
+//                }
+//                if (array2.count > 2) {
+//                    NSArray *pairArray = [[array2 objectAtIndex:2]componentsSeparatedByString:@"="];
+//                    if (pairArray.count > 1) {
+//                        joinNum = [pairArray objectAtIndex:1];
+//                    }
+//                }
+//                if (array2.count > 3) {
+//                    NSArray *pairArray = [[array2 objectAtIndex:3]componentsSeparatedByString:@"="];
+//                    if (pairArray.count > 2) {
+//                        roomImage = [pairArray objectAtIndex:1];
+//                    }
+//                }
+//                [self startAppWith:dataIndex id:identifier number:joinNum image:roomImage];
+//            }
+//        }
+//        return YES;
+//    }
+//    return NO;
+//}
 
 - (void)startAppWith:(NSString *)dataIndex id:(NSString *)identifier number:(NSString *)joinNum image:(NSString *)roomImg{
     if ([dataIndex isEqualToString:@"0"] || [dataIndex isEqualToString:@"1"]) {
@@ -937,6 +938,47 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation
 {
+    
+    if ([[url absoluteString]containsString:@"lieyu://todayWidget?"]) {
+        NSString *dataIndex;
+        NSString *identifier;
+        NSString *joinNum;
+        NSString *roomImage;
+        NSArray *array1 = [[url absoluteString] componentsSeparatedByString:@"?"];
+        if (array1.count > 1) {
+            NSArray *array2 = [[array1 objectAtIndex:1]componentsSeparatedByString:@"&"];
+            if (array2.count) {
+                NSArray *pairArray = [[array2 objectAtIndex:0] componentsSeparatedByString:@"="];
+                if (pairArray.count > 1) {
+                    dataIndex = [pairArray objectAtIndex:1];
+                }
+            }
+            if (array2.count > 1) {
+                NSArray *pairArray = [[array2 objectAtIndex:1] componentsSeparatedByString:@"="];
+                if (pairArray.count > 1) {
+                    identifier = [pairArray objectAtIndex:1];
+                }
+            }
+            if (array2.count > 2) {
+                NSArray *pairArray = [[array2 objectAtIndex:2]componentsSeparatedByString:@"="];
+                if (pairArray.count > 1) {
+                    joinNum = [pairArray objectAtIndex:1];
+                }
+            }
+            if (array2.count > 3) {
+                NSArray *pairArray = [[array2 objectAtIndex:3]componentsSeparatedByString:@"="];
+                if (pairArray.count > 2) {
+                    roomImage = [pairArray objectAtIndex:1];
+                }
+            }
+            [self startAppWith:dataIndex id:identifier number:joinNum image:roomImage];
+            return YES;
+        }
+    }
+    
+    NSLog(@"%@",url);
+    NSLog(@"%@",annotation);
+    
     if([sourceApplication isEqualToString:@"com.tencent.mqq"]){
         return [TencentOAuth HandleOpenURL:url];
     }
