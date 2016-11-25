@@ -95,6 +95,7 @@
     UILabel *_likeLabel;//
     NSTimer *_burstTimer;//延时
     int _giftNumber;//礼物数量
+    NSString *_giftId;//礼物id
     NSString *_giftValue;//礼物价值
     NSString *_giftImg;
     NSString *_gifType;//动画类型
@@ -565,6 +566,10 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 }
 
 -(void)sendGiftWith:(int)giftNumber{
+    if (![MyUtil isUserLogin]) {
+        [MyUtil showCleanMessage:@"您还未登录"];
+        return;
+    }
     NSInteger temp = _giftValue.integerValue * giftNumber;
     NSString *totalValue = [NSString stringWithFormat:@"%ld",(long)temp];
     NSString *tempID = [NSString stringWithFormat:@"%@", _hostUser[@"id"]];
@@ -590,7 +595,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
                             giftMessage.type = @"1";
                             giftMessage.content = [NSString stringWithFormat:@"赠送了%d个%@",giftNumber ,_giftName];
                             GiftContent *giftContent = [[GiftContent alloc] init];
-                            giftContent.giftId = _giftValue;
+                            giftContent.giftId = _giftId;
                             giftContent.giftUrl = _giftImg;
                             giftContent.giftAnnimType = _gifType;
                             giftContent.giftNumber = [NSString stringWithFormat:@"%d",giftNumber];
@@ -612,7 +617,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
                                 giftMessage.senderUserInfo = senderInfo;
                                
                                 GiftContent *giftContent = [[GiftContent alloc] init];
-                                giftContent.giftId = _giftValue;
+                                giftContent.giftId = _giftId;
                                 giftContent.giftUrl = _giftImg;
                                 giftContent.giftAnnimType = _gifType;
                                 giftContent.giftNumber = [NSString stringWithFormat:@"%d",giftNumber];
@@ -823,22 +828,23 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 
 
 -(void)notice:(NSNotification *)notification{
-    
+    _giftId = notification.userInfo[@"id"];
     _giftValue = notification.userInfo[@"value"];
     _giftImg = notification.userInfo[@"image"];
     _giftName = notification.userInfo[@"giftName"];
     NSString *typeNum = notification.userInfo[@"gifType"];
-    if ([typeNum isEqualToString:@"14"]) {//跑车
-        _gifType = @"3";
-    } else if ([typeNum isEqualToString:@"15"]) {//游艇
-        _gifType = @"4";
-    } else if ([typeNum isEqualToString:@"12"]) {//私人飞机
-        _gifType = @"2";
-    } else if ([typeNum isEqualToString:@"16"])  {//别墅
-        _gifType = @"5";
-    } else {//默认类型
-        _gifType = @"1";
-    }
+    _gifType = typeNum;
+//    if ([typeNum isEqualToString:@"14"]) {//跑车
+//        _gifType = @"3";
+//    } else if ([typeNum isEqualToString:@"15"]) {//游艇
+//        _gifType = @"4";
+//    } else if ([typeNum isEqualToString:@"12"]) {//私人飞机
+//        _gifType = @"2";
+//    } else if ([typeNum isEqualToString:@"16"])  {//别墅
+//        _gifType = @"5";
+//    } else {//默认类型
+//        _gifType = @"1";
+//    }
 }
 
 -(void)touchBackgroud{
@@ -1270,7 +1276,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         UserModel *userModel = ((AppDelegate *)[UIApplication sharedApplication].delegate).userModel;
         NSDictionary *dict = @{
                                @"reportedUserid":self.hostUser[@"userid"],
-                               @"momentId":_chatRoomId,
+                               @"momentId":@"13648257340",
                                @"message":message,
                                @"userid":[NSNumber numberWithInt:userModel.userid]};
         [LYFriendsHttpTool friendsJuBaoWithParams:dict complete:^(NSString *message) {

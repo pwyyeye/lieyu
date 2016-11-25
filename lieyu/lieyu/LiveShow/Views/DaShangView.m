@@ -71,9 +71,10 @@ static NSString *daShangCellID = @"dashangCellID";
         [self.giftCollectionView reloadData];
         DaShangGiftModel *model = _dataArr[0];
         NSString *reward = [NSString stringWithFormat:@"%ld",(long)model.rewardValue];
+        NSString *rewardid = [NSString stringWithFormat:@"%ld",(long)model.rewardId];
         dispatch_async(dispatch_get_main_queue(), ^{
             //创建一个消息对象
-            NSNotification *notice = [NSNotification notificationWithName:@"sendGift" object:nil userInfo:@{@"value":reward,@"image":model.rewardImg,@"gifType":[NSString stringWithFormat:@"%ld",(long)model.rewardId],@"giftName":model.rewardName}];
+            NSNotification *notice = [NSNotification notificationWithName:@"sendGift" object:nil userInfo:@{@"id":rewardid,@"value":reward,@"image":model.rewardImg,@"gifType":model.rewordType,@"giftName":model.rewardName}];
             //发送消息
             [[NSNotificationCenter defaultCenter]postNotification:notice];
         });
@@ -191,9 +192,10 @@ static NSString *daShangCellID = @"dashangCellID";
     }
     DaShangGiftModel *model = _dataArr[indexPath.row];
     NSString *reward = [NSString stringWithFormat:@"%ld",(long)model.rewardValue];
+    NSString *rewardid = [NSString stringWithFormat:@"%ld",(long)model.rewardId];
     dispatch_async(dispatch_get_main_queue(), ^{
         //创建一个消息对象
-            NSNotification * notice = [NSNotification notificationWithName:@"sendGift" object:nil userInfo:@{@"value":reward,@"image":model.rewardImg,@"gifType":model.rewordType,@"giftName":model.rewardName}];
+        NSNotification *notice = [NSNotification notificationWithName:@"sendGift" object:nil userInfo:@{@"id":rewardid,@"value":reward,@"image":model.rewardImg,@"gifType":model.rewordType,@"giftName":model.rewardName}];
         //发送消息
         [[NSNotificationCenter defaultCenter] postNotification:notice];
     });
