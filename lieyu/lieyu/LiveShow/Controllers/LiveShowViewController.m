@@ -274,7 +274,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [LYFriendsHttpTool getStreamWithParms:roomDict complete:^(NSDictionary *dict) {
         _stream = dict[@"stream"];
         _shareText = dict[@"shareTitle"];
-        if ([dict[@"coinBoolean"] isEqualToString:@"4"]) {
+        if ([dict[@"coinBoolean"] isEqualToString:@"5"]) {
             _isCoin = NO;
         } else {
             _isCoin = YES;
@@ -889,7 +889,8 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 
 - (void)streamingSession:(id)session sendingBufferCurrentDurationDidChange:(NSTimeInterval)currentDuration
 {
-    NSString *log = @"Buffer did change";
+    NSString *log;
+    log = @"Buffer did change";
     NSLog(@"%@",log);
 }
 
@@ -929,8 +930,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     
     NSString *log = [NSString stringWithFormat:@"%@", status];
     NSLog(@"%@", log);
-    BOOL isrunning = [session isRunning];
-    NSLog(@"%d", isrunning);
+
    
 #if kReloadConfigurationEnable
     NSDate *now = [NSDate date];
@@ -1071,6 +1071,10 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
 #pragma mark -- 返回（结束播放）
 //结束直播弹出结束画面
 -(void)closeButtonAction:(UIButton *) sender{
+    if(_chatRoomId == nil) {//直播不存在直接退出
+        [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
+        return;
+    }
     UIAlertController *alertCloseView = [UIAlertController alertControllerWithTitle:@"确定要退出吗？" message:@"" preferredStyle:(UIAlertControllerStyleAlert)];
     __weak typeof(self) weakSelf = self;
     

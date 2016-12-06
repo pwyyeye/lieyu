@@ -645,7 +645,7 @@ static NSString *liveListCellID = @"LiveListCellID";
             watchLiveVC.contentURL = Arr[@"playbackURL"];
             watchLiveVC.playbackRoomId = Arr[@"chatroomid"];
         }
-        if ([Arr[@"coinBoolean"] isEqualToString:@"4"]) {
+        if ([Arr[@"coinBoolean"] isEqualToString:@"5"]) {
             watchLiveVC.isCoin = NO;
         } else {
             watchLiveVC.isCoin = YES;

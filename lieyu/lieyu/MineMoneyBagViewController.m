@@ -64,7 +64,7 @@
     [LYUserHttpTool getMyMoneyBagBalanceAndCoinWithParams:nil complete:^(ZSBalance *balance) {
         _balanceModel = balance;
         [_balanceLabel setText:[NSString stringWithFormat:@"¥%.2f",[_balanceModel.balances floatValue]]];
-        if (![balance.coinBooleanStr isEqualToString:@"4"]) {
+        if (![balance.coinBooleanStr isEqualToString:@"5"]) {
             _collectionView.hidden = NO;
             _serviceLabel.hidden = NO;
             [weakSelf showCoinViews];
@@ -143,7 +143,7 @@
     if (indexPath.section == 0 && indexPath.item == 0) {
         //进入娱币商城
         __weak __typeof(self)weakSelf = self;
-        if (![_balanceModel.coinBooleanStr isEqualToString:@"4"]) {
+        if (![_balanceModel.coinBooleanStr isEqualToString:@"5"]) {
             [LYUserHttpTool lyEnterCoinShopWithParams:nil complete:^(NSString *result) {
                 if ([MyUtil isEmptyString:result]) {
                     [MyUtil showPlaceMessage:@"娱币商城敬请期待！"];

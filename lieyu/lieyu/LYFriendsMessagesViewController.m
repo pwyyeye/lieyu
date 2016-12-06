@@ -1331,7 +1331,7 @@ static NSString *daShangCellID = @"dashangCellID";
     
     [LYFriendsHttpTool friendsLikeMessageWithParams:paraDic compelte:^(bool result) {
         if (![USER_DEFAULT objectForKey:@"firstUseFriendLike"]) {
-            float distance = button.superview.superview.frame.origin.y - tableView.contentOffset.y;
+            float distance = button.superview.superview.superview.superview.frame.origin.y - tableView.contentOffset.y;
 //            imageSubview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
 //            //            imageSubview.backgroundColor = RGBA(0, 0, 0, 0.1);
 //            imageSubview.backgroundColor = [UIColor clearColor];
@@ -1349,10 +1349,10 @@ static NSString *daShangCellID = @"dashangCellID";
 //            [((AppDelegate *)[UIApplication sharedApplication].delegate).window addSubview:imageSubview];
             if (distance < SCREEN_HEIGHT / 2) {
                 [imageView setImage:[UIImage imageNamed:@"emojiTIpBottom"]];
-                [imageView setFrame:CGRectMake(SCREEN_WIDTH - 260, distance + 20, 206, 93)];
+                [imageView setFrame:CGRectMake(SCREEN_WIDTH - 260, -distance + 20, 206, 93)];
             }else{
                 [imageView setImage:[UIImage imageNamed:@"emojiTIpTop"]];
-                [imageView setFrame:CGRectMake(SCREEN_WIDTH - 260, distance - 68, 206, 93)];
+                [imageView setFrame:CGRectMake(SCREEN_WIDTH - 260, -distance - 68, 206, 93)];
             }
 //            [imageSubview addSubview:imageView];
             [((AppDelegate *)[UIApplication sharedApplication].delegate).window addSubview:imageView];
