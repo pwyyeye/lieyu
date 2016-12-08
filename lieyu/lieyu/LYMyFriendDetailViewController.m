@@ -35,6 +35,7 @@
     NSArray *imgArray;
     NSArray *liveImageArray;
     UILabel *clearLabel;
+    BOOL _isBlack;
 }
 
 @property (nonatomic, strong) NSMutableArray *liveArray;//直播列表
@@ -434,6 +435,17 @@
             [self.liveArray addObjectsFromArray:Arr];
             [weakSelf configureThisView];
         }];
+        [LYFriendsHttpTool isBlackWithUserid:_userID complete:^(NSDictionary *dic) {
+            NSNumber *result = dic[@"isBlackUser"];
+            int temp = [result intValue];
+            if (temp == 0) {//不在黑名单
+                _isBlack = NO;
+                [_setBlackButton setImage:[UIImage imageNamed:@"setBlack"] forState:UIControlStateNormal];
+            } else {//在黑名单
+                [_setBlackButton setImage:[UIImage imageNamed:@"hadSetBlack"] forState:UIControlStateNormal];
+                _isBlack = YES;
+            }
+        }];
     }];
 }
 
@@ -546,6 +558,20 @@
         checkFans.type = 1;
     }
     [self.navigationController pushViewController:checkFans animated:YES];
+}
+
+- (IBAction)setBlack:(UIButton *)sender {
+    if (_isBlack) {//移除黑名单
+        [LYFriendsHttpTool removeBlackWithUserid:_userID complete:^(NSDictionary *dic) {
+            [sender setImage:[UIImage imageNamed:@"setBlack"] forState:(UIControlStateNormal)];
+            _isBlack = !_isBlack;
+        }];
+    } else {//
+        [LYFriendsHttpTool setBlackWithUserid:_userID complete:^(NSDictionary *dic) {
+            [sender setImage:[UIImage imageNamed:@"hadSetBlack"] forState:(UIControlStateNormal)];
+            _isBlack = !_isBlack;
+        }];
+    }
 }
 
 - (IBAction)addCareof:(UIButton *)sender {

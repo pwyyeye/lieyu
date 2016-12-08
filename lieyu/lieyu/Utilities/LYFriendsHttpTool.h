@@ -93,4 +93,14 @@
 #pragma mark - 删除直播
 + (void)deleteMyLiveRecord:(NSDictionary *)params complete:(void(^)(BOOL result))complete;
 
+#pragma mark --- 是否拉黑
++(void) isBlackWithUserid:(NSString *) userid complete:(void(^)(NSDictionary *dic))complete;
+
+#pragma mark --- 加入黑名单
++(void) setBlackWithUserid:(NSString *) userid complete:(void(^)(NSDictionary *dic))complete;
+
+#pragma mark --- 移除黑名单
++(void) removeBlackWithUserid:(NSString *) userid complete:(void(^)(NSDictionary *dic))complete;
+
+
 @end

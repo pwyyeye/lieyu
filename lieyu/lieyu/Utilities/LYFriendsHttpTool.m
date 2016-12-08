@@ -533,4 +533,47 @@
     }];
 }
 
+
+#pragma mark --- 是否拉黑
++(void) isBlackWithUserid:(NSString *) userid complete:(void(^)(NSDictionary *dic))complete
+{
+    NSDictionary *params = @{@"blackid": userid};
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_USER_BLACKINFO baseURL:LY_SERVER params:params success:^(id response) {
+        if ([[response objectForKey:@"errorcode"]isEqualToString:@"1"]) {
+            NSDictionary *data = (NSDictionary *)response[@"data"];
+            complete(data);
+        }else{
+            [MyUtil showMessage:[response objectForKey:@"message"]];
+        }
+    } failure:^(NSError *err) {
+    }];
+}
+
+#pragma mark --- 加入黑名单
++(void) setBlackWithUserid:(NSString *) userid complete:(void(^)(NSDictionary *dic))complete;
+{
+    NSDictionary *params = @{@"blackid": userid};
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_USER_SETBLACK baseURL:LY_SERVER params:params success:^(id response) {
+        if ([[response objectForKey:@"errorcode"]isEqualToString:@"1"]) {
+            complete(response);
+        }else{
+            [MyUtil showMessage:[response objectForKey:@"message"]];
+        }
+    } failure:^(NSError *err) {
+    }];
+}
+
+#pragma mark --- 移除黑名单
++(void) removeBlackWithUserid:(NSString *) userid complete:(void(^)(NSDictionary *dic))complete
+{
+    NSDictionary *params = @{@"blackid": userid};
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_USER_REMOVEBLACK baseURL:LY_SERVER params:params success:^(id response) {
+        if ([[response objectForKey:@"errorcode"]isEqualToString:@"1"]) {
+            complete(response);
+        }else{
+            [MyUtil showMessage:[response objectForKey:@"message"]];
+        }
+    } failure:^(NSError *err) {
+    }];
+}
 @end

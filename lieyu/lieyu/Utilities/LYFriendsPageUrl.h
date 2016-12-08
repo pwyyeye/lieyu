@@ -103,4 +103,13 @@
 //删除直播
 #define LY_LIVE_DELETE @"app/api/liveroom/delete?1=1"
 
+//判断是否拉黑
+#define LY_USER_BLACKINFO @"app/api/sns/isBlack?1=1"
+
+//拉黑用户
+#define LY_USER_SETBLACK @"app/api/sns/black?1=1"
+
+//移除拉黑
+#define LY_USER_REMOVEBLACK @"app/api/sns/removeBlack?1=1"
+
 #endif /* LYFriendsPageUrl_h */

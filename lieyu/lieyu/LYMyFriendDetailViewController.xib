@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -48,6 +49,7 @@
                 <outlet property="setBG" destination="QJO-1e-oxG" id="4r2-NL-0Vc"/>
                 <outlet property="setBgLabel" destination="8EH-gN-6BF" id="ceu-Am-rWW"/>
                 <outlet property="setBgLabelConstraint" destination="WmK-Jg-gKZ" id="j4Y-Jf-vbP"/>
+                <outlet property="setBlackButton" destination="Dg7-lY-cns" id="NAx-Y6-2Ch"/>
                 <outlet property="sexImageView" destination="7pG-d2-QDP" id="yam-K6-BQW"/>
                 <outlet property="userImageView" destination="4CY-ix-pKh" id="d8y-ww-31e"/>
                 <outlet property="userimageBtn" destination="gSd-Jf-J92" id="YzU-ZH-d96"/>
@@ -662,28 +664,40 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8EH-gN-6BF">
-                            <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="1" id="0bx-wb-FdO"/>
+                                <constraint firstAttribute="width" id="0bx-wb-FdO"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dg7-lY-cns">
+                            <state key="normal" image="setBlack.png"/>
+                            <connections>
+                                <action selector="setBlack:" destination="-1" eventType="touchUpInside" id="wlz-ye-O7W"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="y4b-ZI-d8D" firstAttribute="leading" secondItem="QJO-1e-oxG" secondAttribute="leading" id="AU3-7d-5rJ"/>
-                        <constraint firstItem="Zc4-8A-Lpn" firstAttribute="top" secondItem="QJO-1e-oxG" secondAttribute="top" constant="9.5" id="CjC-DN-9Yd"/>
-                        <constraint firstAttribute="trailing" secondItem="Zc4-8A-Lpn" secondAttribute="trailing" id="JbO-oe-EEy"/>
-                        <constraint firstAttribute="bottom" secondItem="Zc4-8A-Lpn" secondAttribute="bottom" constant="9.5" id="MFu-Rk-oZF"/>
+                        <constraint firstItem="Zc4-8A-Lpn" firstAttribute="centerX" secondItem="QJO-1e-oxG" secondAttribute="centerX" id="C9D-WF-cO0"/>
+                        <constraint firstItem="Dg7-lY-cns" firstAttribute="leading" secondItem="Zc4-8A-Lpn" secondAttribute="trailing" id="Mmf-kI-Foy"/>
                         <constraint firstAttribute="bottom" secondItem="8EH-gN-6BF" secondAttribute="bottom" id="NCr-sR-pkA"/>
-                        <constraint firstItem="Zc4-8A-Lpn" firstAttribute="centerY" secondItem="y4b-ZI-d8D" secondAttribute="centerY" id="QYe-Zj-nCX"/>
+                        <constraint firstItem="Dg7-lY-cns" firstAttribute="centerY" secondItem="y4b-ZI-d8D" secondAttribute="centerY" id="PGl-m5-6YY"/>
+                        <constraint firstItem="y4b-ZI-d8D" firstAttribute="leading" secondItem="QJO-1e-oxG" secondAttribute="leading" id="Php-df-Ymw"/>
+                        <constraint firstAttribute="trailing" secondItem="Dg7-lY-cns" secondAttribute="trailing" id="SMx-ss-Ovd"/>
                         <constraint firstAttribute="height" constant="49" id="Teu-dc-hlH"/>
-                        <constraint firstItem="8EH-gN-6BF" firstAttribute="leading" secondItem="y4b-ZI-d8D" secondAttribute="trailing" id="fwe-Vx-rBn"/>
-                        <constraint firstItem="Zc4-8A-Lpn" firstAttribute="height" secondItem="y4b-ZI-d8D" secondAttribute="height" id="hbG-Wp-O7s"/>
+                        <constraint firstItem="Zc4-8A-Lpn" firstAttribute="top" secondItem="QJO-1e-oxG" secondAttribute="top" constant="9.5" id="Yzl-C4-idG"/>
+                        <constraint firstItem="Zc4-8A-Lpn" firstAttribute="height" secondItem="y4b-ZI-d8D" secondAttribute="height" id="em5-ba-dKr"/>
+                        <constraint firstItem="Zc4-8A-Lpn" firstAttribute="width" secondItem="y4b-ZI-d8D" secondAttribute="width" id="f9b-Em-ZNO"/>
                         <constraint firstItem="8EH-gN-6BF" firstAttribute="top" secondItem="QJO-1e-oxG" secondAttribute="top" id="khA-AE-uxi"/>
-                        <constraint firstItem="Zc4-8A-Lpn" firstAttribute="leading" secondItem="8EH-gN-6BF" secondAttribute="trailing" id="oyx-nf-83S"/>
+                        <constraint firstItem="Zc4-8A-Lpn" firstAttribute="leading" secondItem="y4b-ZI-d8D" secondAttribute="trailing" id="ktc-8R-d9W"/>
+                        <constraint firstAttribute="bottom" secondItem="Zc4-8A-Lpn" secondAttribute="bottom" constant="9.5" id="ktg-Vs-pgL"/>
+                        <constraint firstItem="Zc4-8A-Lpn" firstAttribute="centerY" secondItem="y4b-ZI-d8D" secondAttribute="centerY" id="ml4-5S-yCa"/>
+                        <constraint firstItem="Dg7-lY-cns" firstAttribute="height" secondItem="Zc4-8A-Lpn" secondAttribute="height" id="orM-aR-475"/>
+                        <constraint firstItem="Dg7-lY-cns" firstAttribute="width" secondItem="Zc4-8A-Lpn" secondAttribute="width" id="rjh-Rv-A6w"/>
+                        <constraint firstItem="Zc4-8A-Lpn" firstAttribute="width" secondItem="QJO-1e-oxG" secondAttribute="width" multiplier="1/3" id="zyP-rC-Pu9"/>
                     </constraints>
                 </view>
             </subviews>
@@ -735,6 +749,7 @@
         <image name="nameIden_purper.png" width="22" height="22"/>
         <image name="personality_mark.png" width="20" height="20"/>
         <image name="return_white.png" width="25" height="24"/>
+        <image name="setBlack.png" width="55" height="21"/>
         <image name="transparentBG.png" width="1125" height="717"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
