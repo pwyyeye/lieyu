@@ -34,7 +34,7 @@
 - (void)setRecentM:(FriendsRecentModel *)recentM{
     _recentM = recentM;
     _label_address.text = recentM.location;
-    if (![_recentM.coinBooleanStr isEqualToString:@"5"]) {//判断是否显示
+    if (![_recentM.coinBooleanStr isEqualToString:@"4"]) {//判断是否显示
         self.centerConstraint.constant = 0;
         self.btn_dashang.hidden = NO;
         self.rightView.hidden = NO;

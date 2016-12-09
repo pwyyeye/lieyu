@@ -93,7 +93,7 @@
     UIButton *_iconButton, *_giftButton;
     CGFloat _heartSize;//红心的大小
     UILabel *_likeLabel;//
-    NSTimer *_burstTimer;//延时
+    NSTimer *_liveStatusTimer;//延时
     int _giftNumber;//礼物数量
     NSString *_giftId;//礼物id
     NSString *_giftValue;//礼物价值
@@ -309,19 +309,15 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
         } else {
             _userView.numberLabel.text = @"";
         }
-//        if ([dict valueForKey:@"users"]) {
         [self.dataArray removeAllObjects];
         self.dataArray = dict[@"users"];
-//            for (ChatUseres *model  in _dataArray) {
-//                NSString *tempID = [NSString stringWithFormat:@"%@", _hostUser[@"id"]];
-//                if (model.id == tempID.integerValue) {
-//                    [_dataArray removeObject:model];
-//                    break;
-//                }
-//            }
-//        }
         [_audienceCollectionView reloadData];
     }];
+}
+
+//直播暂停时,获取直播状态
+-(void)getLiveStatusTimer
+{
     NSDictionary *watchDict = @{@"liveChatId":_chatRoomId};
     [LYFriendsHttpTool getLiveStatusWithParms:watchDict complete:^(NSDictionary *dict) {
         NSInteger num = [NSString stringWithFormat:@"%@",dict[@"livestatus"]].integerValue;
@@ -330,9 +326,11 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
             case 200:
             {
                 if (_isLiveing == LiveStatePause && pauseLable) {
-                        self.player = [[WatchPlayerClient sharedPlayerClient] playWithUrl:_contentURL];
-                        [pauseLable removeFromSuperview];
-                        pauseLable = nil;
+                    self.player = [[WatchPlayerClient sharedPlayerClient] playWithUrl:_contentURL];
+                    [pauseLable removeFromSuperview];
+                    pauseLable = nil;
+                    [_liveStatusTimer invalidate];
+                    _liveStatusTimer = nil;
                 }
                 _isLiveing = LiveStateLiveing;
             }
@@ -345,6 +343,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
                 break;
         }
     }];
+
 }
 
 //定时获取礼物动画
@@ -482,6 +481,8 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
             pauseLable.textColor = [UIColor whiteColor];
             [self.view addSubview:pauseLable];
             [self.view bringSubviewToFront:pauseLable];
+            _liveStatusTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(getLiveStatusTimer) userInfo:nil repeats:YES];
+            [_liveStatusTimer fire];
         }
     }
 }
@@ -529,7 +530,7 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [_daShangView.timeButton setTitle:[NSString stringWithFormat:@"%ld",(long)number] forState:(UIControlStateDisabled)];
     if (number == 0) {
         [_daShangTimer invalidate];
-        _timer = nil;
+        _daShangTimer = nil;
         _daShangView.timeButton.hidden = YES;
         _daShangView.sendGiftButton.hidden = NO;
         _daShangView.timeButton.titleLabel.text = @"30";
@@ -834,17 +835,6 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     _giftName = notification.userInfo[@"giftName"];
     NSString *typeNum = notification.userInfo[@"gifType"];
     _gifType = typeNum;
-//    if ([typeNum isEqualToString:@"14"]) {//跑车
-//        _gifType = @"3";
-//    } else if ([typeNum isEqualToString:@"15"]) {//游艇
-//        _gifType = @"4";
-//    } else if ([typeNum isEqualToString:@"12"]) {//私人飞机
-//        _gifType = @"2";
-//    } else if ([typeNum isEqualToString:@"16"])  {//别墅
-//        _gifType = @"5";
-//    } else {//默认类型
-//        _gifType = @"1";
-//    }
 }
 
 -(void)touchBackgroud{
@@ -949,40 +939,40 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     
     switch (state) {
         case PLPlayerStatusUnknow:
-            NSLog(@"0");
+//            NSLog(@"0");
             break;
         case PLPlayerStatusPreparing:
-            NSLog(@"1");
+//            NSLog(@"1");
             break;
         case PLPlayerStatusReady:
-            NSLog(@"2");
+//            NSLog(@"2");
             break;
         case PLPlayerStatusCaching:
-            NSLog(@"3");
+//            NSLog(@"3");
             break;
         case PLPlayerStatusPlaying:
             if (_isfirstPlay) {
                 [self setProgressSlider];
                 _isfirstPlay = NO;
             }
-            NSLog(@"4");
+//            NSLog(@"4");
             break;
         case PLPlayerStatusPaused:
-            NSLog(@"5");
+//            NSLog(@"5");
             break;
         case PLPlayerStatusStopped:
             if (_isActiveNow) {
                 [self watchBackButtonAction];
             }
-            NSLog(@"6");
+//            NSLog(@"6");
             break;
         case PLPlayerStatusError:
             [self watchBackButtonAction];
-            NSLog(@"7");
+//            NSLog(@"7");
             break;
         case PLPlayerStateAutoReconnecting:
             [MyUtil showMessage:@"连接中..."];
-            NSLog(@"8");
+//            NSLog(@"8");
             break;
         default:
             break;
@@ -1018,6 +1008,8 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
                     pauseLable.textColor = [UIColor whiteColor];
                     [self.view addSubview:pauseLable];
                     [self.view bringSubviewToFront:pauseLable];
+                    _liveStatusTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(getLiveStatusTimer) userInfo:nil repeats:YES];
+                    [_liveStatusTimer fire];
                 }
             }
                 break;
