@@ -344,7 +344,7 @@
             [self.delegate sendVedio:self.mediaUrl andImage:mediaImage andContent:newContent andLocation:location andTopicID:_TopicID ? _TopicID : @"" andTopicName:_TopicTitle ? _TopicTitle : @""];
         }
         
-        AVURLAsset *avAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:self.mediaUrl] options:nil];
+                AVURLAsset *avAsset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:self.mediaUrl] options:nil];
         NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:avAsset];
         int status = [MyUtil configureNetworkConnect];
         if(status == 1){
@@ -384,7 +384,7 @@
                 }
             }];
         }
-        
+
     }else{
         if(self.fodderArray.count <= 0){
             [self showMessage:@"请添加照片或视频，把美好分享！"];

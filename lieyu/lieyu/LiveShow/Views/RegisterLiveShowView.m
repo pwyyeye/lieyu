@@ -100,7 +100,7 @@
     _beginLive(sender.value);
 }
 
-#pragma mark --- 削圆角以及点击事件
+#pragma mark --- 削圆角
 -(void) setcorrnerRadius:(UIView *)view{
     view.layer.cornerRadius = view.frame.size.height / 2;
     view.layer.masksToBounds = YES;

@@ -1470,6 +1470,11 @@
 		857968271CFC112F00284555 /* CareNumber@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 857968231CFC112F00284555 /* CareNumber@3x.png */; };
 		8579682A1CFC166800284555 /* LYAdviserHttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 857968291CFC166800284555 /* LYAdviserHttpTool.m */; };
 		8579682E1CFC176400284555 /* LYAdviserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8579682D1CFC176400284555 /* LYAdviserInfoModel.m */; };
+		857AA0271E09212C000F7037 /* liveing.png in Resources */ = {isa = PBXBuildFile; fileRef = 857AA0251E09212C000F7037 /* liveing.png */; };
+		857AA0281E09212C000F7037 /* updateVideo.png in Resources */ = {isa = PBXBuildFile; fileRef = 857AA0261E09212C000F7037 /* updateVideo.png */; };
+		857AA02A1E093475000F7037 /* liveCancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 857AA0291E093475000F7037 /* liveCancel.png */; };
+		857AA0371E0A355E000F7037 /* UpdateLiveVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 857AA0351E0A355E000F7037 /* UpdateLiveVideoViewController.m */; };
+		857AA0381E0A355E000F7037 /* UpdateLiveVideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 857AA0361E0A355E000F7037 /* UpdateLiveVideoViewController.xib */; };
 		857ABFC41D03D0FA00867DE3 /* collectNumber@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 857ABFC21D03D0FA00867DE3 /* collectNumber@2x.png */; };
 		857ABFC51D03D0FA00867DE3 /* collectNumber@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 857ABFC31D03D0FA00867DE3 /* collectNumber@3x.png */; };
 		857AD68C1CA8CDBB0032E0C4 /* LYFriendsNameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8540B6611C2CD8E200F16463 /* LYFriendsNameTableViewCell.xib */; };
@@ -4188,6 +4193,12 @@
 		8579682B1CFC16CC00284555 /* LYAdviserUrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYAdviserUrl.h; sourceTree = "<group>"; };
 		8579682C1CFC176400284555 /* LYAdviserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYAdviserInfoModel.h; sourceTree = "<group>"; };
 		8579682D1CFC176400284555 /* LYAdviserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYAdviserInfoModel.m; sourceTree = "<group>"; };
+		857AA0251E09212C000F7037 /* liveing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = liveing.png; sourceTree = "<group>"; };
+		857AA0261E09212C000F7037 /* updateVideo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = updateVideo.png; sourceTree = "<group>"; };
+		857AA0291E093475000F7037 /* liveCancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = liveCancel.png; sourceTree = "<group>"; };
+		857AA0341E0A355E000F7037 /* UpdateLiveVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateLiveVideoViewController.h; sourceTree = "<group>"; };
+		857AA0351E0A355E000F7037 /* UpdateLiveVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateLiveVideoViewController.m; sourceTree = "<group>"; };
+		857AA0361E0A355E000F7037 /* UpdateLiveVideoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdateLiveVideoViewController.xib; sourceTree = "<group>"; };
 		857ABFC21D03D0FA00867DE3 /* collectNumber@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "collectNumber@2x.png"; sourceTree = "<group>"; };
 		857ABFC31D03D0FA00867DE3 /* collectNumber@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "collectNumber@3x.png"; sourceTree = "<group>"; };
 		857AD6951CA956100032E0C4 /* shopMyReceive@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shopMyReceive@3x.png"; sourceTree = "<group>"; };
@@ -7907,6 +7918,9 @@
 				851F03A61D645A44006BAA47 /* LiveShowViewController.m */,
 				851F03A71D645A44006BAA47 /* WatchLiveShowViewController.h */,
 				851F03A81D645A44006BAA47 /* WatchLiveShowViewController.m */,
+				857AA0341E0A355E000F7037 /* UpdateLiveVideoViewController.h */,
+				857AA0351E0A355E000F7037 /* UpdateLiveVideoViewController.m */,
+				857AA0361E0A355E000F7037 /* UpdateLiveVideoViewController.xib */,
 				851F03B21D645A44006BAA47 /* Views */,
 			);
 			path = Controllers;
@@ -7987,6 +8001,9 @@
 		852519EF1D6BFA61005CE01D /* 玩探最新 */ = {
 			isa = PBXGroup;
 			children = (
+				857AA0251E09212C000F7037 /* liveing.png */,
+				857AA0291E093475000F7037 /* liveCancel.png */,
+				857AA0261E09212C000F7037 /* updateVideo.png */,
 				85D1DC021DE2DB78006E4DEB /* StartLiveShow@2x.png */,
 				85D1DC031DE2DB78006E4DEB /* StartLiveShow@3x.png */,
 				854107031D7E93A70083AF04 /* BackImage.png */,
@@ -11483,6 +11500,7 @@
 				85D1DC041DE2DB78006E4DEB /* StartLiveShow@2x.png in Resources */,
 				85251A851D6ED414005CE01D /* live_addImage@3x.png in Resources */,
 				8550E7211C302A33001FF2DE /* daohang_fabu@2x.png in Resources */,
+				857AA02A1E093475000F7037 /* liveCancel.png in Resources */,
 				85416E1B1C92EB100016BF0B /* 订单通知@2x.png in Resources */,
 				85FE54D81D7AA6F200B262EA /* StrategyCommentTableViewCell.xib in Resources */,
 				38979A471CA40919002946F5 /* happy13.png in Resources */,
@@ -12171,6 +12189,7 @@
 				38979A911CA40919002946F5 /* sad12.png in Resources */,
 				AD078C761C33CDE800A056D1 /* iphoneIcon@2x.png in Resources */,
 				AD203BE31CB0C4F30014618A /* tb_2.gif in Resources */,
+				857AA0281E09212C000F7037 /* updateVideo.png in Resources */,
 				8540B67F1C2CE89900F16463 /* LYFriendsLikeTableViewCell.xib in Resources */,
 				15EB35281BD379A500BA6161 /* LYtimeChooseTimeController.xib in Resources */,
 				853C4C8B1C311AAD00D48BA2 /* gengduo_icon@2x.png in Resources */,
@@ -12441,6 +12460,7 @@
 				38979A4A1CA40919002946F5 /* happy16.png in Resources */,
 				D7A6005A1BAC654D0006A768 /* LYAdshowCell.xib in Resources */,
 				858B22951C2977C800BF70AD /* LYTagsViewController.xib in Resources */,
+				857AA0381E0A355E000F7037 /* UpdateLiveVideoViewController.xib in Resources */,
 				AD399EAD1C940D4D00028F23 /* logo46@2x.jpg in Resources */,
 				38979A8B1CA40919002946F5 /* wow8.png in Resources */,
 				38979A3D1CA40919002946F5 /* dianzan5.png in Resources */,
@@ -12811,6 +12831,7 @@
 				85FE55111D7AB7EF00B262EA /* partyActivity@2x.png in Resources */,
 				387782251C8FF2CA0047088B /* Line@3x.png in Resources */,
 				85251A221D6C202B005CE01D /* live_sina@2x.png in Resources */,
+				857AA0271E09212C000F7037 /* liveing.png in Resources */,
 				52D4F9A91C57B2B700691BEF /* 热门@3x.png in Resources */,
 				AD399ED11C940D4D00028F23 /* logo82@2x.jpg in Resources */,
 				ADAFCD391CA0E261008BF959 /* noVoice2.png in Resources */,
@@ -13594,6 +13615,7 @@
 				A2FD57621BAFE6C000CFFF92 /* CaoCanCell.m in Sources */,
 				85A638EA1D740B18000816FD /* WanTanCell.m in Sources */,
 				ADF88EAE1C1197C400CF5DED /* UIScrollView+MJRefresh.m in Sources */,
+				857AA0371E0A355E000F7037 /* UpdateLiveVideoViewController.m in Sources */,
 				AD79E0921C781C9300C45B97 /* EmptyView.m in Sources */,
 				8528AB771D73C76100B809CE /* DaShangViewCell.m in Sources */,
 				15E240941BB294F10090D240 /* LYOrderBottomForFinishView.m in Sources */,

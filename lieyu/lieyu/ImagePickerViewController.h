@@ -12,8 +12,19 @@
 @protocol ImagePickerFinish <NSObject>
 - (void)ImagePickerDidFinishWithImages:(NSArray *)imageArray;
 @end
+
+
+typedef NS_ENUM(NSInteger, PickerType)
+{
+    pickImages = 0,
+    pickVideo,
+};
+
 @interface ImagePickerViewController : LYBaseViewController
 @property (nonatomic, assign) int imagesCount;
 
 @property (nonatomic, assign) id<ImagePickerFinish> delegate;
+
+@property (nonatomic, assign)  PickerType pickType;
+
 @end

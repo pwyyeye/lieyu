@@ -96,6 +96,9 @@
 //获取直播状态
 #define LY_Live_liveStatus @"app/api/liveroom/getLiveStatus?1=1"
 
+//上传视频
+#define LY_Live_updateVideo @"app/api/liveroom/createVideo?1=1"
+
 #pragma mark --- 打赏
 #define LY_DaShang @"dailyCoinAction.do?action=custom"
 

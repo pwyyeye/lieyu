@@ -10,12 +10,15 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "LYBaseViewController.h"
 
+
+
 @interface ImageCollectionViewController : LYBaseViewController
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @property (nonatomic, strong) ALAssetsGroup *assetsGroup;
 @property (nonatomic, assign) int imagesCount;
 
+//@property (nonatomic, assign)  PickType pickType;
 
 @property (nonatomic, strong) void(^pushSuccessBlock)(NSArray *);
 

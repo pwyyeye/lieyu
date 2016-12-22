@@ -37,7 +37,11 @@
     void(^assetsGroupsEnumerationBlock)(ALAssetsGroup *, BOOL *) = ^(ALAssetsGroup *assetsGroup, BOOL *stop){
         if(assetsGroup){
             if (assetsGroup) {
-                [assetsGroup setAssetsFilter:[ALAssetsFilter allPhotos]];
+                if (self.pickType == pickVideo) {
+                    [assetsGroup setAssetsFilter:[ALAssetsFilter allVideos]];
+                } else {
+                    [assetsGroup setAssetsFilter:[ALAssetsFilter allPhotos]];
+                }
                 if(assetsGroup.numberOfAssets > 0){
                     [_AssetsGroup addObject:assetsGroup];
                 }
@@ -129,7 +133,7 @@
     imagePickerVC.imagesCount = self.imagesCount;
     imagePickerVC.assetsGroup = [self.AssetsGroup objectAtIndex:indexPath.row];
     imagePickerVC.title = [NSString stringWithFormat:@"%@",[[self.AssetsGroup objectAtIndex:indexPath.row] valueForProperty:ALAssetsGroupPropertyName]];
-//    imagePickerVC.imagesCount = 4;
+//    imagePickerVC.pickType = _pickType;
     [self.navigationController pushViewController:imagePickerVC animated:YES];
     
     __weak __typeof(self)weakSelf = self;
@@ -139,25 +143,5 @@
     };
     imagePickerVC.pushSuccessBlock = pushSuccess;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @end

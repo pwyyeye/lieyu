@@ -84,10 +84,6 @@
     
 }
 
-
-
-
-
 -(void)setCornerRadiusView:(UIView *) maskView With:(CGFloat) size and:(BOOL) mask{
     maskView.layer.cornerRadius = size;
     maskView.layer.masksToBounds = YES;

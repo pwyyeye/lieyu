@@ -403,6 +403,20 @@
     }];
 }
 
+//添加视频
++(void) updateLiveVideoWithParms:(NSDictionary *) parms complete: (void(^)(NSDictionary *dic)) complete
+{
+    [HTTPController requestWihtMethod:RequestMethodTypePost url:LY_Live_updateVideo baseURL:LY_SERVER params:parms success:^(id response) {
+        if ([response[@"errorcode"] isEqualToString:@"1"]) {
+            NSDictionary *dic = response;
+            complete(dic);
+        } else {
+            [MyUtil showMessage:@"请求失败"];
+        }
+    } failure:^(NSError *err) {
+        
+    }];
+}
 
 #pragma mark --- 最新玩友列表和粉丝
 +(void) getfFriensGroupWithPrams: (NSDictionary *)prams complete: (void(^)(NSDictionary *dict)) complete{

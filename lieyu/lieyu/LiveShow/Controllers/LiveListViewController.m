@@ -7,18 +7,29 @@
 //
 
 #import "LiveListViewController.h"
-#import "LiveShowListCell.h"
-#import "LiveListCell.h"
+
 #import "LiveShowViewController.h"
 #import "WatchLiveShowViewController.h"
+#import "UpdateLiveVideoViewController.h"
+
 #import "LYFriendsHttpTool.h"
+
 #import "LYLiveShowListModel.h"
 #import "roomHostUser.h"
+
 #import "HotMenuButton.h"
+
+#import "LiveShowListCell.h"
+#import "LiveListCell.h"
+
+#define kRadianToDegrees(radian) (radian*180.0)/(M_PI)
+#define effectViewWidth  60
+#define effectViewHeight  60
+#define buttonViewWidth SCREEN_WIDTH / 8
 
 static NSString *liveListCellID = @"LiveListCellID";
 //static NSString *liveShowListID = @"liveShowListID";
-@interface LiveListViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
+@interface LiveListViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,UIActionSheetDelegate,CAAnimationDelegate>
 
 {
     BOOL _isChoosen;//防止cell连点
@@ -29,8 +40,18 @@ static NSString *liveListCellID = @"LiveListCellID";
     UIScrollView *_scrollViewForTableView;//表的基成视图
     
     UIVisualEffectView *_effectView;//开始直播按钮
+    
+    UIView *_backgroundView;//背景
+    UIImageView *_liveTypeBackgroundView;
+    BOOL _registerButtonType;//yes是没有打开,no是打开
+    UIButton *_cancelButton;
+    UIButton *_liveingButton;
+    UIButton *_updateVideoButton;
+    UILabel *_text_left;
+    UILabel *_text_right;
+    
     int _type;
-    UIButton *_registerLiveButton;
+    UIButton *_LiveTypeButton;
     int _oldScrollOffectY;
     UILabel *_kongLabel;
     BOOL isDisturb;
@@ -666,17 +687,17 @@ static NSString *liveListCellID = @"LiveListCellID";
 - (void)initReleaseWishButton{
     UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
     _effectView = [[UIVisualEffectView alloc]initWithEffect:effect];
-    [_effectView setFrame:CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 60, 60, 60)];
-    _effectView.layer.cornerRadius = 30;
+    [_effectView setFrame:CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 60, effectViewWidth, effectViewHeight)];
+    _effectView.layer.cornerRadius = effectViewWidth / 2;
     _effectView.layer.masksToBounds = YES;
     [self.view addSubview:_effectView];
     [self.view bringSubviewToFront:_effectView];
     
-    _registerLiveButton = [[UIButton alloc]initWithFrame:CGRectMake(12, 15, 36, 30)];
-    [_registerLiveButton setBackgroundImage:[UIImage imageNamed:@"daohang_xiangji"] forState:UIControlStateNormal];
-    [_registerLiveButton addTarget:self action:@selector(registerLiveButtonAction) forControlEvents:UIControlEventTouchUpInside];
-    [_effectView addSubview:_registerLiveButton];
-    
+    _LiveTypeButton = [[UIButton alloc]initWithFrame:CGRectMake(12, 15, 36, 30)];
+    [_LiveTypeButton setBackgroundImage:[UIImage imageNamed:@"daohang_xiangji"] forState:UIControlStateNormal];
+    [_LiveTypeButton addTarget:self action:@selector(registerLiveButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    [_effectView addSubview:_LiveTypeButton];
+    _registerButtonType = YES;
     [UIView animateWithDuration:.4 animations:^{
         if (_type == 0) {
             _effectView.frame = CGRectMake(SCREEN_WIDTH / 2 - 30, SCREEN_HEIGHT - 143, 60, 60);
@@ -696,9 +717,153 @@ static NSString *liveListCellID = @"LiveListCellID";
 
 #pragma mark -- 点击开始直播按钮
 -(void)registerLiveButtonAction{
+//    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"直播",@"上传视频", nil];
+//    [actionSheet showInView:self.view];
+        
+//        _backgroundView = [[UIView alloc] initWithFrame:(CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT))];
+//        [_backgroundView setBackgroundColor:[UIColor clearColor]];
+//        [self.view addSubview:_backgroundView];
+        
+    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+    UIVisualEffectView * visualEffectView = [[UIVisualEffectView alloc]initWithEffect:effect];
+    [visualEffectView setFrame:(CGRectMake(0, SCREEN_HEIGHT / 5 * 3, SCREEN_WIDTH, SCREEN_HEIGHT / 5 * 2))];
+    _liveTypeBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"BackImage.png"]];
+    [_liveTypeBackgroundView setFrame:(CGRectMake(0, SCREEN_HEIGHT / 5 * 3, SCREEN_WIDTH, SCREEN_HEIGHT / 5 * 2))];
+    [_liveTypeBackgroundView addSubview:visualEffectView];
+    [self.view addSubview:_liveTypeBackgroundView];
+    [self.view insertSubview:_liveTypeBackgroundView aboveSubview:_effectView];
+    UIBezierPath *textPath = [UIBezierPath bezierPathWithArcCenter:(CGPointMake(SCREEN_WIDTH / 2, SCREEN_HEIGHT + 100)) radius:SCREEN_WIDTH * 2 startAngle:M_PI * 1.2 endAngle:M_PI * 1.8 clockwise:YES];
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = _liveTypeBackgroundView.bounds;
+    maskLayer.path = textPath.CGPath;
+    _liveTypeBackgroundView.layer.mask = maskLayer;
+    
+    _cancelButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+    [_cancelButton setImage:[UIImage imageNamed:@"liveCancel"] forState:(UIControlStateNormal)];
+    [_cancelButton setFrame:(CGRectMake(SCREEN_WIDTH / 2 - 10, CGRectGetMaxY(_effectView.frame) - 10, 20, 20))];
+    [_cancelButton addTarget:self action:@selector(cancelLiveing) forControlEvents:(UIControlEventTouchUpInside)];
+    [self.view addSubview:_cancelButton];
+    
+    
+        _liveingButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+        [_liveingButton setFrame:_effectView.frame];
+        [_liveingButton setImage:[UIImage imageNamed:@"liveing"] forState:(UIControlStateNormal)];
+        [_liveingButton addTarget:self action:@selector(registerLiveShow) forControlEvents:(UIControlEventTouchUpInside)];
+        [self.view addSubview:_liveingButton];
+        [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:.9 initialSpringVelocity:20 options:(UIViewAnimationOptionCurveEaseInOut) animations:^{
+            [_liveingButton setFrame:(CGRectMake(SCREEN_WIDTH / 2 - 80 - buttonViewWidth / 2, CGRectGetMaxY(_effectView.frame) - SCREEN_WIDTH / 12 * 3, buttonViewWidth + 10, buttonViewWidth + 10))];
+            UILabel *text = [[UILabel alloc] init];
+            text.center = CGPointMake(_liveingButton.frame.origin.x - 5, _liveingButton.center.y + buttonViewWidth / 3 * 2);
+            text.size = CGSizeMake(buttonViewWidth + 20, 23);
+            text.backgroundColor = [UIColor clearColor];
+            [text setText:@"直播"];
+            text.textAlignment  = NSTextAlignmentCenter;
+            [text setTextColor:[UIColor whiteColor]];
+            [text setFont:[UIFont systemFontOfSize:13 weight:9]];
+            _text_left = text;
+            [self.view addSubview:_text_left];
+        } completion:nil];
+        
+        _updateVideoButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+        [_updateVideoButton setFrame:_effectView.frame];
+        [_updateVideoButton setImage:[UIImage imageNamed:@"updateVideo"] forState:(UIControlStateNormal)];
+        [_updateVideoButton addTarget:self action:@selector(updateVideo) forControlEvents:(UIControlEventTouchUpInside)];
+        _updateVideoButton.alpha = 0.f;
+        [self.view addSubview:_updateVideoButton];
+        [UIView animateWithDuration:1 delay:.3 usingSpringWithDamping:.9 initialSpringVelocity:20 options:(UIViewAnimationOptionCurveEaseInOut) animations:^{
+            _updateVideoButton.alpha = 1.f;
+            [_updateVideoButton setFrame:(CGRectMake(SCREEN_WIDTH / 2 + 80 - buttonViewWidth / 2, CGRectGetMaxY(_effectView.frame) - SCREEN_WIDTH / 12 * 3, buttonViewWidth + 10, buttonViewWidth + 10))];
+            UILabel *text = [[UILabel alloc] init];
+            text.center = CGPointMake(_updateVideoButton.frame.origin.x - 5, _updateVideoButton.center.y + buttonViewWidth / 3 * 2);
+            text.size = CGSizeMake(buttonViewWidth + 20, 23);
+            text.backgroundColor = [UIColor clearColor];
+            [text setText:@"导入视频"];
+            text.textAlignment  = NSTextAlignmentCenter;
+            [text setTextColor:[UIColor whiteColor]];
+            [text setFont:[UIFont systemFontOfSize:13 weight:9]];
+            _text_right = text;
+            [self.view addSubview:_text_right];
+        } completion:nil];
+    
+}
+
+//删除View
+-(void)removeUselessView: (UIView *)view
+{
+    [view removeFromSuperview];
+    view = nil;
+}
+
+-(CABasicAnimation *)rotation:(float)dur degree:(float)degree direction:(int)direction repeatCount:(int)repeatCount
+{
+    CATransform3D rotationTransform = CATransform3DMakeRotation(degree, 0, 0, direction);
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform"];
+    animation.toValue = [NSValue valueWithCATransform3D:rotationTransform];
+    animation.duration  =  dur;
+    animation.autoreverses = NO;
+    animation.cumulative = NO;
+    animation.fillMode = kCAFillModeForwards;
+    animation.repeatCount = repeatCount;
+    animation.delegate = self;
+    return animation;
+}
+
+
+#pragma mark - UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0://拍照
+        {
+            [self registerLiveShow];
+        }
+            break;
+        case 1://上传视频
+        {
+            [self updateVideo];
+        }
+            break;
+            break;
+        default:
+            break;
+    }
+
+}
+
+//取消
+-(void)cancelLiveing
+{
+    [UIView animateWithDuration:.5 animations:^{
+        [self removeUselessView:_liveingButton];
+        [self removeUselessView:_updateVideoButton];
+        [self removeUselessView:_text_left];
+        [self removeUselessView:_text_right];
+        [self removeUselessView:_cancelButton];
+        _liveingButton = nil;
+    }];
+    
+    [self removeUselessView:_liveTypeBackgroundView];
+    [self.view addSubview:_effectView];
+    [self.view bringSubviewToFront:_effectView];
+}
+
+//开始直播
+-(void) registerLiveShow
+{
+    [self cancelLiveing];
     LiveShowViewController *registerPushRoomVC = [[LiveShowViewController alloc] init];
     [self presentViewController:registerPushRoomVC animated:YES completion:NULL];
 }
+
+//上传视频
+-(void) updateVideo
+{
+    [self cancelLiveing];
+    UpdateLiveVideoViewController *updateVC = [[UpdateLiveVideoViewController alloc] initWithNibName:@"UpdateLiveVideoViewController" bundle:[NSBundle mainBundle]];
+    updateVC.navigationController.title = @"上传视频";
+    [self.navigationController pushViewController:updateVC animated:YES];
+}
+
 
 - (void)didReceiveMemoryWarning {
     

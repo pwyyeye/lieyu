@@ -1619,9 +1619,7 @@ static NSString *daShangCellID = @"dashangCellID";
     //    NSURL *url = [NSURL URLWithString:[[MyUtil getQiniuUrl:pvM.imageLink mediaType:quType width:0 andHeight:0] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]] ;
     if (recentM.isMeSendMessage){
         url = [[NSURL alloc] initFileURLWithPath:pvM.imageLink];
-        
     }
-    
     
     if (player.moviePlayer.playbackState != MPMoviePlaybackStateStopped) {
         //               [player removeFromParentViewController];
