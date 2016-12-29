@@ -224,7 +224,9 @@
             [HTTPController uploadFileToQiuNiu:_sandBoxFilePath complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
                 if(![MyUtil isEmptyString:key]){
                     _playbackURL = [NSString string];
-                    _playbackURL =[NSString stringWithString:[MyUtil getQiniuUrl:key width:0 andHeight:0]];
+                   NSString *temp = [key stringByReplacingOccurrencesOfString:@".mp4" withString:@""];
+                    _playbackURL =[NSString stringWithString:[MyUtil getQiniuUrl:temp mediaType:QiNiuUploadTpyeMedia width:0 andHeight:0]];
+                    
                     [MyUtil showCleanMessage:@"上传成功!"];
                     NSLog(@"%@",key);
                     
@@ -241,6 +243,7 @@
                     
                     [LYFriendsHttpTool updateLiveVideoWithParms:dict complete:^(NSDictionary *dic) {
                         [app stopLoading];
+                        [self.navigationController popViewControllerAnimated:YES];
                         [self clearCahes];
                     }];
                 }else{

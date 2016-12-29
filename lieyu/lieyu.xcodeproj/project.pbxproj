@@ -1546,6 +1546,7 @@
 		85C4417D1D73D67900299C17 /* VIPIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85C441751D73D67900299C17 /* VIPIcon@3x.png */; };
 		85C4417E1D73D67900299C17 /* yubiIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85C441761D73D67900299C17 /* yubiIcon@2x.png */; };
 		85C4417F1D73D67900299C17 /* yubiIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85C441771D73D67900299C17 /* yubiIcon@3x.png */; };
+		85C7CB231E14C4F0003DCDD8 /* live_changeScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 85C7CB221E14C4F0003DCDD8 /* live_changeScreen.png */; };
 		85C8F2341C3A4DE700288844 /* FriendsUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 85C8F2331C3A4DE700288844 /* FriendsUserInfoModel.m */; };
 		85D1DC041DE2DB78006E4DEB /* StartLiveShow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85D1DC021DE2DB78006E4DEB /* StartLiveShow@2x.png */; };
 		85D1DC051DE2DB78006E4DEB /* StartLiveShow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85D1DC031DE2DB78006E4DEB /* StartLiveShow@3x.png */; };
@@ -4289,6 +4290,7 @@
 		85C441751D73D67900299C17 /* VIPIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VIPIcon@3x.png"; sourceTree = "<group>"; };
 		85C441761D73D67900299C17 /* yubiIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yubiIcon@2x.png"; sourceTree = "<group>"; };
 		85C441771D73D67900299C17 /* yubiIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yubiIcon@3x.png"; sourceTree = "<group>"; };
+		85C7CB221E14C4F0003DCDD8 /* live_changeScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = live_changeScreen.png; sourceTree = "<group>"; };
 		85C8F2321C3A4DE700288844 /* FriendsUserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendsUserInfoModel.h; sourceTree = "<group>"; };
 		85C8F2331C3A4DE700288844 /* FriendsUserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendsUserInfoModel.m; sourceTree = "<group>"; };
 		85D1DC021DE2DB78006E4DEB /* StartLiveShow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StartLiveShow@2x.png"; sourceTree = "<group>"; };
@@ -8065,6 +8067,7 @@
 				85A638A41D7407E1000816FD /* wantan_select@2x.png */,
 				8537D4CF1D719DD900636229 /* live_B_wechatmoment@2x.png */,
 				8537D4D01D719DD900636229 /* live_B_wechatmoment@3x.png */,
+				85C7CB221E14C4F0003DCDD8 /* live_changeScreen.png */,
 				8548A7D01DDC34FB0095790E /* live_watchShare@2x.png */,
 				8548A7D11DDC34FB0095790E /* live_watchShare@3x.png */,
 				850E0A7D1D70499800F4C00C /* live_listlike@3x.png */,
@@ -12677,6 +12680,7 @@
 				ADF88E641C102E4F00CF5DED /* huiseStar@3x.png in Resources */,
 				38979A421CA40919002946F5 /* happy0.png in Resources */,
 				AD203BEB1CB0C4F30014618A /* tb_home.jpg in Resources */,
+				85C7CB231E14C4F0003DCDD8 /* live_changeScreen.png in Resources */,
 				85FE54751D79151D00B262EA /* DaShangChoose@2x.png in Resources */,
 				38B11C091C92AFC200AD3EB8 /* QRCode@3x.png in Resources */,
 				854CCA7A1C918BDB00368C72 /* LoginNew@3x.png in Resources */,

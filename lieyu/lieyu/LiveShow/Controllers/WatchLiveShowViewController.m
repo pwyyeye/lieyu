@@ -196,6 +196,8 @@
 @property(nonatomic, strong) UIButton *shareButton;
 @property(nonatomic, assign) BOOL isShowSetView;
 
+@property(nonatomic, strong) UIButton *changeScreen;
+
 @property (nonatomic, strong) UIView *CAEmitterView;
 
 @property (strong, nonatomic)  PresentView *presentView;
@@ -267,6 +269,9 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [self.emitterLayer setHidden:NO];
     if (_contentURL) {
         [self initPLplayer];
+    } else {
+        [MyUtil showMessage:@"链接失效,请刷新后重试!"];
+        return;
     }
     [self initUI];
     if (_chatRoomId != nil) {
@@ -440,6 +445,14 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [shareButton addTarget:self action:@selector(liveShareButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
     _shareButton = shareButton;
     [self.view addSubview:_shareButton];
+    
+    //横竖屏切换
+//    _changeScreen = [UIButton buttonWithType:(UIButtonTypeCustom)];
+//    _changeScreen.size = CGSizeMake(MinHeight_InputView, MinHeight_InputView);
+//    _changeScreen.center = CGPointMake(self.view.frame.size.width - SCREEN_WIDTH / 10,distanceOfBottom - MinHeight_InputView * 2);
+//    [_changeScreen setImage:[UIImage imageNamed:@"live_changeScreen.png"] forState:(UIControlStateNormal)];
+//    [_changeScreen addTarget:self action:@selector(liveChangeButtonAction) forControlEvents:(UIControlEventTouchUpInside)];
+//    [self.view addSubview:_changeScreen];
     
     if (_chatRoomId) {//有chatroomid就是直播间否则为回放
         //观众列表
@@ -876,6 +889,11 @@ static NSString *const rcStystemMessageCellIndentifier = @"LYStystemMessageCellI
     [self sendMessage:giftMessage pushContent:@""];
 }
 
+#pragma mark -- 切换横竖屏
+-(void)liveChangeButtonAction
+{
+    
+}
 
 #pragma mark -- 分享
 -(void)liveShareButtonAction{
